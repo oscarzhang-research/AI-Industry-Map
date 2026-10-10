@@ -30,13 +30,18 @@ export default function SettingsPage() {
     }
   };
 
+  // One refresh per visit to this page: each click starts a full download on GitHub Actions.
+  const [refresh, setRefresh] = useState<'idle' | 'starting' | 'started'>('idle');
   const refreshData = async () => {
     const t = token();
-    if (!t) return;
+    if (!t || refresh !== 'idle') return;
+    setRefresh('starting');
     try {
       await dispatchWorkflow(t, repos.public, 'market-data.yml', { markets: 'all' });
+      setRefresh('started');
       toast('Market data refresh started. Prices update in about five minutes.');
     } catch (e) {
+      setRefresh('idle');
       toast(`Could not start the refresh: ${(e as Error).message}. The token needs “Actions: Read and write” on the public repository.`, 'error');
     }
   };
@@ -123,8 +128,8 @@ export default function SettingsPage() {
                 <button type="button" className="btn" onClick={() => reloadVault()}>
                   Reload vault
                 </button>
-                <button type="button" className="btn" onClick={refreshData}>
-                  Refresh market data now
+                <button type="button" className="btn" onClick={refreshData} disabled={refresh !== 'idle'}>
+                  {refresh === 'started' ? 'Refresh started' : refresh === 'starting' ? 'Starting…' : 'Refresh market data now'}
                 </button>
                 <Link className="btn" to="/inbox">
                   Open inbox

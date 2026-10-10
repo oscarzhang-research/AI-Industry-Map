@@ -33,7 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
+      # The branch tip, not the commit that triggered the run: a run queued behind another one
+      # then starts from the data that run committed.
       - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
@@ -55,8 +59,10 @@ jobs:
           git add data
           if git diff --cached --quiet; then echo "No data changes"; exit 0; fi
           git commit -m "data: market update $(date -u +'%Y-%m-%d %H:%M') UTC"
+          # Each run downloads the full history, so on a conflict in data/ this run's files win.
           for i in 1 2 3; do
-            git pull --rebase && git push && exit 0
+            if git pull --rebase -X theirs && git push; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
             sleep 5
           done
           exit 1
