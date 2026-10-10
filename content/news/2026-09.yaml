@@ -51,7 +51,6 @@ items:
     source: { name: "The Next Web", url: "https://thenextweb.com/news/spacexai-grok-x-subscription-tiers-ultra-lite" }
     companies: [xai]
     nodes: [applications/assistants/chat-assistants]
-    themes: [ai-monetization]
     impact: neutral
     importance: 1
 
@@ -62,7 +61,7 @@ items:
     source: { name: "CNBC", url: "https://www.cnbc.com/video/2026/09/29/openai-seeks-to-raise-30-billion-in-new-funding-round-at-1-point-4-trillion-valuation.html" }
     companies: [openai]
     nodes: [models/frontier-labs/closed-frontier]
-    themes: [funding]
+    themes: [capex]
     impact: positive
     importance: 2
 
@@ -95,9 +94,20 @@ items:
     source: { name: "CNBC", url: "https://www.cnbc.com/2026/09/29/samsung-investment-nvidia-kkr-ai-helix-digital.html" }
     companies: [samsung-electronics, nvidia, vistra]
     nodes: [infrastructure/data-centers]
-    themes: [data-centers, funding]
+    themes: [data-centers, capex]
     impact: neutral
     importance: 1
+
+  - id: 2026-09-29-nrc-permit-tva-clinch-river-bwrx-300
+    date: 2026-09-29
+    title: "NRC issues TVA the first US construction permit for a BWRX-300 small reactor"
+    summary: "The NRC approved a construction permit for a GE Vernova Hitachi BWRX-300 at TVA's Clinch River site in Oak Ridge, Tennessee, after a 14-month review that finished four months early. TVA has not set a construction start and is still negotiating cost sharing with partners."
+    source: { name: "GE Vernova", url: "https://www.gevernova.com/news/press-releases/nrc-issues-first-us-construction-permit-bwrx-300-small-modular-reactor-tva-clinch-river" }
+    companies: [ge-vernova, hitachi]
+    nodes: [energy/generation-equipment/nuclear-smr]
+    themes: [nuclear]
+    impact: positive
+    importance: 2
 
   - id: 2026-09-28-amd-to-acquire-world-labs
     date: 2026-09-28

@@ -171,6 +171,7 @@ export function loadContent(): Content {
   const news: NewsItem[] = [];
   const newsDir = join(ROOT, 'content/news');
   const newsIds = new Set<string>();
+  const themeIds = new Set(themes.map((t) => t.id));
   for (const f of existsSync(newsDir) ? readdirSync(newsDir).filter((x) => x.endsWith('.yaml')).sort() : []) {
     const path = join(newsDir, f);
     const doc = readYaml<{ items: NewsItem[] }>(path, issues);
@@ -191,6 +192,7 @@ export function loadContent(): Content {
         issues.push({ level: 'warn', file: rel(path), msg: `${it.id}: unknown node ${n}` });
         return false;
       });
+      for (const t of it.themes ?? []) if (!themeIds.has(t)) issues.push({ level: 'warn', file: rel(path), msg: `${it.id}: unknown theme ${t}` });
       news.push(it);
     }
   }

@@ -1,5 +1,16 @@
 month: 2026-10
 items:
+  - id: 2026-10-09-lumentum-sold-out-through-2029
+    date: 2026-10-09
+    title: "Lumentum says its AI optical parts are sold out through almost 2029"
+    summary: "Lumentum CEO Michael Hurlston told Bloomberg that the company's optical components for AI data centers are effectively sold out through nearly 2029, about a year beyond the 2028 horizon he gave in April. The shares rose as much as about 6% after the interview."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-09/nvidia-backed-lumentum-sees-opto-parts-capacity-sold-out-to-2029" }
+    companies: [lumentum]
+    nodes: [infrastructure/networking/optical-components]
+    themes: [optical]
+    impact: positive
+    importance: 2
+
   - id: 2026-10-08-openai-revenue-run-rate-ai-selloff
     date: 2026-10-08
     title: "AI stocks slide after OpenAI puts annualized revenue near $50 billion"
@@ -7,7 +18,7 @@ items:
     source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/08/open-ai-revenue-nvidia-oracle-coreweave.html" }
     companies: [openai, oracle, coreweave, nvidia]
     nodes: [models/frontier-labs/closed-frontier, infrastructure/cloud/neoclouds]
-    themes: [ai-monetization]
+    themes: [capex]
     impact: negative
     importance: 3
 
@@ -39,7 +50,6 @@ items:
     source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/08/palantir-isnt-done-capitalizing-on-ai-boom-goldman-sachs-says.html" }
     companies: [palantir]
     nodes: [applications/enterprise/data-platforms]
-    themes: [ai-monetization]
     impact: positive
     importance: 1
 
@@ -61,7 +71,7 @@ items:
     source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-07/broadcom-plans-50-billion-financing-for-openai-chips-wsj-says" }
     companies: [broadcom, openai]
     nodes: [chips/compute/custom-asic]
-    themes: [custom-asic, funding]
+    themes: [custom-asic, capex]
     impact: mixed
     importance: 2
 
@@ -108,6 +118,28 @@ items:
     impact: mixed
     importance: 1
 
+  - id: 2026-10-07-applied-digital-fiscal-q1-revenue
+    date: 2026-10-07
+    title: "Applied Digital's quarterly revenue rises 322% to $341.9 million"
+    summary: "Applied Digital's revenue for the quarter ended August 31 rose 322% from a year earlier to $341.9 million, and adjusted EBITDA reached $64.4 million against $0.5 million. The company put contracted revenue from its AI data-center leases at about $36 billion."
+    source: { name: "Applied Digital (SEC 8-K)", url: "https://www.sec.gov/Archives/edgar/data/0001144879/000114487926000057/apldq127earningsrelease.htm" }
+    companies: [applied-digital]
+    nodes: [infrastructure/data-centers/ai-campuses]
+    themes: [data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-07-finland-halts-google-data-center-sites
+    date: 2026-10-07
+    title: "Finland orders Google to pause work at two data-center sites"
+    summary: "Finland's Licensing and Supervision Agency told Google's local unit to stop site preparation at its planned Muhos and Kajaani data centers by October 23 until environmental impact assessments are complete. About 330 hectares of forest had been cleared at Muhos and nearly 200 at Kajaani."
+    source: { name: "Al Jazeera", url: "https://www.aljazeera.com/news/2026/10/7/finland-orders-halt-to-work-on-google-data-sites-over-environment-concerns" }
+    companies: [alphabet]
+    nodes: [infrastructure/cloud/hyperscalers]
+    themes: [data-centers]
+    impact: negative
+    importance: 1
+
   - id: 2026-10-06-google-constellation-nuclear-deal
     date: 2026-10-06
     title: "Google signs 3.6 GW nuclear deal with Constellation, including 890 MW uprates"
@@ -150,6 +182,28 @@ items:
     impact: positive
     importance: 1
 
+  - id: 2026-10-06-black-hills-google-cheyenne-power
+    date: 2026-10-06
+    title: "Black Hills lines up about 2.7 GW of power for Google's Cheyenne data center"
+    summary: "Black Hills Corp. signed agreements through 2048 to power Google's planned data center in Cheyenne, Wyoming, investing $1.8 billion in 564 MW of new gas generation from 2027 to 2029. With about 2.1 GW of third-party resources, the supply totals about 2.7 GW, with deliveries from late 2027."
+    source: { name: "Black Hills Corp. (SEC 8-K)", url: "https://www.sec.gov/Archives/edgar/data/0001130464/000119312526415597/bkh-ex99_1.htm" }
+    companies: [alphabet]
+    nodes: [energy/power-producers/utilities]
+    themes: [data-centers, power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-06-lambda-raising-4-billion-pre-ipo
+    date: 2026-10-06
+    title: "Lambda raising up to $4 billion at $14.5 billion pre-money ahead of 2027 IPO"
+    summary: "GPU cloud Lambda is raising up to $4 billion in a round led by Blackstone and Coatue at a $14.5 billion pre-money valuation, The Wall Street Journal reported. Its backlog grew from $15 billion in June to $50 billion in September, mostly from an Anthropic commitment."
+    source: { name: "TechCrunch", url: "https://techcrunch.com/2026/10/06/ai-computing-startup-lambda-to-raise-4b-ahead-of-planned-ipo/" }
+    companies: [lambda]
+    nodes: [infrastructure/cloud/neoclouds]
+    themes: [capex]
+    impact: positive
+    importance: 2
+
   - id: 2026-10-05-hon-hai-september-sales-record
     date: 2026-10-05
     title: "Hon Hai's September sales top NT$1 trillion for first time"
@@ -159,6 +213,17 @@ items:
     nodes: [infrastructure/servers/odm]
     impact: positive
     importance: 2
+
+  - id: 2026-10-05-lg-chiller-deal-ai-data-centers
+    date: 2026-10-05
+    title: "LG Electronics signs a long-term chiller supply deal for 5 GW of AI data centers"
+    summary: "LG Electronics USA agreed to supply chillers and other cooling equipment in phases to AIR Control Concepts for AI data centers in the US and Canada totaling about 5 GW. LG said the deal gives it a steadier pipeline than bidding project by project."
+    source: { name: "LG Electronics", url: "https://www.lg.com/global/newsroom/news/eco-solution/lg-electronics-secures-supply-agreement-to-advance-ai-data-center-cooling-business-in-north-america/" }
+    companies: []
+    nodes: [infrastructure/thermal/facility-cooling]
+    themes: [data-centers]
+    impact: neutral
+    importance: 1
 
   - id: 2026-10-02-toshiba-hdd-expansion-seagate-wd-slide
     date: 2026-10-02
@@ -178,7 +243,7 @@ items:
     source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-02/broadcom-starts-amassing-60-billion-to-fund-chips-for-anthropic" }
     companies: [broadcom, anthropic]
     nodes: [chips/compute/custom-asic]
-    themes: [custom-asic, funding]
+    themes: [custom-asic, capex]
     impact: mixed
     importance: 2
 
@@ -192,3 +257,24 @@ items:
     themes: [nuclear, data-centers]
     impact: positive
     importance: 1
+
+  - id: 2026-10-02-tesla-q3-energy-storage-deployments
+    date: 2026-10-02
+    title: "Tesla deploys 13.7 GWh of energy storage in the third quarter, below forecasts"
+    summary: "Tesla deployed 13.7 GWh of energy storage in the third quarter, up from 12.5 GWh a year earlier but below the 15.9 GWh analysts expected and its 14.2 GWh record from the fourth quarter of 2025. Full results are due October 21."
+    source: { name: "Tesla (SEC 8-K)", url: "https://www.sec.gov/Archives/edgar/data/0001318605/000162828026064366/exhibit991111111.htm" }
+    companies: [tesla]
+    nodes: [energy/storage/storage-integrators]
+    impact: mixed
+    importance: 1
+
+  - id: 2026-10-01-michigan-approves-dte-google-contracts
+    date: 2026-10-01
+    title: "Michigan regulators approve DTE's 20-year power contracts for a Google data center"
+    summary: "Michigan regulators approved, with conditions, DTE Electric's 20-year contracts to serve Google's planned 1 GW data center in Van Buren Township. Google will pay for up to 1,600 MW of new renewables and 480 MW of batteries and is billed for at least 80% of contracted demand from December 2027."
+    source: { name: "Michigan Public Service Commission", url: "https://www.michigan.gov/mpsc/commission/news-releases/2026/10/01/mpsc-approves-dte-electric-google-data-center-and-contracts-protects-customers-from-project-cost" }
+    companies: [alphabet]
+    nodes: [energy/power-producers/utilities]
+    themes: [data-centers, power-bottleneck]
+    impact: positive
+    importance: 2
