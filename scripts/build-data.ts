@@ -4,12 +4,14 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync
 import { join } from 'node:path';
 import { loadContent, printIssues, ROOT } from './lib/load.ts';
 import { basketIndex, computeQuote, parsePriceCsv, AI_BASE_DATE, type Fundamentals } from '../src/lib/finance.ts';
-import { safeSymbol } from '../src/lib/symbols.ts';
+import { priceChunk, safeSymbol } from '../src/lib/symbols.ts';
 import { htmlToText, injectReaderShim } from '../src/lib/reportShim.ts';
 import type { IndexSeries, PriceSeries, Quote, QuotesFile, SiteData } from '../src/lib/types.ts';
 
 const OUT = join(ROOT, 'public/generated');
 const DATA = join(ROOT, 'data');
+// PRICE_CHUNKS=N packs price series into N files instead of one per symbol (for hosts with file limits).
+const PRICE_CHUNKS = Math.max(0, Number(process.env.PRICE_CHUNKS ?? 0) | 0);
 
 function writeJson(path: string, obj: unknown) {
   writeFileSync(path, JSON.stringify(obj));
@@ -76,8 +78,13 @@ if (existsSync(priceDir)) {
     if (!s.c.length) continue;
     if (splits[symbol]?.length) s.splits = splits[symbol];
     series.set(symbol, s);
-    writeJson(join(OUT, 'prices', `${safeSymbol(symbol)}.json`), s);
+    if (!PRICE_CHUNKS) writeJson(join(OUT, 'prices', `${safeSymbol(symbol)}.json`), s);
   }
+}
+if (PRICE_CHUNKS) {
+  const packs: Record<string, PriceSeries>[] = Array.from({ length: PRICE_CHUNKS }, () => ({}));
+  for (const [symbol, s] of series) packs[priceChunk(symbol, PRICE_CHUNKS)][symbol] = s;
+  packs.forEach((p, i) => writeJson(join(OUT, 'prices', `chunk-${i}.json`), p));
 }
 
 const quotes: Record<string, Quote> = {};
@@ -137,6 +144,7 @@ writeJson(join(OUT, 'records.json'), { records: content.records });
 // ---- Meta + robots -----------------------------------------------------------------
 writeJson(join(OUT, 'meta.json'), {
   generatedAt: site.generatedAt,
+  priceChunks: PRICE_CHUNKS || undefined,
   dataUpdatedAt: status.updatedAt ?? null,
   pricesAsOf: asOf,
   counts: {

@@ -42,6 +42,8 @@ export function Header({ onSearch, onWrite }: { onSearch: () => void; onWrite: (
     { to: '/news', label: 'News' },
     { to: '/calendar', label: 'Calendar' },
     { to: '/journal', label: 'Journal' },
+    { to: '/notes', label: 'Notes' },
+    ...(canEdit ? [{ to: '/inbox', label: 'Inbox' }] : []),
   ];
 
   return (

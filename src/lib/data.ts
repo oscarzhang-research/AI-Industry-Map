@@ -1,9 +1,10 @@
 // Loading of the generated JSON files (public/generated/*), with small in-memory caches.
 import type { IndicesFile, NewsItem, PriceSeries, QuotesFile, RecordsFile, ReportMeta, SiteData } from './types.ts';
-import { safeSymbol } from './symbols.ts';
+import { priceChunk, safeSymbol } from './symbols.ts';
 
 export interface Meta {
   generatedAt: string;
+  priceChunks?: number; // prices packed into prices/chunk-<n>.json
   dataUpdatedAt: string | null;
   pricesAsOf: string | null;
   counts: Record<string, number>;
@@ -35,8 +36,12 @@ export async function loadCore(): Promise<CoreData> {
     getJson<RecordsFile>('records.json'),
     getJson<Meta>('meta.json'),
   ]);
+  priceChunks = meta.priceChunks ?? 0;
   return { site, quotes, reports, news, records, meta };
 }
+
+let priceChunks = 0;
+const chunkCache = new Map<number, Promise<Record<string, PriceSeries>>>();
 
 const seriesCache = new Map<string, Promise<PriceSeries | undefined>>();
 
@@ -44,7 +49,17 @@ export function loadSeries(symbol: string | undefined): Promise<PriceSeries | un
   if (!symbol) return Promise.resolve(undefined);
   let p = seriesCache.get(symbol);
   if (!p) {
-    p = getJson<PriceSeries>(`prices/${safeSymbol(symbol)}.json`).catch(() => undefined);
+    if (priceChunks) {
+      const n = priceChunk(symbol, priceChunks);
+      let pack = chunkCache.get(n);
+      if (!pack) {
+        pack = getJson<Record<string, PriceSeries>>(`prices/chunk-${n}.json`).catch(() => ({}));
+        chunkCache.set(n, pack);
+      }
+      p = pack.then((all) => all[symbol]);
+    } else {
+      p = getJson<PriceSeries>(`prices/${safeSymbol(symbol)}.json`).catch(() => undefined);
+    }
     seriesCache.set(symbol, p);
   }
   return p;

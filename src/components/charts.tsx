@@ -311,9 +311,9 @@ export function PriceChart({
       const from = th.createdAt.slice(0, 10);
       const to = th.closed?.date?.slice(0, 10) ?? last;
       const base = th.basePrice?.price ? th.basePrice.price / f : undefined;
-      if (base) markLines.push(seg(from, to, base, `Base ${fmtPrice(base, ccy)}`, t.ink2, 'solid'));
-      if (showTarget && th.target?.price) markLines.push(seg(from, to, th.target.price / f, `Target ${fmtPrice(th.target.price / f, ccy)}`, t.up, 'dashed'));
-      if (showTarget && th.stop?.price) markLines.push(seg(from, to, th.stop.price / f, `Stop ${fmtPrice(th.stop.price / f, ccy)}`, t.down, 'dashed'));
+      if (base) markLines.push(seg(from, to, base, `Base ${fmtPrice(base, ccy)}`, t.ink2, 'solid', t.surface));
+      if (showTarget && th.target?.price) markLines.push(seg(from, to, th.target.price / f, `Target ${fmtPrice(th.target.price / f, ccy)}`, t.up, 'dashed', t.surface));
+      if (showTarget && th.stop?.price) markLines.push(seg(from, to, th.stop.price / f, `Stop ${fmtPrice(th.stop.price / f, ccy)}`, t.down, 'dashed', t.surface));
       if (showTarget && th.scenarios?.length) {
         const ps = th.scenarios.map((s) => s.price / f);
         markAreas.push([
@@ -401,9 +401,13 @@ export function PriceChart({
   );
 }
 
-function seg(from: string, to: string, y: number, label: string, color: string, type: 'solid' | 'dashed') {
+function seg(from: string, to: string, y: number, label: string, color: string, type: 'solid' | 'dashed', bg: string) {
   return [
-    { coord: [from, y], lineStyle: { color, width: 1.5, type }, label: { show: true, position: 'insideEndTop', formatter: label, color, fontSize: 11, fontWeight: 600 } },
+    {
+      coord: [from, y],
+      lineStyle: { color, width: 1.5, type },
+      label: { show: true, position: 'insideEndTop', formatter: label, color, fontSize: 11, fontWeight: 600, backgroundColor: bg, padding: [1, 4], borderRadius: 3 },
+    },
     { coord: [to, y] },
   ];
 }

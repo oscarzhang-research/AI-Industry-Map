@@ -97,22 +97,24 @@
   padding: 0 5px;
   color: var(--faint);
 }
-.menubtn {
+.btn.menubtn {
   display: none;
 }
-@media (max-width: 1080px) {
-  .nav {
-    display: none;
-  }
-  .menubtn {
-    display: inline-flex;
-  }
+@media (max-width: 1320px) {
   .searchbtn {
     min-width: 0;
   }
   .searchbtn .label,
   .searchbtn kbd {
     display: none;
+  }
+}
+@media (max-width: 1080px) {
+  .nav {
+    display: none;
+  }
+  .btn.menubtn {
+    display: inline-flex;
   }
   .site-header .wrap {
     justify-content: space-between;

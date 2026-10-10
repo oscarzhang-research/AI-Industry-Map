@@ -34,8 +34,16 @@ export function savePrefs(p: Prefs): void {
 
 export function applyPrefs(p: Prefs): void {
   const root = document.documentElement;
-  if (p.theme === 'system') root.removeAttribute('data-theme');
-  else root.setAttribute('data-theme', p.theme);
+  // Only undo a theme this app set; a host page (e.g. an embed) may set data-theme itself.
+  if (p.theme === 'system') {
+    if (root.dataset.themeSrc === 'app') {
+      root.removeAttribute('data-theme');
+      delete root.dataset.themeSrc;
+    }
+  } else {
+    root.setAttribute('data-theme', p.theme);
+    root.dataset.themeSrc = 'app';
+  }
   if (p.updown === 'red') root.setAttribute('data-updown', 'red');
   else root.removeAttribute('data-updown');
 }

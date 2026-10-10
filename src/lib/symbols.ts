@@ -71,3 +71,13 @@ export function benchmarkIdFor(symbol: string | undefined, layer: string | undef
 export function displaySymbol(symbol: string): string {
   return symbol.replace(/^\^/, '');
 }
+
+/** Which bundle a symbol's prices live in when the build packs price files together (PRICE_CHUNKS). */
+export function priceChunk(symbol: string, chunks: number): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < symbol.length; i++) {
+    h ^= symbol.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h % chunks;
+}
