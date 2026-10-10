@@ -191,9 +191,9 @@ export default function ThesisEditor({ id, preset, onClose }: { id?: string; pre
               <Field label="Industry or layer" htmlFor="th-node">
                 <NodeSelect id="th-node" value={form.subject.node} onChange={(p) => setSubject({ node: p })} emptyLabel="Choose…" />
               </Field>
-              <Field label="Track with" htmlFor="th-proxy" hint="Default: an equal-weight basket of its listed companies.">
+              <Field label="Track with" htmlFor="th-proxy" hint="Default: a layer's market-cap-weighted index, or an industry's equal-weight basket.">
                 <select id="th-proxy" className="select" value={form.subject.proxy ?? ''} onChange={(e) => setSubject({ proxy: e.target.value || undefined })}>
-                  <option value="">Equal-weight basket</option>
+                  <option value="">{form.subject.node && !form.subject.node.includes('/') ? 'Layer index (market cap)' : 'Equal-weight basket'}</option>
                   {proxies.map((p) => (
                     <option key={p} value={p}>
                       {p}

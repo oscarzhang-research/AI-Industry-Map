@@ -105,6 +105,9 @@ export default function IndustryPage() {
               </span>
             </div>
           </div>
+          <p className="faint" style={{ marginTop: 10, fontSize: 'var(--step--2)' }}>
+            Basket: every listed company placed in this industry, equal weight, local-currency returns.
+          </p>
         </header>
 
         <Section eyebrow="Value chain" title="Upstream to downstream" sub="Segments that feed this industry, the industry itself, and where its output goes. Dashed cards link to other parts of the map.">

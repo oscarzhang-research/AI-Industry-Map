@@ -5,11 +5,23 @@ import { useStore } from '../lib/store.tsx';
 import { fmtDateTime } from '../lib/format.ts';
 
 export function PreviewRibbon() {
-  const { site } = useStore();
+  const { site, mode, startDemo, toast } = useStore();
   if (!site.config.site.experimental) return null;
   return (
     <div className="preview-ribbon">
       <b>Preview build.</b> Views marked Example are placeholders, not the author's positions.
+      {mode === 'visitor' ? (
+        <button
+          type="button"
+          className="ribbon-btn"
+          onClick={() => {
+            startDemo();
+            toast('Editors are on. Write with “New view” (top right) or “Quick note” (bottom right). Drafts stay in this browser.');
+          }}
+        >
+          Try the editors
+        </button>
+      ) : null}
     </div>
   );
 }
@@ -92,7 +104,11 @@ export function Header({ onSearch, onWrite }: { onSearch: () => void; onWrite: (
             <Link to="/settings" className="badge" title={mode === 'owner' ? `Signed in as ${owner?.login}` : 'Demo mode: edits stay in this browser'}>
               {mode === 'owner' ? `Owner · ${owner?.login ?? ''}` : 'Demo'}
             </Link>
-          ) : null}
+          ) : (
+            <Link to="/settings" className="btn sm ghost signin" title="Owner sign-in and display settings">
+              Sign in
+            </Link>
+          )}
           <button type="button" className="btn icon menubtn" aria-label="Menu" aria-expanded={mobileOpen} onClick={() => setMobileOpen((v) => !v)}>
             <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
               <path fill="currentColor" d="M2 3.5h12V5H2zm0 3.75h12v1.5H2zM2 11h12v1.5H2z" />
@@ -118,7 +134,7 @@ export function Header({ onSearch, onWrite }: { onSearch: () => void; onWrite: (
               </Link>
             ))}
             <Link to="/themes">Themes</Link>
-            <Link to="/settings">Settings</Link>
+            <Link to="/settings">{mode === 'visitor' ? 'Sign in & settings' : 'Settings'}</Link>
           </div>
         </div>
       ) : null}

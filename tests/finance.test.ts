@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { addMonths, basketIndex, computeReturns, parsePriceCsv, scenarioStats, splitFactorSince, thesisPerformance } from '../src/lib/finance.ts';
+import { addMonths, basketIndex, capWeightIndex, computeReturns, parsePriceCsv, scenarioStats, splitFactorSince, thesisPerformance } from '../src/lib/finance.ts';
 import type { PriceSeries, ThesisRecord } from '../src/lib/types.ts';
 
 function series(points: [string, number][], splits?: [string, number][]): PriceSeries {
@@ -53,6 +53,56 @@ describe('basketIndex', () => {
     expect(idx.d).toEqual(['2026-01-01', '2026-01-02', '2026-01-05']);
     expect(idx.v[1]).toBeCloseTo(105);
     expect(idx.v[2]).toBeCloseTo(105);
+  });
+});
+
+describe('capWeightIndex', () => {
+  it('tracks the combined market value when membership is fixed', () => {
+    const a = series([
+      ['2026-01-01', 10],
+      ['2026-01-02', 11],
+      ['2026-01-05', 12.1],
+    ]);
+    const b = series([
+      ['2026-01-01', 20],
+      ['2026-01-02', 18],
+      ['2026-01-05', 18],
+    ]);
+    // Today: A is worth 121 (10 units at 12.1), B 180 (10 units at 18). At the base both held 10 units: 100 + 200.
+    const idx = capWeightIndex([{ series: a, mcap: 121 }, { series: b, mcap: 180 }], '2026-01-01');
+    expect(idx.v[1]).toBeCloseTo((110 + 180) / 3, 1);
+    expect(idx.v[2]).toBeCloseTo((121 + 180) / 3, 1);
+    expect(idx.top[0]).toEqual({ s: 'TEST', w: 0.598 });
+  });
+
+  it('adds a newly listed company without moving the level', () => {
+    const a = series([
+      ['2026-01-01', 10],
+      ['2026-01-02', 10],
+      ['2026-01-05', 11],
+    ]);
+    const ipo = series([
+      ['2026-01-02', 50],
+      ['2026-01-05', 50],
+    ]);
+    const idx = capWeightIndex([{ series: a, mcap: 110 }, { series: ipo, mcap: 10000 }], '2026-01-01');
+    expect(idx.v[1]).toBeCloseTo(100); // the IPO day only sets its starting price
+    // Next day: A +10% with weight 100, the IPO flat with weight 10000.
+    expect(idx.v[2]).toBeCloseTo(100 * (1 + (100 * 0.1) / (100 + 10000)), 2);
+  });
+
+  it('counts a member that does not trade on a day as unchanged', () => {
+    const us = series([
+      ['2026-01-01', 10],
+      ['2026-01-02', 11],
+    ]);
+    const asia = series([
+      ['2026-01-01', 10],
+      ['2026-01-05', 10],
+    ]);
+    const idx = capWeightIndex([{ series: us, mcap: 110 }, { series: asia, mcap: 100 }], '2026-01-01');
+    expect(idx.d).toEqual(['2026-01-01', '2026-01-02', '2026-01-05']);
+    expect(idx.v[1]).toBeCloseTo(105); // +10% on half the weight
   });
 });
 

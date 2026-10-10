@@ -17,7 +17,7 @@ Owner's browser ── fine-grained token ──→ GitHub API
 ```
 
 - **Static single-page app**: React, TypeScript and Vite, hash routing and a relative base so one build runs on GitHub Pages, in a preview and from a folder. ECharts (modular) for charts, MiniSearch for search (with CJK bigrams), TipTap for the Markdown editor, `marked` + DOMPurify for rendering.
-- **Build step** (`scripts/build-data.ts`): loads and cross-checks all content, derives company placements and layers, computes quotes and returns from `data/`, builds equal-weight baskets for every layer, industry and theme, writes per-symbol price files, shims reports for the reader, and indexes report text for search.
+- **Build step** (`scripts/build-data.ts`): loads and cross-checks all content, derives company placements and layers, computes quotes and returns from `data/`, builds a market-cap-weighted index for every layer (each company once, in its primary layer; weights from current US-dollar market caps along the price path) plus equal-weight baskets for layers, industries and themes, writes per-symbol price files, shims reports for the reader, and indexes report text for search.
 - **Two repositories**: the public repository holds code, the map, market data and anything public; the private vault holds everything else under `vault/`. Visitors never touch the vault.
 - **Owner mode**: the owner pastes a fine-grained GitHub token (Contents read/write on both repositories) on the Settings page. The token stays in that browser's storage and is sent only to `api.github.com`. Saves are atomic multi-file commits through the Git Data API, retried on a moving head. The vault is read as one recursive tree; parsed files are cached in the browser by blob SHA, so edits Claude makes in a session are picked up on the next load.
 - **Public projection**: saving a public record writes a sanitized copy to `content/views/` in the same action; switching a record to private deletes the copy. Hidden fields (`target`, `stop`, `scenarios`, `plan`, `position` by default) are removed, along with their revisions and translations.
@@ -37,7 +37,7 @@ Owner's browser ── fine-grained token ──→ GitHub API
 
 ## Scoring views
 
-Implemented in `src/lib/finance.ts` and documented on the About page: base price set by the owner (with the day's close stored as an objective reference), split adjustment for prices written before a split, direction-signed returns, excess return against a market benchmark, progress to target, best and worst moves, scenario-weighted return and payoff ratio. The site suggests target hit, stopped or expired from daily closes; the owner confirms. Industry, layer and theme views use the equal-weight basket of the node or an ETF the view names.
+Implemented in `src/lib/finance.ts` and documented on the About page: base price set by the owner (with the day's close stored as an objective reference), split adjustment for prices written before a split, direction-signed returns, excess return against a market benchmark, progress to target, best and worst moves, scenario-weighted return and payoff ratio. The site suggests target hit, stopped or expired from daily closes; the owner confirms. Layer views use the market-cap-weighted layer index; industry and theme views use the equal-weight basket of the node, or an ETF the view names.
 
 ## Translation
 

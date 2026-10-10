@@ -51,6 +51,7 @@ export default function LayerPage() {
     .map((id) => site.companies[id])
     .filter(Boolean)
     .filter((c) => industryFilter === 'all' || c.placements.some((p) => p.startsWith(industryFilter)));
+  const symbolName = (sym: string) => Object.values(site.companies).find((c) => c.tickers.some((t) => t.symbol === sym))?.name ?? sym;
   const below = site.layers.find((l) => l.order === layer.order - 1);
   const above = site.layers.find((l) => l.order === layer.order + 1);
 
@@ -83,13 +84,13 @@ export default function LayerPage() {
               <span className="value">{members.size}</span>
             </div>
             <div className="stat">
-              <span className="label">Basket YTD</span>
+              <span className="label">Layer index YTD</span>
               <span className="value">
                 <Change value={br.ytd} />
               </span>
             </div>
             <div className="stat">
-              <span className="label">Basket 1Y</span>
+              <span className="label">Layer index 1Y</span>
               <span className="value">
                 <Change value={br.y1} />
               </span>
@@ -101,6 +102,11 @@ export default function LayerPage() {
               </span>
             </div>
           </div>
+          <p className="faint" style={{ marginTop: 10, fontSize: 'var(--step--2)' }}>
+            Layer index: market-cap weighted, each company counted once in its main layer
+            {basket?.top?.length ? ` (largest weights ${basket.top.map((x) => `${symbolName(x.s)} ${Math.round(x.w * 100)}%`).join(', ')})` : ''}. Industry cards below use
+            equal-weight baskets.
+          </p>
         </header>
 
         <div className="grid cols-3" style={{ '--gap': '14px' } as React.CSSProperties}>

@@ -170,6 +170,61 @@ export function basketIndex(seriesList: PriceSeries[], base: string): { d: strin
   return { d, v };
 }
 
+/**
+ * Market-cap-weighted price index, rebased to 100 at `base`. Each member's weight on a day is its market cap
+ * at the previous close, approximated from today's market cap (in US dollars) and the price path, so the share
+ * count is held constant. A member that does not trade on a day (a local holiday) counts with no change.
+ * Members join on the day after their first close and leave after their last one; joining never moves the level.
+ */
+export function capWeightIndex(members: { series: PriceSeries; mcap: number }[], base: string): { d: string[]; v: number[]; top: { s: string; w: number }[] } {
+  const usable = members.filter((m) => m.series.c.length > 1 && m.mcap > 0);
+  if (!usable.length) return { d: [], v: [], top: [] };
+  // Units held: today's market cap divided by today's (split-adjusted) price.
+  const units = usable.map((m) => m.mcap / m.series.c[m.series.c.length - 1]);
+  const dates = [...new Set(usable.flatMap((m) => m.series.d.filter((x) => x > base)))].sort();
+  const prev: (number | undefined)[] = usable.map((m) => {
+    const i = indexOnOrBefore(m.series.d, base);
+    return i >= 0 ? m.series.c[i] : undefined;
+  });
+  const pos = usable.map((m) => indexOnOrBefore(m.series.d, base) + 1);
+  const last = usable.map((m) => m.series.d[m.series.d.length - 1]);
+  const d = [base];
+  const v = [100];
+  let level = 100;
+  for (const date of dates) {
+    let wSum = 0;
+    let wRet = 0;
+    const traded: [number, number][] = [];
+    usable.forEach((m, k) => {
+      const s = m.series;
+      const today = s.d[pos[k]] === date ? s.c[pos[k]] : undefined;
+      if (today !== undefined) traded.push([k, today]);
+      const p = prev[k];
+      if (p === undefined || date > last[k]) return; // not listed yet, or no longer trading
+      const w = units[k] * p;
+      wSum += w;
+      if (today !== undefined) {
+        const r = today / p - 1;
+        if (Number.isFinite(r) && Math.abs(r) <= 0.8) wRet += w * r; // ignore bad ticks
+      }
+    });
+    for (const [k, close] of traded) {
+      prev[k] = close;
+      pos[k] += 1;
+    }
+    if (wSum > 0) level *= 1 + wRet / wSum;
+    d.push(date);
+    v.push(Math.round(level * 100) / 100);
+  }
+  const total = usable.reduce((a, m) => a + m.mcap, 0);
+  const top = usable
+    .map((m) => ({ s: m.series.s, w: m.mcap / total }))
+    .sort((a, b) => b.w - a.w)
+    .slice(0, 3)
+    .map((x) => ({ s: x.s, w: Math.round(x.w * 1000) / 1000 }));
+  return { d, v, top };
+}
+
 /** Cumulative split ratio for splits strictly after `date` (e.g. 10 for a 10-for-1 split). */
 export function splitFactorSince(splits: [string, number][] | undefined, date: string): number {
   if (!splits?.length) return 1;

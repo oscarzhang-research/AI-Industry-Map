@@ -8,7 +8,7 @@ import { fmtDateTime, plural } from '../lib/format.ts';
 
 export default function SettingsPage() {
   const store = useStore();
-  const { site, prefs, setPrefs, mode, owner, vault, meta, signIn, signOut, reloadVault, startDemo, stopDemo, toast, token } = store;
+  const { site, prefs, setPrefs, mode, owner, vault, meta, signIn, signOut, reloadVault, startDemo, stopDemo, toast, token, canEdit } = store;
   const [tok, setTok] = useState('');
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string>();
@@ -47,8 +47,25 @@ export default function SettingsPage() {
         <div className="eyebrow">Settings</div>
         <h1 style={{ marginTop: 4 }}>Settings</h1>
         <p className="lede" style={{ marginTop: 8 }}>
-          Display preferences are saved in this browser only.
+          Sign in as the owner, try the editors in demo mode, or change how the site looks. Display preferences are saved in this browser only.
         </p>
+        {canEdit ? (
+          <div className="note-callout" style={{ marginTop: 16 }}>
+            <b>{mode === 'demo' ? 'Demo mode is on.' : 'You are signed in.'} Where to write:</b>
+            <ul style={{ margin: '6px 0 0', paddingLeft: '1.2em' }}>
+              <li>
+                <b>New view</b>, top right: a call on a company, an industry or a layer.
+              </li>
+              <li>
+                <b>Quick note</b>, bottom right, or <b>Save as note</b> under any item on the <Link to="/news">News</Link> page.
+              </li>
+              <li>
+                <Link to="/journal">Journal</Link>: <b>New entry</b> for a weekly or monthly review, <b>Update outlook</b> for the bottleneck call.
+              </li>
+              <li>Any company or industry page: <b>New view</b> and <b>Add note</b> in its sections.</li>
+            </ul>
+          </div>
+        ) : null}
 
         <Section title="Display">
           <div className="stack" style={{ '--gap': '14px' } as React.CSSProperties}>
@@ -89,7 +106,7 @@ export default function SettingsPage() {
           </div>
         </Section>
 
-        <Section title="Owner sign-in" sub="Only the site owner needs this. Visitors can read everything public without signing in.">
+        <Section id="owner" title="Owner sign-in" sub="Only the site owner needs this. Visitors can read everything public without signing in.">
           {mode === 'owner' ? (
             <div className="card stack" style={{ '--gap': '12px' } as React.CSSProperties}>
               <div>
@@ -156,7 +173,7 @@ export default function SettingsPage() {
           )}
         </Section>
 
-        <Section title="Demo mode" sub="Try the editors without signing in. Everything you write stays in this browser and is never uploaded.">
+        <Section id="demo" title="Demo mode" sub="Try the editors without signing in. Everything you write stays in this browser and is never uploaded.">
           <div className="card stack" style={{ '--gap': '12px' } as React.CSSProperties}>
             <div className="row">
               {mode === 'demo' ? (

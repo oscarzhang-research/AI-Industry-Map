@@ -49,7 +49,8 @@ export function EChart({
 
   useEffect(() => {
     if (!el.current) return;
-    const c = echarts.init(el.current, undefined, { renderer: 'canvas' });
+    // English labels whatever the browser language (ECharts otherwise follows navigator.language).
+    const c = echarts.init(el.current, undefined, { renderer: 'canvas', locale: 'EN' });
     chart.current = c;
     c.on('click', (p) => clickRef.current?.(p as Parameters<ChartClick>[0]));
     const ro = new ResizeObserver(() => c.resize());

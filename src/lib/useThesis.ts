@@ -1,5 +1,6 @@
-// Price data for theses: a listing (company views, or a proxy ETF) or, for industry, layer and theme
-// views without a proxy, the equal-weight basket built at compile time (public/generated/indices.json).
+// Price data for theses: a listing (company views, or a proxy ETF) or, for views without a proxy, an index
+// built at compile time (public/generated/indices.json): the market-cap-weighted index for a layer, the
+// equal-weight basket for an industry, segment or theme.
 import { useCallback } from 'react';
 import type { IndexSeries, IndicesFile, PriceSeries, SiteData, ThesisRecord } from './types.ts';
 import { useIndices, useSeriesMany } from './hooks.ts';

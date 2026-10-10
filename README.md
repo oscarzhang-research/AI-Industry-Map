@@ -22,7 +22,7 @@ The site is static (GitHub Pages). Content is plain YAML and Markdown in this re
 - **Base price**: the price the view was written against, entered by the author (the day's close is stored too).
 - **Daily prices**: split-adjusted closes from Yahoo Finance (via `yfinance`), fetched by GitHub Actions after the Asian and US closes. Prices entered before a split are divided by the split ratio.
 - **Returns** run from the base price to the latest close and are signed by direction, so a correct short is a gain. Dividends are excluded. Excess return subtracts a benchmark over the same days (Nasdaq-100 for US listings, PHLX Semiconductor for US chip names, the local index elsewhere).
-- **Industry, layer and theme views** use an equal-weight basket of the listed companies in that node, or an ETF the view names.
+- **Layer views** use the layer's market-cap-weighted index (each company counted once, in its main layer). **Industry and theme views** use an equal-weight basket of the listed companies placed there, or an ETF the view names.
 - **Closing**: the site flags when a close crosses the target or stop or the horizon ends; nothing closes until the owner confirms. Changes to direction, conviction, target, stop or horizon are kept as dated revisions.
 
 ## Privacy model

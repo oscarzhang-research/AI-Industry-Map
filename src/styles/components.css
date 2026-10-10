@@ -120,6 +120,24 @@
     justify-content: space-between;
   }
 }
+.ribbon-btn {
+  margin-left: 10px;
+  border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+  background: transparent;
+  color: inherit;
+  border-radius: 999px;
+  padding: 1px 10px;
+  font-size: inherit;
+  font-weight: 600;
+}
+.ribbon-btn:hover {
+  background: color-mix(in srgb, currentColor 14%, transparent);
+}
+@media (max-width: 1080px) {
+  .header-tools .signin {
+    display: none;
+  }
+}
 .mobile-nav {
   border-top: 1px solid var(--rule);
   background: var(--sheet);

@@ -59,6 +59,11 @@ export default function Home() {
   const nodeName = (p: string) => index.nodes.get(p)?.name;
   const listed = Object.values(site.companies).filter((c) => c.listing === 'listed').length;
   const layerNames = Object.fromEntries(site.layers.map((l) => [l.id, { name: l.name, order: l.order }]));
+  const symbolName = useMemo(() => {
+    const m = new Map<string, string>();
+    for (const c of Object.values(site.companies)) for (const t of c.tickers) m.set(t.symbol, c.name);
+    return m;
+  }, [site]);
 
   const exportMap = async () => {
     if (!mapRef.current) return;
@@ -119,7 +124,7 @@ export default function Home() {
                   <span className="value">{layerStats[layer.id]?.companies ?? '—'}</span>
                 </div>
                 <div className="stat">
-                  <span className="label">Basket YTD</span>
+                  <span className="label">Layer index YTD</span>
                   <span className="value">
                     <Change value={layerStats[layer.id]?.ret} />
                   </span>
@@ -239,8 +244,8 @@ export default function Home() {
         </Section>
 
         {indices && indices.series.some((s) => s.kind === 'layer') ? (
-          <Section eyebrow="Layers" title="Where the money has gone since the AI trade began" sub="Equal-weight baskets of each layer, rebased to 100.">
-            <LayerChart series={indices.series} layerNames={layerNames} />
+          <Section eyebrow="Layers" title="Where the money has gone since the AI trade began" sub="Market-cap-weighted index of each layer, rebased to 100. Switch to equal weight to see how the typical company did.">
+            <LayerChart series={indices.series} layerNames={layerNames} companyName={(sym) => symbolName.get(sym) ?? sym} />
           </Section>
         ) : null}
 

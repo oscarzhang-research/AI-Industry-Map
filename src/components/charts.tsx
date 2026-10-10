@@ -120,15 +120,25 @@ export function Heatmap({ site, quotes, period, height = 560 }: { site: SiteData
 }
 
 // ---------------------------------------------------------------------------------------------
-// Layer baskets: equal-weight indices, rebased to 100 at the start of the chosen range.
+// Layer indices, rebased to 100 at the start of the chosen range: market-cap weighted by default,
+// with the equal-weight view of the same companies one click away.
 // ---------------------------------------------------------------------------------------------
 type Range = 'ytd' | 'y1' | 'ai';
+type Weighting = 'cap' | 'equal';
 
-export function LayerChart({ series, layerNames }: { series: IndexSeries[]; layerNames: Record<string, { name: string; order: number }> }) {
+/** Round an axis end to two significant digits, outward, so the end labels read cleanly (92 → 90, 1555 → 1600). */
+function niceEnd(x: number, dir: 'down' | 'up'): number {
+  const mag = 10 ** (Math.floor(Math.log10(x)) - 1);
+  return (dir === 'down' ? Math.floor(x / mag) : Math.ceil(x / mag)) * mag;
+}
+
+export function LayerChart({ series, layerNames, companyName }: { series: IndexSeries[]; layerNames: Record<string, { name: string; order: number }>; companyName?: (symbol: string) => string }) {
   const themeV = useThemeVersion();
   const [range, setRange] = useState<Range>('ai');
+  const [weighting, setWeighting] = useState<Weighting>('cap');
   const [table, setTable] = useState(false);
-  const layers = series.filter((s) => s.kind === 'layer').sort((a, b) => layerNames[a.id].order - layerNames[b.id].order);
+  const kind = weighting === 'cap' ? 'layer' : 'layer-equal';
+  const layers = series.filter((s) => s.kind === kind).sort((a, b) => layerNames[a.id].order - layerNames[b.id].order);
   const rebased = useMemo(() => {
     return layers.map((s) => {
       const last = s.d[s.d.length - 1];
@@ -144,8 +154,8 @@ export function LayerChart({ series, layerNames }: { series: IndexSeries[]; laye
     const t = chartTheme();
     // Fixed log extent so end labels can be spread apart by hand (ECharts does not de-overlap them).
     const values = rebased.flatMap((s) => s.v);
-    const lo = Math.min(...values) * 0.95;
-    const hi = Math.max(...values) * 1.05;
+    const lo = niceEnd(Math.min(...values) * 0.97, 'down');
+    const hi = niceEnd(Math.max(...values) * 1.03, 'up');
     const plotH = 340 - 16 - 28;
     const yOf = (v: number) => ((Math.log2(hi) - Math.log2(v)) / (Math.log2(hi) - Math.log2(lo))) * plotH;
     const ends = rebased.map((s) => ({ id: s.id, y: yOf(s.v[s.v.length - 1]) })).sort((a, b) => a.y - b.y);
@@ -215,6 +225,15 @@ export function LayerChart({ series, layerNames }: { series: IndexSeries[]; laye
         </div>
         <div className="row">
           <Segmented
+            label="Weighting"
+            value={weighting}
+            onChange={setWeighting}
+            options={[
+              { value: 'cap', label: 'Market cap' },
+              { value: 'equal', label: 'Equal' },
+            ]}
+          />
+          <Segmented
             label="Range"
             value={range}
             onChange={setRange}
@@ -257,10 +276,26 @@ export function LayerChart({ series, layerNames }: { series: IndexSeries[]; laye
           </table>
         </div>
       ) : (
-        <EChart option={option} height={340} ariaLabel="Equal-weight price index of each layer" />
+        <EChart option={option} height={340} ariaLabel={`${weighting === 'cap' ? 'Market-cap-weighted' : 'Equal-weight'} price index of each layer`} />
       )}
+      {weighting === 'cap' && layers.some((s) => s.top?.length) ? (
+        <div className="chart-foot" style={{ justifyContent: 'flex-start' }}>
+          <span className="ink2">Largest weights today:</span>
+          {layers.map((s) =>
+            s.top?.length ? (
+              <span key={s.id}>
+                {layerNames[s.id].name} {s.top.map((x) => `${companyName?.(x.s) ?? x.s} ${Math.round(x.w * 100)}%`).join(', ')}
+              </span>
+            ) : null,
+          )}
+        </div>
+      ) : null}
       <div className="chart-foot">
-        <span>Equal-weight price index of listed core and focus companies in each layer, local currencies, log scale. For orientation, not a tradable index.</span>
+        <span>
+          {weighting === 'cap'
+            ? 'Each line is the combined market value of the listed companies whose main business is in that layer, weighted by market cap in US dollars; returns in local currencies, log scale. A few large companies move each line. For orientation, not a tradable index.'
+            : 'Each line gives every listed core and focus company in the layer the same weight, so smaller companies count as much as the largest; local currencies, log scale. For orientation, not a tradable index.'}
+        </span>
       </div>
     </div>
   );

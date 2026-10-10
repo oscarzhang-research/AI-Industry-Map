@@ -3,7 +3,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadContent, printIssues, ROOT } from './lib/load.ts';
-import { basketIndex, computeQuote, parsePriceCsv, AI_BASE_DATE, type Fundamentals } from '../src/lib/finance.ts';
+import { basketIndex, capWeightIndex, computeQuote, parsePriceCsv, AI_BASE_DATE, type Fundamentals } from '../src/lib/finance.ts';
 import { priceChunk, safeSymbol } from '../src/lib/symbols.ts';
 import { htmlToText, injectReaderShim } from '../src/lib/reportShim.ts';
 import type { IndexSeries, PriceSeries, Quote, QuotesFile, SiteData } from '../src/lib/types.ts';
@@ -98,7 +98,10 @@ for (const [symbol, s] of series) {
 const quotesFile: QuotesFile = { updatedAt: status.updatedAt ?? null, asOf, quotes, fx };
 writeJson(join(OUT, 'quotes.json'), quotesFile);
 
-// ---- Baskets: equal-weight indices for layers and industries -----------------------
+// ---- Indices -------------------------------------------------------------------------------------------
+// Layers: market-cap-weighted (where the money went), each company counted once in its primary layer, plus an
+// equal-weight variant of the same companies (core and focus tiers). Industries and themes: equal-weight
+// baskets of every listed company placed there, so conglomerates do not swamp narrow niches.
 const indexSeries: IndexSeries[] = [];
 function basketFor(ids: string[]): PriceSeries[] {
   const out: PriceSeries[] = [];
@@ -109,20 +112,25 @@ function basketFor(ids: string[]): PriceSeries[] {
   return out;
 }
 for (const layer of content.layers) {
-  const members = Object.values(content.companies).filter((c) => c.layers.includes(layer.id) && c.tier !== 'watch').map((c) => c.id);
-  const list = basketFor(members);
-  const idx = basketIndex(list, AI_BASE_DATE);
-  if (idx.d.length > 1) indexSeries.push({ id: layer.id, kind: 'layer', name: layer.name, members: list.length, ...idx });
+  const primary = Object.values(content.companies).filter((c) => c.primaryLayer === layer.id && c.listing === 'listed' && c.symbol && series.has(c.symbol));
+  const capMembers = primary
+    .map((c) => ({ series: series.get(c.symbol!)!, mcap: quotes[c.symbol!]?.mcapUsd ?? 0 }))
+    .filter((m) => m.mcap > 0);
+  const cap = capWeightIndex(capMembers, AI_BASE_DATE);
+  if (cap.d.length > 1) indexSeries.push({ id: layer.id, kind: 'layer', weighting: 'cap', name: layer.name, members: capMembers.length, d: cap.d, v: cap.v, top: cap.top });
+  const eq = basketFor(primary.filter((c) => c.tier !== 'watch').map((c) => c.id));
+  const eidx = basketIndex(eq, AI_BASE_DATE);
+  if (eidx.d.length > 1) indexSeries.push({ id: layer.id, kind: 'layer-equal', weighting: 'equal', name: layer.name, members: eq.length, ...eidx });
   for (const ind of layer.industries) {
     const ilist = basketFor(ind.segments.flatMap((s) => s.companies));
     const iidx = basketIndex(ilist, AI_BASE_DATE);
-    if (iidx.d.length > 1) indexSeries.push({ id: ind.path, kind: 'industry', name: ind.name, members: ilist.length, ...iidx });
+    if (iidx.d.length > 1) indexSeries.push({ id: ind.path, kind: 'industry', weighting: 'equal', name: ind.name, members: ilist.length, ...iidx });
   }
 }
 for (const theme of content.themes) {
   const tlist = basketFor(theme.companies);
   const tidx = basketIndex(tlist, AI_BASE_DATE);
-  if (tidx.d.length > 1) indexSeries.push({ id: theme.id, kind: 'theme', name: theme.name, members: tlist.length, ...tidx });
+  if (tidx.d.length > 1) indexSeries.push({ id: theme.id, kind: 'theme', weighting: 'equal', name: theme.name, members: tlist.length, ...tidx });
 }
 writeJson(join(OUT, 'indices.json'), { base: AI_BASE_DATE, series: indexSeries });
 

@@ -65,8 +65,8 @@ export default function AboutPage() {
                 local market index elsewhere.
               </li>
               <li>
-                <b>Industry, layer and theme views</b> are measured against an equal-weight basket of the listed companies in that node, or against an ETF if the view names
-                one.
+                <b>Layer views</b> are measured against the layer's market-cap-weighted index, in which each company counts once, in its main layer. <b>Industry and theme views</b> use
+                an equal-weight basket of the listed companies placed there, so a conglomerate does not swamp a narrow niche. A view can name an ETF instead.
               </li>
               <li>
                 <b>Closing a view.</b> The site flags when a close crosses the target or the stop, or when the horizon ends. Nothing is closed until the author confirms.

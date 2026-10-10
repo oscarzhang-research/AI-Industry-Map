@@ -57,13 +57,13 @@ Claude 需要通过 “Claude GitHub App” 访问仓库，才能帮你把卖方
 
 ### 第 5 步：在网站上登录
 
-1. 打开网站，点页脚的 **Settings & owner sign-in**（或手机上右上角菜单 → Settings）。
+1. 打开网站，点右上角的 **Sign in**（手机上：右上角菜单 → **Sign in & settings**）。
 2. 在 **Owner sign-in** 粘贴 token，点 **Sign in**。
 3. 看到 “Signed in as oscarzhang-research” 和 “Vault loaded” 就成功了。右上角会出现 **New view** 按钮和 “Owner” 标记。
 
 每台设备（电脑、手机）各登录一次即可。在别人的电脑上用完记得点 **Sign out**。
 
-> 还没登录也可以先体验：Settings → **Start demo mode**，写的东西只存在当前浏览器，不会上传。
+> 还没登录也可以先体验：点预览版顶部横幅里的 **Try the editors**，或 Sign in 页面里的 **Start demo mode**。写的东西只存在当前浏览器，不会上传。
 
 ---
 
@@ -127,7 +127,7 @@ Claude 需要通过 “Claude GitHub App” 访问仓库，才能帮你把卖方
 
 ### Inbox（待办）
 
-右上角 Owner 标记 → Settings → Open inbox，或直接访问 `#/inbox`：待确认的价格判定、到期该复查的观点、待翻译的中文内容、未读的私有研报。
+顶部导航的 **Inbox**（登录后出现）：待确认的价格判定、到期该复查的观点、待翻译的中文内容、未读的私有研报。
 
 ---
 

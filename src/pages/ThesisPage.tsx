@@ -128,7 +128,7 @@ export default function ThesisPage() {
             </div>
             <div className="eyebrow" style={{ marginTop: 14 }}>
               {subjectLink ? <Link to={subjectLink}>{label}</Link> : label}
-              {symbol ? ` · ${symbol}` : basket ? ` · basket of ${basket.members}` : ''}
+              {symbol ? ` · ${symbol}` : basket ? ` · ${basket.weighting === 'cap' ? 'index' : 'basket'} of ${basket.members}` : ''}
             </div>
             <h1 style={{ marginTop: 6, fontSize: 'clamp(1.6rem, 3.2vw, 2.3rem)', maxWidth: '30ch' }}>{t.title || t.summary}</h1>
             {t.title && t.summary ? (
@@ -206,7 +206,7 @@ export default function ThesisPage() {
         <div className="kpis" aria-label="Performance">
           <Kpi label={t.status === 'active' ? 'Since open' : 'Result'} value={<Change value={perf.ret} />} sub={t.direction === 'short' ? 'short: gains when price falls' : perf.start ? `from ${fmtDate(perf.start, false)}` : undefined} />
           <Kpi label={`vs ${benchName ?? 'benchmark'}`} value={<Change value={perf.excess} />} sub={perf.benchRet !== undefined ? `index ${fmtPct(perf.benchRet)}` : undefined} />
-          <Kpi label={basket ? 'Basket at open' : 'Base price'} value={basket ? perf.base?.toFixed(1) ?? '—' : fmtPrice(perf.base, ccy)} sub={t.basePrice?.date ? `set ${fmtDate(t.basePrice.date, false)}` : basket ? 'index level' : 'close at open'} />
+          <Kpi label={basket ? (basket.weighting === 'cap' ? 'Index at open' : 'Basket at open') : 'Base price'} value={basket ? perf.base?.toFixed(1) ?? '—' : fmtPrice(perf.base, ccy)} sub={t.basePrice?.date ? `set ${fmtDate(t.basePrice.date, false)}` : basket ? 'index level' : 'close at open'} />
           <Kpi label={t.status === 'active' ? 'Last close' : 'At close'} value={basket ? perf.last?.toFixed(1) ?? '—' : fmtPrice(perf.last, ccy)} sub={perf.lastDate ? fmtDate(perf.lastDate, false) : undefined} />
           {perf.target ? (
             <Kpi label="Target" value={fmtPrice(perf.target, ccy)} sub={perf.upside !== undefined ? `${fmtPct(perf.upside)} to go` : undefined} />
@@ -231,7 +231,7 @@ export default function ThesisPage() {
           <div className="min0">
             {series ? (
               <div className="card">
-                <div className="eyebrow">{basket ? 'Equal-weight basket' : 'Daily close'}</div>
+                <div className="eyebrow">{basket ? (basket.weighting === 'cap' ? 'Market-cap-weighted layer index' : 'Equal-weight basket') : 'Daily close'}</div>
                 <div style={{ marginTop: 6 }}>
                   <PriceChart series={series} overlays={[{ thesis: overlayThesis, showTarget: true }]} ccy={ccy} height={320} />
                 </div>
@@ -245,7 +245,11 @@ export default function ThesisPage() {
                 ) : null}
                 <div className="chart-foot">
                   <span>Daily closes, split-adjusted{perf.splitFactor !== 1 ? ` (prices you entered are divided by ${perf.splitFactor} for later splits)` : ''}.</span>
-                  {basket ? <span>No single listing: tracked with an equal-weight basket of its companies.</span> : null}
+                  {basket ? (
+                    <span>
+                      No single listing: tracked with {basket.weighting === 'cap' ? "the layer's market-cap-weighted index" : 'an equal-weight basket of its companies'}.
+                    </span>
+                  ) : null}
                 </div>
               </div>
             ) : (
@@ -503,7 +507,7 @@ export default function ThesisPage() {
                 <dt>Subject</dt>
                 <dd>{subjectLink ? <Link to={subjectLink}>{label}</Link> : label}</dd>
                 <dt>Tracked by</dt>
-                <dd>{symbol ?? (basket ? `Equal-weight basket (${basket.members})` : '—')}</dd>
+                <dd>{symbol ?? (basket ? `${basket.weighting === 'cap' ? 'Market-cap-weighted index' : 'Equal-weight basket'} (${basket.members})` : '—')}</dd>
                 <dt>Direction</dt>
                 <dd>
                   <DirectionBadge direction={t.direction} />

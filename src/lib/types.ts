@@ -258,12 +258,14 @@ export interface PriceSeries {
 }
 
 export interface IndexSeries {
-  id: string; // layer id or industry path
-  kind: 'layer' | 'industry' | 'theme';
+  id: string; // layer id, industry path or theme id
+  kind: 'layer' | 'layer-equal' | 'industry' | 'theme'; // 'layer' is the market-cap-weighted layer index
+  weighting: 'cap' | 'equal';
   name: string;
   members: number;
   d: string[];
   v: number[];
+  top?: { s: string; w: number }[]; // largest current weights (cap-weighted only)
 }
 
 export interface IndicesFile {
