@@ -22,7 +22,7 @@ Owner's browser ── fine-grained token ──→ GitHub API
 - **Owner mode**: the owner pastes a fine-grained GitHub token (Contents read/write on both repositories) on the Settings page. The token stays in that browser's storage and is sent only to `api.github.com`. Saves are atomic multi-file commits through the Git Data API, retried on a moving head. The vault is read as one recursive tree; parsed files are cached in the browser by blob SHA, so edits Claude makes in a session are picked up on the next load.
 - **Public projection**: saving a public record writes a sanitized copy to `content/views/` in the same action; switching a record to private deletes the copy. Hidden fields (`target`, `stop`, `scenarios`, `plan`, `position` by default) are removed, along with their revisions and translations.
 - **Demo mode** lets anyone try the editors; records stay in that browser.
-- **Workflows**: `market-data.yml` (after the Asian and US closes, plus branch pushes that change the universe), `deploy.yml` (on pushes to `main` and after each data update), `ci.yml` (validate, typecheck, test, build on every branch).
+- **Workflows**: `market-data.yml` (after the Asian and US closes, plus branch pushes that change the universe), `deploy.yml` (on pushes to `main` and after each data update), `ci.yml` (validate, typecheck, test, build on every branch). A Claude routine also runs every morning at about 6:48 New York time: it adds sourced news for all five layers, translates new Chinese writing, runs the checks and commits only those changes to `main`.
 
 ## Market data
 
@@ -41,7 +41,7 @@ Implemented in `src/lib/finance.ts` and documented on the About page: base price
 
 ## Translation
 
-The owner writes in Chinese. Every translatable field has a stable key (`summary`, `signals.<id>.text`, `updates.<index>.text`, …). `translation.fields` stores English per key with an FNV-1a hash of the source text, so the site knows whether a translation is missing, current or stale. Visitors see English when it exists and the original otherwise, marked "EN pending"; a toggle shows the Chinese original. Translations are produced by Claude (`npm run translate-queue`); a scheduled Claude routine can take this over.
+The owner writes in Chinese. Every translatable field has a stable key (`summary`, `signals.<id>.text`, `updates.<index>.text`, …). `translation.fields` stores English per key with an FNV-1a hash of the source text, so the site knows whether a translation is missing, current or stale. Visitors see English when it exists and the original otherwise, marked "EN pending"; a toggle shows the Chinese original. Translations are produced by Claude (`npm run translate-queue`), and the morning routine runs it daily.
 
 ## Security and privacy
 
@@ -56,7 +56,7 @@ The concept is a geological survey sheet: five pastel strata on paper, with ink-
 
 ## Roadmap
 
-- A scheduled Claude routine each morning: collect news for all five layers, translate new Chinese writing, file reports dropped into an inbox folder.
+- Let the morning routine also file reports dropped into an inbox folder.
 - Public track record once enough views have closed.
 - Model portfolio (positions, sizing, P&L against benchmarks).
 - Earnings-day digests and weekly email.
