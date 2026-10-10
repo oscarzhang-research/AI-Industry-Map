@@ -1,0 +1,33 @@
+id: 2026-10-03-toshiba-hdd-shock
+kind: claude
+visibility: public
+format: html
+file: report.html
+title: "Toshiba's HDD Doubling: A Duration Shock, Not an Earnings Shock"
+titleZh: "东芝 HDD 扩产冲击"
+subtitle: "Nikkei's report of a ¥60bn Toshiba expansion sent Seagate and Western Digital down ~10%; what the selloff priced and how much supply really changes."
+date: 2026-10-03
+asOf: 2026-10-02
+reportType: event
+languages: [zh, en]
+companies: [toshiba, seagate, western-digital, resonac, kioxia, sandisk, alphabet, amazon]
+nodes: [chips/memory/hdd, chips/memory/nand-ssd]
+tags: [hdd, nearline-storage, supply-discipline, capacity-expansion, hamr, long-term-agreements, nand]
+summary:
+  en:
+    - "Toshiba's 'doubling' is in exabytes, not units: ~41% a year to FY2027, adding ~6% to industry supply and lifting its share to 11–14%, far from 30%."
+    - "STX and WDC fell ~10.2% (~$39B, ~100x Toshiba's capex) as the market repriced cycle duration and terminal value, not the next two years of earnings."
+    - "Near-term fundamentals barely change: output is allocated or under LTAs through 2027, and Toshiba faces three gates: merchant media, glass substrates and a ~40% areal-density gap."
+    - "The real risk is 2028–2031, when Toshiba's capacity, HAMR ramps, component expansions and NAND loosening coincide; ~30% demand growth keeps a gap, ~25% flips to surplus in 2028."
+    - "The −10% equals a permanent ~6% cut to price per TB from FY2028, or ~1.9 points lower implied FCF growth; Oct 2 prices imply only 3–6% growth after FY2028."
+  zh:
+    - "“翻倍”是存储容量口径，不是台数口径：两个财年翻倍≈年复合41%，新增约占FY2027行业供给的6%，东芝EB份额升至11–14%，远非30%。"
+    - "STX与WDC收跌约10.2%、合计蒸发约390亿美元（约为东芝投资额的100倍）：股价跌的是“周期久期”与终值，不是近两年的盈利。"
+    - "近端（至CY2027）基本面几乎不变：产能已分配或被长约锁定；东芝受外购介质、外购玻璃基板与约40%面密度差距三重约束。"
+    - "真正的风险在2028–2031年：东芝新增产能、HAMR爬坡、部件链扩产与NAND转松在同一窗口落地；需求年增约30%时缺口持续，约25%时2028年即转为过剩。"
+    - "−10%约等于FY2028起每TB价格永久下调约6%，或隐含自由现金流增速下调约1.9个百分点；以10月2日收盘价计，FY2028之后只隐含3–6%的年增速。"
+stance: "A duration shock, not an earnings shock: STX/WDC earnings barely change for two years; the real risk is 2028–2031."
+priceRef: { symbol: STX, price: 848.99, currency: USD, date: 2026-10-02 }
+sections: 20
+interactive: true
+pinned: false

@@ -1,0 +1,572 @@
+# Companies whose primary placement is in the Models layer.
+# Private valuations are the latest publicly reported marks as of 2026-10-10; lines marked
+# "# verify" could not be re-confirmed against a credible outlet during this pass.
+companies:
+  alphabet:
+    name: Alphabet
+    nameZh: 谷歌
+    aliases: [GOOGL, GOOG, Google, Alphabet Inc., Google DeepMind, Gemini, 谷歌母公司]
+    listing: listed
+    tickers:
+      - { symbol: GOOGL, exchange: NASDAQ, currency: USD }
+      - { symbol: GOOG, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: models/frontier-labs/closed-frontier
+    ecosystems: [google-tpu]
+    website: abc.xyz
+    description: >-
+      Parent of Google. Google DeepMind builds the Gemini models used across Search, Android,
+      Workspace and the Gemini app; Google Cloud sells Gemini and its in-house TPU accelerators,
+      and Alphabet owns a large stake in Anthropic.
+
+  openai:
+    name: OpenAI
+    nameZh: OpenAI
+    aliases: [ChatGPT, GPT, OpenAI Group PBC, Stargate]
+    listing: private
+    country: US
+    tier: core
+    primary: models/frontier-labs/closed-frontier
+    ecosystems: [openai]
+    website: openai.com
+    description: >-
+      Develops the GPT model family and ChatGPT, a leading consumer AI assistant; sells
+      subscriptions, API access and enterprise agents, and anchors the multi-gigawatt Stargate
+      data-center buildout.
+    private:
+      valuation: { usd: 852e9, date: 2026-03, round: "$122B round" }
+      proxies: [microsoft, softbank, amazon, nvidia]
+      note: "Microsoft and SoftBank are the largest outside holders; Altman has ruled out a 2026 IPO, and talks (Sep 2026) target ~$30B at ~$1.4T."
+
+  anthropic:
+    name: Anthropic
+    nameZh: Anthropic
+    aliases: [Claude, Claude Code, Anthropic PBC]
+    listing: private
+    country: US
+    tier: core
+    primary: models/frontier-labs/closed-frontier
+    ecosystems: [aws-trainium, google-tpu]
+    website: anthropic.com
+    description: >-
+      Develops the Claude model family, sold mainly to businesses and developers through its API,
+      Claude Code and enterprise plans; a leading lab in AI coding and agents, training on AWS
+      Trainium, Google TPUs and NVIDIA GPUs.
+    private:
+      valuation: { usd: 965e9, date: 2026-05, round: "Series H" }
+      proxies: [amazon, alphabet]
+      note: "Filed a confidential draft S-1 (June 2026) and reportedly chose Nasdaq for its IPO; Amazon and Alphabet are major minority holders."
+
+  xai:
+    name: SpaceX (xAI)
+    nameZh: SpaceX（xAI）
+    aliases: [SPCX, SpaceX, Space Exploration Technologies Corp., xAI, SpaceXAI, SpaceXSI, Grok, X Corp, 太空探索技术公司]
+    listing: listed
+    tickers:
+      - { symbol: SPCX, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: models/frontier-labs/closed-frontier
+    ecosystems: [nvidia]
+    website: spacex.com
+    description: >-
+      Rocket-launch and Starlink satellite-internet company that merged with xAI in 2026; its AI
+      unit (formerly xAI, now SpaceXAI) develops the Grok models, runs the Colossus supercomputers,
+      owns the X platform and rents compute to other AI developers.
+
+  mistral:
+    name: Mistral AI
+    nameZh: Mistral AI
+    aliases: [Mistral, Le Chat, Mistral Compute, 米斯特拉尔]
+    listing: private
+    country: FR
+    tier: focus
+    primary: models/frontier-labs/open-labs
+    website: mistral.ai
+    description: >-
+      Paris-based developer of open-weight and commercial models and the Le Chat assistant,
+      positioned as Europe's sovereign-AI champion; building its own data-center capacity in
+      France with NVIDIA systems.
+    private:
+      valuation: { usd: 24e9, date: 2026-09, round: "Series D" }
+      proxies: [asml, samsung-electronics]
+      note: "€3B Series D at a >€21B post-money valuation led by Samsung Electronics; ASML led the 2025 Series C and is a major shareholder."
+
+  cohere:
+    name: Cohere
+    nameZh: Cohere
+    aliases: [Cohere Inc., Command, North]
+    listing: private
+    country: CA
+    tier: watch
+    primary: models/frontier-labs/open-labs
+    website: cohere.com
+    description: >-
+      Toronto-based lab building Command language models, Embed and Rerank retrieval models and
+      the North agent platform for enterprises and governments that need private, on-premises or
+      sovereign deployment; combining with Germany's Aleph Alpha.
+    private:
+      valuation: { usd: 7e9, date: 2025-09, round: "$600M 2025 round" }
+      proxies: []
+      note: "Reported (Sep 2026) in advanced talks to raise $2-3B at ~$20B alongside its Aleph Alpha combination; management has signalled IPO ambitions."
+
+  thinking-machines:
+    name: Thinking Machines Lab
+    nameZh: Thinking Machines Lab
+    aliases: [Thinking Machines, TML, Tinker, Inkling, 思维机器实验室]
+    listing: private
+    country: US
+    tier: watch
+    primary: models/frontier-labs/open-labs
+    website: thinkingmachines.ai
+    description: >-
+      AI lab founded by former OpenAI CTO Mira Murati; sells Tinker, an API for fine-tuning
+      open-weight models, and has released its own open-weight multimodal Inkling models.
+    private:
+      valuation: { usd: 12e9, date: 2025-07, round: "Seed ($2B)" }
+      proxies: [nvidia]
+      note: "NVIDIA is an investor and compute partner; reported (Sep 2026) in talks to raise at a $40B+ valuation, led by Accel."
+
+  ssi:
+    name: Safe Superintelligence (SSI)
+    nameZh: 安全超级智能（SSI）
+    aliases: [SSI, Safe Superintelligence Inc.]
+    listing: private
+    country: US
+    tier: watch
+    primary: models/frontier-labs/open-labs
+    website: ssi.inc
+    description: >-
+      AI research lab co-founded by former OpenAI chief scientist Ilya Sutskever, with offices in
+      Palo Alto and Tel Aviv, pursuing a single goal of safe superintelligence rather than
+      near-term products.
+    private:
+      valuation: { usd: 32e9, date: 2025-04, round: "Greenoaks-led $2B round" }
+      proxies: [nvidia]
+      note: "NVIDIA made a strategic investment reported at ~$5B (July 2026) at an undisclosed valuation; Alphabet is also an investor."
+
+  softbank:
+    name: SoftBank Group
+    nameZh: 软银集团
+    aliases: ["9984", SoftBank, SoftBank Group Corp., SoftBank Vision Fund, SFTBY, 软银, ソフトバンクグループ]
+    listing: listed
+    tickers:
+      - { symbol: 9984.T, exchange: TSE, currency: JPY }
+      - { symbol: SFTBY, exchange: OTC, currency: USD }
+    country: JP
+    tier: focus
+    primary: models/frontier-labs/listed-exposure
+    ecosystems: [openai]
+    website: group.softbank
+    description: >-
+      Japanese technology investment group and one of OpenAI's largest shareholders; a lead
+      partner in the Stargate data-center venture and controlling owner of chip designer Arm,
+      making it a key listed proxy for private frontier labs.
+
+  bytedance:
+    name: ByteDance
+    nameZh: 字节跳动
+    aliases: [字节, Doubao, 豆包, Seedance, Douyin, 抖音, TikTok, Volcano Engine, 火山引擎]
+    listing: private
+    country: CN
+    tier: core
+    primary: models/china-models/china-bigtech
+    website: bytedance.com
+    description: >-
+      Parent of Douyin and TikTok; its Seed team builds the Doubao model family behind one of
+      China's most-used AI assistants and the Seedance video models, while Volcano Engine sells
+      model APIs and cloud capacity.
+    private:
+      valuation: { usd: 550e9, date: 2026-02, round: "Secondary sale (reported)" }
+      proxies: []
+      note: "Valuation from a reported General Atlantic secondary sale; owned by global institutional investors, founders and employees, with TikTok's US business in a separate US-majority joint venture."
+
+  baidu:
+    name: Baidu
+    nameZh: 百度
+    aliases: [BIDU, "09888", Baidu Inc., ERNIE, 文心, 文心一言, Apollo Go, 萝卜快跑]
+    listing: listed
+    tickers:
+      - { symbol: BIDU, exchange: NASDAQ, currency: USD }
+      - { symbol: 9888.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: focus
+    primary: models/china-models/china-bigtech
+    ecosystems: [china-compute]
+    website: baidu.com
+    description: >-
+      Chinese search leader that develops the ERNIE model family, used across search, its AI
+      cloud and Apollo Go robotaxis; also controls the Kunlunxin AI-chip unit, a key domestic
+      accelerator supplier.
+
+  iflytek:
+    name: iFlytek
+    nameZh: 科大讯飞
+    aliases: ["002230", iFLYTEK, 讯飞, Spark, 讯飞星火, Xinghuo]
+    listing: listed
+    tickers:
+      - { symbol: 002230.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: models/china-models/china-bigtech
+    ecosystems: [china-compute]
+    website: iflytek.com
+    description: >-
+      Chinese speech-recognition and translation leader that develops the Spark (Xinghuo) models,
+      trained on Huawei Ascend-based domestic compute; sells AI products for education,
+      healthcare, automotive and government.
+
+  deepseek:
+    name: DeepSeek
+    nameZh: 深度求索
+    aliases: [DeepSeek AI, 杭州深度求索]
+    listing: private
+    country: CN
+    tier: core
+    primary: models/china-models/china-startups
+    website: deepseek.com
+    description: >-
+      Hangzhou lab founded by Liang Wenfeng, co-founder of quant fund High-Flyer; its low-cost,
+      open-weight V-series and R1 reasoning models reset global price-performance expectations,
+      and newer versions support domestic Chinese accelerators.
+    private:
+      valuation: { usd: 52e9, date: 2026-05, round: "Series A (first outside round)" }   # verify
+      proxies: [tencent]   # verify
+      note: "Founder Liang Wenfeng retains control; reported (Aug-Oct 2026) to be upsizing the round at a ~$74B valuation and preparing for a possible IPO."
+
+  moonshot:
+    name: Moonshot AI
+    nameZh: 月之暗面
+    aliases: [Kimi, Moonshot, 月之暗面科技, Kimi K2]
+    listing: private
+    country: CN
+    tier: focus
+    primary: models/china-models/china-startups
+    website: moonshot.ai
+    description: >-
+      Beijing-based developer of the Kimi assistant and the open-weight Kimi K2 model family,
+      known for long-context and agentic coding performance and sold through consumer
+      subscriptions and API.
+    private:
+      valuation: { usd: 20e9, date: 2026-05, round: "Meituan Long-Z-led round" }   # verify (later reports cite $30B+)
+      proxies: [alibaba, meituan, tencent]
+      note: "Alibaba is a major shareholder and Meituan's Long-Z led the May 2026 round; later reports value it at $30B+ as it prepares a possible Hong Kong IPO."
+
+  zhipu:
+    name: Zhipu AI (Z.ai)
+    nameZh: 智谱
+    aliases: ["02513", Zhipu, Z.ai, Z.AI, "Z.AI Co., Ltd.", Knowledge Atlas, 智谱AI, 智谱华章, 北京智谱华章科技股份有限公司, GLM, ChatGLM]
+    listing: listed
+    tickers:
+      - { symbol: 2513.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: focus
+    primary: models/china-models/china-startups
+    website: z.ai
+    description: >-
+      Beijing-based developer of the GLM model family, AutoGLM agents and the Z.ai developer
+      platform; a Tsinghua University spin-out and the first Chinese AI-native model lab to list
+      in Hong Kong.
+
+  minimax:
+    name: MiniMax
+    nameZh: MiniMax
+    aliases: ["00100", MiniMax Group, MINIMAX-W, 稀宇科技, 稀宇极智, Hailuo AI, 海螺AI, Talkie, 星野]
+    listing: listed
+    tickers:
+      - { symbol: 0100.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: focus
+    primary: models/china-models/china-startups
+    website: minimax.io
+    description: >-
+      Shanghai-based developer of open-weight MiniMax-M language models, Hailuo video-generation
+      and speech models, and consumer apps such as Talkie; earns a large share of its revenue
+      outside China.
+
+  stepfun:
+    name: StepFun
+    nameZh: 阶跃星辰
+    aliases: [Step, 阶跃AI, 上海阶跃星辰]
+    listing: private
+    country: CN
+    tier: watch
+    primary: models/china-models/china-startups
+    website: stepfun.com
+    description: >-
+      Shanghai-based developer of Step-series multimodal foundation models covering text, speech,
+      vision and video, supplied to smartphone, auto and device makers; founded by former
+      Microsoft executive Jiang Daxin.
+    private:
+      valuation: { usd: 10e9, date: 2026-05, round: "Pre-IPO round" }   # verify
+      proxies: [tencent]
+      note: "Reportedly filed confidentially for a Hong Kong IPO (June 2026); backers include Tencent and Shanghai state-backed funds."
+
+  kuaishou:
+    name: Kuaishou
+    nameZh: 快手
+    aliases: ["01024", Kuaishou Technology, 快手科技, Kling AI, Kling, 可灵AI, 可灵]
+    listing: listed
+    tickers:
+      - { symbol: 1024.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: focus
+    primary: models/multimodal/video-gen
+    website: kuaishou.com
+    description: >-
+      Chinese short-video and live-streaming platform whose Kling AI video-generation models are
+      a leading global text- and image-to-video product, sold through subscriptions and API
+      alongside its ads and e-commerce businesses.
+
+  runway:
+    name: Runway
+    nameZh: Runway
+    aliases: [Runway AI, RunwayML, Runway Gen-4]
+    listing: private
+    country: US
+    tier: watch
+    primary: models/multimodal/video-gen
+    website: runwayml.com
+    description: >-
+      New York-based developer of Gen-series AI video-generation models and creative tools used
+      by filmmakers, studios and advertisers; also building general world models.
+    private:
+      valuation: { usd: 3e9, date: 2025-04, round: "Series D" }   # verify (a later round may exist)
+      proxies: []
+      note: "Series D led by General Atlantic, with NVIDIA, Fidelity and SoftBank Vision Fund 2 among backers."
+
+  elevenlabs:
+    name: ElevenLabs
+    nameZh: ElevenLabs
+    aliases: [Eleven Labs, ElevenLabs Inc.]
+    listing: private
+    country: US
+    tier: watch
+    primary: models/multimodal/voice-audio
+    website: elevenlabs.io
+    description: >-
+      Developer of AI voice models for text-to-speech, voice cloning, dubbing and real-time
+      conversational agents, sold via API and apps to media companies, developers and enterprises.
+    private:
+      valuation: { usd: 11e9, date: 2026-02, round: "Series D" }   # verify
+      proxies: []
+      note: "Backed by Sequoia, Andreessen Horowitz and ICONIQ; has run employee tender offers alongside its primary rounds."
+
+  soundhound:
+    name: SoundHound AI
+    nameZh: SoundHound AI
+    aliases: [SOUN, SoundHound, Houndify, 声音猎犬]
+    listing: listed
+    tickers:
+      - { symbol: SOUN, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: models/multimodal/voice-audio
+    website: soundhound.com
+    description: >-
+      Voice AI company selling conversational assistants and agents to automakers, restaurants,
+      customer-service operations and device makers, built on its own speech recognition plus
+      large language models.
+
+  physical-intelligence:
+    name: Physical Intelligence
+    nameZh: Physical Intelligence
+    aliases: [Physical Intelligence Inc., π0, pi0]
+    listing: private
+    country: US
+    tier: watch
+    primary: models/multimodal/world-models
+    website: physicalintelligence.company
+    description: >-
+      San Francisco startup building general-purpose robot foundation models, the π (pi)
+      vision-language-action family, designed to control many kinds of robots across tasks.
+    private:
+      valuation: { usd: 5.6e9, date: 2025-11, round: "CapitalG-led round" }   # verify (a 2026 round may exist)
+      proxies: [alphabet]
+      note: "Latest disclosed round led by Alphabet's CapitalG; backers include Thrive Capital, Lux Capital, Jeff Bezos and OpenAI."
+
+  skild-ai:
+    name: Skild AI
+    nameZh: Skild AI
+    aliases: [Skild, Skild Brain]
+    listing: private
+    country: US
+    tier: watch
+    primary: models/multimodal/world-models
+    website: skild.ai
+    description: >-
+      Pittsburgh-based developer of Skild Brain, a general-purpose robotics foundation model
+      designed to run across humanoids, quadrupeds and robotic arms.
+    private:
+      valuation: { usd: 14e9, date: 2026-01, round: "SoftBank-led round" }   # verify
+      proxies: [softbank, nvidia]
+      note: "SoftBank has led its recent rounds, with NVIDIA, Lightspeed, Coatue and Jeff Bezos among investors."
+
+  world-labs:
+    name: World Labs
+    nameZh: World Labs
+    aliases: [World Labs Technologies, Marble]
+    listing: private
+    country: US
+    tier: watch
+    primary: models/multimodal/world-models
+    website: worldlabs.ai
+    description: >-
+      Spatial-intelligence startup co-founded by Fei-Fei Li that builds world models generating
+      persistent, explorable 3D environments, offered through its Marble product.
+    private:
+      valuation: { usd: 8.2e9, date: 2026-09, round: "AMD all-stock acquisition (pending)" }
+      proxies: [amd]
+      note: "AMD agreed on 2026-09-28 to acquire World Labs in an all-stock deal valued at about $8.2B, expected to close by the end of 2026 (CNBC)."
+
+  scale-ai:
+    name: Scale AI
+    nameZh: Scale AI
+    aliases: [Scale, Scale AI Inc., Remotasks, Outlier]
+    listing: private
+    country: US
+    tier: focus
+    primary: models/model-tooling/data-labeling
+    ecosystems: [meta]
+    website: scale.com
+    description: >-
+      Supplies expert human training data, RLHF and model evaluations to AI labs, plus
+      data-labeling and AI-agent services to the US government and defense customers.
+    private:
+      valuation: { usd: 29e9, date: 2025-06, round: "Meta 49% investment" }
+      proxies: [meta]
+      note: "Meta owns a 49% non-voting stake after its $14.3B investment; founder Alexandr Wang left to lead Meta's superintelligence lab."
+
+  surge-ai:
+    name: Surge AI
+    nameZh: Surge AI
+    aliases: [Surge, Surge HQ, DataAnnotation]
+    listing: private
+    country: US
+    tier: watch
+    primary: models/model-tooling/data-labeling
+    website: surgehq.ai
+    description: >-
+      Bootstrapped provider of high-quality human training data, RLHF and evaluations to frontier
+      AI labs, using a large network of expert annotators.
+    private:
+      # valuation omitted: no closed outside round has been confirmed
+      proxies: []
+      note: "Founder-controlled (CEO Edwin Chen) and bootstrapped; reported in 2025 to be exploring a first outside raise at a $15B+ valuation."
+
+  innodata:
+    name: Innodata
+    nameZh: Innodata
+    aliases: [INOD, Innodata Inc.]
+    listing: listed
+    tickers:
+      - { symbol: INOD, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: models/model-tooling/data-labeling
+    website: innodata.com
+    description: >-
+      Data-engineering firm supplying training data, fine-tuning and evaluation services to
+      big-tech AI developers; revenue is concentrated in a few very large customers.
+
+  appen:
+    name: Appen
+    nameZh: 澳鹏
+    aliases: [APX, Appen Limited, CrowdGen, 澳鹏科技]
+    listing: listed
+    tickers:
+      - { symbol: APX.AX, exchange: ASX, currency: AUD }
+    country: AU
+    tier: watch
+    primary: models/model-tooling/data-labeling
+    website: appen.com
+    description: >-
+      Australian provider of crowdsourced data annotation and model-evaluation services for AI
+      training, serving US big-tech and Chinese model developers.
+
+  together-ai:
+    name: Together AI
+    nameZh: Together AI
+    aliases: [Together, Together Computer]
+    listing: private
+    country: US
+    tier: watch
+    primary: models/model-tooling/inference-platforms
+    website: together.ai
+    description: >-
+      AI cloud for running, fine-tuning and training open-source models via serverless API and
+      dedicated NVIDIA GPU clusters; a contributor to open research such as FlashAttention.
+    private:
+      valuation: { usd: 3.3e9, date: 2025-02, round: "Series B" }   # verify (a later round may exist)
+      proxies: []
+      note: "Series B co-led by General Catalyst and Prosperity7; NVIDIA and Salesforce Ventures are also investors."
+
+  fireworks-ai:
+    name: Fireworks AI
+    nameZh: Fireworks AI
+    aliases: [Fireworks]
+    listing: private
+    country: US
+    tier: watch
+    primary: models/model-tooling/inference-platforms
+    website: fireworks.ai
+    description: >-
+      Inference platform that serves and fine-tunes open-weight models for developers and
+      enterprises at high speed and low cost; founded by former Meta PyTorch engineers.
+    private:
+      valuation: { usd: 4e9, date: 2025-10, round: "Series C" }   # verify
+      proxies: []
+      note: "Backers include Lightspeed, Index Ventures, Sequoia and NVIDIA."
+
+  baseten:
+    name: Baseten
+    nameZh: Baseten
+    aliases: [Baseten Labs]
+    listing: private
+    country: US
+    tier: watch
+    primary: models/model-tooling/inference-platforms
+    website: baseten.co
+    description: >-
+      Inference platform for deploying and scaling open-source and custom models on dedicated GPU
+      capacity across multiple clouds, used by AI application companies.
+    private:
+      valuation: { usd: 5e9, date: 2026-01, round: "Series E" }   # verify
+      proxies: []
+      note: "Backers include IVP, CapitalG, BOND, Greylock and NVIDIA."
+
+  openrouter:
+    name: OpenRouter
+    nameZh: OpenRouter
+    aliases: [OpenRouter Inc.]
+    listing: private
+    country: US
+    tier: watch
+    primary: models/model-tooling/inference-platforms
+    website: openrouter.ai
+    description: >-
+      Model marketplace and API router that gives developers one interface to hundreds of models
+      from dozens of providers; its public token-usage rankings are a widely watched gauge of
+      model adoption.
+    private:
+      valuation: { usd: 500e6, date: 2025-06, round: "Seed + Series A" }   # verify (a later round may exist)
+      proxies: []
+      note: "Backed by Andreessen Horowitz and Menlo Ventures; co-founded by former OpenSea CTO Alex Atallah."
+
+  hugging-face:
+    name: Hugging Face
+    nameZh: Hugging Face
+    aliases: [HuggingFace, Hugging Face Inc., 抱抱脸]
+    listing: private
+    country: US
+    tier: watch
+    primary: models/model-tooling/model-hubs
+    website: huggingface.co
+    description: >-
+      The leading open hub for sharing AI models, datasets and demo apps, and maintainer of the
+      Transformers library; sells enterprise hosting, inference and compute services.
+    private:
+      valuation: { usd: 4.5e9, date: 2023-08, round: "Series D" }
+      proxies: []
+      note: "Strategic investors include Alphabet, Amazon, NVIDIA, Salesforce, AMD, Intel, IBM and Qualcomm."

@@ -1,0 +1,33 @@
+id: 2026-10-01-micron-fq4-fy26
+kind: claude
+visibility: public
+format: html
+file: report.html
+title: "Micron FQ4 FY26: The Shortage Runs Into 2028 as the Price Curve Flattens"
+titleZh: "美光 FQ4 FY26 深度研报"
+subtitle: "Every line beat and SCAs rose to 26 with ~$150B of RPO, but price increases are slowing and a 2028 supply wall is being poured."
+date: 2026-10-01
+asOf: 2026-09-30
+reportType: earnings
+languages: [zh, en]
+companies: [micron, sk-hynix, samsung-electronics, nvidia, cxmt, ymtc, sandisk, nanya, kioxia, seagate]
+nodes: [chips/memory/dram-hbm, chips/memory/nand-ssd]
+tags: [hbm, memory-cycle, dram-pricing, enterprise-ssd, long-term-agreements, memory-capex, valuation]
+summary:
+  en:
+    - "Every line beat: revenue $54.2B vs a $50B guide, FQ1 guided to $61.5B, SCAs rose from 16 to 26 (~$150B RPO), over 75% of 2027 output committed."
+    - "Ex the 14th week, revenue per week grew ~22% and is guided ~22% again: the business is not slowing; the price curve is, as quarterly increases fall to +10–20%."
+    - "Margin inversion: HBM-heavy CMBU earned 83% gross margin vs 90% at CDBU and MCBU, because 2026 HBM prices were set a year earlier; 2027 HBM resets sharply higher."
+    - "The shortage now runs into 2028, but FY27 capex above $50B for cleanrooms opening from late 2028 is pouring the supply wall that likely ends this cycle."
+    - "Probability-weighted value rises to ~$960 from July's $520; at $1,065 the market already pays for a 'new normal', not for the peak lasting past 2028."
+  zh:
+    - "每一行都超预期：营收$54.2B（指引$50B），FQ1指引$61.5B；SCA从16份增至26份，RPO约$1,500亿；2027年>75%的产出已被锁定。"
+    - "剔除第14周后，FQ4与FQ1指引的周均营收增速都在+22%左右，基本面没有减速；减速的是价格曲线，涨价斜率已从每季+60%级别降到+10–20%级别。"
+    - "利润倒挂：HBM占比最高的CMBU毛利率只有83%，低于CDBU与MCBU的90%，因为HBM的2026价格一年前就已谈定；2027年HBM合约已“大幅”上调。"
+    - "紧缺被明确拉长到2028，但FY27资本开支隐含全年>$500亿、以2028年末以后的洁净室为主：供给之墙正在被浇筑，周期的终点最可能在这里被建好。"
+    - "概率加权价值从7月的$520上修至约$960；在$1,065，市场已为“新常态”付费，但不为“峰值延续到2028年以后”付费。"
+stance: "Probability-weighted value ~$960 (from $520) vs $1,065: no longer clearly overvalued, but no margin of safety."
+priceRef: { symbol: MU, price: 1065.11, currency: USD, date: 2026-09-30 }
+sections: 21
+interactive: true
+pinned: false

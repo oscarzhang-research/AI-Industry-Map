@@ -1,0 +1,28 @@
+# Site-wide settings for AI Industry Map. Safe to edit; the site rebuilds on every push.
+site:
+  name: AI Industry Map
+  tagline: An investor's map of the AI economy, organized by the five-layer cake.
+  owner: Oscar Zhang            # shown discreetly in the footer and About page
+  ownerUrl: https://github.com/oscarzhang-research
+  timezone: America/New_York    # dates and "last updated" are shown in this zone
+  baseCurrency: USD             # market caps are converted to this currency
+  upColor: green                # green = green-up/red-down (US style); red = red-up/green-down (China style)
+  experimental: true            # shows the "Preview" ribbon and asks search engines not to index
+  disclaimer: >-
+    Personal research notes. Nothing on this site is investment advice or a recommendation to
+    buy or sell any security. Views can change without notice and may be wrong.
+
+repos:
+  # Public repository: code, the map, market data and anything marked public.
+  public: { owner: oscarzhang-research, repo: AI-Industry-Map, branch: main }
+  # Private vault: private views and notes, sell-side PDFs, private report metadata.
+  vault: { owner: oscarzhang-research, repo: AI-Industry-Map-private, branch: main }
+
+defaults:
+  thesisHorizonMonths: 12
+  newRecordVisibility: private          # theses, notes and journal entries start private
+  claudeReportVisibility: public        # Claude-written research is public unless marked private
+  # Fields of a PUBLIC thesis that stay hidden unless switched on for that thesis.
+  publicHiddenFields: [target, stop, scenarios, plan, position]
+  reviewEveryDays: 90                   # nudge to re-check a thesis after this many days
+  reportsShownCollapsed: 5              # report lists show pinned + this many recent, rest folded

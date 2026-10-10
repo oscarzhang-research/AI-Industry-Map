@@ -1,0 +1,208 @@
+# Layer 3 · Infrastructure (the "AI factory"). Industries -> value-chain segments -> member companies.
+layer: infrastructure
+industries:
+  - id: servers
+    name: AI Servers & Systems
+    nameZh: AI 服务器与整机
+    description: >-
+      Rack-scale AI systems are assembled by Taiwanese ODMs and sold by server OEMs. Value has
+      shifted from boards to fully integrated, liquid-cooled racks.
+    drivers: [Rack-scale platforms, Hyperscaler white-box demand, Sovereign and enterprise AI, Liquid-cooled racks]
+    metrics: [ODM monthly sales, AI server backlog, Rack shipments, Gross margin per rack]
+    segments:
+      - id: server-components
+        name: BMCs, Rails & Chassis
+        nameZh: BMC、导轨与机箱
+        position: upstream
+        companies: [aspeed, king-slide]
+      - id: board-inputs
+        name: PCBs, cooling & power
+        nameZh: PCB、散热与电源
+        position: upstream
+        ref: infrastructure/pcb-ccl
+      - id: odm
+        name: ODMs & Rack Integration
+        nameZh: ODM 与整机柜组装
+        position: midstream
+        companies: [hon-hai, fii, quanta-computer, wiwynn, wistron, jabil, celestica]
+      - id: oem
+        name: Server OEMs
+        nameZh: 服务器品牌商
+        position: midstream
+        companies: [dell, hpe, supermicro, lenovo, inspur, sugon]
+      - id: storage-systems
+        name: AI Storage Systems
+        nameZh: AI 存储系统
+        position: midstream
+        companies: [pure-storage, netapp, vast-data, ddn]
+      - id: to-cloud
+        name: Clouds & AI labs
+        nameZh: 云厂商与 AI 实验室
+        position: downstream
+        ref: infrastructure/cloud
+
+  - id: networking
+    name: Networking & Interconnect
+    nameZh: 网络与互联
+    description: >-
+      Scale-up and scale-out fabrics: optical transceivers, copper interconnect (AECs,
+      retimers), switches and fiber. Bandwidth per accelerator keeps doubling, pulling forward
+      800G to 1.6T and co-packaged optics.
+    drivers: [800G -> 1.6T -> 3.2T transitions, Scale-up copper and optics, Ethernet vs InfiniBand, CPO adoption]
+    metrics: [Transceiver shipments by speed, Switch port shipments, Supplier share at top customers, Laser supply]
+    segments:
+      - id: optical-components
+        name: Lasers, Optical Engines & Components
+        nameZh: 激光器、光引擎与光器件
+        position: upstream
+        companies: [lumentum, tfc, yuanjie, fabrinet]
+      - id: fiber
+        name: Fiber & Cabling
+        nameZh: 光纤与线缆
+        position: upstream
+        companies: [corning, fujikura, furukawa, sumitomo-electric, yofc]
+      - id: optical-transceivers
+        name: Optical Transceivers
+        nameZh: 光模块
+        position: midstream
+        companies: [innolight, eoptolink, coherent, aaoi, accelink]
+      - id: copper-interconnect
+        name: Copper & Data Interconnect (AECs, Retimers, Connectors)
+        nameZh: 铜连接与数据互联（AEC、Retimer、连接器）
+        position: midstream
+        companies: [credo, astera-labs, amphenol, luxshare, te-connectivity]
+      - id: switches
+        name: Switches & Network Systems
+        nameZh: 交换机与网络系统
+        position: midstream
+        companies: [arista, cisco, celestica, accton, nokia, ciena, unisplendour]
+      - id: to-cloud
+        name: Clouds & AI labs
+        nameZh: 云厂商与 AI 实验室
+        position: downstream
+        ref: infrastructure/cloud
+
+  - id: pcb-ccl
+    name: PCB, CCL & Materials
+    nameZh: PCB、CCL 与材料
+    description: >-
+      High-layer-count boards and low-loss laminates for accelerators, switches and servers.
+      Each platform generation raises layer counts and material grades.
+    drivers: [Layer-count and material upgrades, AI server and switch volumes, Glass cloth and copper foil supply]
+    metrics: [Monthly sales of Taiwan suppliers, Capacity additions, Material-grade mix]
+    segments:
+      - id: glass-copper
+        name: Glass Cloth & Copper Foil
+        nameZh: 玻纤布与铜箔
+        position: upstream
+        companies: [nittobo, mitsui-kinzoku]
+      - id: ccl
+        name: Copper-clad Laminates (CCL)
+        nameZh: 覆铜板（CCL）
+        position: midstream
+        companies: [emc, shengyi]
+      - id: pcb
+        name: Printed Circuit Boards
+        nameZh: 印制电路板（PCB）
+        position: midstream
+        companies: [victory-giant, wus, shennan, gold-circuit, ttm, isu-petasys]
+
+  - id: thermal
+    name: Thermal Management & Liquid Cooling
+    nameZh: 散热与液冷
+    description: >-
+      Rack densities beyond 100 kW require direct-to-chip liquid cooling: cold plates,
+      manifolds and coolant distribution units, plus facility chillers and heat rejection.
+    drivers: [Rack power density, Liquid-cooling penetration, New data-center builds]
+    metrics: [Liquid-cooling attach rate, Orders and backlog, Content per MW]
+    segments:
+      - id: liquid-cooling
+        name: "Liquid Cooling: CDUs & Cold Plates"
+        nameZh: 液冷：CDU 与冷板
+        position: midstream
+        companies: [vertiv, avc, auras, envicool, delta, nvent]
+      - id: facility-cooling
+        name: Chillers & Heat Rejection
+        nameZh: 冷水机组与散热系统
+        position: midstream
+        companies: [trane, carrier, johnson-controls, modine]
+
+  - id: power-delivery
+    name: Data-Center Power Delivery
+    nameZh: 数据中心供配电
+    description: >-
+      UPS, switchgear and busway inside the fence, server power supplies, the move to 800V DC
+      rack power, and backup generation.
+    drivers: [Rack power density, 800V DC architectures, Backup and bridge power]
+    metrics: [Orders and backlog, Content per MW, PSU wattage per rack]
+    segments:
+      - id: ups-switchgear
+        name: UPS, PDUs & Switchgear
+        nameZh: UPS、PDU 与开关柜
+        position: midstream
+        companies: [vertiv, schneider, eaton, abb, legrand]
+      - id: server-power
+        name: Server Power Supplies & 800V DC
+        nameZh: 服务器电源与 800V 直流
+        position: midstream
+        companies: [delta, lite-on, megmeet, vicor]
+      - id: backup-power
+        name: Backup Generators
+        nameZh: 备用发电机
+        position: midstream
+        companies: [caterpillar, cummins, rolls-royce]
+
+  - id: data-centers
+    name: Data-Center Development & Operations
+    nameZh: 数据中心建设与运营
+    description: >-
+      Construction and mechanical/electrical contractors, colocation REITs, and a new class of
+      AI campus developers, many of them converted bitcoin miners with power already secured.
+    drivers: [Powered land, Hyperscaler leases, Construction capacity, Power availability]
+    metrics: [Leased MW and pricing, Vacancy, Construction backlog, Energized capacity]
+    segments:
+      - id: construction
+        name: Construction & MEP Engineering
+        nameZh: 建设与机电工程
+        position: upstream
+        companies: [emcor, comfort-systems, sterling, quanta]
+      - id: colocation
+        name: Colocation & Wholesale (REITs)
+        nameZh: 托管与批发型数据中心（REITs）
+        position: midstream
+        companies: [equinix, digital-realty, gds, vnet]
+      - id: ai-campuses
+        name: AI Campus Developers (incl. ex-miners)
+        nameZh: AI 园区开发商（含矿企转型）
+        position: midstream
+        companies: [applied-digital, iren, cipher, terawulf, core-scientific, galaxy]
+      - id: to-cloud
+        name: Clouds & neoclouds
+        nameZh: 云厂商与新兴算力云
+        position: downstream
+        ref: infrastructure/cloud
+
+  - id: cloud
+    name: Cloud & Compute Platforms
+    nameZh: 云与算力平台
+    description: >-
+      Hyperscalers that build and rent AI capacity, and neoclouds that specialize in GPU
+      clusters for labs. Their capex is the demand signal for every layer below.
+    drivers: [AI capex, Backlog / remaining performance obligations, GPU rental pricing, Custom silicon]
+    metrics: [Capex and guidance, Cloud revenue growth, Backlog, Depreciation, GPU-hour prices]
+    segments:
+      - id: hyperscalers
+        name: Hyperscalers (Cloud & AI Capex)
+        nameZh: 超大规模云厂商（云与 AI 资本开支）
+        position: midstream
+        companies: [microsoft, amazon, alphabet, oracle, meta, alibaba, tencent, baidu]
+      - id: neoclouds
+        name: Neoclouds & GPU Clouds
+        nameZh: 新兴算力云与 GPU 云
+        position: midstream
+        companies: [coreweave, nebius, lambda, crusoe, iren]
+      - id: to-models
+        name: Model labs & AI apps
+        nameZh: 模型实验室与 AI 应用
+        position: downstream
+        ref: models/frontier-labs

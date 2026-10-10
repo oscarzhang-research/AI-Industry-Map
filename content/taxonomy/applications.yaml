@@ -1,0 +1,207 @@
+# Layer 5 · Applications. Industries -> value-chain segments -> member companies.
+layer: applications
+industries:
+  - id: assistants
+    name: AI Assistants & Consumer AI
+    nameZh: AI 助手与消费级 AI
+    description: >-
+      General assistants and AI search reach consumers directly and are becoming the new front
+      door to the internet, monetized through subscriptions and, increasingly, ads and commerce.
+    drivers: [Weekly active users, Paid subscription conversion, Ads in assistants, Agentic shopping]
+    metrics: [WAU / MAU, Paying subscribers, Share of AI-chat traffic, Query volumes]
+    segments:
+      - id: model-inputs
+        name: Foundation models
+        nameZh: 基础模型
+        position: upstream
+        ref: models/frontier-labs
+      - id: chat-assistants
+        name: Chat Assistants
+        nameZh: 聊天助手
+        position: midstream
+        companies: [openai, alphabet, meta, microsoft, anthropic, bytedance, tencent]
+      - id: ai-search
+        name: AI Search & Answer Engines
+        nameZh: AI 搜索与问答引擎
+        position: midstream
+        companies: [perplexity, alphabet]
+
+  - id: enterprise
+    name: Enterprise Software & Agents
+    nameZh: 企业软件与 Agent
+    description: >-
+      Incumbent software vendors embedding copilots and agents, and data platforms that feed
+      them. The question is whether AI expands seats and pricing or compresses them.
+    drivers: [Agent adoption, AI pricing (seat vs consumption), Data-platform consumption, IT budgets]
+    metrics: [AI ARR disclosures, Net revenue retention, Remaining performance obligations, Consumption growth]
+    segments:
+      - id: productivity
+        name: Productivity Suites & Copilots
+        nameZh: 办公套件与 Copilot
+        position: midstream
+        companies: [microsoft, alphabet, atlassian]
+      - id: workflow-agents
+        name: CRM, ITSM & Workflow Agents
+        nameZh: CRM、ITSM 与流程 Agent
+        position: midstream
+        companies: [salesforce, servicenow, sap, workday, oracle, hubspot]
+      - id: data-platforms
+        name: Data, Analytics & Observability
+        nameZh: 数据、分析与可观测性
+        position: midstream
+        companies: [palantir, snowflake, databricks, mongodb, datadog, elastic]
+      - id: automation
+        name: Agentic Automation
+        nameZh: 智能体自动化
+        position: midstream
+        companies: [uipath]
+
+  - id: coding
+    name: AI Coding & Developer Tools
+    nameZh: AI 编程与开发者工具
+    description: >-
+      Coding agents and AI-native IDEs are the fastest-monetizing enterprise AI use case so far,
+      reshaping the developer-tools market.
+    drivers: [Coding-agent adoption, Seat and usage pricing, Model quality on agentic coding]
+    metrics: [ARR of coding tools, Developer seats, Usage-based revenue]
+    segments:
+      - id: coding-agents
+        name: Coding Agents & AI IDEs
+        nameZh: 编程 Agent 与 AI IDE
+        position: midstream
+        companies: [anysphere, xai, cognition, replit, microsoft, anthropic]
+      - id: devops
+        name: DevOps & Collaboration
+        nameZh: DevOps 与协作
+        position: midstream
+        companies: [gitlab, atlassian]
+
+  - id: ads-commerce-content
+    name: Advertising, Commerce & Content
+    nameZh: 广告、电商与内容
+    description: >-
+      AI ranking and generative creative lift ad conversion; AI video lowers the cost of
+      content, from short dramas to marketing assets.
+    drivers: [AI ad ranking, Generative ad creative, Agentic commerce, AI-produced content]
+    metrics: [Ad revenue growth, Impressions vs price, Conversion rates, Content production cost]
+    segments:
+      - id: ads-recsys
+        name: Ads & Recommendation Engines
+        nameZh: 广告与推荐引擎
+        position: midstream
+        companies: [meta, alphabet, applovin, reddit, pinterest, trade-desk]
+      - id: commerce
+        name: E-commerce & Local Services
+        nameZh: 电商与本地生活
+        position: midstream
+        companies: [amazon, shopify, alibaba, pdd, meituan]
+      - id: content-video
+        name: Video, Short Drama & Entertainment
+        nameZh: 视频、短剧与娱乐
+        position: midstream
+        companies: [kuaishou, tencent, netflix, spotify, col-group, kunlun-tech]
+      - id: creative-tools
+        name: Creative & Design Tools
+        nameZh: 创意与设计工具
+        position: midstream
+        companies: [adobe, figma, canva]
+
+  - id: vertical
+    name: Vertical AI
+    nameZh: 垂直行业 AI
+    description: >-
+      Domain-specific AI in healthcare and drug discovery, financial, legal and information
+      services, education and engineering software.
+    drivers: [Proprietary data, Workflow integration, Regulatory acceptance]
+    metrics: [AI product revenue, Customer adoption, Pricing uplift]
+    segments:
+      - id: health-bio
+        name: Healthcare & Bio AI
+        nameZh: 医疗与生物 AI
+        position: midstream
+        companies: [tempus-ai, recursion, xtalpi]
+      - id: finance-legal
+        name: Financial, Legal & Information Services
+        nameZh: 金融、法律与信息服务
+        position: midstream
+        companies: [intuit, thomson-reuters, relx, wolters-kluwer, harvey]
+      - id: education
+        name: Education
+        nameZh: 教育
+        position: midstream
+        companies: [duolingo, iflytek]
+      - id: industrial-software
+        name: Industrial & Engineering Software
+        nameZh: 工业与工程软件
+        position: midstream
+        companies: [siemens, autodesk, ptc, dassault]
+
+  - id: security
+    name: Cybersecurity
+    nameZh: 网络安全
+    description: >-
+      AI expands both the attack surface and the defenders' toolkit; platforms with the most
+      telemetry are best placed to automate security operations.
+    drivers: [AI-driven attacks, Security platform consolidation, Agent and model security]
+    metrics: [ARR growth, Net new ARR, Platform adoption]
+    segments:
+      - id: security-platforms
+        name: Security Platforms
+        nameZh: 安全平台
+        position: midstream
+        companies: [crowdstrike, palo-alto, zscaler, cloudflare, fortinet]
+
+  - id: devices
+    name: Edge AI Devices
+    nameZh: 端侧 AI 设备
+    description: >-
+      Phones, PCs, wearables and AI glasses that run models locally and act as the personal
+      front end for assistants.
+    drivers: [On-device AI features, Replacement cycles, AI glasses adoption]
+    metrics: [Unit shipments, Premium mix, AI feature adoption]
+    segments:
+      - id: device-silicon
+        name: Edge AI silicon
+        nameZh: 端侧 AI 芯片
+        position: upstream
+        ref: chips/edge-silicon
+      - id: phones-pcs
+        name: Smartphones & PCs
+        nameZh: 手机与 PC
+        position: midstream
+        companies: [apple, samsung-electronics, xiaomi, lenovo, hp]
+      - id: wearables-glasses
+        name: Wearables & AI Glasses
+        nameZh: 可穿戴与 AI 眼镜
+        position: midstream
+        companies: [meta, essilorluxottica, goertek]
+
+  - id: physical-ai
+    name: "Physical AI: Autonomy & Robotics"
+    nameZh: 物理 AI：自动驾驶与机器人
+    description: >-
+      Robotaxis, humanoids and industrial automation, where models leave the data center.
+      Huang lists robotics among the industries where AI's economic benefit will show up.
+    drivers: [Robotaxi scale-out, Humanoid pilots, Robot foundation models, Component cost-down]
+    metrics: [Paid rides per week, Cities served, Humanoid deployments, Actuator volumes]
+    segments:
+      - id: robot-components
+        name: Actuators, Reducers & Motion Components
+        nameZh: 执行器、减速器与运动部件
+        position: upstream
+        companies: [harmonic-drive, leaderdrive, nabtesco, sanhua, tuopu, inovance]
+      - id: autonomous-driving
+        name: Autonomous Driving & Robotaxis
+        nameZh: 自动驾驶与 Robotaxi
+        position: midstream
+        companies: [tesla, waymo, pony-ai, weride, mobileye, horizon-robotics, uber]
+      - id: humanoids
+        name: Humanoid & General-purpose Robots
+        nameZh: 人形与通用机器人
+        position: midstream
+        companies: [tesla, ubtech, unitree, figure-ai, xpeng]
+      - id: industrial-robots
+        name: Industrial Robots & Automation
+        nameZh: 工业机器人与自动化
+        position: midstream
+        companies: [fanuc, yaskawa, abb, rockwell]

@@ -1,0 +1,816 @@
+# Companies whose primary placement is in the Energy layer.
+companies:
+  howmet:
+    name: Howmet Aerospace
+    nameZh: 豪梅特航空航天
+    aliases: [HWM, Howmet Aerospace Inc., 豪梅特]
+    listing: listed
+    tickers:
+      - { symbol: HWM, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: energy/generation-equipment/turbine-components
+    website: howmet.com
+    description: >-
+      Makes precision-cast turbine blades and vanes, rings, fasteners and structures for jet
+      engines and industrial gas turbines; rising gas-turbine output for data-center power lifts
+      demand for its hot-section parts.
+
+  ge-vernova:
+    name: GE Vernova
+    nameZh: GE Vernova
+    aliases: [GEV, GE Vernova Inc.]
+    listing: listed
+    tickers:
+      - { symbol: GEV, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: energy/generation-equipment/gas-turbines
+    website: gevernova.com
+    description: >-
+      Leading maker of heavy-duty (HA-class) and aeroderivative gas turbines, with a multi-year
+      backlog driven by data-center power demand; also sells grid equipment (transformers, HVDC,
+      switchgear), wind turbines and the BWRX-300 small modular reactor.
+
+  siemens-energy:
+    name: Siemens Energy
+    nameZh: 西门子能源
+    aliases: [Siemens Energy AG, SMNEY, 西門子能源]
+    listing: listed
+    tickers:
+      - { symbol: ENR.DE, exchange: XETRA, currency: EUR }
+    country: DE
+    tier: core
+    primary: energy/generation-equipment/gas-turbines
+    website: siemens-energy.com
+    description: >-
+      One of the top three gas-turbine makers (large HL-class and industrial units) and a leading
+      grid-technology supplier of transformers, HVDC and switchgear; also owns wind-turbine maker
+      Siemens Gamesa.
+
+  mitsubishi-heavy:
+    name: Mitsubishi Heavy Industries
+    nameZh: 三菱重工
+    aliases: [MHI, "Mitsubishi Heavy Industries, Ltd.", 三菱重工業]
+    listing: listed
+    tickers:
+      - { symbol: 7011.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: focus
+    primary: energy/generation-equipment/gas-turbines
+    website: mhi.com
+    description: >-
+      Japanese industrial group and one of the top three large gas-turbine makers (M501J/JAC
+      series), also building nuclear plants, defense systems and aerospace parts; gas-turbine
+      demand from data centers is a key growth driver.
+
+  doosan-enerbility:
+    name: Doosan Enerbility
+    nameZh: 斗山能源
+    aliases: ["Doosan Enerbility Co., Ltd.", Doosan Heavy Industries & Construction, 斗山重工业, "034020"]
+    listing: listed
+    tickers:
+      - { symbol: 034020.KS, exchange: KOSPI, currency: KRW }
+    country: KR
+    tier: focus
+    primary: energy/generation-equipment/gas-turbines
+    website: doosanenerbility.com
+    description: >-
+      Korean power-equipment maker of large gas and steam turbines and nuclear components such as
+      reactor vessels and steam generators, including SMR components for NuScale and other
+      developers; a key supplier to US nuclear and gas-power build-outs.
+
+  caterpillar:
+    name: Caterpillar
+    nameZh: 卡特彼勒
+    aliases: [Caterpillar Inc., Solar Turbines, 開拓重工]
+    listing: listed
+    tickers:
+      - { symbol: CAT, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: energy/generation-equipment/engines-gensets
+    website: caterpillar.com
+    description: >-
+      The world's largest maker of construction and mining equipment; its power business sells
+      diesel and natural-gas generator sets, reciprocating engines and Solar Turbines gas turbines
+      used for data-center backup and prime power.
+
+  cummins:
+    name: Cummins
+    nameZh: 康明斯
+    aliases: [CMI, Cummins Inc.]
+    listing: listed
+    tickers:
+      - { symbol: CMI, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: energy/generation-equipment/engines-gensets
+    website: cummins.com
+    description: >-
+      Maker of diesel and natural-gas engines and generator sets; its Power Systems segment is a
+      major supplier of high-horsepower backup gensets (such as the QSK95) for data centers.
+
+  wartsila:
+    name: Wärtsilä
+    nameZh: 瓦锡兰
+    aliases: [Wartsila, Wärtsilä Oyj Abp, 瓦錫蘭]
+    listing: listed
+    tickers:
+      - { symbol: WRT1V.HE, exchange: Nasdaq Helsinki, currency: EUR }
+    country: FI
+    tier: watch
+    primary: energy/generation-equipment/engines-gensets
+    website: wartsila.com
+    description: >-
+      Finnish maker of marine engines and gas-fired reciprocating-engine power plants (such as the
+      Wärtsilä 50SG); its engines provide flexible grid balancing and on-site generation for data
+      centers.
+
+  generac:
+    name: Generac
+    nameZh: Generac
+    aliases: [GNRC, Generac Holdings Inc.]
+    listing: listed
+    tickers:
+      - { symbol: GNRC, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: energy/generation-equipment/engines-gensets
+    website: generac.com
+    description: >-
+      Leading US maker of home standby generators, expanding into large diesel and natural-gas
+      generator sets for data centers alongside commercial and industrial backup power and
+      energy-storage products.
+
+  bwx-technologies:
+    name: BWX Technologies
+    nameZh: BWX Technologies
+    aliases: [BWXT, BWX Technologies Inc.]
+    listing: listed
+    tickers:
+      - { symbol: BWXT, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: energy/generation-equipment/nuclear-smr
+    website: bwxt.com
+    description: >-
+      Sole manufacturer of naval nuclear reactors for US submarines and aircraft carriers, and a
+      supplier of commercial nuclear components, fuel and services; developing microreactors
+      (BWXT Pele) and advanced fuels such as TRISO.
+
+  oklo:
+    name: Oklo
+    nameZh: Oklo
+    aliases: [OKLO, Oklo Inc.]
+    listing: listed
+    tickers:
+      - { symbol: OKLO, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: energy/generation-equipment/nuclear-smr
+    ecosystems: [meta]
+    website: oklo.com
+    description: >-
+      Developing Aurora powerhouses, compact liquid-metal-cooled fast reactors, to sell power under
+      long-term contracts to data centers and industry, with agreements including Meta; also
+      pursues fuel recycling and radioisotope production.
+
+  nuscale:
+    name: NuScale Power
+    nameZh: 纽斯凯尔
+    aliases: [NuScale Power Corporation, NuScale, 纽斯凯尔电力]
+    listing: listed
+    tickers:
+      - { symbol: SMR, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: energy/generation-equipment/nuclear-smr
+    website: nuscalepower.com
+    description: >-
+      Developer of the NuScale Power Module, a light-water small modular reactor and the first SMR
+      design to receive US NRC approval; commercializes plants with partner ENTRA1 Energy,
+      including a large program with TVA.
+
+  rolls-royce:
+    name: Rolls-Royce
+    nameZh: 罗尔斯·罗伊斯
+    aliases: [Rolls-Royce Holdings plc, RYCEY, Rolls-Royce SMR, 劳斯莱斯控股, 罗罗]
+    listing: listed
+    tickers:
+      - { symbol: RR.L, exchange: LSE, currency: GBP }
+    country: GB
+    tier: watch
+    primary: energy/generation-equipment/nuclear-smr
+    website: rolls-royce.com
+    description: >-
+      UK aero-engine and power-systems group whose mtu generator sets are widely used for
+      data-center backup power; its Rolls-Royce SMR unit is developing a 470 MWe small modular
+      reactor selected for the UK's first SMR program.
+
+  bloom-energy:
+    name: Bloom Energy
+    nameZh: 布鲁姆能源
+    aliases: [Bloom Energy Corporation, 布魯姆能源]
+    listing: listed
+    tickers:
+      - { symbol: BE, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: energy/generation-equipment/fuel-cells
+    website: bloomenergy.com
+    description: >-
+      Makes solid-oxide fuel cell systems that generate on-site power from natural gas or
+      hydrogen; deployed as fast-to-install prime power for AI data centers, with agreements
+      including Oracle, AEP and Brookfield.
+
+  first-solar:
+    name: First Solar
+    nameZh: 第一太阳能
+    aliases: [FSLR, First Solar Inc.]
+    listing: listed
+    tickers:
+      - { symbol: FSLR, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: energy/generation-equipment/solar
+    website: firstsolar.com
+    description: >-
+      The largest US-based solar module maker, producing thin-film cadmium telluride (CdTe)
+      panels in the US and Asia; a key domestic supplier of utility-scale solar capacity added to
+      meet rising electricity demand.
+
+  eqt:
+    name: EQT
+    nameZh: EQT
+    aliases: [EQT Corporation, EQT Corp.]
+    listing: listed
+    tickers:
+      - { symbol: EQT, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: energy/fuel/gas-producers
+    website: eqt.com
+    description: >-
+      One of the largest US natural gas producers, focused on the Appalachian Marcellus and Utica
+      shales with integrated pipelines (Equitrans); supplies gas to new power plants serving data
+      centers in Pennsylvania and the Mid-Atlantic.
+
+  expand-energy:
+    name: Expand Energy
+    nameZh: Expand Energy
+    aliases: [EXE, Expand Energy Corporation, Chesapeake Energy, Southwestern Energy, 切萨皮克能源]
+    listing: listed
+    tickers:
+      - { symbol: EXE, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: energy/fuel/gas-producers
+    website: expandenergy.com
+    description: >-
+      The largest US natural gas producer, formed by the merger of Chesapeake Energy and
+      Southwestern Energy; its Haynesville and Appalachian acreage supplies LNG exporters and
+      gas-fired power generation, including for data centers.
+
+  cameco:
+    name: Cameco
+    nameZh: 卡梅科
+    aliases: [CCJ, Cameco Corporation]
+    listing: listed
+    tickers:
+      - { symbol: CCJ, exchange: NYSE, currency: USD }
+      - { symbol: CCO.TO, exchange: TSX, currency: CAD }
+    country: CA
+    tier: core
+    primary: energy/fuel/uranium-mining
+    website: cameco.com
+    description: >-
+      One of the world's largest uranium producers (McArthur River, Cigar Lake) and a nuclear
+      fuel-services provider; also owns 49% of reactor maker Westinghouse alongside Brookfield.
+
+  kazatomprom:
+    name: Kazatomprom
+    nameZh: 哈萨克斯坦国家原子能公司
+    aliases: [NAC Kazatomprom JSC, National Atomic Company Kazatomprom, 哈原工]
+    listing: listed
+    tickers:
+      - { symbol: KAP.L, exchange: LSE, currency: USD }
+    country: KZ
+    tier: watch
+    primary: energy/fuel/uranium-mining
+    website: kazatomprom.kz
+    description: >-
+      The world's largest uranium producer, mining low-cost in-situ recovery deposits in
+      Kazakhstan; majority owned by sovereign wealth fund Samruk-Kazyna, with GDRs traded in
+      London and shares on the Astana International Exchange.
+
+  nexgen-energy:
+    name: NexGen Energy
+    nameZh: NexGen Energy
+    aliases: [NXE, NexGen Energy Ltd.]
+    listing: listed
+    tickers:
+      - { symbol: NXE, exchange: NYSE, currency: USD }
+      - { symbol: NXE.TO, exchange: TSX, currency: CAD }
+    country: CA
+    tier: watch
+    primary: energy/fuel/uranium-mining
+    website: nexgenenergy.ca
+    description: >-
+      Canadian developer of the Rook I project and its Arrow deposit in Saskatchewan's Athabasca
+      Basin, one of the largest high-grade uranium deposits under development worldwide.
+
+  williams:
+    name: Williams Companies
+    nameZh: 威廉姆斯公司
+    aliases: [WMB, "The Williams Companies, Inc.", Williams Cos.]
+    listing: listed
+    tickers:
+      - { symbol: WMB, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: energy/fuel/gas-midstream
+    ecosystems: [meta]
+    website: williams.com
+    description: >-
+      Operates Transco, the largest-volume US interstate natural gas pipeline, plus gathering and
+      processing assets; also builds behind-the-meter gas power projects for data centers, such
+      as its Socrates project for Meta in Ohio.
+
+  kinder-morgan:
+    name: Kinder Morgan
+    nameZh: 金德摩根
+    aliases: [KMI, Kinder Morgan Inc.]
+    listing: listed
+    tickers:
+      - { symbol: KMI, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: energy/fuel/gas-midstream
+    website: kindermorgan.com
+    description: >-
+      One of North America's largest energy-infrastructure companies, with an extensive natural
+      gas pipeline and storage network (including Tennessee Gas and El Paso Natural Gas) that
+      supplies gas-fired power plants, including those serving data centers.
+
+  centrus:
+    name: Centrus Energy
+    nameZh: Centrus Energy
+    aliases: [Centrus Energy Corp., USEC]
+    listing: listed
+    tickers:
+      - { symbol: LEU, exchange: NYSE American, currency: USD }
+    country: US
+    tier: focus
+    primary: energy/fuel/enrichment-fuel
+    website: centrusenergy.com
+    description: >-
+      US supplier of low-enriched uranium and producer of high-assay low-enriched uranium (HALEU)
+      for advanced reactors at its Piketon, Ohio centrifuge plant, where it is expanding domestic
+      enrichment capacity.
+
+  constellation:
+    name: Constellation Energy
+    nameZh: 星座能源
+    aliases: [CEG, Constellation Energy Corporation, Calpine]
+    listing: listed
+    tickers:
+      - { symbol: CEG, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: energy/power-producers/ipps
+    ecosystems: [microsoft, meta]
+    website: constellationenergy.com
+    description: >-
+      The largest US nuclear fleet operator and, after acquiring Calpine, the largest US power
+      producer; sells carbon-free power to hyperscalers, including the Crane (Three Mile Island)
+      restart for Microsoft and a Clinton plant deal with Meta.
+
+  vistra:
+    name: Vistra
+    nameZh: Vistra
+    aliases: [VST, Vistra Corp., Vistra Energy]
+    listing: listed
+    tickers:
+      - { symbol: VST, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: energy/power-producers/ipps
+    ecosystems: [meta]
+    website: vistracorp.com
+    description: >-
+      Texas-based power producer with gas, nuclear (including Comanche Peak) and retail
+      electricity businesses across ERCOT and PJM; has signed long-term nuclear power agreements
+      with Meta covering its Ohio and Pennsylvania plants.
+
+  talen:
+    name: Talen Energy
+    nameZh: Talen Energy
+    aliases: [TLN, Talen Energy Corporation]
+    listing: listed
+    tickers:
+      - { symbol: TLN, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: energy/power-producers/ipps
+    website: talenenergy.com
+    description: >-
+      Independent power producer whose Susquehanna nuclear plant in Pennsylvania supplies Amazon
+      under a long-term power purchase agreement; also owns gas-fired plants in the PJM market.
+
+  nrg:
+    name: NRG Energy
+    nameZh: NRG能源
+    aliases: ["NRG Energy, Inc."]
+    listing: listed
+    tickers:
+      - { symbol: NRG, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: energy/power-producers/ipps
+    website: nrg.com
+    description: >-
+      Integrated power company combining large retail electricity brands (Reliant, Direct Energy)
+      with gas, coal and nuclear generation in Texas and the eastern US; developing new gas-fired
+      capacity for data-center load.
+
+  nextera:
+    name: NextEra Energy
+    nameZh: 新纪元能源
+    aliases: [NEE, NextEra Energy Inc., Florida Power & Light, 新紀元能源]
+    listing: listed
+    tickers:
+      - { symbol: NEE, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: energy/power-producers/utilities
+    ecosystems: [meta]
+    website: nexteraenergy.com
+    description: >-
+      Owner of Florida Power & Light, the largest US electric utility, and NextEra Energy
+      Resources, a leading wind, solar and storage developer; signs large power deals with
+      hyperscalers, including Meta and Google (Duane Arnold nuclear restart).
+
+  dominion:
+    name: Dominion Energy
+    nameZh: 道明尼能源
+    aliases: [Dominion Energy Inc., Dominion Resources, 道明尼资源]
+    listing: listed
+    tickers:
+      - { symbol: D, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: energy/power-producers/utilities
+    website: dominionenergy.com
+    description: >-
+      Regulated utility serving Virginia and the Carolinas, including Northern Virginia's "Data
+      Center Alley", the world's largest data-center market; expanding generation and
+      transmission to meet data-center load.
+
+  southern:
+    name: Southern Company
+    nameZh: 南方公司
+    aliases: [The Southern Company, Southern Co., Georgia Power, 美国南方电力公司]
+    listing: listed
+    tickers:
+      - { symbol: SO, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: energy/power-producers/utilities
+    website: southerncompany.com
+    description: >-
+      Southeastern US utility holding company (Georgia Power, Alabama Power, Mississippi Power)
+      that operates the Vogtle nuclear plant; adding large amounts of generation to serve
+      data-center load in Georgia.
+
+  aep:
+    name: American Electric Power
+    nameZh: 美国电力公司
+    aliases: [AEP, American Electric Power Company Inc., 美国电力]
+    listing: listed
+    tickers:
+      - { symbol: AEP, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: energy/power-producers/utilities
+    website: aep.com
+    description: >-
+      One of the largest US electric utilities, serving 11 states and owning the largest US
+      transmission network; data-center demand in Ohio, Texas and Indiana is driving a large
+      expansion of its capital plan.
+
+  entergy:
+    name: Entergy
+    nameZh: 安特吉
+    aliases: [ETR, Entergy Corporation, Entergy Louisiana]
+    listing: listed
+    tickers:
+      - { symbol: ETR, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: energy/power-producers/utilities
+    ecosystems: [meta]
+    website: entergy.com
+    description: >-
+      Gulf South utility serving Louisiana, Arkansas, Mississippi and Texas; building new
+      gas-fired plants and transmission to power Meta's Hyperion AI data center in Louisiana.
+
+  duke:
+    name: Duke Energy
+    nameZh: 杜克能源
+    aliases: [DUK, Duke Energy Corporation]
+    listing: listed
+    tickers:
+      - { symbol: DUK, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: energy/power-producers/utilities
+    website: duke-energy.com
+    description: >-
+      One of the largest US regulated utilities, serving the Carolinas, Florida and the Midwest;
+      expanding gas, nuclear and grid investment to serve data-center and industrial load growth.
+
+  freeport:
+    name: Freeport-McMoRan
+    nameZh: 自由港麦克莫兰
+    aliases: [FCX, Freeport-McMoRan Inc., 自由港麥克莫蘭]
+    listing: listed
+    tickers:
+      - { symbol: FCX, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: energy/grid/copper-materials
+    website: fcx.com
+    description: >-
+      One of the world's largest copper producers, with the Grasberg mine in Indonesia and
+      operations in the Americas; copper is a key input for power grids, transformers, cables and
+      data centers.
+
+  hd-hyundai-electric:
+    name: HD Hyundai Electric
+    nameZh: HD现代电气
+    aliases: ["HD Hyundai Electric Co., Ltd.", Hyundai Electric, Hyundai Electric & Energy Systems, 现代电气, "267260"]
+    listing: listed
+    tickers:
+      - { symbol: 267260.KS, exchange: KOSPI, currency: KRW }
+    country: KR
+    tier: core
+    primary: energy/grid/transformers
+    website: hd-hyundaielectric.com
+    description: >-
+      Korean maker of high-voltage power transformers, switchgear and rotating machines, with a
+      US transformer plant in Alabama; a major supplier to US utilities and data-center
+      substations amid transformer shortages.
+
+  hyosung-heavy:
+    name: Hyosung Heavy Industries
+    nameZh: 晓星重工业
+    aliases: [Hyosung Heavy Industries Corporation, Hyosung HICO, "298040"]
+    listing: listed
+    tickers:
+      - { symbol: 298040.KS, exchange: KOSPI, currency: KRW }
+    country: KR
+    tier: focus
+    primary: energy/grid/transformers
+    website: hyosungheavyindustries.com
+    description: >-
+      Korean maker of power transformers, high-voltage switchgear and grid equipment such as
+      STATCOMs, with a US transformer factory in Memphis; also runs a construction business.
+
+  ls-electric:
+    name: LS Electric
+    nameZh: LS电气
+    aliases: ["LS ELECTRIC Co., Ltd.", LS Industrial Systems, LS产电, "010120"]
+    listing: listed
+    tickers:
+      - { symbol: 010120.KS, exchange: KOSPI, currency: KRW }
+    country: KR
+    tier: focus
+    primary: energy/grid/transformers
+    website: ls-electric.com
+    description: >-
+      Korean maker of power transmission and distribution equipment, including switchgear,
+      transformers and busways, supplying utilities, data centers and battery plants in Korea, the
+      US and other markets.
+
+  hitachi:
+    name: Hitachi
+    nameZh: 日立
+    aliases: [Hitachi Ltd., Hitachi Energy, 日立制作所, 日立能源, HTHIY, "6501"]
+    listing: listed
+    tickers:
+      - { symbol: 6501.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: focus
+    primary: energy/grid/transformers
+    website: hitachi.com
+    description: >-
+      Japanese conglomerate whose Hitachi Energy unit is a leading global supplier of power
+      transformers, HVDC systems and grid equipment; also provides digital and IT services
+      (Lumada) and rail systems.
+
+  sieyuan:
+    name: Sieyuan Electric
+    nameZh: 思源电气
+    aliases: ["Sieyuan Electric Co., Ltd.", 思源電氣, "002028"]
+    listing: listed
+    tickers:
+      - { symbol: 002028.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: focus
+    primary: energy/grid/transformers
+    website: sieyuan.com
+    description: >-
+      Chinese maker of high-voltage switchgear (GIS), transformers, capacitors and
+      power-electronics equipment such as STATCOMs; a leading private supplier to State Grid with
+      growing overseas sales.
+
+  tbea:
+    name: TBEA
+    nameZh: 特变电工
+    aliases: ["TBEA Co., Ltd.", 特變電工, "600089"]
+    listing: listed
+    tickers:
+      - { symbol: 600089.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: energy/grid/transformers
+    website: tbea.com
+    description: >-
+      Chinese industrial group making power transformers, reactors and cables and building grid
+      projects; also produces polysilicon through Hong Kong-listed Xinte Energy and owns coal and
+      power-generation assets.
+
+  abb:
+    name: ABB
+    nameZh: ABB
+    aliases: [ABB Ltd, ABBNY]
+    listing: listed
+    tickers:
+      - { symbol: ABBN.SW, exchange: SIX, currency: CHF }
+    country: CH
+    tier: focus
+    primary: energy/grid/switchgear
+    website: abb.com
+    description: >-
+      Swiss-Swedish electrification and automation group selling switchgear, circuit breakers,
+      UPS systems, drives and motors; a leading supplier of power-distribution equipment for data
+      centers and utilities.
+
+  hubbell:
+    name: Hubbell
+    nameZh: Hubbell
+    aliases: [HUBB, Hubbell Incorporated]
+    listing: listed
+    tickers:
+      - { symbol: HUBB, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: energy/grid/switchgear
+    website: hubbell.com
+    description: >-
+      US maker of utility transmission and distribution components (connectors, insulators,
+      arresters, enclosures, meters) and electrical products for commercial buildings and data
+      centers.
+
+  prysmian:
+    name: Prysmian
+    nameZh: 普睿司曼
+    aliases: [Prysmian S.p.A., Prysmian Group, PRYMY]
+    listing: listed
+    tickers:
+      - { symbol: PRY.MI, exchange: Euronext Milan, currency: EUR }
+    country: IT
+    tier: focus
+    primary: energy/grid/power-cables
+    website: prysmian.com
+    description: >-
+      The world's largest cable maker, producing high-voltage land and subsea power cables for
+      grids and interconnectors, plus building wire and the optical fiber cables used in data
+      centers.
+
+  nexans:
+    name: Nexans
+    nameZh: 耐克森
+    aliases: [Nexans S.A.]
+    listing: listed
+    tickers:
+      - { symbol: NEX.PA, exchange: Euronext Paris, currency: EUR }
+    country: FR
+    tier: watch
+    primary: energy/grid/power-cables
+    website: nexans.com
+    description: >-
+      French cable maker focused on electrification, producing high-voltage subsea and land cables
+      for interconnectors and offshore wind, plus distribution and building cables.
+
+  nkt:
+    name: NKT
+    nameZh: NKT
+    aliases: [NKT A/S]
+    listing: listed
+    tickers:
+      - { symbol: NKT.CO, exchange: Nasdaq Copenhagen, currency: DKK }
+    country: DK
+    tier: watch
+    primary: energy/grid/power-cables
+    website: nkt.com
+    description: >-
+      Danish maker of high-voltage AC and DC power cables for interconnectors, offshore wind and
+      grid reinforcement, plus medium- and low-voltage cables and accessories.
+
+  quanta:
+    name: Quanta Services
+    nameZh: Quanta Services
+    aliases: [PWR, Quanta Services Inc.]
+    listing: listed
+    tickers:
+      - { symbol: PWR, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: energy/grid/grid-epc
+    website: quantaservices.com
+    description: >-
+      The largest US electric grid contractor, building and maintaining transmission lines,
+      substations and generation; also provides electrical and mechanical construction for data
+      centers.
+
+  mastec:
+    name: MasTec
+    nameZh: MasTec
+    aliases: [MTZ, MasTec Inc.]
+    listing: listed
+    tickers:
+      - { symbol: MTZ, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: energy/grid/grid-epc
+    website: mastec.com
+    description: >-
+      US infrastructure contractor building electric transmission and distribution lines, gas
+      pipelines, renewable power plants and communications networks.
+
+  catl:
+    name: CATL
+    nameZh: 宁德时代
+    aliases: [Contemporary Amperex Technology, "Contemporary Amperex Technology Co., Limited", 寧德時代, "300750", "3750"]
+    listing: listed
+    tickers:
+      - { symbol: 300750.SZ, exchange: SZSE, currency: CNY }
+      - { symbol: 3750.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: focus
+    primary: energy/storage/battery-cells
+    ecosystems: [tesla]
+    website: catl.com
+    description: >-
+      The world's largest maker of EV and energy-storage batteries, supplying LFP cells and
+      containerized storage systems (such as TENER) for grids and data centers; customers include
+      Tesla.
+
+  lg-energy-solution:
+    name: LG Energy Solution
+    nameZh: LG新能源
+    aliases: [LGES, LG Energy Solution Ltd., LG能源解决方案, "373220"]
+    listing: listed
+    tickers:
+      - { symbol: 373220.KS, exchange: KOSPI, currency: KRW }
+    country: KR
+    tier: watch
+    primary: energy/storage/battery-cells
+    ecosystems: [tesla]
+    website: lgensol.com
+    description: >-
+      Korean battery maker supplying EV cells to automakers including Tesla and GM, and expanding
+      US production of LFP cells for grid-scale and data-center energy storage.
+
+  fluence:
+    name: Fluence Energy
+    nameZh: Fluence Energy
+    aliases: [FLNC, Fluence Energy Inc., Fluence]
+    listing: listed
+    tickers:
+      - { symbol: FLNC, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: energy/storage/storage-integrators
+    website: fluenceenergy.com
+    description: >-
+      Battery energy-storage integrator founded by Siemens and AES, delivering utility-scale
+      storage systems (such as Gridstack and Smartstack) and optimization software used to firm
+      renewables and add grid capacity.
+
+  sungrow:
+    name: Sungrow
+    nameZh: 阳光电源
+    aliases: [Sungrow Power, "Sungrow Power Supply Co., Ltd.", 陽光電源, "300274"]
+    listing: listed
+    tickers:
+      - { symbol: 300274.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: focus
+    primary: energy/storage/storage-integrators
+    website: sungrowpower.com
+    description: >-
+      Chinese maker of solar inverters and battery energy-storage systems (such as PowerTitan);
+      one of the world's largest storage-system integrators.

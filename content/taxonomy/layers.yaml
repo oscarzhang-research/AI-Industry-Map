@@ -1,0 +1,90 @@
+# The five layers of the AI "cake", bottom to top.
+# Framework: Jensen Huang (World Economic Forum, Davos, Jan 2026; NVIDIA blog, Mar 2026):
+# energy -> chips -> infrastructure -> models -> applications.
+# `featured` lists the companies shown on the home-page cake for each layer (editable).
+layers:
+  - id: energy
+    order: 1
+    name: Energy
+    nameZh: 能源
+    color: amber
+    tagline: The binding constraint on how much intelligence can be produced.
+    description: >-
+      Every token is converted electricity. Huang calls energy the first principle of AI
+      infrastructure, and power is now the gating factor for how fast AI factories get built.
+      This layer covers fuel, generation equipment, the producers who sell power, the grid
+      that delivers it, and storage.
+    watch:
+      - Gas-turbine and transformer backlogs and lead times
+      - Data-center interconnection queues and power-purchase agreements
+      - Nuclear restarts, uprates and SMR licensing milestones
+      - Utility load forecasts and rate cases tied to data centers
+    featured: [ge-vernova, constellation, vistra, siemens-energy, eaton, quanta, bloom-energy, cameco, caterpillar, hd-hyundai-electric, oklo, nextera]
+
+  - id: chips
+    order: 2
+    name: Chips
+    nameZh: 芯片
+    color: mint
+    tagline: Silicon that turns electricity into computation.
+    description: >-
+      Accelerators and memory, and the manufacturing stack behind them: design tools and IP,
+      foundry and advanced packaging, equipment and materials. The layer where AI capital
+      spending turns into revenue first.
+    watch:
+      - TSMC monthly revenue and CoWoS / SoIC capacity
+      - HBM and DRAM / NAND contract prices; memory capex discipline
+      - Accelerator roadmaps (GPU vs custom ASIC share)
+      - Wafer-fab equipment orders and export-control changes
+    featured: [nvidia, broadcom, tsmc, micron, sk-hynix, samsung-electronics, amd, asml, sandisk, marvell, applied-materials, lam-research]
+
+  - id: infrastructure
+    order: 3
+    name: Infrastructure
+    nameZh: 基础设施
+    color: sky
+    tagline: AI factories, from land and power delivery to networking, systems and cloud.
+    description: >-
+      Huang describes this layer as the AI factory: land, buildings, power delivery, cooling,
+      networking and the systems that link hundreds of thousands of processors into one
+      machine, plus the clouds and neoclouds that rent the capacity.
+    watch:
+      - Hyperscaler capex guidance and cloud backlog
+      - Rack-scale system shipments (NVL-class) and ODM monthly sales
+      - Optical module and switch upgrade cycles (800G -> 1.6T -> 3.2T, CPO)
+      - GPU rental prices and data-center vacancy
+    featured: [microsoft, amazon, oracle, coreweave, arista, vertiv, innolight, celestica, credo, astera-labs, hon-hai, dell]
+
+  - id: models
+    order: 4
+    name: Models
+    nameZh: 模型
+    color: lavender
+    tagline: Foundation models that convert compute into capability.
+    description: >-
+      Frontier labs, open-weight and Chinese model makers, multimodal and world models, and
+      the data, tooling and inference platforms around them. Most leaders are private, so the
+      layer is tracked through private valuations and listed proxies.
+    watch:
+      - Frontier model releases and benchmark leadership
+      - Token volumes, price per million tokens and inference margins
+      - Lab revenue run-rates, funding rounds and compute commitments
+      - Open-weight model quality versus closed frontier
+    featured: [alphabet, openai, anthropic, xai, meta, deepseek, alibaba, moonshot, zhipu, minimax, mistral, kuaishou]
+
+  - id: applications
+    order: 5
+    name: Applications
+    nameZh: 应用
+    color: rose
+    tagline: Where the economic value of intelligence is realized.
+    description: >-
+      Assistants, enterprise software and agents, coding tools, advertising and commerce,
+      vertical AI, security, devices and physical AI. The layer that has to earn back the
+      capital spent beneath it.
+    watch:
+      - AI revenue run-rates and paid seats at software vendors
+      - ARR of AI-native apps (coding, legal, customer service)
+      - Ad-load and conversion gains from AI ranking
+      - Robotaxi rides and humanoid robot deployments
+    featured: [meta, apple, tesla, palantir, salesforce, servicenow, applovin, shopify, crowdstrike, tencent, cloudflare, tempus-ai]

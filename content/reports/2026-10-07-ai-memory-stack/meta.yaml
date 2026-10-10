@@ -1,0 +1,32 @@
+id: 2026-10-07-ai-memory-stack
+kind: claude
+visibility: public
+format: html
+file: report.html
+title: "The Memory Wall: AI Has Turned Every Storage Tier into a Bottleneck"
+titleZh: "AI 存储全栈图谱"
+subtitle: "A nine-tier map of AI data-center memory, from SRAM to tape: what each tier does, where training, inference and agents bind, and who captures value."
+date: 2026-10-07
+asOf: 2026-10-07
+reportType: industry
+languages: [zh, en]
+companies: [sk-hynix, samsung-electronics, micron, nvidia, sandisk, kioxia, cxmt, ymtc, tsmc, deepseek, alphabet, seagate]
+nodes: [chips/memory, chips/memory/dram-hbm, chips/memory/nand-ssd, chips/memory/hdd]
+tags: [memory-wall, hbm, memory-hierarchy, kv-cache, ai-agents, enterprise-ssd, cxl, memory-cycle]
+summary:
+  en:
+    - "Memory is now AI's binding constraint: from H100 to Rubin, per-GPU compute rose ~25× but HBM bandwidth only ~6.6×; memory is ~53–54% of 2026E chip revenue."
+    - "Scarcity ranks HBM first, then commodity DRAM, enterprise SSD and nearline HDD; cleanrooms, not capex dollars, bind supply, making 2027 the least elastic year."
+    - "Training is bound by HBM capacity and interconnect, decode by HBM bandwidth, long context by KV capacity; agents push the bottleneck toward memory, spreading demand into DRAM and flash."
+    - "Compression cuts memory per token fast (DeepSeek ~437× V1→V4.1), but token demand has grown faster so far; most workarounds shift demand between tiers rather than remove it."
+    - "Overlooked risks: decelerating price slopes, LTA price ceilings, buyers designing memory out, consumer demand destruction, Chinese capacity and AI-capex financing; profit growth may peak before prices."
+  zh:
+    - "存储已从“配角”变成AI的约束条件：从H100到Rubin，单GPU低精度算力约增长25倍，HBM带宽只有约6.6倍；2026年存储预计占全球半导体营收约53–54%。"
+    - "当下最缺的是HBM，其次是通用DRAM，再其次是企业级SSD与近线HDD；供给的硬约束是洁净室而不是资本开支，2027年供给弹性最低。"
+    - "训练卡在HBM容量与互联，推理decode卡在HBM带宽，长上下文卡在KV容量；AI Agent把瓶颈从“算力”推向“记忆”，把需求扩散到DRAM与闪存。"
+    - "算法在压缩每token存储（DeepSeek从V1到V4.1-Flash约437倍），但Jevons效应目前更强；多数绕行路径是在层间“搬需求”，而不是消灭需求。"
+    - "最容易被忽略的风险：涨价斜率急降、长约既托底也封顶、买家设计掉存储、消费电子需求被摧毁、中国产能与AI资本开支的融资约束；利润增速可能先于价格见顶。"
+stance: "AI has not abolished the memory cycle but stretched it: 2027 likely tightest, with a capacity wave from 2028."
+sections: 22
+interactive: true
+pinned: false

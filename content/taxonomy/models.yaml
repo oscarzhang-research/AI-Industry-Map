@@ -1,0 +1,113 @@
+# Layer 4 · Models. Industries -> value-chain segments -> member companies.
+# Most leaders are private: their records list listed proxies so the layer can still be tracked.
+layer: models
+industries:
+  - id: frontier-labs
+    name: Frontier Model Labs
+    nameZh: 前沿模型实验室
+    description: >-
+      The labs training the most capable general models. They are the largest buyers of
+      compute, and their revenue run-rates decide whether the capex below them earns a return.
+    drivers: [Capability gains per training run, Enterprise and API adoption, Consumer subscriptions, Compute access]
+    metrics: [Revenue run-rate, Weekly active users, Price per million tokens, Funding and valuation, Compute commitments]
+    segments:
+      - id: compute-partners
+        name: Compute partners
+        nameZh: 算力伙伴
+        position: upstream
+        ref: infrastructure/cloud
+      - id: closed-frontier
+        name: Closed Frontier Labs
+        nameZh: 闭源前沿实验室
+        position: midstream
+        companies: [openai, anthropic, alphabet, xai, meta]
+      - id: open-labs
+        name: Open-weight & Specialist Labs
+        nameZh: 开源与专业模型实验室
+        position: midstream
+        companies: [mistral, cohere, thinking-machines, ssi]
+      - id: listed-exposure
+        name: Listed Exposure to Private Labs
+        nameZh: 私有实验室的上市映射
+        position: midstream
+        companies: [microsoft, amazon, softbank]
+      - id: to-apps
+        name: Applications
+        nameZh: 应用
+        position: downstream
+        ref: applications/assistants
+
+  - id: china-models
+    name: China Model Labs
+    nameZh: 中国大模型
+    description: >-
+      Big-tech model families and AI-native startups in China, competing largely through
+      open weights and low prices under export-control constraints on compute.
+    drivers: [Open-weight releases, Domestic compute supply, Consumer app scale, Pricing]
+    metrics: [Benchmark parity with US labs, App MAU, API price cuts, Domestic accelerator adoption]
+    segments:
+      - id: china-bigtech
+        name: Big-tech Model Families
+        nameZh: 大厂模型
+        position: midstream
+        companies: [alibaba, bytedance, tencent, baidu, iflytek]
+      - id: china-startups
+        name: AI-native Labs
+        nameZh: AI 原生创业公司
+        position: midstream
+        companies: [deepseek, moonshot, zhipu, minimax, stepfun]
+
+  - id: multimodal
+    name: Multimodal, Video & World Models
+    nameZh: 多模态、视频与世界模型
+    description: >-
+      Image, video, voice and world models. Video generation is reshaping content production;
+      world models aim to train robots in simulation.
+    drivers: [Video quality and length, Cost per generated minute, Robotics data, Licensing deals]
+    metrics: [Video model revenue, Creator adoption, Generation cost, Robotics foundation-model releases]
+    segments:
+      - id: video-gen
+        name: Video Generation
+        nameZh: 视频生成
+        position: midstream
+        companies: [kuaishou, runway, bytedance, minimax]
+      - id: voice-audio
+        name: Voice & Audio
+        nameZh: 语音与音频
+        position: midstream
+        companies: [elevenlabs, soundhound]
+      - id: world-models
+        name: World & Robotics Foundation Models
+        nameZh: 世界模型与机器人基础模型
+        position: midstream
+        companies: [physical-intelligence, skild-ai, world-labs, nvidia]
+      - id: to-content
+        name: Content & physical AI
+        nameZh: 内容与物理 AI
+        position: downstream
+        ref: applications/physical-ai
+
+  - id: model-tooling
+    name: Model Tooling, Data & Inference
+    nameZh: 模型工具链、数据与推理
+    description: >-
+      Training data and labeling, inference platforms that serve open models, and the hubs
+      and MLOps tools developers build on.
+    drivers: [Post-training data demand, Open-model inference volume, Price per token]
+    metrics: [Token volumes served, Revenue run-rates, Data-labeling contracts]
+    segments:
+      - id: data-labeling
+        name: Training Data & Labeling
+        nameZh: 训练数据与标注
+        position: upstream
+        companies: [scale-ai, surge-ai, innodata, appen]
+      - id: inference-platforms
+        name: Inference Platforms & Model APIs
+        nameZh: 推理平台与模型 API
+        position: midstream
+        companies: [together-ai, fireworks-ai, baseten, openrouter]
+      - id: model-hubs
+        name: Model Hubs & MLOps
+        nameZh: 模型社区与 MLOps
+        position: midstream
+        companies: [hugging-face, databricks]

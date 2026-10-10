@@ -1,0 +1,194 @@
+month: 2026-10
+items:
+  - id: 2026-10-08-openai-revenue-run-rate-ai-selloff
+    date: 2026-10-08
+    title: "AI stocks slide after OpenAI puts annualized revenue near $50 billion"
+    summary: "OpenAI told investors it reached roughly $50 billion in annualized revenue at the end of September, below the $68 billion figure widely reported earlier, which a person familiar said included partners' gross revenue. Oracle fell nearly 6%, CoreWeave nearly 8% and Nvidia 3% on the day."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/08/open-ai-revenue-nvidia-oracle-coreweave.html" }
+    companies: [openai, oracle, coreweave, nvidia]
+    nodes: [models/frontier-labs/closed-frontier, infrastructure/cloud/neoclouds]
+    themes: [ai-monetization]
+    impact: negative
+    importance: 3
+
+  - id: 2026-10-08-samsung-q3-preliminary-record-profit
+    date: 2026-10-08
+    title: "Samsung guides record third-quarter operating profit of 107.4 trillion won"
+    summary: "Samsung Electronics estimated third-quarter operating profit at about 107.4 trillion won, up 782.5% from a year earlier, on sales of roughly 195 trillion won, with analysts crediting memory for most of the profit. Full results are due October 29."
+    source: { name: "Samsung Newsroom", url: "https://news.samsung.com/global/samsung-electronics-announces-earnings-guidance-for-third-quarter-2026" }
+    companies: [samsung-electronics]
+    nodes: [chips/memory/dram-hbm]
+    themes: [memory-cycle, hbm]
+    impact: positive
+    importance: 3
+
+  - id: 2026-10-08-tsmc-september-revenue
+    date: 2026-10-08
+    title: "TSMC September revenue rises 54.6% as third quarter hits a record"
+    summary: "TSMC's September revenue was NT$511.86 billion, up 54.6% from a year earlier and down 0.6% from August's record. Third-quarter revenue reached a record of about NT$1.494 trillion."
+    source: { name: "TSMC", url: "https://pr.tsmc.com/english/news/3343" }
+    companies: [tsmc]
+    nodes: [chips/foundry-packaging/leading-edge]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-08-palantir-goldman-upgrade
+    date: 2026-10-08
+    title: "Palantir gains 2% on Goldman Sachs upgrade as AI stocks fall"
+    summary: "Palantir rose 2% on October 8 after Goldman Sachs upgraded the stock, saying the company isn't done capitalizing on the AI boom, making it one of the few AI-linked names to close higher that day."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/08/palantir-isnt-done-capitalizing-on-ai-boom-goldman-sachs-says.html" }
+    companies: [palantir]
+    nodes: [applications/enterprise/data-platforms]
+    themes: [ai-monetization]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-08-nvidia-1-billion-us-science
+    date: 2026-10-08
+    title: "Nvidia commits $1 billion over five years to US science research"
+    summary: "Nvidia announced commitments valued at $1 billion over five years to build US capacity for superintelligence research, including quantum computing, healthcare and energy security, funding universities, quantum initiatives and cloud providers serving government research."
+    source: { name: "NVIDIA", url: "https://nvidianews.nvidia.com/news/nvidia-commits-1-billion-to-advance-us-science-over-the-next-five-years" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    themes: [sovereign-ai]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-10-07-broadcom-openai-chip-financing
+    date: 2026-10-07
+    title: "Broadcom reportedly arranging about $50 billion to finance OpenAI's custom chips"
+    summary: "Broadcom is in early talks to arrange about $50 billion of financing to help OpenAI buy the custom AI chips the two are co-developing, the Wall Street Journal reported; another report put the debt at around $30 billion, and no formal process had begun."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-07/broadcom-plans-50-billion-financing-for-openai-chips-wsj-says" }
+    companies: [broadcom, openai]
+    nodes: [chips/compute/custom-asic]
+    themes: [custom-asic, funding]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-10-07-nvidia-microsoft-rtx-spark-pcs
+    date: 2026-10-07
+    title: "Nvidia and Microsoft unveil RTX Spark Windows PCs built for AI agents"
+    summary: "At a Microsoft event, Jensen Huang and Satya Nadella showed RTX Spark PCs running AI agents locally on Windows; laptop preorders opened with availability from October 16, and compact desktops follow in November."
+    source: { name: "NVIDIA", url: "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event" }
+    companies: [nvidia, microsoft]
+    nodes: [applications/devices/phones-pcs, chips/edge-silicon/mobile-pc-soc]
+    themes: [edge-ai, agents]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-07-coreweave-india-adaniconnex
+    date: 2026-10-07
+    title: "CoreWeave enters India with AdaniConneX, planning 240 MW in Navi Mumbai"
+    summary: "CoreWeave announced its first India data centers through a deal with AdaniConneX, planning 240 megawatts of capacity in Navi Mumbai."
+    source: { name: "CoreWeave", url: "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Enters-India-Expanding-AI-Cloud-Platform-With-AdaniConneX/default.aspx" }
+    companies: [coreweave]
+    nodes: [infrastructure/cloud/neoclouds]
+    themes: [data-centers]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-07-anthropic-claude-haiku-5-5
+    date: 2026-10-07
+    title: "Anthropic releases Claude Haiku 5.5, its new small model"
+    summary: "Anthropic released Claude Haiku 5.5, which it calls its fastest, cheapest and most capable small model yet, nine days after Claude Sonnet 5.5; it is available through Anthropic, AWS, Google Cloud and Microsoft Azure."
+    source: { name: "Anthropic", url: "https://www.anthropic.com/claude-haiku-5-5" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [inference]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-07-grok-bot-routes-tasks-to-claude
+    date: 2026-10-07
+    title: "Musk says Grok Bot will route tasks to Claude Opus 5.5, Midjourney, Suno"
+    summary: "Elon Musk said Grok Bot will send each task to the strongest available model, naming Anthropic's Claude Opus 5.5 for text and reasoning, Midjourney for images and Suno for music."
+    source: { name: "The Next Web", url: "https://thenextweb.com/news/grok-bot-claude-opus-midjourney-suno-musk" }
+    companies: [xai, anthropic]
+    nodes: [applications/assistants/chat-assistants, models/frontier-labs/closed-frontier]
+    impact: mixed
+    importance: 1
+
+  - id: 2026-10-06-google-constellation-nuclear-deal
+    date: 2026-10-06
+    title: "Google signs 3.6 GW nuclear deal with Constellation, including 890 MW uprates"
+    summary: "Google agreed to a 20-year PPA for 890 MW of new capacity from uprates at 11 Constellation reactors in Illinois, Pennsylvania and New Jersey, backed by more than $4.3 billion of investment, plus a 15-year contract for 2,700 MW of existing PJM output. The first uprate is due online by 2028."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-06/google-constellation-near-billion-dollar-deal-for-nuclear-power" }
+    companies: [constellation, alphabet]
+    nodes: [energy/power-producers/ipps]
+    themes: [nuclear, power-bottleneck, data-centers]
+    impact: positive
+    importance: 3
+
+  - id: 2026-10-06-seagate-toshiba-tdk-head-unit
+    date: 2026-10-06
+    title: "Seagate and Toshiba reportedly vie for TDK's hard-drive head business"
+    summary: "Bloomberg reported that Seagate and Toshiba are competing to buy TDK's hard-drive magnetic-head unit in a deal that could be worth several billion dollars; Toshiba disputed the report and TDK said no decision had been made."
+    source: { name: "Blocks & Files", url: "https://www.blocksandfiles.com/disk/2026/10/06/seagate-and-toshiba-both-want-to-acquire-tdks-disk-read/write-head-business/5301393" }
+    companies: [seagate, toshiba]
+    nodes: [chips/memory/hdd]
+    impact: mixed
+    importance: 1
+
+  - id: 2026-10-06-nanya-dram-asp-4q26
+    date: 2026-10-06
+    title: "Nanya's DRAM prices seen rising about 10% in fourth quarter"
+    summary: "Nanya Technology's DRAM average selling price is expected to rise about 10% in the fourth quarter, TrendForce reported, with the company able to meet only around 50–60% of customer demand, according to cited investor estimates."
+    source: { name: "TrendForce", url: "https://www.trendforce.com/news/2026/10/06/news-nanya-dram-asp-seen-rising-10-in-4q26-winbond-also-sees-further-price-gains-as-memory-supply-stays-tight/" }
+    companies: [nanya]
+    nodes: [chips/memory/dram-hbm]
+    themes: [memory-cycle]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-06-google-nano-banana-2-1-ga
+    date: 2026-10-06
+    title: "Google makes Nano Banana 2.1 image model generally available"
+    summary: "Google's Gemini API changelog lists Nano Banana 2.1, its image generation and editing model, as generally available from October 6."
+    source: { name: "Google AI for Developers", url: "https://ai.google.dev/gemini-api/docs/changelog" }
+    companies: [alphabet]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-05-hon-hai-september-sales-record
+    date: 2026-10-05
+    title: "Hon Hai's September sales top NT$1 trillion for first time"
+    summary: "Hon Hai reported record September revenue of about NT$1.15 trillion, up 38.4% from a year earlier and 25.7% from August, led by its cloud and networking products unit, which includes AI servers. Third-quarter revenue rose 47% to about NT$3.03 trillion."
+    source: { name: "Focus Taiwan (CNA)", url: "https://focustaiwan.tw/business/202610050019" }
+    companies: [hon-hai]
+    nodes: [infrastructure/servers/odm]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-02-toshiba-hdd-expansion-seagate-wd-slide
+    date: 2026-10-02
+    title: "Seagate and Western Digital slide as Toshiba plans to double HDD output"
+    summary: "Nikkei reported that Toshiba plans to invest about ¥60 billion (roughly $380 million) in its Philippine plant to double hard-drive output for AI data centers by fiscal 2027. Seagate and Western Digital shares fell sharply on concern about added supply."
+    source: { name: "Yahoo Finance", url: "https://finance.yahoo.com/markets/article/seagate-western-digital-stocks-sink-as-rival-toshibas-expansion-plans-hit-storage-highfliers-142919224.html" }
+    companies: [seagate, western-digital, toshiba]
+    nodes: [chips/memory/hdd]
+    themes: [memory-cycle]
+    impact: negative
+    importance: 3
+
+  - id: 2026-10-02-broadcom-anthropic-60-billion-financing
+    date: 2026-10-02
+    title: "Blackstone and banks assemble $60 billion to fund Broadcom chips for Anthropic"
+    summary: "Bloomberg reported that banks and Blackstone are assembling about $60 billion of debt, in a $42 billion senior tranche and an $18 billion Blackstone-led junior tranche, to finance AI chips leased to Anthropic, with Broadcom providing residual value support."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-02/broadcom-starts-amassing-60-billion-to-fund-chips-for-anthropic" }
+    companies: [broadcom, anthropic]
+    nodes: [chips/compute/custom-asic]
+    themes: [custom-asic, funding]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-10-02-oracle-point-beach-nuclear-subscription
+    date: 2026-10-02
+    title: "Oracle to take 10–20% of Point Beach nuclear output for AI campus"
+    summary: "We Energies agreed to let Oracle subscribe to 10–20% of the output of the NextEra-owned Point Beach nuclear plant for the Port Washington, Wisconsin campus Oracle is developing with OpenAI. The utility says the deal could save other customers about $300 million in fuel costs over five years; it still needs state approval."
+    source: { name: "Wisconsin Watch", url: "https://wisconsinwatch.org/2026/10/wisconsin-we-energies-deal-oracle-data-center-nuclear-energy-power-point-beach-plant/" }
+    companies: [oracle, nextera]
+    nodes: [energy/power-producers/utilities]
+    themes: [nuclear, data-centers]
+    impact: positive
+    importance: 1

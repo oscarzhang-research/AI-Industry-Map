@@ -1,0 +1,150 @@
+/* Layout concept: a stratigraphic survey of the AI economy. Five pastel strata (L1 Energy at the
+   bottom to L5 Applications at the top) are the identity and the navigation; every page is a survey
+   sheet with a quiet ink frame, hairline rules, tickers set in mono and dates stated "as of". */
+:root {
+  color-scheme: light;
+
+  /* Neutrals: cool, slightly blue-biased paper and ink */
+  --paper: #f4f6f8;
+  --sheet: #ffffff;
+  --sheet-2: #f9fafb;
+  --ink: #141a22;
+  --ink-2: #3f4856;
+  --muted: #5f6979;
+  --faint: #8a94a3;
+  --rule: #e2e6eb;
+  --rule-2: #cfd5dd;
+  --wash: #eef1f5;
+  --accent: #1d3f7a; /* survey ink: links, primary buttons, focus */
+  --accent-wash: #e6edf8;
+  --on-accent: #ffffff;
+  --shadow: 0 1px 2px rgba(20, 26, 34, 0.06), 0 8px 24px -12px rgba(20, 26, 34, 0.18);
+
+  /* Strata: fill (large areas), edge (cake shading), ink (text on fill), line (chart series) */
+  --l1-fill: #f5e3b3; --l1-edge: #e7cd86; --l1-ink: #7a5500; --l1-line: #eda100; /* Energy */
+  --l2-fill: #cdeedf; --l2-edge: #a6dcc4; --l2-ink: #0e6b49; --l2-line: #1baf7a; /* Chips */
+  --l3-fill: #d3e3f8; --l3-edge: #aecaf0; --l3-ink: #1f5aa6; --l3-line: #2a78d6; /* Infrastructure */
+  --l4-fill: #f8d6d4; --l4-edge: #efb3af; --l4-ink: #a8302f; --l4-line: #e34948; /* Models */
+  --l5-fill: #e3ddf8; --l5-edge: #c6bbf0; --l5-ink: #4c3cb0; --l5-line: #6250d6; /* Applications */
+
+  /* Market direction (US convention by default; html[data-updown="red"] flips to red-up) */
+  --up: #0b7a3b;
+  --down: #c0362c;
+  --up-wash: #e3f4ea;
+  --down-wash: #fbe7e4;
+  --flat: #6b7585;
+  /* Heatmap diverging arms (5 steps each side, neutral midpoint) */
+  --hm-mid: #eceff3;
+  --hm-up-1: #d3eedb; --hm-up-2: #a7dcb7; --hm-up-3: #6cc08b; --hm-up-4: #2f9a5e; --hm-up-5: #12723f;
+  --hm-dn-1: #f8dcd8; --hm-dn-2: #f0b2aa; --hm-dn-3: #e2786b; --hm-dn-4: #c84a3d; --hm-dn-5: #9c2a22;
+
+  /* Status (reserved meaning; always with icon + label) */
+  --good: #0ca30c;
+  --warning: #fab219;
+  --serious: #ec835a;
+  --critical: #d03b3b;
+  --good-ink: #0b6b1f;
+  --warning-ink: #7a5500;
+  --critical-ink: #a8302f;
+
+  /* Chart chrome */
+  --chart-surface: #ffffff;
+  --chart-grid: #e8ebef;
+  --chart-axis: #cfd5dd;
+  --chart-text: #5f6979;
+  --series-1: #2a78d6; --series-2: #eb6834; --series-3: #1baf7a; --series-4: #eda100;
+  --series-5: #e87ba4; --series-6: #008300; --series-7: #6250d6; --series-8: #e34948;
+  --deemph: #b8c0cc;
+
+  /* Type */
+  --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, "Noto Serif SC", "Songti SC", serif;
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --font-cond: "IBM Plex Sans Condensed", "IBM Plex Sans", "Arial Narrow", system-ui, "PingFang SC", "Noto Sans SC", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "PingFang SC", monospace;
+
+  --step--2: 0.72rem;
+  --step--1: 0.8125rem;
+  --step-0: 0.9375rem;
+  --step-1: 1.0625rem;
+  --step-2: 1.3125rem;
+  --step-3: 1.75rem;
+  --step-4: 2.375rem;
+  --step-5: 3.25rem;
+
+  /* Space & shape */
+  --gutter: clamp(16px, 3.2vw, 40px);
+  --maxw: 1320px;
+  --radius-s: 4px;
+  --radius: 8px;
+  --radius-l: 14px;
+  --header-h: 60px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0f1318; --sheet: #151a21; --sheet-2: #1a2029; --ink: #e8ecf2; --ink-2: #c3cad6; --muted: #aab4c3;
+    --faint: #8d97a8; --rule: #262d37; --rule-2: #333b47; --wash: #1d232c; --accent: #8fb3f0; --accent-wash: #1d2a40;
+    --on-accent: #0f1318; --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+    --l1-fill: #3a321c; --l1-edge: #574923; --l1-ink: #f3d78f; --l1-line: #c98500;
+    --l2-fill: #183a2f; --l2-edge: #215443; --l2-ink: #9fe0c2; --l2-line: #199e70;
+    --l3-fill: #1c2d45; --l3-edge: #284166; --l3-ink: #a9c8f2; --l3-line: #3987e5;
+    --l4-fill: #43242a; --l4-edge: #613038; --l4-ink: #f4afaa; --l4-line: #e66767;
+    --l5-fill: #2b2648; --l5-edge: #3d356a; --l5-ink: #c7bcf5; --l5-line: #9085e9;
+    --up: #4fc17e; --down: #f07468; --up-wash: #15301f; --down-wash: #3a1d1a; --flat: #8d97a8;
+    --hm-mid: #262d37;
+    --hm-up-1: #1d3a29; --hm-up-2: #1f5233; --hm-up-3: #23703f; --hm-up-4: #2d9152; --hm-up-5: #46b56c;
+    --hm-dn-1: #40221f; --hm-dn-2: #5c2a24; --hm-dn-3: #7f3229; --hm-dn-4: #a83c30; --hm-dn-5: #d0503f;
+    --good-ink: #4fc17e; --warning-ink: #f3d78f; --critical-ink: #f4afaa;
+    --chart-surface: #151a21; --chart-grid: #232a33; --chart-axis: #333b47; --chart-text: #aab4c3;
+    --series-1: #3987e5; --series-2: #d95926; --series-3: #199e70; --series-4: #c98500;
+    --series-5: #d55181; --series-6: #008300; --series-7: #9085e9; --series-8: #e66767;
+    --deemph: #4a5260;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0f1318; --sheet: #151a21; --sheet-2: #1a2029; --ink: #e8ecf2; --ink-2: #c3cad6; --muted: #aab4c3;
+  --faint: #8d97a8; --rule: #262d37; --rule-2: #333b47; --wash: #1d232c; --accent: #8fb3f0; --accent-wash: #1d2a40;
+  --on-accent: #0f1318; --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --l1-fill: #3a321c; --l1-edge: #574923; --l1-ink: #f3d78f; --l1-line: #c98500;
+  --l2-fill: #183a2f; --l2-edge: #215443; --l2-ink: #9fe0c2; --l2-line: #199e70;
+  --l3-fill: #1c2d45; --l3-edge: #284166; --l3-ink: #a9c8f2; --l3-line: #3987e5;
+  --l4-fill: #43242a; --l4-edge: #613038; --l4-ink: #f4afaa; --l4-line: #e66767;
+  --l5-fill: #2b2648; --l5-edge: #3d356a; --l5-ink: #c7bcf5; --l5-line: #9085e9;
+  --up: #4fc17e; --down: #f07468; --up-wash: #15301f; --down-wash: #3a1d1a; --flat: #8d97a8;
+  --hm-mid: #262d37;
+  --hm-up-1: #1d3a29; --hm-up-2: #1f5233; --hm-up-3: #23703f; --hm-up-4: #2d9152; --hm-up-5: #46b56c;
+  --hm-dn-1: #40221f; --hm-dn-2: #5c2a24; --hm-dn-3: #7f3229; --hm-dn-4: #a83c30; --hm-dn-5: #d0503f;
+  --good-ink: #4fc17e; --warning-ink: #f3d78f; --critical-ink: #f4afaa;
+  --chart-surface: #151a21; --chart-grid: #232a33; --chart-axis: #333b47; --chart-text: #aab4c3;
+  --series-1: #3987e5; --series-2: #d95926; --series-3: #199e70; --series-4: #c98500;
+  --series-5: #d55181; --series-6: #008300; --series-7: #9085e9; --series-8: #e66767;
+  --deemph: #4a5260;
+}
+
+/* Red-up convention (China/Japan style): swap the direction tokens, keep everything else. */
+:root[data-updown="red"] {
+  --up: #c0362c; --down: #0b7a3b; --up-wash: #fbe7e4; --down-wash: #e3f4ea;
+  --hm-up-1: #f8dcd8; --hm-up-2: #f0b2aa; --hm-up-3: #e2786b; --hm-up-4: #c84a3d; --hm-up-5: #9c2a22;
+  --hm-dn-1: #d3eedb; --hm-dn-2: #a7dcb7; --hm-dn-3: #6cc08b; --hm-dn-4: #2f9a5e; --hm-dn-5: #12723f;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-updown="red"]:not([data-theme="light"]) {
+    --up: #f07468; --down: #4fc17e; --up-wash: #3a1d1a; --down-wash: #15301f;
+    --hm-up-1: #40221f; --hm-up-2: #5c2a24; --hm-up-3: #7f3229; --hm-up-4: #a83c30; --hm-up-5: #d0503f;
+    --hm-dn-1: #1d3a29; --hm-dn-2: #1f5233; --hm-dn-3: #23703f; --hm-dn-4: #2d9152; --hm-dn-5: #46b56c;
+  }
+}
+:root[data-updown="red"][data-theme="dark"] {
+  --up: #f07468; --down: #4fc17e; --up-wash: #3a1d1a; --down-wash: #15301f;
+  --hm-up-1: #40221f; --hm-up-2: #5c2a24; --hm-up-3: #7f3229; --hm-up-4: #a83c30; --hm-up-5: #d0503f;
+  --hm-dn-1: #1d3a29; --hm-dn-2: #1f5233; --hm-dn-3: #23703f; --hm-dn-4: #2d9152; --hm-dn-5: #46b56c;
+}
+
+/* Layer scoping: any element with data-layer gets --layer-* aliases */
+[data-layer="energy"] { --layer-fill: var(--l1-fill); --layer-edge: var(--l1-edge); --layer-ink: var(--l1-ink); --layer-line: var(--l1-line); }
+[data-layer="chips"] { --layer-fill: var(--l2-fill); --layer-edge: var(--l2-edge); --layer-ink: var(--l2-ink); --layer-line: var(--l2-line); }
+[data-layer="infrastructure"] { --layer-fill: var(--l3-fill); --layer-edge: var(--l3-edge); --layer-ink: var(--l3-ink); --layer-line: var(--l3-line); }
+[data-layer="models"] { --layer-fill: var(--l4-fill); --layer-edge: var(--l4-edge); --layer-ink: var(--l4-ink); --layer-line: var(--l4-line); }
+[data-layer="applications"] { --layer-fill: var(--l5-fill); --layer-edge: var(--l5-edge); --layer-ink: var(--l5-ink); --layer-line: var(--l5-line); }

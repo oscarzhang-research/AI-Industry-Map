@@ -1,0 +1,33 @@
+id: 2026-10-09-micron-sca-hbm
+kind: claude
+visibility: public
+format: html
+file: report.html
+title: "Micron: A Deposit Is Not a Prepayment, and a Floor Is Not Insurance"
+titleZh: "美光 SCA·HBM 深度研报"
+subtitle: "How SCAs work and where their floors sit, why HBM4/4E eats more wafer, what NVIDIA cut, and how falling phone and PC units hit Micron."
+date: 2026-10-09
+asOf: 2026-10-09
+reportType: deep-dive
+languages: [zh, en]
+companies: [micron, sk-hynix, samsung-electronics, nvidia, sandisk, cxmt, tsmc, alphabet, amd, meta, amazon, microsoft]
+nodes: [chips/memory/dram-hbm, applications/devices/phones-pcs]
+tags: [hbm, memory-cycle, long-term-agreements, take-or-pay, custom-hbm, cpu-side-dram, device-demand]
+summary:
+  en:
+    - "SCA deposits are refundable performance bonds, not prepayments: shipments book at in-band prices, while deposits ($12.9B) sit in liabilities and financing cash flow, outside revenue and FCF."
+    - "Floors sit near 0.45x FQ4 FY26 prices; default pays only after a 64–71% fall, with gross margin still ~65%; normalized FY30–31 net income is ~$123B (range $52–338B)."
+    - "Correction: HBM is only ~20–23% of CMBU, not 40–60%, so hyperscaler conventional DRAM grew ~14% q/q in FQ4; the 'roughly flat' conclusion is withdrawn."
+    - "HBM eats ever more wafer (~3.4x DDR5 for HBM4, 3.7–4.0x for HBM4E) and is no longer the per-wafer profit champion; base TAM: ~$58B (2026) to $287B (2030)."
+    - "NVIDIA halved LPDDR5X module capacity, not DDR5; phone and PC declines cost Micron only ~$0.5–3B of revenue while data centers absorb bits, but price lag is the risk."
+  zh:
+    - "押金是履约保证金，不是货款：每批货按当季区间内价格开票确认收入；押金（$12.9B）记负债、走筹资现金流，既不进收入，也不进美光口径的自由现金流。"
+    - "保底价约为FQ4 FY26综合售价的0.45倍；价格需跌64–71%客户才有违约动机，此时美光毛利率仍约65%；常态化（FY30–31）净利基准约$123B，区间$52–338B。"
+    - "更正：HBM只占CMBU的约20%–23%，而不是40–60%；CMBU中的超大客户常规DRAM在FQ4环比约+14%，“几乎持平”的结论应撤回。"
+    - "每代更吃晶圆（HBM4约为DDR5的3.4倍、HBM4E为3.7–4.0倍），HBM已经不是每片晶圆的利润冠军；TAM基准约$580亿（2026）→$2,870亿（2030）。"
+    - "英伟达砍的是LPDDR5X模组容量，不是DDR5；只要数据中心仍在吸收转出的比特，手机与PC下滑对美光营收的影响仅约−$0.5B至−$3B，价格才是风险。"
+stance: "SCA floors cushion an ordinary downturn, not a full round trip; excess returns peak in 2026–27, with 2028 the inflection."
+priceRef: { symbol: MU, price: 1088.0, currency: USD, date: 2026-10-07 }
+sections: 25
+interactive: true
+pinned: false

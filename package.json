@@ -1,0 +1,51 @@
+{
+  "name": "ai-industry-map",
+  "private": true,
+  "version": "0.1.0",
+  "description": "An investor's map of the AI economy, organized by Jensen Huang's five-layer cake, with tracked theses, research library and daily market data.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "node scripts/build-data.ts && vite",
+    "build": "node scripts/build-data.ts && vite build",
+    "build-data": "node scripts/build-data.ts",
+    "validate": "node scripts/validate.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "preview": "vite preview",
+    "ingest": "node scripts/ingest-report.ts",
+    "translate-queue": "node scripts/translate-queue.ts",
+    "sync-vault": "node scripts/sync-vault.ts"
+  },
+  "dependencies": {
+    "@tiptap/extension-link": "3.31.4",
+    "@tiptap/extension-placeholder": "3.31.4",
+    "@tiptap/extension-table": "3.31.4",
+    "@tiptap/markdown": "3.31.4",
+    "@tiptap/pm": "3.31.4",
+    "@tiptap/react": "3.31.4",
+    "@tiptap/starter-kit": "3.31.4",
+    "dompurify": "3.4.16",
+    "echarts": "6.1.0",
+    "html-to-image": "1.11.13",
+    "lucide-react": "1.55.0",
+    "marked": "18.1.0",
+    "minisearch": "7.2.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-router-dom": "7.18.4",
+    "yaml": "2.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "@vitejs/plugin-react": "6.1.1",
+    "typescript": "5.9.3",
+    "vite": "8.3.2",
+    "vitest": "5.0.2"
+  }
+}

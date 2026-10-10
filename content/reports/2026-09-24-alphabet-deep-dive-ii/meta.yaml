@@ -1,0 +1,32 @@
+id: 2026-09-24-alphabet-deep-dive-ii
+kind: claude
+visibility: public
+format: html
+file: report.html
+title: "Alphabet: Google's AI Stack Is Deepest at Both Ends, Most Exposed in the Middle"
+titleZh: "Alphabet 深度研究（二）：全栈AI、搜索广告、Gemini与谷歌云"
+subtitle: "How the stack closes the loop, whether search ads survive AI, why Gemini fell behind, and how Google Cloud compares with AWS and Azure."
+date: 2026-09-24
+asOf: 2026-09-23
+reportType: deep-dive
+languages: [zh, en]
+companies: [alphabet, openai, anthropic, amazon, microsoft, apple, nvidia, meta, broadcom]
+nodes: [chips/compute/hyperscaler-silicon, applications/ads-commerce-content/ads-recsys, models/frontier-labs/closed-frontier, infrastructure/cloud/hyperscalers]
+tags: [ai-full-stack, search-ads, gemini, google-cloud, tpu, agentic-commerce, frontier-models]
+summary:
+  en:
+    - "Three loops close the stack: ad cash funds ~$200B of capex, in-house TPUs keep free AI answers profitable, and usage data feeds the models."
+    - "Most value sits at the ends, infrastructure and distribution/monetization; the model layer in the middle is the swing variable for the next two to three years."
+    - "Search ads are holding: AI mostly takes informational queries that rarely carried ads, while paid clicks (+6%) and CPC (+7%) still grew; agentic shopping is the real threat."
+    - "Gemini trails GPT-6 and Claude in agentic coding after the 3.5 Pro slip, yet its chatbot traffic share rose to ~26–27%; base case: top three, not reliably first."
+    - "Google Cloud grows fastest (+82%) at a 35.6% margin near AWS's 39.4%, but ranks third (~15% share), with backlog concentrated in AI labs."
+  zh:
+    - "闭环靠三条回路：现金回路（广告现金流支撑约2,000亿美元资本开支）、成本回路（自研TPU让免费提供的AI答案仍然赚钱）、数据回路（产品使用反哺模型）。"
+    - "创造价值最多的是两端：基础设施、分发与变现；未来两三年决定胜负的变量却是中间的模型层。"
+    - "搜索广告暂时扛得住：转去问AI的大多是本来就很少带广告的信息型查询，2025年付费点击+6%、单价+7%；真正的威胁是“代理式购物”。"
+    - "Gemini 3.5 Pro延期后，在代理编码上明显落后GPT-6与Claude，但AI聊天网页流量份额一年内升到约26%–27%；12个月内大概率“前三但不稳定第一”。"
+    - "谷歌云增速第一（82%），利润率35.6%已接近AWS的39.4%，但规模第三（约15%份额），积压集中在少数AI实验室。"
+stance: "Moat deepest at the ends (TPUs/power, distribution/ads); models are the weak link: Gemini 'top three, not reliably first'."
+sections: 12
+interactive: true
+pinned: false

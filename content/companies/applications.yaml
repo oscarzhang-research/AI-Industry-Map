@@ -1,0 +1,1224 @@
+# Companies whose primary placement is in the Applications layer.
+companies:
+  meta:
+    name: Meta Platforms
+    nameZh: Meta
+    aliases: [META, Meta Platforms Inc., Facebook, 脸书, 臉書]
+    listing: listed
+    tickers:
+      - { symbol: META, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: applications/ads-commerce-content/ads-recsys
+    ecosystems: [meta]
+    website: meta.com
+    description: >-
+      Runs Facebook, Instagram, WhatsApp and Messenger, monetized mainly through AI-ranked advertising
+      (Advantage+). Also builds Llama models, the Meta AI assistant, Ray-Ban Meta glasses and in-house
+      MTIA chips, and is among the largest AI data-center spenders.
+
+  tencent:
+    name: Tencent
+    nameZh: 腾讯
+    aliases: [Tencent Holdings, TCEHY, 腾讯控股, 騰訊, 騰訊控股]
+    listing: listed
+    tickers:
+      - { symbol: 0700.HK, exchange: HKEX, currency: HKD }
+      - { symbol: TCEHY, exchange: OTC, currency: USD }
+    country: CN
+    tier: core
+    primary: applications/ads-commerce-content/content-video
+    website: tencent.com
+    description: >-
+      Operates WeChat/Weixin and QQ, China's largest games business, video, music and fintech services,
+      and Tencent Cloud; uses AI to improve ad targeting and game engagement and develops Hunyuan models
+      and the Yuanbao assistant.
+
+  perplexity:
+    name: Perplexity
+    nameZh: Perplexity
+    aliases: [Perplexity AI]
+    listing: private
+    country: US
+    tier: focus
+    primary: applications/assistants/ai-search
+    website: perplexity.ai
+    description: >-
+      AI answer engine that responds to queries with cited web sources, monetized through Pro and Max
+      subscriptions, enterprise plans and the Sonar API; also offers the Comet AI browser.
+    private:
+      valuation: { usd: 20e9, date: 2025-09, round: "$200M extension" }
+      proxies: []
+      note: "Backers include IVP, NVIDIA, SoftBank Vision Fund 2 and Jeff Bezos; reported (Aug 2026) in talks to raise at over $30B."
+
+  salesforce:
+    name: Salesforce
+    nameZh: 赛富时
+    aliases: [Salesforce Inc., salesforce.com, Agentforce]
+    listing: listed
+    tickers:
+      - { symbol: CRM, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: applications/enterprise/workflow-agents
+    website: salesforce.com
+    description: >-
+      The leading CRM software vendor (Sales, Service and Marketing Clouds, Slack, Tableau, MuleSoft),
+      now selling Agentforce AI agents built on its Data Cloud and the acquired Informatica
+      data-management business.
+
+  servicenow:
+    name: ServiceNow
+    nameZh: ServiceNow
+    aliases: [ServiceNow Inc., Now Assist]
+    listing: listed
+    tickers:
+      - { symbol: NOW, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: applications/enterprise/workflow-agents
+    website: servicenow.com
+    description: >-
+      Cloud workflow platform for IT service and operations management, customer service and HR;
+      monetizes AI through Now Assist and AI agents that run on the Now Platform and its workflow data.
+
+  sap:
+    name: SAP
+    nameZh: SAP
+    aliases: [SAP SE, SAP.DE, 思爱普]
+    listing: listed
+    tickers:
+      - { symbol: SAP, exchange: NYSE, currency: USD }
+      - { symbol: SAP.DE, exchange: XETRA, currency: EUR }
+    country: DE
+    tier: focus
+    primary: applications/enterprise/workflow-agents
+    website: sap.com
+    description: >-
+      Europe's largest software company and the leading ERP vendor (S/4HANA, RISE with SAP), embedding
+      its Joule AI copilot and agents across finance, supply-chain, procurement and HR applications on
+      the Business Data Cloud.
+
+  workday:
+    name: Workday
+    nameZh: Workday
+    aliases: [WDAY, Workday Inc.]
+    listing: listed
+    tickers:
+      - { symbol: WDAY, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: applications/enterprise/workflow-agents
+    website: workday.com
+    description: >-
+      Cloud human-capital-management (HCM) and financial software for large enterprises, embedding AI
+      agents for recruiting, HR service, planning and finance processes in its system of record.
+
+  hubspot:
+    name: HubSpot
+    nameZh: HubSpot
+    aliases: [HubSpot Inc., Breeze AI]
+    listing: listed
+    tickers:
+      - { symbol: HUBS, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: applications/enterprise/workflow-agents
+    website: hubspot.com
+    description: >-
+      CRM platform for small and mid-sized businesses spanning marketing, sales and customer-service
+      hubs, with its Breeze AI agents and assistant built into the suite.
+
+  palantir:
+    name: Palantir
+    nameZh: Palantir
+    aliases: [PLTR, Palantir Technologies, Palantir Technologies Inc., 帕兰提尔]
+    listing: listed
+    tickers:
+      - { symbol: PLTR, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: applications/enterprise/data-platforms
+    website: palantir.com
+    description: >-
+      Data-integration and decision software for defense, government and commercial customers (Gotham,
+      Foundry, Apollo); its Artificial Intelligence Platform (AIP) deploys LLMs and agents on customers'
+      operational data.
+
+  snowflake:
+    name: Snowflake
+    nameZh: Snowflake
+    aliases: [Snowflake Inc., 雪花]
+    listing: listed
+    tickers:
+      - { symbol: SNOW, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: applications/enterprise/data-platforms
+    website: snowflake.com
+    description: >-
+      Consumption-priced cloud data platform (warehouse, lakehouse and data sharing) running on AWS,
+      Azure and Google Cloud; sells Cortex AI and Snowflake Intelligence so customers can run LLMs and
+      agents on governed enterprise data.
+
+  databricks:
+    name: Databricks
+    nameZh: Databricks
+    aliases: [Databricks Inc.]
+    listing: private
+    country: US
+    tier: focus
+    primary: applications/enterprise/data-platforms
+    website: databricks.com
+    description: >-
+      Data and AI platform built on the lakehouse architecture (Apache Spark, Delta Lake, Unity Catalog),
+      offering Mosaic AI, Agent Bricks and the Lakebase Postgres database for building AI applications and
+      agents on enterprise data.
+    private:
+      valuation: { usd: 190e9, date: 2026-08, round: "Strategic round" }
+      proxies: []
+      note: "$5B round led by Coatue; no IPO filing, with 2027 reported as the earliest IPO window."
+
+  mongodb:
+    name: MongoDB
+    nameZh: MongoDB
+    aliases: [MDB, MongoDB Inc., MongoDB Atlas]
+    listing: listed
+    tickers:
+      - { symbol: MDB, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: applications/enterprise/data-platforms
+    website: mongodb.com
+    description: >-
+      Document-database company whose Atlas cloud service is widely used to build modern applications,
+      adding vector search and Voyage AI embedding models for retrieval-augmented generation and AI agents.
+
+  datadog:
+    name: Datadog
+    nameZh: Datadog
+    aliases: [DDOG, Datadog Inc.]
+    listing: listed
+    tickers:
+      - { symbol: DDOG, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: applications/enterprise/data-platforms
+    website: datadoghq.com
+    description: >-
+      Cloud observability and security platform (infrastructure monitoring, APM, logs); sells LLM
+      observability and Bits AI agents, and counts AI-native companies among its fastest-growing
+      customer cohorts.
+
+  elastic:
+    name: Elastic
+    nameZh: Elastic
+    aliases: [ESTC, Elastic N.V., Elasticsearch]
+    listing: listed
+    tickers:
+      - { symbol: ESTC, exchange: NYSE, currency: USD }
+    country: US   # Dutch N.V.; operational HQ San Francisco
+    tier: watch
+    primary: applications/enterprise/data-platforms
+    website: elastic.co
+    description: >-
+      Company behind Elasticsearch, the search and analytics engine used for observability, security
+      analytics and enterprise search; its vector database and retrieval tools are used to build RAG and
+      agent applications.
+
+  uipath:
+    name: UiPath
+    nameZh: UiPath
+    aliases: [UiPath Inc.]
+    listing: listed
+    tickers:
+      - { symbol: PATH, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: applications/enterprise/automation
+    website: uipath.com
+    description: >-
+      Robotic process automation (RPA) leader repositioning around agentic automation, orchestrating
+      software robots, AI agents and people across enterprise workflows with its Maestro platform.
+
+  atlassian:
+    name: Atlassian
+    nameZh: Atlassian
+    aliases: [Atlassian Corporation, Jira, Confluence]
+    listing: listed
+    tickers:
+      - { symbol: TEAM, exchange: NASDAQ, currency: USD }
+    country: AU   # redomiciled to the US (Delaware) in 2022; operational HQ Sydney
+    tier: watch
+    primary: applications/enterprise/productivity
+    website: atlassian.com
+    description: >-
+      Team-collaboration and developer software (Jira, Confluence, Loom, Trello) sold mainly as cloud
+      subscriptions, with Rovo AI agents and enterprise search built across its products.
+
+  anysphere:
+    name: Cursor (Anysphere)
+    nameZh: Cursor
+    aliases: [Anysphere, Anysphere Inc., Cursor, Cursor AI]
+    listing: acquired
+    acquiredBy: SpaceX   # SpaceX (Nasdaq: SPCX) = models-layer id xai; deal closed 2026-08-14
+    country: US
+    tier: focus
+    primary: applications/coding/coding-agents
+    website: cursor.com
+    description: >-
+      Maker of Cursor, an AI-native code editor with autocomplete, chat and autonomous coding agents plus
+      in-house Composer models. Acquired by SpaceX in 2026 in an all-stock deal valued at $60B; now part of
+      SpaceXAI.
+
+  cognition:
+    name: Cognition
+    nameZh: Cognition
+    aliases: [Cognition AI, Cognition Labs, Devin, Windsurf, Codeium]
+    listing: private
+    country: US
+    tier: watch
+    primary: applications/coding/coding-agents
+    website: cognition.ai
+    description: >-
+      Builds Devin, an autonomous AI software engineer, and the Windsurf AI coding IDE, selling both to
+      enterprise engineering teams.
+    private:
+      valuation: { usd: 48e9, date: 2026-09, round: "Series E" }
+      proxies: []
+      note: "Series E led by Andreessen Horowitz and Accel; bought the Windsurf IDE (ex-Codeium) in 2025."
+
+  replit:
+    name: Replit
+    nameZh: Replit
+    aliases: [Replit Inc., Replit Agent]
+    listing: private
+    country: US
+    tier: watch
+    primary: applications/coding/coding-agents
+    website: replit.com
+    description: >-
+      Browser-based software-creation platform whose Replit Agent lets non-developers build, host and
+      deploy full applications from natural-language prompts.
+    private:
+      valuation: { usd: 9e9, date: 2026-03, round: "Series D" }
+      proxies: []
+      note: "Series D led by Georgian, with a16z, Coatue and Qatar Investment Authority among investors."
+
+  gitlab:
+    name: GitLab
+    nameZh: GitLab
+    aliases: [GTLB, GitLab Inc., GitLab Duo]
+    listing: listed
+    tickers:
+      - { symbol: GTLB, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: applications/coding/devops
+    website: gitlab.com
+    description: >-
+      Single-application DevSecOps platform for source control, CI/CD and security scanning, adding
+      GitLab Duo AI agents across the software lifecycle; competes with Microsoft's GitHub.
+
+  applovin:
+    name: AppLovin
+    nameZh: AppLovin
+    aliases: [AppLovin Corporation, AXON]
+    listing: listed
+    tickers:
+      - { symbol: APP, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: applications/ads-commerce-content/ads-recsys
+    website: applovin.com
+    description: >-
+      Advertising platform for mobile apps and, increasingly, e-commerce brands; its AXON machine-learning
+      engine optimizes ad targeting and bidding. Sold its mobile-games studios to focus on AI-driven
+      advertising.
+
+  reddit:
+    name: Reddit
+    nameZh: Reddit
+    aliases: [RDDT, Reddit Inc., 红迪]
+    listing: listed
+    tickers:
+      - { symbol: RDDT, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: applications/ads-commerce-content/ads-recsys
+    website: redditinc.com
+    description: >-
+      Community discussion platform monetized through advertising and data-licensing deals with AI
+      companies including Google and OpenAI; its human-written content is heavily surfaced in search
+      results and AI answers.
+
+  pinterest:
+    name: Pinterest
+    nameZh: Pinterest
+    aliases: [Pinterest Inc., 拼趣]
+    listing: listed
+    tickers:
+      - { symbol: PINS, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: applications/ads-commerce-content/ads-recsys
+    website: pinterest.com
+    description: >-
+      Visual discovery and shopping platform monetized by ads, using AI recommendation and multimodal
+      models to drive engagement and the performance of shoppable ads (Performance+).
+
+  trade-desk:
+    name: The Trade Desk
+    nameZh: The Trade Desk
+    aliases: [TTD, Trade Desk, The Trade Desk Inc.]
+    listing: listed
+    tickers:
+      - { symbol: TTD, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: applications/ads-commerce-content/ads-recsys
+    website: thetradedesk.com
+    description: >-
+      Largest independent demand-side platform for programmatic advertising across connected TV, display,
+      audio and retail media; its Kokai AI platform optimizes bidding, competing with Amazon's and
+      Google's ad tools.
+
+  shopify:
+    name: Shopify
+    nameZh: Shopify
+    aliases: [SHOP.TO, Shopify Inc.]
+    listing: listed
+    tickers:
+      - { symbol: SHOP, exchange: NASDAQ, currency: USD }
+      - { symbol: SHOP.TO, exchange: TSX, currency: CAD }
+    country: CA
+    tier: core
+    primary: applications/ads-commerce-content/commerce
+    website: shopify.com
+    description: >-
+      Commerce software and payments platform for merchants of all sizes, with Shopify Magic and Sidekick
+      AI tools and agentic-commerce integrations that let shoppers buy inside AI assistants such as
+      ChatGPT.
+
+  pdd:
+    name: PDD Holdings
+    nameZh: 拼多多
+    aliases: [PDD, PDD Holdings Inc., Pinduoduo, Temu, 拼多多控股]
+    listing: listed
+    tickers:
+      - { symbol: PDD, exchange: NASDAQ, currency: USD }
+    country: CN   # principal executive office is in Dublin (IE); operations are in China
+    tier: watch
+    primary: applications/ads-commerce-content/commerce
+    website: pddholdings.com
+    description: >-
+      Operates Pinduoduo, one of China's largest e-commerce marketplaces, and the international shopping
+      app Temu; both rely on algorithmic recommendation and merchant advertising.
+
+  meituan:
+    name: Meituan
+    nameZh: 美团
+    aliases: [Meituan Dianping, 美团-W, 美團, Keeta]
+    listing: listed
+    tickers:
+      - { symbol: 3690.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: watch
+    primary: applications/ads-commerce-content/commerce
+    website: meituan.com
+    description: >-
+      China's largest local-services platform (food delivery, in-store dining, hotel and travel bookings)
+      with the Keeta brand abroad; develops LongCat AI models and uses AI, drones and autonomous vehicles
+      in delivery.
+
+  netflix:
+    name: Netflix
+    nameZh: 奈飞
+    aliases: [NFLX, Netflix Inc., 网飞, 網飛]
+    listing: listed
+    tickers:
+      - { symbol: NFLX, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: applications/ads-commerce-content/content-video
+    website: netflix.com
+    description: >-
+      The largest global subscription video-streaming service, with a growing advertising tier; uses
+      machine-learning recommendations and, increasingly, generative AI in content production and
+      advertising.
+
+  spotify:
+    name: Spotify
+    nameZh: Spotify
+    aliases: [Spotify Technology, 声田]
+    listing: listed
+    tickers:
+      - { symbol: SPOT, exchange: NYSE, currency: USD }
+    country: SE   # Spotify Technology S.A. is Luxembourg-domiciled; HQ Stockholm
+    tier: watch
+    primary: applications/ads-commerce-content/content-video
+    website: spotify.com
+    description: >-
+      The world's largest audio-streaming subscription service (music, podcasts, audiobooks), built on
+      machine-learning personalization including AI DJ and AI Playlist features.
+
+  col-group:
+    name: COL Group
+    nameZh: 中文在线
+    aliases: [Chinese Online, 中文在线集团, "300364", ReelShort, Crazy Maple Studio]
+    listing: listed
+    tickers:
+      - { symbol: 300364.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: applications/ads-commerce-content/content-video
+    website: col.com
+    description: >-
+      Chinese digital-publishing and online-literature company whose subsidiary Crazy Maple Studio runs
+      ReelShort, a leading short-drama app abroad; uses generative AI to produce, adapt and translate
+      content.
+
+  kunlun-tech:
+    name: Kunlun Tech
+    nameZh: 昆仑万维
+    aliases: [Kunlun Tech Co., 昆仑万维科技, 崑崙萬維, "300418", Skywork, 天工AI]
+    listing: listed
+    tickers:
+      - { symbol: 300418.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: applications/ads-commerce-content/content-video
+    website: kunlun.com
+    description: >-
+      Chinese internet company developing Skywork (Tiangong) AI models, agents and apps, Mureka AI music
+      and DramaWave short dramas; also the controlling shareholder of the Opera browser.
+
+  adobe:
+    name: Adobe
+    nameZh: Adobe
+    aliases: [ADBE, Adobe Inc., 奥多比]
+    listing: listed
+    tickers:
+      - { symbol: ADBE, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: applications/ads-commerce-content/creative-tools
+    website: adobe.com
+    description: >-
+      Creative and document software leader (Photoshop, Premiere Pro, Acrobat, Express) with Experience
+      Cloud marketing tools; monetizes generative AI through Firefly models and AI assistants while facing
+      AI-native competitors.
+
+  figma:
+    name: Figma
+    nameZh: Figma
+    aliases: [Figma Inc.]
+    listing: listed
+    tickers:
+      - { symbol: FIG, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: applications/ads-commerce-content/creative-tools
+    website: figma.com
+    description: >-
+      Collaborative interface-design platform (Figma Design, FigJam, Dev Mode, Slides) used by product
+      teams, adding AI features such as Figma Make prompt-to-app generation.
+
+  canva:
+    name: Canva
+    nameZh: Canva
+    aliases: [Canva Pty Ltd, 可画]
+    listing: private
+    country: AU   # operational HQ Sydney
+    tier: watch
+    primary: applications/ads-commerce-content/creative-tools
+    website: canva.com
+    description: >-
+      Browser-based visual-design platform for consumers and businesses, with Magic Studio AI tools,
+      Leonardo.Ai image models and the Affinity professional apps; a direct competitor to Adobe.
+    private:
+      valuation: { usd: 42e9, date: 2025-08, round: "Employee share sale" }
+      proxies: []
+      note: "Founder-led (Melanie Perkins, Cliff Obrecht); no IPO filing yet; reportedly added a US parent company in 2026."
+
+  tempus-ai:
+    name: Tempus AI
+    nameZh: Tempus AI
+    aliases: [Tempus, Tempus Labs]
+    listing: listed
+    tickers:
+      - { symbol: TEM, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: applications/vertical/health-bio
+    website: tempus.com
+    description: >-
+      Precision-medicine company pairing genomic and diagnostic testing with a large clinical-molecular
+      dataset, which it licenses to pharma for drug development and uses to build AI diagnostic tools.
+
+  recursion:
+    name: Recursion
+    nameZh: Recursion
+    aliases: [RXRX, Recursion Pharmaceuticals]
+    listing: listed
+    tickers:
+      - { symbol: RXRX, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: applications/vertical/health-bio
+    website: recursion.com
+    description: >-
+      Clinical-stage biotech using automated labs, phenomics data and its BioHive supercomputer (NVIDIA
+      GPUs) for AI drug discovery; merged with Exscientia and partners with Sanofi, Roche/Genentech and
+      Bayer.
+
+  xtalpi:
+    name: XtalPi
+    nameZh: 晶泰科技
+    aliases: [XtalPi Holdings, 晶泰控股, 晶泰]
+    listing: listed
+    tickers:
+      - { symbol: 2228.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: watch
+    primary: applications/vertical/health-bio
+    website: xtalpi.com
+    description: >-
+      AI- and robotics-driven drug and materials discovery company combining physics-based simulation, AI
+      models and automated labs; earns R&D-service and partnership revenue from pharma clients.
+
+  intuit:
+    name: Intuit
+    nameZh: 财捷
+    aliases: [INTU, Intuit Inc., TurboTax, QuickBooks]
+    listing: listed
+    tickers:
+      - { symbol: INTU, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: applications/vertical/finance-legal
+    website: intuit.com
+    description: >-
+      Financial software for consumers and small businesses (TurboTax, QuickBooks, Credit Karma,
+      Mailchimp), deploying Intuit Assist and AI agents for bookkeeping, tax preparation and payments on
+      its GenOS platform.
+
+  thomson-reuters:
+    name: Thomson Reuters
+    nameZh: 汤森路透
+    aliases: [TRI, TRI.TO, Thomson Reuters Corporation, 湯森路透]
+    listing: listed
+    tickers:
+      - { symbol: TRI, exchange: NASDAQ, currency: USD }   # verify (US venue: Nasdaq vs NYSE)
+      - { symbol: TRI.TO, exchange: TSX, currency: CAD }
+    country: CA
+    tier: watch
+    primary: applications/vertical/finance-legal
+    website: thomsonreuters.com
+    description: >-
+      Information and software provider for legal, tax, accounting and news professionals (Westlaw,
+      Practical Law, Checkpoint, Reuters), embedding its CoCounsel generative AI assistant across
+      professional workflows.
+
+  relx:
+    name: RELX
+    nameZh: 励讯集团
+    aliases: [RELX plc, REL.L, REN.AS, LexisNexis, Elsevier, 励讯]
+    listing: listed
+    tickers:
+      - { symbol: RELX, exchange: NYSE, currency: USD }
+      - { symbol: REL.L, exchange: LSE, currency: GBP }
+      - { symbol: REN.AS, exchange: Euronext Amsterdam, currency: EUR }
+    country: GB
+    tier: watch
+    primary: applications/vertical/finance-legal
+    website: relx.com
+    description: >-
+      Information and analytics group (LexisNexis legal, Elsevier scientific publishing, risk and business
+      analytics, exhibitions) using proprietary content to sell AI tools such as Lexis+ AI.
+
+  wolters-kluwer:
+    name: Wolters Kluwer
+    nameZh: 威科集团
+    aliases: [Wolters Kluwer N.V., WKL, 威科]
+    listing: listed
+    tickers:
+      - { symbol: WKL.AS, exchange: Euronext Amsterdam, currency: EUR }
+    country: NL
+    tier: watch
+    primary: applications/vertical/finance-legal
+    website: wolterskluwer.com
+    description: >-
+      Professional information and software provider for health (UpToDate), tax and accounting (CCH),
+      legal and compliance customers, adding generative AI features to its expert-content products.
+
+  harvey:
+    name: Harvey
+    nameZh: Harvey
+    aliases: [Harvey AI]
+    listing: private
+    country: US
+    tier: watch
+    primary: applications/vertical/finance-legal
+    website: harvey.ai
+    description: >-
+      Generative-AI platform for law firms and corporate legal and professional-services teams, covering
+      legal research, drafting, document review and agentic workflows.
+    private:
+      valuation: { usd: 15.5e9, date: 2026-09, round: "$550M round" }
+      proxies: []
+      note: "Co-led by Diffusion and Lightspeed; backers include Sequoia, Kleiner Perkins and a16z; allied with LexisNexis (RELX)."
+
+  duolingo:
+    name: Duolingo
+    nameZh: 多邻国
+    aliases: [DUOL, Duolingo Inc., 多鄰國]
+    listing: listed
+    tickers:
+      - { symbol: DUOL, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: applications/vertical/education
+    website: duolingo.com
+    description: >-
+      Leading language-learning app with a freemium subscription model (Super, Max) that uses generative AI
+      to create courses and power features such as AI video calls; expanding into math, music and chess.
+
+  siemens:
+    name: Siemens
+    nameZh: 西门子
+    aliases: [Siemens AG, SIEGY, Siemens EDA, Siemens Digital Industries Software]
+    listing: listed
+    tickers:
+      - { symbol: SIE.DE, exchange: XETRA, currency: EUR }
+    country: DE
+    tier: focus
+    primary: applications/vertical/industrial-software
+    ecosystems: [nvidia]
+    website: siemens.com
+    description: >-
+      Industrial-automation and engineering-software leader whose Digital Industries Software unit (NX,
+      Teamcenter, Simcenter, Siemens EDA, Altair) partners with NVIDIA on industrial AI and digital twins;
+      also supplies data-center electrification.
+
+  autodesk:
+    name: Autodesk
+    nameZh: 欧特克
+    aliases: [ADSK, Autodesk Inc., 歐特克]
+    listing: listed
+    tickers:
+      - { symbol: ADSK, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: applications/vertical/industrial-software
+    website: autodesk.com
+    description: >-
+      Design and make software for architecture, engineering, construction, manufacturing and media
+      (AutoCAD, Revit, Fusion, Maya), developing AI features and 3D-design foundation models.
+
+  ptc:
+    name: PTC
+    nameZh: PTC
+    aliases: [PTC Inc., Parametric Technology]
+    listing: listed
+    tickers:
+      - { symbol: PTC, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: applications/vertical/industrial-software
+    website: ptc.com
+    description: >-
+      Product-lifecycle software for manufacturers (Creo CAD, Onshape cloud CAD, Windchill PLM,
+      Codebeamer ALM), adding AI assistants to engineering and product-data workflows.
+
+  dassault:
+    name: Dassault Systèmes
+    nameZh: 达索系统
+    aliases: [Dassault Systemes, DSY, 3DS, DASTY, 達梭系統]
+    listing: listed
+    tickers:
+      - { symbol: DSY.PA, exchange: Euronext Paris, currency: EUR }
+    country: FR
+    tier: watch
+    primary: applications/vertical/industrial-software
+    website: 3ds.com
+    description: >-
+      3D design, simulation and PLM software leader (CATIA, SOLIDWORKS, SIMULIA, ENOVIA) plus Medidata
+      life-sciences software on its 3DEXPERIENCE platform, promoting virtual twins and generative AI for
+      industry.
+
+  crowdstrike:
+    name: CrowdStrike
+    nameZh: CrowdStrike
+    aliases: [CRWD, CrowdStrike Holdings, 众击]
+    listing: listed
+    tickers:
+      - { symbol: CRWD, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: applications/security/security-platforms
+    website: crowdstrike.com
+    description: >-
+      Cloud-native cybersecurity platform (Falcon) spanning endpoint, cloud, identity and SIEM, using AI
+      trained on its telemetry; sells Charlotte AI agents for security operations and protection for AI
+      models and agents.
+
+  palo-alto:
+    name: Palo Alto Networks
+    nameZh: 派拓网络
+    aliases: [PANW, Palo Alto, Palo Alto Networks Inc., 派拓網路]
+    listing: listed
+    tickers:
+      - { symbol: PANW, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: applications/security/security-platforms
+    website: paloaltonetworks.com
+    description: >-
+      Largest pure-play cybersecurity vendor: firewalls, SASE (Prisma), cloud security and AI-driven
+      security operations (Cortex XSIAM), consolidating customers onto platforms and securing enterprise
+      AI and agents.
+
+  zscaler:
+    name: Zscaler
+    nameZh: Zscaler
+    aliases: [Zscaler Inc.]
+    listing: listed
+    tickers:
+      - { symbol: ZS, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: applications/security/security-platforms
+    website: zscaler.com
+    description: >-
+      Cloud security platform (Zero Trust Exchange) that inspects enterprise internet and application
+      traffic, used for zero-trust access, data protection and securing employee use of generative-AI apps
+      and agents.
+
+  cloudflare:
+    name: Cloudflare
+    nameZh: Cloudflare
+    aliases: [Cloudflare Inc.]
+    listing: listed
+    tickers:
+      - { symbol: NET, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: applications/security/security-platforms
+    website: cloudflare.com
+    description: >-
+      Global edge network for security, performance and developer services; runs AI inference on GPUs in
+      its data centers (Workers AI) and offers tools to control and charge AI crawlers and to build AI
+      agents.
+
+  fortinet:
+    name: Fortinet
+    nameZh: 飞塔
+    aliases: [FTNT, Fortinet Inc., FortiGate]
+    listing: listed
+    tickers:
+      - { symbol: FTNT, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: applications/security/security-platforms
+    website: fortinet.com
+    description: >-
+      Network-security vendor best known for FortiGate firewalls built on its own security ASICs, expanding
+      into SASE and security operations with FortiAI assistants.
+
+  apple:
+    name: Apple
+    nameZh: 苹果
+    aliases: [AAPL, Apple Inc., 苹果公司, 蘋果]
+    listing: listed
+    tickers:
+      - { symbol: AAPL, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: applications/devices/phones-pcs
+    ecosystems: [apple]
+    website: apple.com
+    description: >-
+      Maker of iPhone, Mac, iPad, Apple Watch and AirPods on in-house Apple silicon; runs Apple
+      Intelligence on-device and in Private Cloud Compute, working with model partners such as OpenAI and
+      Google.
+
+  xiaomi:
+    name: Xiaomi
+    nameZh: 小米
+    aliases: [Xiaomi Corporation, 小米集团, 小米集团-W, XIACY]
+    listing: listed
+    tickers:
+      - { symbol: 1810.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: focus
+    primary: applications/devices/phones-pcs
+    website: mi.com
+    description: >-
+      Major smartphone maker (Xiaomi, Redmi) with a large AIoT device ecosystem and HyperOS, plus a growing
+      EV business (SU7, YU7); develops its own MiMo AI models and XRING smartphone chips.
+
+  hp:
+    name: HP Inc.
+    nameZh: 惠普
+    aliases: [HPQ, HP, 惠普公司]
+    listing: listed
+    tickers:
+      - { symbol: HPQ, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: applications/devices/phones-pcs
+    website: hp.com
+    description: >-
+      A leading maker of PCs and printers, pushing AI PCs with on-device neural processing units (NPUs) as
+      a driver of the commercial PC replacement cycle.
+
+  essilorluxottica:
+    name: EssilorLuxottica
+    nameZh: 依视路陆逊梯卡
+    aliases: [EssilorLuxottica SA, ESLOY, Essilor, Luxottica, 依视路, 陆逊梯卡]
+    listing: listed
+    tickers:
+      - { symbol: EL.PA, exchange: Euronext Paris, currency: EUR }
+    country: FR
+    tier: focus
+    primary: applications/devices/wearables-glasses
+    ecosystems: [meta]
+    website: essilorluxottica.com
+    description: >-
+      World's largest eyewear company (Ray-Ban, Oakley, Varilux lenses, Sunglass Hut) and Meta's long-term
+      partner for Ray-Ban Meta and Oakley Meta AI glasses, positioning smart glasses as a new AI device
+      category.
+
+  goertek:
+    name: Goertek
+    nameZh: 歌尔股份
+    aliases: [Goertek Inc., 歌尔, 歌爾股份, "002241"]
+    listing: listed
+    tickers:
+      - { symbol: 002241.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: applications/devices/wearables-glasses
+    ecosystems: [meta, apple]
+    website: goertek.com
+    description: >-
+      Chinese acoustic-component and smart-hardware maker that assembles VR/MR headsets, smart glasses,
+      earbuds and wearables for global brands including Meta and Apple, and supplies optics for AR and AI
+      glasses.
+
+  harmonic-drive:
+    name: Harmonic Drive Systems
+    nameZh: 哈默纳科
+    aliases: [Harmonic Drive, ハーモニック・ドライブ・システムズ]
+    listing: listed
+    tickers:
+      - { symbol: 6324.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: watch
+    primary: applications/physical-ai/robot-components
+    website: hds.co.jp
+    description: >-
+      Leading maker of strain-wave (harmonic) gear reducers and precision actuators used in industrial
+      robots, semiconductor equipment and humanoid-robot joints.
+
+  leaderdrive:
+    name: Leaderdrive
+    nameZh: 绿的谐波
+    aliases: [Leader Harmonious Drive Systems, 绿的谐波传动, 綠的諧波, "688017"]
+    listing: listed
+    tickers:
+      - { symbol: 688017.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: applications/physical-ai/robot-components
+    website: leaderdrive.com
+    description: >-
+      China's largest domestic maker of harmonic reducers, used in industrial and collaborative robots and
+      increasingly in humanoid-robot joints; also makes electromechanical actuators.
+
+  nabtesco:
+    name: Nabtesco
+    nameZh: 纳博特斯克
+    aliases: [Nabtesco Corporation, ナブテスコ]
+    listing: listed
+    tickers:
+      - { symbol: 6268.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: watch
+    primary: applications/physical-ai/robot-components
+    website: nabtesco.com
+    description: >-
+      Dominant supplier of RV (cycloidal) precision reducers used in the main joints of industrial robots,
+      alongside components for railways, aircraft and construction machinery.
+
+  sanhua:
+    name: Sanhua Intelligent Controls
+    nameZh: 三花智控
+    aliases: [Zhejiang Sanhua Intelligent Controls, Sanhua, 三花, "002050"]
+    listing: listed
+    tickers:
+      - { symbol: 002050.SZ, exchange: SZSE, currency: CNY }
+      - { symbol: 2050.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: watch
+    primary: applications/physical-ai/robot-components
+    ecosystems: [tesla]
+    website: zjshc.com
+    description: >-
+      Leading maker of refrigeration and air-conditioning flow controls (electronic expansion valves) and a
+      major EV thermal-management supplier to Tesla and others; developing electromechanical actuators for
+      humanoid robots.
+
+  tuopu:
+    name: Tuopu Group
+    nameZh: 拓普集团
+    aliases: [Ningbo Tuopu Group, Tuopu, 拓普, "601689"]
+    listing: listed
+    tickers:
+      - { symbol: 601689.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: applications/physical-ai/robot-components
+    ecosystems: [tesla]
+    website: tuopu.com
+    description: >-
+      Auto-parts maker (NVH, lightweight chassis, thermal-management and smart-cockpit systems) and a major
+      Tesla supplier, developing linear and rotary actuators for humanoid robots.
+
+  inovance:
+    name: Inovance Technology
+    nameZh: 汇川技术
+    aliases: [Shenzhen Inovance Technology, Inovance, 汇川, 匯川技術, "300124"]
+    listing: listed
+    tickers:
+      - { symbol: 300124.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: applications/physical-ai/robot-components
+    website: inovance.com
+    description: >-
+      China's leading industrial-automation supplier (servo systems, PLCs, inverters, SCARA and small
+      industrial robots) and a major EV-powertrain supplier, developing components for humanoid robots.
+
+  tesla:
+    name: Tesla
+    nameZh: 特斯拉
+    aliases: [TSLA, Tesla Inc., Tesla Motors]
+    listing: listed
+    tickers:
+      - { symbol: TSLA, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: applications/physical-ai/autonomous-driving
+    ecosystems: [tesla]
+    website: tesla.com
+    description: >-
+      Electric-vehicle and energy-storage maker pursuing camera-based Full Self-Driving, a Robotaxi service
+      and the Optimus humanoid robot, trained on its own AI data centers and custom inference chips.
+
+  waymo:
+    name: Waymo
+    nameZh: Waymo
+    aliases: [Waymo LLC, 慧摩]
+    listing: private
+    country: US
+    tier: focus
+    primary: applications/physical-ai/autonomous-driving
+    website: waymo.com
+    description: >-
+      Alphabet's autonomous-driving company and the largest fully driverless robotaxi operator in the US,
+      expanding to more US and international cities, partly through partnerships with Uber and automakers.
+    private:
+      valuation: { usd: 126e9, date: 2026-02, round: "$16B round" }   # verify
+      proxies: [alphabet]
+      note: "Majority-owned by Alphabet (reported in Other Bets); outside investors include Silver Lake, a16z, Fidelity and T. Rowe Price."
+
+  pony-ai:
+    name: Pony.ai
+    nameZh: 小马智行
+    aliases: [Pony AI, Pony.ai Inc., 小馬智行]
+    listing: listed
+    tickers:
+      - { symbol: PONY, exchange: NASDAQ, currency: USD }
+      - { symbol: 2026.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: focus
+    primary: applications/physical-ai/autonomous-driving
+    website: pony.ai
+    description: >-
+      Chinese Level-4 autonomous-driving company running fully driverless robotaxis in Beijing, Shanghai,
+      Guangzhou and Shenzhen plus robotrucks, mass-producing robotaxis with Toyota, GAC and BAIC and
+      expanding abroad.
+
+  weride:
+    name: WeRide
+    nameZh: 文远知行
+    aliases: [WRD, WeRide Inc., 文遠知行]
+    listing: listed
+    tickers:
+      - { symbol: WRD, exchange: NASDAQ, currency: USD }
+      - { symbol: 0800.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: watch
+    primary: applications/physical-ai/autonomous-driving
+    website: weride.ai
+    description: >-
+      Chinese autonomous-driving company with robotaxi, robobus, robovan and robosweeper products operating
+      in China, the Middle East, Europe and Southeast Asia, partnering with Uber on international robotaxi
+      launches.
+
+  mobileye:
+    name: Mobileye
+    nameZh: Mobileye
+    aliases: [MBLY, Mobileye Global, Mobileye Global Inc.]
+    listing: listed
+    tickers:
+      - { symbol: MBLY, exchange: NASDAQ, currency: USD }
+    country: IL
+    tier: watch
+    primary: applications/physical-ai/autonomous-driving
+    website: mobileye.com
+    description: >-
+      Leading supplier of camera-based driver-assistance chips and software (EyeQ) to automakers,
+      developing SuperVision, Chauffeur and Mobileye Drive autonomy systems; majority-owned by Intel.
+
+  horizon-robotics:
+    name: Horizon Robotics
+    nameZh: 地平线
+    aliases: [Horizon Robotics Inc., 地平线机器人, 地平线机器人-W, 地平線]
+    listing: listed
+    tickers:
+      - { symbol: 9660.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: focus
+    primary: applications/physical-ai/autonomous-driving
+    website: horizon.auto
+    description: >-
+      China's leading supplier of automotive driver-assistance chips (Journey series) and software (Horizon
+      SuperDrive) to domestic and foreign automakers; works with Volkswagen through the Carizon joint
+      venture.
+
+  uber:
+    name: Uber
+    nameZh: 优步
+    aliases: [UBER, Uber Technologies, Uber Technologies Inc., 優步]
+    listing: listed
+    tickers:
+      - { symbol: UBER, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: applications/physical-ai/autonomous-driving
+    website: uber.com
+    description: >-
+      Global ride-hailing and delivery platform positioning itself as the demand network for robotaxis,
+      with autonomous-vehicle partnerships including Waymo, WeRide, Pony.ai, Baidu and Nuro/Lucid.
+
+  ubtech:
+    name: UBTECH Robotics
+    nameZh: 优必选
+    aliases: [UBTECH, UBTech Robotics, 优必选科技, 優必選]
+    listing: listed
+    tickers:
+      - { symbol: 9880.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: focus
+    primary: applications/physical-ai/humanoids
+    website: ubtrobot.com
+    description: >-
+      Chinese humanoid-robot maker whose Walker S industrial humanoids work in pilot deployments at
+      automotive and electronics factories; also sells educational, consumer and service robots.
+
+  unitree:
+    name: Unitree Robotics
+    nameZh: 宇树科技
+    aliases: [Unitree, 宇树, 宇樹科技, "688836"]
+    listing: listed
+    tickers:
+      - { symbol: 688836.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: focus
+    primary: applications/physical-ai/humanoids
+    website: unitree.com
+    description: >-
+      Hangzhou-based maker of low-cost quadruped and humanoid robots (Go2, B2, G1, H2), among the world's
+      highest-volume humanoid shippers; listed on Shanghai's STAR Market in 2026.
+
+  figure-ai:
+    name: Figure AI
+    nameZh: Figure AI
+    aliases: [Figure, Figure AI Inc.]
+    listing: private
+    country: US
+    tier: focus
+    primary: applications/physical-ai/humanoids
+    website: figure.ai
+    description: >-
+      Developer of general-purpose humanoid robots (Figure 03) controlled by its in-house Helix
+      vision-language-action model, targeting factory and logistics work and, eventually, homes.
+    private:
+      valuation: { usd: 39e9, date: 2025-09, round: "Series C" }
+      proxies: []
+      note: "Series C led by Parkway Venture Capital; backers include NVIDIA, Microsoft, Intel Capital and Jeff Bezos."
+
+  xpeng:
+    name: XPeng
+    nameZh: 小鹏汽车
+    aliases: [XPEV, XPeng Inc., Xpeng Motors, 小鹏, 小鵬汽車]
+    listing: listed
+    tickers:
+      - { symbol: XPEV, exchange: NYSE, currency: USD }
+      - { symbol: 9868.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: watch
+    primary: applications/physical-ai/humanoids
+    website: xpeng.com
+    description: >-
+      Chinese smart-EV maker with in-house driver-assistance software and Turing AI chips, applying the
+      same AI stack to its IRON humanoid robot, robotaxis and Aridge flying cars.
+
+  fanuc:
+    name: FANUC
+    nameZh: 发那科
+    aliases: [FANUC Corporation, Fanuc, FANUY, ファナック]
+    listing: listed
+    tickers:
+      - { symbol: 6954.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: watch
+    primary: applications/physical-ai/industrial-robots
+    website: fanuc.co.jp
+    description: >-
+      World's leading maker of CNC controls for machine tools and one of the largest industrial-robot
+      makers, also supplying ROBOMACHINE machining and molding equipment to automotive and electronics
+      factories.
+
+  yaskawa:
+    name: Yaskawa Electric
+    nameZh: 安川电机
+    aliases: [Yaskawa, 安川電機, YASKY, Motoman]
+    listing: listed
+    tickers:
+      - { symbol: 6506.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: watch
+    primary: applications/physical-ai/industrial-robots
+    website: yaskawa-global.com
+    description: >-
+      Major maker of industrial robots (MOTOMAN), servo motors and AC drives, and an early-reporting
+      bellwether for global factory-automation demand; developing AI-enabled autonomous robots.
+
+  rockwell:
+    name: Rockwell Automation
+    nameZh: 罗克韦尔自动化
+    aliases: [ROK, Rockwell, Rockwell Automation Inc., Allen-Bradley]
+    listing: listed
+    tickers:
+      - { symbol: ROK, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: applications/physical-ai/industrial-robots
+    website: rockwellautomation.com
+    description: >-
+      Largest US pure-play industrial-automation company (Allen-Bradley controllers and drives, FactoryTalk
+      software, OTTO autonomous mobile robots), adding AI and digital twins to factory control systems.

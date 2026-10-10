@@ -1,0 +1,93 @@
+# Cross-layer investment themes. A theme page gathers every company, view, report and news item
+# that carries the theme tag, plus the companies listed here explicitly.
+themes:
+  - id: power-bottleneck
+    name: Power is the bottleneck
+    nameZh: 电力瓶颈
+    description: Generation, grid equipment and on-site power that decide how fast AI capacity can come online.
+    companies: [ge-vernova, siemens-energy, constellation, vistra, bloom-energy, caterpillar, hd-hyundai-electric, quanta, eaton]
+  - id: memory-cycle
+    name: Memory supercycle
+    nameZh: 存储超级周期
+    description: HBM, DRAM, NAND and HDD supply discipline meeting AI demand for bandwidth and capacity.
+    companies: [sk-hynix, samsung-electronics, micron, sandisk, kioxia, seagate, western-digital]
+  - id: hbm
+    name: HBM
+    nameZh: 高带宽内存
+    description: Stacked memory next to every accelerator, and the bonding, test and base-die supply chain behind it.
+    companies: [sk-hynix, samsung-electronics, micron, hanmi, besi, advantest, tsmc]
+  - id: cowos
+    name: CoWoS & advanced packaging
+    nameZh: CoWoS 与先进封装
+    description: 2.5D/3D packaging capacity that has repeatedly capped accelerator shipments.
+    companies: [tsmc, ase, amkor, besi, disco, ibiden, ajinomoto]
+  - id: custom-asic
+    name: Custom silicon (ASIC/XPU)
+    nameZh: 定制芯片 ASIC
+    description: Hyperscaler-designed accelerators and the design partners building them.
+    companies: [broadcom, marvell, mediatek, alchip, guc, alphabet, amazon]
+  - id: optical
+    name: Optics, 1.6T and CPO
+    nameZh: 光模块、1.6T 与 CPO
+    description: The bandwidth race in AI networking, from pluggable transceivers to co-packaged optics.
+    companies: [innolight, eoptolink, coherent, lumentum, fabrinet, tfc, corning, broadcom]
+  - id: liquid-cooling
+    name: Liquid cooling
+    nameZh: 液冷
+    description: Direct-to-chip cooling required by 100 kW-plus racks.
+    companies: [vertiv, avc, delta, envicool, nvent, modine]
+  - id: nuclear
+    name: Nuclear & SMRs
+    nameZh: 核电与 SMR
+    description: Restarts, uprates and small modular reactors contracted by hyperscalers.
+    companies: [constellation, talen, vistra, oklo, nuscale, bwx-technologies, cameco, centrus]
+  - id: inference
+    name: Inference economics
+    nameZh: 推理经济
+    description: Cost per token, inference-optimized silicon and the platforms serving models at scale.
+    companies: [nvidia, alphabet, coreweave, nebius, cerebras, groq]
+  - id: agents
+    name: AI agents
+    nameZh: AI 智能体
+    description: Software that acts, not just answers, and the vendors monetizing it.
+    companies: [salesforce, servicenow, microsoft, palantir, uipath, anthropic, openai]
+  - id: coding
+    name: AI coding
+    nameZh: AI 编程
+    description: Coding agents, the fastest-monetizing enterprise AI use case so far.
+    companies: [anysphere, anthropic, openai, microsoft, cognition, replit, gitlab]
+  - id: sovereign-ai
+    name: Sovereign AI
+    nameZh: 主权 AI
+    description: National AI infrastructure programs outside the US hyperscalers.
+    companies: [nvidia, nebius, mistral, softbank, oracle]
+  - id: export-controls
+    name: Export controls & China
+    nameZh: 出口管制与中国
+    description: US restrictions on chips and tools, and China's push to build a domestic stack.
+    companies: [nvidia, amd, asml, applied-materials, lam-research, smic, cambricon, hygon, huawei, naura]
+  - id: china-ai
+    name: China AI stack
+    nameZh: 国产 AI 全栈
+    description: China's models, accelerators, foundry and cloud developing in parallel to the US stack.
+    companies: [alibaba, tencent, baidu, bytedance, deepseek, cambricon, smic, hygon, innolight]
+  - id: capex
+    name: AI capex cycle
+    nameZh: AI 资本开支周期
+    description: Hyperscaler and lab spending, and whether returns keep pace.
+    companies: [microsoft, amazon, alphabet, meta, oracle, coreweave]
+  - id: robotics
+    name: Robotics & physical AI
+    nameZh: 机器人与物理 AI
+    description: Humanoids, robotaxis and industrial automation, and the components they need.
+    companies: [tesla, waymo, figure-ai, unitree, ubtech, harmonic-drive, leaderdrive, physical-intelligence]
+  - id: edge-ai
+    name: Edge AI
+    nameZh: 端侧 AI
+    description: On-device models in phones, PCs and glasses.
+    companies: [apple, qualcomm, mediatek, xiaomi, essilorluxottica, meta]
+  - id: data-centers
+    name: Data-center build-out
+    nameZh: 数据中心建设
+    description: Powered land, construction and the developers turning sites into AI campuses.
+    companies: [equinix, digital-realty, applied-digital, iren, emcor, comfort-systems]

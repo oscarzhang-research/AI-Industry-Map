@@ -1,0 +1,33 @@
+id: 2026-09-24-alphabet-initiation
+kind: claude
+visibility: public
+format: html
+file: report.html
+title: "Alphabet: An Accelerating Cash Machine Places a Historic Capex Bet"
+titleZh: "Alphabet (GOOG) 深度初研"
+subtitle: "The question is no longer whether Google is a great business, but what roughly $200B a year of investment will earn."
+date: 2026-09-24
+asOf: 2026-09-23
+reportType: initiation
+languages: [zh, en]
+companies: [alphabet, anthropic, waymo, apple, broadcom, openai]
+nodes: [infrastructure/cloud/hyperscalers, applications/ads-commerce-content/ads-recsys, models/frontier-labs/closed-frontier, chips/compute/hyperscaler-silicon]
+tags: [ai-capex, google-cloud, search-ads, tpu, free-cash-flow, earnings-quality, dcf-valuation]
+summary:
+  en:
+    - "Operations are the strongest in five years: Q2 2026 revenue +24%, Search accelerated to 17–19% growth, and Cloud grew 82% at a 35.6% margin with a $514B backlog."
+    - "Financially it has entered a new regime: 2026 capex guided to $195–205B (~40% of revenue), negative Q2 free cash flow, buybacks paused and an $84.75B equity raise."
+    - "GAAP earnings are inflated by SpaceX and Anthropic mark-ups (63% of H1 pre-tax income); demand is partly circular, with Anthropic reportedly over 40% of Cloud backlog."
+    - "The moat is wide but costlier to hold: ROIC fell from ~51% (2024) to ~34% TTM, and incremental ROIC is ~16–19%, still above a ~9% cost of capital."
+    - "Valuation looks fair to rich: base DCF ≈ $312, SOTP ≈ $325 and scenario-weighted ≈ $305 versus a $335 price, which implies ~8.7% annual returns."
+  zh:
+    - "经营层面处在近五年最强的状态：2026年Q2收入增长24%，搜索收入加速到17%–19%，云业务增长82%、经营利润率35.6%、合同积压5,140亿美元。"
+    - "资本层面进入与自身历史完全不同的阶段：2026年资本开支指引1,950–2,050亿美元（约占收入四成），Q2自由现金流转负，回购暂停，6月完成847.5亿美元股权融资。"
+    - "GAAP利润被SpaceX与Anthropic的股权浮盈抬高（占上半年税前利润的63%）；需求集中且带有循环，据报道Anthropic占云积压四成以上。"
+    - "护城河宽但更“贵”：按期末投入资本估算的ROIC从2024年约51%降到TTM约34%，增量ROIC约16%–19%，仍高于约9%的资本成本。"
+    - "估值合理偏贵：基准DCF约$312/股、SOTP约$325、情景加权约$305，均略低于$335的股价；当前价格隐含约8.7%的年化回报。"
+stance: "Fairly valued to slightly rich near $335; track as a high-quality core asset, letting falsifiable indicators, not P/E, drive changes."
+priceRef: { symbol: GOOG, price: 334.98, currency: USD, date: 2026-09-23 }
+sections: 12
+interactive: true
+pinned: false

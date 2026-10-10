@@ -1,0 +1,164 @@
+# Layer 1 · Energy. Industries -> value-chain segments -> member companies.
+# position: upstream | midstream | downstream (relative to each industry).
+# A segment with `ref` points to another node instead of listing companies.
+layer: energy
+industries:
+  - id: generation-equipment
+    name: Power Generation Equipment
+    nameZh: 发电设备
+    description: >-
+      Turbines, engines, reactors and fuel cells. Data-center load has turned gas turbines and
+      large engines into multi-year backlogs, and revived interest in nuclear.
+    drivers: [Data-center load growth, Gas-turbine scarcity, Nuclear policy support, Behind-the-meter generation]
+    metrics: [Turbine orders and backlog, Slot reservations, Pricing on new units, SMR licensing milestones]
+    segments:
+      - id: turbine-components
+        name: Turbine Components & Castings
+        nameZh: 燃机零部件与铸件
+        position: upstream
+        companies: [howmet]
+      - id: gas-turbines
+        name: Gas Turbines
+        nameZh: 燃气轮机
+        position: midstream
+        companies: [ge-vernova, siemens-energy, mitsubishi-heavy, doosan-enerbility]
+      - id: engines-gensets
+        name: Engines, Gensets & Onsite Power
+        nameZh: 发电机组与现场发电
+        position: midstream
+        companies: [caterpillar, cummins, wartsila, generac]
+      - id: nuclear-smr
+        name: Nuclear Reactors & SMRs
+        nameZh: 核电与小型模块化反应堆
+        position: midstream
+        companies: [bwx-technologies, oklo, nuscale, rolls-royce]
+      - id: fuel-cells
+        name: Fuel Cells
+        nameZh: 燃料电池
+        position: midstream
+        companies: [bloom-energy]
+      - id: solar
+        name: Solar Modules
+        nameZh: 光伏组件
+        position: midstream
+        companies: [first-solar]
+      - id: to-power-producers
+        name: Power producers & AI campuses
+        nameZh: 发电运营商与 AI 园区
+        position: downstream
+        ref: energy/power-producers
+
+  - id: fuel
+    name: "Fuel: Natural Gas & Uranium"
+    nameZh: 燃料：天然气与铀
+    description: >-
+      Most new data-center power in the US is gas-fired near term; nuclear restarts and SMRs
+      lift long-run uranium and enrichment demand.
+    drivers: [Gas-fired data-center supply, Pipeline buildout, Nuclear restarts and uprates, Enrichment capacity]
+    metrics: [Henry Hub price, Pipeline FIDs, Uranium term price, Enrichment SWU pricing]
+    segments:
+      - id: gas-producers
+        name: Natural Gas Producers
+        nameZh: 天然气生产商
+        position: upstream
+        companies: [eqt, expand-energy]
+      - id: uranium-mining
+        name: Uranium Mining
+        nameZh: 铀矿
+        position: upstream
+        companies: [cameco, kazatomprom, nexgen-energy]
+      - id: gas-midstream
+        name: Gas Pipelines & Midstream
+        nameZh: 天然气管道与中游
+        position: midstream
+        companies: [williams, kinder-morgan]
+      - id: enrichment-fuel
+        name: Enrichment & Nuclear Fuel
+        nameZh: 铀浓缩与核燃料
+        position: midstream
+        companies: [centrus]
+      - id: to-generation
+        name: Generation equipment
+        nameZh: 发电设备
+        position: downstream
+        ref: energy/generation-equipment
+
+  - id: power-producers
+    name: Power Producers & Utilities
+    nameZh: 发电运营商与公用事业
+    description: >-
+      Independent power producers sell firm power to hyperscalers through long-term contracts;
+      regulated utilities add generation and wires to serve new data-center load.
+    drivers: [Hyperscaler PPAs, Nuclear co-location, Capacity-market prices, Utility rate base growth]
+    metrics: [Signed PPAs (MW, price), PJM / ERCOT capacity prices, Utility load forecasts, Interconnection queues]
+    segments:
+      - id: ipps
+        name: Independent Power Producers
+        nameZh: 独立发电商
+        position: midstream
+        companies: [constellation, vistra, talen, nrg]
+      - id: utilities
+        name: Regulated Utilities
+        nameZh: 受监管公用事业
+        position: midstream
+        companies: [nextera, dominion, southern, aep, entergy, duke]
+      - id: to-data-centers
+        name: Data-center campuses
+        nameZh: 数据中心园区
+        position: downstream
+        ref: infrastructure/data-centers
+
+  - id: grid
+    name: Grid & Transmission
+    nameZh: 电网与输配电
+    description: >-
+      Transformers, switchgear, cables and the crews that build lines. Long lead times on
+      large power transformers have made grid equipment a structural bottleneck.
+    drivers: [Transformer shortages, Grid modernization, Interconnection of new load, HVDC and subsea links]
+    metrics: [Transformer lead times, Order backlogs, Pricing, Utility T&D capex]
+    segments:
+      - id: copper-materials
+        name: Copper & Materials
+        nameZh: 铜与原材料
+        position: upstream
+        companies: [freeport]
+      - id: transformers
+        name: Transformers
+        nameZh: 变压器
+        position: midstream
+        companies: [hd-hyundai-electric, hyosung-heavy, ls-electric, hitachi, sieyuan, tbea, siemens-energy, ge-vernova]
+      - id: switchgear
+        name: Switchgear & Electrical Equipment
+        nameZh: 开关设备与电气设备
+        position: midstream
+        companies: [eaton, schneider, abb, hubbell]
+      - id: power-cables
+        name: Power Cables
+        nameZh: 电力电缆
+        position: midstream
+        companies: [prysmian, nexans, nkt]
+      - id: grid-epc
+        name: Grid Construction & EPC
+        nameZh: 电网建设与工程
+        position: downstream
+        companies: [quanta, mastec]
+
+  - id: storage
+    name: Energy Storage
+    nameZh: 储能
+    description: >-
+      Battery storage firms up solar and wind for data centers and smooths the sharp load swings
+      of large training clusters.
+    drivers: [Firming renewables, Training-cluster load swings, Falling cell costs, Tariff policy]
+    metrics: [Storage deployments (GWh), Cell prices, Integrator backlogs]
+    segments:
+      - id: battery-cells
+        name: Battery Cells
+        nameZh: 电芯
+        position: upstream
+        companies: [catl, lg-energy-solution]
+      - id: storage-integrators
+        name: Storage Systems & Integrators
+        nameZh: 储能系统与集成商
+        position: midstream
+        companies: [fluence, sungrow, tesla]

@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alphabet 深度研究（二）：全栈AI、搜索广告、Gemini与谷歌云 | Deep-Dive II</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>window.Chart||document.write('<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"><\/script>');</script>
+<style>
+
+:root{
+  --bg:#F3F6FA; --panel:#FFFFFF; --panel2:#F8FAFD; --ink:#1B2632; --ink2:#4B5B6C; --ink3:#7A8898; --line:#DCE3EC; --line2:#E9EEF4;
+  --cobalt:#2D5A94; --cobalt-soft:#E7EEF8; --sea:#3F8C7A; --sea-soft:#E3F1EC; --sand:#B88A45; --sand-soft:#F6EEDF;
+  --rose:#B9625A; --rose-soft:#F8E8E5; --lav:#6C62A8; --lav-soft:#EDEBF6; --sky:#8DB3DA;
+  --serif:"Source Serif 4","Noto Serif SC","Songti SC",Georgia,serif;
+  --sans:"Inter","Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --topbar:58px; --side:252px;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121821; --panel:#18212D; --panel2:#1D2735; --ink:#E3E9F1; --ink2:#AEBBCA; --ink3:#8594A6; --line:#2B3748; --line2:#243041;
+    --cobalt:#86A9DA; --cobalt-soft:#1F2D42; --sea:#76BFAE; --sea-soft:#1B3330; --sand:#D6B27A; --sand-soft:#33291B;
+    --rose:#DE8E85; --rose-soft:#3A2323; --lav:#A79EDB; --lav-soft:#2A2740; --sky:#5E83AB;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121821; --panel:#18212D; --panel2:#1D2735; --ink:#E3E9F1; --ink2:#AEBBCA; --ink3:#8594A6; --line:#2B3748; --line2:#243041;
+  --cobalt:#86A9DA; --cobalt-soft:#1F2D42; --sea:#76BFAE; --sea-soft:#1B3330; --sand:#D6B27A; --sand-soft:#33291B;
+  --rose:#DE8E85; --rose-soft:#3A2323; --lav:#A79EDB; --lav-soft:#2A2740; --sky:#5E83AB;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%;scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + var(--topbar) + 14px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.78;-webkit-font-smoothing:antialiased}
+html[data-lang="en"] body{line-height:1.64}
+html[data-lang="zh"] .en{display:none!important}
+html[data-lang="en"] .zh{display:none!important}
+a{color:var(--cobalt);text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--cobalt)}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px;border-radius:3px}
+
+/* top bar */
+.topbar{position:fixed;left:0;right:0;top:0;z-index:40;height:calc(var(--topbar) + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);
+  background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;align-items:center}
+.topbar .inner{display:flex;align-items:center;gap:14px;width:100%;padding:0 22px}
+.brand{font-family:var(--serif);font-weight:700;font-size:17px;letter-spacing:.2px;color:var(--ink);white-space:nowrap}
+.brand small{font-family:var(--sans);font-weight:500;font-size:12.5px;color:var(--ink3);margin-left:10px}
+.spacer{flex:1}
+.langswitch{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--panel2)}
+.langswitch button{font:inherit;font-size:13px;font-weight:600;border:0;background:transparent;color:var(--ink2);padding:6px 14px;cursor:pointer}
+.langswitch button[aria-pressed="true"]{background:var(--cobalt);color:#fff}
+.menubtn{display:none;font:inherit;font-size:13px;border:1px solid var(--line);background:var(--panel2);color:var(--ink2);border-radius:8px;padding:6px 10px;cursor:pointer}
+
+/* sidebar */
+.side{position:fixed;top:calc(var(--topbar) + env(safe-area-inset-top,0px));bottom:0;left:0;width:var(--side);overflow-y:auto;padding:22px 16px 40px 20px;border-right:1px solid var(--line);background:var(--panel);z-index:30}
+.side h4{margin:0 0 10px;font-size:12.5px;color:var(--ink3);font-weight:600}
+.side ol{list-style:none;margin:0;padding:0;counter-reset:toc -1}
+.side li{counter-increment:toc;margin:1px 0}
+.side a{display:flex;gap:8px;align-items:baseline;padding:6px 8px;border-radius:7px;color:var(--ink2);font-size:13.8px;line-height:1.45;border:0}
+.side a::before{content:counter(toc,decimal-leading-zero);font-family:var(--sans);font-size:11px;color:var(--ink3);min-width:18px;font-variant-numeric:tabular-nums}
+.side a:hover{background:var(--panel2);color:var(--ink)}
+.side a.active{background:var(--cobalt-soft);color:var(--cobalt);font-weight:600}
+.side a.active::before{color:var(--cobalt)}
+.side .meta{margin-top:22px;padding-top:14px;border-top:1px solid var(--line2);font-size:12px;color:var(--ink3);line-height:1.6}
+
+/* main */
+main{margin-left:var(--side);padding:calc(var(--topbar) + env(safe-area-inset-top,0px) + 26px) 40px 80px}
+.wrap{max-width:1000px;margin:0 auto}
+section.sec{padding:10px 0 34px;border-bottom:1px solid var(--line2);margin-bottom:26px}
+section.sec:last-of-type{border-bottom:0}
+h1,h2,h3{font-family:var(--serif);color:var(--ink);letter-spacing:.1px}
+h1{font-size:32px;line-height:1.28;margin:6px 0 14px}
+h2{font-size:26px;line-height:1.3;margin:6px 0 16px;padding-top:6px}
+h3{font-size:18.5px;line-height:1.4;margin:26px 0 10px}
+h2 .no{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--cobalt);background:var(--cobalt-soft);border-radius:6px;padding:2px 8px;margin-right:10px;vertical-align:5px}
+p{margin:0 0 12px}
+html[data-lang="zh"] p, html[data-lang="zh"] li{text-align:justify}
+.muted{color:var(--ink2)}
+.small{font-size:13px;color:var(--ink3)}
+.lead{font-size:17px;line-height:1.8;color:var(--ink)}
+strong{font-weight:600}
+ul.tight{margin:6px 0 12px;padding-left:20px}
+ul.tight li{margin:4px 0}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:start;margin-bottom:10px}
+.hero .q{font-family:var(--serif);font-size:22px;line-height:1.5;color:var(--ink);margin:4px 0 14px}
+.datebar{font-size:13px;color:var(--ink3);margin-bottom:6px}
+.ledger{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:12px;background:var(--panel);margin:18px 0 8px;overflow:hidden}
+.ledger div{padding:12px 14px;border-right:1px solid var(--line2);border-bottom:1px solid var(--line2)}
+.ledger div:nth-child(4n){border-right:0}
+.ledger b{display:block;font-family:var(--sans);font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink)}
+.ledger span{font-size:12.5px;color:var(--ink2);line-height:1.45;display:block}
+.fig{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 14px 8px;margin:14px 0 16px}
+.fig .t{font-weight:600;font-size:14.5px;margin:0 0 2px;color:var(--ink)}
+.fig .s{font-size:12.5px;color:var(--ink3);margin:0 0 8px}
+.chartbox{position:relative;height:290px}
+.chartbox.tall{height:340px}
+.chartbox.short{height:240px}
+.fig .src{font-size:12px;color:var(--ink3);margin:6px 0 2px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid2>*,.hero>*{min-width:0}
+
+/* tables */
+.tscroll{overflow-x:auto;margin:12px 0 16px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13.6px;line-height:1.55}
+th,td{padding:9px 11px;border-bottom:1px solid var(--line2);text-align:left;vertical-align:top}
+th{background:var(--panel2);font-weight:600;color:var(--ink2);font-size:12.8px;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.hl{background:var(--cobalt-soft)}
+.pill{display:inline-block;font-size:12px;font-weight:600;border-radius:999px;padding:1px 9px;white-space:nowrap}
+.p-g{background:var(--sea-soft);color:var(--sea)} .p-a{background:var(--sand-soft);color:var(--sand)} .p-r{background:var(--rose-soft);color:var(--rose)} .p-b{background:var(--cobalt-soft);color:var(--cobalt)} .p-l{background:var(--lav-soft);color:var(--lav)}
+
+/* callouts */
+.note{border-left:3px solid var(--cobalt);background:var(--cobalt-soft);border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0}
+.note.risk{border-color:var(--rose);background:var(--rose-soft)}
+.note.good{border-color:var(--sea);background:var(--sea-soft)}
+.note.data{border-color:var(--sand);background:var(--sand-soft)}
+.note.ai{border-color:var(--lav);background:var(--lav-soft)}
+.note h5{margin:0 0 6px;font-size:14px;font-family:var(--sans);font-weight:700;color:var(--ink)}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
+.cite{font-size:12px;color:var(--ink3);white-space:normal}
+.cite a{white-space:nowrap}
+.cite a{color:var(--ink3);border-bottom:1px dotted var(--ink3)}
+
+/* two-column debate */
+.debate{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);margin:12px 0 16px}
+.debate>div{padding:14px 16px}
+.debate>div:first-child{border-right:1px solid var(--line2)}
+.debate h4{margin:0 0 8px;font-size:14.5px}
+.debate .bull h4{color:var(--sea)} .debate .bear h4{color:var(--rose)}
+.debate ul{margin:0;padding-left:18px} .debate li{margin:5px 0;font-size:14.2px}
+
+/* model */
+.model{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0}
+.model .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.model .bar button{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--panel2);color:var(--ink2);border-radius:8px;padding:6px 12px;cursor:pointer}
+.model .bar button.on{background:var(--cobalt);color:#fff;border-color:var(--cobalt)}
+.ctrls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cg{border:1px solid var(--line2);border-radius:10px;padding:10px 12px;background:var(--panel2)}
+.cg h6{margin:0 0 6px;font-size:13px;font-weight:700;color:var(--ink)}
+.cg.wide{grid-column:span 2}
+.cg.wide .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.ctl{display:grid;grid-template-columns:1fr auto;gap:2px 8px;align-items:center;margin:7px 0}
+.ctl label{font-size:12.6px;color:var(--ink2);line-height:1.35}
+.ctl output{font-size:12.8px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--cobalt);min-width:54px;text-align:right}
+.ctl input[type=range]{grid-column:1/3;width:100%;accent-color:var(--cobalt);margin:2px 0 0}
+.ctl input[type=number]{grid-column:1/3;width:100%;font:inherit;font-size:13px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+.outs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:12px;margin:14px 0;overflow:hidden}
+.outs div{padding:10px 12px;border-right:1px solid var(--line2);border-bottom:1px solid var(--line2);background:var(--panel)}
+.outs div:nth-child(4n){border-right:0}
+.outs b{display:block;font-size:19px;font-weight:600;font-variant-numeric:tabular-nums}
+.outs span{font-size:12px;color:var(--ink2)}
+.pos{color:var(--sea)!important} .neg{color:var(--rose)!important}
+.sens td{text-align:center;font-variant-numeric:tabular-nums}
+.sens td,.sens th{padding:8px 7px}
+.sens th{text-align:center}
+.foot{font-size:12.5px;color:var(--ink3);margin-top:30px;line-height:1.7}
+.srclist{font-size:13px;line-height:1.6;padding-left:20px}
+.srclist li{margin:4px 0;word-break:break-word}
+
+@media (max-width: 1100px){ .ctrls{grid-template-columns:repeat(2,1fr)} }
+@media (max-width: 960px){
+  .side{transform:translateX(-102%);transition:transform .25s ease;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+  body.nav-open .side{transform:none}
+  main{margin-left:0;padding-left:18px;padding-right:18px}
+  .menubtn{display:inline-block}
+  .hero{grid-template-columns:1fr}
+  .grid2{grid-template-columns:1fr}
+  .ledger{grid-template-columns:repeat(2,1fr)} .ledger div:nth-child(4n){border-right:1px solid var(--line2)} .ledger div:nth-child(2n){border-right:0}
+  .outs{grid-template-columns:repeat(2,1fr)} .outs div:nth-child(4n){border-right:1px solid var(--line2)} .outs div:nth-child(2n){border-right:0}
+  .debate{grid-template-columns:1fr} .debate>div:first-child{border-right:0;border-bottom:1px solid var(--line2)}
+  .ctrls{grid-template-columns:1fr}
+  .cg.wide{grid-column:auto}
+  .cg.wide .cgrid{grid-template-columns:1fr}
+  h1{font-size:28px} h2{font-size:22px}
+  .brand small{display:none}
+}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} .side{transition:none} }
+
+/* ---- report II additions ---- */
+.stackfig{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 12px 6px}
+.stackfig svg{width:100%;height:auto;display:block}
+.stackfig .lyr{fill:var(--panel2);stroke:var(--line)}
+.stackfig .lyr.hl{fill:var(--rose-soft);stroke:var(--rose)}
+.stackfig .lyr.deep{fill:var(--sea-soft);stroke:var(--sea)}
+.stackfig .t1{font:600 14px var(--sans);fill:var(--ink)}
+.stackfig .t2{font:400 11.5px var(--sans);fill:var(--ink2)}
+.stackfig .t3{font:600 11px var(--sans);fill:var(--ink2)}
+.stackfig .dot{fill:var(--line)} .stackfig .dot.on{fill:var(--cobalt)}
+.stackfig .loop{fill:none;stroke:var(--sand);stroke-width:2;stroke-dasharray:5 4}
+.stackfig .looptxt{font:500 11px var(--sans);fill:var(--sand)}
+.stackfig .cap{font-size:12px;color:var(--ink3);margin:4px 4px 2px}
+.timeline{list-style:none;margin:10px 0 16px;padding:0;border-left:2px solid var(--line);}
+.timeline li{position:relative;margin:0 0 12px 0;padding:0 0 0 18px}
+.timeline li::before{content:"";position:absolute;left:-7px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--panel);border:2px solid var(--cobalt)}
+.timeline li.miss::before{border-color:var(--rose)}
+.timeline li.plan::before{border-style:dashed;border-color:var(--ink3)}
+.timeline .d{font-size:12.5px;font-weight:600;color:var(--cobalt);font-variant-numeric:tabular-nums}
+.timeline li.miss .d{color:var(--rose)} .timeline li.plan .d{color:var(--ink3)}
+.intent td:first-child{white-space:nowrap;font-weight:600}
+.flowfig svg{width:100%;height:auto;display:block}
+.flowfig .box{fill:var(--panel2);stroke:var(--line)}
+.flowfig .bt{font:600 12.5px var(--sans);fill:var(--ink)}
+.flowfig .bs{font:400 11px var(--sans);fill:var(--ink2)}
+.flowfig .arr{stroke:var(--ink3);stroke-width:1.5;fill:none}
+.flowfig .ret{stroke:var(--sea);stroke-width:1.8;fill:none;stroke-dasharray:6 4}
+.flowfig .rett{font:500 11px var(--sans);fill:var(--sea)}
+.qa td:nth-child(2){min-width:280px}
+@media (min-width:1100px){#s-summary .hero{grid-template-columns:.9fr 1.1fr}}
+.disclose{font-size:12.5px;color:var(--ink2);border:1px dashed var(--line);border-radius:10px;padding:10px 14px;margin:14px 0;background:var(--panel)}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="inner">
+  <button class="menubtn" id="menubtn" aria-label="目录"><span class="zh">目录</span><span class="en">Contents</span></button>
+  <div class="brand">Alphabet (GOOG)<small><span class="zh">深度研究（二），2026年9月</span><span class="en">Deep-dive II, September 2026</span></small></div>
+  <div class="spacer"></div>
+  <div class="langswitch" role="group" aria-label="Language">
+    <button id="btn-zh" aria-pressed="true">中文</button><button id="btn-en" aria-pressed="false">EN</button>
+  </div>
+</div></header>
+
+<nav class="side" id="side" aria-label="Contents">
+  <h4><span class="zh">目录</span><span class="en">Contents</span></h4>
+  <ol>
+    <li><a href="#s-summary"><span class="zh">四个问题的答案</span><span class="en">Four answers</span></a></li>
+    <li><a href="#s-stack"><span class="zh">全栈AI如何闭环</span><span class="en">How the stack closes the loop</span></a></li>
+    <li><a href="#s-layers"><span class="zh">各层作用与护城河深浅</span><span class="en">Layer roles and moat depth</span></a></li>
+    <li><a href="#s-infra"><span class="zh">基础设施：TPU与能源</span><span class="en">Infrastructure: TPUs and power</span></a></li>
+    <li><a href="#s-intent"><span class="zh">搜索广告（上）：查询类型</span><span class="en">Search ads I: query types</span></a></li>
+    <li><a href="#s-evidence"><span class="zh">搜索广告（下）：证据与可持续性</span><span class="en">Search ads II: evidence</span></a></li>
+    <li><a href="#s-model"><span class="zh">交互模型：搜索收入压力测试</span><span class="en">Model: Search stress test</span></a></li>
+    <li><a href="#s-gemini"><span class="zh">Gemini：为何落后，能否追赶</span><span class="en">Gemini: behind, and catching up?</span></a></li>
+    <li><a href="#s-cloud"><span class="zh">谷歌云：构成、客户与战略</span><span class="en">Google Cloud: inside the business</span></a></li>
+    <li><a href="#s-compare"><span class="zh">三大云对比</span><span class="en">AWS vs Azure vs Google Cloud</span></a></li>
+    <li><a href="#s-erosion"><span class="zh">侵蚀地图与跟踪清单</span><span class="en">Erosion map and checklist</span></a></li>
+    <li><a href="#s-appx"><span class="zh">资料来源与方法</span><span class="en">Sources and methods</span></a></li>
+  </ol>
+  <div class="meta"><span class="zh">资料截至2026年9月23日。本篇是《Alphabet深度初研》的续篇，数据口径与第一篇一致。</span><span class="en">Information as of 23 September 2026. This is the sequel to the initiation deep-dive and uses the same data conventions.</span></div>
+</nav>
+
+<main><div class="wrap">
+
+<!-- ============ SUMMARY ============ -->
+<section class="sec" id="s-summary">
+  <div class="hero">
+    <div>
+      <div class="datebar"><span class="zh">深度研究（二），2026年9月24日</span><span class="en">Deep-dive II, 24 September 2026</span></div>
+      <h1><span class="zh">谷歌的AI全栈：<br>两端最深，中间最险</span><span class="en">Google's AI stack: deepest at both ends, most exposed in the middle</span></h1>
+      <p class="q"><span class="zh">底层的TPU与能源、顶层的分发与广告变现，是别人最难复制的两端；夹在中间的模型与研究人才，恰恰是谷歌过去几个月失分的地方。</span><span class="en">The bottom (TPUs and power) and the top (distribution and ad monetization) are the hardest parts to copy; the middle, models and research talent, is exactly where Google has lost ground in recent months.</span></p>
+      <p class="lead"><span class="zh">这一篇回答你的四个问题：全栈AI如何闭环、哪一层最重要；搜索广告能否扛住AI（先把"信息型查询"和"商业型查询"分清楚）；Gemini为什么落后、能否追上；谷歌云到底卖什么、卖给谁、和AWS与Azure比强在哪弱在哪。第6节有一个交互模型，你可以用自己的判断给搜索收入做压力测试。</span><span class="en">This report answers your four questions: how the AI stack closes the loop and which layer matters most; whether search advertising survives AI (after separating informational from commercial queries); why Gemini fell behind and whether it can catch up; and what Google Cloud actually sells, to whom, and how it compares with AWS and Azure. Section 6 has an interactive model so you can stress-test Search revenue with your own assumptions.</span></p>
+    </div>
+    <div class="stackfig">
+      <svg viewBox="0 0 560 430" role="img" aria-label="Google AI stack with moat depth">
+        <!-- layers: y from top -->
+        <g>
+          <rect class="lyr deep" x="10" y="10" width="400" height="66" rx="10"/>
+          <text class="t1" x="24" y="36"><tspan class="zh">商业化</tspan><tspan class="en">Monetization</tspan></text>
+          <text class="t2" x="24" y="58"><tspan class="zh">搜索与YouTube广告、3.5亿订阅、云、TPU外销</tspan><tspan class="en">Search/YouTube ads, 350M subs, Cloud, TPU sales</tspan></text>
+          <rect class="lyr deep" x="10" y="92" width="400" height="66" rx="10"/>
+          <text class="t1" x="24" y="118"><tspan class="zh">产品与分发</tspan><tspan class="en">Products and distribution</tspan></text>
+          <text class="t2" x="24" y="140"><tspan class="zh">AI Mode、Gemini App、Android、Chrome、Siri</tspan><tspan class="en">AI Mode, Gemini app, Android, Chrome, Siri</tspan></text>
+          <rect class="lyr hl" x="10" y="174" width="400" height="66" rx="10"/>
+          <text class="t1" x="24" y="200"><tspan class="zh">模型</tspan><tspan class="en">Models</tspan></text>
+          <text class="t2" x="24" y="222"><tspan class="zh">Gemini 3.x Flash强；3.5 Pro延期，编码落后</tspan><tspan class="en">Strong Flash; 3.5 Pro delayed; coding gap</tspan></text>
+          <rect class="lyr hl" x="10" y="256" width="400" height="66" rx="10"/>
+          <text class="t1" x="24" y="282"><tspan class="zh">研究</tspan><tspan class="en">Research</tspan></text>
+          <text class="t2" x="24" y="304"><tspan class="zh">DeepMind：8月重组，核心人才流失</tspan><tspan class="en">DeepMind: August reset, senior departures</tspan></text>
+          <rect class="lyr deep" x="10" y="338" width="400" height="66" rx="10"/>
+          <text class="t1" x="24" y="364"><tspan class="zh">基础设施</tspan><tspan class="en">Infrastructure</tspan></text>
+          <text class="t2" x="24" y="386"><tspan class="zh">TPU第7/8代、数据中心、能源（Intersect）</tspan><tspan class="en">TPU gen 7/8, data centers, power (Intersect)</tspan></text>
+        </g>
+        <!-- moat depth dots: 5 per layer -->
+        <g id="moatdots"></g>
+        <text class="t3" x="410" y="424" text-anchor="end"><tspan class="zh">护城河深度（1–5）</tspan><tspan class="en">Moat depth (1–5)</tspan></text>
+        <!-- loop arrow on the right: from monetization down to infrastructure -->
+        <path class="loop" d="M412 30 C 545 30, 545 380, 412 380"/>
+        <polygon points="412,380 424,374 424,386" fill="var(--sand)"/>
+        <text class="looptxt" x="489" y="200" text-anchor="middle" transform="rotate(90 489 200)"><tspan class="zh">现金、数据与用户反馈回流</tspan><tspan class="en">cash, data and feedback flow back</tspan></text>
+      </svg>
+      <p class="cap"><span class="zh">绿色为护城河最深的两端，红色为当前失分的中间层；圆点为本报告对护城河深度的主观评分。</span><span class="en">Green marks the deepest layers, red the middle layers now losing ground; dots are our subjective moat-depth scores.</span></p>
+    </div>
+  </div>
+
+  <h3><span class="zh">四个问题，一页答案</span><span class="en">Four questions, one page of answers</span></h3>
+  <div class="tscroll"><table class="qa">
+    <thead><tr><th><span class="zh">你的问题</span><span class="en">Your question</span></th><th><span class="zh">简短回答</span><span class="en">Short answer</span></th><th><span class="zh">把握</span><span class="en">Confidence</span></th><th><span class="zh">什么会让我改变看法</span><span class="en">What would change my mind</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">1. 全栈AI如何闭环，哪层最重要，护城河在哪</span><span class="en">1. How the stack closes, which layer matters most, where the moat is</span></td><td><span class="zh">闭环靠三条回路：现金回路（广告现金流支撑约2,000亿美元资本开支）、成本回路（自研TPU让AI答案对数十亿用户免费提供仍然赚钱）、数据回路（产品使用反哺模型）。创造价值最多的是两端：分发与变现、基础设施；未来两三年决定胜负的变量却是中间的模型层。云与TPU外销已经是第二增长曲线。</span><span class="en">Three loops close the stack: cash (ad cash flow funds ~$200B of capex), cost (in-house TPUs keep free AI answers profitable at billions of users) and data (usage feeds the models). Most value sits at the two ends, distribution/monetization and infrastructure, but the swing variable for the next two to three years is the model layer in the middle. Cloud and TPU sales are already a second growth curve.</span></td><td><span class="pill p-g"><span class="zh">中高</span><span class="en">Med-high</span></span></td><td><span class="zh">TPU的单位成本优势被英伟达新品或亚马逊Trainium抹平；反垄断迫使默认入口大规模流失</span><span class="en">TPU cost edge erased by new Nvidia parts or Trainium; remedies causing large-scale loss of default placements</span></td></tr>
+      <tr><td><span class="zh">2. 搜索广告能否扛住AI</span><span class="en">2. Can search ads withstand AI</span></td><td><span class="zh">你的担忧有一半是把两类查询混在了一起：你转去问AI的大多是"信息型"问题，而这类问题本来就很少带广告；谷歌的钱主要来自"商业与交易型"查询。到目前为止，数据显示商业查询还在谷歌手里（2025年付费点击+6%、单价+7%，搜索收入增速从10%升至17%–19%）。真正的威胁不是"查询量断崖"，而是"代理式购物"把比价与下单搬到别的AI或亚马逊里；这一步还在早期，但需要按季度盯。</span><span class="en">Half of the worry comes from mixing two kinds of queries: what you now ask AI is mostly informational, which rarely carried ads anyway; Google earns mainly on commercial and transactional queries. So far the data say commercial queries remain with Google (2025 paid clicks +6%, CPC +7%; Search growth up from 10% to 17–19%). The real threat is not a cliff in query volume but agentic shopping moving comparison and checkout into other AIs or Amazon; that is early, but worth tracking every quarter.</span></td><td><span class="pill p-b"><span class="zh">中</span><span class="en">Medium</span></span></td><td><span class="zh">付费点击连续两季转负；ChatGPT广告收入超过预期并出现品类级份额转移；谷歌美国搜索广告份额加速下滑</span><span class="en">Paid clicks negative for two quarters; ChatGPT ads beating plans with category-level share shifts; Google's US search-ad share falling faster</span></td></tr>
+      <tr><td><span class="zh">3. Gemini为何落后，能否追赶</span><span class="en">3. Why Gemini fell behind, can it catch up</span></td><td><span class="zh">你的观察在"前沿推理与编码"上是对的：原定6月发布的Gemini 3.5 Pro因编码未达内部目标而延期，在终端类代理编码测试上与GPT-6、Claude差距明显，8月DeepMind领导层重组、多名核心研究员离开。但"没人用"与数据不符：Gemini在AI聊天网页流量中的份额一年内从约9%升到约26%–27%，App月活9.5亿。追赶的资源（算力、资金、数据、分发）谷歌最多，缺的是组织效率与编码方向的投入；我的判断是12个月内大概率处于"前三但不稳定第一"。</span><span class="en">You are right about frontier reasoning and coding: Gemini 3.5 Pro, due in June, slipped because coding missed internal goals; on terminal-style agentic coding tests it trails GPT-6 and Claude clearly; DeepMind's leadership was reset in August and several senior researchers left. But "nobody uses it" does not match the data: Gemini's share of AI-chatbot web traffic rose from ~9% to ~26–27% in a year and the app has 950M monthly users. Google has the most catch-up resources (compute, capital, data, distribution) but lacks organizational speed and coding focus; my base case for the next 12 months is "top three, not reliably first".</span></td><td><span class="pill p-b"><span class="zh">中</span><span class="en">Medium</span></span></td><td><span class="zh">Gemini 3.5 Pro或Gemini 4在代理编码测试上进入第一梯队；或反过来，2027年上半年前仍无Pro级旗舰</span><span class="en">3.5 Pro or Gemini 4 reaching the top tier on agentic coding; or, conversely, still no Pro-class flagship by H1 2027</span></td></tr>
+      <tr><td><span class="zh">4. 谷歌云卖什么、卖给谁，护城河与三云对比</span><span class="en">4. What Cloud sells, to whom; moat and comparison</span></td><td><span class="zh">四块：GCP（AI基础设施、Vertex与Gemini Enterprise、数据分析、安全）、Workspace、TPU系统销售、其他企业服务。最大客户是AI实验室（Anthropic、Meta、OpenAI、Apple等），企业端近90%的财富100强在用Gemini Enterprise。最深的护城河是"TPU＋Gemini＋数据平台"的性价比；最大的弱点是客户集中、企业软件生态不如微软、产能受限。增速第一（82%），规模第三（约15%份额），利润率35.6%已接近AWS的39.4%。</span><span class="en">Four parts: GCP (AI infrastructure, Vertex and Gemini Enterprise, data analytics, security), Workspace, TPU system sales and other enterprise services. The biggest customers are AI labs (Anthropic, Meta, OpenAI, Apple and others); nearly 90% of the Fortune 100 use Gemini Enterprise. The deepest moat is TPU-plus-Gemini-plus-data-platform price-performance; the main weaknesses are customer concentration, a thinner enterprise-software estate than Microsoft's, and capacity limits. Fastest growth (82%), third in scale (~15% share), and a 35.6% margin close to AWS's 39.4%.</span></td><td><span class="pill p-g"><span class="zh">中高</span><span class="en">Med-high</span></span></td><td><span class="zh">大客户转向Trainium或自研芯片；云利润率在TPU硬件销售放量后跌破25%</span><span class="en">Large customers shifting to Trainium or in-house chips; Cloud margin below 25% once TPU hardware sales ramp</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note">
+    <h5><span class="zh">两处需要先澄清的地方</span><span class="en">Two things to clarify first</span></h5>
+    <ul class="tight">
+      <li><span class="zh"><strong>关于订阅：</strong>上一篇我写的是"订阅是对冲搜索广告被AI改写的工具，用户为更强的Gemini能力付费"，这句话容易被读成"订阅增长主要来自Gemini"，并不准确。按公司口径，Q1'26新增的2,500万付费订阅主要由YouTube（Premium/Music，该季度非试用订阅增量创2018年以来最高）和Google One驱动；Gemini消费级AI套餐是增量来源之一（"有史以来最强的一季"），而且捆绑是双向的：AI Pro附送YouTube Premium Lite，Ultra附送完整的YouTube Premium。</span><span class="en"><strong>Subscriptions:</strong> last time I wrote that subscriptions hedge the AI rewrite of search ads because users pay for better Gemini capability; that can be read as "subscription growth comes mainly from Gemini", which is not accurate. Per the company, the 25M net adds in Q1'26 were driven mainly by YouTube (Premium/Music, the largest quarterly non-trial increase since 2018) and Google One; consumer Gemini plans were one source ("strongest quarter ever"), and bundling runs both ways: AI Pro includes YouTube Premium Lite and Ultra includes full YouTube Premium.</span></li>
+      <li><span class="zh"><strong>更正：</strong>上一篇管理层表把Demis Hassabis列为Google DeepMind CEO。2026年8月5日起，Hassabis改任DeepMind董事长兼Alphabet首席科学家，原CTO Koray Kavukcuoglu以高级副总裁身份负责日常运营并直接向Pichai汇报；首席科学家Jeff Dean离职创业。</span><span class="en"><strong>Correction:</strong> the first report listed Demis Hassabis as CEO of Google DeepMind. Since 5 August 2026 he is DeepMind's chair and Alphabet's chief scientist; former CTO Koray Kavukcuoglu runs day-to-day operations as SVP reporting to Pichai; chief scientist Jeff Dean left to found a startup.</span></li>
+    </ul>
+  </div>
+  <p class="disclose"><span class="zh">利益相关披露：本报告由Anthropic开发的Claude撰写，而Anthropic是第7节讨论的模型竞争对手之一，也是谷歌云的大客户和Alphabet的被投资方。涉及模型比较的部分，我尽量只使用第三方数据并标注来源与局限，请你在阅读这些部分时额外保持审慎。</span><span class="en">Disclosure: this report was written by Claude, made by Anthropic, which is one of the model competitors discussed in Section 7, a major Google Cloud customer and an Alphabet investee. Where models are compared I use third-party data with sources and caveats; please read those parts with extra care.</span></p>
+</section>
+
+<!-- ============ STACK LOOP ============ -->
+<section class="sec" id="s-stack">
+  <h2><span class="no">01</span><span class="zh">全栈AI如何闭环</span><span class="en">How the AI stack closes the loop</span></h2>
+  <p><span class="zh">"全栈"不是指谷歌什么都做，而是指从芯片到收款的每一层都由自己掌握，并且各层之间有真实的现金流和数据流连接。下图是这条链，以及把它连成闭环的回流路径。</span><span class="en">"Full stack" does not mean Google does everything; it means it owns every layer from chip to checkout, and the layers are connected by real flows of cash and data. The chain, and the return paths that close it, are shown below.</span></p>
+  <div class="fig flowfig">
+    <svg viewBox="0 -28 960 278" role="img" aria-label="Google AI value chain and feedback loops">
+      <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--ink3)"/></marker>
+      <marker id="ahg" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--sea)"/></marker></defs>
+      <rect class="box" x="10" y="40" width="160" height="84" rx="10"/>
+      <text class="bt" x="24" y="66"><tspan class="zh">基础设施</tspan><tspan class="en">Infrastructure</tspan></text>
+      <text class="bs" x="24" y="88"><tspan class="zh">TPU、数据中心</tspan><tspan class="en">TPUs, data centers</tspan></text>
+      <text class="bs" x="24" y="106"><tspan class="zh">电力（Intersect）</tspan><tspan class="en">power (Intersect)</tspan></text>
+      <rect class="box" x="205" y="40" width="160" height="84" rx="10"/>
+      <text class="bt" x="219" y="66"><tspan class="zh">研究</tspan><tspan class="en">Research</tspan></text>
+      <text class="bs" x="219" y="88"><tspan class="zh">Google DeepMind</tspan><tspan class="en">Google DeepMind</tspan></text>
+      <text class="bs" x="219" y="106"><tspan class="zh">架构、训练方法</tspan><tspan class="en">architectures, training</tspan></text>
+      <rect class="box" x="400" y="40" width="160" height="84" rx="10"/>
+      <text class="bt" x="414" y="66"><tspan class="zh">模型</tspan><tspan class="en">Models</tspan></text>
+      <text class="bs" x="414" y="88"><tspan class="zh">Gemini Flash / Pro</tspan><tspan class="en">Gemini Flash / Pro</tspan></text>
+      <text class="bs" x="414" y="106"><tspan class="zh">Veo、Genie等</tspan><tspan class="en">Veo, Genie, others</tspan></text>
+      <rect class="box" x="595" y="40" width="160" height="84" rx="10"/>
+      <text class="bt" x="609" y="66"><tspan class="zh">产品与分发</tspan><tspan class="en">Products</tspan></text>
+      <text class="bs" x="609" y="88"><tspan class="zh">搜索、Gemini App</tspan><tspan class="en">Search, Gemini app</tspan></text>
+      <text class="bs" x="609" y="106"><tspan class="zh">安卓、YouTube、Siri</tspan><tspan class="en">Android, YouTube, Siri</tspan></text>
+      <rect class="box" x="790" y="40" width="160" height="84" rx="10"/>
+      <text class="bt" x="804" y="66"><tspan class="zh">商业化</tspan><tspan class="en">Monetization</tspan></text>
+      <text class="bs" x="804" y="88"><tspan class="zh">广告、订阅</tspan><tspan class="en">ads, subscriptions</tspan></text>
+      <text class="bs" x="804" y="106"><tspan class="zh">云、TPU外销</tspan><tspan class="en">Cloud, TPU sales</tspan></text>
+      <line class="arr" x1="170" y1="82" x2="203" y2="82" marker-end="url(#ah)"/>
+      <line class="arr" x1="365" y1="82" x2="398" y2="82" marker-end="url(#ah)"/>
+      <line class="arr" x1="560" y1="82" x2="593" y2="82" marker-end="url(#ah)"/>
+      <line class="arr" x1="755" y1="82" x2="788" y2="82" marker-end="url(#ah)"/>
+      <path class="ret" d="M870 126 C 870 225, 90 225, 90 128" marker-end="url(#ahg)"/>
+      <text class="rett" x="480" y="236" text-anchor="middle"><tspan class="zh">现金回路：广告与云的现金流 → 每年约2,000亿美元资本开支</tspan><tspan class="en">Cash loop: ad and Cloud cash flow → ~$200B a year of capex</tspan></text>
+      <path class="ret" d="M675 38 C 675 6, 480 6, 480 36" marker-end="url(#ahg)"/>
+      <text class="rett" x="578" y="-10" text-anchor="middle"><tspan class="zh">数据回路：使用与反馈 → 模型</tspan><tspan class="en">Data loop: usage and feedback → models</tspan></text>
+      <path class="ret" d="M90 126 C 90 170, 675 170, 675 128" marker-end="url(#ahg)"/>
+      <text class="rett" x="382" y="186" text-anchor="middle"><tspan class="zh">成本回路：自研TPU降低每个AI答案的成本</tspan><tspan class="en">Cost loop: in-house TPUs lower the cost per AI answer</tspan></text>
+    </svg>
+  </div>
+
+  <h3><span class="zh">三条回路，各自有数字支撑</span><span class="en">Three loops, each backed by numbers</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">回路</span><span class="en">Loop</span></th><th><span class="zh">机制</span><span class="en">Mechanism</span></th><th><span class="zh">证据</span><span class="en">Evidence</span></th><th><span class="zh">薄弱点</span><span class="en">Weak point</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">现金回路</span><span class="en">Cash</span></td><td><span class="zh">搜索与YouTube的利润为资本开支提供资金；云客户预付或长期承诺，替谷歌分担一部分产能投资</span><span class="en">Search and YouTube profits fund capex; Cloud customers' long-term commitments underwrite part of the capacity</span></td><td><span class="zh">TTM服务分部经营利润1,538亿美元、云243亿美元；云积压5,140亿美元；2026年资本开支指引1,950–2,050亿美元</span><span class="en">TTM Services operating income $153.8B, Cloud $24.3B; Cloud backlog $514B; 2026 capex guide $195–205B</span></td><td><span class="zh">投入已超过内部现金流（6月股权融资847.5亿美元），积压集中于少数AI实验室</span><span class="en">Spending now exceeds internal cash flow (the $84.75B June equity raise); backlog concentrated in a few AI labs</span></td></tr>
+      <tr><td><span class="zh">成本回路</span><span class="en">Cost</span></td><td><span class="zh">自研TPU＋规模让每个token更便宜，于是能把AI答案免费给数十亿搜索用户，又能以更低价格卖给云客户</span><span class="en">In-house TPUs plus scale make each token cheaper, so AI answers can be given free to billions of searchers and sold cheaper to Cloud customers</span></td><td><span class="zh">SemiAnalysis测算：同等生成速度下，Ironwood每百万token成本约0.181美元，比B200低约19%、比B300低约34%；管理层称Q2 AI Mode单次回答成本降至推出以来最低</span><span class="en">SemiAnalysis: at the same generation speed Ironwood costs ~$0.181 per million tokens, ~19% below B200 and ~34% below B300; management says AI Mode cost per response hit its lowest since launch in Q2</span></td><td><span class="zh">单芯片性能英伟达领先；亚马逊Trainium产能同样被AI实验室订满</span><span class="en">Nvidia leads per chip; Amazon's Trainium capacity is also sold out to AI labs</span></td></tr>
+      <tr><td><span class="zh">数据回路</span><span class="en">Data</span></td><td><span class="zh">搜索、YouTube、地图、安卓的海量交互提供训练与评估信号；更好的模型带来更多使用</span><span class="en">Interactions across Search, YouTube, Maps and Android provide training and evaluation signals; better models drive more usage</span></td><td><span class="zh">AI Mode查询长度约为传统搜索3倍，美国用户人均每日AI Mode查询自推出以来翻倍；第一方模型API每分钟约220亿token</span><span class="en">AI Mode queries are ~3x longer and US daily AI Mode queries per user doubled since launch; first-party model APIs run at ~22B tokens a minute</span></td><td><span class="zh">反垄断要求向合格竞争者共享部分索引与交互数据（6年）</span><span class="en">Remedies require sharing parts of the index and interaction data with qualified rivals (six years)</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cite"><a href="https://newsletter.semianalysis.com/p/tpu-inferencex-full-steam" target="_blank" rel="noopener">SemiAnalysis InferenceX</a>; <a href="https://www.searchenginejournal.com/google-search-hits-63b-details-ai-mode-ad-tests/566613/" target="_blank" rel="noopener">SEJ (Q4'25 call)</a>; <a href="https://www.thekeyword.co/news/big-tech-q2-2026-ad-revenue" target="_blank" rel="noopener">The Keyword (Q2'26 call)</a>; <a href="https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q2-2026/" target="_blank" rel="noopener">Pichai Q2'26 remarks</a></p>
+
+  <h3><span class="zh">协同效应：哪些是真的，有多大</span><span class="en">Synergies: which are real, and how big</span></h3>
+  <ul class="tight">
+    <li><span class="zh"><strong>一套算力，多处复用：</strong>同一批TPU与数据中心同时服务搜索、YouTube、Gemini和云客户。外部需求强时卖给云客户，内部AI需求强时自用，这种"可互换的产能"降低了资本开支判断失误的代价。</span><span class="en"><strong>One fleet, many uses:</strong> the same TPUs and data centers serve Search, YouTube, Gemini and Cloud customers. When outside demand is strong the capacity is sold; when internal AI demand rises it is used in-house. That fungibility lowers the cost of getting capex wrong.</span></li>
+    <li><span class="zh"><strong>一个模型，多个十亿级产品：</strong>Gemini的训练成本被分摊到搜索（AI Overviews月活超25亿、AI Mode超10亿）、Gemini App（9.5亿）、安卓、Workspace和苹果新Siri。对手的同等模型需要自己的分发去摊薄成本。</span><span class="en"><strong>One model, several billion-user products:</strong> Gemini's training cost is spread across Search (AI Overviews above 2.5B monthly users, AI Mode above 1B), the Gemini app (950M), Android, Workspace and Apple's new Siri. Rivals must build their own distribution to amortize a comparable model.</span></li>
+    <li><span class="zh"><strong>广告系统直接接住新流量：</strong>AI Mode里的广告沿用原有的广告主、出价与衡量体系（AI Max已有超过50万广告主），新界面上线即可变现，不需要重新积累客户。</span><span class="en"><strong>The ad system catches the new traffic:</strong> ads in AI Mode reuse the existing advertisers, bidding and measurement (AI Max already has 500,000+ advertisers), so a new surface monetizes on day one.</span></li>
+    <li><span class="zh"><strong>云把自用技术变成对外产品：</strong>TPU、Gemini、安全（Mandiant、Wiz）与BigQuery被打包卖给企业，收入反过来分摊基础设施成本。</span><span class="en"><strong>Cloud turns internal technology into products:</strong> TPUs, Gemini, security (Mandiant, Wiz) and BigQuery are packaged for enterprises, and the revenue in turn spreads the infrastructure cost.</span></li>
+    <li><span class="zh"><strong>订阅捆绑降低流失：</strong>Google One把存储、Gemini高级功能和YouTube Premium Lite打包，单个用户同时依赖多项服务，更难离开。</span><span class="en"><strong>Bundles lower churn:</strong> Google One combines storage, advanced Gemini and YouTube Premium Lite, so one user depends on several services and is harder to lose.</span></li>
+  </ul>
+  <div class="note good">
+    <h5><span class="zh">第二增长曲线已经出现</span><span class="en">The second growth curve is already here</span></h5>
+    <p><span class="zh">云业务Q2'26年化收入约990亿美元、增长82%，2026年上半年它对集团收入增长的贡献（约10个百分点）已与搜索相当。TPU系统销售从2026年Q2开始确认、主要在2027年放量，可能成为第三条曲线。所以答案是：全栈确实能产生第二增长点，并且在"基础设施"和"企业AI"两个方向上拓宽了护城河；但它同时让护城河更"贵"——回报率取决于这些投入最终的利用率与定价。</span><span class="en">Cloud ran at a ~$99B annualized rate in Q2'26, growing 82%, and in H1 2026 contributed about as much group revenue growth (~10 points) as Search. TPU system sales started in Q2 2026 and ramp mainly in 2027, a possible third curve. So yes: the stack does create a second growth engine and widens the moat in infrastructure and enterprise AI, but it also makes the moat more expensive, with returns depending on eventual utilization and pricing.</span></p>
+  </div>
+</section>
+
+<!-- ============ LAYERS ============ -->
+<section class="sec" id="s-layers">
+  <h2><span class="no">02</span><span class="zh">各层起什么作用，哪层最重要，护城河在哪</span><span class="en">What each layer does, which matters most, where the moat is</span></h2>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">层</span><span class="en">Layer</span></th><th><span class="zh">在链条中的作用</span><span class="en">Role in the chain</span></th><th><span class="zh">谷歌的位置</span><span class="en">Google's position</span></th><th><span class="zh">护城河</span><span class="en">Moat</span></th><th><span class="zh">会被怎样侵蚀</span><span class="en">How it could erode</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">基础设施</span><span class="en">Infrastructure</span></td><td><span class="zh">决定每个token的成本和能拿到多少算力</span><span class="en">Sets the cost per token and how much compute is available</span></td><td><span class="zh">唯一一家把自研AI芯片做到第8代、并开始把整套系统卖进客户自有数据中心的云厂商；2026年资本开支约2,000亿美元</span><span class="en">The only cloud with an in-house AI chip in its 8th generation that has started selling complete systems into customers' own data centers; ~$200B of 2026 capex</span></td><td><span class="pill p-g"><span class="zh">深，在加深</span><span class="en">Deep, deepening</span></span></td><td><span class="zh">英伟达单芯片代差；亚马逊Trainium、微软Maia、OpenAI与博通定制芯片追赶；电力与台积电产能成为共同瓶颈</span><span class="en">Nvidia's per-chip lead; Trainium, Maia and OpenAI–Broadcom custom chips catching up; power and TSMC capacity as shared bottlenecks</span></td></tr>
+      <tr><td><span class="zh">研究</span><span class="en">Research</span></td><td><span class="zh">产生新架构与训练方法，吸引顶尖人才</span><span class="en">Produces new architectures and training methods; attracts top talent</span></td><td><span class="zh">Transformer、AlphaFold等历史积累深厚；但8月领导层重组，Jeff Dean、Noam Shazeer等资深人物离开</span><span class="en">A deep record (Transformer, AlphaFold); but an August leadership reset and departures including Jeff Dean and Noam Shazeer</span></td><td><span class="pill p-a"><span class="zh">中，在变浅</span><span class="en">Medium, thinning</span></span></td><td><span class="zh">人才可流动，竞争对手用股权与使命感争夺研究员</span><span class="en">Talent is portable; rivals compete with equity and mission</span></td></tr>
+      <tr><td><span class="zh">模型</span><span class="en">Models</span></td><td><span class="zh">决定AI产品的体验上限和企业是否买单</span><span class="en">Caps the quality of AI products and whether enterprises buy</span></td><td><span class="zh">Flash系列性价比领先、多模态强；前沿Pro旗舰延期，代理编码落后</span><span class="en">Flash leads on price-performance and multimodality; the frontier Pro is delayed and agentic coding lags</span></td><td><span class="pill p-r"><span class="zh">浅，当前落后</span><span class="en">Shallow, behind now</span></span></td><td><span class="zh">领先地位每3–6个月轮换，开源模型压低价格，编码与代理成为企业支出集中地</span><span class="en">Leadership rotates every 3–6 months; open models push prices down; coding and agents concentrate enterprise spend</span></td></tr>
+      <tr><td><span class="zh">产品与分发</span><span class="en">Products and distribution</span></td><td><span class="zh">把模型变成零获客成本的使用量</span><span class="en">Turns models into usage at near-zero acquisition cost</span></td><td><span class="zh">搜索、Gmail、安卓、Chrome、YouTube各超30亿用户；苹果新Siri底层采用Gemini</span><span class="en">Search, Gmail, Android, Chrome and YouTube each exceed 3B users; Apple's new Siri is built on Gemini</span></td><td><span class="pill p-g"><span class="zh">最深，但承压</span><span class="en">Deepest, under pressure</span></span></td><td><span class="zh">默认入口不再排他且每年重签；AI助手成为新的"第一入口"</span><span class="en">Defaults become non-exclusive and re-signed yearly; AI assistants become the new front door</span></td></tr>
+      <tr><td><span class="zh">商业化</span><span class="en">Monetization</span></td><td><span class="zh">把使用量变成收入</span><span class="en">Turns usage into revenue</span></td><td><span class="zh">全球最大的效果广告系统、3.5亿订阅、云积压5,140亿美元</span><span class="en">The world's largest performance-ad system, 350M subscriptions, $514B Cloud backlog</span></td><td><span class="pill p-g"><span class="zh">深，份额在让出</span><span class="en">Deep, ceding share</span></span></td><td><span class="zh">亚马逊零售媒体、ChatGPT广告分走商业预算；美国搜索广告份额首次低于50%</span><span class="en">Amazon retail media and ChatGPT ads take commercial budgets; US search-ad share below 50% for the first time</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="zh">哪一层最重要？取决于你问的是哪种"重要"</span><span class="en">Which layer matters most? It depends which kind of "matters"</span></h3>
+  <ul class="tight">
+    <li><span class="zh"><strong>按今天赚的钱：</strong>分发与变现。搜索及其他TTM收入2,433亿美元，是整个AI投资的资金来源；只要商业查询留在谷歌，全栈就有燃料。</span><span class="en"><strong>By money earned today:</strong> distribution and monetization. Search &amp; other brought in $243.3B TTM, which funds the whole AI build; as long as commercial queries stay with Google, the stack has fuel.</span></li>
+    <li><span class="zh"><strong>按最难被复制：</strong>基础设施。十年、八代的TPU，加上从电力到网络的垂直整合，是对手用钱在两三年内很难补齐的；它决定了谷歌能以更低成本把AI免费铺给数十亿人。</span><span class="en"><strong>By hardest to copy:</strong> infrastructure. A decade and eight generations of TPUs, plus vertical integration from power to networking, cannot be bought in two or three years; it lets Google give AI away to billions at lower cost.</span></li>
+    <li><span class="zh"><strong>按未来两三年的胜负手：</strong>模型。模型好不好，决定AI Mode与Gemini App的用户会不会留下、企业会不会把代理和编码预算给谷歌云。这正是当前最弱的一环。</span><span class="en"><strong>By the swing factor for the next two to three years:</strong> models. Model quality decides whether AI Mode and Gemini app users stay and whether enterprises give agent and coding budgets to Google Cloud. That is the weakest link right now.</span></li>
+  </ul>
+  <div class="note risk">
+    <h5><span class="zh">一个关键的不对称</span><span class="en">A key asymmetry</span></h5>
+    <p><span class="zh">对广告业务来说，模型只要"足够好"，分发和变现系统就能赢；对云和高端订阅来说，模型必须"最好或接近最好"，因为企业和付费用户会直接比较。所以Gemini落后，对搜索广告的伤害小于对云AI解决方案与AI订阅的伤害。这也解释了为什么谷歌选择先把Flash做到极致：它服务的是十亿级免费用户的成本曲线。</span><span class="en">For advertising, a model only needs to be good enough for distribution and monetization to win; for Cloud and premium subscriptions it must be best or near-best, because enterprises and paying users compare directly. So Gemini's lag hurts search ads less than it hurts Cloud AI solutions and AI subscriptions. It also explains why Google pushed Flash first: it serves the cost curve of a billion free users.</span></p>
+  </div>
+</section>
+
+<!-- ============ INFRASTRUCTURE ============ -->
+<section class="sec" id="s-infra">
+  <h2><span class="no">03</span><span class="zh">基础设施：TPU、数据中心与能源</span><span class="en">Infrastructure: TPUs, data centers and power</span></h2>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">代际</span><span class="en">Generation</span></th><th><span class="zh">定位与关键参数</span><span class="en">Role and key specs</span></th><th><span class="zh">状态</span><span class="en">Status</span></th></tr></thead>
+    <tbody>
+      <tr><td>Ironwood (v7)</td><td><span class="zh">首款主打推理的TPU；单个超级节点9,216颗芯片，FP8峰值42.5 EFLOPS，共享约1.77PB HBM，满载约10兆瓦</span><span class="en">First inference-focused TPU; a 9,216-chip superpod with 42.5 FP8 exaflops and ~1.77 PB of shared HBM, ~10 MW at full load</span></td><td><span class="zh">在产，承载当前生产流量</span><span class="en">In production, serving current traffic</span></td></tr>
+      <tr><td>TPU 8t</td><td><span class="zh">训练芯片；超级节点9,600颗，FP4峰值121 EFLOPS（约为Ironwood的2.85倍），训练性价比约为Ironwood的2.7–2.8倍；博通设计</span><span class="en">Training chip; 9,600-chip superpod with 121 FP4 exaflops (~2.85x Ironwood) and ~2.7–2.8x Ironwood's training price-performance; designed by Broadcom</span></td><td><span class="zh">2026年4月发布，台积电2nm，报道称2027年面向外部客户</span><span class="en">Announced Apr 2026 on TSMC 2nm; reported availability to outside customers in 2027</span></td></tr>
+      <tr><td>TPU 8i</td><td><span class="zh">推理芯片；288GB HBM、384MB片上SRAM（为上一代3倍）、8.6TB/s带宽、FP4 10.1 PFLOPS，推理性价比比Ironwood高约80%，每瓦性能约2倍；联发科设计</span><span class="en">Inference chip; 288 GB HBM, 384 MB on-chip SRAM (3x), 8.6 TB/s, 10.1 FP4 petaflops, ~80% better inference price-performance than Ironwood and ~2x performance per watt; designed by MediaTek</span></td><td><span class="zh">同上</span><span class="en">Same as above</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cite"><a href="https://nand-research.com/google-cloud-8th-generation-tpu-family-splits-training-and-inference/" target="_blank" rel="noopener">NAND Research</a>; <a href="https://tech-insider.org/google-tpu-8t-8i-broadcom-mediatek-nvidia-2026/" target="_blank" rel="noopener">Tech Insider</a>; <a href="https://implicator.ai/nvidia-still-wins-per-chip-google-just-changed-what-counts" target="_blank" rel="noopener">Implicator (per-chip comparison)</a></p>
+  <p><span class="zh"><strong>TPU到底强在哪：</strong>不是单颗芯片。按英伟达自己的披露，Rubin单GPU的NVFP4推理算力约50 PFLOPS、HBM带宽22TB/s，而TPU 8t约12.6 PFLOPS、6.5TB/s——单芯片差距很大。TPU的优势在系统层面：更大规模的互联（近万芯片一个节点、光路交换）、与DeepMind的软硬件协同设计，以及不用向英伟达支付高毛利带来的总拥有成本优势。SemiAnalysis的推理测试也印证了这一点：在大部分原始性能曲线上TPU并不胜过英伟达GPU，但按每美元产出计算，TPU占优。</span><span class="en"><strong>Where TPUs actually win:</strong> not per chip. By Nvidia's own disclosures a single Rubin GPU delivers ~50 NVFP4 inference petaflops and 22 TB/s of HBM bandwidth, against ~12.6 petaflops and 6.5 TB/s for TPU 8t, a large per-chip gap. TPUs win at the system level: much larger interconnected pods with optical switching, hardware–software co-design with DeepMind, and a total-cost advantage from not paying Nvidia's margins. SemiAnalysis's inference tests say the same: across most of the raw-performance curve TPUs do not beat Nvidia GPUs, but per dollar they come out ahead.</span></p>
+  <div class="grid2">
+    <div class="fig" style="margin-top:0">
+      <p class="t"><span class="zh">第一方模型API处理量（十亿token/分钟）</span><span class="en">First-party model API volume (billion tokens per minute)</span></p>
+      <div class="chartbox short"><canvas id="ch-tokens"></canvas></div>
+      <p class="src"><span class="zh">来源：各季度电话会（Q4'25为"超过100亿"）</span><span class="en">Source: earnings calls (Q4'25 disclosed as "over 10B")</span></p>
+    </div>
+    <div class="fig" style="margin-top:0">
+      <p class="t"><span class="zh">2026年资本开支计划（$B）</span><span class="en">2026 capex plans ($B)</span></p>
+      <div class="chartbox short"><canvas id="ch-capex3"></canvas></div>
+      <p class="src"><span class="zh">Alphabet取指引中值；亚马逊为约2,200亿；微软为第三方对日历年的估计（公司口径约1,750–1,900亿）</span><span class="en">Alphabet at guidance midpoint; Amazon ~$220B; Microsoft is a third-party calendar-year estimate (~$175–190B)</span></p>
+    </div>
+  </div>
+  <h3><span class="zh">数据中心与能源：电力正在成为比芯片更慢的瓶颈</span><span class="en">Data centers and power: electricity is becoming a slower bottleneck than chips</span></h3>
+  <p><span class="zh">2025年12月22日，Alphabet宣布以47.5亿美元现金加承担债务收购数据中心与能源基础设施开发商Intersect，交易于2026年3月10日完成。收购的核心是与谷歌合作中、处于开发或建设阶段的多吉瓦级能源与数据中心项目，包括双方首个"发电厂与数据中心同址建设"的德州哈斯克尔县园区；Intersect在德州和加州已运营的资产不在交易范围内。能源咨询机构伍德麦肯兹评论称，这是大型科技公司首次收购一家主要的可再生能源开发商。Intersect仍独立运营，并将探索地热、长时储能与带碳捕集的燃气发电等新技术。</span><span class="en">On 22 December 2025 Alphabet agreed to buy Intersect, a data-center and energy-infrastructure developer, for $4.75B in cash plus assumed debt; the deal closed on 10 March 2026. At its core are multi-gigawatt energy and data-center projects in development or under construction with Google, including their first co-located power-plant-plus-data-center campus in Haskell County, Texas; Intersect's existing operating assets in Texas and California were excluded. Wood Mackenzie called it the first time a big tech firm has bought a major renewable developer. Intersect runs independently and will explore geothermal, long-duration storage and gas generation with carbon capture.</span></p>
+  <div class="note">
+    <h5><span class="zh">为什么"自己发电"有战略意义</span><span class="en">Why owning power generation is strategic</span></h5>
+    <p><span class="zh">AI数据中心的交付节奏越来越取决于并网与发电，而不是服务器。把发电与负载"同步建设"，可以绕开电网排队、锁定电价，也减少了对公用事业的依赖。代价是资本密集度进一步上升，并把能源项目的执行风险带进了资产负债表（未开始的租赁852亿美元、采购承诺中含照付不议的能源合同）。对你的存储研究而言，这意味着谷歌的服务器拉货节奏会越来越受电力上线时间约束。</span><span class="en">AI data-center delivery increasingly depends on grid connection and generation rather than servers. Building generation in lockstep with load bypasses grid queues, locks in power costs and reduces dependence on utilities. The cost is still higher capital intensity and energy-project execution risk on the balance sheet ($85.2B of uncommenced leases; take-or-pay energy contracts among purchase commitments). For your memory work, it means Google's server pull-ins will be paced more and more by when power comes online.</span></p>
+  </div>
+</section>
+
+<!-- ============ INTENT ============ -->
+<section class="sec" id="s-intent">
+  <h2><span class="no">04</span><span class="zh">搜索广告（上）：先分清查询类型</span><span class="en">Search ads I: first, separate the query types</span></h2>
+  <p><span class="zh">搜索引擎每天处理的查询，按"用户想干什么"可以分成几类。这个分类是理解"AI会不会杀死搜索广告"的钥匙：不同类型的查询，带广告的概率、每次点击的价格、被AI替代的难易程度完全不同。</span><span class="en">Search queries can be sorted by what the user is trying to do. This classification is the key to the "will AI kill search ads" question: query types differ completely in how often they carry ads, what a click is worth, and how easily AI can replace them.</span></p>
+  <div class="tscroll"><table class="intent">
+    <thead><tr><th><span class="zh">类型</span><span class="en">Type</span></th><th><span class="zh">用户想干什么</span><span class="en">What the user wants</span></th><th><span class="zh">例子</span><span class="en">Examples</span></th><th><span class="zh">广告价值</span><span class="en">Ad value</span></th><th><span class="zh">被AI替代的难度</span><span class="en">How easily AI replaces it</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">信息型</span><span class="en">Informational</span></td><td><span class="zh">弄懂一件事</span><span class="en">Understand something</span></td><td><span class="zh">"HBM为什么贵"、"美联储加息对债券的影响"、"光合作用原理"</span><span class="en">"Why is HBM expensive", "how do rate hikes affect bonds", "how photosynthesis works"</span></td><td><span class="pill p-r"><span class="zh">低：大多不出广告</span><span class="en">Low: mostly no ads</span></span></td><td><span class="zh">最容易。AI直接给答案，比十条链接更好用</span><span class="en">Easiest. A direct AI answer beats ten links</span></td></tr>
+      <tr><td><span class="zh">导航型</span><span class="en">Navigational</span></td><td><span class="zh">去某个网站或App</span><span class="en">Go to a site or app</span></td><td><span class="zh">"YouTube"、"美国银行登录"、"Nike官网"</span><span class="en">"YouTube", "Bank of America login", "Nike official site"</span></td><td><span class="pill p-a"><span class="zh">中：品牌词竞价</span><span class="en">Medium: brand bidding</span></span></td><td><span class="zh">较难。用户要的是"去那里"，不是答案；但浏览器地址栏和AI助手都可以直达</span><span class="en">Harder. Users want to get there, not an answer; though address bars and assistants can route directly</span></td></tr>
+      <tr><td><span class="zh">商业调研型</span><span class="en">Commercial investigation</span></td><td><span class="zh">比较、挑选，准备花钱</span><span class="en">Compare and choose before spending</span></td><td><span class="zh">"2026年最好的降噪耳机"、"Salesforce和HubSpot哪个好"、"泽西城牙医推荐"</span><span class="en">"Best noise-cancelling headphones 2026", "Salesforce vs HubSpot", "dentist in Jersey City"</span></td><td><span class="pill p-g"><span class="zh">高</span><span class="en">High</span></span></td><td><span class="zh">这是主战场：AI擅长比较和总结，ChatGPT的广告也集中在这里</span><span class="en">The main battleground: AI is good at comparing and summarizing, and ChatGPT's ads concentrate here</span></td></tr>
+      <tr><td><span class="zh">交易型</span><span class="en">Transactional</span></td><td><span class="zh">马上下单或预订</span><span class="en">Buy or book now</span></td><td><span class="zh">"买AirPods Pro 3"、"10月东京酒店"、"申请信用卡"</span><span class="en">"Buy AirPods Pro 3", "Tokyo hotel in October", "apply for a credit card"</span></td><td><span class="pill p-g"><span class="zh">最高</span><span class="en">Highest</span></span></td><td><span class="zh">难。需要库存、价格、支付、商家对接等"交易基础设施"，谷歌和亚马逊有，聊天机器人大多没有（OpenAI的即时结账上线半年后已撤回）</span><span class="en">Hard. It needs inventory, prices, payments and merchant integration; Google and Amazon have this, most chatbots do not (OpenAI unwound its Instant Checkout after six months)</span></td></tr>
+      <tr><td><span class="zh">本地型</span><span class="en">Local</span></td><td><span class="zh">找附近的店或服务</span><span class="en">Find a nearby place or service</span></td><td><span class="zh">"附近的川菜馆"、"泽西城水管工"</span><span class="en">"Sichuan food near me", "plumber in Jersey City"</span></td><td><span class="pill p-g"><span class="zh">高</span><span class="en">High</span></span></td><td><span class="zh">难。依赖地图、营业信息、评价和位置数据，谷歌地图积累极深</span><span class="en">Hard. It relies on maps, business listings, reviews and location data, where Google Maps is very deep</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="grid2">
+    <div class="fig" style="margin-top:0">
+      <p class="t"><span class="zh">查询量占比 vs 收入占比（示意）</span><span class="en">Share of queries vs share of revenue (illustrative)</span></p>
+      <div class="chartbox short"><canvas id="ch-intent"></canvas></div>
+      <p class="src"><span class="zh">查询量：SparkToro/Datos对3.32亿次美国谷歌搜索的分类；收入占比为本报告的示意性假设，公司未披露</span><span class="en">Queries: SparkToro/Datos classification of 332M US Google searches; revenue shares are our illustrative assumption, not disclosed</span></p>
+    </div>
+    <div>
+      <p><span class="zh"><strong>量不等于钱。</strong>SparkToro/Datos对美国谷歌搜索的分析显示，约52.7%是信息型、32.2%是导航型、14.5%是商业型、0.7%是交易型；Semrush基于关键词库的口径不同（信息型约53%、导航型21%、交易型16%、商业型8.5%），但结论一致：<strong>一半以上的查询几乎不产生广告收入，钱集中在少数带购买意图的查询上。</strong></span><span class="en"><strong>Volume is not money.</strong> SparkToro/Datos found US Google searches are ~52.7% informational, 32.2% navigational, 14.5% commercial and 0.7% transactional; Semrush's keyword-database split differs (~53% informational, 21% navigational, 16% transactional, 8.5% commercial), but the point is the same: <strong>over half of queries produce almost no ad revenue; the money sits in a minority of queries with purchase intent.</strong></span></p>
+      <p><span class="zh">这正是你担忧里容易混在一起的部分：你把95%的信息需求交给AI，这些大多是信息型问题，本来就是谷歌收入里最薄的一层；真正决定搜索收入的，是你下次买耳机、订酒店、找牙医时从哪里开始。</span><span class="en">This is where your worry tends to blur two things: the 95% of information needs you hand to AI are mostly informational, the thinnest layer of Google's revenue; what really decides Search revenue is where you start the next time you buy headphones, book a hotel or look for a dentist.</span></p>
+    </div>
+  </div>
+
+  <h3><span class="zh">AI聊天的用途，大部分并不是"替代搜索"</span><span class="en">Most AI-chat usage is not a substitute for search</span></h3>
+  <p><span class="zh">OpenAI与哈佛经济学家合作的NBER论文分析了150万条对话：最大的类别是"实用指导"（28.8%，如辅导、建议、创意），其次是"寻求信息"（约24%，比一年前的14%明显上升），写作排第三；按意图看，49%是"询问"、40%是"执行任务"（写作、规划、编程）、11%是"表达"。其中执行任务和大部分写作、指导需求，过去根本不会经过搜索引擎——这部分是AI创造的新需求，而不是从谷歌搬走的。真正与搜索重叠的是"寻求信息"，而其中与购物相关的只是一个子类。</span><span class="en">An NBER paper by OpenAI researchers and a Harvard economist analyzed 1.5M conversations: the largest category is practical guidance (28.8%: tutoring, advice, ideas), then seeking information (~24%, up from 14% a year earlier), with writing third; by intent, 49% is asking, 40% doing (writing, planning, programming) and 11% expressing. The doing and most writing and guidance needs never went through a search engine; that is new demand created by AI, not demand moved from Google. The real overlap with search is seeking information, and shopping is only one sub-category of it.</span></p>
+  <p class="cite"><a href="https://www.nber.org/papers/w34255" target="_blank" rel="noopener">NBER w34255</a>; <a href="https://openai.com/index/how-people-are-using-chatgpt/" target="_blank" rel="noopener">OpenAI</a>; <a href="https://searchengineland.com/15-percent-google-searches-148-terms-448864" target="_blank" rel="noopener">Search Engine Land (SparkToro)</a>; <a href="https://www.webtonic.io/blog/search-intent-types" target="_blank" rel="noopener">Semrush intent split</a></p>
+
+  <h3><span class="zh">把收入公式逐项放到AI时代</span><span class="en">The revenue formula, term by term, in the AI era</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">公式项</span><span class="en">Term</span></th><th><span class="zh">AI带来的变化</span><span class="en">What AI changes</span></th><th><span class="zh">目前的证据</span><span class="en">Evidence so far</span></th><th><span class="zh">方向</span><span class="en">Direction</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">查询量</span><span class="en">Queries</span></td><td><span class="zh">信息型查询部分流向AI助手；但AI Mode让查询更长、追问更多</span><span class="en">Some informational queries move to AI assistants, but AI Mode makes queries longer with more follow-ups</span></td><td><span class="zh">管理层称Q4'25使用量创新高、美国人均每日AI Mode查询翻倍；苹果高管曾作证Safari内谷歌搜索在2025年4月首次下降，谷歌随即声明来自苹果设备的查询总量仍在增长</span><span class="en">Management: record usage in Q4'25, US AI Mode queries per user doubled; an Apple executive testified that Safari searches fell for the first time in April 2025, and Google replied that total queries from Apple devices still grew</span></td><td><span class="pill p-a"><span class="zh">总量稳，结构变</span><span class="en">Stable total, shifting mix</span></span></td></tr>
+      <tr><td><span class="zh">广告覆盖率</span><span class="en">Ad coverage</span></td><td><span class="zh">新界面（AI Mode、AI Overviews）开始放广告</span><span class="en">New surfaces (AI Mode, AI Overviews) start carrying ads</span></td><td><span class="zh">SE Ranking（2026年6月30日采样）：AI Mode中29.45%的商业查询出现广告，高单价关键词超过一半；Semrush：同一结果页同时出现广告和AI Overview的频率约为一年前的2倍</span><span class="en">SE Ranking (sampled 30 Jun 2026): ads on 29.45% of commercial queries in AI Mode, over half for high-CPC terms; Semrush: ads and AI Overviews co-occur on the same page ~2x as often as a year ago</span></td><td><span class="pill p-g"><span class="zh">上升</span><span class="en">Rising</span></span></td></tr>
+      <tr><td><span class="zh">点击率</span><span class="en">Click-through</span></td><td><span class="zh">答案直接显示，点击变少，尤其是上层漏斗</span><span class="en">Answers appear on the page, so fewer clicks, especially top-of-funnel</span></td><td><span class="zh">皮尤：有AI摘要时用户点击普通结果的比例从15%降到8%；Seer对信息型查询的研究：有AI Overview的查询付费点击率从约18%降至6.34%（无AI Overview为13.04%）</span><span class="en">Pew: with an AI summary users click a regular result 8% of the time vs 15% without; Seer, on informational queries: paid CTR with an AI Overview fell from ~18% to 6.34% (13.04% without)</span></td><td><span class="pill p-r"><span class="zh">下降</span><span class="en">Falling</span></span></td></tr>
+      <tr><td><span class="zh">单次点击价格</span><span class="en">Cost per click</span></td><td><span class="zh">留下来的点击意图更强、转化更高，广告主愿意出更高价</span><span class="en">Remaining clicks carry stronger intent and convert better, so advertisers bid more</span></td><td><span class="zh">2024、2025年CPC均+7%；付费点击仍+5%/+6%</span><span class="en">CPC +7% in both 2024 and 2025; paid clicks still +5%/+6%</span></td><td><span class="pill p-g"><span class="zh">上升</span><span class="en">Rising</span></span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cite"><a href="https://www.pinmeto.com/news/google-ai-mode-ads-commercial-queries-2026/" target="_blank" rel="noopener">SE Ranking via PinMeTo</a>; <a href="https://www.semrush.com/blog/ai-overviews-commercial-search-study/" target="_blank" rel="noopener">Semrush</a>; <a href="https://www.seerinteractive.com/insights/aio-impact-on-google-ctr-september-2025-update" target="_blank" rel="noopener">Seer Interactive</a>; <a href="https://www.sistrix.com/?p=174390" target="_blank" rel="noopener">Pew via SISTRIX</a>; <a href="https://9to5mac.com/2025/05/08/google-search-less-eddy-cue/" target="_blank" rel="noopener">9to5Mac (Cue testimony)</a></p>
+  <div class="note data">
+    <h5><span class="zh">关键结论：谷歌卖的是"决策时刻"，不是"点击"</span><span class="en">The key point: Google sells decision moments, not clicks</span></h5>
+    <p><span class="zh">上表四项里，点击率在降，另外三项在升或持平。只要"有购买意图的决策时刻"还发生在谷歌的界面上（无论是传统结果页、AI Overview还是AI Mode），广告主就会按转化价值竞价，点击变少可以被单价上升抵消。移动互联网时代有过类似的一幕：移动端单次点击价格曾连续多年同比下降，市场一度担心"移动会杀死谷歌"，最终靠点击量增长和广告格式变化消化了。这一次真正的风险，是决策时刻本身被搬走。</span><span class="en">Of the four terms, click-through is falling while the other three are rising or flat. As long as decision moments with purchase intent still happen on Google's surfaces (classic results, AI Overviews or AI Mode), advertisers bid on conversion value, and fewer clicks can be offset by higher prices. The mobile era had a similar episode: mobile CPCs fell year over year for years and markets feared mobile would kill Google, yet click growth and new ad formats absorbed it. The real risk this time is the decision moment itself moving elsewhere.</span></p>
+  </div>
+</section>
+
+<!-- ============ EVIDENCE ============ -->
+<section class="sec" id="s-evidence">
+  <h2><span class="no">05</span><span class="zh">搜索广告（下）：证据、反方与可持续性</span><span class="en">Search ads II: evidence, counter-evidence and durability</span></h2>
+  <h3><span class="zh">证据台账：两边都摆出来</span><span class="en">Evidence ledger: both sides on the table</span></h3>
+  <div class="debate">
+    <div class="bull"><h4><span class="zh">支持"扛得住"</span><span class="en">For "it holds"</span></h4><ul>
+      <li><span class="zh">搜索及其他收入增速从Q1'25的10%逐季升至Q1'26的19%，Q2'26为17%（632.7亿美元）；管理层称Q4'25各主要品类普遍走强，零售尤其突出。</span><span class="en">Search &amp; other growth rose from 10% in Q1'25 to 19% in Q1'26 and 17% in Q2'26 ($63.27B); management called out broad strength across verticals in Q4'25, with retail standing out.</span></li>
+      <li><span class="zh">2025年付费点击+6%、单次点击价格+7%，量价齐升。</span><span class="en">2025 paid clicks +6% and CPC +7%: both volume and price rising.</span></li>
+      <li><span class="zh">AI Mode月活超10亿，AI Overviews超25亿；AI Max已完全推出，覆盖超过50万广告主。</span><span class="en">AI Mode above 1B monthly users, AI Overviews above 2.5B; AI Max fully launched with 500,000+ advertisers.</span></li>
+      <li><span class="zh">AI Mode单次回答成本降至推出以来最低，意味着新界面不会拖垮利润率。</span><span class="en">AI Mode cost per response at its lowest since launch, so the new surface need not drag margins.</span></li>
+      <li><span class="zh">聊天机器人广告仍很小：eMarketer预计2026年AI聊天机器人广告收入不足10亿美元。</span><span class="en">Chatbot ads remain tiny: eMarketer expects under $1B of AI-chatbot ad revenue in 2026.</span></li>
+    </ul></div>
+    <div class="bear"><h4><span class="zh">支持"被侵蚀"</span><span class="en">For "it erodes"</span></h4><ul>
+      <li><span class="zh">eMarketer预计2026年谷歌在美国搜索广告支出中的份额为48.5%，20多年来首次低于一半，亚马逊拿走最大一块。</span><span class="en">eMarketer puts Google at 48.5% of US search ad spending in 2026, below half for the first time in 20+ years, with Amazon taking the largest bite.</span></li>
+      <li><span class="zh">ChatGPT从2026年初开始在免费与Go档位测试广告，6月美国桌面端26%的对话出现广告；据Axios报道，OpenAI预计2026年广告收入25亿美元、2030年目标1,000亿美元。</span><span class="en">ChatGPT began testing ads in its Free and Go tiers in early 2026; by June, 26% of US desktop chats showed ads; Axios reports OpenAI expects $2.5B of 2026 ad revenue and targets $100B by 2030.</span></li>
+      <li><span class="zh">AI Overviews正在进入商业查询：2025年11月至2026年4月，出现AI Overview的商业类结果页增加71%。</span><span class="en">AI Overviews are moving into commercial queries: commercial results pages showing one rose 71% between Nov 2025 and Apr 2026.</span></li>
+      <li><span class="zh">上层漏斗（信息型）付费点击率大幅下滑，意味着"种草"阶段的广告效率在变差。</span><span class="en">Top-of-funnel (informational) paid CTR has dropped sharply, so ads at the research stage are getting less efficient.</span></li>
+      <li><span class="zh">AI聊天网页流量中，ChatGPT约55%、Gemini约26%、Claude增长约5倍；用户的"第一入口"正在分散。</span><span class="en">In AI-chat web traffic ChatGPT holds ~55%, Gemini ~26%, and Claude grew ~5x; the user's front door is fragmenting.</span></li>
+    </ul></div>
+  </div>
+  <p class="cite"><a href="https://www.emarketer.com/content/us-search-advertising-forecast-2026" target="_blank" rel="noopener">eMarketer</a>; <a href="https://www.emarketer.com/content/faq-on-chatgpt-advertising--formats--costs--early-strategies-win" target="_blank" rel="noopener">eMarketer (ChatGPT ads)</a>; <a href="https://www.pymnts.com/?p=3986154" target="_blank" rel="noopener">PYMNTS (Axios figures)</a>; <a href="https://ppc.land/chatgpt-loses-web-share-to-gemini-and-claude-as-ad-penetration-hits-26/" target="_blank" rel="noopener">PPC Land (Similarweb)</a>; <a href="https://somethinginc.com/blog/ai-overviews-commercial-search-growth/" target="_blank" rel="noopener">Semrush via Something Inc.</a></p>
+
+  <div class="grid2">
+    <div class="fig" style="margin-top:0">
+      <p class="t"><span class="zh">AI摘要对点击的影响</span><span class="en">What AI summaries do to clicks</span></p>
+      <div class="chartbox short"><canvas id="ch-ctr"></canvas></div>
+      <p class="src"><span class="zh">皮尤（约900名美国用户、约6.8万次搜索）；Seer（2025年9月，信息型查询）</span><span class="en">Pew (~900 US users, ~68k searches); Seer (Sep 2025, informational queries)</span></p>
+    </div>
+    <div class="fig" style="margin-top:0">
+      <p class="t"><span class="zh">AI聊天机器人网页流量份额（Similarweb）</span><span class="en">AI-chatbot web traffic share (Similarweb)</span></p>
+      <div class="chartbox short"><canvas id="ch-aishare"></canvas></div>
+      <p class="src"><span class="zh">仅统计网页访问，不含App与内嵌入口；Claude 2026年8月数据未公布</span><span class="en">Web visits only, excluding apps and embedded surfaces; Claude's Aug 2026 figure not published</span></p>
+    </div>
+  </div>
+
+  <h3><span class="zh">真正的威胁：代理式购物</span><span class="en">The real threat: agentic shopping</span></h3>
+  <p><span class="zh">如果AI代理替你完成"比价—挑选—下单"，搜索结果页和广告位就可能被绕过，广告预算会跟着转化发生的地方走。谷歌的应对是把交易也搬进自己的AI界面：2026年1月发布"通用商业协议"（UCP），与Shopify、Etsy、Wayfair、Target、沃尔玛共同开发，获得Visa、万事达、PayPal、Stripe等20多家支持；用户可在AI Mode与Gemini App中直接用Google Pay结账，商家仍是交易主体。同时推出品牌"商务代理"和面向即将下单用户的Direct Offers广告试点。对比之下，OpenAI在2025年9月推出的即时结账，已在2026年3月退回为"只做发现、结账交还给商家"。</span><span class="en">If AI agents handle compare-choose-buy for you, the results page and its ad slots can be bypassed, and ad budgets follow wherever conversion happens. Google's response is to pull transactions into its own AI surfaces: in January 2026 it launched the Universal Commerce Protocol (UCP), co-developed with Shopify, Etsy, Wayfair, Target and Walmart and endorsed by 20+ firms including Visa, Mastercard, PayPal and Stripe; users can check out with Google Pay inside AI Mode and the Gemini app, with merchants remaining the seller of record. It also added branded Business Agents and a Direct Offers ad pilot for shoppers ready to buy. By contrast, OpenAI's Instant Checkout, launched in September 2025, was pared back in March 2026 to discovery only, with checkout handed back to merchants.</span></p>
+  <p class="cite"><a href="https://www.techcrunch.com/2026/01/11/google-announces-a-new-protocol-to-facilitate-commerce-using-ai-agents/" target="_blank" rel="noopener">TechCrunch (UCP)</a>; <a href="https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live" target="_blank" rel="noopener">Google (GML 2026)</a>; <a href="https://www.pymnts.com/?p=3986154" target="_blank" rel="noopener">PYMNTS</a></p>
+
+  <h3><span class="zh">十个角度，帮你自己下判断</span><span class="en">Ten angles to make your own call</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">角度</span><span class="en">Angle</span></th><th><span class="zh">乐观的读法</span><span class="en">Optimistic reading</span></th><th><span class="zh">悲观的读法</span><span class="en">Pessimistic reading</span></th><th><span class="zh">盯什么</span><span class="en">What to watch</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">1. 查询结构</span><span class="en">1. Query mix</span></td><td><span class="zh">流失的是低价值信息型查询</span><span class="en">What leaves is low-value informational</span></td><td><span class="zh">AI开始覆盖商业调研</span><span class="en">AI starts covering commercial research</span></td><td><span class="zh">付费点击增速</span><span class="en">Paid-click growth</span></td></tr>
+      <tr><td><span class="zh">2. 广告主投资回报</span><span class="en">2. Advertiser ROI</span></td><td><span class="zh">谷歌的转化衡量最成熟，预算跟着效果走</span><span class="en">Google's conversion measurement is the most mature; budgets follow results</span></td><td><span class="zh">亚马逊有购买闭环数据，AI平台转化率更高</span><span class="en">Amazon has closed-loop purchase data; AI referrals convert better</span></td><td><span class="zh">eMarketer搜索广告份额</span><span class="en">eMarketer search-ad share</span></td></tr>
+      <tr><td><span class="zh">3. 竞价机制</span><span class="en">3. Auction dynamics</span></td><td><span class="zh">点击更少但意图更强，单价上升</span><span class="en">Fewer but higher-intent clicks lift prices</span></td><td><span class="zh">广告主效率下降后削减上层漏斗预算</span><span class="en">Lower efficiency leads advertisers to cut top-funnel budgets</span></td><td><span class="zh">年报CPC变化</span><span class="en">10-K CPC change</span></td></tr>
+      <tr><td><span class="zh">4. 新界面变现</span><span class="en">4. New-surface monetization</span></td><td><span class="zh">AI Mode广告已覆盖约三成商业查询</span><span class="en">AI Mode ads already on ~30% of commercial queries</span></td><td><span class="zh">对话式广告的单价和点击率尚未验证</span><span class="en">Conversational ad pricing and CTR unproven</span></td><td><span class="zh">管理层对AI Mode变现的量化披露</span><span class="en">Quantified disclosure on AI Mode monetization</span></td></tr>
+      <tr><td><span class="zh">5. 服务成本</span><span class="en">5. Cost to serve</span></td><td><span class="zh">TPU让AI答案的边际成本持续下降</span><span class="en">TPUs keep lowering the marginal cost of AI answers</span></td><td><span class="zh">折旧浪潮压低服务分部利润率</span><span class="en">The depreciation wave compresses Services margins</span></td><td><span class="zh">服务分部利润率</span><span class="en">Services operating margin</span></td></tr>
+      <tr><td><span class="zh">6. 分发入口</span><span class="en">6. Distribution</span></td><td><span class="zh">安卓、Chrome与新Siri底层都是谷歌</span><span class="en">Android, Chrome and the new Siri all run on Google</span></td><td><span class="zh">默认协议非排他、每年重签；苹果可以在Safari引入AI搜索</span><span class="en">Default deals non-exclusive and annual; Apple can add AI search to Safari</span></td><td><span class="zh">TAC率、苹果合作条款</span><span class="en">TAC rate, Apple terms</span></td></tr>
+      <tr><td><span class="zh">7. 竞争对手变现能力</span><span class="en">7. Rival monetization</span></td><td><span class="zh">ChatGPT广告2026年仅约25亿美元目标</span><span class="en">ChatGPT targets only ~$2.5B of 2026 ad revenue</span></td><td><span class="zh">OpenAI目标2030年1,000亿美元，且83%的触发查询不是传统关键词</span><span class="en">OpenAI targets $100B by 2030, and 83% of triggering prompts are not classic keywords</span></td><td><span class="zh">OpenAI广告收入与广告主数</span><span class="en">OpenAI ad revenue and advertiser count</span></td></tr>
+      <tr><td><span class="zh">8. 交易基础设施</span><span class="en">8. Transaction infrastructure</span></td><td><span class="zh">UCP、Google Pay、购物图谱、地图</span><span class="en">UCP, Google Pay, Shopping Graph, Maps</span></td><td><span class="zh">亚马逊Rufus与零售媒体闭环</span><span class="en">Amazon Rufus and closed-loop retail media</span></td><td><span class="zh">AI Mode内结账的商家数与GMV</span><span class="en">Merchants and GMV for AI Mode checkout</span></td></tr>
+      <tr><td><span class="zh">9. 监管</span><span class="en">9. Regulation</span></td><td><span class="zh">搜索案未拆分Chrome</span><span class="en">No Chrome divestiture in the search case</span></td><td><span class="zh">上诉可能加码为支付禁令；数据共享帮助对手</span><span class="en">Appeals could add a payment ban; data sharing helps rivals</span></td><td><span class="zh">D.C.巡回法院判决（约2027年）</span><span class="en">D.C. Circuit ruling (~2027)</span></td></tr>
+      <tr><td><span class="zh">10. 时间尺度</span><span class="en">10. Time horizon</span></td><td><span class="zh">两三年内看不到断崖</span><span class="en">No cliff visible within two to three years</span></td><td><span class="zh">十年维度上入口迁移的概率不低</span><span class="en">Over ten years, a front-door shift is quite possible</span></td><td><span class="zh">年轻用户群的使用习惯</span><span class="en">Habits of younger cohorts</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">
+    <h5><span class="zh">回到你的问题：查询量和点击率会不会断崖式下降？</span><span class="en">Back to your question: will queries and CTR fall off a cliff?</span></h5>
+    <p><span class="zh">点击率：信息型查询的点击率已经在"断崖式"下降，这一点无需争论；但它对收入的影响有限，因为这类查询本来很少有广告。查询量：到目前为止，总量没有下降的证据，AI Mode反而增加了查询深度。商业查询：这是唯一重要的变量，目前数据仍显示它留在谷歌（付费点击仍在增长）。所以你的担忧不是错的，而是需要换一个更精确的问法：<strong>"有购买意图的决策时刻，会不会从谷歌转移到别的AI代理或亚马逊？"</strong>这个问题的答案在未来两三年大概率是"缓慢、部分地转移"，谷歌通过AI Mode和UCP试图把转移留在自己体内；十年维度上不确定性很高。第6节的模型可以让你量化这个判断。</span><span class="en">CTR: informational CTR is already falling off a cliff, no argument there, but its revenue impact is limited because those queries rarely carried ads. Query volume: so far no evidence of a decline in total, and AI Mode deepens queries. Commercial queries: the only variable that really matters, and the data still show them staying with Google (paid clicks still growing). So your worry is not wrong; it needs a sharper question: <strong>will decision moments with purchase intent move from Google to other AI agents or Amazon?</strong> Over the next two to three years the likely answer is "slowly and partially", with Google using AI Mode and UCP to keep that shift inside its own surfaces; over ten years the uncertainty is high. The model in Section 6 lets you put numbers on your view.</span></p>
+  </div>
+</section>
+
+<!-- ============ STRESS-TEST MODEL ============ -->
+<section class="sec" id="s-model">
+  <h2><span class="no">06</span><span class="zh">交互模型：搜索收入压力测试（2025→2030）</span><span class="en">Interactive model: Search revenue stress test (2025→2030)</span></h2>
+  <p><span class="zh">以2025年"搜索及其他"收入2,245亿美元为基数，按查询类型拆成四块。每一块有三个变量：该类需求本身的年增长（含广告单价的自然上涨）、到2030年被第三方AI或其他平台分流的比例、留在谷歌的查询单位变现的累计变化（反映AI Mode广告、点击率与单价的综合效果）。另加一项"AI新增收入"，代表AI Mode与Gemini内的新广告格式和交易佣金。四块的收入占比是本报告的示意性假设，你可以按自己的判断修改。</span><span class="en">Start from 2025 Search &amp; other revenue of $224.5B and split it into four query buckets. Each has three inputs: annual growth of the underlying demand (including natural CPC inflation), the share diverted to third-party AI or other platforms by 2030, and the cumulative change in monetization per query that stays on Google (net of AI Mode ads, CTR and pricing). A separate line adds new AI revenue from ad formats and transaction fees inside AI Mode and Gemini. The bucket revenue shares are our illustrative assumptions; change them to match your view.</span></p>
+  <div class="model" id="st-model">
+    <div class="bar" id="stbar">
+      <button data-p="pess"><span class="zh">悲观</span><span class="en">Pessimistic</span></button>
+      <button data-p="base" class="on"><span class="zh">基准</span><span class="en">Base</span></button>
+      <button data-p="opt"><span class="zh">乐观</span><span class="en">Optimistic</span></button>
+      <button data-p="reset"><span class="zh">重置</span><span class="en">Reset</span></button>
+      <span class="small" id="stnote"></span>
+    </div>
+    <div class="ctrls" id="stctrls"></div>
+    <div class="outs" id="stouts"></div>
+    <div class="grid2">
+      <div class="fig" style="margin:0"><p class="t"><span class="zh">搜索收入路径（$B，按查询类型堆叠）</span><span class="en">Search revenue path ($B, stacked by query type)</span></p><div class="chartbox"><canvas id="ch-st"></canvas></div></div>
+      <div class="tscroll" style="margin:0"><table id="sttbl"></table></div>
+    </div>
+    <p class="small"><span class="zh">计算方法：每一块2030年收入 = 2025年收入 ×（1+需求增速）<sup>5</sup> ×（1−分流比例）×（1+单位变现变化）；分流与变现变化按年线性推进。"盈亏平衡分流率"指在其他假设不变时，商业与交易型查询被分流多少，会让2030年搜索收入回到2025年水平。</span><span class="en">Method: each bucket's 2030 revenue = 2025 revenue × (1+demand growth)<sup>5</sup> × (1−diversion) × (1+monetization change), with diversion and monetization phased in linearly. The break-even diversion is the share of commercial and transactional queries that, all else equal, would bring 2030 Search revenue back to the 2025 level.</span></p>
+  </div>
+</section>
+
+<!-- ============ GEMINI ============ -->
+<section class="sec" id="s-gemini">
+  <h2><span class="no">07</span><span class="zh">Gemini：为什么落后，能不能追上</span><span class="en">Gemini: why it fell behind, and whether it can catch up</span></h2>
+  <h3><span class="zh">现在的位置：前沿推理与编码落后，大众使用量不落后</span><span class="en">Where it stands: behind at the frontier and in coding, not in mass usage</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">实验室</span><span class="en">Lab</span></th><th><span class="zh">最新旗舰（发布时间）</span><span class="en">Latest flagship (release)</span></th><th class="n">Terminal-Bench 4.0</th><th class="n">DeepSWE v1.1</th><th class="n">SimpleQA Verified</th></tr></thead>
+    <tbody>
+      <tr><td>OpenAI</td><td>GPT-6 Astra<span class="zh">（2026年9月3–4日）</span><span class="en"> (3–4 Sep 2026)</span></td><td class="n">57.9%</td><td class="n">74.1%</td><td class="n">75.6%</td></tr>
+      <tr><td>Anthropic</td><td>Claude Fable 5.1<span class="zh">（2026年9月1日）</span><span class="en"> (1 Sep 2026)</span></td><td class="n">55.8%</td><td class="n">67.4%</td><td class="n">70.8%</td></tr>
+      <tr><td>Google</td><td>Gemini 3.8 Flash<span class="zh">（2026年9月2日）；Pro级仍为3.1 Pro（2月19日）</span><span class="en"> (2 Sep 2026); Pro tier still 3.1 Pro (19 Feb)</span></td><td class="n">19.1%</td><td class="n">—</td><td class="n">69.4–69.7%</td></tr>
+      <tr><td>xAI</td><td>Grok 4.7<span class="zh">（2026年9月21日）</span><span class="en"> (21 Sep 2026)</span></td><td class="n">—</td><td class="n"><span class="zh">71%（厂商自报）</span><span class="en">71% (vendor)</span></td><td class="n">—</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small"><span class="zh">来源：第三方汇总（Tech Insider，2026年9月），多数为厂商自报或第三方复测，不同榜单口径不一致；比较的是谷歌的Flash级模型与对手的旗舰，天然不利于谷歌。综合类指数（如Artificial Analysis）显示谷歌最好的可用模型落后领先者数分，差距在代理式编码上最大。</span><span class="en">Source: third-party compilation (Tech Insider, Sep 2026), mostly vendor-reported or re-tested, with inconsistent methods across trackers; it compares Google's Flash-class model with rivals' flagships, which is inherently unfavorable to Google. Composite indices (such as Artificial Analysis) put Google's best available model a few points behind the leaders, with the widest gap in agentic coding.</span></p>
+  <div class="grid2">
+    <div>
+      <p><span class="zh"><strong>你的观察哪里对：</strong>在代理式编码、长链条任务和最难的推理题上，谷歌确实落后一截，而且落后的时间点恰好是OpenAI与Anthropic集中发布新模型的几个月（GPT-5.4、5.5、5.6、GPT-6；Claude Opus 4.7、4.8、Opus 5、Fable 5.1）。对重度用户、开发者和企业编码场景来说，这种差距是能直接感受到的。</span><span class="en"><strong>Where your observation is right:</strong> on agentic coding, long multi-step tasks and the hardest reasoning, Google is clearly behind, and the lag coincides with months of rapid releases from OpenAI and Anthropic (GPT-5.4, 5.5, 5.6, GPT-6; Claude Opus 4.7, 4.8, Opus 5, Fable 5.1). Heavy users, developers and enterprise coding teams feel that gap directly.</span></p>
+      <p><span class="zh"><strong>哪里与数据不符：</strong>Similarweb的AI聊天网页流量中，Gemini份额从2025年6月的8.9%升至2026年5月的27.3%，8月回落到25.6%；Sensor Tower测算2026年5月Gemini使用份额27.7%、月活6.62亿（ChatGPT 11亿、Claude 2.45亿）。Gemini在大众市场的增长主要来自分发，而不是前沿能力。</span><span class="en"><strong>Where it doesn't match the data:</strong> in Similarweb's AI-chat web traffic, Gemini rose from 8.9% in June 2025 to 27.3% in May 2026 and eased to 25.6% in August; Sensor Tower put Gemini at a 27.7% usage share and 662M monthly users in May 2026 (ChatGPT 1.1B, Claude 245M). Gemini's mass-market growth comes mostly from distribution, not frontier capability.</span></p>
+    </div>
+    <div class="fig" style="margin-top:0">
+      <p class="t"><span class="zh">企业大模型API支出份额（Menlo，2025年12月）</span><span class="en">Enterprise LLM API spend share (Menlo, Dec 2025)</span></p>
+      <div class="chartbox short"><canvas id="ch-ent"></canvas></div>
+      <p class="src"><span class="zh">Menlo Ventures为Anthropic投资方；编码场景中Anthropic约54%、OpenAI约21%</span><span class="en">Menlo Ventures is an Anthropic investor; in coding, Anthropic ~54%, OpenAI ~21%</span></p>
+    </div>
+  </div>
+  <p class="cite"><a href="https://tech-insider.org/chatgpt-vs-claude-vs-gemini-vs-grok-reasoning-2026/" target="_blank" rel="noopener">Tech Insider</a>; <a href="https://ppc.land/chatgpt-drops-to-52-7-as-claude-triples-its-ai-traffic-share/" target="_blank" rel="noopener">PPC Land (Similarweb)</a>; <a href="https://xenospectrum.com/en/chatgpt-gemini-traffic-share/" target="_blank" rel="noopener">XenoSpectrum (Similarweb, Aug)</a>; <a href="https://somethinginc.com/blog/chatgpt-market-share-three-trackers-disagree/" target="_blank" rel="noopener">Sensor Tower via Something Inc.</a>; <a href="https://techcrunch.com/2026/01/22/openai-is-coming-for-those-sweet-enterprise-dollars-in-2026" target="_blank" rel="noopener">TechCrunch (Menlo)</a></p>
+
+  <h3><span class="zh">时间线：承诺、延期与重组</span><span class="en">Timeline: promises, slips and a reset</span></h3>
+  <ul class="timeline">
+    <li><span class="d">2023-12 → 2025-03</span> <span class="zh">Gemini 1.0、1.5（百万级上下文）、2.0、2.5 Pro依次发布，谷歌从ChatGPT冲击中恢复。</span><span class="en">Gemini 1.0, 1.5 (million-token context), 2.0 and 2.5 Pro ship in turn as Google recovers from the ChatGPT shock.</span></li>
+    <li><span class="d">2025-11</span> <span class="zh">Gemini 3发布并一度登顶多项榜单，OpenAI内部发出"红色警报"并提前推出GPT-5.2。</span><span class="en">Gemini 3 launches and tops several leaderboards; OpenAI issues an internal "code red" and pulls GPT-5.2 forward.</span></li>
+    <li><span class="d">2026-02</span> <span class="zh">Gemini 3 Deep Think（2月12日）与3.1 Pro（2月19日）；3.1 Pro至今仍是谷歌公开可用的Pro级旗舰。</span><span class="en">Gemini 3 Deep Think (12 Feb) and 3.1 Pro (19 Feb); 3.1 Pro remains Google's publicly available Pro flagship.</span></li>
+    <li><span class="d">2026-05-19</span> <span class="zh">I/O大会：发布3.5系列，3.5 Flash当天上线并成为Gemini App与AI Mode默认模型，Pichai承诺3.5 Pro"下个月"推出（官方确认200万上下文与Deep Think模式）。</span><span class="en">I/O: the 3.5 series is announced; 3.5 Flash ships the same day as the default in the Gemini app and AI Mode, and Pichai promises 3.5 Pro "next month" (2M context and Deep Think confirmed).</span></li>
+    <li class="miss"><span class="d">2026-06 → 07-16</span> <span class="zh">6月目标落空。彭博援引10位现任与前任员工称，3.5 Pro比计划晚数月，编码表现未达内部目标，6月下旬更新训练数据后结果仍不理想；Alphabet当日股价下跌约3%–4%。</span><span class="en">The June target is missed. Bloomberg, citing ten current and former employees, reports 3.5 Pro months behind, with coding below internal goals even after a late-June training-data update; Alphabet falls ~3–4% that day.</span></li>
+    <li><span class="d">2026-07-21</span> <span class="zh">改为发布Gemini 3.6 Flash、3.5 Flash-Lite与3.5 Flash Cyber，均主打性价比；3.5 Pro仍在与合作伙伴测试。</span><span class="en">Instead, Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber ship, all pitched on cost efficiency; 3.5 Pro is still being tested with partners.</span></li>
+    <li class="miss"><span class="d">2026-08-05</span> <span class="zh">DeepMind领导层重组：Hassabis改任董事长兼Alphabet首席科学家，Koray Kavukcuoglu任高级副总裁统管Gemini模型、前沿研究与Gemini App及开发者团队；Jeff Dean离职创业；AI Studio与Gemini API团队合并，伦敦的编码团队迁往山景城（据报道）。</span><span class="en">DeepMind leadership reset: Hassabis becomes chair and Alphabet chief scientist; Koray Kavukcuoglu, as SVP, takes Gemini models, frontier research and the Gemini app and developer teams; Jeff Dean leaves to found a startup; AI Studio and Gemini API teams merge and London coding teams move to Mountain View (as reported).</span></li>
+    <li><span class="d">2026-08 → 09-02</span> <span class="zh">3.5 Pro仍处于Vertex AI有限企业预览；Gemini 4已开始预训练；9月2日发布Gemini 3.8 Flash。</span><span class="en">3.5 Pro remains in limited Vertex AI enterprise preview; Gemini 4 pre-training has begun; Gemini 3.8 Flash ships on 2 September.</span></li>
+    <li class="plan"><span class="d"><span class="zh">待定</span><span class="en">Pending</span></span> <span class="zh">3.5 Pro正式发布（无公开日期）；Gemini 4（无公开日期，按过往代际间隔推测可能在2027年，属推测）；基于Gemini的苹果新Siri随iOS 27全面推出。</span><span class="en">3.5 Pro general availability (no public date); Gemini 4 (no public date; 2027 is plausible from past cadence, but that is speculation); Apple's Gemini-based Siri rolling out fully with iOS 27.</span></li>
+  </ul>
+  <p class="cite"><a href="https://theplanettools.ai/blog/gemini-3-5-pro-delayed-coding-google-behind-2026" target="_blank" rel="noopener">The Planet Tools (Bloomberg summary)</a>; <a href="https://www.businesstoday.in/technology/news/story/googles-gemini-3-5-pro-delayed-performance-falls-short-of-expectations-543524-2026-07-17" target="_blank" rel="noopener">Business Today</a>; <a href="https://www.techmarketview.com/ukhotviews/archive/2026/07/23/google-cloud-posts-fastest-growth-yet-driven-by-enterprise-ai-demand" target="_blank" rel="noopener">TechMarketView</a>; <a href="https://www.axios.com/2026/08/06/googles-ai-leadership-shuffle" target="_blank" rel="noopener">Axios</a>; <a href="https://time.com/article/2026/08/06/google-deepmind-ai-demis-hassabis/" target="_blank" rel="noopener">TIME</a>; <a href="https://en.wikipedia.org/wiki/Google_Gemini" target="_blank" rel="noopener">Wikipedia (release list)</a></p>
+
+  <h3><span class="zh">为什么落后：五个有证据的原因</span><span class="en">Why it fell behind: five evidence-based reasons</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">原因</span><span class="en">Cause</span></th><th><span class="zh">证据</span><span class="en">Evidence</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">1. 战略上没有及早押注编码</span><span class="en">1. No early bet on coding</span></td><td><span class="zh">《财富》援引工程师称，问题源于2025年夏天起没有优先投入编码能力——恰是代理式编码成为主战场的时候；DeepMind员工内部指出谷歌缺少一个可信的商业编码产品。</span><span class="en">Fortune cites engineers blaming a failure to prioritize coding from summer 2025, just as agentic coding became the battleground; DeepMind staff flagged internally that Google lacked a credible commercial coding product.</span></td></tr>
+      <tr><td><span class="zh">2. 组织分散</span><span class="en">2. A fragmented organization</span></td><td><span class="zh">谷歌云、DeepMind和安卓部门各自在做AI编程工具；DeepMind与Brain合并后形成伦敦与硅谷"两个重心"，直到8月才把模型、App和开发者团队收归一人。</span><span class="en">Google Cloud, DeepMind and Android were each building AI coding tools; after the DeepMind–Brain merger the unit had two centers of gravity (London and Silicon Valley) until August put models, app and developer teams under one executive.</span></td></tr>
+      <tr><td><span class="zh">3. 人才流失</span><span class="en">3. Talent losses</span></td><td><span class="zh">Transformer共同作者Noam Shazeer此前已离开；Jeff Dean与另外三名资深同事离职创业；Gemini最初的技术联合负责人离开创业（据报道）。</span><span class="en">Transformer co-author Noam Shazeer had already left; Jeff Dean left with three senior colleagues to found a startup; Gemini's original technical co-leads left to start a company (as reported).</span></td></tr>
+      <tr><td><span class="zh">4. 优先服务"十亿级用户的成本曲线"</span><span class="en">4. Serving the cost curve of a billion users first</span></td><td><span class="zh">谷歌主推"主力型"Flash模型（搜索与App默认），管理层称Flash需求最大；同时算力紧张，《金融时报》报道谷歌3月告知Meta无法满足其全部Gemini容量需求。前沿大模型与大规模服务在争抢同一批算力。</span><span class="en">Google leans on its workhorse Flash models (the default in Search and the app), which management says see the most demand; compute is tight, and the FT reported Google told Meta in March it could not meet all of its Gemini capacity needs. Frontier training and mass serving compete for the same fleet.</span></td></tr>
+      <tr><td><span class="zh">5. 发布节奏</span><span class="en">5. Release cadence</span></td><td><span class="zh">从3.1 Pro（2月）到9月，谷歌没有新的Pro级旗舰；同期OpenAI与Anthropic各自发布了多代模型。</span><span class="en">From 3.1 Pro in February to September, Google shipped no new Pro-class flagship, while OpenAI and Anthropic each released several generations.</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="zh">能不能追上：资源与短板对照</span><span class="en">Can it catch up: resources versus gaps</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">维度</span><span class="en">Dimension</span></th><th><span class="zh">谷歌</span><span class="en">Google</span></th><th><span class="zh">对追赶的意义</span><span class="en">What it means for catching up</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">算力与成本</span><span class="en">Compute and cost</span></td><td><span class="pill p-g"><span class="zh">最强</span><span class="en">Strongest</span></span></td><td><span class="zh">自有TPU与约2,000亿美元年度资本开支，TPU 8t为下一代预训练准备；对手需要融资或租用算力</span><span class="en">Own TPUs and ~$200B a year of capex, with TPU 8t aimed at the next pre-training run; rivals must raise or rent compute</span></td></tr>
+      <tr><td><span class="zh">资金</span><span class="en">Capital</span></td><td><span class="pill p-g"><span class="zh">最强</span><span class="en">Strongest</span></span></td><td><span class="zh">能承受多次失败的训练；但股东耐心取决于云与广告能否持续增长</span><span class="en">Can absorb failed training runs; shareholder patience depends on Cloud and ads growing</span></td></tr>
+      <tr><td><span class="zh">数据与分发</span><span class="en">Data and distribution</span></td><td><span class="pill p-g"><span class="zh">最强</span><span class="en">Strongest</span></span></td><td><span class="zh">视频、地图、搜索与安卓数据有利于多模态和"世界模型"；十亿级用户提供评估反馈</span><span class="en">Video, maps, search and Android data favor multimodal and world models; a billion users provide evaluation feedback</span></td></tr>
+      <tr><td><span class="zh">人才与组织速度</span><span class="en">Talent and speed</span></td><td><span class="pill p-r"><span class="zh">变弱</span><span class="en">Weakening</span></span></td><td><span class="zh">8月重组方向正确（单一负责人、合并团队），但效果需要一到两个发布周期验证</span><span class="en">The August reset points the right way (one owner, merged teams), but needs one or two release cycles to prove itself</span></td></tr>
+      <tr><td><span class="zh">编码与代理生态</span><span class="en">Coding and agent ecosystem</span></td><td><span class="pill p-r"><span class="zh">弱</span><span class="en">Weak</span></span></td><td><span class="zh">Antigravity周活240万，远不及Claude Code与Codex的开发者基础；企业编码支出份额明显落后</span><span class="en">Antigravity has 2.4M weekly users, far behind the developer bases of Claude Code and Codex; enterprise coding share clearly trails</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">
+    <h5><span class="zh">我的判断</span><span class="en">My judgment</span></h5>
+    <p><span class="zh">追赶需要的"硬资源"谷歌最多，缺的是"软能力"：组织速度、编码方向的持续投入和核心人才。未来12个月的基准情形是"前三，但不稳定第一"：在多模态、性价比、长上下文和工具调用上保持领先或并列，在代理式编码上仍落后一段。要改变这个判断，需要看到3.5 Pro或Gemini 4在代理编码测试上进入第一梯队，并且开发者真的迁移过来（Antigravity用户数、企业编码份额）。同时要记住第2节提到的不对称：Gemini暂时落后，对搜索广告的伤害小于对云AI解决方案和高端订阅的伤害。</span><span class="en">Google has the most hard resources for catching up; what it lacks are soft ones: organizational speed, sustained focus on coding, and core talent. The base case for the next 12 months is "top three, not reliably first": leading or tied on multimodality, price-performance, long context and tool use, still behind on agentic coding. To change that view I would want to see 3.5 Pro or Gemini 4 reach the top tier on agentic coding benchmarks, and developers actually moving over (Antigravity users, enterprise coding share). And remember the asymmetry from Section 2: a lagging Gemini hurts search ads less than it hurts Cloud AI solutions and premium subscriptions.</span></p>
+  </div>
+</section>
+
+<!-- ============ CLOUD ============ -->
+<section class="sec" id="s-cloud">
+  <h2><span class="no">08</span><span class="zh">谷歌云：卖什么、卖给谁、靠什么赚钱</span><span class="en">Google Cloud: what it sells, to whom, and how it earns</span></h2>
+  <h3><span class="zh">四块业务（按10-Q的定义）</span><span class="en">Four businesses (as defined in the 10-Q)</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">业务</span><span class="en">Business</span></th><th><span class="zh">包含什么</span><span class="en">What it includes</span></th><th><span class="zh">收费方式</span><span class="en">How it charges</span></th><th><span class="zh">增长与利润特征</span><span class="en">Growth and profit profile</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">谷歌云平台（GCP）</span><span class="en">Google Cloud Platform</span></td><td><span class="zh">AI基础设施（TPU、GPU）、Vertex AI平台与Gemini Enterprise、网络安全（Mandiant、Wiz等）、数据与分析（BigQuery、Looker）、计算存储网络与数据库</span><span class="en">AI infrastructure (TPUs, GPUs), the Vertex AI platform and Gemini Enterprise, cybersecurity (Mandiant, Wiz and others), data and analytics (BigQuery, Looker), compute, storage, networking and databases</span></td><td><span class="zh">按用量计费＋订阅</span><span class="en">Consumption fees plus subscriptions</span></td><td><span class="zh">增长主引擎；管理层按贡献排序为企业AI解决方案、企业AI基础设施、核心GCP</span><span class="en">The main growth engine; management ranks enterprise AI solutions, enterprise AI infrastructure, then core GCP</span></td></tr>
+      <tr><td>Google Workspace</td><td><span class="zh">Gmail、Docs、Calendar、Drive、Meet等，集成Gemini</span><span class="en">Gmail, Docs, Calendar, Drive, Meet and more, with Gemini built in</span></td><td><span class="zh">按席位订阅</span><span class="en">Per-seat subscriptions</span></td><td><span class="zh">Q4'25两位数增长，主要靠每席位收入提升；通常是利润率最高的一块</span><span class="en">Double-digit growth in Q4'25, driven by revenue per seat; typically the highest-margin part</span></td></tr>
+      <tr><td><span class="zh">产品销售</span><span class="en">Product sales</span></td><td><span class="zh">主要是TPU系统（放进客户自己的数据中心）</span><span class="en">Mainly TPU systems (placed in customers' own data centers)</span></td><td><span class="zh">一次性硬件收入</span><span class="en">One-time hardware revenue</span></td><td><span class="zh">2026年Q2开始确认，主要在2027年；毛利率通常低于云服务</span><span class="en">Recognized from Q2 2026, mostly in 2027; typically lower margin than cloud services</span></td></tr>
+      <tr><td><span class="zh">其他企业服务</span><span class="en">Other enterprise services</span></td><td><span class="zh">咨询、支持等</span><span class="en">Consulting, support and more</span></td><td><span class="zh">服务费</span><span class="en">Service fees</span></td><td><span class="zh">占比较小</span><span class="en">Small</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cite"><a href="https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000071/goog-20260630.htm" target="_blank" rel="noopener">10-Q Q2 2026</a>; <a href="https://www.constellationr.com/insights/news/alphabet-plots-massive-capex-increase-2026" target="_blank" rel="noopener">Constellation Research (Q4'25 call)</a>; <a href="https://www.techmarketview.com/ukhotviews/archive/2026/07/23/google-cloud-posts-fastest-growth-yet-driven-by-enterprise-ai-demand" target="_blank" rel="noopener">TechMarketView (Q2'26 call)</a></p>
+  <p><span class="zh"><strong>谁贡献收入与利润：</strong>公司不披露各块收入。能确定的是：云分部Q2'26收入248亿美元、经营利润88亿美元（利润率35.6%）；企业AI产品在Q4'25已产生"每季度数十亿美元"收入；Gemini Enterprise在Q4'25已向2,800多家公司售出超过800万个付费席位，Q2'26付费月活环比再增40%；Q2新客户数量同比翻倍以上，老客户的实际使用超出承诺额度50%以上。我的推断（非公司披露）：利润最厚的是Workspace和成熟的GCP服务；AI基础设施收入最大但最吃资本，利润率取决于利用率；TPU硬件销售会拉低利润率；Q3引入第三方算力做过渡，管理层已提示会对云利润率造成一定压力。</span><span class="en"><strong>Who contributes revenue and profit:</strong> the company does not split it out. What is known: Cloud's Q2'26 revenue was $24.8B with $8.8B of operating income (35.6% margin); enterprise AI products were generating "billions in quarterly revenue" by Q4'25; Gemini Enterprise had sold 8M+ paid seats to 2,800+ companies by Q4'25, and paid monthly users grew another 40% sequentially in Q2'26; new customer acquisition more than doubled year over year in Q2, and existing customers ran more than 50% above their commitments. My inference (not company disclosure): the fattest margins are in Workspace and mature GCP services; AI infrastructure is the largest revenue pool but the most capital-hungry, with margins set by utilization; TPU hardware sales will dilute margins; and the third-party capacity bridge from Q3 will, as management flagged, pressure Cloud margins somewhat.</span></p>
+
+  <h3><span class="zh">主要客户</span><span class="en">Key customers</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">客户</span><span class="en">Customer</span></th><th><span class="zh">关系</span><span class="en">Relationship</span></th><th><span class="zh">要点</span><span class="en">Notes</span></th></tr></thead>
+    <tbody>
+      <tr><td>Anthropic</td><td><span class="zh">最大AI客户；同时是Alphabet的被投资方</span><span class="en">Largest AI customer; also an Alphabet investee</span></td><td><span class="zh">2025年10月签下最多100万颗TPU；2026年4月再签多吉瓦下一代TPU，2027年起上线；据报道5年承诺约2,000亿美元（未经证实）。Anthropic同时在AWS使用最多5吉瓦的Trainium</span><span class="en">Up to 1M TPUs signed in Oct 2025; multiple gigawatts of next-gen TPUs signed in Apr 2026, online from 2027; reportedly ~$200B over five years (unverified). Anthropic also uses up to 5 GW of Trainium at AWS</span></td></tr>
+      <tr><td>Meta</td><td><span class="zh">六年期、超过100亿美元的云合同（2025年8月）；据报道另有TPU协议</span><span class="en">Six-year, $10B+ cloud contract (Aug 2025); a TPU deal was also reported</span></td><td><span class="zh">据《金融时报》，谷歌3月因产能不足未能满足Meta的全部Gemini容量需求</span><span class="en">Per the FT, Google could not meet all of Meta's Gemini capacity needs in March</span></td></tr>
+      <tr><td>Apple</td><td><span class="zh">谷歌云是苹果AI开发的"首选云"；新一代Apple基础模型基于Gemini</span><span class="en">Google Cloud is Apple's preferred cloud for AI development; the next Apple Foundation Models are based on Gemini</span></td><td><span class="zh">最难的推理任务交给谷歌云上的Gemini层处理；据彭博报道年费约10亿美元</span><span class="en">The hardest reasoning tasks go to a Gemini-based tier on Google Cloud; Bloomberg reported ~$1B a year</span></td></tr>
+      <tr><td>OpenAI</td><td><span class="zh">2025年起将谷歌云纳入算力来源</span><span class="en">Added Google Cloud as a compute source in 2025</span></td><td><span class="zh">OpenAI同时向AWS承诺约2吉瓦Trainium（2027年起），并有甲骨文、微软等多个供应商</span><span class="en">OpenAI also committed ~2 GW of Trainium at AWS from 2027, alongside Oracle, Microsoft and others</span></td></tr>
+      <tr><td><span class="zh">企业与初创公司</span><span class="en">Enterprises and startups</span></td><td><span class="zh">近90%的财富100强使用Gemini Enterprise</span><span class="en">Nearly 90% of the Fortune 100 use Gemini Enterprise</span></td><td><span class="zh">谷歌2025年称前十大AI实验室中有九家使用其基础设施</span><span class="en">In 2025 Google said nine of the top ten AI labs use its infrastructure</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cite"><a href="https://www.emarketer.com/content/10-billion-meta-google-cloud-pact-shows-scale-beats-rivalry" target="_blank" rel="noopener">eMarketer (Meta)</a>; <a href="https://www.datacenterdynamics.com/en/news/google-limits-metas-ai-use-due-to-capacity-constraints-report/" target="_blank" rel="noopener">DCD (FT report)</a>; <a href="https://www.channelnews.com.au/google-confirms-gemini-powered-siri-ahead-of-wwdc-reveal/" target="_blank" rel="noopener">ChannelNews (Kurian on Apple)</a>; <a href="https://techcrunch.com/2025/09/24/it-isnt-your-imagination-google-cloud-is-flooding-the-zone" target="_blank" rel="noopener">TechCrunch</a>; <a href="https://startupmap.iamsterdam.com/news/feed/amazon-to-spend-over-220b-on-ai-capex-in-2026-as-aws-hits-42b-revenue-up-37" target="_blank" rel="noopener">AWS Trainium commitments</a></p>
+
+  <h3><span class="zh">战略、护城河与可持续性</span><span class="en">Strategy, moat and durability</span></h3>
+  <ul class="tight">
+    <li><span class="zh"><strong>战略：</strong>以"AI超级计算机"全栈（TPU＋英伟达GPU，谷歌云是首批提供Vera Rubin的云之一）承接AI实验室；用Gemini Enterprise的代理平台切入企业；用Wiz与Mandiant把安全做成多云入口；把TPU整机卖进客户自己的机房；通过Intersect与长期能源合同解决电力；以苹果合作树立"模型供应商"地位。</span><span class="en"><strong>Strategy:</strong> win AI labs with a full "AI Hypercomputer" stack (TPUs plus Nvidia GPUs; Google Cloud is among the first to offer Vera Rubin); enter enterprises through Gemini Enterprise's agent platform; make security (Wiz, Mandiant) a multicloud front door; sell whole TPU systems into customers' own data centers; secure power through Intersect and long-term energy contracts; and establish itself as a model supplier through the Apple deal.</span></li>
+    <li><span class="zh"><strong>最大的护城河：</strong>"TPU＋Gemini＋数据平台"的整体性价比。这是AWS和Azure都没有的组合：AWS有自研芯片但没有自己的前沿模型，Azure有OpenAI但芯片依赖英伟达。</span><span class="en"><strong>The biggest moat:</strong> the combined price-performance of TPUs, Gemini and the data platform. Neither rival has the same combination: AWS has its own chips but no in-house frontier model, and Azure has OpenAI but depends on Nvidia for chips.</span></li>
+    <li><span class="zh"><strong>能否持续：</strong>取决于三件事：TPU的成本优势能否在8t/8i上延续；Gemini能否回到第一梯队，让"AI解决方案"而不只是"算力出租"成为增长主力；以及积压能否从少数AI实验室扩散到更广泛的企业客户。</span><span class="en"><strong>Is it durable:</strong> it depends on three things: whether the TPU cost edge carries into 8t/8i; whether Gemini returns to the top tier so that AI solutions, not just compute rental, drive growth; and whether the backlog broadens from a few AI labs to a wide enterprise base.</span></li>
+    <li><span class="zh"><strong>会被怎样侵蚀：</strong>AI实验室多供应商化（Anthropic与OpenAI都在大规模采购Trainium）；英伟达新品与代工产能分配；微软凭借Microsoft 365与企业协议的"捆绑式"企业分发；甲骨文与新兴云的低价GPU算力；以及硬件销售与第三方算力对利润率的稀释。</span><span class="en"><strong>How it could erode:</strong> AI labs multi-sourcing (Anthropic and OpenAI are both buying Trainium at scale); new Nvidia parts and foundry allocation; Microsoft's bundled enterprise distribution through Microsoft 365 and enterprise agreements; cheap GPU capacity from Oracle and neoclouds; and margin dilution from hardware sales and third-party capacity.</span></li>
+  </ul>
+</section>
+
+<!-- ============ COMPARE ============ -->
+<section class="sec" id="s-compare">
+  <h2><span class="no">09</span><span class="zh">三大云对比：AWS、Azure与谷歌云</span><span class="en">AWS, Azure and Google Cloud compared</span></h2>
+  <div class="tscroll"><table>
+    <thead><tr><th></th><th>AWS</th><th>Microsoft Azure</th><th>Google Cloud</th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">规模</span><span class="en">Scale</span></td><td><span class="zh">Q2'26收入422亿美元，年化约1,690亿</span><span class="en">$42.2B in Q2'26, ~$169B annualized</span></td><td><span class="zh">FY2026（截至2026年6月）Azure收入首次超过1,000亿美元</span><span class="en">FY2026 (to Jun 2026) Azure revenue above $100B for the first time</span></td><td><span class="zh">Q2'26收入248亿美元，年化约990亿（含Workspace）</span><span class="en">$24.8B in Q2'26, ~$99B annualized (incl. Workspace)</span></td></tr>
+      <tr><td><span class="zh">最新季度增速</span><span class="en">Latest growth</span></td><td>+36.7%</td><td><span class="zh">+43%（固定汇率）</span><span class="en">+43% (cc)</span></td><td>+82%</td></tr>
+      <tr><td><span class="zh">经营利润率</span><span class="en">Operating margin</span></td><td>39.4%</td><td><span class="zh">未单独披露</span><span class="en">Not disclosed</span></td><td>35.6%</td></tr>
+      <tr><td><span class="zh">积压/剩余履约义务</span><span class="en">Backlog / RPO</span></td><td><span class="zh">4,960亿美元</span><span class="en">$496B</span></td><td><span class="zh">商业RPO 6,780亿美元（含Microsoft 365等，口径更宽）</span><span class="en">Commercial RPO $678B (broader, incl. Microsoft 365)</span></td><td><span class="zh">5,140亿美元</span><span class="en">$514B</span></td></tr>
+      <tr><td><span class="zh">市场份额（Synergy，Q2'26）</span><span class="en">Share (Synergy, Q2'26)</span></td><td><span class="zh">28%（一年前30%）</span><span class="en">28% (30% a year ago)</span></td><td>20%</td><td><span class="zh">15%（历史最高，一年前13%）</span><span class="en">15% (record; 13% a year ago)</span></td></tr>
+      <tr><td><span class="zh">自研芯片</span><span class="en">Custom silicon</span></td><td><span class="zh">Trainium、Graviton；芯片业务年化超250亿美元，Trainium产能售罄至2027年</span><span class="en">Trainium, Graviton; chips business above a $25B run rate, Trainium sold out through 2027</span></td><td><span class="zh">Maia、Cobalt，主力仍依赖英伟达</span><span class="en">Maia, Cobalt; still mainly Nvidia</span></td><td><span class="zh">TPU第8代＋Axion；唯一把自研加速器整机外销的云</span><span class="en">8th-gen TPU plus Axion; the only cloud selling whole in-house accelerator systems</span></td></tr>
+      <tr><td><span class="zh">模型与平台</span><span class="en">Models and platform</span></td><td><span class="zh">Bedrock多模型（含Claude与GPT-5.6）</span><span class="en">Bedrock multi-model (incl. Claude and GPT-5.6)</span></td><td><span class="zh">OpenAI深度绑定＋多模型</span><span class="en">Deep OpenAI tie plus multi-model</span></td><td><span class="zh">自有Gemini＋Vertex多模型（含Claude）</span><span class="en">In-house Gemini plus Vertex multi-model (incl. Claude)</span></td></tr>
+      <tr><td><span class="zh">企业分发</span><span class="en">Enterprise distribution</span></td><td><span class="zh">最大的客户与合作伙伴生态</span><span class="en">Largest customer and partner ecosystem</span></td><td><span class="zh">Microsoft 365与企业协议；Copilot付费席位超3,000万</span><span class="en">Microsoft 365 and enterprise agreements; 30M+ paid Copilot seats</span></td><td><span class="zh">Workspace、Chrome与安卓企业版；数据分析口碑好</span><span class="en">Workspace, Chrome and Android enterprise; strong in data analytics</span></td></tr>
+      <tr><td><span class="zh">2026年资本开支（公司层面）</span><span class="en">2026 capex (company level)</span></td><td><span class="zh">约2,200亿美元</span><span class="en">~$220B</span></td><td><span class="zh">约1,750–1,900亿美元（日历年，口径不一）</span><span class="en">~$175–190B (calendar year, varying definitions)</span></td><td><span class="zh">1,950–2,050亿美元</span><span class="en">$195–205B</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cite"><a href="https://www.levelheadedinvesting.com/p/amazon-com-inc-amzn-q2-2026-results-same-strategy-opposite-reaction" target="_blank" rel="noopener">Amazon Q2'26 (Levelheaded Investing)</a>; <a href="https://futurumgroup.com/?p=93607" target="_blank" rel="noopener">Futurum</a>; <a href="https://www.kucoin.com/blog/microsoft-q4-earnings-azure-growth-hits-43-percent-as-annual-cloud-revenue-tops-100-billion" target="_blank" rel="noopener">Microsoft FY26 Q4 summary</a>; <a href="https://techstock01.substack.com/p/microsoft-cloud-and-ai-revenue-accelerating" target="_blank" rel="noopener">Tech Stock (Microsoft capex)</a>; <a href="https://shattered.io/?p=3403" target="_blank" rel="noopener">Synergy Q2'26 via Shattered</a>; <a href="https://www.datacenterdynamics.com/en/news/synergy-research-cloud-spending-hits-129bn-in-q1-2026-ninth-consecutive-quarter-of-growth" target="_blank" rel="noopener">DCD (Synergy Q1'26)</a></p>
+  <div class="grid2">
+    <div class="fig" style="margin-top:0"><p class="t"><span class="zh">最新季度增速与份额</span><span class="en">Latest growth and share</span></p><div class="chartbox short"><canvas id="ch-cloudcmp"></canvas></div><p class="src"><span class="zh">增速来自各公司财报；份额来自Synergy Q2'26</span><span class="en">Growth from company reports; share from Synergy Q2'26</span></p></div>
+    <div class="fig" style="margin-top:0"><p class="t"><span class="zh">积压/剩余履约义务（$B）</span><span class="en">Backlog / RPO ($B)</span></p><div class="chartbox short"><canvas id="ch-backlog3"></canvas></div><p class="src"><span class="zh">微软为商业RPO，包含Microsoft 365等，并非纯Azure口径</span><span class="en">Microsoft is commercial RPO including Microsoft 365, not Azure alone</span></p></div>
+  </div>
+  <div class="tscroll"><table>
+    <thead><tr><th></th><th><span class="zh">相对优势</span><span class="en">Relative strengths</span></th><th><span class="zh">相对劣势</span><span class="en">Relative weaknesses</span></th></tr></thead>
+    <tbody>
+      <tr><td>AWS</td><td><span class="zh">规模最大、服务最全、利润率最高；Trainium获得Anthropic与OpenAI的多吉瓦承诺</span><span class="en">Largest, broadest and most profitable; Trainium won multi-gigawatt commitments from Anthropic and OpenAI</span></td><td><span class="zh">没有自己的前沿模型；份额在缓慢流失</span><span class="en">No in-house frontier model; share slowly slipping</span></td></tr>
+      <tr><td>Azure</td><td><span class="zh">企业关系与Microsoft 365捆绑无人能及；积压最大</span><span class="en">Unmatched enterprise relationships and Microsoft 365 bundling; largest backlog</span></td><td><span class="zh">芯片依赖英伟达；与OpenAI关系复杂；此前受产能约束</span><span class="en">Chip dependence on Nvidia; a complex OpenAI relationship; capacity-constrained earlier</span></td></tr>
+      <tr><td><span class="zh">谷歌云</span><span class="en">Google Cloud</span></td><td><span class="zh">唯一同时拥有自研芯片与自研前沿模型的全栈云；增速最快；利润率已接近AWS</span><span class="en">The only full-stack cloud with both its own chips and its own frontier model; fastest growth; margins close to AWS</span></td><td><span class="zh">规模第三；积压集中于AI实验室；企业软件生态与销售网络弱于微软；模型当前在编码上落后</span><span class="en">Third in scale; backlog concentrated in AI labs; thinner enterprise software estate and sales reach than Microsoft; model currently behind in coding</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============ EROSION + TRACKING ============ -->
+<section class="sec" id="s-erosion">
+  <h2><span class="no">10</span><span class="zh">侵蚀地图与可证伪跟踪清单</span><span class="en">Erosion map and falsifiable checklist</span></h2>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">护城河</span><span class="en">Moat</span></th><th><span class="zh">侵蚀路径</span><span class="en">Erosion path</span></th><th><span class="zh">最早的信号</span><span class="en">Earliest signal</span></th><th><span class="zh">警报线</span><span class="en">Alarm level</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">搜索商业查询</span><span class="en">Commercial search</span></td><td><span class="zh">代理式购物与ChatGPT广告分流购买决策</span><span class="en">Agentic shopping and ChatGPT ads divert purchase decisions</span></td><td><span class="zh">付费点击增速、AI Mode内结账的商家与交易额</span><span class="en">Paid-click growth; merchants and GMV using AI Mode checkout</span></td><td><span class="zh">付费点击连续两季负增长</span><span class="en">Paid clicks negative for two quarters</span></td></tr>
+      <tr><td><span class="zh">默认分发</span><span class="en">Default distribution</span></td><td><span class="zh">非排他默认协议、苹果在Safari引入AI搜索、上诉加码</span><span class="en">Non-exclusive defaults, AI search in Safari, harsher remedies on appeal</span></td><td><span class="zh">TAC率、苹果合作条款、D.C.巡回法院</span><span class="en">TAC rate, Apple terms, D.C. Circuit</span></td><td><span class="zh">TAC率&gt;23%或支付禁令</span><span class="en">TAC rate &gt;23% or a payment ban</span></td></tr>
+      <tr><td><span class="zh">TPU成本优势</span><span class="en">TPU cost edge</span></td><td><span class="zh">英伟达Rubin及之后产品、Trainium价格战</span><span class="en">Nvidia Rubin and successors; Trainium price war</span></td><td><span class="zh">第三方每token成本测试、外部TPU客户数</span><span class="en">Third-party cost-per-token tests; number of outside TPU customers</span></td><td><span class="zh">TPU 8代每token成本不再领先</span><span class="en">8th-gen TPU no longer cheapest per token</span></td></tr>
+      <tr><td><span class="zh">模型能力</span><span class="en">Model capability</span></td><td><span class="zh">编码与代理持续落后，企业预算流向对手</span><span class="en">Persistent lag in coding and agents; enterprise budgets go to rivals</span></td><td><span class="zh">3.5 Pro与Gemini 4的发布与评测；企业编码份额</span><span class="en">3.5 Pro and Gemini 4 releases and evals; enterprise coding share</span></td><td><span class="zh">2027年上半年前仍无Pro级旗舰</span><span class="en">Still no Pro flagship by H1 2027</span></td></tr>
+      <tr><td><span class="zh">云客户基础</span><span class="en">Cloud customer base</span></td><td><span class="zh">AI实验室多供应商化、积压集中</span><span class="en">AI labs multi-sourcing; concentrated backlog</span></td><td><span class="zh">积压环比变化、是否披露客户集中度</span><span class="en">Sequential backlog change; any concentration disclosure</span></td><td><span class="zh">积压环比下降</span><span class="en">Backlog falls sequentially</span></td></tr>
+      <tr><td><span class="zh">研究人才</span><span class="en">Research talent</span></td><td><span class="zh">核心研究员流向对手或创业</span><span class="en">Core researchers leaving for rivals or startups</span></td><td><span class="zh">公开的离职与新成立实验室</span><span class="en">Public departures and new labs</span></td><td><span class="zh">Gemini核心负责人继续离开</span><span class="en">More Gemini leads departing</span></td></tr>
+    </tbody>
+  </table></div>
+  <h3><span class="zh">跟踪清单（可录入你的思考台账并做Brier评分）</span><span class="en">Checklist (log in your thinking ledger and Brier-score)</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">假设</span><span class="en">Assumption</span></th><th><span class="zh">验证方式</span><span class="en">How it resolves</span></th><th><span class="zh">时间</span><span class="en">When</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">Q3'26搜索及其他增速≥12%</span><span class="en">Q3'26 Search &amp; other growth ≥12%</span></td><td><span class="zh">财报</span><span class="en">Earnings release</span></td><td>2026-10-28</td></tr>
+      <tr><td><span class="zh">Q3'26云利润率≥30%（即便使用第三方算力）</span><span class="en">Q3'26 Cloud margin ≥30% despite bridge capacity</span></td><td><span class="zh">分部表</span><span class="en">Segment table</span></td><td>2026-10-28</td></tr>
+      <tr><td><span class="zh">Gemini 3.5 Pro在2026年底前正式发布</span><span class="en">Gemini 3.5 Pro generally available by end-2026</span></td><td><span class="zh">官方发布说明</span><span class="en">Official release notes</span></td><td>2026-12-31</td></tr>
+      <tr><td><span class="zh">谷歌新旗舰在Terminal-Bench类代理编码测试中进入前二</span><span class="en">A new Google flagship ranks top two on Terminal-Bench-style agentic coding</span></td><td><span class="zh">第三方榜单</span><span class="en">Third-party leaderboards</span></td><td>2027-06-30</td></tr>
+      <tr><td><span class="zh">2026年年报披露的付费点击增速≥3%</span><span class="en">Paid-click growth ≥3% in the FY2026 10-K</span></td><td>10-K</td><td>2027-02</td></tr>
+      <tr><td><span class="zh">Similarweb中Gemini份额保持≥20%</span><span class="en">Gemini's Similarweb share stays ≥20%</span></td><td><span class="zh">月度数据</span><span class="en">Monthly data</span></td><td><span class="zh">每月</span><span class="en">Monthly</span></td></tr>
+      <tr><td><span class="zh">OpenAI 2026年广告收入低于30亿美元</span><span class="en">OpenAI 2026 ad revenue below $3B</span></td><td><span class="zh">公司披露或可靠报道</span><span class="en">Disclosure or credible reporting</span></td><td>2027-Q1</td></tr>
+      <tr><td><span class="zh">云积压在Q3'26继续环比增长</span><span class="en">Cloud backlog grows sequentially in Q3'26</span></td><td><span class="zh">电话会/10-Q</span><span class="en">Call / 10-Q</span></td><td>2026-10-28</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============ APPENDIX ============ -->
+<section class="sec" id="s-appx">
+  <h2><span class="no">11</span><span class="zh">资料来源与方法</span><span class="en">Sources and methods</span></h2>
+  <ul class="tight">
+    <li><span class="zh"><strong>数据分级：</strong>公司文件（10-Q、业绩公告、电话会、官方博客）为一级；彭博、路透、《金融时报》、TechCrunch、CNBC等转述为二级；Similarweb、Sensor Tower、Semrush、SE Ranking、Seer、Menlo、SemiAnalysis与各类汇总榜单为三级，方法与样本各不相同，文中已标注。</span><span class="en"><strong>Source tiers:</strong> company documents (10-Q, releases, calls, official blogs) are tier one; Bloomberg, Reuters, FT, TechCrunch and CNBC relays are tier two; Similarweb, Sensor Tower, Semrush, SE Ranking, Seer, Menlo, SemiAnalysis and aggregated leaderboards are tier three, with differing methods and samples, flagged in the text.</span></li>
+    <li><span class="zh"><strong>模型评测的局限：</strong>多数分数由厂商自报，第三方复测口径不一，且模型更新频繁；应把它们当作方向，而非精确排名。</span><span class="en"><strong>Limits of model evals:</strong> most scores are vendor-reported, third-party re-tests differ in method, and models change often; treat them as direction, not precise rankings.</span></li>
+    <li><span class="zh"><strong>压力测试模型：</strong>收入按查询类型的拆分为示意性假设，公司未披露；模型用于检验判断的敏感性，而非预测。</span><span class="en"><strong>Stress-test model:</strong> the revenue split by query type is an illustrative assumption, not disclosed; the model tests the sensitivity of a view rather than forecasting.</span></li>
+  </ul>
+  <ol class="srclist">
+    <li>Alphabet Q2 2026 10-Q: <a href="https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000071/goog-20260630.htm" target="_blank" rel="noopener">sec.gov</a>; Q2 2026 CEO remarks: <a href="https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q2-2026/" target="_blank" rel="noopener">blog.google</a></li>
+    <li>Q4 2025 call coverage: <a href="https://www.searchenginejournal.com/google-search-hits-63b-details-ai-mode-ad-tests/566613/" target="_blank" rel="noopener">Search Engine Journal</a>, <a href="https://www.constellationr.com/insights/news/alphabet-plots-massive-capex-increase-2026" target="_blank" rel="noopener">Constellation Research</a>; Q2 2026: <a href="https://www.thekeyword.co/news/big-tech-q2-2026-ad-revenue" target="_blank" rel="noopener">The Keyword</a>, <a href="https://www.techmarketview.com/ukhotviews/archive/2026/07/23/google-cloud-posts-fastest-growth-yet-driven-by-enterprise-ai-demand" target="_blank" rel="noopener">TechMarketView</a></li>
+    <li>Subscriptions: <a href="https://9to5google.com/?p=713430" target="_blank" rel="noopener">9to5Google</a>, <a href="https://finance.yahoo.com/markets/stocks/articles/google-gains-25m-subscriptions-q1-205900503.html" target="_blank" rel="noopener">TechCrunch via Yahoo</a></li>
+    <li>DeepMind reset: <a href="https://www.axios.com/2026/08/06/googles-ai-leadership-shuffle" target="_blank" rel="noopener">Axios</a>, <a href="https://time.com/article/2026/08/06/google-deepmind-ai-demis-hassabis/" target="_blank" rel="noopener">TIME</a>, <a href="https://app.dealroom.co/news/note/google-deepmind-resets-leadership-as-hassabis-becomes-chair-jeff-dean-exits" target="_blank" rel="noopener">Dealroom (CNBC, Forbes)</a></li>
+    <li>Gemini 3.5 Pro delay: <a href="https://theplanettools.ai/blog/gemini-3-5-pro-delayed-coding-google-behind-2026" target="_blank" rel="noopener">The Planet Tools</a>, <a href="https://www.androidheadlines.com/2026/07/google-gemini-3-5-pro-model-delayed-coding-issues.html" target="_blank" rel="noopener">Android Headlines</a>, <a href="https://theairankings.com/google/gemini-3-5-pro/" target="_blank" rel="noopener">The AI Rankings</a></li>
+    <li>Model comparisons: <a href="https://tech-insider.org/chatgpt-vs-claude-vs-gemini-vs-grok-reasoning-2026/" target="_blank" rel="noopener">Tech Insider</a>, <a href="https://www.trendingtopics.eu/gpt-6-still-behind-fable-5-1-as-artificial-analysis-overhauls-intelligence-index/" target="_blank" rel="noopener">Trending Topics (Artificial Analysis)</a>, <a href="https://www.datacamp.com/blog/gemini-3-5-flash-vs-gpt-5-5" target="_blank" rel="noopener">DataCamp</a></li>
+    <li>Consumer AI share: <a href="https://ppc.land/chatgpt-drops-to-52-7-as-claude-triples-its-ai-traffic-share/" target="_blank" rel="noopener">PPC Land</a>, <a href="https://xenospectrum.com/en/chatgpt-gemini-traffic-share/" target="_blank" rel="noopener">XenoSpectrum</a>, <a href="https://the-decoder.com/chatgpt-still-leads-the-chatbot-market-but-its-dominance-is-slipping-as-googles-gemini-gains-ground/" target="_blank" rel="noopener">The Decoder</a>, <a href="https://somethinginc.com/blog/chatgpt-market-share-three-trackers-disagree/" target="_blank" rel="noopener">Something Inc.</a></li>
+    <li>Enterprise share: <a href="https://techcrunch.com/2026/01/22/openai-is-coming-for-those-sweet-enterprise-dollars-in-2026" target="_blank" rel="noopener">TechCrunch (Menlo)</a>, <a href="https://vantaige.io/blog/coding-ate-enterprise-ai-4b-2026" target="_blank" rel="noopener">Vantaige</a></li>
+    <li>Query intent and CTR: <a href="https://searchengineland.com/15-percent-google-searches-148-terms-448864" target="_blank" rel="noopener">SparkToro via SEL</a>, <a href="https://semrush.com/blog/semrush-ai-overviews-study" target="_blank" rel="noopener">Semrush</a>, <a href="https://www.seerinteractive.com/insights/aio-impact-on-google-ctr-september-2025-update" target="_blank" rel="noopener">Seer</a>, <a href="https://www.sistrix.com/?p=174390" target="_blank" rel="noopener">SISTRIX (Pew)</a>, <a href="https://www.pinmeto.com/news/google-ai-mode-ads-commercial-queries-2026/" target="_blank" rel="noopener">SE Ranking via PinMeTo</a></li>
+    <li>ChatGPT usage and ads: <a href="https://www.nber.org/papers/w34255" target="_blank" rel="noopener">NBER</a>, <a href="https://www.emarketer.com/content/faq-on-chatgpt-advertising--formats--costs--early-strategies-win" target="_blank" rel="noopener">eMarketer</a>, <a href="https://www.pymnts.com/?p=3986154" target="_blank" rel="noopener">PYMNTS</a></li>
+    <li>Search ad market: <a href="https://www.emarketer.com/content/us-search-advertising-forecast-2026" target="_blank" rel="noopener">eMarketer</a>; Apple testimony: <a href="https://9to5mac.com/2025/05/08/google-search-less-eddy-cue/" target="_blank" rel="noopener">9to5Mac</a></li>
+    <li>Agentic commerce: <a href="https://www.techcrunch.com/2026/01/11/google-announces-a-new-protocol-to-facilitate-commerce-using-ai-agents/" target="_blank" rel="noopener">TechCrunch</a>, <a href="https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live" target="_blank" rel="noopener">Google</a></li>
+    <li>TPUs: <a href="https://nand-research.com/google-cloud-8th-generation-tpu-family-splits-training-and-inference/" target="_blank" rel="noopener">NAND Research</a>, <a href="https://newsletter.semianalysis.com/p/tpu-inferencex-full-steam" target="_blank" rel="noopener">SemiAnalysis</a>, <a href="https://implicator.ai/nvidia-still-wins-per-chip-google-just-changed-what-counts" target="_blank" rel="noopener">Implicator</a></li>
+    <li>Intersect: <a href="https://www.clearygottlieb.com/news-and-insights/news-listing/alphabet-completes-4-75-billion-acquisition-of-intersect-power" target="_blank" rel="noopener">Cleary Gottlieb</a>, <a href="https://www.datacenterknowledge.com/energy-power-supply/alphabet-to-buy-data-center-partner-intersect-for-4-75b" target="_blank" rel="noopener">Data Center Knowledge (Bloomberg)</a></li>
+    <li>Cloud peers: <a href="https://www.levelheadedinvesting.com/p/amazon-com-inc-amzn-q2-2026-results-same-strategy-opposite-reaction" target="_blank" rel="noopener">Amazon Q2'26</a>, <a href="https://www.kucoin.com/blog/microsoft-q4-earnings-azure-growth-hits-43-percent-as-annual-cloud-revenue-tops-100-billion" target="_blank" rel="noopener">Microsoft FY26 Q4</a>, <a href="https://shattered.io/?p=3403" target="_blank" rel="noopener">Synergy Q2'26</a>; customers: <a href="https://www.emarketer.com/content/10-billion-meta-google-cloud-pact-shows-scale-beats-rivalry" target="_blank" rel="noopener">eMarketer (Meta)</a>, <a href="https://www.datacenterdynamics.com/en/news/google-limits-metas-ai-use-due-to-capacity-constraints-report/" target="_blank" rel="noopener">DCD</a>, <a href="https://www.channelnews.com.au/google-confirms-gemini-powered-siri-ahead-of-wwdc-reveal/" target="_blank" rel="noopener">ChannelNews</a></li>
+  </ol>
+  <p class="foot"><span class="zh">免责声明：本报告为个人研究用途的分析，基于截至2026年9月23日的公开信息，不构成投资建议。部分数据来自第三方或媒体转述，已在文中标注；模型结果取决于假设。本报告作者Claude由Anthropic开发，Anthropic与文中讨论的公司存在竞争与合作关系。</span><span class="en">Disclaimer: this is analysis for personal research based on public information as of 23 September 2026, not investment advice. Some data come from third parties or media relays and are flagged; model outputs depend on assumptions. The author, Claude, is made by Anthropic, which competes and partners with companies discussed here.</span></p>
+</section>
+
+</div></main>
+
+<script>
+(function(){
+'use strict';
+var root=document.documentElement;
+var LS_KEY='goog-deepdive-lang';
+var lang='zh';
+try{var saved=localStorage.getItem(LS_KEY); if(saved==='zh'||saved==='en'){lang=saved;}}catch(e){}
+var reduceMotion=false;
+try{reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
+function cssVar(v){return getComputedStyle(root).getPropertyValue(v).trim();}
+function bi(zh,en){return '<span class="zh">'+zh+'</span><span class="en">'+en+'</span>';}
+function alpha(hex,a){
+  var h=(hex||'#888888').replace('#','').trim();
+  if(h.length===3){h=h.split('').map(function(c){return c+c;}).join('');}
+  var n=parseInt(h,16); if(isNaN(n)){return 'rgba(120,120,120,'+a+')';}
+  return 'rgba('+((n>>16)&255)+','+((n>>8)&255)+','+(n&255)+','+a+')';
+}
+var P={};
+function loadPalette(){
+  P={cobalt:cssVar('--cobalt'),sea:cssVar('--sea'),sand:cssVar('--sand'),rose:cssVar('--rose'),lav:cssVar('--lav'),sky:cssVar('--sky'),ink2:cssVar('--ink2'),ink3:cssVar('--ink3'),line:cssVar('--line2')};
+}
+loadPalette();
+
+/* ---------------- number helpers ---------------- */
+function f0(x){return isFinite(x)?Math.round(x).toLocaleString('en-US'):'—';}
+function f1(x){return isFinite(x)?x.toFixed(1):'—';}
+function f2(x){return isFinite(x)?x.toFixed(2):'—';}
+function pct(x,d){return isFinite(x)?(x*100).toFixed(d==null?1:d)+'%':'—';}
+function spct(x,d){if(!isFinite(x)){return '—';} return (x>=0?'+':'')+(x*100).toFixed(d==null?1:d)+'%';}
+
+/* ---------------- charts ---------------- */
+var charts=[];
+if(window.Chart){
+  Chart.defaults.font.family='Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif';
+  Chart.defaults.font.size=12;
+  Chart.defaults.color=P.ink2;
+  Chart.defaults.borderColor=P.line;
+  Chart.defaults.maintainAspectRatio=false;
+  Chart.defaults.animation.duration=reduceMotion?0:900;
+  Chart.defaults.plugins.legend.position='bottom';
+  Chart.defaults.plugins.legend.labels.boxWidth=12;
+  Chart.defaults.plugins.legend.labels.boxHeight=12;
+  Chart.defaults.plugins.legend.labels.padding=14;
+  Chart.defaults.plugins.tooltip.mode='index';
+  Chart.defaults.plugins.tooltip.intersect=false;
+  Chart.defaults.plugins.legend.labels.sort=function(a,b){return a.datasetIndex-b.datasetIndex;};
+}
+function applyChartLang(ch){
+  var i=ch.$i18n; if(!i){return;}
+  if(i.labels){ch.data.labels=i.labels[lang].slice();}
+  if(i.ds){i.ds.forEach(function(p,k){if(p&&ch.data.datasets[k]){ch.data.datasets[k].label=p[lang];}});}
+  if(i.axes){Object.keys(i.axes).forEach(function(ax){var s=ch.options.scales&&ch.options.scales[ax]; if(s){s.title={display:true,text:i.axes[ax][lang],color:P.ink3,font:{size:11}};}});}
+}
+function mk(id,cfg,i18n){
+  var el=document.getElementById(id); if(!el||!window.Chart){return null;}
+  if(cfg.options&&cfg.options.scales&&cfg.options.scales.x&&!(cfg.options.indexAxis==='y')){var xs=cfg.options.scales.x; xs.ticks=Object.assign({maxRotation:0,autoSkipPadding:8},xs.ticks||{});}
+  var ch=new Chart(el.getContext('2d'),cfg);
+  ch.$i18n=i18n||null; applyChartLang(ch); ch.update(); charts.push(ch); return ch;
+}
+var lazyFns={};
+var io=null;
+if('IntersectionObserver' in window){
+  io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ var id=en.target.id; io.unobserve(en.target); if(lazyFns[id]){var fn=lazyFns[id]; delete lazyFns[id]; fn();} } });
+  },{rootMargin:'0px 0px -12% 0px',threshold:0.15});
+}
+function lazy(id,fn){ var el=document.getElementById(id); if(!el){return;} if(io){lazyFns[id]=fn; io.observe(el);} else {fn();} }
+function money(v){return '$'+v;}
+function pctTick(v){return v+'%';}
+
+
+function clone(o){return JSON.parse(JSON.stringify(o));}
+
+/* ---------------- stack diagram dots ---------------- */
+(function(){
+  var g=document.getElementById('moatdots'); if(!g){return;}
+  var ys=[10,92,174,256,338], scores=[4,5,2,3,5], ns='http://www.w3.org/2000/svg';
+  ys.forEach(function(y,i){
+    for(var k=0;k<5;k++){
+      var c=document.createElementNS(ns,'circle');
+      c.setAttribute('cx',String(338+k*14)); c.setAttribute('cy',String(y+21)); c.setAttribute('r','5');
+      c.setAttribute('class','dot'+(k<scores[i]?' on':''));
+      g.appendChild(c);
+    }
+  });
+})();
+
+/* ---------------- static charts ---------------- */
+lazy('ch-tokens',function(){
+  mk('ch-tokens',{type:'bar',data:{labels:["Q3'25","Q4'25","Q1'26","Q2'26"],datasets:[
+    {label:'',data:[7,10,16,22],backgroundColor:[alpha(P.lav,0.55),alpha(P.lav,0.65),alpha(P.lav,0.78),alpha(P.lav,0.9)],borderRadius:4}
+  ]},options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true}}}},
+  {ds:[{zh:'十亿token/分钟',en:'Billion tokens per minute'}]});
+});
+lazy('ch-capex3',function(){
+  mk('ch-capex3',{type:'bar',data:{labels:['Alphabet','Amazon','Microsoft'],datasets:[
+    {label:'',data:[200,220,175],backgroundColor:[alpha(P.cobalt,0.85),alpha(P.sand,0.75),alpha(P.sea,0.75)],borderRadius:4}
+  ]},options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,ticks:{callback:money}}}}},
+  {labels:{zh:['Alphabet','亚马逊','微软'],en:['Alphabet','Amazon','Microsoft']},ds:[{zh:'2026年资本开支',en:'2026 capex'}]});
+});
+lazy('ch-intent',function(){
+  mk('ch-intent',{type:'bar',data:{labels:['a','b','c'],datasets:[
+    {label:'',data:[52.7,32.2,15.2],backgroundColor:alpha(P.sky,0.85),borderRadius:4},
+    {label:'',data:[10,15,75],backgroundColor:alpha(P.cobalt,0.85),borderRadius:4}
+  ]},options:{scales:{x:{grid:{display:false}},y:{beginAtZero:true,max:80,ticks:{callback:pctTick}}}}},
+  {labels:{zh:['信息型','导航型','商业与交易型'],en:['Informational','Navigational','Commercial + transactional']},
+   ds:[{zh:'查询量占比',en:'Share of queries'},{zh:'收入占比（示意）',en:'Share of revenue (illustrative)'}]});
+});
+lazy('ch-ctr',function(){
+  mk('ch-ctr',{type:'bar',data:{labels:['a','b'],datasets:[
+    {label:'',data:[15,13.04],backgroundColor:alpha(P.sea,0.8),borderRadius:4},
+    {label:'',data:[8,6.34],backgroundColor:alpha(P.rose,0.8),borderRadius:4}
+  ]},options:{scales:{x:{grid:{display:false}},y:{beginAtZero:true,ticks:{callback:pctTick}}}}},
+  {labels:{zh:[['皮尤','自然结果点击率'],['Seer','付费点击率']],en:[['Pew','organic click rate'],['Seer','paid CTR']]},
+   ds:[{zh:'没有AI摘要',en:'No AI summary'},{zh:'有AI摘要',en:'With AI summary'}]});
+});
+lazy('ch-aishare',function(){
+  mk('ch-aishare',{type:'line',data:{labels:['2025-06','2026-02','2026-05','2026-08'],datasets:[
+    {label:'',data:[76.4,61.7,52.7,55.5],borderColor:P.ink3,backgroundColor:P.ink3,tension:0.25,cubicInterpolationMode:'monotone',pointRadius:3},
+    {label:'',data:[8.9,24.4,27.3,25.6],borderColor:P.cobalt,backgroundColor:P.cobalt,tension:0.25,cubicInterpolationMode:'monotone',pointRadius:3},
+    {label:'',data:[2.0,3.3,9.0,null],borderColor:P.sand,backgroundColor:P.sand,tension:0.25,cubicInterpolationMode:'monotone',pointRadius:3,spanGaps:false}
+  ]},options:{scales:{x:{grid:{display:false}},y:{beginAtZero:true,max:80,ticks:{callback:pctTick}}}}},
+  {ds:[{zh:'ChatGPT',en:'ChatGPT'},{zh:'Gemini',en:'Gemini'},{zh:'Claude',en:'Claude'}]});
+});
+lazy('ch-ent',function(){
+  mk('ch-ent',{type:'bar',data:{labels:['Anthropic','OpenAI','Google','x'],datasets:[
+    {label:'',data:[40,27,21,12],backgroundColor:[alpha(P.sand,0.8),alpha(P.ink3,0.7),alpha(P.cobalt,0.85),alpha(P.sky,0.6)],borderRadius:4}
+  ]},options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,max:50,ticks:{callback:pctTick}}}}},
+  {labels:{zh:['Anthropic','OpenAI','Google','开源及其他'],en:['Anthropic','OpenAI','Google','Open and other']},ds:[{zh:'支出份额',en:'Spend share'}]});
+});
+lazy('ch-cloudcmp',function(){
+  mk('ch-cloudcmp',{type:'bar',data:{labels:['AWS','Azure','Google Cloud'],datasets:[
+    {label:'',data:[36.7,43,82],backgroundColor:alpha(P.cobalt,0.82),borderRadius:4},
+    {label:'',data:[28,20,15],backgroundColor:alpha(P.sand,0.75),borderRadius:4}
+  ]},options:{scales:{x:{grid:{display:false}},y:{beginAtZero:true,ticks:{callback:pctTick}}}}},
+  {labels:{zh:['AWS','Azure','谷歌云'],en:['AWS','Azure','Google Cloud']},ds:[{zh:'同比增速',en:'YoY growth'},{zh:'市场份额',en:'Market share'}]});
+});
+lazy('ch-backlog3',function(){
+  mk('ch-backlog3',{type:'bar',data:{labels:['a','b','c'],datasets:[
+    {label:'',data:[496,678,514],backgroundColor:[alpha(P.sand,0.75),alpha(P.sea,0.7),alpha(P.cobalt,0.85)],borderRadius:4}
+  ]},options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,ticks:{callback:money}}}}},
+  {labels:{zh:['AWS',['微软','（商业RPO）'],'谷歌云'],en:['AWS',['Microsoft','(commercial RPO)'],'Google Cloud']},ds:[{zh:'积压',en:'Backlog'}]});
+});
+
+/* ---------------- Search stress-test model ---------------- */
+var R0=224.5;
+var BK=[
+  {k:'c',zh:'商业与交易型（非品牌）',en:'Commercial and transactional (non-brand)',col:'cobalt'},
+  {k:'n',zh:'品牌与导航型',en:'Brand and navigational',col:'sea'},
+  {k:'l',zh:'本地型',en:'Local',col:'sand'},
+  {k:'i',zh:'信息型',en:'Informational',col:'sky'}
+];
+var STBASE={cs:0.65,cg:0.09,cd:0.10,cy:0.15, ns:0.15,ng:0.04,nd:0.08,ny:0.0, ls:0.10,lg:0.06,ld:0.10,ly:0.10, is:0.10,ig:0.03,id:0.35,iy:-0.25, ai:15};
+var STP={
+  base:clone(STBASE),
+  opt:{cs:0.65,cg:0.10,cd:0.05,cy:0.25, ns:0.15,ng:0.05,nd:0.05,ny:0.0, ls:0.10,lg:0.07,ld:0.05,ly:0.15, is:0.10,ig:0.04,id:0.25,iy:-0.15, ai:30},
+  pess:{cs:0.65,cg:0.06,cd:0.30,cy:-0.05, ns:0.15,ng:0.02,nd:0.20,ny:0.0, ls:0.10,lg:0.04,ld:0.25,ly:0.0, is:0.10,ig:0.02,id:0.60,iy:-0.40, ai:5}
+};
+var st=clone(STBASE), stPreset='base';
+function stRun(p){
+  var tot=p.cs+p.ns+p.ls+p.is; if(!(tot>0)){tot=1;}
+  var out={years:[2025,2026,2027,2028,2029,2030],b:{},ai:[],total:[],shareSum:tot};
+  BK.forEach(function(b){
+    var s=p[b.k+'s']/tot, g=p[b.k+'g'], d=p[b.k+'d'], y=p[b.k+'y'], arr=[];
+    for(var t=0;t<=5;t++){ arr.push(R0*s*Math.pow(1+g,t)*(1-d*t/5)*(1+y*t/5)); }
+    out.b[b.k]=arr;
+  });
+  for(var t=0;t<=5;t++){
+    out.ai.push(p.ai*t/5);
+    var sum=out.ai[t]; BK.forEach(function(b){sum+=out.b[b.k][t];}); out.total.push(sum);
+  }
+  var cs=p.cs/tot, cG=Math.pow(1+p.cg,5)*(1+p.cy), others=out.total[5]-out.b.c[5];
+  out.breakeven=1-(R0-others)/(R0*cs*cG);
+  out.per10=R0*cs*cG*0.10;
+  return out;
+}
+var STSPEC=[];
+BK.forEach(function(b){
+  STSPEC.push({g:b.k,id:b.k+'s',zh:'2025年收入占比',en:'Share of 2025 revenue',min:0,max:1,step:0.01,dec:0});
+  STSPEC.push({g:b.k,id:b.k+'g',zh:'需求年增速（含单价）',en:'Annual demand growth (incl. price)',min:-0.05,max:0.15,step:0.005,dec:1});
+  STSPEC.push({g:b.k,id:b.k+'d',zh:'2030年被分流比例',en:'Diverted by 2030',min:0,max:0.8,step:0.01,dec:0});
+  STSPEC.push({g:b.k,id:b.k+'y',zh:'留存查询单位变现累计变化',en:'Cumulative change in yield on retained queries',min:-0.6,max:0.6,step:0.01,dec:0});
+});
+STSPEC.push({g:'ai',id:'ai',zh:'2030年AI新增收入（$B）',en:'New AI revenue in 2030 ($B)',min:0,max:100,step:1,usd:true});
+function stFmt(sp,v){ if(sp.usd){return '$'+Number(v).toFixed(0)+'B';} return (v*100).toFixed(sp.dec)+'%'; }
+function stBuild(){
+  var host=document.getElementById('stctrls'); if(!host){return;}
+  var groups=BK.map(function(b){return {id:b.k,zh:b.zh,en:b.en};}).concat([{id:'ai',zh:'AI新界面的新增收入',en:'New revenue from AI surfaces'}]);
+  var html='';
+  groups.forEach(function(gp){
+    html+='<div class="cg"><h6>'+bi(gp.zh,gp.en)+'</h6>';
+    STSPEC.filter(function(s){return s.g===gp.id;}).forEach(function(sp){
+      html+='<div class="ctl"><label for="st-'+sp.id+'">'+bi(sp.zh,sp.en)+'</label><output id="sto-'+sp.id+'">'+stFmt(sp,st[sp.id])+'</output><input type="range" id="st-'+sp.id+'" min="'+sp.min+'" max="'+sp.max+'" step="'+sp.step+'" value="'+st[sp.id]+'"></div>';
+    });
+    if(gp.id==='ai'){ html+='<p class="small" style="margin:6px 0 0">'+bi('代表AI Mode与Gemini中新广告格式、结账佣金等不属于传统搜索结果页的收入，按年线性增加。','New ad formats, checkout fees and similar revenue inside AI Mode and Gemini that is not on the classic results page, phased in linearly.')+'</p>'; }
+    html+='</div>';
+  });
+  host.innerHTML=html;
+  STSPEC.forEach(function(sp){
+    var el=document.getElementById('st-'+sp.id);
+    el.addEventListener('input',function(){ var v=parseFloat(el.value); if(!isFinite(v)){return;} st[sp.id]=v; document.getElementById('sto-'+sp.id).textContent=stFmt(sp,v); stPreset=null; stMark(); stSchedule(); });
+  });
+  document.querySelectorAll('#stbar button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var p=btn.getAttribute('data-p');
+      st=clone(p==='reset'?STBASE:STP[p]); stPreset=(p==='reset')?'base':p;
+      STSPEC.forEach(function(sp){ var el=document.getElementById('st-'+sp.id); el.value=st[sp.id]; document.getElementById('sto-'+sp.id).textContent=stFmt(sp,st[sp.id]); });
+      stMark(); stCompute();
+    });
+  });
+}
+function stMark(){
+  document.querySelectorAll('#stbar button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-p')===stPreset); });
+  var n=document.getElementById('stnote'); if(n){ n.innerHTML=stPreset?'':bi('当前为自定义参数','Custom inputs'); }
+}
+var stPending=false;
+function stSchedule(){ if(stPending){return;} stPending=true; requestAnimationFrame(function(){stPending=false; stCompute();}); }
+var stChart=null, stLast=null;
+function stDraw(r){
+  stLast=r; if(!stChart){return;}
+  BK.forEach(function(b,i){ stChart.data.datasets[i].data=r.b[b.k].map(function(x){return +x.toFixed(1);}); });
+  stChart.data.datasets[4].data=r.ai.map(function(x){return +x.toFixed(1);});
+  stChart.update();
+}
+lazy('ch-st',function(){
+  var r=stLast||stRun(st);
+  var ds=BK.map(function(b){ return {label:'',data:r.b[b.k].map(function(x){return +x.toFixed(1);}),backgroundColor:alpha(P[b.col],b.k==='i'?0.8:0.78)}; });
+  ds.push({label:'',data:r.ai.map(function(x){return +x.toFixed(1);}),backgroundColor:alpha(P.lav,0.8)});
+  stChart=mk('ch-st',{type:'bar',data:{labels:['2025','2026E','2027E','2028E','2029E','2030E'],datasets:ds},
+    options:{animation:{duration:reduceMotion?0:450},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,beginAtZero:true,ticks:{callback:money}}}}},
+    {ds:BK.map(function(b){return {zh:b.zh,en:b.en};}).concat([{zh:'AI新增',en:'New AI revenue'}])});
+});
+function stCompute(){
+  var r=stRun(st);
+  var t30=r.total[5], cagr=Math.pow(t30/R0,0.2)-1, chg=t30/R0-1;
+  var be=r.breakeven, beTxt;
+  if(be<0){ beTxt=bi('已低于2025年','Already below 2025'); } else if(be>1){ beTxt=bi('超过100%','Above 100%'); } else { beTxt=pct(be,0); }
+  var outs=document.getElementById('stouts');
+  if(outs){
+    outs.innerHTML=
+      '<div><b>$'+f0(t30)+'B</b><span>'+bi('2030年搜索及其他收入','2030 Search &amp; other revenue')+'</span></div>'+
+      '<div><b class="'+(cagr>=0?'pos':'neg')+'">'+spct(cagr)+'</b><span>'+bi('2025–2030年化增速','2025–30 annual growth')+'</span></div>'+
+      '<div><b>'+beTxt+'</b><span>'+bi('盈亏平衡分流率（商业与交易型）','Break-even diversion (commercial)')+'</span></div>'+
+      '<div><b>$'+f0(r.per10)+'B</b><span>'+bi('商业查询每多分流10个百分点，2030年收入减少','2030 revenue lost per extra 10 pts of commercial diversion')+'</span></div>';
+  }
+  var tbl=document.getElementById('sttbl');
+  if(tbl){
+    var h='<thead><tr><th>'+bi('查询类型','Query type')+'</th><th class="n">2025</th><th class="n">2030E</th><th class="n">'+bi('变化','Change')+'</th></tr></thead><tbody>';
+    BK.forEach(function(b){ var a=r.b[b.k][0], z=r.b[b.k][5], c=z/a-1; h+='<tr><td>'+bi(b.zh,b.en)+'</td><td class="n">$'+f1(a)+'</td><td class="n">$'+f1(z)+'</td><td class="n '+(c>=0?'pos':'neg')+'">'+spct(c,0)+'</td></tr>'; });
+    h+='<tr><td>'+bi('AI新增','New AI revenue')+'</td><td class="n">$0.0</td><td class="n">$'+f1(r.ai[5])+'</td><td class="n">—</td></tr>';
+    h+='<tr><td><strong>'+bi('合计','Total')+'</strong></td><td class="n"><strong>$'+f1(R0)+'</strong></td><td class="n"><strong>$'+f1(t30)+'</strong></td><td class="n '+(chg>=0?'pos':'neg')+'"><strong>'+spct(chg,0)+'</strong></td></tr>';
+    if(Math.abs(r.shareSum-1)>0.005){ h+='<tr><td colspan="4" class="small">'+bi('四类收入占比合计为'+(r.shareSum*100).toFixed(0)+'%，已按比例归一化。','Bucket shares sum to '+(r.shareSum*100).toFixed(0)+'%; normalized proportionally.')+'</td></tr>'; }
+    tbl.innerHTML=h+'</tbody>';
+  }
+  stDraw(r);
+}
+
+/* ---------------- language ---------------- */
+function setLang(l){
+  lang=l; root.setAttribute('data-lang',l); root.setAttribute('lang',l==='zh'?'zh-CN':'en');
+  var bz=document.getElementById('btn-zh'), be=document.getElementById('btn-en');
+  if(bz){bz.setAttribute('aria-pressed',String(l==='zh'));} if(be){be.setAttribute('aria-pressed',String(l==='en'));}
+  try{localStorage.setItem(LS_KEY,l);}catch(e){}
+  charts.forEach(function(ch){applyChartLang(ch); ch.update('none');});
+}
+var bz=document.getElementById('btn-zh'), be=document.getElementById('btn-en');
+if(bz){bz.addEventListener('click',function(){setLang('zh');});}
+if(be){be.addEventListener('click',function(){setLang('en');});}
+
+/* ---------------- TOC + drawer ---------------- */
+var links=Array.prototype.slice.call(document.querySelectorAll('.side a[href^="#"]'));
+var map={}; links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+if('IntersectionObserver' in window){
+  var tocIO=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ links.forEach(function(a){a.classList.remove('active');}); var a=map[en.target.id]; if(a){a.classList.add('active');} } });
+  },{rootMargin:'-40% 0px -55% 0px',threshold:0});
+  document.querySelectorAll('section.sec').forEach(function(s){tocIO.observe(s);});
+}
+var menubtn=document.getElementById('menubtn');
+if(menubtn){menubtn.addEventListener('click',function(){document.body.classList.toggle('nav-open');});}
+links.forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('nav-open');});});
+
+
+/* ---------------- init ---------------- */
+setLang(lang);
+stBuild();
+stMark();
+stCompute();
+})();
+</script>
+</body>
+</html>

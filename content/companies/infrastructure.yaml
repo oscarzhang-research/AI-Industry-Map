@@ -1,0 +1,1476 @@
+# Companies whose primary placement is in the Infrastructure layer.
+companies:
+  # --- Servers: BMCs, rails & chassis ---
+  aspeed:
+    name: ASPEED
+    nameZh: 信骅
+    aliases: [ASPEED Technology, "5274", 信驊, 信驊科技]
+    listing: listed
+    tickers:
+      - { symbol: 5274.TWO, exchange: TPEx, currency: TWD }
+    country: TW
+    tier: watch
+    primary: infrastructure/servers/server-components
+    website: aspeedtech.com
+    description: >-
+      Fabless designer of baseboard management controllers (BMCs), the remote-management chip in
+      most servers, with a dominant global share; AI servers and rack-scale systems raise BMC
+      content per rack.
+
+  king-slide:
+    name: King Slide
+    nameZh: 川湖
+    aliases: [King Slide Works, "2059", 川湖科技, KingSlide]
+    listing: listed
+    tickers:
+      - { symbol: 2059.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: watch
+    primary: infrastructure/servers/server-components
+    ecosystems: [nvidia]
+    website: kingslide.com
+    description: >-
+      Taiwanese maker of server slide rails and rack-mount rail kits; a leading rail supplier for
+      high-end AI servers, where heavier GPU systems lift content and pricing.
+
+  # --- Servers: ODMs & rack integration ---
+  hon-hai:
+    name: Hon Hai (Foxconn)
+    nameZh: 鸿海
+    aliases: [Foxconn, Hon Hai Precision Industry, "2317", 鴻海, 鸿海精密, 富士康]
+    listing: listed
+    tickers:
+      - { symbol: 2317.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: core
+    primary: infrastructure/servers/odm
+    ecosystems: [nvidia, openai]
+    website: foxconn.com
+    description: >-
+      The world's largest electronics contract manufacturer and the leading assembler of NVIDIA AI
+      servers and rack-scale systems such as GB200/GB300 NVL72, with growing US AI-server
+      production and an OpenAI hardware partnership.
+
+  fii:
+    name: Foxconn Industrial Internet
+    nameZh: 工业富联
+    aliases: [FII, Foxconn Industrial Internet Co. Ltd., "601138", 工業富聯, 富士康工业互联网]
+    listing: listed
+    tickers:
+      - { symbol: 601138.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: focus
+    primary: infrastructure/servers/odm
+    ecosystems: [nvidia]
+    website: fii-foxconn.com
+    description: >-
+      Foxconn's Shanghai-listed subsidiary for cloud and networking hardware; builds NVIDIA GPU
+      modules and baseboards, complete AI server racks and switches for hyperscalers, making it one
+      of the largest AI server suppliers.
+
+  quanta-computer:
+    name: Quanta Computer
+    nameZh: 广达
+    aliases: [Quanta Computer Inc., QCT, Quanta Cloud Technology, "2382", 廣達, 广达电脑]
+    listing: listed
+    tickers:
+      - { symbol: 2382.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: focus
+    primary: infrastructure/servers/odm
+    ecosystems: [nvidia]
+    website: quantatw.com
+    description: >-
+      Taiwanese ODM that designs and assembles AI servers and rack-scale systems for US
+      hyperscalers, including NVIDIA GB200/GB300 racks and custom-ASIC servers, through its ODM
+      business and QCT brand; also a top notebook maker.
+
+  wiwynn:
+    name: Wiwynn
+    nameZh: 纬颖
+    aliases: [Wiwynn Corporation, "6669", 緯穎, 纬颖科技]
+    listing: listed
+    tickers:
+      - { symbol: 6669.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: focus
+    primary: infrastructure/servers/odm
+    ecosystems: [microsoft, meta]
+    website: wiwynn.com
+    description: >-
+      Wistron's cloud-infrastructure subsidiary that designs and builds custom servers, racks and
+      liquid-cooled AI systems for hyperscalers, with Microsoft and Meta as its largest customers.
+
+  wistron:
+    name: Wistron
+    nameZh: 纬创
+    aliases: [Wistron Corporation, "3231", 緯創, 纬创资通]
+    listing: listed
+    tickers:
+      - { symbol: 3231.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: watch
+    primary: infrastructure/servers/odm
+    ecosystems: [nvidia]
+    website: wistron.com
+    description: >-
+      Taiwanese electronics manufacturer that makes NVIDIA GPU baseboards and AI server compute
+      trays, is building AI-server plants in Texas for NVIDIA, and is the parent of hyperscale
+      server maker Wiwynn.
+
+  jabil:
+    name: Jabil
+    nameZh: 捷普
+    aliases: [JBL, Jabil Inc.]
+    listing: listed
+    tickers:
+      - { symbol: JBL, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: infrastructure/servers/odm
+    website: jabil.com
+    description: >-
+      US contract manufacturer whose Intelligent Infrastructure segment builds cloud and AI
+      data-center hardware for hyperscalers, including rack integration, servers, networking, power
+      and liquid-cooling components.
+
+  # --- Servers: OEMs ---
+  dell:
+    name: Dell Technologies
+    nameZh: 戴尔
+    aliases: [DELL, Dell, Dell Technologies Inc., 戴爾]
+    listing: listed
+    tickers:
+      - { symbol: DELL, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: infrastructure/servers/oem
+    ecosystems: [nvidia]
+    website: dell.com
+    description: >-
+      Leading OEM of AI servers, selling NVIDIA-based PowerEdge XE systems and rack-scale platforms
+      to neoclouds, sovereign and enterprise customers, alongside storage, traditional servers and
+      PCs.
+
+  hpe:
+    name: Hewlett Packard Enterprise
+    nameZh: 慧与
+    aliases: [HPE, Hewlett Packard Enterprise Company, 慧與, 惠普企业, Juniper Networks]
+    listing: listed
+    tickers:
+      - { symbol: HPE, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: infrastructure/servers/oem
+    ecosystems: [nvidia]
+    website: hpe.com
+    description: >-
+      Server, storage and networking vendor selling NVIDIA-based AI systems (ProLiant, Cray
+      supercomputers) to enterprises, governments and service providers; the Juniper Networks
+      acquisition significantly expanded its data-center networking business.
+
+  supermicro:
+    name: Supermicro
+    nameZh: 超微电脑
+    aliases: [SMCI, Super Micro Computer, Super Micro Computer Inc., 美超微, 超微電腦]
+    listing: listed
+    tickers:
+      - { symbol: SMCI, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: infrastructure/servers/oem
+    ecosystems: [nvidia]
+    website: supermicro.com
+    description: >-
+      Builds high-density GPU servers and liquid-cooled rack-scale systems, mostly NVIDIA-based,
+      using a building-block design for fast time-to-market; a major supplier to neoclouds and large
+      AI clusters.
+
+  lenovo:
+    name: Lenovo
+    nameZh: 联想
+    aliases: [Lenovo Group, Lenovo Group Limited, "0992", 聯想, 联想集团]
+    listing: listed
+    tickers:
+      - { symbol: 0992.HK, exchange: HKEX, currency: HKD }
+    country: HK
+    tier: watch
+    primary: infrastructure/servers/oem
+    website: lenovo.com
+    description: >-
+      The largest PC maker; its Infrastructure Solutions Group sells AI servers, storage and Neptune
+      liquid-cooled systems to cloud service providers and enterprises.
+
+  inspur:
+    name: Inspur Information
+    nameZh: 浪潮信息
+    aliases: [Inspur Electronic Information Industry, Inspur, "000977", 浪潮, IEIT Systems]
+    listing: listed
+    tickers:
+      - { symbol: 000977.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: infrastructure/servers/oem
+    ecosystems: [china-compute]
+    website: inspur.com
+    description: >-
+      China's largest server maker, supplying AI and general-purpose servers to domestic internet
+      giants, telecom operators and cloud providers; builds systems on both NVIDIA and domestic
+      Chinese accelerators.
+
+  sugon:
+    name: Sugon
+    nameZh: 中科曙光
+    aliases: [Dawning Information Industry, Sugon Information Industry, "603019", 曙光]
+    listing: listed
+    tickers:
+      - { symbol: 603019.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: infrastructure/servers/oem
+    ecosystems: [china-compute]
+    website: sugon.com
+    description: >-
+      Chinese high-performance computing and server maker backed by the Chinese Academy of
+      Sciences; builds AI computing centers and liquid-cooled systems and is the largest shareholder
+      of processor designer Hygon.
+
+  # --- Servers: AI storage systems ---
+  pure-storage:
+    name: Everpure
+    nameZh: Everpure
+    aliases: [Pure Storage, Pure Storage Inc., PSTG, Everpure Inc.]
+    listing: listed
+    tickers:
+      - { symbol: P, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: infrastructure/servers/storage-systems
+    ecosystems: [meta]
+    website: purestorage.com
+    description: >-
+      All-flash data-storage vendor (FlashArray, FlashBlade, Evergreen subscriptions), formerly Pure
+      Storage, supplying high-performance storage for AI training and inference data; Meta is a
+      hyperscale design-win customer.
+
+  netapp:
+    name: NetApp
+    nameZh: NetApp
+    aliases: [NTAP, NetApp Inc., Network Appliance]
+    listing: listed
+    tickers:
+      - { symbol: NTAP, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: infrastructure/servers/storage-systems
+    website: netapp.com
+    description: >-
+      Enterprise data-storage vendor (ONTAP software, AFF all-flash arrays) whose systems are
+      certified for NVIDIA DGX SuperPOD and sold for AI data pipelines, alongside first-party
+      storage services on AWS, Azure and Google Cloud.
+
+  vast-data:
+    name: VAST Data
+    nameZh: VAST Data
+    aliases: [VAST, Vast Data]
+    listing: private
+    country: US
+    tier: focus
+    primary: infrastructure/servers/storage-systems
+    website: vastdata.com
+    description: >-
+      Software-defined data platform for AI (all-flash storage, database and compute, marketed as an
+      "AI Operating System") used by GPU clouds such as CoreWeave and Lambda; a key NVIDIA storage
+      partner.
+    private:
+      valuation: { usd: 30e9, date: 2026-04, round: "Series F" }
+      proxies: [nvidia]
+      note: "Series F led by Drive Capital and Access Industries; NVIDIA, Fidelity and NEA are existing investors. No IPO filing."
+
+  ddn:
+    name: DDN
+    nameZh: DDN
+    aliases: [DataDirect Networks, DDN Storage]
+    listing: private
+    country: US
+    tier: watch
+    primary: infrastructure/servers/storage-systems
+    ecosystems: [nvidia]
+    website: ddn.com
+    description: >-
+      Long-time supplier of high-performance parallel storage (EXAScaler/Lustre, Infinia) for
+      supercomputers and AI clusters, including NVIDIA's in-house systems; Blackstone is a strategic
+      investor.
+    private:
+      valuation: { usd: 5e9, date: 2025-01, round: "Blackstone investment" }
+      proxies: []
+      note: "Founder-led (Alex Bouzari, Paul Bloch) with a $300M minority investment from Blackstone. No IPO filing."
+
+  # --- Networking: lasers, optical engines & components ---
+  lumentum:
+    name: Lumentum
+    nameZh: 朗美通
+    aliases: [LITE, Lumentum Holdings, Lumentum Holdings Inc.]
+    listing: listed
+    tickers:
+      - { symbol: LITE, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: infrastructure/networking/optical-components
+    ecosystems: [nvidia, google-tpu]
+    website: lumentum.com
+    description: >-
+      Supplies indium-phosphide lasers (EMLs, CW lasers) for 800G/1.6T transceivers, optical circuit
+      switches and laser sources for co-packaged optics; a key optical-components supplier for AI
+      networks and an NVIDIA CPO partner.
+
+  tfc:
+    name: TFC Optical
+    nameZh: 天孚通信
+    aliases: [Suzhou TFC Optical Communication, TFC, "300394", 天孚, 天孚光通信]
+    listing: listed
+    tickers:
+      - { symbol: 300394.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: focus
+    primary: infrastructure/networking/optical-components
+    ecosystems: [nvidia]
+    website: tfcsz.com
+    description: >-
+      Chinese supplier of optical engines and passive components (fiber arrays, lens arrays,
+      isolators) for 800G/1.6T transceivers and co-packaged optics; its largest customer is
+      Fabrinet, NVIDIA's optical contract manufacturer.
+
+  fabrinet:
+    name: Fabrinet
+    nameZh: Fabrinet
+    aliases: [FN]
+    listing: listed
+    tickers:
+      - { symbol: FN, exchange: NYSE, currency: USD }
+    country: TH
+    tier: focus
+    primary: infrastructure/networking/optical-components
+    ecosystems: [nvidia]
+    website: fabrinet.com
+    description: >-
+      Thailand-based contract manufacturer of optical transceivers and precision optics; NVIDIA is
+      its largest customer for InfiniBand/Ethernet optical modules, and it is expanding with
+      hyperscalers including AWS.
+
+  # --- Networking: fiber & cabling ---
+  corning:
+    name: Corning
+    nameZh: 康宁
+    aliases: [GLW, Corning Incorporated, 康寧]
+    listing: listed
+    tickers:
+      - { symbol: GLW, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: infrastructure/networking/fiber
+    website: corning.com
+    description: >-
+      Specialty glass and materials maker whose Optical Communications segment supplies optical
+      fiber, cable and high-density connectivity for AI data centers and hyperscalers; also display,
+      specialty and automotive glass.
+
+  fujikura:
+    name: Fujikura
+    nameZh: 藤仓
+    aliases: ["5803", Fujikura Ltd., 藤倉]
+    listing: listed
+    tickers:
+      - { symbol: 5803.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: focus
+    primary: infrastructure/networking/fiber
+    website: fujikura.co.jp
+    description: >-
+      Japanese cable maker and a leading supplier of ultra-high-fiber-count cables (Spider Web
+      Ribbon, Wrapping Tube Cable) and fusion splicers to US hyperscale and AI data centers.
+
+  furukawa:
+    name: Furukawa Electric
+    nameZh: 古河电工
+    aliases: ["5801", Furukawa Electric Co., 古河電工, 古河电气工业, OFS]
+    listing: listed
+    tickers:
+      - { symbol: 5801.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: watch
+    primary: infrastructure/networking/fiber
+    website: furukawa.co.jp
+    description: >-
+      Japanese wire and cable group supplying optical fiber and cable (including US-based OFS),
+      laser diodes for optical transceivers and thermal products such as heat pipes and vapor
+      chambers for data centers.
+
+  sumitomo-electric:
+    name: Sumitomo Electric
+    nameZh: 住友电工
+    aliases: ["5802", Sumitomo Electric Industries, SEI, 住友電工, 住友电气工业]
+    listing: listed
+    tickers:
+      - { symbol: 5802.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: watch
+    primary: infrastructure/networking/fiber
+    website: sei.co.jp
+    description: >-
+      Diversified Japanese wire and cable group, largest in automotive wire harnesses, that also
+      makes optical fiber and connectivity, and indium-phosphide lasers and photodiodes used in
+      data-center optical modules.
+
+  yofc:
+    name: YOFC
+    nameZh: 长飞光纤
+    aliases: [Yangtze Optical Fibre and Cable, "601869", "6869", 長飛, 长飞光纤光缆, 長飛光纖]
+    listing: listed
+    tickers:
+      - { symbol: 601869.SS, exchange: SSE, currency: CNY }
+      - { symbol: 6869.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: watch
+    primary: infrastructure/networking/fiber
+    website: yofc.com
+    description: >-
+      One of the world's largest makers of optical fiber preforms, fiber and cable, expanding into
+      data-center cabling, hollow-core fiber and optical modules; A+H listed in Shanghai and Hong
+      Kong.
+
+  # --- Networking: optical transceivers ---
+  innolight:
+    name: Zhongji Innolight
+    nameZh: 中际旭创
+    aliases: [Innolight, Zhongji Innolight Co. Ltd., "300308", "3308", 中際旭創, 旭创科技, 旭创]
+    listing: listed
+    tickers:
+      - { symbol: 300308.SZ, exchange: SZSE, currency: CNY }
+      - { symbol: 3308.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: core
+    primary: infrastructure/networking/optical-transceivers
+    ecosystems: [nvidia, google-tpu]
+    website: innolight.com
+    description: >-
+      The world's largest optical transceiver maker by sales, shipping 800G and 1.6T modules to
+      NVIDIA, Google and other hyperscalers and developing silicon-photonics and co-packaged optics;
+      A+H listed in Shenzhen and Hong Kong.
+
+  eoptolink:
+    name: Eoptolink
+    nameZh: 新易盛
+    aliases: [Eoptolink Technology, "300502", 新易盛通信]
+    listing: listed
+    tickers:
+      - { symbol: 300502.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: core
+    primary: infrastructure/networking/optical-transceivers
+    ecosystems: [nvidia]
+    website: eoptolink.com
+    description: >-
+      Chinese optical transceiver maker focused on high-speed 400G/800G/1.6T modules for AI
+      clusters, with major US hyperscaler and NVIDIA business and production in Thailand; one of the
+      top global module suppliers.
+
+  coherent:
+    name: Coherent
+    nameZh: 高意
+    aliases: [COHR, Coherent Corp., II-VI, 贰陆, 貳陸, 相干, Coherent高意]
+    listing: listed
+    tickers:
+      - { symbol: COHR, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: infrastructure/networking/optical-transceivers
+    ecosystems: [nvidia]
+    website: coherent.com
+    description: >-
+      Optical networking and materials company (formerly II-VI) making 800G/1.6T datacom
+      transceivers, indium-phosphide and VCSEL lasers and optical circuit switches; a major supplier
+      to NVIDIA and hyperscalers.
+
+  aaoi:
+    name: Applied Optoelectronics
+    nameZh: 应用光电
+    aliases: [AAOI, Applied Optoelectronics Inc., 應用光電]
+    listing: listed
+    tickers:
+      - { symbol: AAOI, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: infrastructure/networking/optical-transceivers
+    website: ao-inc.com
+    description: >-
+      US maker of datacom optical transceivers with in-house laser fabs in Texas and Taiwan, ramping
+      800G/1.6T modules for hyperscalers; Amazon holds warrants tied to its purchases, and Microsoft
+      has been a key customer.
+
+  accelink:
+    name: Accelink
+    nameZh: 光迅科技
+    aliases: [Accelink Technologies, "002281", 光迅]
+    listing: listed
+    tickers:
+      - { symbol: 002281.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: infrastructure/networking/optical-transceivers
+    website: accelink.com
+    description: >-
+      Chinese optical components and transceiver maker controlled by state-owned China Information
+      and Communication Technologies Group (CICT), supplying telecom and data-center optics
+      including 800G modules, with in-house laser chips.
+
+  # --- Networking: copper & data interconnect ---
+  credo:
+    name: Credo
+    nameZh: Credo
+    aliases: [CRDO, Credo Technology Group, Credo Semiconductor]
+    listing: listed
+    tickers:
+      - { symbol: CRDO, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: infrastructure/networking/copper-interconnect
+    ecosystems: [aws-trainium]
+    website: credosemi.com
+    description: >-
+      Supplies HiWire active electrical cables (AECs), SerDes, retimers and optical DSPs for AI data
+      centers; its AECs are widely used for in-rack links at hyperscalers, with Amazon a major
+      customer.
+
+  astera-labs:
+    name: Astera Labs
+    nameZh: Astera Labs
+    aliases: [ALAB, Astera Labs Inc., Astera]
+    listing: listed
+    tickers:
+      - { symbol: ALAB, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: infrastructure/networking/copper-interconnect
+    ecosystems: [nvidia, aws-trainium]
+    website: asteralabs.com
+    description: >-
+      Fabless maker of connectivity chips for AI racks: PCIe/CXL retimers (Aries), smart cable
+      modules (Taurus), fabric switches (Scorpio) and UALink products, used in NVIDIA platforms and
+      custom-ASIC racks such as AWS Trainium.
+
+  amphenol:
+    name: Amphenol
+    nameZh: 安费诺
+    aliases: [APH, Amphenol Corporation, 安費諾]
+    listing: listed
+    tickers:
+      - { symbol: APH, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: infrastructure/networking/copper-interconnect
+    ecosystems: [nvidia]
+    website: amphenol.com
+    description: >-
+      One of the largest connector and cable makers; supplies high-speed copper cable assemblies and
+      connectors used in NVIDIA's NVL72 racks, plus fiber connectivity and power interconnect for AI
+      data centers.
+
+  luxshare:
+    name: Luxshare
+    nameZh: 立讯精密
+    aliases: [Luxshare Precision Industry, Luxshare-ICT, "002475", "2475", 立訊精密, 立讯]
+    listing: listed
+    tickers:
+      - { symbol: 002475.SZ, exchange: SZSE, currency: CNY }
+      - { symbol: 2475.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: watch
+    primary: infrastructure/networking/copper-interconnect
+    ecosystems: [apple, nvidia]
+    website: luxshare-ict.com
+    description: >-
+      Chinese precision manufacturer best known as an Apple assembler, expanding into AI data-center
+      copper cables and connectors, optical modules, server power, liquid cooling and server
+      assembly; A+H listed in Shenzhen and Hong Kong.
+
+  te-connectivity:
+    name: TE Connectivity
+    nameZh: 泰科电子
+    aliases: [TEL, TE Connectivity plc, 泰科電子, Tyco Electronics]
+    listing: listed
+    tickers:
+      - { symbol: TEL, exchange: NYSE, currency: USD }
+    country: IE
+    tier: watch
+    primary: infrastructure/networking/copper-interconnect
+    website: te.com
+    description: >-
+      Global connector and sensor maker; its Digital Data Networks business supplies high-speed
+      copper interconnect and cable assemblies for AI servers and switches, though most revenue
+      comes from automotive and industrial markets.
+
+  # --- Networking: switches & network systems ---
+  arista:
+    name: Arista Networks
+    nameZh: Arista
+    aliases: [ANET, Arista Networks Inc., 阿里斯塔网络]
+    listing: listed
+    tickers:
+      - { symbol: ANET, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: infrastructure/networking/switches
+    ecosystems: [meta, microsoft]
+    website: arista.com
+    description: >-
+      Leading vendor of high-speed Ethernet data-center switches and EOS network software; Microsoft
+      and Meta are its largest customers, and AI back-end and front-end networks are a major growth
+      driver.
+
+  cisco:
+    name: Cisco
+    nameZh: 思科
+    aliases: [CSCO, Cisco Systems, Cisco Systems Inc., 思科系统]
+    listing: listed
+    tickers:
+      - { symbol: CSCO, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: infrastructure/networking/switches
+    website: cisco.com
+    description: >-
+      The largest networking-equipment vendor, selling Ethernet switches, routers, Silicon One chips
+      and optics into AI data centers at hyperscalers, neoclouds and enterprises, alongside security
+      and observability software (Splunk).
+
+  celestica:
+    name: Celestica
+    nameZh: 天弘科技
+    aliases: [CLS, Celestica Inc., 天弘]
+    listing: listed
+    tickers:
+      - { symbol: CLS, exchange: NYSE, currency: USD }
+      - { symbol: CLS.TO, exchange: TSX, currency: CAD }
+    country: CA
+    tier: core
+    primary: infrastructure/networking/switches
+    ecosystems: [google-tpu]
+    website: celestica.com
+    description: >-
+      Canadian electronics manufacturer that designs and builds 800G/1.6T data-center switches and
+      AI compute racks for hyperscalers; its Connectivity & Cloud Solutions segment drives most of
+      its growth.
+
+  accton:
+    name: Accton
+    nameZh: 智邦
+    aliases: [Accton Technology, "2345", 智邦科技, Edgecore Networks]
+    listing: listed
+    tickers:
+      - { symbol: 2345.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: focus
+    primary: infrastructure/networking/switches
+    ecosystems: [aws-trainium]
+    website: accton.com
+    description: >-
+      Taiwanese networking ODM that designs and builds white-box data-center switches and AI
+      networking hardware for hyperscalers, with AWS as its key customer.
+
+  nokia:
+    name: Nokia
+    nameZh: 诺基亚
+    aliases: [NOK, NOKIA, Nokia Oyj, Nokia Corporation, 諾基亞, Infinera]
+    listing: listed
+    tickers:
+      - { symbol: NOK, exchange: NYSE, currency: USD }
+      - { symbol: NOKIA.HE, exchange: Nasdaq Helsinki, currency: EUR }
+    country: FI
+    tier: focus
+    primary: infrastructure/networking/switches
+    ecosystems: [nvidia]
+    website: nokia.com
+    description: >-
+      Finnish network-equipment maker selling optical transport (expanded by the Infinera
+      acquisition), IP routing and data-center switching to AI cloud operators; NVIDIA invested
+      $1 billion in Nokia under an AI-RAN and AI networking partnership.
+
+  ciena:
+    name: Ciena
+    nameZh: Ciena
+    aliases: [CIEN, Ciena Corporation]
+    listing: listed
+    tickers:
+      - { symbol: CIEN, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: infrastructure/networking/switches
+    website: ciena.com
+    description: >-
+      Leading supplier of coherent optical networking systems and WaveLogic modems for long-haul,
+      metro and data-center interconnect, increasingly used to link AI data centers; expanding into
+      intra-data-center optics.
+
+  unisplendour:
+    name: Unisplendour
+    nameZh: 紫光股份
+    aliases: [Unisplendour Corporation, "000938", H3C, 新华三, 新華三]
+    listing: listed
+    tickers:
+      - { symbol: 000938.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: infrastructure/networking/switches
+    ecosystems: [china-compute]
+    website: thunis.com
+    description: >-
+      Controls H3C, China's second-largest networking-equipment vendor after Huawei, selling
+      switches, servers, storage and cloud solutions for domestic AI data centers.
+
+  # --- PCB, CCL & materials ---
+  nittobo:
+    name: Nittobo
+    nameZh: 日东纺
+    aliases: [Nitto Boseki, "3110", 日東紡, 日东纺绩]
+    listing: listed
+    tickers:
+      - { symbol: 3110.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: focus
+    primary: infrastructure/pcb-ccl/glass-copper
+    website: nittobo.co.jp
+    description: >-
+      Japanese glass-fiber maker and the dominant supplier of low-dielectric (low-Dk) glass cloth
+      and low-CTE T-glass used in high-end copper-clad laminates and IC substrates for AI servers
+      and accelerators.
+
+  mitsui-kinzoku:
+    name: Mitsui Kinzoku
+    nameZh: 三井金属
+    aliases: ["Mitsui Mining & Smelting", Mitsui Kinzoku Co. Ltd., "5706", 三井金屬, 三井金属矿业]
+    listing: listed
+    tickers:
+      - { symbol: 5706.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: watch
+    primary: infrastructure/pcb-ccl/glass-copper
+    website: mitsui-kinzoku.com
+    description: >-
+      Japanese non-ferrous metals and materials group (formerly Mitsui Mining & Smelting) that leads
+      in ultra-thin carrier copper foil (MicroThin) for IC substrates and supplies low-profile foils
+      for high-speed AI boards.
+
+  emc:
+    name: Elite Material (EMC)
+    nameZh: 台光电
+    aliases: [EMC, Elite Material Co., "2383", 台光電, 台光电子]
+    listing: listed
+    tickers:
+      - { symbol: 2383.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: focus
+    primary: infrastructure/pcb-ccl/ccl
+    ecosystems: [nvidia]
+    website: emctw.com
+    description: >-
+      Taiwanese leader in high-speed, low-loss copper-clad laminates (CCL) for AI servers,
+      accelerators and switches; the main CCL supplier for NVIDIA GPU platforms and many hyperscaler
+      ASIC boards.
+
+  shengyi:
+    name: Shengyi Technology
+    nameZh: 生益科技
+    aliases: [Shengyi Technology Co., Shengyi Tech, "600183", 生益]
+    listing: listed
+    tickers:
+      - { symbol: 600183.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: infrastructure/pcb-ccl/ccl
+    website: syst.com.cn
+    description: >-
+      One of the world's largest copper-clad laminate (CCL) makers, supplying high-speed, low-loss
+      materials for AI servers and switches; also the controlling shareholder of PCB maker Shengyi
+      Electronics.
+
+  victory-giant:
+    name: Victory Giant Technology
+    nameZh: 胜宏科技
+    aliases: [Victory Giant, VGT, "300476", "2476", 勝宏科技, 胜宏]
+    listing: listed
+    tickers:
+      - { symbol: 300476.SZ, exchange: SZSE, currency: CNY }
+      - { symbol: 2476.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: focus
+    primary: infrastructure/pcb-ccl/pcb
+    ecosystems: [nvidia]
+    website: vgtpcb.com   # verify
+    description: >-
+      Chinese maker of high-layer-count and HDI printed circuit boards for AI servers, GPU modules
+      and accelerator cards, and a major NVIDIA PCB supplier; A+H listed in Shenzhen and Hong Kong.
+
+  wus:
+    name: WUS Printed Circuit
+    nameZh: 沪电股份
+    aliases: [WUS, WUS Printed Circuit (Kunshan), "002463", 滬電股份, 沪士电子, 沪电]
+    listing: listed
+    tickers:
+      - { symbol: 002463.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: focus
+    primary: infrastructure/pcb-ccl/pcb
+    website: wuspc.com   # verify
+    description: >-
+      Kunshan-based PCB maker specializing in high-layer, high-speed boards for AI servers,
+      data-center switches and accelerators, plus automotive boards; a key supplier to global
+      networking and hyperscale customers.
+
+  shennan:
+    name: Shennan Circuits
+    nameZh: 深南电路
+    aliases: [Shennan Circuits Co., SCC, "002916", 深南電路]
+    listing: listed
+    tickers:
+      - { symbol: 002916.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: infrastructure/pcb-ccl/pcb
+    website: scc.com.cn
+    description: >-
+      Chinese PCB, IC-substrate and electronics-assembly maker controlled by AVIC, supplying
+      high-layer boards for communication equipment, AI servers, switches and optical modules.
+
+  gold-circuit:
+    name: Gold Circuit Electronics
+    nameZh: 金像电
+    aliases: [GCE, Gold Circuit Electronics Ltd., "2368", 金像電, 金像電子]
+    listing: listed
+    tickers:
+      - { symbol: 2368.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: watch
+    primary: infrastructure/pcb-ccl/pcb
+    website: gce.com.tw
+    description: >-
+      Taiwanese PCB maker specializing in high-layer-count boards for servers, data-center switches
+      and AI accelerators, with hyperscaler custom-ASIC and switch programs as key growth drivers.
+
+  ttm:
+    name: TTM Technologies
+    nameZh: 迅达科技
+    aliases: [TTMI, TTM Technologies Inc., 迅達科技]
+    listing: listed
+    tickers:
+      - { symbol: TTMI, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: infrastructure/pcb-ccl/pcb
+    website: ttm.com
+    description: >-
+      A leading North American printed circuit board maker, producing high-layer-count boards and
+      RF components for data-center, AI and networking customers as well as aerospace and defense.
+
+  isu-petasys:
+    name: ISU Petasys
+    nameZh: ISU Petasys
+    aliases: ["007660", ISU Petasys Co., 이수페타시스]
+    listing: listed
+    tickers:
+      - { symbol: 007660.KS, exchange: KOSPI, currency: KRW }
+    country: KR
+    tier: watch
+    primary: infrastructure/pcb-ccl/pcb
+    website: isupetasys.com
+    description: >-
+      South Korean maker of high-layer-count multilayer PCBs used in AI accelerators, data-center
+      switches and servers, with most sales exported to US big-tech and networking customers.
+
+  # --- Thermal: liquid cooling (CDUs, cold plates) ---
+  vertiv:
+    name: Vertiv
+    nameZh: 维谛技术
+    aliases: [VRT, Vertiv Holdings, 維諦技術, Emerson Network Power]
+    listing: listed
+    tickers:
+      - { symbol: VRT, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: infrastructure/thermal/liquid-cooling
+    ecosystems: [nvidia]
+    website: vertiv.com
+    description: >-
+      Pure-play data-center power and cooling supplier: UPS, switchgear, busway, thermal management
+      and liquid-cooling CDUs; co-develops reference designs and 800V DC power systems with NVIDIA.
+
+  avc:
+    name: Asia Vital Components (AVC)
+    nameZh: 奇鋐
+    aliases: [AVC, Asia Vital Components Co., "3017", 奇鋐科技]
+    listing: listed
+    tickers:
+      - { symbol: 3017.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: focus
+    primary: infrastructure/thermal/liquid-cooling
+    ecosystems: [nvidia]
+    website: avc.com.tw
+    description: >-
+      Taiwanese thermal-solutions maker (vapor chambers, cold plates, manifolds, server chassis) and
+      a leading liquid-cooling supplier for NVIDIA GB200/GB300 racks and hyperscaler AI servers.
+
+  auras:
+    name: Auras Technology
+    nameZh: 双鸿
+    aliases: [Auras Technology Co., "3324", 雙鴻, 双鸿科技]
+    listing: listed
+    tickers:
+      - { symbol: 3324.TWO, exchange: TPEx, currency: TWD }
+    country: TW
+    tier: watch
+    primary: infrastructure/thermal/liquid-cooling
+    website: auras.com.tw
+    description: >-
+      Taiwanese thermal-module maker (heat pipes, vapor chambers, cold plates, CDUs and manifolds)
+      expanding in liquid cooling for AI servers and racks.
+
+  envicool:
+    name: Envicool
+    nameZh: 英维克
+    aliases: [Shenzhen Envicool Technology, "002837", 英維克]
+    listing: listed
+    tickers:
+      - { symbol: 002837.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: focus
+    primary: infrastructure/thermal/liquid-cooling
+    website: envicool.com
+    description: >-
+      Chinese precision-cooling maker supplying data-center air and liquid cooling (CDUs, cold
+      plates, quick disconnects) as well as energy-storage thermal management.
+
+  nvent:
+    name: nVent
+    nameZh: nVent
+    aliases: [NVT, nVent Electric, nVent Electric plc]
+    listing: listed
+    tickers:
+      - { symbol: NVT, exchange: NYSE, currency: USD }
+    country: GB
+    tier: watch
+    primary: infrastructure/thermal/liquid-cooling
+    website: nvent.com
+    description: >-
+      Electrical connection, protection and enclosure company whose data-center offerings include
+      liquid-cooling CDUs and manifolds, rack enclosures and power distribution.
+
+  # --- Thermal: chillers & heat rejection ---
+  trane:
+    name: Trane Technologies
+    nameZh: 特灵科技
+    aliases: [TT, Trane Technologies plc, Trane, 特靈]
+    listing: listed
+    tickers:
+      - { symbol: TT, exchange: NYSE, currency: USD }
+    country: IE
+    tier: focus
+    primary: infrastructure/thermal/facility-cooling
+    website: tranetechnologies.com
+    description: >-
+      Commercial HVAC leader whose chillers, heat-rejection systems and controls cool large data
+      centers; extending into liquid-cooling and thermal-management solutions for AI facilities.
+
+  carrier:
+    name: Carrier
+    nameZh: 开利
+    aliases: [CARR, Carrier Global, Carrier Global Corporation, 開利]
+    listing: listed
+    tickers:
+      - { symbol: CARR, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: infrastructure/thermal/facility-cooling
+    website: carrier.com
+    description: >-
+      HVAC maker (chillers, air handlers, controls) refocused on climate solutions after portfolio
+      divestitures; supplies chillers and liquid-cooling solutions for hyperscale and AI data
+      centers.
+
+  johnson-controls:
+    name: Johnson Controls
+    nameZh: 江森自控
+    aliases: [JCI, Johnson Controls International, Johnson Controls International plc]
+    listing: listed
+    tickers:
+      - { symbol: JCI, exchange: NYSE, currency: USD }
+    country: IE
+    tier: watch
+    primary: infrastructure/thermal/facility-cooling
+    website: johnsoncontrols.com
+    description: >-
+      Building-technology company whose York chillers, Silent-Aire custom air handlers and controls
+      cool hyperscale and AI data centers; data centers are among its fastest-growing markets.
+
+  modine:
+    name: Modine
+    nameZh: 摩丁
+    aliases: [MOD, Modine Manufacturing, Modine Manufacturing Company, Airedale]
+    listing: listed
+    tickers:
+      - { symbol: MOD, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: infrastructure/thermal/facility-cooling
+    website: modine.com
+    description: >-
+      Thermal-management maker whose data-center business (Airedale chillers, CRAHs, coolant
+      distribution units) is its fastest-growing unit; it is separating its vehicle-focused
+      Performance Technologies segment through a deal with Gentherm.
+
+  # --- Power delivery: UPS, PDUs & switchgear ---
+  eaton:
+    name: Eaton
+    nameZh: 伊顿
+    aliases: [ETN, Eaton Corporation, Eaton Corporation plc, 伊頓]
+    listing: listed
+    tickers:
+      - { symbol: ETN, exchange: NYSE, currency: USD }
+    country: IE
+    tier: core
+    primary: infrastructure/power-delivery/ups-switchgear
+    ecosystems: [nvidia]
+    website: eaton.com
+    description: >-
+      Power-management company supplying UPS, switchgear, busway and power distribution for data
+      centers, and expanding into liquid cooling; a partner on NVIDIA's 800V DC rack-power
+      architecture.
+
+  schneider:
+    name: Schneider Electric
+    nameZh: 施耐德电气
+    aliases: [SU, Schneider Electric SE, 施耐德, 施耐德電氣]
+    listing: listed
+    tickers:
+      - { symbol: SU.PA, exchange: Euronext Paris, currency: EUR }
+    country: FR
+    tier: core
+    primary: infrastructure/power-delivery/ups-switchgear
+    ecosystems: [nvidia]
+    website: se.com
+    description: >-
+      French energy-management group and a top data-center infrastructure supplier: UPS,
+      switchgear, cooling (including Motivair liquid cooling) and management software; co-develops
+      AI data-center reference designs with NVIDIA.
+
+  legrand:
+    name: Legrand
+    nameZh: 罗格朗
+    aliases: [LR, Legrand SA, 羅格朗]
+    listing: listed
+    tickers:
+      - { symbol: LR.PA, exchange: Euronext Paris, currency: EUR }
+    country: FR
+    tier: watch
+    primary: infrastructure/power-delivery/ups-switchgear
+    website: legrand.com
+    description: >-
+      French electrical-equipment maker whose data-center business (rack PDUs, busway, cabinets,
+      structured cabling and cooling) is a fast-growing share of its sales.
+
+  # --- Power delivery: server power supplies & 800V DC ---
+  delta:
+    name: Delta Electronics
+    nameZh: 台达电
+    aliases: [Delta Electronics Inc., "2308", 台達電, 台达, 台达电子]
+    listing: listed
+    tickers:
+      - { symbol: 2308.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: core
+    primary: infrastructure/power-delivery/server-power
+    ecosystems: [nvidia]
+    website: deltaww.com
+    description: >-
+      Taiwanese power-electronics leader and the largest server power-supply maker, also supplying
+      power shelves, 800V DC components, UPS and liquid-cooling CDUs for AI data centers; an NVIDIA
+      power partner.
+
+  lite-on:
+    name: Lite-On Technology
+    nameZh: 光宝科
+    aliases: [Lite-On, LITEON, "2301", 光寶科, 光宝科技]
+    listing: listed
+    tickers:
+      - { symbol: 2301.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: watch
+    primary: infrastructure/power-delivery/server-power
+    website: liteon.com
+    description: >-
+      Taiwanese electronics maker supplying server and AI-rack power supplies, power shelves and
+      battery backup units, plus optoelectronics; a major supplier of high-wattage AI server power.
+
+  megmeet:
+    name: Megmeet
+    nameZh: 麦格米特
+    aliases: [Shenzhen Megmeet Electrical, Megmeet Electrical, "002851", 麥格米特]
+    listing: listed
+    tickers:
+      - { symbol: 002851.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: infrastructure/power-delivery/server-power
+    website: megmeet.com
+    description: >-
+      Chinese power-electronics maker of server and AI power supplies, industrial drives and EV
+      components; named among NVIDIA's 800V DC power-system component partners.
+
+  # --- Data centers: construction & MEP ---
+  emcor:
+    name: EMCOR
+    nameZh: EMCOR
+    aliases: [EME, EMCOR Group, EMCOR Group Inc.]
+    listing: listed
+    tickers:
+      - { symbol: EME, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: infrastructure/data-centers/construction
+    website: emcorgroup.com
+    description: >-
+      One of the largest US electrical and mechanical construction contractors; data centers are its
+      biggest growth market for electrical, HVAC and fire-protection installation work.
+
+  comfort-systems:
+    name: Comfort Systems USA
+    nameZh: Comfort Systems
+    aliases: [FIX, Comfort Systems USA Inc., Comfort Systems]
+    listing: listed
+    tickers:
+      - { symbol: FIX, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: infrastructure/data-centers/construction
+    website: comfortsystemsusa.com
+    description: >-
+      US mechanical and electrical contractor (HVAC, plumbing, controls, modular assembly) with
+      technology and data-center projects as its largest growth driver.
+
+  sterling:
+    name: Sterling Infrastructure
+    nameZh: Sterling Infrastructure
+    aliases: [STRL, Sterling Infrastructure Inc., Sterling Construction]
+    listing: listed
+    tickers:
+      - { symbol: STRL, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: infrastructure/data-centers/construction
+    website: strlco.com
+    description: >-
+      US infrastructure contractor whose E-Infrastructure Solutions segment handles large site
+      development for data centers and advanced manufacturing: excavation, grading and underground
+      utilities.
+
+  # --- Data centers: colocation & wholesale (REITs) ---
+  equinix:
+    name: Equinix
+    nameZh: Equinix
+    aliases: [EQIX, Equinix Inc.]
+    listing: listed
+    tickers:
+      - { symbol: EQIX, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: infrastructure/data-centers/colocation
+    website: equinix.com
+    description: >-
+      The largest global data-center REIT by revenue, operating interconnection-rich retail
+      colocation in major metros worldwide, plus xScale joint ventures that build hyperscale
+      campuses for AI.
+
+  digital-realty:
+    name: Digital Realty
+    nameZh: 数字房地产信托
+    aliases: [DLR, Digital Realty Trust, 数字房地产]
+    listing: listed
+    tickers:
+      - { symbol: DLR, exchange: NYSE, currency: USD }
+    country: US
+    tier: focus
+    primary: infrastructure/data-centers/colocation
+    website: digitalrealty.com
+    description: >-
+      One of the largest data-center REITs, leasing wholesale and colocation capacity worldwide
+      (PlatformDIGITAL) to hyperscalers and enterprises, including high-density deployments for AI.
+
+  gds:
+    name: GDS Holdings
+    nameZh: 万国数据
+    aliases: [GDS, GDS Holdings Limited, "9698", 萬國數據]
+    listing: listed
+    tickers:
+      - { symbol: GDS, exchange: NASDAQ, currency: USD }
+      - { symbol: 9698.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: watch
+    primary: infrastructure/data-centers/colocation
+    website: gds-services.com
+    description: >-
+      Leading carrier-neutral data-center developer and operator in China, serving internet giants
+      and cloud providers; holds a stake in DayOne, its former international unit in Southeast Asia.
+
+  vnet:
+    name: VNET Group
+    nameZh: 世纪互联
+    aliases: [VNET, 21Vianet, 21Vianet Group, 世紀互聯]
+    listing: listed
+    tickers:
+      - { symbol: VNET, exchange: NASDAQ, currency: USD }
+    country: CN
+    tier: watch
+    primary: infrastructure/data-centers/colocation
+    website: vnet.com
+    description: >-
+      Chinese carrier-neutral data-center operator (formerly 21Vianet) providing wholesale and
+      retail capacity to internet and cloud companies; long-time operator of Microsoft Azure in
+      China.
+
+  # --- Data centers: AI campus developers (incl. ex-miners) ---
+  applied-digital:
+    name: Applied Digital
+    nameZh: Applied Digital
+    aliases: [APLD, Applied Digital Corporation, Applied Blockchain]
+    listing: listed
+    tickers:
+      - { symbol: APLD, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: infrastructure/data-centers/ai-campuses
+    website: applieddigital.com
+    description: >-
+      Develops and operates high-density, liquid-cooled AI data-center campuses (Polaris Forge) in
+      North Dakota leased to CoreWeave and an investment-grade hyperscaler; majority owner of
+      GPU-cloud spin-out ChronoScale (CHRN).
+
+  iren:
+    name: IREN
+    nameZh: IREN
+    aliases: [IREN Limited, Iris Energy]
+    listing: listed
+    tickers:
+      - { symbol: IREN, exchange: NASDAQ, currency: USD }
+    country: AU
+    tier: focus
+    primary: infrastructure/cloud/neoclouds
+    ecosystems: [microsoft]
+    website: iren.com
+    description: >-
+      Sydney-based operator of renewable-powered data centers in Texas and British Columbia,
+      pivoting from bitcoin mining to AI cloud services; has a multiyear GPU cloud contract with
+      Microsoft.
+
+  cipher:
+    name: Cipher Digital
+    nameZh: Cipher Digital
+    aliases: [CIFR, Cipher Mining, Cipher Digital Inc.]
+    listing: listed
+    tickers:
+      - { symbol: CIFR, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: infrastructure/data-centers/ai-campuses
+    website: ciphermining.com   # verify
+    description: >-
+      Former bitcoin miner, renamed from Cipher Mining, converting its Texas power sites into HPC/AI
+      data centers, with leases to AWS and to Fluidstack backed by Google.
+
+  terawulf:
+    name: TeraWulf
+    nameZh: TeraWulf
+    aliases: [WULF, TeraWulf Inc.]
+    listing: listed
+    tickers:
+      - { symbol: WULF, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: infrastructure/data-centers/ai-campuses
+    website: terawulf.com
+    description: >-
+      Former bitcoin miner developing low-carbon HPC/AI data centers (Lake Mariner, New York, and a
+      Texas joint venture) leased to Fluidstack, with Google backstopping the leases and holding a
+      stake.
+
+  core-scientific:
+    name: Core Scientific
+    nameZh: Core Scientific
+    aliases: [CORZ, Core Scientific Inc.]
+    listing: listed
+    tickers:
+      - { symbol: CORZ, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: infrastructure/data-centers/ai-campuses
+    website: corescientific.com
+    description: >-
+      Former bitcoin miner converting its US sites into high-density colocation for AI and HPC;
+      CoreWeave is its anchor tenant, after Core Scientific shareholders rejected CoreWeave's
+      takeover bid.
+
+  galaxy:
+    name: Galaxy Digital
+    nameZh: Galaxy Digital
+    aliases: [GLXY, Galaxy, Galaxy Digital Inc., Galaxy Digital Holdings]
+    listing: listed
+    tickers:
+      - { symbol: GLXY, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: infrastructure/data-centers/ai-campuses
+    website: galaxy.com
+    description: >-
+      Digital-asset financial firm (trading, asset management, investment banking) that is also
+      developing the Helios AI data-center campus in West Texas, leased to CoreWeave.
+
+  # --- Cloud: hyperscalers ---
+  microsoft:
+    name: Microsoft
+    nameZh: 微软
+    aliases: [MSFT, Microsoft Corporation, Azure, 微軟]
+    listing: listed
+    tickers:
+      - { symbol: MSFT, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: infrastructure/cloud/hyperscalers
+    ecosystems: [microsoft, openai]
+    website: microsoft.com
+    description: >-
+      Azure is the second-largest cloud and Microsoft is among the largest AI capex spenders; it
+      holds a major stake in OpenAI, is a key compute provider to it, and develops Maia AI
+      accelerators and Cobalt CPUs.
+
+  amazon:
+    name: Amazon
+    nameZh: 亚马逊
+    aliases: [AMZN, Amazon.com, AWS, Amazon Web Services, 亞馬遜]
+    listing: listed
+    tickers:
+      - { symbol: AMZN, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: infrastructure/cloud/hyperscalers
+    ecosystems: [aws-trainium, openai]
+    website: amazon.com
+    description: >-
+      AWS is the largest cloud provider and designs its own Trainium AI accelerators; Amazon is a
+      major Anthropic investor and compute partner (Project Rainier) and also supplies compute to
+      OpenAI.
+
+  oracle:
+    name: Oracle
+    nameZh: 甲骨文
+    aliases: [ORCL, Oracle Corporation, OCI, Oracle Cloud Infrastructure]
+    listing: listed
+    tickers:
+      - { symbol: ORCL, exchange: NYSE, currency: USD }
+    country: US
+    tier: core
+    primary: infrastructure/cloud/hyperscalers
+    ecosystems: [openai]
+    website: oracle.com
+    description: >-
+      Oracle Cloud Infrastructure (OCI) is a fast-growing AI cloud building Stargate capacity for
+      OpenAI and hosting other AI labs; its contracted backlog (RPO) is a closely watched AI-demand
+      signal.
+
+  alibaba:
+    name: Alibaba
+    nameZh: 阿里巴巴
+    aliases: [BABA, "9988", Alibaba Group, Alibaba Group Holding, Alibaba Cloud, 阿里云, 阿里雲]
+    listing: listed
+    tickers:
+      - { symbol: BABA, exchange: NYSE, currency: USD }
+      - { symbol: 9988.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: core
+    primary: infrastructure/cloud/hyperscalers
+    ecosystems: [china-compute]
+    website: alibabagroup.com
+    description: >-
+      Operates Alibaba Cloud, China's largest cloud provider, develops the Qwen model family and
+      in-house AI chips (T-Head), and is investing heavily in AI infrastructure; also China's
+      largest e-commerce group.
+
+  # --- Cloud: neoclouds & GPU clouds ---
+  coreweave:
+    name: CoreWeave
+    nameZh: CoreWeave
+    aliases: [CRWV, CoreWeave Inc.]
+    listing: listed
+    tickers:
+      - { symbol: CRWV, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: infrastructure/cloud/neoclouds
+    ecosystems: [nvidia, openai, microsoft, meta]
+    website: coreweave.com
+    description: >-
+      The largest AI-focused neocloud, renting NVIDIA GPU clusters under multiyear contracts to
+      OpenAI, Microsoft, Meta and other AI labs; NVIDIA is both an investor and a customer.
+
+  nebius:
+    name: Nebius
+    nameZh: Nebius
+    aliases: [NBIS, Nebius Group, Nebius Group N.V., Yandex N.V.]
+    listing: listed
+    tickers:
+      - { symbol: NBIS, exchange: NASDAQ, currency: USD }
+    country: NL
+    tier: core
+    primary: infrastructure/cloud/neoclouds
+    ecosystems: [nvidia, microsoft, meta]
+    website: nebius.com
+    description: >-
+      Amsterdam-based AI cloud (formerly Yandex N.V.) running NVIDIA GPU data centers in Europe and
+      the US, with large multiyear capacity contracts from Microsoft and Meta; NVIDIA is an
+      investor.
+
+  lambda:
+    name: Lambda
+    nameZh: Lambda
+    aliases: [Lambda Labs, Lambda Inc., Lambda Cloud]
+    listing: private
+    country: US
+    tier: focus
+    primary: infrastructure/cloud/neoclouds
+    ecosystems: [nvidia, microsoft]
+    website: lambda.ai
+    description: >-
+      US GPU cloud offering NVIDIA clusters and on-demand instances to AI developers and labs;
+      NVIDIA is an investor and customer, and it has a multibillion-dollar infrastructure deal with
+      Microsoft.
+    private:
+      valuation: { usd: 5.9e9, date: 2025-11, round: "Series E" }   # verify
+      proxies: [nvidia]
+      note: "NVIDIA-backed; reportedly raising up to $4B (WSJ, Oct 2026) ahead of a targeted 2027 IPO. No IPO filing yet."
+
+  crusoe:
+    name: Crusoe
+    nameZh: Crusoe
+    aliases: [Crusoe Energy, Crusoe Energy Systems, Crusoe Cloud]
+    listing: private
+    country: US
+    tier: watch
+    primary: infrastructure/cloud/neoclouds
+    ecosystems: [openai]
+    website: crusoe.ai
+    description: >-
+      Vertically integrated AI infrastructure company that develops power-first data-center
+      campuses, including the Stargate site in Abilene, Texas, for Oracle and OpenAI, and runs its
+      own AI cloud.
+    private:
+      valuation: { usd: 30.9e9, date: 2026-09, round: "Series F" }
+      proxies: [nvidia]
+      note: "Series F co-led by Atreides, Mubadala Capital and Valor; NVIDIA, Founders Fund and GIC participated. No IPO filing."

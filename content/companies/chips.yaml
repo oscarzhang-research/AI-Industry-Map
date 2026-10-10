@@ -1,0 +1,1434 @@
+# Companies whose primary placement is in the Chips layer.
+companies:
+  nvidia:
+    name: NVIDIA
+    nameZh: 英伟达
+    aliases: [NVDA, Nvidia Corporation, 輝達]
+    listing: listed
+    tickers:
+      - { symbol: NVDA, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: chips/compute/gpus
+    ecosystems: [nvidia, openai, meta, microsoft]
+    website: nvidia.com
+    description: >-
+      Designs GPUs, rack-scale systems, networking (NVLink, InfiniBand, Spectrum-X) and CUDA
+      software; the dominant supplier of accelerators for AI training and inference.
+
+  amd:
+    name: AMD
+    nameZh: 超威半导体
+    aliases: [Advanced Micro Devices, 超微, 超微半導體]
+    listing: listed
+    tickers:
+      - { symbol: AMD, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: chips/compute/gpus
+    ecosystems: [amd, openai, meta]
+    website: amd.com
+    description: >-
+      Designs Instinct GPU accelerators, EPYC server CPUs and Helios rack-scale systems; the main
+      merchant alternative to NVIDIA, with a multi-gigawatt GPU supply agreement with OpenAI.
+
+  intel:
+    name: Intel
+    nameZh: 英特尔
+    aliases: [INTC, Intel Corporation, 英特爾]
+    listing: listed
+    tickers:
+      - { symbol: INTC, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: chips/compute/server-cpus
+    ecosystems: [nvidia]
+    website: intel.com
+    description: >-
+      Makes Xeon server and Core PC processors and is building a leading-edge foundry business
+      (Intel 18A/14A); x86 CPUs host many AI servers, and NVIDIA is a strategic partner and
+      shareholder.
+
+  broadcom:
+    name: Broadcom
+    nameZh: 博通
+    aliases: [AVGO, Broadcom Inc., 博通公司]
+    listing: listed
+    tickers:
+      - { symbol: AVGO, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: chips/compute/custom-asic
+    ecosystems: [google-tpu, meta, openai]
+    website: broadcom.com
+    description: >-
+      Co-designs custom AI accelerators (XPUs) for hyperscalers, including Google's TPUs, Meta
+      and OpenAI, and leads Ethernet switch silicon (Tomahawk, Jericho); also owns VMware.
+
+  marvell:
+    name: Marvell
+    nameZh: 迈威尔科技
+    aliases: [MRVL, Marvell Technology, 美满电子, 邁威爾]
+    listing: listed
+    tickers:
+      - { symbol: MRVL, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: chips/compute/custom-asic
+    ecosystems: [aws-trainium, microsoft]
+    website: marvell.com
+    description: >-
+      Designs data-center interconnect and custom silicon: electro-optic DSPs for optical
+      modules, custom XPUs for hyperscalers such as AWS and Microsoft, plus switch and storage
+      chips.
+
+  mediatek:
+    name: MediaTek
+    nameZh: 联发科
+    aliases: ["2454", 聯發科, 联发科技]
+    listing: listed
+    tickers:
+      - { symbol: 2454.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: focus
+    primary: chips/compute/custom-asic
+    ecosystems: [google-tpu, nvidia]
+    website: mediatek.com
+    description: >-
+      Designs Dimensity smartphone SoCs and is a custom ASIC partner on Google's TPUs; also
+      co-designed NVIDIA's GB10 superchip for DGX Spark.
+
+  alchip:
+    name: Alchip
+    nameZh: 世芯电子
+    aliases: ["3661", Alchip Technologies, 世芯-KY, 世芯]
+    listing: listed
+    tickers:
+      - { symbol: 3661.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: focus
+    primary: chips/compute/custom-asic
+    ecosystems: [aws-trainium]
+    website: alchip.com
+    description: >-
+      Taiwanese ASIC design-services house and TSMC partner that turns hyperscaler designs into
+      custom AI accelerators, with AWS Trainium among its key programs.
+
+  guc:
+    name: Global Unichip
+    nameZh: 创意电子
+    aliases: [GUC, "3443", 創意電子, 创意]
+    listing: listed
+    tickers:
+      - { symbol: 3443.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: watch
+    primary: chips/compute/custom-asic
+    website: guc-asic.com
+    description: >-
+      TSMC-affiliated ASIC design-services company offering custom chip design, HBM and
+      die-to-die interface IP, and CoWoS/3D packaging enablement for AI and HPC customers.
+
+  cambricon:
+    name: Cambricon
+    nameZh: 寒武纪
+    aliases: ["688256", Cambricon Technologies, 中科寒武纪]
+    listing: listed
+    tickers:
+      - { symbol: 688256.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: focus
+    primary: chips/compute/china-accelerators
+    ecosystems: [china-compute]
+    website: cambricon.com
+    description: >-
+      Designs Siyuan (MLU) AI accelerators and software for Chinese cloud and internet
+      companies; one of the leading domestic alternatives to NVIDIA under US export controls.
+
+  hygon:
+    name: Hygon
+    nameZh: 海光信息
+    aliases: ["688041", Hygon Information Technology, 海光]
+    listing: listed
+    tickers:
+      - { symbol: 688041.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: focus
+    primary: chips/compute/china-accelerators
+    ecosystems: [china-compute]
+    website: hygon.cn
+    description: >-
+      Designs x86-compatible server CPUs, derived from licensed AMD Zen technology, and DCU
+      GPGPU accelerators for Chinese data centers.
+
+  moore-threads:
+    name: Moore Threads
+    nameZh: 摩尔线程
+    aliases: ["688795", Moore Threads Technology, 摩爾線程]
+    listing: listed
+    tickers:
+      - { symbol: 688795.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: chips/compute/china-accelerators
+    ecosystems: [china-compute]
+    website: mthreads.com
+    description: >-
+      Develops full-function GPUs (MTT S-series) and KUAE training clusters for AI training,
+      inference and graphics; one of China's leading domestic GPU makers.
+
+  metax:
+    name: MetaX
+    nameZh: 沐曦股份
+    aliases: ["688802", 沐曦, MetaX Integrated Circuits, 沐曦集成电路]
+    listing: listed
+    tickers:
+      - { symbol: 688802.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: chips/compute/china-accelerators
+    ecosystems: [china-compute]
+    website: metax-tech.com
+    description: >-
+      Develops GPUs for AI training, inference and general-purpose computing (Xiyun C-series)
+      for Chinese data centers.
+
+  biren:
+    name: Biren Technology
+    nameZh: 壁仞科技
+    aliases: ["6082", Shanghai Biren Technology, 壁仞]
+    listing: listed
+    tickers:
+      - { symbol: 6082.HK, exchange: HKEX, currency: HKD }
+    country: CN
+    tier: watch
+    primary: chips/compute/china-accelerators
+    ecosystems: [china-compute]
+    website: birentech.com
+    description: >-
+      Develops general-purpose GPUs (BR100 series) for AI training and inference in Chinese data
+      centers; on the US Entity List.
+
+  huawei:
+    name: Huawei
+    nameZh: 华为
+    aliases: [Huawei Ascend, 昇腾, HiSilicon, 海思, 華為]
+    listing: private
+    private:
+      note: "Unlisted and employee-owned; Ascend chips are designed by its HiSilicon unit."
+    country: CN
+    tier: focus
+    primary: chips/compute/china-accelerators
+    ecosystems: [china-compute]
+    website: huawei.com
+    description: >-
+      Designs Ascend AI accelerators and Atlas SuperPoD systems with its CANN software stack;
+      China's largest domestic AI compute supplier, alongside telecom equipment, phones and
+      cloud.
+
+  kunlunxin:
+    name: Kunlunxin
+    nameZh: 昆仑芯
+    aliases: [Kunlun Chip, 昆侖芯, Kunlunxin Technology]
+    listing: private
+    private:
+      valuation: { usd: 3e9, date: 2025-12, round: "2025 funding round (~RMB 21bn)" }
+      proxies: [baidu]
+      note: "About 58% owned by Baidu; filed confidentially for an HKEX listing in Jan 2026 and began STAR Market IPO tutoring in May 2026."
+    country: CN
+    tier: watch
+    primary: chips/compute/china-accelerators
+    ecosystems: [china-compute]
+    website: kunlunxin.com
+    description: >-
+      Baidu's AI chip unit; designs Kunlun accelerators (P800) used in Baidu AI Cloud clusters
+      and sold to Chinese telecom, internet and enterprise customers.
+
+  cerebras:
+    name: Cerebras
+    nameZh: Cerebras
+    aliases: [CBRS, Cerebras Systems]
+    listing: listed
+    tickers:
+      - { symbol: CBRS, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: chips/compute/ai-chip-challengers
+    ecosystems: [openai]
+    website: cerebras.ai
+    description: >-
+      Builds wafer-scale AI processors (WSE-3) and CS-3 systems, sold as hardware and as a
+      high-speed inference cloud; OpenAI is a major customer.
+
+  groq:
+    name: Groq
+    nameZh: Groq
+    aliases: [Groq Inc., GroqCloud, Groq LPU]
+    listing: private
+    private:
+      valuation: { usd: 3.5e9, date: 2026-08, round: "Growth round (led by Disruptive)" }
+      note: "Licensed its LPU technology to NVIDIA in Dec 2025 as founder Jonathan Ross joined NVIDIA; remains independent and now runs the GroqCloud inference service."
+    country: US
+    tier: watch
+    primary: chips/compute/ai-chip-challengers
+    website: groq.com
+    description: >-
+      Created the LPU, an SRAM-based inference chip; after licensing the technology to NVIDIA,
+      it now focuses on GroqCloud, a low-latency inference service for open models.
+
+  sambanova:
+    name: SambaNova
+    nameZh: SambaNova
+    aliases: [SambaNova Systems]
+    listing: private
+    private:
+      valuation: { usd: 11e9, date: 2026-07, round: "Series F (first close)" }
+      note: "Series F led by General Atlantic; Intel's late-2025 takeover talks ended and Intel invested in the Series E instead."
+    country: US
+    tier: watch
+    primary: chips/compute/ai-chip-challengers
+    website: sambanova.ai
+    description: >-
+      Designs reconfigurable dataflow units (SN40L, SN50) and full-stack systems for fast
+      inference of large models, sold on-premise and through SambaNova Cloud.
+
+  tenstorrent:
+    name: Tenstorrent
+    nameZh: Tenstorrent
+    aliases: [Tenstorrent Inc.]
+    listing: private
+    private:
+      note: "Led by CEO Jim Keller; backers include Samsung, LG, Hyundai, Fidelity and Bezos Expeditions; valuation of its latest round not disclosed."
+    country: CA
+    tier: watch
+    primary: chips/compute/ai-chip-challengers
+    website: tenstorrent.com
+    description: >-
+      Designs AI accelerators (Wormhole, Blackhole) and RISC-V CPUs with open-source software,
+      and licenses its CPU and chiplet IP to partners.
+
+  etched:
+    name: Etched
+    nameZh: Etched
+    aliases: [Etched.ai, Sohu]
+    listing: private
+    private:
+      valuation: { usd: 10.3e9, date: 2026-07, round: "Series C (led by Sequoia)" }
+      note: "Series C led by Sequoia with a16z, Jane Street and SK hynix participating."
+    country: US
+    tier: watch
+    primary: chips/compute/ai-chip-challengers
+    website: etched.com
+    description: >-
+      Develops Sohu, an inference ASIC specialized for transformer models that trades
+      flexibility for throughput.
+
+  arm:
+    name: Arm
+    nameZh: Arm
+    aliases: [ARM, Arm Holdings, 安謀]
+    listing: listed
+    tickers:
+      - { symbol: ARM, exchange: NASDAQ, currency: USD }
+    country: GB
+    tier: core
+    primary: chips/eda-ip/ip
+    ecosystems: [nvidia]
+    website: arm.com
+    description: >-
+      Licenses CPU architectures and cores; its Neoverse designs power NVIDIA Grace, AWS
+      Graviton, Google Axion and Microsoft Cobalt, and it earns royalties on nearly all
+      smartphones.
+
+  sk-hynix:
+    name: SK hynix
+    nameZh: SK海力士
+    aliases: ["000660", SKHY, SK Hynix Inc., 海力士, SK하이닉스]
+    listing: listed
+    tickers:
+      - { symbol: 000660.KS, exchange: KOSPI, currency: KRW }
+      - { symbol: SKHY, exchange: NASDAQ, currency: USD }
+    country: KR
+    tier: core
+    primary: chips/memory/dram-hbm
+    ecosystems: [nvidia, openai]
+    website: skhynix.com
+    description: >-
+      The leading supplier of HBM, the stacked DRAM attached to AI accelerators, and NVIDIA's
+      main HBM partner; also makes DRAM and NAND, including Solidigm enterprise SSDs.
+
+  samsung-electronics:
+    name: Samsung Electronics
+    nameZh: 三星电子
+    aliases: ["005930", Samsung, 三星, 三星電子, 삼성전자]
+    listing: listed
+    tickers:
+      - { symbol: 005930.KS, exchange: KOSPI, currency: KRW }
+    country: KR
+    tier: core
+    primary: chips/memory/dram-hbm
+    ecosystems: [nvidia, openai, tesla]
+    website: samsung.com
+    description: >-
+      The largest memory maker (DRAM, HBM, NAND) and the second-largest leading-edge foundry,
+      alongside phones and consumer electronics; supplies HBM4 to NVIDIA and will make Tesla's
+      AI6 chips.
+
+  micron:
+    name: Micron
+    nameZh: 美光
+    aliases: [MU, Micron Technology, 美光科技]
+    listing: listed
+    tickers:
+      - { symbol: MU, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: chips/memory/dram-hbm
+    ecosystems: [nvidia, amd]
+    website: micron.com
+    description: >-
+      Makes DRAM, HBM and NAND, including data-center SSDs; one of three HBM suppliers to NVIDIA
+      and AMD accelerators and the only US-based DRAM maker.
+
+  nanya:
+    name: Nanya Technology
+    nameZh: 南亚科
+    aliases: ["2408", 南亞科, 南亚科技]
+    listing: listed
+    tickers:
+      - { symbol: 2408.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: watch
+    primary: chips/memory/dram-hbm
+    website: nanya.com
+    description: >-
+      Taiwanese DRAM maker in the Formosa Plastics group, producing DDR4, DDR5 and LPDDR chips
+      for servers, PCs and consumer devices.
+
+  cxmt:
+    name: CXMT
+    nameZh: 长鑫存储
+    aliases: [ChangXin Memory Technologies, 长鑫科技, 长鑫, 長鑫存儲]
+    listing: listed
+    # Listed on the Shanghai STAR Market in late July 2026; stock code not yet confirmed, so no price series yet.
+    tickers: []
+    country: CN
+    tier: watch
+    primary: chips/memory/dram-hbm
+    ecosystems: [china-compute]
+    website: cxmt.com
+    description: >-
+      China's largest DRAM maker, producing DDR5 and LPDDR5X and developing HBM for domestic AI
+      accelerators.
+
+  sandisk:
+    name: Sandisk
+    nameZh: 闪迪
+    aliases: [SNDK, SanDisk, Sandisk Corporation, 閃迪]
+    listing: listed
+    tickers:
+      - { symbol: SNDK, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: chips/memory/nand-ssd
+    website: sandisk.com
+    description: >-
+      NAND flash and SSD maker spun off from Western Digital; supplies enterprise SSDs for AI data
+      centers and is developing High Bandwidth Flash (HBF) with SK hynix.
+
+  kioxia:
+    name: Kioxia
+    nameZh: 铠侠
+    aliases: [285A, Kioxia Holdings, キオクシア, 鎧俠, Toshiba Memory]
+    listing: listed
+    tickers:
+      - { symbol: 285A.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: focus
+    primary: chips/memory/nand-ssd
+    website: kioxia.com
+    description: >-
+      Japanese NAND flash maker (formerly Toshiba Memory) that jointly develops and manufactures
+      BiCS flash with Sandisk; supplies enterprise and data-center SSDs.
+
+  ymtc:
+    name: YMTC
+    nameZh: 长江存储
+    aliases: [Yangtze Memory Technologies, 長江存儲, 长存]
+    listing: private
+    private:
+      note: "STAR Market IPO application accepted in Aug 2026 (seeking about RMB 33bn); on the US Entity List since 2022."
+    country: CN
+    tier: watch
+    primary: chips/memory/nand-ssd
+    ecosystems: [china-compute]
+    website: ymtc.com
+    description: >-
+      China's leading 3D NAND flash maker, known for its Xtacking architecture; on the US Entity
+      List.
+
+  seagate:
+    name: Seagate
+    nameZh: 希捷
+    aliases: [STX, Seagate Technology, 希捷科技]
+    listing: listed
+    tickers:
+      - { symbol: STX, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: chips/memory/hdd
+    website: seagate.com
+    description: >-
+      One of the two leading hard-drive makers; its high-capacity nearline HDDs, now moving to
+      HAMR (Mozaic), store the bulk of data in cloud and AI data centers.
+
+  western-digital:
+    name: Western Digital
+    nameZh: 西部数据
+    aliases: [WDC, WD, 西数, 威騰電子]
+    listing: listed
+    tickers:
+      - { symbol: WDC, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: chips/memory/hdd
+    website: westerndigital.com
+    description: >-
+      Hard-drive maker focused on high-capacity nearline HDDs for cloud and AI data centers, after
+      spinning off its flash business as Sandisk.
+
+  toshiba:
+    name: Toshiba
+    nameZh: 东芝
+    aliases: [Toshiba Electronic Devices & Storage, TDSC, 東芝]
+    listing: private
+    private:
+      valuation: { usd: 14e9, date: 2023-09, round: "Take-private (JIP-led consortium)" }
+      note: "Delisted in Dec 2023 after a take-private by a Japan Industrial Partners-led consortium; HDDs are made by Toshiba Electronic Devices & Storage."
+    country: JP
+    tier: watch
+    primary: chips/memory/hdd
+    website: global.toshiba
+    description: >-
+      Japanese electronics group whose Toshiba Electronic Devices & Storage unit is the
+      third-largest hard-drive maker and also sells power semiconductors.
+
+  montage:
+    name: Montage Technology
+    nameZh: 澜起科技
+    aliases: ["688008", 瀾起科技, 澜起]
+    listing: listed
+    tickers:
+      - { symbol: 688008.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: focus
+    primary: chips/memory/memory-interface
+    website: montage-tech.com
+    description: >-
+      A leading supplier of DDR5 memory interface chips (RCD, data buffers, MRDIMM, CKD) for
+      servers and PCs, plus PCIe retimers and CXL memory expander controllers.
+
+  rambus:
+    name: Rambus
+    nameZh: Rambus
+    aliases: [RMBS, Rambus Inc.]
+    listing: listed
+    tickers:
+      - { symbol: RMBS, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: chips/memory/memory-interface
+    website: rambus.com
+    description: >-
+      Supplies DDR5 memory interface chips (RCDs, PMICs, SPD hubs) for server and client modules
+      and licenses memory, interface and security IP.
+
+  silicon-motion:
+    name: Silicon Motion
+    nameZh: 慧荣科技
+    aliases: [SIMO, SMI, 慧榮科技, 慧荣]
+    listing: listed
+    tickers:
+      - { symbol: SIMO, exchange: NASDAQ, currency: USD }
+    country: TW
+    tier: watch
+    primary: chips/memory/memory-interface
+    website: siliconmotion.com
+    description: >-
+      A leading merchant designer of NAND flash controllers for client SSDs, embedded storage
+      and enterprise SSDs (MonTitan).
+
+  phison:
+    name: Phison
+    nameZh: 群联电子
+    aliases: ["8299", Phison Electronics, 群聯電子, 群联]
+    listing: listed
+    tickers:
+      - { symbol: 8299.TWO, exchange: TPEx, currency: TWD }
+    country: TW
+    tier: watch
+    primary: chips/memory/memory-interface
+    website: phison.com
+    description: >-
+      Taiwanese NAND controller and storage-solutions company supplying controllers and SSDs,
+      including enterprise SSDs and aiDAPTIV+ for on-premise AI.
+
+  tsmc:
+    name: TSMC
+    nameZh: 台积电
+    aliases: [TSM, "2330", Taiwan Semiconductor Manufacturing, 台積電]
+    listing: listed
+    tickers:
+      - { symbol: TSM, exchange: NYSE, currency: USD }
+      - { symbol: 2330.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: core
+    primary: chips/foundry-packaging/leading-edge
+    ecosystems: [nvidia, google-tpu, aws-trainium, amd, apple, meta, microsoft, tesla]
+    website: tsmc.com
+    description: >-
+      The world's largest foundry; manufactures nearly all leading AI accelerators on its N5, N3
+      and N2 nodes and provides CoWoS and SoIC advanced packaging.
+
+  smic:
+    name: SMIC
+    nameZh: 中芯国际
+    aliases: ["0981", "688981", Semiconductor Manufacturing International, 中芯國際, 中芯]
+    listing: listed
+    tickers:
+      - { symbol: 0981.HK, exchange: HKEX, currency: HKD }
+      - { symbol: 688981.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: focus
+    primary: chips/foundry-packaging/mature-foundry
+    ecosystems: [china-compute]
+    website: smics.com
+    description: >-
+      China's largest foundry, spanning mature nodes to advanced FinFET processes; the main
+      domestic manufacturer for Chinese AI chip designers under export controls.
+
+  hua-hong:
+    name: Hua Hong Semiconductor
+    nameZh: 华虹半导体
+    aliases: ["1347", "688347", 华虹公司, 華虹半導體, 华虹]
+    listing: listed
+    tickers:
+      - { symbol: 1347.HK, exchange: HKEX, currency: HKD }
+      - { symbol: 688347.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: chips/foundry-packaging/mature-foundry
+    website: huahonggrace.com
+    description: >-
+      China's second-largest foundry, specializing in embedded non-volatile memory, power
+      discretes, analog and RF processes on 8- and 12-inch wafers.
+
+  umc:
+    name: UMC
+    nameZh: 联电
+    aliases: ["2303", United Microelectronics, 聯電, 联华电子]
+    listing: listed
+    tickers:
+      - { symbol: UMC, exchange: NYSE, currency: USD }
+      - { symbol: 2303.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: watch
+    primary: chips/foundry-packaging/mature-foundry
+    website: umc.com
+    description: >-
+      Taiwan's second-largest foundry, focused on mature and specialty nodes (28nm and above) and
+      co-developing a 12nm platform with Intel.
+
+  globalfoundries:
+    name: GlobalFoundries
+    nameZh: 格芯
+    aliases: [GFS, GF, 格羅方德]
+    listing: listed
+    tickers:
+      - { symbol: GFS, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: chips/foundry-packaging/mature-foundry
+    website: gf.com
+    description: >-
+      Specialty foundry (FinFET, FD-SOI, RF, silicon photonics) with fabs in the US, Germany and
+      Singapore; its silicon photonics platform targets AI optical interconnects.
+
+  tower:
+    name: Tower Semiconductor
+    nameZh: 高塔半导体
+    aliases: [TSEM, TowerJazz, 高塔半導體]
+    listing: listed
+    tickers:
+      - { symbol: TSEM, exchange: NASDAQ, currency: USD }
+    country: IL
+    tier: watch
+    primary: chips/foundry-packaging/mature-foundry
+    website: towersemi.com
+    description: >-
+      Israeli specialty foundry for analog, RF, power and silicon photonics; its SiPho and SiGe
+      processes supply chips for data-center optical transceivers.
+
+  ase:
+    name: ASE Technology
+    nameZh: 日月光
+    aliases: [ASX, "3711", ASE Group, 日月光投控, SPIL, 矽品]
+    listing: listed
+    tickers:
+      - { symbol: ASX, exchange: NYSE, currency: USD }
+      - { symbol: 3711.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: focus
+    primary: chips/foundry-packaging/advanced-packaging
+    ecosystems: [nvidia]
+    website: aseglobal.com
+    description: >-
+      The world's largest OSAT (including SPIL), providing advanced packaging and test for AI
+      accelerators, including CoWoS-type back-end and final test capacity.
+
+  amkor:
+    name: Amkor
+    nameZh: 安靠
+    aliases: [AMKR, Amkor Technology, 艾克爾]
+    listing: listed
+    tickers:
+      - { symbol: AMKR, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: chips/foundry-packaging/advanced-packaging
+    ecosystems: [nvidia, apple]
+    website: amkor.com
+    description: >-
+      The largest US-based OSAT, providing advanced packaging (2.5D, fan-out, SiP) and test, and
+      building an advanced packaging campus in Arizona.
+
+  jcet:
+    name: JCET
+    nameZh: 长电科技
+    aliases: ["600584", JCET Group, 長電科技, 长电]
+    listing: listed
+    tickers:
+      - { symbol: 600584.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: chips/foundry-packaging/advanced-packaging
+    website: jcetglobal.com
+    description: >-
+      China's largest OSAT, offering advanced packaging (fan-out, 2.5D/3D chiplet, SiP) and test
+      for logic, memory and power chips.
+
+  tongfu:
+    name: Tongfu Microelectronics
+    nameZh: 通富微电
+    aliases: ["002156", TFME, 通富微電]
+    listing: listed
+    tickers:
+      - { symbol: 002156.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: chips/foundry-packaging/advanced-packaging
+    ecosystems: [amd]
+    website: tfme.com
+    description: >-
+      Chinese OSAT that is AMD's largest packaging and test partner through joint ventures in
+      Suzhou and Penang.
+
+  kyec:
+    name: King Yuan Electronics
+    nameZh: 京元电子
+    aliases: [KYEC, "2449", 京元電子]
+    listing: listed
+    tickers:
+      - { symbol: 2449.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: watch
+    primary: chips/foundry-packaging/test-services
+    ecosystems: [nvidia]
+    website: kyec.com.tw
+    description: >-
+      Taiwan's largest independent semiconductor test house, testing AI accelerators, networking
+      and mobile chips; NVIDIA is a major customer.
+
+  mks:
+    name: MKS
+    nameZh: 万机仪器
+    aliases: [MKSI, MKS Instruments, MKS Inc.]
+    listing: listed
+    tickers:
+      - { symbol: MKSI, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: chips/equipment/subsystems
+    website: mks.com
+    description: >-
+      Supplies critical subsystems for wafer-fab equipment (vacuum, RF power, gas delivery,
+      lasers and optics) plus PCB equipment and specialty plating chemistry.
+
+  ultra-clean:
+    name: Ultra Clean
+    nameZh: Ultra Clean
+    aliases: [UCTT, UCT, Ultra Clean Holdings]
+    listing: listed
+    tickers:
+      - { symbol: UCTT, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: chips/equipment/subsystems
+    website: uct.com
+    description: >-
+      Makes gas and fluid delivery subsystems for chip-equipment makers such as Lam Research and
+      Applied Materials, and provides parts cleaning services to fabs.
+
+  vat-group:
+    name: VAT Group
+    nameZh: VAT集团
+    aliases: [VACN, VAT]
+    listing: listed
+    tickers:
+      - { symbol: VACN.SW, exchange: SIX, currency: CHF }
+    country: CH
+    tier: watch
+    primary: chips/equipment/subsystems
+    website: vatvalve.com
+    description: >-
+      The world leader in vacuum valves for wafer-fab equipment, with high content on etch and
+      deposition tools.
+
+  asml:
+    name: ASML
+    nameZh: 阿斯麦
+    aliases: [ASML Holding, 艾司摩爾]
+    listing: listed
+    tickers:
+      - { symbol: ASML, exchange: NASDAQ, currency: USD }
+      - { symbol: ASML.AS, exchange: Euronext Amsterdam, currency: EUR }
+    country: NL
+    tier: core
+    primary: chips/equipment/lithography
+    website: asml.com
+    description: >-
+      The sole supplier of EUV lithography systems (including High-NA), required for leading-edge
+      logic and DRAM, and the leader in DUV immersion scanners.
+
+  applied-materials:
+    name: Applied Materials
+    nameZh: 应用材料
+    aliases: [AMAT, 應用材料, 应材]
+    listing: listed
+    tickers:
+      - { symbol: AMAT, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: chips/equipment/deposition-etch
+    website: appliedmaterials.com
+    description: >-
+      The largest wafer-fab equipment maker, spanning deposition, etch, ion implant, CMP and
+      inspection; benefits from gate-all-around, backside power, DRAM/HBM and advanced packaging.
+
+  lam-research:
+    name: Lam Research
+    nameZh: 泛林集团
+    aliases: [LRCX, Lam, 科林研發, 泛林]
+    listing: listed
+    tickers:
+      - { symbol: LRCX, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: chips/equipment/deposition-etch
+    website: lamresearch.com
+    description: >-
+      Leader in etch and deposition tools, with high exposure to NAND and DRAM/HBM (including TSV
+      etch) and growing advanced packaging sales.
+
+  tokyo-electron:
+    name: Tokyo Electron
+    nameZh: 东京电子
+    aliases: ["8035", TEL, 東京威力科創, 東京エレクトロン]
+    listing: listed
+    tickers:
+      - { symbol: 8035.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: focus
+    primary: chips/equipment/deposition-etch
+    website: tel.com
+    description: >-
+      Japan's largest chip-equipment maker, dominant in coater/developers for EUV lithography and
+      a major supplier of etch, deposition and cleaning tools.
+
+  asm-international:
+    name: ASM International
+    nameZh: ASM国际
+    aliases: [ASM, ASMI]
+    listing: listed
+    tickers:
+      - { symbol: ASM.AS, exchange: Euronext Amsterdam, currency: EUR }
+    country: NL
+    tier: focus
+    primary: chips/equipment/deposition-etch
+    website: asm.com
+    description: >-
+      The leader in atomic layer deposition (ALD) and a major epitaxy supplier, critical for
+      gate-all-around transistors at 2nm and below.
+
+  kokusai:
+    name: Kokusai Electric
+    nameZh: 国际电气
+    aliases: ["6525", KOKUSAI ELECTRIC, 國際電氣]
+    listing: listed
+    tickers:
+      - { symbol: 6525.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: watch
+    primary: chips/equipment/deposition-etch
+    website: kokusai-electric.com
+    description: >-
+      Japanese maker of batch deposition (ALD, CVD) and treatment tools, with high exposure to
+      NAND and DRAM fabs.
+
+  naura:
+    name: NAURA
+    nameZh: 北方华创
+    aliases: ["002371", NAURA Technology, 北方華創]
+    listing: listed
+    tickers:
+      - { symbol: 002371.SZ, exchange: SZSE, currency: CNY }
+    country: CN
+    tier: focus
+    primary: chips/equipment/deposition-etch
+    ecosystems: [china-compute]
+    website: naura.com
+    description: >-
+      China's largest semiconductor equipment maker, offering etch, deposition, thermal and
+      cleaning tools; a key beneficiary of domestic tool substitution.
+
+  amec:
+    name: AMEC
+    nameZh: 中微公司
+    aliases: ["688012", Advanced Micro-Fabrication Equipment, 中微半导体, 中微]
+    listing: listed
+    tickers:
+      - { symbol: 688012.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: focus
+    primary: chips/equipment/deposition-etch
+    ecosystems: [china-compute]
+    website: amec-inc.com
+    description: >-
+      Chinese maker of plasma etch (CCP, ICP) and MOCVD tools, expanding into thin-film
+      deposition; a key domestic supplier to logic and memory fabs.
+
+  piotech:
+    name: Piotech
+    nameZh: 拓荆科技
+    aliases: ["688072", 拓荊科技, 拓荆]
+    listing: listed
+    tickers:
+      - { symbol: 688072.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: chips/equipment/deposition-etch
+    ecosystems: [china-compute]
+    website: piotech.cn
+    description: >-
+      Chinese maker of thin-film deposition tools (PECVD, ALD, SACVD) and hybrid bonding
+      equipment for logic, memory and advanced packaging.
+
+  kla:
+    name: KLA
+    nameZh: 科磊
+    aliases: [KLAC, KLA Corporation, KLA-Tencor]
+    listing: listed
+    tickers:
+      - { symbol: KLAC, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: core
+    primary: chips/equipment/process-control
+    website: kla.com
+    description: >-
+      The leader in process control: wafer and reticle inspection and metrology for leading-edge
+      logic, memory and advanced packaging.
+
+  onto:
+    name: Onto Innovation
+    nameZh: Onto Innovation
+    aliases: [ONTO]
+    listing: listed
+    tickers:
+      - { symbol: ONTO, exchange: NYSE, currency: USD }
+    country: US
+    tier: watch
+    primary: chips/equipment/process-control
+    website: ontoinnovation.com
+    description: >-
+      Supplies metrology, inspection and lithography tools, with heavy exposure to advanced
+      packaging for AI chips and HBM.
+
+  nova:
+    name: Nova
+    nameZh: Nova
+    aliases: [NVMI, Nova Ltd., Nova Measuring Instruments]
+    listing: listed
+    tickers:
+      - { symbol: NVMI, exchange: NASDAQ, currency: USD }
+    country: IL
+    tier: watch
+    primary: chips/equipment/process-control
+    website: novami.com
+    description: >-
+      Israeli supplier of dimensional (optical) and materials metrology for leading-edge logic,
+      memory and advanced packaging.
+
+  lasertec:
+    name: Lasertec
+    nameZh: Lasertec
+    aliases: ["6920", レーザーテック]
+    listing: listed
+    tickers:
+      - { symbol: 6920.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: watch
+    primary: chips/equipment/process-control
+    website: lasertec.co.jp
+    description: >-
+      Japanese leader in EUV mask inspection, including actinic EUV mask blank and patterned mask
+      inspection systems.
+
+  screen:
+    name: SCREEN Holdings
+    nameZh: 迪恩士
+    aliases: ["7735", SCREEN, 斯库林, Dainippon Screen]
+    listing: listed
+    tickers:
+      - { symbol: 7735.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: watch
+    primary: chips/equipment/clean-cmp
+    website: screen.co.jp
+    description: >-
+      Japanese leader in wafer cleaning equipment (single-wafer and batch), also making
+      coater/developers and display and PCB equipment.
+
+  acm-research:
+    name: ACM Research
+    nameZh: 盛美半导体
+    aliases: [ACMR, 盛美上海, ACM Shanghai]
+    listing: listed
+    tickers:
+      - { symbol: ACMR, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: chips/equipment/clean-cmp
+    website: acmrcsh.com
+    description: >-
+      Supplies wafer cleaning, electroplating, furnace and track tools, mostly to Chinese fabs
+      through its STAR-listed subsidiary ACM Shanghai.
+
+  hwatsing:
+    name: Hwatsing Technology
+    nameZh: 华海清科
+    aliases: ["688120", 華海清科]
+    listing: listed
+    tickers:
+      - { symbol: 688120.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: chips/equipment/clean-cmp
+    ecosystems: [china-compute]
+    website: hwatsing.com
+    description: >-
+      China's leading CMP equipment maker, also offering wafer thinning and cleaning tools and
+      wafer reclaim services.
+
+  besi:
+    name: Besi
+    nameZh: Besi
+    aliases: [BESI, BE Semiconductor Industries]
+    listing: listed
+    tickers:
+      - { symbol: BESI.AS, exchange: Euronext Amsterdam, currency: EUR }
+    country: NL
+    tier: focus
+    primary: chips/equipment/backend-equipment
+    website: besi.com
+    description: >-
+      Dutch leader in die-attach equipment, including hybrid bonding systems used for 3D logic
+      stacking and planned for future HBM generations.
+
+  disco:
+    name: Disco
+    nameZh: 迪思科
+    aliases: ["6146", DISCO Corporation, ディスコ]
+    listing: listed
+    tickers:
+      - { symbol: 6146.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: focus
+    primary: chips/equipment/backend-equipment
+    website: disco.co.jp
+    description: >-
+      Japanese leader in dicing, grinding and polishing equipment, critical for thinning and
+      cutting wafers in HBM and advanced packaging.
+
+  hanmi:
+    name: Hanmi Semiconductor
+    nameZh: 韩美半导体
+    aliases: ["042700", 한미반도체, 韓美半導體]
+    listing: listed
+    tickers:
+      - { symbol: 042700.KS, exchange: KOSPI, currency: KRW }
+    country: KR
+    tier: focus
+    primary: chips/equipment/backend-equipment
+    website: hanmisemi.com
+    description: >-
+      Korean maker of thermal-compression (TC) bonders used to stack HBM dies, with SK hynix as
+      its main customer.
+
+  asmpt:
+    name: ASMPT
+    nameZh: ASMPT
+    aliases: ["0522", ASM Pacific Technology, ASM太平洋]
+    listing: listed
+    tickers:
+      - { symbol: 0522.HK, exchange: HKEX, currency: HKD }
+    country: SG
+    tier: watch
+    primary: chips/equipment/backend-equipment
+    website: asmpt.com
+    description: >-
+      Supplies back-end equipment, including thermal-compression and hybrid bonders for HBM and
+      advanced packaging, plus SMT placement systems.
+
+  advantest:
+    name: Advantest
+    nameZh: 爱德万测试
+    aliases: ["6857", アドバンテスト, 愛德萬測試]
+    listing: listed
+    tickers:
+      - { symbol: 6857.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: focus
+    primary: chips/equipment/backend-equipment
+    ecosystems: [nvidia]
+    website: advantest.com
+    description: >-
+      The leading maker of SoC and memory test systems and the main tester supplier for AI GPUs
+      and HBM.
+
+  teradyne:
+    name: Teradyne
+    nameZh: 泰瑞达
+    aliases: [TER, 泰瑞達]
+    listing: listed
+    tickers:
+      - { symbol: TER, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: chips/equipment/backend-equipment
+    website: teradyne.com
+    description: >-
+      Makes semiconductor test systems (SoC, memory, system-level) and industrial robots
+      (Universal Robots), with growing exposure to AI compute and HBM test.
+
+  shin-etsu:
+    name: Shin-Etsu Chemical
+    nameZh: 信越化学
+    aliases: ["4063", Shin-Etsu, 信越化學]
+    listing: listed
+    tickers:
+      - { symbol: 4063.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: focus
+    primary: chips/materials/wafers
+    website: shinetsu.co.jp
+    description: >-
+      The world's largest silicon wafer maker and a major supplier of photoresists, photomask
+      blanks and other semiconductor materials.
+
+  sumco:
+    name: SUMCO
+    nameZh: 胜高
+    aliases: ["3436", 勝高]
+    listing: listed
+    tickers:
+      - { symbol: 3436.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: watch
+    primary: chips/materials/wafers
+    website: sumcosi.com
+    description: >-
+      The second-largest silicon wafer maker, focused on 300mm polished and epitaxial wafers for
+      logic and memory.
+
+  globalwafers:
+    name: GlobalWafers
+    nameZh: 环球晶圆
+    aliases: ["6488", 環球晶, 环球晶]
+    listing: listed
+    tickers:
+      - { symbol: 6488.TWO, exchange: TPEx, currency: TWD }
+    country: TW
+    tier: watch
+    primary: chips/materials/wafers
+    website: sas-globalwafers.com
+    description: >-
+      The third-largest silicon wafer maker, with 300mm capacity across Asia, Europe and the US,
+      including a new fab in Texas.
+
+  tokyo-ohka:
+    name: Tokyo Ohka Kogyo
+    nameZh: 东京应化
+    aliases: [TOK, "4186", 東京應化]
+    listing: listed
+    tickers:
+      - { symbol: 4186.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: watch
+    primary: chips/materials/chemicals
+    website: tok.co.jp
+    description: >-
+      Japanese leader in photoresists, including EUV, ArF and KrF resists, plus high-purity
+      process chemicals.
+
+  entegris:
+    name: Entegris
+    nameZh: 英特格
+    aliases: [ENTG]
+    listing: listed
+    tickers:
+      - { symbol: ENTG, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: chips/materials/chemicals
+    website: entegris.com
+    description: >-
+      Supplies filtration, specialty chemicals, CMP slurries and pads, and wafer-handling
+      products used throughout leading-edge fabs.
+
+  resonac:
+    name: Resonac
+    nameZh: 力森诺科
+    aliases: ["4004", Resonac Holdings, Showa Denko, 昭和电工]
+    listing: listed
+    tickers:
+      - { symbol: 4004.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: watch
+    primary: chips/materials/chemicals
+    website: resonac.com
+    description: >-
+      Japanese chemicals maker (formerly Showa Denko) and a leading supplier of back-end packaging
+      materials such as underfill, NCF and mold compounds, plus HDD media.
+
+  jx-advanced-metals:
+    name: JX Advanced Metals
+    nameZh: JX金属
+    aliases: ["5016", JX金屬, JX Nippon Mining & Metals]
+    listing: listed
+    tickers:
+      - { symbol: 5016.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: watch
+    primary: chips/materials/chemicals
+    website: jx-nmm.com
+    description: >-
+      Leading maker of sputtering targets and high-purity metals for chip fabrication, plus
+      indium phosphide substrates for optical devices and copper foil.
+
+  ajinomoto:
+    name: Ajinomoto
+    nameZh: 味之素
+    aliases: ["2802", ABF, Ajinomoto Build-up Film]
+    listing: listed
+    tickers:
+      - { symbol: 2802.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: focus
+    primary: chips/materials/abf-film
+    website: ajinomoto.com
+    description: >-
+      Food company whose Ajinomoto Build-up Film (ABF) is the near-monopoly insulating material in
+      substrates for CPUs, GPUs and AI accelerators.
+
+  ibiden:
+    name: Ibiden
+    nameZh: 揖斐电
+    aliases: ["4062", イビデン, 揖斐電]
+    listing: listed
+    tickers:
+      - { symbol: 4062.T, exchange: TSE, currency: JPY }
+    country: JP
+    tier: focus
+    primary: chips/materials/substrates
+    ecosystems: [nvidia]
+    website: ibiden.com
+    description: >-
+      Japanese maker of high-end ABF IC substrates for CPUs and AI accelerators; a key substrate
+      supplier to NVIDIA.
+
+  unimicron:
+    name: Unimicron
+    nameZh: 欣兴电子
+    aliases: ["3037", Unimicron Technology, 欣興電子, 欣兴]
+    listing: listed
+    tickers:
+      - { symbol: 3037.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: watch
+    primary: chips/materials/substrates
+    website: unimicron.com
+    description: >-
+      A leading IC substrate and PCB maker, supplying ABF substrates for CPUs, GPUs and AI ASICs.
+
+  nan-ya-pcb:
+    name: Nan Ya PCB
+    nameZh: 南亚电路板
+    aliases: ["8046", Nan Ya Printed Circuit Board, 南亞電路板, 南电, 南電]
+    listing: listed
+    tickers:
+      - { symbol: 8046.TW, exchange: TWSE, currency: TWD }
+    country: TW
+    tier: watch
+    primary: chips/materials/substrates
+    website: nanyapcb.com.tw
+    description: >-
+      Taiwanese ABF and BT substrate maker in the Formosa Plastics group, serving CPUs, GPUs and
+      networking chips.
+
+  synopsys:
+    name: Synopsys
+    nameZh: 新思科技
+    aliases: [SNPS, 新思]
+    listing: listed
+    tickers:
+      - { symbol: SNPS, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: chips/eda-ip/eda
+    website: synopsys.com
+    description: >-
+      The largest EDA and interface-IP vendor (PCIe, HBM, UCIe IP); its tools are used to design
+      virtually every AI chip, and it now owns Ansys simulation software.
+
+  cadence:
+    name: Cadence
+    nameZh: 楷登电子
+    aliases: [CDNS, Cadence Design Systems, 益華電腦]
+    listing: listed
+    tickers:
+      - { symbol: CDNS, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: chips/eda-ip/eda
+    website: cadence.com
+    description: >-
+      Leading EDA vendor with digital and analog design tools, interface IP and hardware
+      emulation systems (Palladium) used by AI chip and system designers.
+
+  mps:
+    name: Monolithic Power Systems
+    nameZh: 芯源系统
+    aliases: [MPS, MPWR, 芯源系統]
+    listing: listed
+    tickers:
+      - { symbol: MPWR, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: chips/connectivity-power/power-semis
+    ecosystems: [nvidia]
+    website: monolithicpower.com
+    description: >-
+      Designs power-management chips and modules for AI accelerators, servers, automotive and
+      industrial markets; a key power supplier for NVIDIA platforms.
+
+  infineon:
+    name: Infineon
+    nameZh: 英飞凌
+    aliases: [IFX, Infineon Technologies, 英飛凌, IFNNY]
+    listing: listed
+    tickers:
+      - { symbol: IFX.DE, exchange: XETRA, currency: EUR }
+    country: DE
+    tier: focus
+    primary: chips/connectivity-power/power-semis
+    ecosystems: [nvidia]
+    website: infineon.com
+    description: >-
+      The world's largest power semiconductor maker (silicon, SiC and GaN), supplying power
+      stages for AI servers and collaborating with NVIDIA on 800V DC data-center power.
+
+  texas-instruments:
+    name: Texas Instruments
+    nameZh: 德州仪器
+    aliases: [TXN, TI, 德州儀器, 德仪]
+    listing: listed
+    tickers:
+      - { symbol: TXN, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: chips/connectivity-power/power-semis
+    website: ti.com
+    description: >-
+      The largest analog chipmaker, selling power-management, signal-chain and embedded
+      processing chips across industrial, automotive and data-center markets.
+
+  navitas:
+    name: Navitas
+    nameZh: 纳微半导体
+    aliases: [NVTS, Navitas Semiconductor, 納微半導體]
+    listing: listed
+    tickers:
+      - { symbol: NVTS, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: chips/connectivity-power/power-semis
+    ecosystems: [nvidia]
+    website: navitassemi.com
+    description: >-
+      GaN and SiC power semiconductor maker repositioning toward 800V DC power architectures for
+      AI data centers, in collaboration with NVIDIA.
+
+  vicor:
+    name: Vicor
+    nameZh: Vicor
+    aliases: [VICR, Vicor Corporation]
+    listing: listed
+    tickers:
+      - { symbol: VICR, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: watch
+    primary: chips/connectivity-power/power-semis
+    website: vicorpower.com
+    description: >-
+      Designs high-density power modules, including vertical power delivery for high-current AI
+      processors.
+
+  yuanjie:
+    name: Yuanjie Semiconductor
+    nameZh: 源杰科技
+    aliases: ["688498", 源傑科技, 源杰]
+    listing: listed
+    tickers:
+      - { symbol: 688498.SS, exchange: SSE, currency: CNY }
+    country: CN
+    tier: watch
+    primary: chips/connectivity-power/optical-silicon
+    description: >-
+      Chinese maker of optical laser chips (DFB, EML and high-power CW lasers for silicon
+      photonics) used in data-center optical modules.
+
+  qualcomm:
+    name: Qualcomm
+    nameZh: 高通
+    aliases: [QCOM, 高通公司]
+    listing: listed
+    tickers:
+      - { symbol: QCOM, exchange: NASDAQ, currency: USD }
+    country: US
+    tier: focus
+    primary: chips/edge-silicon/mobile-pc-soc
+    ecosystems: [meta]
+    website: qualcomm.com
+    description: >-
+      Designs Snapdragon SoCs with on-device NPUs for phones, PCs, cars and smart glasses, and has
+      launched AI200/AI250 data-center inference accelerators.

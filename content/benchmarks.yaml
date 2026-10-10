@@ -1,0 +1,31 @@
+# Benchmark indices used for relative (excess) returns. Symbols are yfinance tickers.
+benchmarks:
+  - { id: spx, symbol: "^GSPC", name: "S&P 500", currency: USD }
+  - { id: ndx, symbol: "^NDX", name: "Nasdaq-100", currency: USD }
+  - { id: sox, symbol: "^SOX", name: "PHLX Semiconductor", currency: USD }
+  - { id: taiex, symbol: "^TWII", name: "TAIEX", currency: TWD }
+  - { id: kospi, symbol: "^KS11", name: "KOSPI", currency: KRW }
+  - { id: nikkei, symbol: "^N225", name: "Nikkei 225", currency: JPY }
+  - { id: hsi, symbol: "^HSI", name: "Hang Seng", currency: HKD }
+  - { id: csi300, symbol: "000300.SS", name: "CSI 300", currency: CNY }
+  - { id: star50, symbol: "000688.SS", name: "STAR 50", currency: CNY }
+  - { id: stoxx50, symbol: "^STOXX50E", name: "Euro Stoxx 50", currency: EUR }
+
+# Default benchmark by listing market (from the ticker suffix). US chip names use the SOX.
+defaults:
+  US: ndx
+  US-chips: sox
+  TW: taiex
+  KR: kospi
+  JP: nikkei
+  HK: hsi
+  CN: csi300
+  CN-STAR: star50
+  EU: stoxx50
+  OTHER: spx
+
+# FX pairs (yfinance) used to convert market caps to USD: value = units of currency per 1 USD.
+fx: [KRW, JPY, TWD, HKD, CNY, EUR, CHF, DKK, GBP, AUD, CAD, SEK]
+
+# Extra symbols fetched daily so views can be tracked against an ETF proxy (layer or theme baskets).
+extraSymbols: [SPY, QQQ, SMH, SOXX, URA, XLU, GRID, SKYY, IGV, BOTZ, ARKQ]

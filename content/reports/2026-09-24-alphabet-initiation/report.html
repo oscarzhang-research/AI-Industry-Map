@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alphabet (GOOG) 深度初研 | Deep-Dive Initiation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>window.Chart||document.write('<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"><\/script>');</script>
+<style>
+:root{
+  --bg:#F3F6FA; --panel:#FFFFFF; --panel2:#F8FAFD; --ink:#1B2632; --ink2:#4B5B6C; --ink3:#7A8898; --line:#DCE3EC; --line2:#E9EEF4;
+  --cobalt:#2D5A94; --cobalt-soft:#E7EEF8; --sea:#3F8C7A; --sea-soft:#E3F1EC; --sand:#B88A45; --sand-soft:#F6EEDF;
+  --rose:#B9625A; --rose-soft:#F8E8E5; --lav:#6C62A8; --lav-soft:#EDEBF6; --sky:#8DB3DA;
+  --serif:"Source Serif 4","Noto Serif SC","Songti SC",Georgia,serif;
+  --sans:"Inter","Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --topbar:58px; --side:252px;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121821; --panel:#18212D; --panel2:#1D2735; --ink:#E3E9F1; --ink2:#AEBBCA; --ink3:#8594A6; --line:#2B3748; --line2:#243041;
+    --cobalt:#86A9DA; --cobalt-soft:#1F2D42; --sea:#76BFAE; --sea-soft:#1B3330; --sand:#D6B27A; --sand-soft:#33291B;
+    --rose:#DE8E85; --rose-soft:#3A2323; --lav:#A79EDB; --lav-soft:#2A2740; --sky:#5E83AB;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121821; --panel:#18212D; --panel2:#1D2735; --ink:#E3E9F1; --ink2:#AEBBCA; --ink3:#8594A6; --line:#2B3748; --line2:#243041;
+  --cobalt:#86A9DA; --cobalt-soft:#1F2D42; --sea:#76BFAE; --sea-soft:#1B3330; --sand:#D6B27A; --sand-soft:#33291B;
+  --rose:#DE8E85; --rose-soft:#3A2323; --lav:#A79EDB; --lav-soft:#2A2740; --sky:#5E83AB;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%;scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + var(--topbar) + 14px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.78;-webkit-font-smoothing:antialiased}
+html[data-lang="en"] body{line-height:1.64}
+html[data-lang="zh"] .en{display:none!important}
+html[data-lang="en"] .zh{display:none!important}
+a{color:var(--cobalt);text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--cobalt)}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px;border-radius:3px}
+
+/* top bar */
+.topbar{position:fixed;left:0;right:0;top:0;z-index:40;height:calc(var(--topbar) + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);
+  background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;align-items:center}
+.topbar .inner{display:flex;align-items:center;gap:14px;width:100%;padding:0 22px}
+.brand{font-family:var(--serif);font-weight:700;font-size:17px;letter-spacing:.2px;color:var(--ink);white-space:nowrap}
+.brand small{font-family:var(--sans);font-weight:500;font-size:12.5px;color:var(--ink3);margin-left:10px}
+.spacer{flex:1}
+.langswitch{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--panel2)}
+.langswitch button{font:inherit;font-size:13px;font-weight:600;border:0;background:transparent;color:var(--ink2);padding:6px 14px;cursor:pointer}
+.langswitch button[aria-pressed="true"]{background:var(--cobalt);color:#fff}
+.menubtn{display:none;font:inherit;font-size:13px;border:1px solid var(--line);background:var(--panel2);color:var(--ink2);border-radius:8px;padding:6px 10px;cursor:pointer}
+
+/* sidebar */
+.side{position:fixed;top:calc(var(--topbar) + env(safe-area-inset-top,0px));bottom:0;left:0;width:var(--side);overflow-y:auto;padding:22px 16px 40px 20px;border-right:1px solid var(--line);background:var(--panel);z-index:30}
+.side h4{margin:0 0 10px;font-size:12.5px;color:var(--ink3);font-weight:600}
+.side ol{list-style:none;margin:0;padding:0;counter-reset:toc -1}
+.side li{counter-increment:toc;margin:1px 0}
+.side a{display:flex;gap:8px;align-items:baseline;padding:6px 8px;border-radius:7px;color:var(--ink2);font-size:13.8px;line-height:1.45;border:0}
+.side a::before{content:counter(toc,decimal-leading-zero);font-family:var(--sans);font-size:11px;color:var(--ink3);min-width:18px;font-variant-numeric:tabular-nums}
+.side a:hover{background:var(--panel2);color:var(--ink)}
+.side a.active{background:var(--cobalt-soft);color:var(--cobalt);font-weight:600}
+.side a.active::before{color:var(--cobalt)}
+.side .meta{margin-top:22px;padding-top:14px;border-top:1px solid var(--line2);font-size:12px;color:var(--ink3);line-height:1.6}
+
+/* main */
+main{margin-left:var(--side);padding:calc(var(--topbar) + env(safe-area-inset-top,0px) + 26px) 40px 80px}
+.wrap{max-width:1000px;margin:0 auto}
+section.sec{padding:10px 0 34px;border-bottom:1px solid var(--line2);margin-bottom:26px}
+section.sec:last-of-type{border-bottom:0}
+h1,h2,h3{font-family:var(--serif);color:var(--ink);letter-spacing:.1px}
+h1{font-size:32px;line-height:1.28;margin:6px 0 14px}
+h2{font-size:26px;line-height:1.3;margin:6px 0 16px;padding-top:6px}
+h3{font-size:18.5px;line-height:1.4;margin:26px 0 10px}
+h2 .no{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--cobalt);background:var(--cobalt-soft);border-radius:6px;padding:2px 8px;margin-right:10px;vertical-align:5px}
+p{margin:0 0 12px}
+html[data-lang="zh"] p, html[data-lang="zh"] li{text-align:justify}
+.muted{color:var(--ink2)}
+.small{font-size:13px;color:var(--ink3)}
+.lead{font-size:17px;line-height:1.8;color:var(--ink)}
+strong{font-weight:600}
+ul.tight{margin:6px 0 12px;padding-left:20px}
+ul.tight li{margin:4px 0}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:start;margin-bottom:10px}
+.hero .q{font-family:var(--serif);font-size:22px;line-height:1.5;color:var(--ink);margin:4px 0 14px}
+.datebar{font-size:13px;color:var(--ink3);margin-bottom:6px}
+.ledger{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:12px;background:var(--panel);margin:18px 0 8px;overflow:hidden}
+.ledger div{padding:12px 14px;border-right:1px solid var(--line2);border-bottom:1px solid var(--line2)}
+.ledger div:nth-child(4n){border-right:0}
+.ledger b{display:block;font-family:var(--sans);font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink)}
+.ledger span{font-size:12.5px;color:var(--ink2);line-height:1.45;display:block}
+.fig{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 14px 8px;margin:14px 0 16px}
+.fig .t{font-weight:600;font-size:14.5px;margin:0 0 2px;color:var(--ink)}
+.fig .s{font-size:12.5px;color:var(--ink3);margin:0 0 8px}
+.chartbox{position:relative;height:290px}
+.chartbox.tall{height:340px}
+.chartbox.short{height:240px}
+.fig .src{font-size:12px;color:var(--ink3);margin:6px 0 2px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid2>*,.hero>*{min-width:0}
+
+/* tables */
+.tscroll{overflow-x:auto;margin:12px 0 16px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13.6px;line-height:1.55}
+th,td{padding:9px 11px;border-bottom:1px solid var(--line2);text-align:left;vertical-align:top}
+th{background:var(--panel2);font-weight:600;color:var(--ink2);font-size:12.8px;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.hl{background:var(--cobalt-soft)}
+.pill{display:inline-block;font-size:12px;font-weight:600;border-radius:999px;padding:1px 9px;white-space:nowrap}
+.p-g{background:var(--sea-soft);color:var(--sea)} .p-a{background:var(--sand-soft);color:var(--sand)} .p-r{background:var(--rose-soft);color:var(--rose)} .p-b{background:var(--cobalt-soft);color:var(--cobalt)} .p-l{background:var(--lav-soft);color:var(--lav)}
+
+/* callouts */
+.note{border-left:3px solid var(--cobalt);background:var(--cobalt-soft);border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0}
+.note.risk{border-color:var(--rose);background:var(--rose-soft)}
+.note.good{border-color:var(--sea);background:var(--sea-soft)}
+.note.data{border-color:var(--sand);background:var(--sand-soft)}
+.note.ai{border-color:var(--lav);background:var(--lav-soft)}
+.note h5{margin:0 0 6px;font-size:14px;font-family:var(--sans);font-weight:700;color:var(--ink)}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
+.cite{font-size:12px;color:var(--ink3);white-space:normal}
+.cite a{white-space:nowrap}
+.cite a{color:var(--ink3);border-bottom:1px dotted var(--ink3)}
+
+/* two-column debate */
+.debate{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);margin:12px 0 16px}
+.debate>div{padding:14px 16px}
+.debate>div:first-child{border-right:1px solid var(--line2)}
+.debate h4{margin:0 0 8px;font-size:14.5px}
+.debate .bull h4{color:var(--sea)} .debate .bear h4{color:var(--rose)}
+.debate ul{margin:0;padding-left:18px} .debate li{margin:5px 0;font-size:14.2px}
+
+/* model */
+.model{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0}
+.model .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.model .bar button{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--panel2);color:var(--ink2);border-radius:8px;padding:6px 12px;cursor:pointer}
+.model .bar button.on{background:var(--cobalt);color:#fff;border-color:var(--cobalt)}
+.ctrls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cg{border:1px solid var(--line2);border-radius:10px;padding:10px 12px;background:var(--panel2)}
+.cg h6{margin:0 0 6px;font-size:13px;font-weight:700;color:var(--ink)}
+.cg.wide{grid-column:span 2}
+.cg.wide .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.ctl{display:grid;grid-template-columns:1fr auto;gap:2px 8px;align-items:center;margin:7px 0}
+.ctl label{font-size:12.6px;color:var(--ink2);line-height:1.35}
+.ctl output{font-size:12.8px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--cobalt);min-width:54px;text-align:right}
+.ctl input[type=range]{grid-column:1/3;width:100%;accent-color:var(--cobalt);margin:2px 0 0}
+.ctl input[type=number]{grid-column:1/3;width:100%;font:inherit;font-size:13px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+.outs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:12px;margin:14px 0;overflow:hidden}
+.outs div{padding:10px 12px;border-right:1px solid var(--line2);border-bottom:1px solid var(--line2);background:var(--panel)}
+.outs div:nth-child(4n){border-right:0}
+.outs b{display:block;font-size:19px;font-weight:600;font-variant-numeric:tabular-nums}
+.outs span{font-size:12px;color:var(--ink2)}
+.pos{color:var(--sea)!important} .neg{color:var(--rose)!important}
+.sens td{text-align:center;font-variant-numeric:tabular-nums}
+.sens td,.sens th{padding:8px 7px}
+.sens th{text-align:center}
+.foot{font-size:12.5px;color:var(--ink3);margin-top:30px;line-height:1.7}
+.srclist{font-size:13px;line-height:1.6;padding-left:20px}
+.srclist li{margin:4px 0;word-break:break-word}
+
+@media (max-width: 1100px){ .ctrls{grid-template-columns:repeat(2,1fr)} }
+@media (max-width: 960px){
+  .side{transform:translateX(-102%);transition:transform .25s ease;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+  body.nav-open .side{transform:none}
+  main{margin-left:0;padding-left:18px;padding-right:18px}
+  .menubtn{display:inline-block}
+  .hero{grid-template-columns:1fr}
+  .grid2{grid-template-columns:1fr}
+  .ledger{grid-template-columns:repeat(2,1fr)} .ledger div:nth-child(4n){border-right:1px solid var(--line2)} .ledger div:nth-child(2n){border-right:0}
+  .outs{grid-template-columns:repeat(2,1fr)} .outs div:nth-child(4n){border-right:1px solid var(--line2)} .outs div:nth-child(2n){border-right:0}
+  .debate{grid-template-columns:1fr} .debate>div:first-child{border-right:0;border-bottom:1px solid var(--line2)}
+  .ctrls{grid-template-columns:1fr}
+  .cg.wide{grid-column:auto}
+  .cg.wide .cgrid{grid-template-columns:1fr}
+  h1{font-size:28px} h2{font-size:22px}
+  .brand small{display:none}
+}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} .side{transition:none} }
+</style>
+</head>
+<body>
+<header class="topbar"><div class="inner">
+  <button class="menubtn" id="menubtn" aria-label="目录"><span class="zh">目录</span><span class="en">Contents</span></button>
+  <div class="brand">Alphabet (GOOG)<small><span class="zh">深度初研，2026年9月</span><span class="en">Initiation deep-dive, September 2026</span></small></div>
+  <div class="spacer"></div>
+  <div class="langswitch" role="group" aria-label="Language">
+    <button id="btn-zh" aria-pressed="true">中文</button><button id="btn-en" aria-pressed="false">EN</button>
+  </div>
+</div></header>
+
+<nav class="side" id="side" aria-label="Contents">
+  <h4><span class="zh">目录</span><span class="en">Contents</span></h4>
+  <ol>
+    <li><a href="#s-summary"><span class="zh">结论摘要</span><span class="en">Summary</span></a></li>
+    <li><a href="#s-method"><span class="zh">研读路线与三个问题</span><span class="en">How we read the filings</span></a></li>
+    <li><a href="#s-business"><span class="zh">主营业务</span><span class="en">Business</span></a></li>
+    <li><a href="#s-mgmt"><span class="zh">管理层：战略与执行</span><span class="en">Management</span></a></li>
+    <li><a href="#s-moat"><span class="zh">护城河：深度与持久度</span><span class="en">Moat</span></a></li>
+    <li><a href="#s-growth"><span class="zh">增长：潜力与质量</span><span class="en">Growth</span></a></li>
+    <li><a href="#s-quality"><span class="zh">盈利质量与附注</span><span class="en">Earnings quality &amp; notes</span></a></li>
+    <li><a href="#s-val"><span class="zh">估值与交互模型</span><span class="en">Valuation &amp; models</span></a></li>
+    <li><a href="#s-risk"><span class="zh">风险登记簿</span><span class="en">Risk register</span></a></li>
+    <li><a href="#s-track"><span class="zh">可证伪跟踪清单</span><span class="en">Tracking checklist</span></a></li>
+    <li><a href="#s-semis"><span class="zh">对半导体与存储的含义</span><span class="en">Read-across to semis</span></a></li>
+    <li><a href="#s-appx"><span class="zh">附录与资料来源</span><span class="en">Appendix &amp; sources</span></a></li>
+  </ol>
+  <div class="meta"><span class="zh">价格与数据截至2026年9月23日收盘；最新财报为2026年第二季度（7月22日发布）。下次财报：2026年10月28日（预计）。</span><span class="en">Prices and data as of the 23 Sep 2026 close; latest filing is Q2 2026 (released 22 Jul). Next report: 28 Oct 2026 (expected).</span></div>
+</nav>
+
+<main><div class="wrap">
+
+<!-- ============ SUMMARY ============ -->
+<section class="sec" id="s-summary">
+  <div class="hero">
+    <div>
+      <div class="datebar"><span class="zh">初次覆盖，按《财报阅读手册》八步流程完成，2026年9月24日</span><span class="en">First look, built with the eight-step handbook workflow, 24 September 2026</span></div>
+      <h1><span class="zh">Alphabet：加速中的印钞机，押上史无前例的资本开支</span><span class="en">Alphabet: an accelerating cash machine placing a capex bet of historic size</span></h1>
+      <p class="q"><span class="zh">问题不再是"谷歌是不是好生意"，而是"每年约2,000亿美元以上的投入能赚回多少"。</span><span class="en">The question is no longer whether Google is a great business, but what roughly $200 billion a year of investment will earn.</span></p>
+      <p class="lead"><span class="zh">经营层面，Alphabet正处在近五年最强的状态：2026年Q2收入增长24%，搜索收入在"AI聊天会取代搜索"的担忧中反而加速到17%–19%，云业务增长82%、经营利润率35.6%、未确认合同积压达5,140亿美元。资本层面，它进入了与自身历史完全不同的阶段：2026年资本开支指引1,950–2,050亿美元（约占收入四成），Q2自由现金流转负，回购暂停，6月完成847.5亿美元的股权融资，长期债务半年内翻倍。与此同时，SpaceX上市与Anthropic估值上调让上半年GAAP每股收益多出约8.6美元的账面收益。</span><span class="en">Operationally, Alphabet is in its strongest shape in five years: Q2 2026 revenue grew 24%, Search accelerated to 17–19% growth despite fears that AI chat would replace it, and Cloud grew 82% with a 35.6% operating margin and a $514 billion contracted backlog. Financially, it has entered a regime unlike its own history: 2026 capex guidance of $195–205 billion (about 40% of revenue), negative free cash flow in Q2, buybacks paused, an $84.75 billion equity raise in June, and long-term debt doubled in six months. Meanwhile, the SpaceX IPO and Anthropic's markup added roughly $8.6 of paper gains to first-half GAAP EPS.</span></p>
+    </div>
+    <div class="fig" style="margin-top:4px">
+      <p class="t"><span class="zh">这一年最重要的一张图：经营现金流 vs 资本开支（季度，十亿美元）</span><span class="en">The chart of the year: operating cash flow vs capex (quarterly, $B)</span></p>
+      <p class="s"><span class="zh">柱：经营现金流与资本开支；线：自由现金流（Q2'26首次为负）</span><span class="en">Bars: operating cash flow and capex; line: free cash flow (negative for the first time in Q2'26)</span></p>
+      <div class="chartbox"><canvas id="ch-hero"></canvas></div>
+      <p class="src"><span class="zh">来源：Alphabet 各季度业绩公告（SEC 8-K 附件99.1）</span><span class="en">Source: Alphabet quarterly earnings releases (SEC 8-K Exhibit 99.1)</span></p>
+    </div>
+  </div>
+
+  <div class="ledger">
+    <div><b>$119.8B</b><span class="zh">Q2'26收入，同比+24%</span><span class="en">Q2'26 revenue, +24% YoY</span></div>
+    <div><b>$24.8B</b><span class="zh">云收入，+82%；经营利润率35.6%</span><span class="en">Cloud revenue, +82%; 35.6% margin</span></div>
+    <div><b>$514B</b><span class="zh">云合同积压，略超一半在24个月内确认</span><span class="en">Cloud backlog; just over half within 24 months</span></div>
+    <div><b>$195–205B</b><span class="zh">2026年资本开支指引（年内第二次上调）</span><span class="en">2026 capex guide (raised twice this year)</span></div>
+    <div><b>$53.3B</b><span class="zh">过去12个月自由现金流（2025年：$73.3B）</span><span class="en">TTM free cash flow (FY2025: $73.3B)</span></div>
+    <div><b>$135.7B</b><span class="zh">2026上半年其他收益（主要为股权投资浮盈）</span><span class="en">H1'26 other income (mostly unrealized equity gains)</span></div>
+    <div><b>$335</b><span class="zh">GOOG收盘价（9/23）；市值约$4.10万亿</span><span class="en">GOOG close (23 Sep); market cap ≈ $4.10T</span></div>
+    <div><b>≈22.5x</b><span class="zh">2027年一致预期EPS（$14.87）对应市盈率</span><span class="en">P/E on 2027 consensus EPS ($14.87)</span></div>
+  </div>
+  <p class="cite"><span class="zh">数据：</span><span class="en">Data: </span><a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm" target="_blank" rel="noopener">Q2'26 8-K</a>; <a href="https://abc.xyz/investor/events/event-details/2026/2026-Q2-Earnings-Call-2026-GgTAq7Is0z/default.aspx" target="_blank" rel="noopener">Q2'26 call</a>; <a href="https://finance.yahoo.com/quote/GOOG/" target="_blank" rel="noopener">Yahoo Finance</a>; <a href="https://247wallst.com/investing/2026/09/16/prediction-alphabet-stock-at-400-may-be-just-the-beginning/" target="_blank" rel="noopener"><span class="zh">一致预期（24/7 Wall St.转引）</span><span class="en">consensus via 24/7 Wall St.</span></a></p>
+
+  <h3><span class="zh">六维框架 + 第七维"预期"：一页评分</span><span class="en">Six dimensions plus a seventh, expectations: one-page scorecard</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">维度</span><span class="en">Dimension</span></th><th><span class="zh">判断</span><span class="en">Call</span></th><th><span class="zh">最关键的证据</span><span class="en">Key evidence</span></th><th><span class="zh">我可能错在哪</span><span class="en">Where I could be wrong</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">主营业务</span><span class="en">Business</span></td><td><span class="pill p-g"><span class="zh">极强</span><span class="en">Very strong</span></span></td><td><span class="zh">TTM收入$4,459亿；搜索、YouTube、订阅、云四个引擎同时加速；搜索点击与单价同时增长（2025年付费点击+6%、CPC+7%）。</span><span class="en">TTM revenue $445.9B; Search, YouTube, subscriptions and Cloud accelerating together; clicks and prices both up in 2025 (paid clicks +6%, CPC +7%).</span></td><td><span class="zh">AI答案若大规模替代"可变现的商业查询"，搜索的量价组合会转弱，而这在季度数字里会有滞后。</span><span class="en">If AI answers displace monetizable commercial queries at scale, the volume-price mix weakens, with a lag in reported numbers.</span></td></tr>
+      <tr><td><span class="zh">管理层</span><span class="en">Management</span></td><td><span class="pill p-g"><span class="zh">强</span><span class="en">Strong</span></span> <span class="pill p-a"><span class="zh">风格剧变</span><span class="en">Style shift</span></span></td><td><span class="zh">"重塑成本基础"与"云业务盈利"两项承诺均超额兑现；Gemini从2023年落后到2026年领先梯队。但资本配置从每年约600亿回购转向发股融资。</span><span class="en">Delivered on "re-engineer the cost base" and "make Cloud profitable"; Gemini went from behind in 2023 to the front rank in 2026. But capital allocation swung from ~$60B/yr buybacks to issuing equity.</span></td><td><span class="zh">年内两次上调资本开支指引，说明需求强，也说明可预测性下降。</span><span class="en">Two upward capex revisions this year signal strong demand but lower predictability.</span></td></tr>
+      <tr><td><span class="zh">护城河</span><span class="en">Moat</span></td><td><span class="pill p-g"><span class="zh">宽</span><span class="en">Wide</span></span> <span class="pill p-a"><span class="zh">方向：分化</span><span class="en">Trend: mixed</span></span></td><td><span class="zh">全栈AI（TPU＋DeepMind＋Gemini＋30亿级分发）在加深；按期末投入资本估算的ROIC从2024年约51%降到TTM约34%，仍远高于约9%的资本成本。</span><span class="en">The full AI stack (TPU, DeepMind, Gemini, multi-billion-user distribution) is deepening; our ROIC estimate on ending capital fell from ~51% (2024) to ~34% TTM, still far above a ~9% cost of capital.</span></td><td><span class="zh">反垄断的"非排他+数据共享"与AI聊天分流会慢慢削弱分发优势；资本密集度上升意味着护城河更"贵"。</span><span class="en">Non-exclusivity and data-sharing remedies plus AI-chat diversion could erode distribution; rising capital intensity makes the moat more expensive to hold.</span></td></tr>
+      <tr><td><span class="zh">增长</span><span class="en">Growth</span></td><td><span class="pill p-g"><span class="zh">速度高</span><span class="en">Fast</span></span> <span class="pill p-a"><span class="zh">质量下降</span><span class="en">Quality falling</span></span></td><td><span class="zh">上半年收入+23%；但资本开支/收入从2021年约10%升至2026年约40%，2024年末以来的增量ROIC约16%–19%（有投产滞后）。</span><span class="en">H1 revenue +23%; but capex/revenue rose from ~10% (2021) to ~40% (2026), and incremental ROIC since end-2024 is ~16–19% (with a ramp lag).</span></td><td><span class="zh">5,140亿积压的转化速度和利润率如果好于预期，增量ROIC会快速回升。</span><span class="en">If the $514B backlog converts faster and at higher margins, incremental ROIC could rebound quickly.</span></td></tr>
+      <tr><td><span class="zh">估值</span><span class="en">Valuation</span></td><td><span class="pill p-a"><span class="zh">合理偏贵</span><span class="en">Fair to rich</span></span></td><td><span class="zh">基准DCF（WACC 9%）约$312/股，熊/基/牛概率加权约$305；当前价格隐含约8.7%的内部收益率；TTM自由现金流收益率仅1.3%。</span><span class="en">Base DCF (9% WACC) ≈ $312/share; probability-weighted bear/base/bull ≈ $305; the price implies an IRR of ~8.7%; TTM FCF yield only 1.3%.</span></td><td><span class="zh">卖方目标价均值约$420+，更多基于市盈率而非资本开支后的现金流；若TPU外销成为英伟达量级业务，牛市情形会更高。</span><span class="en">Street targets average $420+, mostly P/E-based rather than post-capex cash flow; if external TPU sales become an Nvidia-scale business, the bull case is higher.</span></td></tr>
+      <tr><td><span class="zh">风险</span><span class="en">Risk</span></td><td><span class="pill p-r"><span class="zh">中高</span><span class="en">Medium-high</span></span></td><td><span class="zh">资本开支回报、客户集中与"投资客户—客户买算力"的循环（据报道Anthropic占积压四成以上）、搜索案上诉、搜索变现迁移。</span><span class="en">Return on capex; customer concentration and circularity (Anthropic reportedly &gt;40% of backlog); the search-case appeals; migration of search monetization.</span></td><td><span class="zh">多数风险是"回报率"风险而非"生存"风险：资产负债表极强，股权浮盈约2,180亿美元。</span><span class="en">Most are return risks, not survival risks: the balance sheet is very strong, with ~$218B of strategic equity stakes.</span></td></tr>
+      <tr><td><span class="zh">预期（第七维）</span><span class="en">Expectations</span></td><td><span class="pill p-l"><span class="zh">已计入高回报</span><span class="en">High returns priced in</span></span></td><td><span class="zh">反向DCF：当前价格要求2025–2035年收入年化约14.8%、并在2030年前把净资本开支压回低位。</span><span class="en">Reverse DCF: the price requires ~14.8% revenue CAGR over 2025–2035 and net capex falling back to low levels by around 2030.</span></td><td><span class="zh">利率若从5%附近回落，同样的现金流对应的价值会明显提升。</span><span class="en">If rates fall back from ~5%, the same cash flows are worth materially more.</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="zh">多空分歧（差异化认知）</span><span class="en">Where bulls and bears disagree</span></h3>
+  <div class="debate">
+    <div class="bull"><h4><span class="zh">看多的理由</span><span class="en">The bull case</span></h4><ul>
+      <li><span class="zh">搜索没有被AI吃掉，反而被AI放大：查询量创新高，AI Mode月活超10亿，搜索收入增速从Q1'25的约10%升到Q1'26的19%。</span><span class="en">AI amplified Search instead of eating it: record queries, AI Mode above 1B monthly users, Search growth up from ~10% in Q1'25 to 19% in Q1'26.</span></li>
+      <li><span class="zh">云业务从"追赶者"变成"算力稀缺时代的供给方"：积压5,140亿美元，利润率35%+，TPU开始外销，打开英伟达式的第二曲线。</span><span class="en">Cloud turned from laggard into a supplier in a compute-scarce era: $514B backlog, 35%+ margin, and TPUs sold externally open an Nvidia-like second curve.</span></li>
+      <li><span class="zh">全栈成本优势：自研TPU让单位token成本更低，苹果选择Gemini驱动新Siri。</span><span class="en">Full-stack cost advantage: in-house TPUs lower the cost per token; Apple chose Gemini to power the new Siri.</span></li>
+      <li><span class="zh">约2,180亿美元的SpaceX股权与以Anthropic为主的私募股权，提供额外价值与未来流动性。</span><span class="en">About $218B of SpaceX shares and private stakes (mostly Anthropic) add value and future liquidity.</span></li>
+    </ul></div>
+    <div class="bear"><h4><span class="zh">看空的理由</span><span class="en">The bear case</span></h4><ul>
+      <li><span class="zh">资本开支/收入升至约四成，自由现金流转负；2027年资本开支还将"显著增加"，折旧浪潮尚未到来。</span><span class="en">Capex is ~40% of revenue and FCF turned negative; 2027 capex will "increase significantly" and the depreciation wave has not arrived yet.</span></li>
+      <li><span class="zh">需求集中且带有循环：据报道Alphabet承诺向Anthropic投资最高400亿美元，Anthropic承诺5年内向谷歌云采购约2,000亿美元，而Alphabet同时按新估值确认浮盈。</span><span class="en">Demand is concentrated and partly circular: Alphabet reportedly committed up to $40B to Anthropic, Anthropic reportedly committed ~$200B over five years to Google Cloud, and Alphabet books gains at the new valuation.</span></li>
+      <li><span class="zh">从回购到发股：资本回报叙事改变；6.25%强制可转换优先股还附带以其股息足额支付为前提的分红/回购限制条款。</span><span class="en">From buybacks to issuance: the capital-return story changed, and the 6.25% mandatory convertible preferred carries dividend-blocker terms that tie common dividends and buybacks to paying the preferred in full.</span></li>
+      <li><span class="zh">5%附近的十年期国债收益率下，1.3%的自由现金流收益率要求很长时间的高增长兑现。</span><span class="en">With the 10-year near 5%, a 1.3% FCF yield requires a long runway of high growth to pay off.</span></li>
+    </ul></div>
+  </div>
+
+  <div class="note">
+    <h5><span class="zh">一句话结论</span><span class="en">Bottom line</span></h5>
+    <p><span class="zh">这是一家护城河很宽、执行力很强、正在把自己改造成"AI基础设施公司"的企业。以当前约$335的价格，基准情形下它大致被合理定价、略偏贵；决定未来回报的不是广告，而是资本开支的回报率与需求的集中度。初研建议：把它当作高质量核心资产持续跟踪，用本报告第九节的可证伪指标决定加减，而不是用市盈率。</span><span class="en">This is a wide-moat, well-executed company rebuilding itself into an AI infrastructure provider. Around $335, it looks roughly fairly valued to slightly rich in our base case; future returns will be decided less by advertising than by the return on capex and the concentration of the demand behind it. Initial stance: track it as a high-quality core asset and let the falsifiable indicators in Section 9, not the P/E, drive position changes.</span></p>
+  </div>
+</section>
+
+<!-- ============ METHOD ============ -->
+<section class="sec" id="s-method">
+  <h2><span class="no">01</span><span class="zh">研读路线与三个问题</span><span class="en">How we read the filings</span></h2>
+  <p><span class="zh">本报告按《财报阅读手册》的"读前准备＋八步"流程完成：先读近五个财年的10-K（2021–2025），再读2026年两份10-Q与近六个季度的业绩公告和电话会，然后补读6月股权融资文件、2026年代理声明、法院与监管文件。所有金额单位为十亿美元（$B），TTM指2025年Q3至2026年Q2四个季度。</span><span class="en">This report follows the handbook's "preparation plus eight steps": five 10-Ks (FY2021–FY2025) first, then the two 2026 10-Qs and six quarters of releases and calls, then the June equity-raise documents, the 2026 proxy, and court and regulatory decisions. Amounts are in billions of dollars; TTM means Q3 2025 through Q2 2026.</span></p>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">文件</span><span class="en">Document</span></th><th><span class="zh">用来回答什么</span><span class="en">What it answers</span></th><th><span class="zh">本次读到的最重要变化</span><span class="en">Most important change found</span></th></tr></thead>
+    <tbody>
+      <tr><td>10-K FY2021–FY2025</td><td><span class="zh">业务结构、分部利润、五年趋势、风险因素</span><span class="en">Business structure, segment profit, five-year trends, risk factors</span></td><td><span class="zh">2023年DeepMind并入Alphabet层面费用；2023年起服务器折旧年限延长至6年；2025年欧盟罚款计入服务分部</span><span class="en">DeepMind moved to Alphabet-level costs in 2023; server lives extended to six years from 2023; the 2025 EU fine charged to Services</span></td></tr>
+      <tr><td>10-Q Q1/Q2 2026</td><td><span class="zh">附注：投资、租赁、承诺、存货、分部</span><span class="en">Notes: investments, leases, commitments, inventory, segments</span></td><td><span class="zh">SpaceX持股公允价值$94.0B；私募股权$124.3B；未开始租赁$85.2B；采购承诺约$8,110亿（据报道）；云业务开始确认TPU系统销售收入</span><span class="en">SpaceX stake $94.0B; private equity $124.3B; uncommenced leases $85.2B; purchase commitments ~$811B (as reported); Cloud began recognizing TPU system sales</span></td></tr>
+      <tr><td><span class="zh">业绩公告与电话会（Q1'25–Q2'26）</span><span class="en">Releases and calls (Q1'25–Q2'26)</span></td><td><span class="zh">指引、KPI、管理层语气与问答</span><span class="en">Guidance, KPIs, tone and Q&amp;A</span></td><td><span class="zh">资本开支指引从$175–185B上调至$195–205B；"2027年将显著增加"；Q3起使用第三方算力作为过渡</span><span class="en">Capex guide raised from $175–185B to $195–205B; "significant increase" in 2027; third-party capacity as a bridge from Q3</span></td></tr>
+      <tr><td><span class="zh">8-K/FWP（2026年6月）</span><span class="en">8-K/FWP (June 2026)</span></td><td><span class="zh">融资结构与稀释</span><span class="en">Financing structure and dilution</span></td><td><span class="zh">总额$847.5亿股权融资：普通股承销、伯克希尔$100亿定向增发、6.25%强制可转换优先股、$400亿ATM</span><span class="en">$84.75B equity raise: underwritten common, $10B Berkshire private placement, 6.25% mandatory convertible preferred, $40B ATM</span></td></tr>
+      <tr><td><span class="zh">DEF 14A（2026）</span><span class="en">DEF 14A (2026)</span></td><td><span class="zh">治理、激励、投票权</span><span class="en">Governance, incentives, voting power</span></td><td><span class="zh">B类股占6.9%股本、约58.9%投票权；薪酬咨询投票支持率80.75%；同股同权提案获31.1%支持</span><span class="en">Class B is 6.9% of shares but ~58.9% of votes; say-on-pay 80.75%; equal-voting proposal 31.1%</span></td></tr>
+      <tr><td><span class="zh">法院与监管文件</span><span class="en">Court and regulatory filings</span></td><td><span class="zh">反垄断的真实约束</span><span class="en">What antitrust actually constrains</span></td><td><span class="zh">搜索案进入上诉；广告技术案拒绝拆分、仅行为救济；欧盟DMA两项违规罚款共€8.9亿</span><span class="en">Search case on appeal; ad tech case: no breakup, behavioral remedies; two EU DMA non-compliance fines totaling €890M</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note">
+    <h5><span class="zh">手册的三个问题，套在这次研读上</span><span class="en">The handbook's three questions, applied</span></h5>
+    <ul class="tight">
+      <li><span class="zh"><strong>发生了什么：</strong>与一年前相比，云增速从32%升到82%；季度资本开支从$224亿升到$449亿；自由现金流从正转负；股东回报从回购变为发股；GAAP利润被投资浮盈显著抬高。</span><span class="en"><strong>What happened:</strong> versus a year ago, Cloud growth went from 32% to 82%; quarterly capex from $22.4B to $44.9B; free cash flow from positive to negative; capital return from buybacks to issuance; GAAP profit inflated by investment gains.</span></li>
+      <li><span class="zh"><strong>为什么：</strong>企业AI与AI基础设施需求远超供给（管理层多次称"算力受限"），AI功能推高了搜索使用量，同时SpaceX上市与Anthropic融资带来了估值重估。</span><span class="en"><strong>Why:</strong> enterprise AI and AI-infrastructure demand far exceeds supply (management repeatedly says it is compute-constrained), AI features lifted Search usage, and the SpaceX IPO and Anthropic's raise repriced the portfolio.</span></li>
+      <li><span class="zh"><strong>所以呢：</strong>投资逻辑从"会回购的现金复利机器"变成"高资本开支的AI基础设施建设者"。估值不能再用市盈率一把尺子，必须显式建模资本开支的回报（见第7节模型）。</span><span class="en"><strong>So what:</strong> the thesis shifts from a buyback-funding cash compounder to a capex-heavy AI infrastructure builder. A P/E alone no longer works; the return on capex has to be modeled explicitly (see the model in Section 7).</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ BUSINESS ============ -->
+<section class="sec" id="s-business">
+  <h2><span class="no">02</span><span class="zh">主营业务：它靠什么赚钱</span><span class="en">Business: how the money is made</span></h2>
+  <p><span class="zh">Alphabet披露三个经营分部（谷歌服务、谷歌云、其他押注）和一个不分摊的"Alphabet层面"费用池（主要是共享的通用AI模型研发）。收入口径上，谷歌服务再拆为搜索及其他、YouTube广告、谷歌网络、订阅/平台/设备四项。</span><span class="en">Alphabet reports three operating segments (Google Services, Google Cloud, Other Bets) plus an unallocated "Alphabet-level" cost pool, mainly shared general-AI model development. Within Services, revenue is split into Search &amp; other, YouTube ads, Google Network, and subscriptions, platforms and devices.</span></p>
+
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">业务</span><span class="en">Line</span></th><th class="n">TTM $B</th><th class="n"><span class="zh">占比</span><span class="en">Share</span></th><th class="n"><span class="zh">Q2'26同比</span><span class="en">Q2'26 YoY</span></th><th><span class="zh">怎么赚钱</span><span class="en">How it earns</span></th><th><span class="zh">要盯的指标</span><span class="en">KPIs to watch</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">搜索及其他</span><span class="en">Search &amp; other</span></td><td class="n">243.3</td><td class="n">54.6%</td><td class="n">+17%</td><td><span class="zh">按点击竞价的搜索广告（含地图、购物、Discover、AI Overviews/AI Mode中的广告）</span><span class="en">Auction-priced search ads (incl. Maps, Shopping, Discover, and ads in AI Overviews/AI Mode)</span></td><td><span class="zh">付费点击、单次点击价格、查询量、TAC率</span><span class="en">Paid clicks, CPC, queries, TAC rate</span></td></tr>
+      <tr><td><span class="zh">YouTube广告</span><span class="en">YouTube ads</span></td><td class="n">42.6</td><td class="n">9.5%</td><td class="n">+13%</td><td><span class="zh">品牌与效果广告；与创作者分成</span><span class="en">Brand and direct-response ads; revenue share with creators</span></td><td><span class="zh">观看时长、Shorts变现、电视大屏</span><span class="en">Watch time, Shorts monetization, living-room viewing</span></td></tr>
+      <tr><td><span class="zh">谷歌网络</span><span class="en">Google Network</span></td><td class="n">29.5</td><td class="n">6.6%</td><td class="n">−1%</td><td><span class="zh">AdSense、AdMob、Ad Manager在第三方网站和App上的广告</span><span class="en">AdSense, AdMob and Ad Manager ads on third-party sites and apps</span></td><td><span class="zh">展示次数（2025年−7%）、单次展示价格、广告技术救济</span><span class="en">Impressions (−7% in 2025), cost per impression, ad tech remedies</span></td></tr>
+      <tr><td><span class="zh">订阅、平台与设备</span><span class="en">Subscriptions, platforms &amp; devices</span></td><td class="n">51.7</td><td class="n">11.6%</td><td class="n">+15%</td><td><span class="zh">YouTube Premium/Music/TV、NFL Sunday Ticket、Google One（含AI套餐）、Play抽成、Pixel</span><span class="en">YouTube Premium/Music/TV, NFL Sunday Ticket, Google One (incl. AI plans), Play fees, Pixel</span></td><td><span class="zh">付费订阅数（Q1'26为3.5亿）</span><span class="en">Paid subscriptions (350M in Q1'26)</span></td></tr>
+      <tr><td><span class="zh">谷歌云</span><span class="en">Google Cloud</span></td><td class="n">77.6</td><td class="n">17.4%</td><td class="n">+82%</td><td><span class="zh">GCP按量计费与订阅（AI基础设施、AI解决方案、核心云服务）、Workspace、TPU系统销售（2026年Q2起）、Wiz</span><span class="en">GCP consumption and subscriptions (AI infrastructure, AI solutions, core services), Workspace, TPU system sales (from Q2'26), Wiz</span></td><td><span class="zh">积压、利润率、TPU交付、第三方算力占比</span><span class="en">Backlog, margin, TPU deliveries, share of third-party capacity</span></td></tr>
+      <tr><td><span class="zh">其他押注</span><span class="en">Other Bets</span></td><td class="n">1.5</td><td class="n">0.3%</td><td class="n">+2%</td><td><span class="zh">主要是Waymo自动驾驶出行和互联网服务</span><span class="en">Mainly Waymo autonomous rides and internet services</span></td><td><span class="zh">每周付费单量、新城市、单车经济性</span><span class="en">Weekly paid rides, new cities, per-vehicle economics</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cite"><span class="zh">TTM由Q3'25–Q2'26四季公告加总；来源：</span><span class="en">TTM summed from Q3'25–Q2'26 releases; sources: </span><a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204425000087/googexhibit991q32025.htm" target="_blank" rel="noopener">Q3'25</a>, <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000012/googexhibit991q42025.htm" target="_blank" rel="noopener">Q4'25</a>, <a href="https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000043/googexhibit991q12026.htm" target="_blank" rel="noopener">Q1'26</a>, <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm" target="_blank" rel="noopener">Q2'26</a></p>
+
+  <div class="fig">
+    <p class="t"><span class="zh">五年收入结构（$B）</span><span class="en">Five-year revenue mix ($B)</span></p>
+    <p class="s"><span class="zh">云从2021年的$192亿增至TTM的$776亿，占比从7.5%升至17.4%；谷歌网络是唯一萎缩的业务</span><span class="en">Cloud grew from $19.2B (2021) to $77.6B TTM, from 7.5% to 17.4% of revenue; Network is the only shrinking line</span></p>
+    <div class="chartbox tall"><canvas id="ch-mix"></canvas></div>
+    <p class="src"><span class="zh">来源：10-K FY2022–FY2025收入分类表；TTM为季度加总</span><span class="en">Source: revenue-by-type tables in the FY2022–FY2025 10-Ks; TTM summed from quarters</span></p>
+  </div>
+
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">2021→2025年复合增速</span><span class="en">2021→2025 CAGR</span></th><th class="n"><span class="zh">搜索</span><span class="en">Search</span></th><th class="n">YouTube</th><th class="n"><span class="zh">网络</span><span class="en">Network</span></th><th class="n"><span class="zh">订阅/平台/设备</span><span class="en">Subs/Plat/Dev</span></th><th class="n"><span class="zh">云</span><span class="en">Cloud</span></th><th class="n"><span class="zh">合计</span><span class="en">Total</span></th></tr></thead>
+    <tbody><tr><td><span class="zh">年化增速</span><span class="en">Annualized</span></td><td class="n">10.8%</td><td class="n">8.8%</td><td class="n">−1.5%</td><td class="n">14.4%</td><td class="n">32.2%</td><td class="n">11.8%</td></tr></tbody>
+  </table></div>
+
+  <h3><span class="zh">搜索：AI没有吃掉它，至少目前还没有</span><span class="en">Search: AI has not eaten it, at least not yet</span></h3>
+  <p><span class="zh">搜索收入可以拆成：查询量 × 广告覆盖率 × 点击率 × 单次点击价格，再减去分给苹果、三星、浏览器等渠道的流量获取成本（TAC）。AI改变的是每一项：AI Overviews和AI Mode让查询更长、更复杂，可能减少"蓝色链接"上的自然点击，但也创造了新的广告位和更高商业意图的会话。</span><span class="en">Search revenue decomposes into queries × ad coverage × click-through × cost per click, minus the traffic acquisition cost (TAC) paid to Apple, Samsung, browsers and others. AI changes every term: AI Overviews and AI Mode make queries longer and more complex, which can reduce organic clicks on blue links but also creates new ad inventory and more commercially intent sessions.</span></p>
+  <div class="grid2">
+    <div class="tscroll" style="margin-top:0"><table>
+      <thead><tr><th><span class="zh">变现指标（10-K）</span><span class="en">Monetization metrics (10-K)</span></th><th class="n">2024</th><th class="n">2025</th></tr></thead>
+      <tbody>
+        <tr><td><span class="zh">付费点击变化</span><span class="en">Paid clicks change</span></td><td class="n">+5%</td><td class="n">+6%</td></tr>
+        <tr><td><span class="zh">单次点击价格变化</span><span class="en">Cost-per-click change</span></td><td class="n">+7%</td><td class="n">+7%</td></tr>
+        <tr><td><span class="zh">网络：展示次数</span><span class="en">Network: impressions</span></td><td class="n">−11%</td><td class="n">−7%</td></tr>
+        <tr><td><span class="zh">网络：单次展示价格</span><span class="en">Network: cost per impression</span></td><td class="n">+10%</td><td class="n">+7%</td></tr>
+        <tr><td><span class="zh">TAC（$B）/ 占广告收入</span><span class="en">TAC ($B) / share of ad revenue</span></td><td class="n">54.9 / 20.7%</td><td class="n">59.9 / 20.3%</td></tr>
+      </tbody>
+    </table></div>
+    <div>
+      <p><span class="zh">关键读法：2025年付费点击和单价<strong>同时</strong>上升，说明AI功能至今没有损害"可变现的商业查询"；TAC率稳定在约20%，渠道成本没有失控。管理层称查询量处于历史最高；Google在I/O 2026上称AI Overviews月活超过25亿、AI Mode月活超过10亿（第三方整理显示AI Mode查询长度约为传统搜索的3倍）。</span><span class="en">How to read it: in 2025 paid clicks and CPC rose <strong>together</strong>, so AI features have not yet hurt monetizable commercial queries; the TAC rate held near 20%, so distribution costs are under control. Management says queries are at an all-time high; at I/O 2026 Google said AI Overviews exceed 2.5B monthly users and AI Mode exceeds 1B (third-party compilations put AI Mode queries at about three times the length of classic searches).</span></p>
+      <p class="small"><span class="zh">外部数据的另一面：StatCounter显示谷歌2026年4月全球搜索份额约90%；但ChatGPT周活约9亿，AI助手在"所有数字查询"中的份额估计已到两位数（第三方估算，可靠性一般）。</span><span class="en">The other side, from third parties: StatCounter puts Google's global search share near 90% in April 2026, but ChatGPT has ~900M weekly users and AI assistants are estimated to hold a double-digit share of all digital queries (third-party estimates of modest reliability).</span></p>
+    </div>
+  </div>
+
+  <div class="fig">
+    <p class="t"><span class="zh">各业务同比增速（季度）</span><span class="en">Year-over-year growth by line (quarterly)</span></p>
+    <p class="s"><span class="zh">搜索从约10%加速到17%–19%；云从28%加速到82%</span><span class="en">Search accelerated from ~10% to 17–19%; Cloud from 28% to 82%</span></p>
+    <div class="chartbox"><canvas id="ch-growth"></canvas></div>
+    <p class="src"><span class="zh">来源：各季度业绩公告，增速为本报告计算</span><span class="en">Source: quarterly releases; growth rates computed by us</span></p>
+  </div>
+
+  <h3><span class="zh">YouTube与订阅：第二个"消费者引擎"</span><span class="en">YouTube and subscriptions: the second consumer engine</span></h3>
+  <p><span class="zh">2025年YouTube广告与订阅合计收入超过600亿美元；截至2026年Q1，谷歌付费订阅数达到3.5亿（2025年末为3.25亿），主要来自YouTube和Google One，Q1'26是消费者AI套餐有史以来最强的一个季度。订阅收入按月确认，比广告更稳定，也是对冲"搜索广告被AI改写"的天然工具：用户为更强的Gemini能力付费，而不是为链接付费。</span><span class="en">YouTube's ads and subscriptions exceeded $60B in 2025; by Q1 2026 Google had 350M paid subscriptions (325M at end-2025), led by YouTube and Google One, and Q1'26 was the strongest quarter ever for consumer AI plans. Subscription revenue is recognized monthly and is steadier than ads; it is also a natural hedge if AI rewrites search advertising, because users pay for better Gemini capability rather than for links.</span></p>
+
+  <h3><span class="zh">谷歌云：从追赶者到算力供给方</span><span class="en">Google Cloud: from laggard to compute supplier</span></h3>
+  <div class="grid2">
+    <div class="fig" style="margin-top:0">
+      <p class="t"><span class="zh">云收入与经营利润率（季度）</span><span class="en">Cloud revenue and operating margin (quarterly)</span></p>
+      <div class="chartbox short"><canvas id="ch-cloud"></canvas></div>
+      <p class="src"><span class="zh">来源：业绩公告分部表</span><span class="en">Source: segment tables in releases</span></p>
+    </div>
+    <div class="fig" style="margin-top:0">
+      <p class="t"><span class="zh">云合同积压（$B）</span><span class="en">Cloud backlog ($B)</span></p>
+      <div class="chartbox short"><canvas id="ch-backlog"></canvas></div>
+      <p class="src"><span class="zh">来源：10-K/10-Q与电话会；Q4'24与Q4'25为披露的剩余履约义务</span><span class="en">Source: 10-K/10-Q and calls; Q4'24 and Q4'25 are disclosed remaining performance obligations</span></p>
+    </div>
+  </div>
+  <p><span class="zh">云业务2021年亏损31亿美元，2023年首次盈利，2025年经营利润139亿美元，2026年Q2单季88亿美元、利润率35.6%。增长来源按管理层排序依次为企业AI解决方案、企业AI基础设施和核心GCP服务；近90%的财富100强在使用Gemini Enterprise；第一方模型API每分钟处理约220亿个token。2026年3月完成的320亿美元Wiz收购（2025年ARR约10亿美元）并入云分部。</span><span class="en">Cloud lost $3.1B in 2021, turned profitable in 2023, earned $13.9B in 2025 and $8.8B in Q2 2026 alone at a 35.6% margin. Management ranks the drivers as enterprise AI solutions, enterprise AI infrastructure, then core GCP; nearly 90% of the Fortune 100 use Gemini Enterprise; first-party model APIs process about 22 billion tokens per minute. The $32B Wiz acquisition (about $1B ARR in 2025), closed in March 2026, sits in Cloud.</span></p>
+  <div class="note data">
+    <h5><span class="zh">附注里的新东西：TPU从"租"变成"卖"</span><span class="en">New in the notes: TPUs go from rented to sold</span></h5>
+    <p><span class="zh">10-Q显示，2026年Q2云业务开始确认"TPU系统销售"收入（产品收入），存货从年初的$24亿升至$100亿，管理层称这是为2027年交付提前备货，大部分TPU系统收入将在2027年而非2026年确认。这改变了云业务的收入质量：一次性的硬件收入毛利率通常低于按量计费的云服务，但能扩大可触达市场；同时"TPU系统销售协议"计入了积压，但管理层未披露其占比。</span><span class="en">The 10-Q shows Cloud began recognizing TPU system sales (product revenue) in Q2 2026; inventory rose from $2.4B at the start of the year to $10.0B, which management describes as building ahead for 2027 deliveries, with most TPU system revenue landing in 2027 rather than 2026. This changes revenue quality: one-time hardware revenue usually carries lower margins than metered cloud services but widens the addressable market; signed TPU agreements sit in the backlog, but management did not disclose their share.</span></p>
+  </div>
+  <div class="note risk">
+    <h5><span class="zh">积压的集中度：最重要的未披露数字</span><span class="en">Backlog concentration: the most important undisclosed number</span></h5>
+    <p><span class="zh">据The Information报道（路透转引、未经证实），Anthropic承诺在5年内向谷歌云支出约2,000亿美元，约占Q1'26积压的四成以上；另据彭博报道，Alphabet承诺向Anthropic投资最高400亿美元（100亿美元现金，其余300亿与业绩里程碑挂钩）。管理层只表示积压"绝大部分是典型的GCP合同、客户分布广泛"。这正是手册红旗清单中的"大客户同时是被投资方"：需求真实与否不是问题，问题是它的集中度和对单一客户融资能力的依赖。</span><span class="en">According to The Information (relayed by Reuters, unverified), Anthropic committed about $200B over five years to Google Cloud, more than 40% of the Q1'26 backlog; Bloomberg reported that Alphabet committed up to $40B to Anthropic ($10B in cash, $30B tied to milestones). Management only says the backlog is mostly "typical GCP contracts from a broad mix of customers". This is the handbook red flag of a major customer that is also an investee: the question is not whether demand is real, but how concentrated it is and how much it depends on one customer's ability to keep raising capital.</span></p>
+  </div>
+
+  <h3><span class="zh">其他押注与Alphabet层面费用</span><span class="en">Other Bets and Alphabet-level costs</span></h3>
+  <p><span class="zh">其他押注几乎等于Waymo：2026年2月Waymo完成160亿美元融资，投后估值1,260亿美元，Alphabet出资"绝大部分"并保持控股；2025年完成1,500万次出行（约为2024年的3倍），2026年2月每周付费出行超过40万次，计划2026年新进入20多个城市（含东京、伦敦）。代价是分部亏损：2025年其他押注经营亏损75亿美元（含Q4计提的21亿美元Waymo员工股权补偿）。Alphabet层面费用（主要是Gemini等通用模型研发）TTM为215亿美元，同比大幅上升；它不分摊到分部，因此各分部利润率都"好看"了一些。</span><span class="en">Other Bets is mostly Waymo: in February 2026 Waymo raised $16B at a $126B post-money valuation, with Alphabet funding the significant majority and remaining the majority owner; it completed 15M rides in 2025 (about 3x 2024), exceeded 400,000 paid rides a week in February 2026, and plans to enter 20+ new cities in 2026, including Tokyo and London. The cost is the segment loss: Other Bets lost $7.5B in 2025, including a $2.1B Waymo stock-compensation charge in Q4. Alphabet-level costs (mainly general models such as Gemini) were $21.5B TTM and rising fast; because they are not allocated, every segment margin looks somewhat better than the full cost picture.</span></p>
+  <p class="small"><span class="zh">地域：Q2'26美国收入占51%、同比+32%（明显快于欧洲的+15%与亚太的+17%），与云和AI基础设施需求集中在美国一致。</span><span class="en">Geography: the US was 51% of Q2'26 revenue and grew 32% (well ahead of EMEA +15% and APAC +17%), consistent with Cloud and AI-infrastructure demand concentrating in the US.</span></p>
+</section>
+
+<!-- ============ MANAGEMENT ============ -->
+<section class="sec" id="s-mgmt">
+  <h2><span class="no">03</span><span class="zh">管理层：战略与执行力</span><span class="en">Management: strategy and execution</span></h2>
+  <h3><span class="zh">谁在做决定</span><span class="en">Who decides</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">人物</span><span class="en">Person</span></th><th><span class="zh">角色</span><span class="en">Role</span></th><th><span class="zh">要看什么</span><span class="en">What to watch</span></th></tr></thead>
+    <tbody>
+      <tr><td>Sundar Pichai</td><td><span class="zh">2015年起任谷歌CEO，2019年起任Alphabet CEO，董事</span><span class="en">CEO of Google since 2015 and Alphabet since 2019; director</span></td><td><span class="zh">"全栈AI"战略的总设计者；资本开支规模由他与董事会拍板</span><span class="en">Architect of the full-stack AI strategy; owns the capex decision with the board</span></td></tr>
+      <tr><td>Anat Ashkenazi</td><td><span class="zh">CFO（2024年加入，前礼来CFO）</span><span class="en">CFO (joined 2024; formerly CFO of Eli Lilly)</span></td><td><span class="zh">资本开支指引准确度、融资结构、折旧与利润率的沟通</span><span class="en">Capex guidance accuracy, financing structure, communication on depreciation and margins</span></td></tr>
+      <tr><td>Ruth Porat</td><td><span class="zh">总裁兼首席投资官（前CFO）</span><span class="en">President and Chief Investment Officer (former CFO)</span></td><td><span class="zh">战略投资组合（SpaceX、Anthropic等）与大型交易</span><span class="en">Strategic portfolio (SpaceX, Anthropic, etc.) and large transactions</span></td></tr>
+      <tr><td>Thomas Kurian</td><td><span class="zh">谷歌云CEO（2019年起）</span><span class="en">CEO of Google Cloud (since 2019)</span></td><td><span class="zh">积压转化、利润率、TPU外销与Wiz整合</span><span class="en">Backlog conversion, margins, external TPU sales, Wiz integration</span></td></tr>
+      <tr><td>Demis Hassabis</td><td><span class="zh">Google DeepMind CEO，2024年诺贝尔化学奖得主</span><span class="en">CEO of Google DeepMind; 2024 Nobel laureate in Chemistry</span></td><td><span class="zh">Gemini模型的前沿地位与迭代节奏</span><span class="en">Gemini's frontier position and release cadence</span></td></tr>
+      <tr><td>Philipp Schindler / Neal Mohan</td><td><span class="zh">首席商务官 / YouTube CEO</span><span class="en">Chief Business Officer / YouTube CEO</span></td><td><span class="zh">AI Mode与AI Overviews的广告变现；YouTube订阅与电视端</span><span class="en">Ad monetization in AI Mode and AI Overviews; YouTube subscriptions and TV</span></td></tr>
+      <tr><td>Larry Page / Sergey Brin</td><td><span class="zh">联合创始人、董事，通过B类股控制多数投票权</span><span class="en">Co-founders and directors; control a voting majority through Class B shares</span></td><td><span class="zh">长期主义的保障，也是外部股东无法约束资本开支的原因</span><span class="en">A guarantee of long-termism, and the reason outside holders cannot constrain capex</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="zh">战略：把整个AI栈握在自己手里</span><span class="en">Strategy: own the whole AI stack</span></h3>
+  <p><span class="zh">管理层在每次电话会上都用同一个框架解释投入：基础设施（自研TPU、数据中心、能源，包括为此收购的Intersect）→ 研究（DeepMind）→ 模型（Gemini 3、3.5系列）→ 产品与分发（搜索AI Mode、Gemini App 9.5亿月活、YouTube、Android、Workspace）→ 商业化（广告、订阅、云、TPU外销）。这个框架的经济含义是：同一套模型与算力被多个产品复用，单位token成本更低，分发成本几乎为零。苹果在2026年1月宣布下一代Apple基础模型将基于Gemini与谷歌云技术，是对这一框架的外部背书（据彭博报道年费约10亿美元）。</span><span class="en">Management explains the investment with the same framework on every call: infrastructure (in-house TPUs, data centers, energy, including the Intersect acquisition) → research (DeepMind) → models (Gemini 3 and 3.5) → products and distribution (Search AI Mode, the 950M-MAU Gemini app, YouTube, Android, Workspace) → monetization (ads, subscriptions, Cloud, external TPU sales). The economic point is reuse: one set of models and compute serves many products, lowering the cost per token with near-zero distribution cost. Apple's January 2026 announcement that its next-generation foundation models will be based on Gemini and Google cloud technology is an outside endorsement (Bloomberg reported roughly $1B a year).</span></p>
+
+  <h3><span class="zh">说到做到台账</span><span class="en">Say-do ledger</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">时间</span><span class="en">When</span></th><th><span class="zh">管理层说了什么</span><span class="en">What management said</span></th><th><span class="zh">后来发生了什么</span><span class="en">What happened</span></th><th><span class="zh">评分</span><span class="en">Score</span></th></tr></thead>
+    <tbody>
+      <tr><td>2023.01</td><td><span class="zh">裁员约1.2万人，"持久地重塑成本基础"</span><span class="en">~12,000 layoffs; "durably re-engineer" the cost base</span></td><td><span class="zh">经营利润率从2022年26.5%升至2024–2025年约32%，2026年上半年35.0%</span><span class="en">Operating margin rose from 26.5% (2022) to ~32% (2024–25) and 35.0% in H1 2026</span></td><td><span class="pill p-g"><span class="zh">兑现</span><span class="en">Delivered</span></span></td></tr>
+      <tr><td>2019–2023</td><td><span class="zh">云业务实现盈利并规模化</span><span class="en">Make Cloud profitable at scale</span></td><td><span class="zh">2023年首次盈利17亿美元；2025年139亿；Q2'26利润率35.6%</span><span class="en">First profit of $1.7B in 2023; $13.9B in 2025; 35.6% margin in Q2'26</span></td><td><span class="pill p-g"><span class="zh">超额兑现</span><span class="en">Exceeded</span></span></td></tr>
+      <tr><td>2023.02–2025.11</td><td><span class="zh">在生成式AI上追上并领先（Bard失误、Gemini图像争议之后）</span><span class="en">Catch up and lead in generative AI (after the Bard demo error and the Gemini image controversy)</span></td><td><span class="zh">Gemini 3（2025年11月）与3.5（2026年5月）；Gemini App月活从2025年Q3的6.5亿升至9.5亿</span><span class="en">Gemini 3 (Nov 2025) and 3.5 (May 2026); Gemini app MAU up from 650M in Q3'25 to 950M</span></td><td><span class="pill p-g"><span class="zh">兑现</span><span class="en">Delivered</span></span></td></tr>
+      <tr><td>2024.05</td><td><span class="zh">推出AI Overviews，称其将扩大而非蚕食搜索</span><span class="en">Launch AI Overviews, claiming it expands rather than cannibalizes Search</span></td><td><span class="zh">早期出现明显错误回答；但搜索收入增速此后逐季抬升至17%–19%，付费点击与单价同时上涨</span><span class="en">Early answers had visible errors, but Search growth then rose quarter by quarter to 17–19%, with paid clicks and CPC both up</span></td><td><span class="pill p-g"><span class="zh">至今兑现</span><span class="en">So far</span></span></td></tr>
+      <tr><td>2025.02</td><td><span class="zh">2025年资本开支约750亿美元</span><span class="en">About $75B of 2025 capex</span></td><td><span class="zh">7月上调至约850亿，10月至910–930亿，实际914亿（比最初高22%）</span><span class="en">Raised to ~$85B in July and $91–93B in October; actual $91.4B (22% above the first guide)</span></td><td><span class="pill p-a"><span class="zh">方向对、幅度偏差大</span><span class="en">Right direction, big miss</span></span></td></tr>
+      <tr><td>2026.02</td><td><span class="zh">2026年资本开支1,750–1,850亿美元</span><span class="en">2026 capex of $175–185B</span></td><td><span class="zh">4月上调至1,800–1,900亿（含Intersect），7月再上调至1,950–2,050亿；并称2027年将"显著增加"</span><span class="en">Raised to $180–190B in April (incl. Intersect) and $195–205B in July; 2027 to "increase significantly"</span></td><td><span class="pill p-a"><span class="zh">持续上修</span><span class="en">Repeatedly raised</span></span></td></tr>
+      <tr><td>2024.04 / 2025.04</td><td><span class="zh">首次派息并两次授权各700亿美元回购</span><span class="en">First dividend and two $70B buyback authorizations</span></td><td><span class="zh">2026年上半年回购为零；6月股权融资847.5亿美元（含400亿ATM）；股息仍上调5%至每季0.22美元</span><span class="en">Zero buybacks in H1 2026; $84.75B equity raise in June (incl. a $40B ATM); dividend still raised 5% to $0.22 a quarter</span></td><td><span class="pill p-r"><span class="zh">路线逆转</span><span class="en">Reversed</span></span></td></tr>
+      <tr><td>2025.03</td><td><span class="zh">以320亿美元收购Wiz</span><span class="en">Acquire Wiz for $32B</span></td><td><span class="zh">2026年3月11日完成交割，历时一年获得全球无条件批准</span><span class="en">Closed 11 March 2026 after a year of unconditional global clearances</span></td><td><span class="pill p-g"><span class="zh">兑现</span><span class="en">Delivered</span></span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cite"><span class="zh">来源：各期业绩公告与电话会；</span><span class="en">Sources: releases and calls; </span><a href="https://www.cnbc.com/2026/07/22/google-earnings-q2-goog-live-updates.html" target="_blank" rel="noopener">CNBC Q2'26</a>; <a href="https://www.clearygottlieb.com/news-and-insights/news-listing/google-completes-32-billion-acquisition-of-wiz" target="_blank" rel="noopener">Cleary Gottlieb (Wiz)</a></p>
+
+  <h3><span class="zh">资本配置：五年回购近2,800亿美元之后，第一次向市场要钱</span><span class="en">Capital allocation: after ~$280B of buybacks in five years, asking the market for money</span></h3>
+  <div class="fig">
+    <p class="t"><span class="zh">现金用途（$B）：资本开支、回购、分红、并购与股权融资</span><span class="en">Uses of cash ($B): capex, buybacks, dividends, M&amp;A and equity raised</span></p>
+    <p class="s"><span class="zh">2026年仅为上半年；股权融资以负值表示资金流入</span><span class="en">2026 is first half only; equity raised shown as a negative (an inflow)</span></p>
+    <div class="chartbox tall"><canvas id="ch-alloc"></canvas></div>
+    <p class="src"><span class="zh">来源：各年现金流量表；2026年上半年来自Q2'26公告</span><span class="en">Source: cash-flow statements; H1 2026 from the Q2'26 release</span></p>
+  </div>
+  <p><span class="zh">2021–2025年，Alphabet累计经营现金流5,749亿美元，其中2,324亿用于资本开支，2,797亿用于回购，174亿用于分红，约146亿用于并购。回购的事后效果很好：10-K显示2022年以约593亿美元回购5.30亿股（均价约112美元），2023年以约622亿美元回购5.28亿股（均价约118美元），而2026年6月的新股发行价约为352–355美元，接近当年回购均价的3倍。</span><span class="en">In 2021–2025 Alphabet generated $574.9B of operating cash flow, spending $232.4B on capex, $279.7B on buybacks, $17.4B on dividends and about $14.6B on acquisitions. The buybacks look excellent in hindsight: the 10-K shows 530M shares repurchased for ~$59.3B in 2022 (≈$112 average) and 528M for ~$62.2B in 2023 (≈$118), while the June 2026 offering was priced at about $352–355, nearly three times those averages.</span></p>
+  <p><span class="zh">2026年的转向可以从两个角度读。积极的读法：管理层认为边际算力投资的回报高于股权成本，而且在股价高位发行股票、在低位回购股票，本身就是理性的资本配置；伯克希尔以100亿美元参与定向增发也是一种背书。审慎的读法：内部现金流第一次不足以覆盖投资计划，股权融资、强制可转换优先股（2029年5月前后自动转股）与翻倍的债务，意味着股东承担了更多的"AI回报率风险"。CFO在Q2电话会上表示没有进一步稀释的计划；400亿美元ATM主要用于员工股权激励的代扣税款（上半年这类现金支出为121亿美元）。</span><span class="en">The 2026 pivot can be read two ways. Constructively: management believes marginal compute investment earns more than the cost of equity, and issuing stock at high prices after buying back at low prices is rational capital allocation; Berkshire Hathaway's $10B private placement is an endorsement. Cautiously: for the first time internal cash flow does not cover the plan, and the equity raise, the mandatory convertible preferred (converting around May 2029) and doubled debt shift more AI-return risk onto shareholders. On the Q2 call the CFO said no further dilution is planned; the $40B ATM is mainly for tax withholding on employee equity awards (such cash payments were $12.1B in the first half).</span></p>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">资产负债表关键项</span><span class="en">Balance sheet items</span></th><th class="n">2024.12</th><th class="n">2025.12</th><th class="n">2026.06</th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">现金与有价证券（含SpaceX股票）</span><span class="en">Cash &amp; marketable securities (incl. SpaceX shares)</span></td><td class="n">95.7</td><td class="n">126.8</td><td class="n">242.5</td></tr>
+      <tr><td><span class="zh">非流通证券（以Anthropic为主）</span><span class="en">Non-marketable securities (mostly Anthropic)</span></td><td class="n">38.0</td><td class="n">68.7</td><td class="n">131.5</td></tr>
+      <tr><td><span class="zh">固定资产净值</span><span class="en">Property &amp; equipment, net</span></td><td class="n">171.0</td><td class="n">246.6</td><td class="n">321.2</td></tr>
+      <tr><td><span class="zh">长期债务</span><span class="en">Long-term debt</span></td><td class="n">10.9</td><td class="n">46.5</td><td class="n">98.2</td></tr>
+      <tr><td><span class="zh">股东权益</span><span class="en">Stockholders' equity</span></td><td class="n">325.1</td><td class="n">415.3</td><td class="n">640.5</td></tr>
+      <tr><td><span class="zh">流通股（百万股）</span><span class="en">Shares outstanding (M)</span></td><td class="n">12,211</td><td class="n">12,088</td><td class="n">12,230</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="zh">治理与激励</span><span class="en">Governance and incentives</span></h3>
+  <ul class="tight">
+    <li><span class="zh">三类股结构：A类1票、B类10票、C类无投票权。据对2026年股东大会结果的分析，B类股以6.9%的股本拥有约58.9%的投票权，两位创始人合计约52.7%。</span><span class="en">Three share classes: A has one vote, B ten, C none. An analysis of the 2026 annual meeting puts Class B at 6.9% of shares but ~58.9% of votes, with the two founders at ~52.7% combined.</span></li>
+    <li><span class="zh">2026年股东大会：高管薪酬咨询投票支持率80.75%（13项管理层议案中最低）；"同股同权"股东提案获31.1%支持（10项股东提案中最高，但无法通过）；新增2亿股C类股用于股权激励计划获批。</span><span class="en">2026 annual meeting: say-on-pay support was 80.75% (lowest of 13 management items); the equal-voting shareholder proposal drew 31.1% (highest of 10, but it cannot pass); 200M additional Class C shares for the stock plan were approved.</span></li>
+    <li><span class="zh">股权激励费用TTM为281亿美元（收入的6.3%），同比增约23%，主要来自AI人才竞争。它在GAAP利润中已作为费用扣除，本报告估值不做加回。</span><span class="en">Stock-based compensation was $28.1B TTM (6.3% of revenue), up ~23%, driven by competition for AI talent. It is already expensed in GAAP profit, and our valuation does not add it back.</span></li>
+  </ul>
+  <div class="note">
+    <h5><span class="zh">管理层评价</span><span class="en">Assessment</span></h5>
+    <p><span class="zh">执行力：强（成本纪律、云盈利、模型追赶三件难事都做成了）。坦诚度：中上（披露积压、分部费用和投资浮盈的影响，但不披露积压的客户集中度与TPU协议占比）。可预测性：下降（资本开支指引一年内两次上修）。资本配置：进入高风险区间，结果取决于算力投资的回报率，而外部股东对此几乎没有投票约束力。</span><span class="en">Execution: strong (cost discipline, Cloud profitability and the model catch-up were all hard, and all done). Candor: above average (backlog, segment costs and investment-gain effects are disclosed, but not backlog customer concentration or the TPU share). Predictability: lower (capex guidance raised twice within a year). Capital allocation: now in a high-stakes zone whose outcome depends on returns on compute, where outside shareholders have almost no voting leverage.</span></p>
+  </div>
+</section>
+
+<!-- ============ MOAT ============ -->
+<section class="sec" id="s-moat">
+  <h2><span class="no">04</span><span class="zh">护城河：深度与持久度</span><span class="en">Moat: depth and durability</span></h2>
+  <p><span class="zh">按手册的定义，护城河是长期获得高于资本成本回报的能力，用ROIC与WACC之差的大小和持续时间来衡量，而不是毛利率。我们用经营资本口径估算了Alphabet的ROIC：投入资本 = 应收 + 其他流动资产（含存货）+ 固定资产 + 经营租赁资产 + 商誉与无形资产 − 非有息流动负债 − 经营租赁负债；剔除全部现金、有价证券和非流通股权投资。NOPAT = 经营利润 ×（1 − 约17%的有效税率）。</span><span class="en">Following the handbook, a moat is the ability to earn returns above the cost of capital for a long time, measured by the size and duration of the ROIC–WACC spread, not by gross margin. We estimate Alphabet's ROIC on operating capital: invested capital = receivables + other current assets (incl. inventory) + PP&amp;E + operating lease assets + goodwill and intangibles − non-interest-bearing current liabilities − operating lease liabilities, excluding all cash, marketable and non-marketable investments. NOPAT = operating income × (1 − ~17% effective tax rate).</span></p>
+  <div class="grid2">
+    <div class="fig" style="margin-top:0">
+      <p class="t"><span class="zh">ROIC（期末投入资本口径）与增量ROIC</span><span class="en">ROIC (ending invested capital) and incremental ROIC</span></p>
+      <div class="chartbox short"><canvas id="ch-roic"></canvas></div>
+      <p class="src"><span class="zh">本报告根据资产负债表与利润表计算；虚线为约9%的资本成本</span><span class="en">Computed by us from the balance sheets and income statements; dashed line is a ~9% cost of capital</span></p>
+    </div>
+    <div>
+      <div class="tscroll" style="margin-top:0"><table>
+        <thead><tr><th></th><th class="n">2024</th><th class="n">2025</th><th class="n">TTM</th></tr></thead>
+        <tbody>
+          <tr><td>NOPAT $B</td><td class="n">94.0</td><td class="n">107.4</td><td class="n">122.5</td></tr>
+          <tr><td><span class="zh">期末投入资本 $B</span><span class="en">Ending invested capital $B</span></td><td class="n">183.8</td><td class="n">260.2</td><td class="n">366.2</td></tr>
+          <tr><td><span class="zh">ROIC（期末）</span><span class="en">ROIC (ending)</span></td><td class="n">51.1%</td><td class="n">41.3%</td><td class="n">33.5%</td></tr>
+          <tr><td><span class="zh">ROIC（平均）</span><span class="en">ROIC (average)</span></td><td class="n">—</td><td class="n">48.4%</td><td class="n">39.1%</td></tr>
+          <tr><td><span class="zh">增量ROIC（2024.12→2026.06）</span><span class="en">Incremental ROIC (Dec'24→Jun'26)</span></td><td class="n" colspan="3">15.7%<span class="zh">（剔除Wiz约19%）</span><span class="en"> (≈19% ex-Wiz)</span></td></tr>
+        </tbody>
+      </table></div>
+      <p class="small"><span class="zh">解读：ROIC仍比约9%的资本成本高出25–40个百分点，护城河的"深度"毋庸置疑；但投入资本在18个月里翻了一倍，而NOPAT只增加了约30%，增量回报明显低于存量回报。部分原因是大量资产尚未投入使用（在建数据中心、提前采购的服务器），也包括Wiz并购带来的约320亿美元商誉与无形资产。</span><span class="en">Reading: ROIC is still 25–40 points above a ~9% cost of capital, so the depth of the moat is not in question; but invested capital doubled in 18 months while NOPAT rose only ~30%, so incremental returns are well below the average. Part of this is timing (data centers under construction, servers bought ahead of deployment), and part is ~$32B of goodwill and intangibles from Wiz.</span></p>
+    </div>
+  </div>
+
+  <h3><span class="zh">优势从哪里来，正在变宽还是变窄</span><span class="en">Where the advantage comes from, and which way it is moving</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">来源</span><span class="en">Source</span></th><th><span class="zh">证据</span><span class="en">Evidence</span></th><th><span class="zh">趋势</span><span class="en">Trend</span></th><th><span class="zh">什么会证伪它</span><span class="en">What would falsify it</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">分发与默认入口（Android、Chrome、Safari默认搜索、30亿级用户产品）</span><span class="en">Distribution and defaults (Android, Chrome, Safari default search, 3B-user products)</span></td><td><span class="zh">Google称搜索、Gmail、Android、Chrome、YouTube各自用户超30亿；TAC率稳定约20%</span><span class="en">Google says Search, Gmail, Android, Chrome and YouTube each exceed 3B users; TAC rate steady near 20%</span></td><td><span class="pill p-a"><span class="zh">承压</span><span class="en">Pressured</span></span></td><td><span class="zh">反垄断禁止排他协议、默认协议限一年；若TAC率显著上升或移动端份额下滑</span><span class="en">Remedies ban exclusivity and cap default deals at one year; a sharp rise in the TAC rate or a mobile share drop</span></td></tr>
+      <tr><td><span class="zh">搜索的数据与规模飞轮</span><span class="en">Search data and scale flywheel</span></td><td><span class="zh">查询量历史新高；付费点击与单价双升</span><span class="en">Record queries; paid clicks and CPC both rising</span></td><td><span class="pill p-b"><span class="zh">稳定</span><span class="en">Stable</span></span></td><td><span class="zh">数据共享救济让对手获得索引与交互数据；商业查询份额流失</span><span class="en">Data-sharing remedies give rivals index and interaction data; loss of commercial-query share</span></td></tr>
+      <tr><td><span class="zh">全栈AI成本优势（TPU＋DeepMind＋Gemini）</span><span class="en">Full-stack AI cost advantage (TPU, DeepMind, Gemini)</span></td><td><span class="zh">第7代Ironwood、第8代TPU 8t/8i；Anthropic签下多吉瓦TPU；据报道Meta采购；苹果选择Gemini</span><span class="en">7th-gen Ironwood, 8th-gen TPU 8t/8i; Anthropic signed for multiple gigawatts of TPUs; Meta reportedly buying; Apple chose Gemini</span></td><td><span class="pill p-g"><span class="zh">变宽</span><span class="en">Widening</span></span></td><td><span class="zh">模型能力被开源或对手追平、token价格战使成本优势无法转化为利润</span><span class="en">Open or rival models catch up and token price wars stop the cost advantage turning into profit</span></td></tr>
+      <tr><td><span class="zh">YouTube双边网络效应</span><span class="en">YouTube two-sided network</span></td><td><span class="zh">2025年收入超600亿美元；世界杯期间超17亿独立观众</span><span class="en">$60B+ revenue in 2025; 1.7B+ unique viewers during the World Cup</span></td><td><span class="pill p-g"><span class="zh">稳中有升</span><span class="en">Steady to up</span></span></td><td><span class="zh">短视频与AI生成内容平台分流创作者与观看时长</span><span class="en">Short-video and AI-content platforms divert creators and watch time</span></td></tr>
+      <tr><td><span class="zh">企业转换成本（云、Workspace、安全）</span><span class="en">Enterprise switching costs (Cloud, Workspace, security)</span></td><td><span class="zh">积压5,140亿；约90%财富100强使用Gemini Enterprise；Wiz并入</span><span class="en">$514B backlog; ~90% of the Fortune 100 on Gemini Enterprise; Wiz added</span></td><td><span class="pill p-g"><span class="zh">变宽</span><span class="en">Widening</span></span></td><td><span class="zh">积压高度集中于少数AI实验室；多云与开源框架降低迁移成本</span><span class="en">Backlog concentrated in a few AI labs; multi-cloud and open frameworks lower switching costs</span></td></tr>
+      <tr><td><span class="zh">人才与知识产权</span><span class="en">Talent and IP</span></td><td><span class="zh">DeepMind研究积累；诺贝尔奖级科研；Gemini持续迭代</span><span class="en">DeepMind's research depth; Nobel-level science; steady Gemini releases</span></td><td><span class="pill p-b"><span class="zh">稳定</span><span class="en">Stable</span></span></td><td><span class="zh">核心研究人员流失（股权激励成本已在快速上升）</span><span class="en">Loss of core researchers (equity-comp costs are already rising fast)</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note risk">
+    <h5><span class="zh">三条侵蚀路径</span><span class="en">Three erosion paths</span></h5>
+    <ul class="tight">
+      <li><span class="zh"><strong>入口侵蚀：</strong>AI助手先拿走"信息型查询"，再逐步进入"商业型查询"；同时反垄断让默认入口不再排他、并向合格竞争者共享部分索引与交互数据（为期6年）。</span><span class="en"><strong>Entry-point erosion:</strong> AI assistants take informational queries first and then move into commercial ones, while remedies make defaults non-exclusive and share parts of the index and interaction data with qualified rivals for six years.</span></li>
+      <li><span class="zh"><strong>回报侵蚀：</strong>护城河还在，但守住它的成本越来越高——资本开支占收入从约10%升到约40%，ROIC逐年下行。护城河变深、变"贵"。</span><span class="en"><strong>Return erosion:</strong> the moat remains but costs more to hold; capex went from ~10% to ~40% of revenue and ROIC is trending down. The moat is deeper and more expensive.</span></li>
+      <li><span class="zh"><strong>开放网络衰退：</strong>谷歌网络收入连续三年下滑，AI答案减少对第三方网站的点击，发行商生态变弱，长期可能削弱内容供给。</span><span class="en"><strong>Open-web decline:</strong> Network revenue has fallen three years in a row, AI answers send fewer clicks to third-party sites, and a weaker publisher ecosystem could eventually thin the content supply.</span></li>
+    </ul>
+  </div>
+  <p><span class="zh"><strong>结论：</strong>宽护城河（搜索与YouTube预计持续20年以上；云业务正在从窄变宽），方向"加深与侵蚀并存"。最关键的证伪指标是：付费点击增速连续两个季度转负、TAC率明显上升、云利润率在积压转化期跌破25%。</span><span class="en"><strong>Verdict:</strong> a wide moat (Search and YouTube likely durable beyond 20 years; Cloud moving from narrow to wide), trending both deeper and more eroded. The key falsifiers: paid-click growth negative for two consecutive quarters, a clear rise in the TAC rate, or Cloud margins below 25% while the backlog converts.</span></p>
+</section>
+
+<!-- ============ GROWTH ============ -->
+<section class="sec" id="s-growth">
+  <h2><span class="no">05</span><span class="zh">增长：潜力与质量</span><span class="en">Growth: potential and quality</span></h2>
+  <p><span class="zh">你的框架把增长放在第一位，所以这一节分两半：先看增长从哪里来、还能走多远；再用手册的标准看增长的"质量"——需要多少资本、回报多少、现金转化如何。</span><span class="en">Your framework ranks growth first, so this section has two halves: where growth comes from and how far it can run, then its quality by the handbook's standards: how much capital it needs, what it returns and how well it converts to cash.</span></p>
+
+  <h3><span class="zh">增长拆解：2025年靠搜索，2026年搜索与云平分秋色</span><span class="en">Decomposition: 2025 was Search-led; in 2026 Cloud matches Search</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">业务</span><span class="en">Line</span></th><th class="n"><span class="zh">2025增量 $B</span><span class="en">2025 Δ $B</span></th><th class="n"><span class="zh">2025增速</span><span class="en">2025 growth</span></th><th class="n"><span class="zh">贡献（百分点）</span><span class="en">Contribution (pts)</span></th><th class="n"><span class="zh">2026H1增量 $B</span><span class="en">H1'26 Δ $B</span></th><th class="n"><span class="zh">H1增速</span><span class="en">H1 growth</span></th><th class="n"><span class="zh">贡献（百分点）</span><span class="en">Contribution (pts)</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">搜索及其他</span><span class="en">Search &amp; other</span></td><td class="n">+26.4</td><td class="n">+13.4%</td><td class="n">7.6</td><td class="n">+18.8</td><td class="n">+17.9%</td><td class="n">10.1</td></tr>
+      <tr><td>YouTube <span class="zh">广告</span><span class="en">ads</span></td><td class="n">+4.2</td><td class="n">+11.7%</td><td class="n">1.2</td><td class="n">+2.2</td><td class="n">+11.8%</td><td class="n">1.2</td></tr>
+      <tr><td><span class="zh">谷歌网络</span><span class="en">Google Network</span></td><td class="n">−0.6</td><td class="n">−1.9%</td><td class="n">−0.2</td><td class="n">−0.3</td><td class="n">−2.3%</td><td class="n">−0.2</td></tr>
+      <tr><td><span class="zh">订阅/平台/设备</span><span class="en">Subs/platforms/devices</span></td><td class="n">+7.7</td><td class="n">+19.1%</td><td class="n">2.2</td><td class="n">+3.7</td><td class="n">+17.2%</td><td class="n">2.0</td></tr>
+      <tr><td><span class="zh">谷歌云</span><span class="en">Google Cloud</span></td><td class="n">+15.5</td><td class="n">+35.8%</td><td class="n">4.4</td><td class="n">+18.9</td><td class="n">+73.1%</td><td class="n">10.1</td></tr>
+      <tr><td><span class="zh">其他押注与对冲</span><span class="en">Other Bets and hedging</span></td><td class="n">−0.5</td><td class="n">—</td><td class="n">−0.1</td><td class="n">−0.3</td><td class="n">—</td><td class="n">−0.1</td></tr>
+      <tr><td><strong><span class="zh">合计</span><span class="en">Total</span></strong></td><td class="n"><strong>+52.8</strong></td><td class="n"><strong>+15.1%</strong></td><td class="n"><strong>15.1</strong></td><td class="n"><strong>+43.0</strong></td><td class="n"><strong>+23.1%</strong></td><td class="n"><strong>23.1</strong></td></tr>
+    </tbody>
+  </table></div>
+  <p><span class="zh">这张表的信息量很大：2026年上半年，一个收入只有搜索五分之一的云业务，贡献了与搜索相同的增长（各约10个百分点）。这意味着Alphabet的增长结构正在从"广告驱动"转向"广告＋算力双驱动"，而后者的资本密集度远高于前者。</span><span class="en">This table says a lot: in H1 2026 a Cloud business one-fifth the size of Search contributed the same growth (about 10 points each). Alphabet's growth is shifting from ad-driven to ad-plus-compute, and the second engine is far more capital-intensive than the first.</span></p>
+
+  <h3><span class="zh">各增长引擎的空间与我们的基准假设</span><span class="en">Runway of each engine and our base assumptions</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">引擎</span><span class="en">Engine</span></th><th><span class="zh">驱动因素</span><span class="en">Drivers</span></th><th><span class="zh">基准假设（模型默认）</span><span class="en">Base assumption (model default)</span></th><th><span class="zh">向上/向下的变量</span><span class="en">Upside / downside swing factors</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">谷歌服务（搜索、YouTube、订阅、网络）</span><span class="en">Google Services (Search, YouTube, subs, Network)</span></td><td><span class="zh">AI Mode带来的更长、更多的查询；购物与金融等商业垂类；订阅AI套餐；YouTube电视端</span><span class="en">Longer and more queries from AI Mode; commerce and financial verticals; AI subscription plans; YouTube on TV</span></td><td><span class="zh">2026年+15%，2027–2030年年化+11%，2031–2035年+7%；利润率由43%渐降至42%</span><span class="en">+15% in 2026, +11% a year in 2027–30, +7% in 2031–35; margin easing from 43% to 42%</span></td><td><span class="zh">上：AI广告格式单价更高；下：商业查询被AI助手分流、数据共享救济</span><span class="en">Up: higher-priced AI ad formats. Down: commercial queries diverted to AI assistants; data-sharing remedies</span></td></tr>
+      <tr><td><span class="zh">谷歌云（含TPU系统）</span><span class="en">Google Cloud (incl. TPU systems)</span></td><td><span class="zh">5,140亿积压（约一半24个月内确认）；企业AI；TPU外销从2027年放量</span><span class="en">$514B backlog (about half within 24 months); enterprise AI; TPU sales ramping from 2027</span></td><td><span class="zh">2026年+75%，2027–2030年年化+35%，2031–2035年+13%；利润率33%→34%</span><span class="en">+75% in 2026, +35% a year in 2027–30, +13% in 2031–35; margin 33% to 34%</span></td><td><span class="zh">上：TPU成为独立的芯片业务；下：客户集中、第三方算力拖累利润率、硬件收入毛利低</span><span class="en">Up: TPUs become a standalone chip business. Down: customer concentration, third-party capacity diluting margins, low-margin hardware</span></td></tr>
+      <tr><td><span class="zh">Waymo与其他押注</span><span class="en">Waymo and Other Bets</span></td><td><span class="zh">城市扩张、单车利用率、国际化</span><span class="en">City expansion, vehicle utilization, international</span></td><td><span class="zh">不进入DCF现金流，以800亿美元单列估值（Waymo 1,260亿投后估值×假设持股比例）</span><span class="en">Excluded from DCF cash flows; valued separately at $80B (Waymo's $126B post-money × an assumed stake)</span></td><td><span class="zh">上：成为规模化出行平台；下：安全事故与监管收紧</span><span class="en">Up: a scaled mobility platform. Down: safety incidents and tighter regulation</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="zh">增长质量：速度在升，资本效率在降</span><span class="en">Quality of growth: speed up, capital efficiency down</span></h3>
+  <div class="fig">
+    <p class="t"><span class="zh">资本开支/收入、自由现金流率与折旧/资本开支</span><span class="en">Capex/revenue, FCF margin and D&amp;A/capex</span></p>
+    <p class="s"><span class="zh">2026E按资本开支指引中值2,000亿美元与约4,970亿美元收入估算</span><span class="en">2026E uses the $200B capex guide midpoint and ~$497B of revenue</span></p>
+    <div class="chartbox"><canvas id="ch-intensity"></canvas></div>
+    <p class="src"><span class="zh">来源：现金流量表；本报告计算</span><span class="en">Source: cash-flow statements; our calculations</span></p>
+  </div>
+  <ul class="tight">
+    <li><span class="zh"><strong>资本强度：</strong>资本开支占收入从2021年的9.6%升至2025年的22.7%、TTM的29.7%，按指引2026年约40%。Alphabet在财务结构上越来越像一家公用事业式的基础设施公司叠加一家软件公司。</span><span class="en"><strong>Capital intensity:</strong> capex rose from 9.6% of revenue (2021) to 22.7% (2025), 29.7% TTM and roughly 40% in 2026 on guidance. Financially, Alphabet increasingly looks like a utility-style infrastructure company stacked on a software company.</span></li>
+    <li><span class="zh"><strong>折旧浪潮还在后面：</strong>折旧/资本开支从2022年约43%降到TTM约19%，说明大量资产尚未开始计提折旧。上半年折旧同比+43%，已经是收入增速（+23%）的近两倍。约60%的资本开支是服务器（按6年折旧），仅2026年一年约1,200亿美元的服务器投入，投产后每年就会新增约200亿美元折旧。</span><span class="en"><strong>The depreciation wave is still ahead:</strong> D&amp;A/capex fell from ~43% (2022) to ~19% TTM, so much of the asset base is not yet depreciating. First-half depreciation rose 43%, nearly twice revenue growth (+23%). About 60% of capex is servers (six-year lives); 2026's ~$120B of servers alone would add ~$20B a year of depreciation once in service.</span></li>
+    <li><span class="zh"><strong>增量回报：</strong>2024年末以来投入资本增加约1,824亿美元，NOPAT只增加约286亿美元，增量ROIC约16%（剔除Wiz约19%）。这仍高于资本成本，但远低于历史平均，且依赖积压按时、按利润率转化。</span><span class="en"><strong>Incremental returns:</strong> since end-2024 invested capital rose ~$182B while NOPAT rose ~$29B, an incremental ROIC of ~16% (≈19% ex-Wiz). That still beats the cost of capital but is far below the historical average, and it depends on the backlog converting on time and at margin.</span></li>
+    <li><span class="zh"><strong>现金转化：</strong>自由现金流率从2021年26%降到TTM约12%；若剔除投资浮盈，TTM自由现金流约为核心净利润的43%（2025年约65%）。股权激励（TTM 281亿）若按现金成本计，TTM"股东自由现金流"只有约250亿美元。</span><span class="en"><strong>Cash conversion:</strong> FCF margin fell from 26% (2021) to ~12% TTM; excluding investment gains, TTM FCF is ~43% of core net income (≈65% in 2025). Treating SBC ($28.1B TTM) as a cash cost leaves only ~$25B of TTM owner free cash flow.</span></li>
+  </ul>
+
+  <h3><span class="zh">2030年的三种世界</span><span class="en">Three worlds in 2030</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">情形</span><span class="en">Scenario</span></th><th><span class="zh">核心叙事</span><span class="en">Narrative</span></th><th class="n"><span class="zh">2030年收入（服务＋云）</span><span class="en">2030 revenue (Services + Cloud)</span></th><th class="n"><span class="zh">DCF每股价值</span><span class="en">DCF value/share</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill p-r"><span class="zh">熊</span><span class="en">Bear</span></span></td><td><span class="zh">AI助手分走商业查询，服务增速降到7%、利润率降至39%；云增速2027年后降到25%、利润率29%；资本开支高位维持更久</span><span class="en">AI assistants take commercial queries: Services growth slows to 7% and margin to 39%; Cloud slows to 25% after 2027 at 29% margin; heavy capex lasts longer</span></td><td class="n">$744B</td><td class="n">≈$179</td></tr>
+      <tr><td><span class="pill p-b"><span class="zh">基准</span><span class="en">Base</span></span></td><td><span class="zh">搜索稳健、云按积压转化、2028年后资本开支占比逐步回落</span><span class="en">Search steady, Cloud converts its backlog, capex share eases after 2028</span></td><td class="n">$940B</td><td class="n">≈$312</td></tr>
+      <tr><td><span class="pill p-g"><span class="zh">牛</span><span class="en">Bull</span></span></td><td><span class="zh">AI广告溢价、云以42%年化增长、TPU外销规模化、长期资本开支降到收入的5%</span><span class="en">AI ad premium, Cloud compounding at 42%, TPU sales at scale, long-run net capex at 5% of revenue</span></td><td class="n">$1,066B</td><td class="n">≈$416</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small"><span class="zh">三种情形的完整参数可在第7节模型中一键载入，并可逐项修改。</span><span class="en">All three parameter sets load with one click in the Section 7 model and can be edited line by line.</span></p>
+</section>
+
+<!-- ============ EARNINGS QUALITY ============ -->
+<section class="sec" id="s-quality">
+  <h2><span class="no">06</span><span class="zh">盈利质量与附注：把"投资公司"从"经营公司"里剥出来</span><span class="en">Earnings quality and notes: separating the investment portfolio from the operating company</span></h2>
+  <p><span class="zh">手册第四步强调：先确认利润是不是经营产生的。2026年上半年，Alphabet税前利润2,162亿美元中有1,357亿美元（63%）来自"其他收入"，其中绝大部分是SpaceX和私募股权投资的未实现收益。这部分收益是真实的资产增值，但不产生现金、会随市场波动，且税费已计提为递延所得税负债（从2025年末的9亿美元升至228亿美元）。</span><span class="en">Step four of the handbook: first confirm that profit comes from operations. In H1 2026, $135.7B (63%) of Alphabet's $216.2B pre-tax income came from "other income", mostly unrealized gains on SpaceX and private stakes. These gains are real increases in asset value, but they produce no cash, move with markets, and their tax is booked as deferred tax liabilities (up from $0.9B at end-2025 to $22.8B).</span></p>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">季度</span><span class="en">Quarter</span></th><th class="n"><span class="zh">GAAP稀释EPS</span><span class="en">GAAP diluted EPS</span></th><th class="n"><span class="zh">股权投资收益的每股影响</span><span class="en">Per-share effect of equity gains</span></th><th class="n"><span class="zh">核心EPS（扣除后）</span><span class="en">Core EPS (after removal)</span></th><th><span class="zh">说明</span><span class="en">Note</span></th></tr></thead>
+    <tbody>
+      <tr><td>Q4'25</td><td class="n">2.82</td><td class="n">0.15</td><td class="n">2.67</td><td><span class="zh">含Waymo 21亿美元股权补偿费用</span><span class="en">Includes the $2.1B Waymo compensation charge</span></td></tr>
+      <tr><td>Q1'26</td><td class="n">5.11</td><td class="n">2.35</td><td class="n">2.76</td><td><span class="zh">主要为非流通股权（Anthropic）上调估值</span><span class="en">Mainly non-marketable (Anthropic) markups</span></td></tr>
+      <tr><td>Q2'26</td><td class="n">9.11</td><td class="n">6.26</td><td class="n">2.85</td><td><span class="zh">SpaceX上市与Anthropic新一轮融资；同比约+23%（对比Q2'25的2.31）</span><span class="en">SpaceX IPO and Anthropic's new round; roughly +23% vs Q2'25's $2.31</span></td></tr>
+      <tr><td>FY2025</td><td class="n">10.81</td><td class="n">≈1.6</td><td class="n">≈9.2</td><td><span class="zh">证券收益246亿美元，按约21%税率估算</span><span class="en">$24.6B of securities gains, taxed at ~21% (our estimate)</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cite"><span class="zh">每股影响为公司在业绩公告脚注中披露（FY2025为本报告估算）。</span><span class="en">Per-share effects are disclosed in release footnotes (FY2025 is our estimate). </span><a href="https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000043/googexhibit991q12026.htm" target="_blank" rel="noopener">Q1'26 8-K</a></p>
+
+  <h3><span class="zh">必须读的附注</span><span class="en">Notes you have to read</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">附注项目</span><span class="en">Note item</span></th><th class="n"><span class="zh">金额</span><span class="en">Amount</span></th><th><span class="zh">为什么重要</span><span class="en">Why it matters</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">SpaceX持股（6月12日上市后转为有价证券）</span><span class="en">SpaceX stake (reclassified after the 12 June IPO)</span></td><td class="n">$94.0B</td><td><span class="zh">约4.9%有效持股；约800亿美元受短期锁定，141亿美元锁定至2027年Q3。每一次股价波动都会进入利润表；也是潜在的流动性来源（2015年投资约9亿美元）</span><span class="en">About 4.9% effective ownership; ~$80B under short-term lockups and $14.1B locked until Q3 2027. Every price move hits the income statement; also a potential source of liquidity (roughly $900M invested in 2015)</span></td></tr>
+      <tr><td><span class="zh">私募公司股权（以Anthropic为主）</span><span class="en">Private-company equity (mostly Anthropic)</span></td><td class="n">$124.3B</td><td><span class="zh">按可观察交易价格计量；Anthropic 5月以9,650亿美元估值融资650亿美元，并已秘密递交上市申请。自2023年以来Alphabet累计投资133亿美元，并承诺最多再投300亿美元</span><span class="en">Measured at observable transaction prices; Anthropic raised $65B at $965B in May and filed confidentially for an IPO. Alphabet has invested $13.3B since 2023 and committed up to $30B more</span></td></tr>
+      <tr><td><span class="zh">采购承诺与其他合同义务</span><span class="en">Purchase commitments and other obligations</span></td><td class="n">≈$811B</td><td><span class="zh">据彭博与《金融时报》对10-Q的解读，较Q1末的3,324亿美元增加约4,800亿，其中2,007亿为短期；覆盖技术基础设施、存货、内容授权与能源照付不议合同。约为全年资本开支指引的4倍，不在资产负债表内</span><span class="en">Per Bloomberg and FT readings of the 10-Q, up ~$480B from $332.4B at Q1, with $200.7B short-term; covers infrastructure, inventory, content licenses and take-or-pay energy contracts. About 4x annual capex guidance, and off the balance sheet</span></td></tr>
+      <tr><td><span class="zh">尚未开始的租赁（主要为数据中心）</span><span class="en">Leases not yet commenced (mainly data centers)</span></td><td class="n">$85.2B</td><td><span class="zh">2026–2031年起租，租期1–26年；另有约58亿美元短期租赁于Q3起租，与"第三方算力过渡"一致。起租后会变成租赁负债与费用</span><span class="en">Commencing 2026–2031 with 1–26 year terms; plus a ~$5.8B short-term lease starting in Q3, consistent with the third-party capacity bridge. These become lease liabilities and expense once they commence</span></td></tr>
+      <tr><td><span class="zh">未合并可变利益实体（数据中心/电力）</span><span class="en">Unconsolidated VIEs (data centers, power)</span></td><td class="n">$6.5B</td><td><span class="zh">最大损失敞口；包括信用支持与担保。规模不大，但方向值得跟踪</span><span class="en">Maximum exposure to loss, including credit backstops and guarantees. Small, but worth tracking</span></td></tr>
+      <tr><td><span class="zh">存货</span><span class="en">Inventory</span></td><td class="n">$10.0B</td><td><span class="zh">年初仅24亿美元；为TPU系统备货，上半年占用营运资金77亿美元</span><span class="en">Only $2.4B at the start of the year; built for TPU systems, consuming $7.7B of working capital in H1</span></td></tr>
+      <tr><td><span class="zh">折旧年限</span><span class="en">Depreciation lives</span></td><td class="n">6<span class="zh">年</span><span class="en"> yrs</span></td><td><span class="zh">2023年起服务器由4年延至6年，当年减少折旧约39亿美元。若AI硬件实际经济寿命更短、未来缩短年限，利润会被下修</span><span class="en">Server lives went from four to six years in 2023, cutting that year's depreciation by ~$3.9B. If AI hardware's economic life proves shorter and lives are cut, earnings would be revised down</span></td></tr>
+      <tr><td><span class="zh">法律与罚款</span><span class="en">Legal and fines</span></td><td class="n">≈$4.5B</td><td><span class="zh">欧盟广告技术罚款29.5亿欧元（约35亿美元，2025年Q3计入服务分部）；2026年7月DMA两项违规罚款共8.9亿欧元。2025年一般管理费用同比+51%</span><span class="en">EU ad tech fine of €2.95B (~$3.5B, charged to Services in Q3'25); two DMA non-compliance fines totaling €890M in July 2026. G&amp;A rose 51% in 2025</span></td></tr>
+      <tr><td><span class="zh">不分摊的Alphabet层面费用</span><span class="en">Unallocated Alphabet-level costs</span></td><td class="n">$21.5B</td><td><span class="zh">TTM，主要是通用AI模型研发与部分法律费用；看分部利润率时要记得它们没有承担这部分成本</span><span class="en">TTM, mostly general AI model R&amp;D and some legal costs; segment margins do not carry these costs</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="zh">手册红旗清单：逐项核对</span><span class="en">Handbook red-flag checklist</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">检查项</span><span class="en">Check</span></th><th><span class="zh">结果</span><span class="en">Finding</span></th><th><span class="zh">状态</span><span class="en">Status</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">应收增速 vs 收入增速</span><span class="en">Receivables vs revenue growth</span></td><td><span class="zh">应收较年初+10%，上半年收入+23%；应收周转天数约50天→约53天</span><span class="en">Receivables +10% since year-end vs H1 revenue +23%; DSO ~50 → ~53 days</span></td><td><span class="pill p-g"><span class="zh">正常</span><span class="en">OK</span></span></td></tr>
+      <tr><td><span class="zh">经营现金流 vs 利润</span><span class="en">Operating cash flow vs profit</span></td><td><span class="zh">TTM经营现金流1,857亿，高于核心净利润约1,240亿（折旧与递延税加回）</span><span class="en">TTM operating cash flow $185.7B exceeds core net income of ~$124B (D&amp;A and deferred-tax add-backs)</span></td><td><span class="pill p-g"><span class="zh">正常</span><span class="en">OK</span></span></td></tr>
+      <tr><td><span class="zh">非经营收益占税前利润比例</span><span class="en">Non-operating gains as share of pre-tax profit</span></td><td><span class="zh">2026上半年63%</span><span class="en">63% in H1 2026</span></td><td><span class="pill p-r"><span class="zh">GAAP EPS不可直接用</span><span class="en">GAAP EPS unusable as is</span></span></td></tr>
+      <tr><td><span class="zh">存货异常增长</span><span class="en">Unusual inventory build</span></td><td><span class="zh">半年增至4倍，有明确解释（TPU系统备货）</span><span class="en">Quadrupled in six months, with a clear explanation (TPU systems)</span></td><td><span class="pill p-a"><span class="zh">跟踪2027年转化</span><span class="en">Track 2027 conversion</span></span></td></tr>
+      <tr><td><span class="zh">资本开支 vs 折旧</span><span class="en">Capex vs depreciation</span></td><td><span class="zh">TTM资本开支为折旧的5.2倍</span><span class="en">TTM capex is 5.2x depreciation</span></td><td><span class="pill p-a"><span class="zh">未来利润率压力</span><span class="en">Future margin pressure</span></span></td></tr>
+      <tr><td><span class="zh">客户同时是被投资方</span><span class="en">Customer that is also an investee</span></td><td><span class="zh">Anthropic：投资＋算力采购＋按新估值记收益（据报道约占积压四成以上）</span><span class="en">Anthropic: investment, compute purchases and gains at the new valuation (reportedly &gt;40% of backlog)</span></td><td><span class="pill p-r"><span class="zh">重点关注</span><span class="en">Key watch</span></span></td></tr>
+      <tr><td><span class="zh">表外承诺增速</span><span class="en">Growth in off-balance-sheet commitments</span></td><td><span class="zh">采购承诺一个季度增加约4,800亿美元</span><span class="en">Purchase commitments up ~$480B in one quarter</span></td><td><span class="pill p-a"><span class="zh">关注</span><span class="en">Watch</span></span></td></tr>
+      <tr><td><span class="zh">分部口径变化</span><span class="en">Segment definition changes</span></td><td><span class="zh">2023年DeepMind并入Alphabet层面；2026年云分部新增TPU产品收入</span><span class="en">DeepMind moved to Alphabet-level in 2023; TPU product revenue added to Cloud in 2026</span></td><td><span class="pill p-a"><span class="zh">影响可比性</span><span class="en">Comparability</span></span></td></tr>
+      <tr><td><span class="zh">稀释与杠杆</span><span class="en">Dilution and leverage</span></td><td><span class="zh">流通股较年初+1.2%；长期债务翻倍至982亿；利息支出同比约5倍</span><span class="en">Shares out +1.2% since year-end; long-term debt doubled to $98.2B; interest expense ~5x year-over-year</span></td><td><span class="pill p-a"><span class="zh">关注</span><span class="en">Watch</span></span></td></tr>
+      <tr><td><span class="zh">审计与内控</span><span class="en">Audit and controls</span></td><td><span class="zh">安永，2026年续聘议案支持率96.15%；建议在10-K第9A项复核内控结论</span><span class="en">Ernst &amp; Young, ratified with 96.15% support in 2026; verify the Item 9A controls conclusion in the 10-K</span></td><td><span class="pill p-g"><span class="zh">正常</span><span class="en">OK</span></span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note ai">
+    <h5><span class="zh">Anthropic循环：两面都要看</span><span class="en">The Anthropic loop: look at both sides</span></h5>
+    <p><span class="zh"><strong>支持需求真实的证据：</strong>Anthropic同时从亚马逊、CoreWeave等多家采购算力，据报道年化收入已超过300亿美元；TPU被多家外部客户采用；即便剔除TPU系统销售，云增速在Q2仍明显加速（管理层表述）。</span><span class="en"><strong>Evidence that demand is real:</strong> Anthropic also buys compute from Amazon, CoreWeave and others and reportedly runs above $30B of annualized revenue; TPUs have several outside customers; and management says Cloud growth accelerated meaningfully in Q2 even excluding TPU system sales.</span></p>
+    <p><span class="zh"><strong>需要警惕的结构：</strong>Alphabet的资金流向Anthropic，Anthropic的算力采购回流谷歌云，Alphabet再按更高估值确认浮盈——同一段关系同时抬高了收入、积压和其他收益。若Anthropic融资环境变化、上市推迟或需求不及预期，这三条线会同时受影响。</span><span class="en"><strong>The structure to watch:</strong> Alphabet's money flows to Anthropic, Anthropic's compute spending flows back to Google Cloud, and Alphabet books gains at a higher valuation: one relationship lifts revenue, backlog and other income at once. If Anthropic's funding tightens, its IPO slips or its demand disappoints, all three lines are hit together.</span></p>
+  </div>
+</section>
+
+<!-- ============ VALUATION ============ -->
+<section class="sec" id="s-val">
+  <h2><span class="no">07</span><span class="zh">估值与交互模型</span><span class="en">Valuation and interactive models</span></h2>
+  <p><span class="zh">手册的顺序是"先问价格隐含了什么，再做自己的估值"。所以本节先给出当前的估值快照和反向DCF，再给出可调的分部DCF、分部加总（SOTP）和情景加权。所有模型都在你的浏览器里实时计算，改动任何一个变量，结果、图表和敏感性表会同步更新。</span><span class="en">The handbook's order is "first ask what the price implies, then value it yourself". So this section starts with a valuation snapshot and a reverse DCF, then an adjustable segment DCF, a sum-of-the-parts (SOTP) and scenario weighting. Every model runs live in your browser: change any input and the results, charts and sensitivity table update together.</span></p>
+
+  <h3><span class="zh">估值快照（2026年9月23日收盘）</span><span class="en">Valuation snapshot (23 September 2026 close)</span></h3>
+  <div class="grid2">
+    <div class="tscroll" style="margin-top:0"><table>
+      <tbody>
+        <tr><td><span class="zh">GOOG股价</span><span class="en">GOOG price</span></td><td class="n">$334.98</td></tr>
+        <tr><td><span class="zh">流通股（6月30日）</span><span class="en">Shares outstanding (30 Jun)</span></td><td class="n">12,230M</td></tr>
+        <tr><td><span class="zh">市值</span><span class="en">Market cap</span></td><td class="n">$4,097B</td></tr>
+        <tr><td><span class="zh">＋长期债务 ＋强制可转换优先股</span><span class="en">+ long-term debt + mandatory convertible preferred</span></td><td class="n">+$98.2B +$19.3B</td></tr>
+        <tr><td><span class="zh">−现金与有价证券（含SpaceX）</span><span class="en">− cash &amp; marketable securities (incl. SpaceX)</span></td><td class="n">−$242.5B</td></tr>
+        <tr><td><span class="zh">−私募股权投资（以Anthropic为主）</span><span class="en">− private equity stakes (mostly Anthropic)</span></td><td class="n">−$124.3B</td></tr>
+        <tr><td><strong><span class="zh">经营性企业价值</span><span class="en">Operating enterprise value</span></strong></td><td class="n"><strong>≈$3,848B</strong></td></tr>
+      </tbody>
+    </table></div>
+    <div class="tscroll" style="margin-top:0"><table>
+      <thead><tr><th><span class="zh">倍数</span><span class="en">Multiple</span></th><th class="n"><span class="zh">数值</span><span class="en">Value</span></th></tr></thead>
+      <tbody>
+        <tr><td><span class="zh">EV / TTM收入（$445.9B）</span><span class="en">EV / TTM revenue ($445.9B)</span></td><td class="n">8.6x</td></tr>
+        <tr><td><span class="zh">EV / TTM经营利润（$147.6B）</span><span class="en">EV / TTM operating income ($147.6B)</span></td><td class="n">26.1x</td></tr>
+        <tr><td><span class="zh">P/E（TTM GAAP，$19.94，被浮盈扭曲）</span><span class="en">P/E (TTM GAAP $19.94, distorted by gains)</span></td><td class="n">16.8x</td></tr>
+        <tr><td><span class="zh">P/E（TTM核心EPS约$10.1，本报告估算）</span><span class="en">P/E (TTM core EPS ≈$10.1, our estimate)</span></td><td class="n">≈33x</td></tr>
+        <tr><td><span class="zh">P/E（2027年一致预期$14.87）</span><span class="en">P/E (2027 consensus $14.87)</span></td><td class="n">≈22.5x</td></tr>
+        <tr><td><span class="zh">TTM自由现金流收益率</span><span class="en">TTM FCF yield</span></td><td class="n">1.3%</td></tr>
+        <tr><td><span class="zh">股息率</span><span class="en">Dividend yield</span></td><td class="n">0.26%</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="note data">
+    <h5><span class="zh">为什么不直接用市盈率</span><span class="en">Why not just use the P/E</span></h5>
+    <p><span class="zh">同一只股票，TTM GAAP市盈率只有16.8倍，按核心利润却是约33倍，按2027年预期约22.5倍，而自由现金流收益率只有1.3%。差距来自两件事：投资浮盈抬高了GAAP利润；资本开支远高于折旧，使利润大幅高于自由现金流。只有显式建模"资本开支何时回落、回报多少"，才能把这几种口径统一起来。</span><span class="en">The same stock trades at 16.8x TTM GAAP earnings, ~33x core earnings, ~22.5x 2027 consensus, and a 1.3% FCF yield. Two things drive the gaps: investment gains inflate GAAP profit, and capex far above depreciation makes profit much larger than free cash flow. Only an explicit model of when capex normalizes and what it returns reconciles these views.</span></p>
+  </div>
+
+  <h3><span class="zh">交互式分部DCF（含反向DCF与敏感性）</span><span class="en">Interactive segment DCF (with reverse DCF and sensitivity)</span></h3>
+  <p class="small"><span class="zh">结构：以2025年实际值为基期，分别预测谷歌服务与谷歌云2026–2035年的收入与经营利润率，扣除不分摊的Alphabet层面费用（占收入比例），得到核心EBIT；NOPAT减去净资本开支（资本开支−折旧，占收入比例）得到自由现金流。估值日为2026年6月30日（与资产负债表一致），2026年只计下半年现金流；终值采用价值驱动公式 NOPAT×(1+g)×(1−g/RONIC)/(WACC−g)。其他押注不进入现金流，单列估值。股权激励已在经营利润中作为费用扣除。</span><span class="en">Structure: from 2025 actuals, forecast Google Services and Google Cloud revenue and operating margins for 2026–2035, subtract unallocated Alphabet-level costs (as a share of revenue) to get core EBIT; NOPAT minus net capex (capex minus depreciation, as a share of revenue) gives free cash flow. The valuation date is 30 June 2026 (matching the balance sheet), so only H2 2026 cash flow counts; terminal value uses the value-driver formula NOPAT×(1+g)×(1−g/RONIC)/(WACC−g). Other Bets are valued separately, not in cash flows. Stock compensation is already expensed in operating income.</span></p>
+  <div class="model" id="dcf-model">
+    <div class="bar" id="presetbar">
+      <button data-p="bear"><span class="zh">熊市情形</span><span class="en">Bear</span></button>
+      <button data-p="base" class="on"><span class="zh">基准情形</span><span class="en">Base</span></button>
+      <button data-p="bull"><span class="zh">牛市情形</span><span class="en">Bull</span></button>
+      <button data-p="reset"><span class="zh">重置为基准</span><span class="en">Reset to base</span></button>
+      <span class="small" id="presetnote"></span>
+    </div>
+    <div class="ctrls" id="ctrls"></div>
+    <div class="outs" id="outs"></div>
+    <div class="fig" style="margin:6px 0 10px">
+      <p class="t"><span class="zh">NOPAT、净资本开支与自由现金流路径（$B）</span><span class="en">NOPAT, net capex and free cash flow path ($B)</span></p>
+      <div class="chartbox"><canvas id="ch-dcf"></canvas></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <h3 style="margin-top:6px"><span class="zh">反向DCF：价格隐含了什么</span><span class="en">Reverse DCF: what the price implies</span></h3>
+        <div class="tscroll" style="margin-top:0"><table id="revtbl"><tbody></tbody></table></div>
+        <p class="small"><span class="zh">求解方法：在其他假设不变时，用二分法分别求解（1）使内在价值等于股价的2027–2035年增速缩放系数；（2）隐含的长期服务利润率；（3）隐含的年化回报率（IRR）。</span><span class="en">Method: holding other inputs fixed, bisection solves for (1) the scaling of 2027–2035 growth rates that makes value equal price; (2) the implied long-run Services margin; (3) the implied annual return (IRR).</span></p>
+      </div>
+      <div>
+        <h3 style="margin-top:6px"><span class="zh">敏感性：WACC × 永续增长率（每股，美元）</span><span class="en">Sensitivity: WACC × terminal growth ($/share)</span></h3>
+        <div class="tscroll" style="margin-top:0"><table class="sens" id="senstbl"></table></div>
+        <p class="small"><span class="zh">绿色高于当前股价，红色低于当前股价；其余参数取当前设置。</span><span class="en">Green is above the current price, red below; other inputs use your current settings.</span></p>
+      </div>
+    </div>
+    <h3 style="margin-top:8px"><span class="zh">情景加权</span><span class="en">Scenario weighting</span></h3>
+    <div class="tscroll" style="margin-top:0"><table id="scentbl"></table></div>
+  </div>
+
+  <h3><span class="zh">分部加总（SOTP）</span><span class="en">Sum of the parts (SOTP)</span></h3>
+  <p class="small"><span class="zh">以上方DCF中的2027年预测为基础：服务分部按EV/EBIT、云按EV/收入、Alphabet层面费用按与服务相同的倍数资本化为负值，再加上其他押注、战略股权（扣除税费折价）、经营性净现金，减去优先股。</span><span class="en">Built on the 2027 forecasts in the DCF above: Services on EV/EBIT, Cloud on EV/sales, Alphabet-level costs capitalized as a negative at the Services multiple, plus Other Bets, strategic stakes (after the tax haircut) and operating net cash, minus the preferred.</span></p>
+  <div class="model" id="sotp-model">
+    <div class="ctrls" id="sotpctrls"></div>
+    <div class="grid2" style="margin-top:10px">
+      <div class="tscroll" style="margin-top:0"><table id="sotptbl"></table></div>
+      <div class="fig" style="margin:0"><div class="chartbox"><canvas id="ch-sotp"></canvas></div></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h5><span class="zh">估值结论</span><span class="en">Valuation conclusion</span></h5>
+    <p><span class="zh">基准DCF约$312/股，SOTP约$325/股，熊/基/牛（25/50/25）加权约$305/股，均略低于$335的股价；当前价格隐含约8.7%的年化回报，低于按CAPM估算的约9.2%–9.5%股权成本（十年期国债9月中旬触及5.04%，为16年高点）。换言之：市场并没有给Alphabet泡沫式定价，但已经提前为"云与TPU的高回报"付了钱。卖方平均目标价在$420–430之间，主要差异在于它们更多以2027年市盈率估值，而我们把2026–2028年的巨额资本开支作为现金流出完整计入。</span><span class="en">Base DCF ≈ $312/share, SOTP ≈ $325, and bear/base/bull weighted 25/50/25 ≈ $305, all a bit below the $335 price; the price implies ~8.7% a year, under a CAPM cost of equity of roughly 9.2–9.5% (the 10-year hit 5.04% in mid-September, a 16-year high). In short, the market is not pricing Alphabet as a bubble, but it has already paid in advance for high returns on Cloud and TPUs. Sell-side targets average $420–430, mainly because they value on 2027 P/E, whereas we charge the 2026–2028 capex fully as cash outflows.</span></p>
+  </div>
+</section>
+
+<!-- ============ RISK ============ -->
+<section class="sec" id="s-risk">
+  <h2><span class="no">08</span><span class="zh">风险登记簿</span><span class="en">Risk register</span></h2>
+  <p><span class="zh">按手册要求，每项风险标注"暂时性/结构性"、概率与影响，并给出可观察的领先指标。概率与影响为本报告的主观判断，用于排序而非预测。</span><span class="en">As the handbook requires, each risk is tagged transitory or structural, with probability, impact and an observable leading indicator. Probabilities and impacts are our judgment, for ranking rather than prediction.</span></p>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">风险</span><span class="en">Risk</span></th><th><span class="zh">性质</span><span class="en">Type</span></th><th><span class="zh">概率</span><span class="en">Prob.</span></th><th><span class="zh">影响</span><span class="en">Impact</span></th><th><span class="zh">领先指标</span><span class="en">Leading indicator</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">资本开支回报不及预期（产能过剩、价格战、折旧冲击）</span><span class="en">Capex returns disappoint (overcapacity, price war, depreciation shock)</span></td><td><span class="zh">结构性</span><span class="en">Structural</span></td><td><span class="pill p-a"><span class="zh">中</span><span class="en">Med</span></span></td><td><span class="pill p-r"><span class="zh">高</span><span class="en">High</span></span></td><td><span class="zh">云利润率、积压转化率、折旧增速与收入增速之差、2027年资本开支指引</span><span class="en">Cloud margin, backlog conversion, depreciation growth vs revenue growth, 2027 capex guide</span></td></tr>
+      <tr><td><span class="zh">需求集中与循环（Anthropic）</span><span class="en">Demand concentration and circularity (Anthropic)</span></td><td><span class="zh">结构性</span><span class="en">Structural</span></td><td><span class="pill p-a"><span class="zh">中</span><span class="en">Med</span></span></td><td><span class="pill p-r"><span class="zh">高</span><span class="en">High</span></span></td><td><span class="zh">Anthropic融资与上市进度、积压季度变化、公司是否披露大客户集中度</span><span class="en">Anthropic funding and IPO progress, quarterly backlog changes, any disclosure of customer concentration</span></td></tr>
+      <tr><td><span class="zh">AI助手分流商业查询、搜索变现迁移</span><span class="en">AI assistants divert commercial queries; search monetization migrates</span></td><td><span class="zh">结构性</span><span class="en">Structural</span></td><td><span class="pill p-a"><span class="zh">中</span><span class="en">Med</span></span></td><td><span class="pill p-r"><span class="zh">高</span><span class="en">High</span></span></td><td><span class="zh">付费点击增速、单价、TAC率、ChatGPT等周活、AI Mode广告加载率</span><span class="en">Paid-click growth, CPC, TAC rate, ChatGPT weekly users, ad load in AI Mode</span></td></tr>
+      <tr><td><span class="zh">搜索反垄断案上诉结果（支付禁令/剥离Chrome）</span><span class="en">Search-case appeal outcome (payment ban, Chrome divestiture)</span></td><td><span class="zh">结构性</span><span class="en">Structural</span></td><td><span class="pill p-g"><span class="zh">低–中</span><span class="en">Low–med</span></span></td><td><span class="pill p-r"><span class="zh">高</span><span class="en">High</span></span></td><td><span class="zh">D.C.巡回法院口头辩论与判决（预计2027年）</span><span class="en">D.C. Circuit argument and ruling (expected 2027)</span></td></tr>
+      <tr><td><span class="zh">欧盟DMA持续罚款（最高日均营业额5%）</span><span class="en">Ongoing EU DMA penalties (up to 5% of daily turnover)</span></td><td><span class="zh">暂时→结构</span><span class="en">Transitory → structural</span></td><td><span class="pill p-a"><span class="zh">中</span><span class="en">Med</span></span></td><td><span class="pill p-a"><span class="zh">中</span><span class="en">Med</span></span></td><td><span class="zh">60天整改期后的欧委会评估；欧洲搜索界面改动</span><span class="en">Commission assessment after the 60-day window; changes to European search results pages</span></td></tr>
+      <tr><td><span class="zh">算力、电力与供应链约束（第三方算力拖累利润率）</span><span class="en">Compute, power and supply constraints (third-party capacity dilutes margins)</span></td><td><span class="zh">暂时性</span><span class="en">Transitory</span></td><td><span class="pill p-r"><span class="zh">高</span><span class="en">High</span></span></td><td><span class="pill p-a"><span class="zh">中</span><span class="en">Med</span></span></td><td><span class="zh">Q3云利润率、未开始租赁增量、能源照付不议合同</span><span class="en">Q3 Cloud margin, new uncommenced leases, take-or-pay energy contracts</span></td></tr>
+      <tr><td><span class="zh">资本结构：进一步稀释、利息负担、回购受限</span><span class="en">Capital structure: further dilution, interest burden, buyback limits</span></td><td><span class="zh">结构性</span><span class="en">Structural</span></td><td><span class="pill p-a"><span class="zh">中</span><span class="en">Med</span></span></td><td><span class="pill p-a"><span class="zh">中</span><span class="en">Med</span></span></td><td><span class="zh">ATM使用量、股本变化、利息支出、回购是否恢复</span><span class="en">ATM usage, share count, interest expense, whether buybacks resume</span></td></tr>
+      <tr><td><span class="zh">投资组合估值波动（SpaceX、Anthropic）</span><span class="en">Portfolio mark volatility (SpaceX, Anthropic)</span></td><td><span class="zh">暂时性</span><span class="en">Transitory</span></td><td><span class="pill p-r"><span class="zh">高</span><span class="en">High</span></span></td><td><span class="pill p-g"><span class="zh">低–中</span><span class="en">Low–med</span></span></td><td><span class="zh">SpaceX股价与解禁、Anthropic上市定价</span><span class="en">SpaceX share price and unlocks, Anthropic IPO pricing</span></td></tr>
+      <tr><td><span class="zh">AI人才竞争与股权激励膨胀</span><span class="en">AI talent competition and SBC inflation</span></td><td><span class="zh">结构性</span><span class="en">Structural</span></td><td><span class="pill p-a"><span class="zh">中</span><span class="en">Med</span></span></td><td><span class="pill p-a"><span class="zh">中</span><span class="en">Med</span></span></td><td><span class="zh">股权激励增速（TTM +23%）、研发费用中的薪酬增速</span><span class="en">SBC growth (+23% TTM), compensation growth within R&amp;D</span></td></tr>
+      <tr><td><span class="zh">治理：外部股东无法约束资本开支</span><span class="en">Governance: outside holders cannot constrain capex</span></td><td><span class="zh">结构性</span><span class="en">Structural</span></td><td><span class="pill p-g"><span class="zh">低</span><span class="en">Low</span></span></td><td><span class="pill p-a"><span class="zh">中</span><span class="en">Med</span></span></td><td><span class="zh">同股同权提案支持率、大额并购与投资决策</span><span class="en">Support for equal voting, large deals and investments</span></td></tr>
+      <tr><td><span class="zh">Waymo安全事故或监管收紧</span><span class="en">Waymo safety incident or regulatory tightening</span></td><td><span class="zh">暂时→结构</span><span class="en">Transitory → structural</span></td><td><span class="pill p-g"><span class="zh">低–中</span><span class="en">Low–med</span></span></td><td><span class="pill p-g"><span class="zh">低–中</span><span class="en">Low–med</span></span></td><td><span class="zh">事故报告、城市准入、每周单量</span><span class="en">Incident reports, city approvals, weekly rides</span></td></tr>
+      <tr><td><span class="zh">利率与估值倍数（十年期国债约5%）</span><span class="en">Rates and multiples (10-year near 5%)</span></td><td><span class="zh">暂时性</span><span class="en">Transitory</span></td><td><span class="pill p-a"><span class="zh">中</span><span class="en">Med</span></span></td><td><span class="pill p-a"><span class="zh">中</span><span class="en">Med</span></span></td><td><span class="zh">美联储加息路径、实际利率</span><span class="en">Fed hiking path, real yields</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="zh">法律与监管时间线</span><span class="en">Legal and regulatory timeline</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">案件</span><span class="en">Case</span></th><th><span class="zh">目前状态</span><span class="en">Status</span></th><th><span class="zh">下一节点</span><span class="en">Next milestone</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">美国司法部诉谷歌（搜索）</span><span class="en">US v. Google (search)</span></td><td><span class="zh">2024年8月认定垄断；2025年9月2日救济：不剥离Chrome，禁止搜索、Chrome、Assistant、Gemini App的排他协议，向合格竞争者共享部分索引与交互数据，技术委员会监督，期限6年；2025年12月5日终审判决。谷歌2026年1月16日上诉并在5月22日的诉状中挑战责任认定；司法部与州政府2月3日交叉上诉，7月28日诉状要求支付禁令等更严厉救济</span><span class="en">Monopoly found in Aug 2024; remedies on 2 Sep 2025: no Chrome divestiture, no exclusive deals for Search, Chrome, Assistant or the Gemini app, sharing of some index and interaction data with qualified rivals, a technical committee, six-year term; final judgment 5 Dec 2025. Google appealed on 16 Jan 2026 and its 22 May brief challenges liability itself; DOJ and states cross-appealed on 3 Feb and their 28 Jul brief seeks tougher remedies including a payment ban</span></td><td><span class="zh">D.C.巡回法院判决，预计2027年</span><span class="en">D.C. Circuit ruling, likely 2027</span></td></tr>
+      <tr><td><span class="zh">美国司法部诉谷歌（广告技术）</span><span class="en">US v. Google (ad tech)</span></td><td><span class="zh">2025年4月认定在发行商广告服务器与广告交易所市场违法垄断；2026年9月2日Brinkema法官拒绝剥离AdX和DFP，采纳经修改的行为救济（AdX与DFP解绑、互操作与非歧视）</span><span class="en">Liability found in Apr 2025 for publisher ad servers and ad exchanges; on 2 Sep 2026 Judge Brinkema rejected divesting AdX and DFP and adopted modified behavioral remedies (unbundling AdX from DFP, interoperability, non-discrimination)</span></td><td><span class="zh">联合终审判决草案约10月2日提交；之后可能上诉</span><span class="en">Joint proposed final judgment due around 2 Oct; appeals may follow</span></td></tr>
+      <tr><td><span class="zh">欧盟广告技术案</span><span class="en">EU ad tech case</span></td><td><span class="zh">2025年9月5日罚款29.5亿欧元并要求终止自我优待，谷歌上诉</span><span class="en">€2.95B fine on 5 Sep 2025 with an order to end self-preferencing; Google is appealing</span></td><td><span class="zh">上诉审理</span><span class="en">Appeal proceedings</span></td></tr>
+      <tr><td><span class="zh">欧盟《数字市场法》</span><span class="en">EU Digital Markets Act</span></td><td><span class="zh">2026年7月23日两项违规决定：搜索自我优待罚款4.6亿欧元、Play反引导罚款4.3亿欧元，60天内整改，否则按日处罚</span><span class="en">Two non-compliance decisions on 23 Jul 2026: €460M for search self-preferencing and €430M for Play anti-steering; 60 days to comply or face periodic penalties</span></td><td><span class="zh">整改期约于9月下旬届满，关注欧委会评估</span><span class="en">The window ends around late September; watch the Commission's assessment</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note risk">
+    <h5><span class="zh">事前验尸：假设2029年股价腰斩，最可能的原因是什么</span><span class="en">Pre-mortem: if the stock halves by 2029, what most likely happened</span></h5>
+    <ul class="tight">
+      <li><span class="zh">2027年资本开支再增50%以上，但AI实验室的融资环境在2027–2028年收紧，积压转化放缓，折旧在2028年追上收入增量，经营利润率回到20%多。</span><span class="en">2027 capex rose another 50%+, but AI-lab funding tightened in 2027–28, backlog conversion slowed, and depreciation caught up with incremental revenue, pushing operating margin back into the 20s.</span></li>
+      <li><span class="zh">AI助手在购物、旅行、本地服务等商业查询中取得两位数份额，搜索付费点击转为负增长，而AI Mode的单价弥补不了量的损失。</span><span class="en">AI assistants won double-digit share of commercial queries in shopping, travel and local, turning paid clicks negative, and AI Mode pricing failed to offset the lost volume.</span></li>
+      <li><span class="zh">上诉法院支持支付禁令，谷歌失去在苹果设备上的付费默认地位，TAC节省不足以弥补流量损失。</span><span class="en">The appeals court backed a payment ban, Google lost paid default placement on Apple devices, and TAC savings did not offset the traffic loss.</span></li>
+    </ul>
+    <p class="small"><span class="zh">这三条都有可观察的前兆，已放入第9节跟踪清单。</span><span class="en">All three have observable precursors, which are in the Section 9 checklist.</span></p>
+  </div>
+</section>
+
+<!-- ============ TRACKING ============ -->
+<section class="sec" id="s-track">
+  <h2><span class="no">09</span><span class="zh">可证伪跟踪清单</span><span class="en">Falsifiable tracking checklist</span></h2>
+  <p><span class="zh">每一条都写成"看多确认线 / 看空警报线 / 下次检查时间"。建议把每条作为一个"开放假设"录入你的思维库，给出主观概率，到期后做Brier评分，用来校准自己对这家公司的判断。</span><span class="en">Each line has a bull confirmation level, a bear alarm level and a next check date. Consider logging each as an open assumption in your thinking vault with a probability, then Brier-scoring it when it resolves to calibrate your judgment on this company.</span></p>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">指标</span><span class="en">Indicator</span></th><th class="n"><span class="zh">当前</span><span class="en">Now</span></th><th><span class="zh">看多确认</span><span class="en">Bull confirms</span></th><th><span class="zh">看空警报</span><span class="en">Bear alarm</span></th><th><span class="zh">检查时间</span><span class="en">Check</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">云收入同比增速</span><span class="en">Cloud revenue growth</span></td><td class="n">+82%</td><td><span class="zh">2026年Q4前维持≥60%</span><span class="en">≥60% through Q4'26</span></td><td><span class="zh">2027年内跌破40%</span><span class="en">Below 40% during 2027</span></td><td>2026-10-28</td></tr>
+      <tr><td><span class="zh">云经营利润率</span><span class="en">Cloud operating margin</span></td><td class="n">35.6%</td><td><span class="zh">使用第三方算力的季度仍≥30%</span><span class="en">≥30% even in bridge-capacity quarters</span></td><td><span class="zh">&lt;25%</span><span class="en">&lt;25%</span></td><td>2026-10-28</td></tr>
+      <tr><td><span class="zh">云积压</span><span class="en">Cloud backlog</span></td><td class="n">$514B</td><td><span class="zh">Q3≥$550B且24个月转化率约50%</span><span class="en">≥$550B in Q3 with ~50% converting within 24 months</span></td><td><span class="zh">环比下降或转化率降至40%以下</span><span class="en">Sequential decline or conversion below 40%</span></td><td>2026-10-28</td></tr>
+      <tr><td><span class="zh">搜索及其他收入增速</span><span class="en">Search &amp; other growth</span></td><td class="n">+17%</td><td><span class="zh">≥12%</span><span class="en">≥12%</span></td><td><span class="zh">连续两个季度&lt;8%</span><span class="en">&lt;8% for two quarters</span></td><td><span class="zh">每季度</span><span class="en">Quarterly</span></td></tr>
+      <tr><td><span class="zh">付费点击增速（年报）</span><span class="en">Paid-click growth (10-K)</span></td><td class="n">+6%</td><td><span class="zh">≥3%</span><span class="en">≥3%</span></td><td><span class="zh">转负</span><span class="en">Negative</span></td><td><span class="zh">2027年2月</span><span class="en">Feb 2027</span></td></tr>
+      <tr><td><span class="zh">TAC占广告收入</span><span class="en">TAC share of ad revenue</span></td><td class="n">20.3%</td><td><span class="zh">≤21%</span><span class="en">≤21%</span></td><td><span class="zh">&gt;23%</span><span class="en">&gt;23%</span></td><td><span class="zh">每季度</span><span class="en">Quarterly</span></td></tr>
+      <tr><td><span class="zh">2027年资本开支指引 vs 云增速</span><span class="en">2027 capex guide vs Cloud growth</span></td><td class="n">—</td><td><span class="zh">资本开支≤2026年的1.5倍且云增速≥40%</span><span class="en">Capex ≤1.5x 2026 with Cloud growth ≥40%</span></td><td><span class="zh">资本开支再上台阶而云增速&lt;30%</span><span class="en">Capex steps up again while Cloud growth &lt;30%</span></td><td><span class="zh">2027年2月</span><span class="en">Feb 2027</span></td></tr>
+      <tr><td><span class="zh">折旧增速 − 收入增速</span><span class="en">Depreciation growth − revenue growth</span></td><td class="n">+20pts</td><td><span class="zh">2027年下半年差距收窄到10个百分点以内</span><span class="en">Gap under 10 points by H2'27</span></td><td><span class="zh">2027年全年差距&gt;25个百分点</span><span class="en">Gap above 25 points for all of 2027</span></td><td><span class="zh">每季度</span><span class="en">Quarterly</span></td></tr>
+      <tr><td><span class="zh">季度自由现金流</span><span class="en">Quarterly free cash flow</span></td><td class="n">−$5.9B</td><td><span class="zh">2027年下半年恢复为正</span><span class="en">Positive again by H2'27</span></td><td><span class="zh">2027年持续为负且收入未再加速</span><span class="en">Negative through 2027 without re-acceleration</span></td><td><span class="zh">每季度</span><span class="en">Quarterly</span></td></tr>
+      <tr><td><span class="zh">流通股数</span><span class="en">Shares outstanding</span></td><td class="n">12,230M</td><td><span class="zh">持平或下降，ATM仅用于代扣税</span><span class="en">Flat or down; ATM only for tax withholding</span></td><td><span class="zh">再次发行普通股或优先股</span><span class="en">Another common or preferred issue</span></td><td><span class="zh">每季度</span><span class="en">Quarterly</span></td></tr>
+      <tr><td><span class="zh">Anthropic</span><span class="en">Anthropic</span></td><td class="n"><span class="zh">估值$965B</span><span class="en">$965B valuation</span></td><td><span class="zh">顺利上市，公司披露积压集中度</span><span class="en">Smooth IPO; concentration disclosed</span></td><td><span class="zh">上市推迟、融资受阻或削减算力承诺</span><span class="en">IPO delayed, funding stalls or compute commitments cut</span></td><td><span class="zh">2026年10月起</span><span class="en">From Oct 2026</span></td></tr>
+      <tr><td><span class="zh">Gemini App月活</span><span class="en">Gemini app MAU</span></td><td class="n">950M</td><td><span class="zh">2027年中≥12亿</span><span class="en">≥1.2B by mid-2027</span></td><td><span class="zh">连续两季停滞</span><span class="en">Flat for two quarters</span></td><td><span class="zh">每季度</span><span class="en">Quarterly</span></td></tr>
+      <tr><td><span class="zh">Waymo每周付费出行</span><span class="en">Waymo weekly paid rides</span></td><td class="n">400k+</td><td><span class="zh">2026年末接近100万（据报道的目标）</span><span class="en">Near 1M by end-2026 (reported goal)</span></td><td><span class="zh">重大事故或城市准入暂停</span><span class="en">Major incident or city pause</span></td><td><span class="zh">2026年Q4</span><span class="en">Q4 2026</span></td></tr>
+      <tr><td><span class="zh">法律节点</span><span class="en">Legal milestones</span></td><td class="n">—</td><td><span class="zh">广告技术终审判决维持行为救济；DMA整改被接受</span><span class="en">Ad tech final judgment keeps behavioral remedies; DMA fixes accepted</span></td><td><span class="zh">上诉法院支持支付禁令；DMA按日罚款启动</span><span class="en">Appeals court backs a payment ban; DMA daily penalties start</span></td><td><span class="zh">2026年10月–2027年</span><span class="en">Oct 2026–2027</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============ SEMIS READ-ACROSS ============ -->
+<section class="sec" id="s-semis">
+  <h2><span class="no">10</span><span class="zh">对你的半导体与存储研究的含义</span><span class="en">Read-across to your semis and memory work</span></h2>
+  <p><span class="zh">Alphabet是全球最大的AI基础设施买家之一，它的资本开支结构对你覆盖的存储与芯片公司有直接的领先意义。以下是从本次研读中提炼的传导链条，均为推断性结论，需结合供应链数据验证。</span><span class="en">Alphabet is one of the largest buyers of AI infrastructure, so its capex mix is a direct leading indicator for the memory and chip companies you cover. The transmission chain below comes from this review; treat it as inference to be checked against supply-chain data.</span></p>
+  <div class="tscroll"><table>
+    <thead><tr><th><span class="zh">传导环节</span><span class="en">Link</span></th><th><span class="zh">Alphabet侧的证据</span><span class="en">Evidence on Alphabet's side</span></th><th><span class="zh">对上游的含义</span><span class="en">Implication upstream</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">服务器支出</span><span class="en">Server spend</span></td><td><span class="zh">资本开支约60%用于服务器；2026年指引$195–205B，意味着约$1,200亿的服务器投入；2027年"显著增加"</span><span class="en">~60% of capex goes to servers; the $195–205B 2026 guide implies ~$120B of servers; 2027 "significantly" higher</span></td><td><span class="zh">加速器、HBM、服务器DRAM与企业级SSD的需求能见度延伸到2027年</span><span class="en">Demand visibility for accelerators, HBM, server DRAM and enterprise SSDs extends into 2027</span></td></tr>
+      <tr><td><span class="zh">TPU路线图与外销</span><span class="en">TPU roadmap and external sales</span></td><td><span class="zh">第7代Ironwood单个pod可连接9,216颗芯片与约1.77PB共享HBM；第8代分为训练用8t与推理用8i；博通将与谷歌合作开发TPU至2031年；Anthropic的多吉瓦TPU自2027年上线</span><span class="en">A 7th-gen Ironwood pod links 9,216 chips with ~1.77 PB of shared HBM; the 8th gen splits into 8t for training and 8i for inference; Broadcom will co-develop TPUs through 2031; Anthropic's multi-gigawatt TPUs come online from 2027</span></td><td><span class="zh">定制ASIC路线对HBM的拉动可能与GPU并驾齐驱；博通是最直接的受益者；推理芯片（8i）对SRAM与HBM的配置偏好值得跟踪</span><span class="en">Custom ASICs may pull HBM demand alongside GPUs; Broadcom is the most direct beneficiary; watch the SRAM and HBM configuration of inference parts (8i)</span></td></tr>
+      <tr><td><span class="zh">第三方算力过渡</span><span class="en">Third-party capacity bridge</span></td><td><span class="zh">Q3起扩大使用第三方算力；约58亿美元短期租赁；未开始租赁$852亿</span><span class="en">More third-party capacity from Q3; a ~$5.8B short-term lease; $85.2B of uncommenced leases</span></td><td><span class="zh">需求外溢到新兴云与GPU租赁商，间接支撑GPU与存储出货</span><span class="en">Demand spills over to neoclouds and GPU lessors, indirectly supporting GPU and memory shipments</span></td></tr>
+      <tr><td><span class="zh">采购承诺</span><span class="en">Purchase commitments</span></td><td><span class="zh">约$8,110亿（据报道），一个季度增加约$4,800亿，包含长期供应协议与存货</span><span class="en">~$811B (as reported), up ~$480B in a quarter, including long-term supply agreements and inventory</span></td><td><span class="zh">长约锁定意味着上游的产能与价格谈判力短期偏强；但也意味着一旦需求放缓，调整会以"推迟交付"的形式出现</span><span class="en">Long-term agreements favor upstream pricing and capacity in the near term; if demand slows, adjustments would show up as deferred deliveries</span></td></tr>
+      <tr><td><span class="zh">电力与数据中心</span><span class="en">Power and data centers</span></td><td><span class="zh">能源照付不议合同进入承诺；收购Intersect；数据中心与网络设备约占资本开支40%</span><span class="en">Take-or-pay energy contracts in commitments; the Intersect acquisition; data centers and networking ~40% of capex</span></td><td><span class="zh">电力是比芯片更慢的瓶颈，决定资本开支落地节奏与存储拉货节奏</span><span class="en">Power is a slower bottleneck than chips and sets the pace of deployment and memory pull-ins</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="note data">
+    <h5><span class="zh">给存储周期研究的一个提醒</span><span class="en">A caution for memory-cycle work</span></h5>
+    <p><span class="zh">Alphabet的资本开支上修对存储是利好，但本报告的核心风险（需求集中于少数AI实验室、融资依赖、折旧浪潮）同样会传导到上游：如果2027年资本开支指引与云增速出现"资本开支继续上台阶、云增速却放缓"的组合，这往往是周期后段的信号，比季度价格数据更早。</span><span class="en">Alphabet's capex raises are good news for memory, but this report's core risks (demand concentrated in a few AI labs, funding dependence, the depreciation wave) also travel upstream: if the 2027 guide shows capex stepping up again while Cloud growth slows, that combination is usually a late-cycle signal, earlier than quarterly pricing data.</span></p>
+  </div>
+</section>
+
+<!-- ============ APPENDIX ============ -->
+<section class="sec" id="s-appx">
+  <h2><span class="no">11</span><span class="zh">附录与资料来源</span><span class="en">Appendix and sources</span></h2>
+
+  <h3><span class="zh">A. 五年关键财务数据（$B，除注明外）</span><span class="en">A. Five-year key financials ($B unless noted)</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th></th><th class="n">2021</th><th class="n">2022</th><th class="n">2023</th><th class="n">2024</th><th class="n">2025</th><th class="n">TTM Q2'26</th></tr></thead>
+    <tbody>
+      <tr><td><strong><span class="zh">总收入</span><span class="en">Total revenue</span></strong></td><td class="n">257.6</td><td class="n">282.8</td><td class="n">307.4</td><td class="n">350.0</td><td class="n">402.8</td><td class="n">445.9</td></tr>
+      <tr><td><span class="zh">　搜索及其他</span><span class="en">  Search &amp; other</span></td><td class="n">149.0</td><td class="n">162.5</td><td class="n">175.0</td><td class="n">198.1</td><td class="n">224.5</td><td class="n">243.3</td></tr>
+      <tr><td><span class="zh">　YouTube广告</span><span class="en">  YouTube ads</span></td><td class="n">28.8</td><td class="n">29.2</td><td class="n">31.5</td><td class="n">36.1</td><td class="n">40.4</td><td class="n">42.6</td></tr>
+      <tr><td><span class="zh">　谷歌网络</span><span class="en">  Google Network</span></td><td class="n">31.7</td><td class="n">32.8</td><td class="n">31.3</td><td class="n">30.4</td><td class="n">29.8</td><td class="n">29.5</td></tr>
+      <tr><td><span class="zh">　订阅/平台/设备</span><span class="en">  Subs/platforms/devices</span></td><td class="n">28.0</td><td class="n">29.1</td><td class="n">34.7</td><td class="n">40.3</td><td class="n">48.0</td><td class="n">51.7</td></tr>
+      <tr><td><span class="zh">　谷歌云</span><span class="en">  Google Cloud</span></td><td class="n">19.2</td><td class="n">26.3</td><td class="n">33.1</td><td class="n">43.2</td><td class="n">58.7</td><td class="n">77.6</td></tr>
+      <tr><td><span class="zh">　其他押注</span><span class="en">  Other Bets</span></td><td class="n">0.8</td><td class="n">1.1</td><td class="n">1.5</td><td class="n">1.6</td><td class="n">1.5</td><td class="n">1.5</td></tr>
+      <tr><td><strong><span class="zh">经营利润</span><span class="en">Operating income</span></strong></td><td class="n">78.7</td><td class="n">74.8</td><td class="n">84.3</td><td class="n">112.4</td><td class="n">129.0</td><td class="n">147.6</td></tr>
+      <tr><td><span class="zh">　经营利润率</span><span class="en">  Operating margin</span></td><td class="n">30.6%</td><td class="n">26.5%</td><td class="n">27.4%</td><td class="n">32.1%</td><td class="n">32.0%</td><td class="n">33.1%</td></tr>
+      <tr><td><span class="zh">　服务分部经营利润</span><span class="en">  Services operating income</span></td><td class="n">91.9</td><td class="n">82.7</td><td class="n">95.9</td><td class="n">121.3</td><td class="n">139.4</td><td class="n">153.8</td></tr>
+      <tr><td><span class="zh">　云分部经营利润</span><span class="en">  Cloud operating income</span></td><td class="n">−3.1</td><td class="n">−1.9</td><td class="n">1.7</td><td class="n">6.1</td><td class="n">13.9</td><td class="n">24.3</td></tr>
+      <tr><td><span class="zh">　其他押注经营利润</span><span class="en">  Other Bets operating income</span></td><td class="n">−5.3</td><td class="n">−4.6</td><td class="n">−4.1</td><td class="n">−4.4</td><td class="n">−7.5</td><td class="n">−9.0</td></tr>
+      <tr><td><span class="zh">　Alphabet层面费用</span><span class="en">  Alphabet-level costs</span></td><td class="n">−4.8</td><td class="n">−1.3</td><td class="n">−9.2</td><td class="n">−10.5</td><td class="n">−16.8</td><td class="n">−21.5</td></tr>
+      <tr><td><span class="zh">净利润</span><span class="en">Net income</span></td><td class="n">76.0</td><td class="n">60.0</td><td class="n">73.8</td><td class="n">100.1</td><td class="n">132.2</td><td class="n">244.2</td></tr>
+      <tr><td><span class="zh">稀释EPS（美元）</span><span class="en">Diluted EPS ($)</span></td><td class="n">5.61</td><td class="n">4.56</td><td class="n">5.80</td><td class="n">8.04</td><td class="n">10.81</td><td class="n">19.94</td></tr>
+      <tr><td><span class="zh">经营现金流</span><span class="en">Operating cash flow</span></td><td class="n">91.7</td><td class="n">91.5</td><td class="n">101.7</td><td class="n">125.3</td><td class="n">164.7</td><td class="n">185.7</td></tr>
+      <tr><td><span class="zh">资本开支</span><span class="en">Capex</span></td><td class="n">24.6</td><td class="n">31.5</td><td class="n">32.3</td><td class="n">52.5</td><td class="n">91.4</td><td class="n">132.4</td></tr>
+      <tr><td><span class="zh">自由现金流</span><span class="en">Free cash flow</span></td><td class="n">67.0</td><td class="n">60.0</td><td class="n">69.5</td><td class="n">72.8</td><td class="n">73.3</td><td class="n">53.3</td></tr>
+      <tr><td><span class="zh">股权激励费用</span><span class="en">Stock-based compensation</span></td><td class="n">15.4</td><td class="n">19.4</td><td class="n">22.5</td><td class="n">22.8</td><td class="n">25.0</td><td class="n">28.1</td></tr>
+      <tr><td><span class="zh">折旧</span><span class="en">Depreciation</span></td><td class="n">10.3</td><td class="n">13.5</td><td class="n">11.9</td><td class="n">15.3</td><td class="n">21.1</td><td class="n">25.2</td></tr>
+      <tr><td><span class="zh">股票回购</span><span class="en">Buybacks</span></td><td class="n">50.3</td><td class="n">59.3</td><td class="n">62.2</td><td class="n">62.2</td><td class="n">45.7</td><td class="n"><span class="zh">0（2026上半年）</span><span class="en">0 (H1'26)</span></td></tr>
+      <tr><td><span class="zh">现金分红</span><span class="en">Dividends</span></td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">7.4</td><td class="n">10.0</td><td class="n"><span class="zh">5.2（2026上半年）</span><span class="en">5.2 (H1'26)</span></td></tr>
+      <tr><td><span class="zh">员工人数（千人，期末）</span><span class="en">Employees (thousands, period end)</span></td><td class="n">156.5</td><td class="n">190.2</td><td class="n">182.5</td><td class="n">183.3</td><td class="n">190.8</td><td class="n">198.9</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small"><span class="zh">注：2021年分部数据为2023年口径调整前（当时DeepMind计入其他押注），与之后年份不完全可比；2022年起为调整后口径。TTM净利润与EPS含大额投资浮盈。</span><span class="en">Note: 2021 segment data predate the 2023 recast (DeepMind was then in Other Bets) and are not fully comparable; 2022 onward is on the recast basis. TTM net income and EPS include large investment gains.</span></p>
+
+  <h3><span class="zh">B. 近六个季度（$B）</span><span class="en">B. Last six quarters ($B)</span></h3>
+  <div class="tscroll"><table>
+    <thead><tr><th></th><th class="n">Q1'25</th><th class="n">Q2'25</th><th class="n">Q3'25</th><th class="n">Q4'25</th><th class="n">Q1'26</th><th class="n">Q2'26</th></tr></thead>
+    <tbody>
+      <tr><td><span class="zh">总收入</span><span class="en">Revenue</span></td><td class="n">90.2</td><td class="n">96.4</td><td class="n">102.3</td><td class="n">113.8</td><td class="n">109.9</td><td class="n">119.8</td></tr>
+      <tr><td><span class="zh">　同比</span><span class="en">  YoY</span></td><td class="n">+12%</td><td class="n">+14%</td><td class="n">+16%</td><td class="n">+18%</td><td class="n">+22%</td><td class="n">+24%</td></tr>
+      <tr><td><span class="zh">搜索及其他</span><span class="en">Search &amp; other</span></td><td class="n">50.7</td><td class="n">54.2</td><td class="n">56.6</td><td class="n">63.1</td><td class="n">60.4</td><td class="n">63.3</td></tr>
+      <tr><td><span class="zh">YouTube广告</span><span class="en">YouTube ads</span></td><td class="n">8.9</td><td class="n">9.8</td><td class="n">10.3</td><td class="n">11.4</td><td class="n">9.9</td><td class="n">11.1</td></tr>
+      <tr><td><span class="zh">谷歌网络</span><span class="en">Google Network</span></td><td class="n">7.3</td><td class="n">7.4</td><td class="n">7.4</td><td class="n">7.8</td><td class="n">7.0</td><td class="n">7.3</td></tr>
+      <tr><td><span class="zh">订阅/平台/设备</span><span class="en">Subs/platforms/devices</span></td><td class="n">10.4</td><td class="n">11.2</td><td class="n">12.9</td><td class="n">13.6</td><td class="n">12.4</td><td class="n">12.9</td></tr>
+      <tr><td><span class="zh">谷歌云</span><span class="en">Google Cloud</span></td><td class="n">12.3</td><td class="n">13.6</td><td class="n">15.2</td><td class="n">17.7</td><td class="n">20.0</td><td class="n">24.8</td></tr>
+      <tr><td><span class="zh">服务分部经营利润</span><span class="en">Services operating income</span></td><td class="n">32.7</td><td class="n">33.1</td><td class="n">33.5</td><td class="n">40.1</td><td class="n">40.6</td><td class="n">39.5</td></tr>
+      <tr><td><span class="zh">云分部经营利润</span><span class="en">Cloud operating income</span></td><td class="n">2.2</td><td class="n">2.8</td><td class="n">3.6</td><td class="n">5.3</td><td class="n">6.6</td><td class="n">8.8</td></tr>
+      <tr><td><span class="zh">其他押注经营利润</span><span class="en">Other Bets operating income</span></td><td class="n">−1.2</td><td class="n">−1.2</td><td class="n">−1.4</td><td class="n">−3.6</td><td class="n">−2.1</td><td class="n">−1.8</td></tr>
+      <tr><td><span class="zh">Alphabet层面费用</span><span class="en">Alphabet-level costs</span></td><td class="n">−3.0</td><td class="n">−3.4</td><td class="n">−4.5</td><td class="n">−5.9</td><td class="n">−5.4</td><td class="n">−5.8</td></tr>
+      <tr><td><span class="zh">经营利润率</span><span class="en">Operating margin</span></td><td class="n">33.9%</td><td class="n">32.4%</td><td class="n">30.5%</td><td class="n">31.6%</td><td class="n">36.1%</td><td class="n">34.0%</td></tr>
+      <tr><td><span class="zh">经营现金流</span><span class="en">Operating cash flow</span></td><td class="n">36.2</td><td class="n">27.7</td><td class="n">48.4</td><td class="n">52.4</td><td class="n">45.8</td><td class="n">39.1</td></tr>
+      <tr><td><span class="zh">资本开支</span><span class="en">Capex</span></td><td class="n">17.2</td><td class="n">22.4</td><td class="n">24.0</td><td class="n">27.9</td><td class="n">35.7</td><td class="n">44.9</td></tr>
+      <tr><td><span class="zh">自由现金流</span><span class="en">Free cash flow</span></td><td class="n">19.0</td><td class="n">5.3</td><td class="n">24.5</td><td class="n">24.6</td><td class="n">10.1</td><td class="n">−5.9</td></tr>
+      <tr><td><span class="zh">稀释EPS（美元）</span><span class="en">Diluted EPS ($)</span></td><td class="n">2.81</td><td class="n">2.31</td><td class="n">2.87</td><td class="n">2.82</td><td class="n">5.11</td><td class="n">9.11</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3><span class="zh">C. 方法说明</span><span class="en">C. Methodology notes</span></h3>
+  <ul class="tight">
+    <li><span class="zh"><strong>核心EPS：</strong>GAAP稀释EPS减去公司在业绩公告脚注中披露的"股权证券收益对每股收益的影响"。FY2025按246亿美元证券收益与约21%税率估算。</span><span class="en"><strong>Core EPS:</strong> GAAP diluted EPS minus the per-share effect of equity-security gains disclosed in the release footnotes. FY2025 is estimated from $24.6B of securities gains at ~21% tax.</span></li>
+    <li><span class="zh"><strong>ROIC：</strong>见第4节定义；NOPAT税率2024年16.4%、2025年16.8%、TTM取17%；"平均"口径取期初与期末投入资本的平均值。增量ROIC = ΔNOPAT / Δ投入资本（2024年12月→2026年6月）。</span><span class="en"><strong>ROIC:</strong> defined in Section 4; NOPAT tax rates of 16.4% (2024), 16.8% (2025) and 17% (TTM); "average" uses the mean of opening and closing invested capital. Incremental ROIC = ΔNOPAT / Δinvested capital (Dec 2024 → Jun 2026).</span></li>
+    <li><span class="zh"><strong>企业价值：</strong>市值 + 长期债务 + 强制可转换优先股（清算优先权约193亿美元）− 现金与有价证券（其中含SpaceX持股）− 私募股权投资。经营租赁未计入。</span><span class="en"><strong>Enterprise value:</strong> market cap + long-term debt + mandatory convertible preferred (~$19.3B liquidation preference) − cash and marketable securities (which include the SpaceX stake) − private equity stakes. Operating leases are excluded.</span></li>
+    <li><span class="zh"><strong>DCF：</strong>估值日2026年6月30日；2026年仅计下半年（50%）现金流，按0.25年折现；2027–2035年按年中惯例折现；终值在9.5年处折现。经营性净现金 = 现金与有价证券 − SpaceX持股 − 长期债务 ≈ 503亿美元。模型不含营运资本变化，采用"净资本开支"一个变量同时代表资本开支与折旧的差额。</span><span class="en"><strong>DCF:</strong> valuation date 30 June 2026; 2026 counts only the second half (50%) of cash flow, discounted 0.25 years; 2027–2035 use mid-year discounting; terminal value is discounted 9.5 years. Operating net cash = cash and marketable securities − SpaceX stake − long-term debt ≈ $50.3B. The model omits working-capital changes and uses one variable, net capex, for the gap between capex and depreciation.</span></li>
+    <li><span class="zh"><strong>数据可信度分级：</strong>公司文件（10-K/10-Q/8-K/代理声明）为一级；法院文书与监管机构公告为一级；主流媒体对公司或文件的转述为二级；第三方估算（搜索份额、AI助手份额、一致预期）为三级，文中已标注。</span><span class="en"><strong>Source tiers:</strong> company filings (10-K/10-Q/8-K/proxy) are tier one, as are court and regulator documents; mainstream media relaying company statements or filings are tier two; third-party estimates (search share, AI-assistant share, consensus) are tier three and flagged in the text.</span></li>
+  </ul>
+
+  <h3><span class="zh">D. 资料来源</span><span class="en">D. Sources</span></h3>
+  <ol class="srclist">
+    <li>Alphabet Q2 2026 earnings release (8-K Ex. 99.1): <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm" target="_blank" rel="noopener">sec.gov</a></li>
+    <li>Alphabet Q2 2026 Form 10-Q: <a href="https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000071/goog-20260630.htm" target="_blank" rel="noopener">sec.gov</a></li>
+    <li>Alphabet Q1 2026 earnings release and 10-Q: <a href="https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000043/googexhibit991q12026.htm" target="_blank" rel="noopener">release</a>, <a href="https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000048/goog-20260331.htm" target="_blank" rel="noopener">10-Q</a></li>
+    <li>Alphabet Q4/FY2025 earnings release: <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000012/googexhibit991q42025.htm" target="_blank" rel="noopener">sec.gov</a></li>
+    <li>Alphabet Q1–Q3 2025 earnings releases: <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204425000040/googexhibit991q12025.htm" target="_blank" rel="noopener">Q1</a>, <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204425000056/googexhibit991q22025.htm" target="_blank" rel="noopener">Q2</a>, <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204425000087/googexhibit991q32025.htm" target="_blank" rel="noopener">Q3</a></li>
+    <li>Form 10-K FY2025, FY2024, FY2023, FY2022, FY2021: <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm" target="_blank" rel="noopener">FY2025</a>, <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm" target="_blank" rel="noopener">FY2024</a>, <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/goog-20231231.htm" target="_blank" rel="noopener">FY2023</a>, <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204423000016/goog-20221231.htm" target="_blank" rel="noopener">FY2022</a>, <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204422000019/goog-20211231.htm" target="_blank" rel="noopener">FY2021</a></li>
+    <li>Q2 2026 earnings call (Alphabet IR) and coverage: <a href="https://abc.xyz/investor/events/event-details/2026/2026-Q2-Earnings-Call-2026-GgTAq7Is0z/default.aspx" target="_blank" rel="noopener">abc.xyz</a>, <a href="https://www.cnbc.com/2026/07/22/google-earnings-q2-goog-live-updates.html" target="_blank" rel="noopener">CNBC</a>, <a href="https://www.investing.com/news/transcripts/earnings-call-transcript-alphabet-beats-q2-2026-estimates-shares-fall-on-capex-surge-93CH-4807140" target="_blank" rel="noopener">Investing.com transcript</a>, <a href="https://www.thestreet.com/latest-news/alphabet-inc-googl-q2-2026-earnings-call-updates" target="_blank" rel="noopener">TheStreet</a></li>
+    <li>June 2026 equity capital raise (8-K Ex. 99.2 and FWP): <a href="https://www.sec.gov/Archives/edgar/data/0001652044/000119312526257724/d83560dex992.htm" target="_blank" rel="noopener">pricing release</a>, <a href="https://www.sec.gov/Archives/edgar/data/0001652044/000119312526251733/d160205dfwp.htm" target="_blank" rel="noopener">announcement</a></li>
+    <li>2026 proxy statement and annual meeting results: <a href="https://www.sec.gov/Archives/edgar/data/0001652044/000130817926000342/goog-20260424.htm" target="_blank" rel="noopener">DEF 14A</a>, <a href="https://www.sec.gov/Archives/edgar/data/0001652044/000119312526267578/d57679d8k.htm" target="_blank" rel="noopener">8-K voting results</a>, <a href="https://sec-api.io/insights/alphabet-s-2026-annual-meeting-the-vote-that-was-settled-before-it-started" target="_blank" rel="noopener">sec-api analysis</a></li>
+    <li>SpaceX and private stakes: <a href="https://www.fool.com/investing/2026/07/23/alphabet-just-revealed-a-94-billion-stake-in-space/" target="_blank" rel="noopener">Motley Fool</a>, <a href="https://fortune.com/2026/07/22/anthropic-spacex-investments-google-earnings-biggest-ever-profit-quarter/" target="_blank" rel="noopener">Fortune</a>, <a href="https://startupfortune.com/alphabets-124-billion-anthropic-stake-reshapes-how-investors-should-read-googles-earnings/" target="_blank" rel="noopener">Startup Fortune</a></li>
+    <li>Purchase commitments and Anthropic investment (Bloomberg/FT readings of the 10-Q): <a href="https://aiweekly.co/alerts/alphabet-discloses-811b-future-spend-124b-anthropic-mark" target="_blank" rel="noopener">AI Weekly</a>, <a href="https://ai2.work/blog/big-tech-s-1-5t-ai-purchase-commitments-sit-off-the-balance-sheet" target="_blank" rel="noopener">AI2Work</a></li>
+    <li>Anthropic's reported $200B Google Cloud commitment (The Information via Reuters): <a href="https://idahobusinessreview.com/2026/05/06/anthropic-commits-200-billion-google-cloud-chip-capacity/" target="_blank" rel="noopener">Reuters via Idaho Business Review</a>; Alphabet's up-to-$40B investment (Bloomberg via Reuters): <a href="https://www.cyprus-mail.com/2026/04/24/google-plans-to-invest-up-to-40-billion-in-anthropic" target="_blank" rel="noopener">Cyprus Mail</a></li>
+    <li>TPU strategy: <a href="https://finance.yahoo.com/markets/stocks/article/google-to-sell-tpu-chips-to-select-customers-in-latest-shot-at-nvidia-214900221.html" target="_blank" rel="noopener">Yahoo Finance</a>, <a href="https://siliconangle.com/2026/02/26/google-meta-reportedly-strike-new-multibillion-dollar-ai-chip-deal/" target="_blank" rel="noopener">SiliconANGLE</a>, <a href="https://www.datacenterdynamics.com/en/tags/tensor-processing-unit/" target="_blank" rel="noopener">DCD</a></li>
+    <li>Waymo funding and operations: <a href="https://pulse2.com/waymo-confirms-16-billion-round" target="_blank" rel="noopener">Pulse 2.0</a>, <a href="https://www.electrive.com/2026/02/03/waymo-raises-16-billion-from-investors" target="_blank" rel="noopener">electrive</a></li>
+    <li>Wiz closing: <a href="https://www.clearygottlieb.com/news-and-insights/news-listing/google-completes-32-billion-acquisition-of-wiz" target="_blank" rel="noopener">Cleary Gottlieb</a></li>
+    <li>Apple–Gemini agreement: <a href="https://www.axios.com/2026/01/13/apple-intelligence-google-gemini-siri" target="_blank" rel="noopener">Axios</a></li>
+    <li>AI Mode and AI Overviews at I/O 2026: <a href="https://seoworth.it.com/news/google-ai-mode-1-billion-users/" target="_blank" rel="noopener">SEO Worth</a>, <a href="https://onmsft.com/?p=59061" target="_blank" rel="noopener">OnMSFT</a></li>
+    <li>Search share and AI-assistant data (third-party): <a href="https://blog.mean.ceo/?p=4572" target="_blank" rel="noopener">Mean CEO (StatCounter, a16z)</a>, <a href="https://www.adaptworldwide.com/2026/06/25/google-vs-chatgpt-ai-search-2026/" target="_blank" rel="noopener">Adapt (Similarweb)</a></li>
+    <li>Search antitrust appeals: <a href="https://winbuzzer.com/2026/02/05/doj-appeals-google-antitrust-ruling-chrome-divestiture-xcxwbn/" target="_blank" rel="noopener">WinBuzzer</a>, <a href="https://www.mlex.com/mlex/antitrust/articles/2507211/us-doj-states-argue-appeal-of-google-search-ruling-ask-for-harsher-remedies" target="_blank" rel="noopener">MLex</a>, <a href="https://www.axios.com/2026/01/13/apple-intelligence-google-gemini-siri" target="_blank" rel="noopener">Axios</a></li>
+    <li>Ad tech remedies: <a href="https://www.courthousenews.com/google-dodges-antitrust-breakup-of-ad-tech-business/" target="_blank" rel="noopener">Courthouse News</a>, <a href="https://www.adexchanger.com/antitrust/google-wont-have-to-break-up-its-ad-tech-business-judge-brinkema-rules/" target="_blank" rel="noopener">AdExchanger</a>, <a href="https://www.techpolicy.press/a-deep-dive-into-the-antitrust-remedies-that-spared-googles-ad-tech-business/" target="_blank" rel="noopener">Tech Policy Press</a></li>
+    <li>EU decisions: <a href="https://ppc.land/eu-fines-google-890-million-euros-and-gives-it-60-days-to-fix-search/" target="_blank" rel="noopener">PPC Land (DMA, Jul 2026)</a>, <a href="https://www.mwe.com/?p=337705" target="_blank" rel="noopener">McDermott (ad tech fine)</a></li>
+    <li>Market data and consensus: <a href="https://finance.yahoo.com/quote/GOOG/" target="_blank" rel="noopener">Yahoo Finance</a>, <a href="https://247wallst.com/investing/2026/09/16/prediction-alphabet-stock-at-400-may-be-just-the-beginning/" target="_blank" rel="noopener">24/7 Wall St.</a>, <a href="https://stockanalysis.com/stocks/goog/financials/cash-flow-statement/" target="_blank" rel="noopener">StockAnalysis</a></li>
+    <li>US 10-year Treasury yield: <a href="https://ycharts.com/indicators/10year_treasury_constant_maturity_rate" target="_blank" rel="noopener">YCharts</a>, <a href="https://www.mortgagenewsdaily.com:443/treasury" target="_blank" rel="noopener">Mortgage News Daily</a></li>
+  </ol>
+
+  <p class="foot"><span class="zh">免责声明：本报告为个人研究用途的初步分析，基于截至2026年9月23日的公开信息，不构成投资建议。部分数据来自第三方转述或估算，已在文中标注；模型结果高度依赖假设，请以原始文件为准并自行验证。</span><span class="en">Disclaimer: this is a preliminary analysis for personal research based on public information as of 23 September 2026, not investment advice. Some data come from third-party reports or estimates and are flagged in the text; model outputs depend heavily on assumptions, so check the original filings and verify independently.</span></p>
+</section>
+
+</div></main>
+
+<script>
+(function(){
+'use strict';
+var root=document.documentElement;
+var LS_KEY='goog-deepdive-lang';
+var lang='zh';
+try{var saved=localStorage.getItem(LS_KEY); if(saved==='zh'||saved==='en'){lang=saved;}}catch(e){}
+var reduceMotion=false;
+try{reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
+function cssVar(v){return getComputedStyle(root).getPropertyValue(v).trim();}
+function bi(zh,en){return '<span class="zh">'+zh+'</span><span class="en">'+en+'</span>';}
+function alpha(hex,a){
+  var h=(hex||'#888888').replace('#','').trim();
+  if(h.length===3){h=h.split('').map(function(c){return c+c;}).join('');}
+  var n=parseInt(h,16); if(isNaN(n)){return 'rgba(120,120,120,'+a+')';}
+  return 'rgba('+((n>>16)&255)+','+((n>>8)&255)+','+(n&255)+','+a+')';
+}
+var P={};
+function loadPalette(){
+  P={cobalt:cssVar('--cobalt'),sea:cssVar('--sea'),sand:cssVar('--sand'),rose:cssVar('--rose'),lav:cssVar('--lav'),sky:cssVar('--sky'),ink2:cssVar('--ink2'),ink3:cssVar('--ink3'),line:cssVar('--line2')};
+}
+loadPalette();
+
+/* ---------------- number helpers ---------------- */
+function f0(x){return isFinite(x)?Math.round(x).toLocaleString('en-US'):'—';}
+function f1(x){return isFinite(x)?x.toFixed(1):'—';}
+function f2(x){return isFinite(x)?x.toFixed(2):'—';}
+function pct(x,d){return isFinite(x)?(x*100).toFixed(d==null?1:d)+'%':'—';}
+function spct(x,d){if(!isFinite(x)){return '—';} return (x>=0?'+':'')+(x*100).toFixed(d==null?1:d)+'%';}
+
+/* ---------------- charts ---------------- */
+var charts=[];
+if(window.Chart){
+  Chart.defaults.font.family='Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif';
+  Chart.defaults.font.size=12;
+  Chart.defaults.color=P.ink2;
+  Chart.defaults.borderColor=P.line;
+  Chart.defaults.maintainAspectRatio=false;
+  Chart.defaults.animation.duration=reduceMotion?0:900;
+  Chart.defaults.plugins.legend.position='bottom';
+  Chart.defaults.plugins.legend.labels.boxWidth=12;
+  Chart.defaults.plugins.legend.labels.boxHeight=12;
+  Chart.defaults.plugins.legend.labels.padding=14;
+  Chart.defaults.plugins.tooltip.mode='index';
+  Chart.defaults.plugins.tooltip.intersect=false;
+  Chart.defaults.plugins.legend.labels.sort=function(a,b){return a.datasetIndex-b.datasetIndex;};
+}
+function applyChartLang(ch){
+  var i=ch.$i18n; if(!i){return;}
+  if(i.labels){ch.data.labels=i.labels[lang].slice();}
+  if(i.ds){i.ds.forEach(function(p,k){if(p&&ch.data.datasets[k]){ch.data.datasets[k].label=p[lang];}});}
+  if(i.axes){Object.keys(i.axes).forEach(function(ax){var s=ch.options.scales&&ch.options.scales[ax]; if(s){s.title={display:true,text:i.axes[ax][lang],color:P.ink3,font:{size:11}};}});}
+}
+function mk(id,cfg,i18n){
+  var el=document.getElementById(id); if(!el||!window.Chart){return null;}
+  if(cfg.options&&cfg.options.scales&&cfg.options.scales.x&&!(cfg.options.indexAxis==='y')){var xs=cfg.options.scales.x; xs.ticks=Object.assign({maxRotation:0,autoSkipPadding:8},xs.ticks||{});}
+  var ch=new Chart(el.getContext('2d'),cfg);
+  ch.$i18n=i18n||null; applyChartLang(ch); ch.update(); charts.push(ch); return ch;
+}
+var lazyFns={};
+var io=null;
+if('IntersectionObserver' in window){
+  io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ var id=en.target.id; io.unobserve(en.target); if(lazyFns[id]){var fn=lazyFns[id]; delete lazyFns[id]; fn();} } });
+  },{rootMargin:'0px 0px -12% 0px',threshold:0.15});
+}
+function lazy(id,fn){ var el=document.getElementById(id); if(!el){return;} if(io){lazyFns[id]=fn; io.observe(el);} else {fn();} }
+function money(v){return '$'+v;}
+function pctTick(v){return v+'%';}
+
+var Q=["Q1'25","Q2'25","Q3'25","Q4'25","Q1'26","Q2'26"];
+var Y=['2021','2022','2023','2024','2025','TTM'];
+
+lazy('ch-hero',function(){
+  mk('ch-hero',{type:'bar',data:{labels:Q,datasets:[
+    {label:'',data:[36.15,27.75,48.41,52.40,45.79,39.07],backgroundColor:alpha(P.sea,0.72),borderRadius:4,order:2},
+    {label:'',data:[17.20,22.45,23.95,27.85,35.67,44.92],backgroundColor:alpha(P.cobalt,0.82),borderRadius:4,order:2},
+    {type:'line',label:'',data:[18.95,5.30,24.46,24.55,10.12,-5.86],borderColor:P.rose,backgroundColor:P.rose,pointRadius:4,pointHoverRadius:6,tension:0.3,cubicInterpolationMode:'monotone',order:1}
+  ]},options:{scales:{x:{grid:{display:false}},y:{ticks:{callback:money}}}}},
+  {ds:[{zh:'经营现金流',en:'Operating cash flow'},{zh:'资本开支',en:'Capex'},{zh:'自由现金流',en:'Free cash flow'}]});
+});
+
+lazy('ch-mix',function(){
+  mk('ch-mix',{type:'bar',data:{labels:Y,datasets:[
+    {label:'',data:[148.95,162.45,175.03,198.08,224.53,243.31],backgroundColor:alpha(P.cobalt,0.85)},
+    {label:'',data:[28.85,29.24,31.51,36.15,40.37,42.58],backgroundColor:alpha(P.rose,0.7)},
+    {label:'',data:[31.70,32.78,31.31,30.36,29.79,29.45],backgroundColor:alpha(P.sand,0.7)},
+    {label:'',data:[28.03,29.06,34.69,40.34,48.03,51.74],backgroundColor:alpha(P.lav,0.72)},
+    {label:'',data:[19.21,26.28,33.09,43.23,58.71,77.62],backgroundColor:alpha(P.sea,0.85)},
+    {label:'',data:[0.75,1.07,1.53,1.65,1.54,1.50],backgroundColor:alpha(P.ink3,0.6)}
+  ]},options:{scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,ticks:{callback:money}}}}},
+  {ds:[{zh:'搜索及其他',en:'Search & other'},{zh:'YouTube广告',en:'YouTube ads'},{zh:'谷歌网络',en:'Google Network'},{zh:'订阅/平台/设备',en:'Subs/platforms/devices'},{zh:'谷歌云',en:'Google Cloud'},{zh:'其他押注',en:'Other Bets'}]});
+});
+
+lazy('ch-growth',function(){
+  mk('ch-growth',{type:'line',data:{labels:Q,datasets:[
+    {label:'',data:[10,12,15,17,19,17],borderColor:P.cobalt,backgroundColor:P.cobalt,tension:0.3,cubicInterpolationMode:'monotone',pointRadius:3},
+    {label:'',data:[10,13,15,9,11,13],borderColor:P.rose,backgroundColor:P.rose,tension:0.3,cubicInterpolationMode:'monotone',pointRadius:3},
+    {label:'',data:[28,32,34,48,63,82],borderColor:P.sea,backgroundColor:P.sea,tension:0.3,cubicInterpolationMode:'monotone',pointRadius:3},
+    {label:'',data:[12,14,16,18,22,24],borderColor:P.ink3,backgroundColor:P.ink3,borderDash:[5,4],tension:0.3,cubicInterpolationMode:'monotone',pointRadius:2}
+  ]},options:{scales:{x:{grid:{display:false}},y:{ticks:{callback:pctTick}}}}},
+  {ds:[{zh:'搜索及其他',en:'Search & other'},{zh:'YouTube广告',en:'YouTube ads'},{zh:'谷歌云',en:'Google Cloud'},{zh:'总收入',en:'Total revenue'}]});
+});
+
+lazy('ch-cloud',function(){
+  mk('ch-cloud',{type:'bar',data:{labels:Q,datasets:[
+    {label:'',data:[12.26,13.62,15.16,17.66,20.03,24.77],backgroundColor:alpha(P.sea,0.78),borderRadius:4,yAxisID:'y',order:2},
+    {type:'line',label:'',data:[17.8,20.7,23.7,30.1,32.9,35.6],borderColor:P.cobalt,backgroundColor:P.cobalt,tension:0.3,cubicInterpolationMode:'monotone',pointRadius:3,yAxisID:'y1',order:1}
+  ]},options:{scales:{x:{grid:{display:false}},y:{position:'left',ticks:{callback:money}},y1:{position:'right',grid:{display:false},ticks:{callback:pctTick},min:0,max:45}}}},
+  {ds:[{zh:'云收入（$B）',en:'Cloud revenue ($B)'},{zh:'经营利润率',en:'Operating margin'}]});
+});
+
+lazy('ch-backlog',function(){
+  mk('ch-backlog',{type:'bar',data:{labels:["Q4'24","Q3'25","Q4'25","Q1'26","Q2'26"],datasets:[
+    {label:'',data:[93.2,155,242.8,462,513.9],backgroundColor:[alpha(P.lav,0.45),alpha(P.lav,0.55),alpha(P.lav,0.65),alpha(P.lav,0.78),alpha(P.lav,0.9)],borderRadius:4}
+  ]},options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{ticks:{callback:money}}}}},
+  {ds:[{zh:'云合同积压',en:'Cloud backlog'}]});
+});
+
+lazy('ch-alloc',function(){
+  mk('ch-alloc',{type:'bar',data:{labels:['2021','2022','2023','2024','2025','2026H1'],datasets:[
+    {label:'',data:[24.64,31.49,32.25,52.54,91.45,80.60],backgroundColor:alpha(P.cobalt,0.82)},
+    {label:'',data:[50.27,59.30,62.18,62.22,45.71,0],backgroundColor:alpha(P.sea,0.78)},
+    {label:'',data:[0,0,0,7.36,10.05,5.23],backgroundColor:alpha(P.sand,0.8)},
+    {label:'',data:[2.62,6.97,0.50,2.93,1.59,33.70],backgroundColor:alpha(P.lav,0.78)},
+    {label:'',data:[0,0,0,0,0,-49.56],backgroundColor:alpha(P.rose,0.78)}
+  ]},options:{scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,ticks:{callback:money}}}}},
+  {labels:{zh:['2021','2022','2023','2024','2025','2026上半年'],en:['2021','2022','2023','2024','2025','H1 2026']},
+   ds:[{zh:'资本开支',en:'Capex'},{zh:'股票回购',en:'Buybacks'},{zh:'现金分红',en:'Dividends'},{zh:'并购',en:'Acquisitions'},{zh:'股权融资（流入）',en:'Equity raised (inflow)'}]});
+});
+
+lazy('ch-roic',function(){
+  mk('ch-roic',{type:'bar',data:{labels:['2024','2025','TTM','a','b'],datasets:[
+    {label:'',data:[51.1,41.3,33.5,15.7,19.0],backgroundColor:[alpha(P.cobalt,0.8),alpha(P.cobalt,0.7),alpha(P.cobalt,0.6),alpha(P.sand,0.8),alpha(P.sand,0.65)],borderRadius:4,order:2},
+    {type:'line',label:'',data:[9,9,9,9,9],borderColor:P.rose,borderDash:[6,4],pointRadius:0,borderWidth:1.5,order:1}
+  ]},options:{scales:{x:{grid:{display:false}},y:{min:0,max:60,ticks:{callback:pctTick}}}}},
+  {labels:{zh:['2024','2025','TTM',['增量','ROIC'],['增量','剔除Wiz']],en:['2024','2025','TTM',['Incremental','ROIC'],['Incremental','ex-Wiz']]},
+   ds:[{zh:'ROIC',en:'ROIC'},{zh:'资本成本约9%',en:'Cost of capital ~9%'}]});
+});
+
+lazy('ch-intensity',function(){
+  mk('ch-intensity',{type:'line',data:{labels:['2021','2022','2023','2024','2025','TTM','2026E'],datasets:[
+    {label:'',data:[9.6,11.1,10.5,15.0,22.7,29.7,40.2],borderColor:P.cobalt,backgroundColor:P.cobalt,tension:0.3,cubicInterpolationMode:'monotone',pointRadius:3},
+    {label:'',data:[26.0,21.2,22.6,20.8,18.2,11.9,null],borderColor:P.sea,backgroundColor:P.sea,tension:0.3,cubicInterpolationMode:'monotone',pointRadius:3},
+    {label:'',data:[41.7,42.8,37.0,29.1,23.1,19.1,null],borderColor:P.sand,backgroundColor:P.sand,borderDash:[5,4],tension:0.3,cubicInterpolationMode:'monotone',pointRadius:3}
+  ]},options:{scales:{x:{grid:{display:false}},y:{min:0,ticks:{callback:pctTick}}}}},
+  {ds:[{zh:'资本开支/收入',en:'Capex / revenue'},{zh:'自由现金流/收入',en:'FCF / revenue'},{zh:'折旧/资本开支',en:'Depreciation / capex'}]});
+});
+
+/* ---------------- DCF model ---------------- */
+var BASE={sg26:0.15,sgMid:0.11,sgLate:0.07,sm26:0.43,smLT:0.42,cg26:0.75,cgMid:0.35,cgLate:0.13,cm26:0.33,cmLT:0.34,al:0.045,tax:0.17,nc26:0.34,nc27:0.35,ncSS:0.06,wacc:0.09,g:0.03,ronic:0.25,price:335,shares:12309,netcash:50.3,spacex:94.0,priv:124.3,hair:0.18,ob:80,mcps:19.3};
+var OPS={
+  base:{sg26:0.15,sgMid:0.11,sgLate:0.07,sm26:0.43,smLT:0.42,cg26:0.75,cgMid:0.35,cgLate:0.13,cm26:0.33,cmLT:0.34,al:0.045,nc27:0.35,ncSS:0.06,g:0.03,ronic:0.25,ob:80,hair:0.18},
+  bear:{sg26:0.13,sgMid:0.07,sgLate:0.04,sm26:0.42,smLT:0.39,cg26:0.65,cgMid:0.25,cgLate:0.10,cm26:0.30,cmLT:0.29,al:0.045,nc27:0.36,ncSS:0.07,g:0.025,ronic:0.20,ob:50,hair:0.25},
+  bull:{sg26:0.16,sgMid:0.125,sgLate:0.075,sm26:0.44,smLT:0.43,cg26:0.80,cgMid:0.42,cgLate:0.16,cm26:0.35,cmLT:0.37,al:0.042,nc27:0.34,ncSS:0.05,g:0.03,ronic:0.30,ob:110,hair:0.12}
+};
+var S0=342.721, C0=58.705;
+function clone(o){return JSON.parse(JSON.stringify(o));}
+function run(p){
+  var r={yrs:[],S:[],C:[],R:[],E:[],N:[],NC:[],F:[],PV:[]};
+  var s=S0,c=C0,ev=0;
+  for(var y=2026;y<=2035;y++){
+    var gs=(y===2026)?p.sg26:((y<=2030)?p.sgMid:p.sgLate);
+    var gc=(y===2026)?p.cg26:((y<=2030)?p.cgMid:p.cgLate);
+    s*=1+gs; c*=1+gc;
+    var f=Math.min(1,(y-2026)/4);
+    var sm=p.sm26+(p.smLT-p.sm26)*f, cm=p.cm26+(p.cmLT-p.cm26)*f;
+    var nc=(y===2026)?p.nc26:((y===2027)?p.nc27:((y>=2032)?p.ncSS:(p.nc27+(p.ncSS-p.nc27)*(y-2027)/5)));
+    var rev=s+c, ebit=s*sm+c*cm-p.al*rev, nopat=ebit*(1-p.tax), netc=nc*rev, fcf=nopat-netc;
+    var t=(y===2026)?0.25:(y-2026), cf=(y===2026)?0.5*fcf:fcf, pv=cf/Math.pow(1+p.wacc,t);
+    ev+=pv;
+    r.yrs.push(y); r.S.push(s); r.C.push(c); r.R.push(rev); r.E.push(ebit); r.N.push(nopat); r.NC.push(netc); r.F.push(fcf); r.PV.push(pv);
+  }
+  var nT=r.N[9]*(1+p.g);
+  var tv=(p.wacc>p.g+0.0005)?nT*(1-p.g/p.ronic)/(p.wacc-p.g):NaN;
+  r.pvtv=tv/Math.pow(1+p.wacc,9.5); r.tv=tv;
+  r.EV=ev+r.pvtv;
+  r.eq=r.EV+p.netcash+(p.spacex+p.priv)*(1-p.hair)+p.ob-p.mcps;
+  r.ps=r.eq/(p.shares/1000);
+  var sumNC=0; for(var i=0;i<9;i++){sumNC+=r.NC[i];}
+  r.incROIC=(r.N[9]-r.N[0])/sumNC;
+  r.tvShare=r.pvtv/r.EV;
+  return r;
+}
+function solve(fn,lo,hi,target){
+  var flo=fn(lo)-target, fhi=fn(hi)-target;
+  if(!isFinite(flo)||!isFinite(fhi)||flo*fhi>0){return null;}
+  for(var k=0;k<70;k++){
+    var m=(lo+hi)/2, fm=fn(m)-target;
+    if(!isFinite(fm)){return null;}
+    if(fm*flo>0){lo=m;flo=fm;}else{hi=m;}
+  }
+  return (lo+hi)/2;
+}
+function scaled(p,s){var q=clone(p); q.sgMid=p.sgMid*s; q.sgLate=p.sgLate*s; q.cgMid=p.cgMid*s; q.cgLate=p.cgLate*s; return q;}
+
+var SPEC=[
+  {g:'svc',id:'sg26',zh:'2026年收入增速',en:'2026 revenue growth',min:0,max:0.30,step:0.005,fmt:'pct'},
+  {g:'svc',id:'sgMid',zh:'2027–2030年年化增速',en:'2027–30 annual growth',min:0,max:0.25,step:0.005,fmt:'pct'},
+  {g:'svc',id:'sgLate',zh:'2031–2035年年化增速',en:'2031–35 annual growth',min:0,max:0.15,step:0.005,fmt:'pct'},
+  {g:'svc',id:'sm26',zh:'2026年经营利润率',en:'2026 operating margin',min:0.30,max:0.50,step:0.005,fmt:'pct'},
+  {g:'svc',id:'smLT',zh:'2030年起经营利润率',en:'Operating margin from 2030',min:0.25,max:0.50,step:0.005,fmt:'pct'},
+  {g:'cld',id:'cg26',zh:'2026年收入增速',en:'2026 revenue growth',min:0,max:1.2,step:0.01,fmt:'pct',dec:0},
+  {g:'cld',id:'cgMid',zh:'2027–2030年年化增速',en:'2027–30 annual growth',min:0,max:0.60,step:0.01,fmt:'pct',dec:0},
+  {g:'cld',id:'cgLate',zh:'2031–2035年年化增速',en:'2031–35 annual growth',min:0,max:0.30,step:0.005,fmt:'pct'},
+  {g:'cld',id:'cm26',zh:'2026年经营利润率',en:'2026 operating margin',min:0.10,max:0.45,step:0.005,fmt:'pct'},
+  {g:'cld',id:'cmLT',zh:'2030年起经营利润率',en:'Operating margin from 2030',min:0.10,max:0.50,step:0.005,fmt:'pct'},
+  {g:'cost',id:'al',zh:'Alphabet层面费用占收入',en:'Alphabet-level costs / revenue',min:0,max:0.10,step:0.0025,fmt:'pct',dec:2},
+  {g:'cost',id:'tax',zh:'税率',en:'Tax rate',min:0.10,max:0.25,step:0.005,fmt:'pct'},
+  {g:'cost',id:'nc26',zh:'2026年净资本开支占收入',en:'2026 net capex / revenue',min:0.10,max:0.50,step:0.005,fmt:'pct'},
+  {g:'cost',id:'nc27',zh:'2027年净资本开支占收入',en:'2027 net capex / revenue',min:0.10,max:0.55,step:0.005,fmt:'pct'},
+  {g:'cost',id:'ncSS',zh:'2032年起净资本开支占收入',en:'Net capex / revenue from 2032',min:0,max:0.20,step:0.005,fmt:'pct'},
+  {g:'disc',id:'wacc',zh:'加权资本成本（WACC）',en:'Discount rate (WACC)',min:0.06,max:0.13,step:0.0025,fmt:'pct',dec:2},
+  {g:'disc',id:'g',zh:'永续增长率',en:'Terminal growth',min:0,max:0.05,step:0.0025,fmt:'pct',dec:2},
+  {g:'disc',id:'ronic',zh:'终值期新增资本回报率（RONIC）',en:'Return on new capital in terminal (RONIC)',min:0.08,max:0.60,step:0.01,fmt:'pct',dec:0},
+  {g:'bs',id:'price',zh:'股价（美元）',en:'Share price ($)',type:'num',step:1,fmt:'usd'},
+  {g:'bs',id:'shares',zh:'稀释股数（百万股）',en:'Diluted shares (millions)',type:'num',step:10,fmt:'m'},
+  {g:'bs',id:'netcash',zh:'经营性净现金（$B）',en:'Operating net cash ($B)',type:'num',step:1,fmt:'b'},
+  {g:'bs',id:'spacex',zh:'SpaceX持股（$B）',en:'SpaceX stake ($B)',type:'num',step:1,fmt:'b'},
+  {g:'bs',id:'priv',zh:'私募股权投资（$B）',en:'Private stakes ($B)',type:'num',step:1,fmt:'b'},
+  {g:'bs',id:'hair',zh:'股权投资税费折价',en:'Tax haircut on stakes',min:0,max:0.5,step:0.01,fmt:'pct',dec:0},
+  {g:'bs',id:'ob',zh:'其他押注（Waymo等）估值（$B）',en:'Other Bets (Waymo etc.) value ($B)',type:'num',step:5,fmt:'b'},
+  {g:'bs',id:'mcps',zh:'强制可转换优先股（$B）',en:'Mandatory convertible preferred ($B)',type:'num',step:0.5,fmt:'b'}
+];
+var GROUPS=[
+  {id:'svc',zh:'谷歌服务',en:'Google Services'},
+  {id:'cld',zh:'谷歌云',en:'Google Cloud'},
+  {id:'cost',zh:'费用、税与再投资',en:'Costs, tax and reinvestment'},
+  {id:'disc',zh:'折现',en:'Discounting'},
+  {id:'bs',zh:'资产负债表与投资',en:'Balance sheet and stakes'}
+];
+var cur=clone(BASE);
+var activePreset='base';
+function fmtSpec(sp,v){
+  if(sp.fmt==='pct'){return (v*100).toFixed(sp.dec==null?1:sp.dec)+'%';}
+  if(sp.fmt==='usd'){return '$'+Number(v).toFixed(0);}
+  if(sp.fmt==='b'){return '$'+Number(v).toFixed(1)+'B';}
+  if(sp.fmt==='m'){return f0(v)+'M';}
+  return String(v);
+}
+function buildControls(){
+  var host=document.getElementById('ctrls'); if(!host){return;}
+  var html='';
+  GROUPS.forEach(function(gp){
+    var wide=(gp.id==='bs');
+    html+='<div class="cg'+(wide?' wide':'')+'"><h6>'+bi(gp.zh,gp.en)+'</h6>'+(wide?'<div class="cgrid">':'');
+    SPEC.filter(function(s){return s.g===gp.id;}).forEach(function(sp){
+      var v=cur[sp.id];
+      html+='<div class="ctl"><label for="in-'+sp.id+'">'+bi(sp.zh,sp.en)+'</label><output id="out-'+sp.id+'">'+fmtSpec(sp,v)+'</output>';
+      if(sp.type==='num'){ html+='<input type="number" id="in-'+sp.id+'" step="'+sp.step+'" value="'+v+'">'; }
+      else { html+='<input type="range" id="in-'+sp.id+'" min="'+sp.min+'" max="'+sp.max+'" step="'+sp.step+'" value="'+v+'">'; }
+      html+='</div>';
+    });
+    html+=(wide?'</div>':'')+'</div>';
+  });
+  host.innerHTML=html;
+  SPEC.forEach(function(sp){
+    var el=document.getElementById('in-'+sp.id);
+    el.addEventListener('input',function(){
+      var v=parseFloat(el.value); if(!isFinite(v)){return;}
+      cur[sp.id]=v; document.getElementById('out-'+sp.id).textContent=fmtSpec(sp,v);
+      activePreset=null; markPreset(); schedule();
+    });
+  });
+}
+function syncInputs(){
+  SPEC.forEach(function(sp){
+    var el=document.getElementById('in-'+sp.id); if(!el){return;}
+    el.value=cur[sp.id]; document.getElementById('out-'+sp.id).textContent=fmtSpec(sp,cur[sp.id]);
+  });
+}
+function markPreset(){
+  var btns=document.querySelectorAll('#presetbar button');
+  btns.forEach(function(b){ var p=b.getAttribute('data-p'); b.classList.toggle('on', p===activePreset); });
+  var note=document.getElementById('presetnote');
+  if(note){ note.innerHTML=activePreset?'':bi('当前为自定义参数','Custom inputs'); }
+}
+var pending=false;
+function schedule(){ if(pending){return;} pending=true; requestAnimationFrame(function(){pending=false; recompute();}); }
+
+var dcfChart=null, pendingDCF=null, sotpChart=null, pendingSOTP=null;
+function drawDCF(r){
+  pendingDCF=r;
+  if(!dcfChart){return;}
+  dcfChart.data.datasets[0].data=r.N.map(function(x){return +x.toFixed(1);});
+  dcfChart.data.datasets[1].data=r.NC.map(function(x){return -(+x.toFixed(1));});
+  dcfChart.data.datasets[2].data=r.F.map(function(x){return +x.toFixed(1);});
+  dcfChart.update();
+}
+lazy('ch-dcf',function(){
+  var pr=pendingDCF, dN=pr?pr.N.map(function(x){return +x.toFixed(1);}):[], dC=pr?pr.NC.map(function(x){return -(+x.toFixed(1));}):[], dF=pr?pr.F.map(function(x){return +x.toFixed(1);}):[];
+  dcfChart=mk('ch-dcf',{type:'bar',data:{labels:['2026E','2027E','2028E','2029E','2030E','2031E','2032E','2033E','2034E','2035E'],datasets:[
+    {label:'',data:dN,backgroundColor:alpha(P.cobalt,0.75),borderRadius:3,order:2},
+    {label:'',data:dC,backgroundColor:alpha(P.sand,0.7),borderRadius:3,order:2},
+    {type:'line',label:'',data:dF,borderColor:P.sea,backgroundColor:P.sea,tension:0.3,cubicInterpolationMode:'monotone',pointRadius:3,order:1}
+  ]},options:{animation:{duration:reduceMotion?0:450},scales:{x:{grid:{display:false}},y:{ticks:{callback:money}}}}},
+  {ds:[{zh:'NOPAT',en:'NOPAT'},{zh:'净资本开支（负值）',en:'Net capex (negative)'},{zh:'自由现金流',en:'Free cash flow'}]});
+});
+
+function outCell(zh,en,val,cls,sub){
+  return '<div><b class="'+(cls||'')+'">'+val+'</b><span>'+bi(zh,en)+(sub?'<br>'+sub:'')+'</span></div>';
+}
+function recompute(){
+  var r=run(cur);
+  var up=r.ps/cur.price-1;
+  var eps27=r.N[1]/(cur.shares/1000);
+  var outs=document.getElementById('outs');
+  if(outs){
+    outs.innerHTML=
+      outCell('每股内在价值','Value per share','$'+f0(r.ps))+
+      outCell('相对当前股价','Versus current price',spct(up),up>=0?'pos':'neg')+
+      outCell('核心企业价值（$B）','Core enterprise value ($B)','$'+f0(r.EV))+
+      outCell('终值占企业价值','Terminal value share of EV',pct(r.tvShare,0))+
+      outCell('2027E核心EPS（NOPAT/股）','2027E core EPS (NOPAT/share)','$'+f2(eps27))+
+      outCell('按股价对应2027E市盈率','Implied 2027E P/E at price',f1(cur.price/eps27)+'x')+
+      outCell('2030E收入（服务＋云，$B）','2030E revenue (Services + Cloud, $B)','$'+f0(r.R[4]))+
+      outCell('模型隐含增量ROIC','Implied incremental ROIC',pct(r.incROIC,0),r.incROIC<cur.wacc?'neg':'',bi('2026→2035年NOPAT增量 ÷ 累计净资本开支','ΔNOPAT 2026→35 ÷ cumulative net capex'));
+  }
+  drawDCF(r);
+  reverseDCF(r);
+  sensitivity();
+  scenarios();
+  sotp(r);
+}
+function reverseDCF(r){
+  var tb=document.querySelector('#revtbl tbody'); if(!tb){return;}
+  var price=cur.price;
+  var s=solve(function(x){return run(scaled(cur,x)).ps;},0,4,price);
+  var cagr=NaN, r35=NaN;
+  if(s!==null){ var rr=run(scaled(cur,s)); r35=rr.R[9]; cagr=Math.pow(r35/(S0+C0),0.1)-1; }
+  var baseCagr=Math.pow(r.R[9]/(S0+C0),0.1)-1;
+  var m=solve(function(x){var q=clone(cur); q.smLT=x; return run(q).ps;},0.05,0.85,price);
+  var irr=solve(function(x){var q=clone(cur); q.wacc=x; return run(q).ps;},cur.g+0.003,0.30,price);
+  function row(zh,en,v){return '<tr><td>'+bi(zh,en)+'</td><td class="n">'+v+'</td></tr>';}
+  tb.innerHTML=
+    row('你的假设：2025–2035年收入年化增速','Your inputs: 2025–35 revenue CAGR',pct(baseCagr))+
+    row('价格隐含：2027–2035年增速需乘以','Price implies: multiply 2027–35 growth by',s===null?bi('超出范围','out of range'):f2(s)+'x')+
+    row('价格隐含：2025–2035年收入年化增速','Price implies: 2025–35 revenue CAGR',s===null?'—':pct(cagr))+
+    row('价格隐含：2035年收入（$B）','Price implies: 2035 revenue ($B)',s===null?'—':'$'+f0(r35))+
+    row('价格隐含：2030年起服务利润率（其余不变）','Price implies: Services margin from 2030 (others fixed)',m===null?bi('超出范围','out of range'):pct(m))+
+    row('价格隐含的年化回报率（IRR）','Implied annual return (IRR)',irr===null?bi('超出范围','out of range'):pct(irr,2))+
+    row('与你的WACC之差','Versus your WACC',irr===null?'—':spct(irr-cur.wacc,2));
+}
+function sensitivity(){
+  var tbl=document.getElementById('senstbl'); if(!tbl){return;}
+  var ws=[-0.01,-0.005,0,0.005,0.01].map(function(d){return Math.round((cur.wacc+d)*10000)/10000;});
+  var gs=[-0.01,-0.005,0,0.005,0.01].map(function(d){return Math.max(0,Math.round((cur.g+d)*10000)/10000);});
+  var h='<thead><tr><th>WACC / g</th>'+gs.map(function(g){return '<th>'+(g*100).toFixed(2)+'%</th>';}).join('')+'</tr></thead><tbody>';
+  ws.forEach(function(w,i){
+    h+='<tr><th>'+(w*100).toFixed(2)+'%</th>';
+    gs.forEach(function(g,j){
+      var txt='—', st='';
+      if(w-g>0.005){ var q=clone(cur); q.wacc=w; q.g=g; var v=run(q).ps; txt='$'+f0(v); st=(v>=cur.price)?'background:var(--sea-soft);color:var(--sea)':'background:var(--rose-soft);color:var(--rose)'; }
+      if(i===2&&j===2){st+=';font-weight:700;outline:2px solid var(--cobalt);outline-offset:-2px';}
+      h+='<td style="'+st+'">'+txt+'</td>';
+    });
+    h+='</tr>';
+  });
+  tbl.innerHTML=h+'</tbody>';
+}
+var probs={bear:25,base:50,bull:25};
+function scenarios(){
+  var tbl=document.getElementById('scentbl'); if(!tbl){return;}
+  var names=[['bear','熊市','Bear'],['base','基准','Base'],['bull','牛市','Bull']];
+  var vals={}; names.forEach(function(n){ var q=clone(cur); Object.keys(OPS[n[0]]).forEach(function(k){q[k]=OPS[n[0]][k];}); vals[n[0]]=run(q).ps; });
+  var sw=probs.bear+probs.base+probs.bull;
+  var wv=sw>0?(vals.bear*probs.bear+vals.base*probs.base+vals.bull*probs.bull)/sw:NaN;
+  var h='<thead><tr><th>'+bi('情景','Scenario')+'</th><th class="n">'+bi('每股价值','Value/share')+'</th><th class="n">'+bi('相对股价','vs price')+'</th><th class="n">'+bi('概率（%）','Probability (%)')+'</th></tr></thead><tbody>';
+  names.forEach(function(n){
+    var v=vals[n[0]], u=v/cur.price-1;
+    h+='<tr><td>'+bi(n[1],n[2])+'</td><td class="n">$'+f0(v)+'</td><td class="n '+(u>=0?'pos':'neg')+'">'+spct(u)+'</td><td class="n"><input type="number" min="0" max="100" step="5" value="'+probs[n[0]]+'" data-prob="'+n[0]+'" style="width:72px;font:inherit;font-size:13px;padding:3px 6px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)"></td></tr>';
+  });
+  var cv=run(cur).ps, cu=cv/cur.price-1;
+  h+='<tr><td>'+bi('你当前的参数','Your current inputs')+'</td><td class="n">$'+f0(cv)+'</td><td class="n '+(cu>=0?'pos':'neg')+'">'+spct(cu)+'</td><td class="n">—</td></tr>';
+  var wu=wv/cur.price-1;
+  h+='<tr><td><strong>'+bi('概率加权价值','Probability-weighted value')+'</strong></td><td class="n"><strong>$'+f0(wv)+'</strong></td><td class="n '+(wu>=0?'pos':'neg')+'"><strong>'+spct(wu)+'</strong></td><td class="n">'+sw+'%</td></tr></tbody>';
+  tbl.innerHTML=h;
+  tbl.querySelectorAll('input[data-prob]').forEach(function(inp){
+    inp.addEventListener('change',function(){ var v=parseFloat(inp.value); if(isFinite(v)&&v>=0){probs[inp.getAttribute('data-prob')]=v; scenarios();} });
+  });
+}
+
+/* ---------------- SOTP ---------------- */
+var SOTP={svcMult:17,cldMult:7,alMult:17};
+var SOTPSPEC=[
+  {id:'svcMult',zh:'服务分部 EV/EBIT（2027E）',en:'Services EV/EBIT (2027E)',min:8,max:30,step:0.5},
+  {id:'cldMult',zh:'云分部 EV/收入（2027E）',en:'Cloud EV/sales (2027E)',min:2,max:15,step:0.25},
+  {id:'alMult',zh:'Alphabet层面费用资本化倍数',en:'Multiple on Alphabet-level costs',min:8,max:30,step:0.5}
+];
+function buildSotpControls(){
+  var host=document.getElementById('sotpctrls'); if(!host){return;}
+  var html='';
+  SOTPSPEC.forEach(function(sp){
+    html+='<div class="cg"><div class="ctl"><label for="so-'+sp.id+'">'+bi(sp.zh,sp.en)+'</label><output id="soo-'+sp.id+'">'+SOTP[sp.id].toFixed(sp.step<0.5?2:1)+'x</output><input type="range" id="so-'+sp.id+'" min="'+sp.min+'" max="'+sp.max+'" step="'+sp.step+'" value="'+SOTP[sp.id]+'"></div></div>';
+  });
+  host.innerHTML=html;
+  SOTPSPEC.forEach(function(sp){
+    var el=document.getElementById('so-'+sp.id);
+    el.addEventListener('input',function(){ var v=parseFloat(el.value); if(!isFinite(v)){return;} SOTP[sp.id]=v; document.getElementById('soo-'+sp.id).textContent=v.toFixed(sp.step<0.5?2:1)+'x'; sotp(run(cur)); });
+  });
+}
+function sotp(r){
+  var tbl=document.getElementById('sotptbl'); if(!tbl){return;}
+  var S27=r.S[1], C27=r.C[1];
+  var sm27=cur.sm26+(cur.smLT-cur.sm26)*0.25, cm27=cur.cm26+(cur.cmLT-cur.cm26)*0.25;
+  var svcE=S27*sm27, al27=cur.al*(S27+C27);
+  var parts=[
+    {zh:'谷歌服务',en:'Google Services',basis:bi('EBIT ','EBIT ')+'$'+f1(svcE)+'B × '+SOTP.svcMult.toFixed(1)+'x',v:svcE*SOTP.svcMult},
+    {zh:'谷歌云',en:'Google Cloud',basis:bi('收入 ','Sales ')+'$'+f1(C27)+'B × '+SOTP.cldMult.toFixed(2)+'x'+' <span class="small">('+bi('约','≈')+f1(SOTP.cldMult/cm27)+'x EBIT)</span>',v:C27*SOTP.cldMult},
+    {zh:'Alphabet层面费用',en:'Alphabet-level costs',basis:'−$'+f1(al27)+'B × '+SOTP.alMult.toFixed(1)+'x',v:-al27*SOTP.alMult},
+    {zh:'其他押注（Waymo等）',en:'Other Bets (Waymo etc.)',basis:bi('假设值','Assumption'),v:cur.ob},
+    {zh:'SpaceX持股（税后）',en:'SpaceX stake (after tax)',basis:'$'+f1(cur.spacex)+'B × (1−'+pct(cur.hair,0)+')',v:cur.spacex*(1-cur.hair)},
+    {zh:'私募股权（税后）',en:'Private stakes (after tax)',basis:'$'+f1(cur.priv)+'B × (1−'+pct(cur.hair,0)+')',v:cur.priv*(1-cur.hair)},
+    {zh:'经营性净现金',en:'Operating net cash',basis:'',v:cur.netcash},
+    {zh:'强制可转换优先股',en:'Mandatory convertible preferred',basis:'',v:-cur.mcps}
+  ];
+  var tot=0; parts.forEach(function(p){tot+=p.v;});
+  var sh=cur.shares/1000, ps=tot/sh, u=ps/cur.price-1;
+  var h='<thead><tr><th>'+bi('组成部分','Component')+'</th><th>'+bi('计算基础','Basis')+'</th><th class="n">$B</th><th class="n">'+bi('每股','Per share')+'</th></tr></thead><tbody>';
+  parts.forEach(function(p){ h+='<tr><td>'+bi(p.zh,p.en)+'</td><td>'+p.basis+'</td><td class="n">'+f0(p.v)+'</td><td class="n">$'+f0(p.v/sh)+'</td></tr>'; });
+  h+='<tr><td><strong>'+bi('股权价值合计','Total equity value')+'</strong></td><td></td><td class="n"><strong>'+f0(tot)+'</strong></td><td class="n"><strong>$'+f0(ps)+'</strong> <span class="'+(u>=0?'pos':'neg')+'">('+spct(u)+')</span></td></tr></tbody>';
+  tbl.innerHTML=h;
+  pendingSOTP=parts;
+  if(sotpChart){
+    sotpChart.$i18n.labels={zh:parts.map(function(p){return p.zh;}),en:parts.map(function(p){return p.en;})};
+    applyChartLang(sotpChart);
+    sotpChart.data.datasets[0].data=parts.map(function(p){return +p.v.toFixed(0);});
+    sotpChart.data.datasets[0].backgroundColor=parts.map(function(p){return p.v>=0?alpha(P.cobalt,0.78):alpha(P.rose,0.78);});
+    sotpChart.update();
+  }
+}
+lazy('ch-sotp',function(){
+  var parts=pendingSOTP||[];
+  sotpChart=mk('ch-sotp',{type:'bar',data:{labels:parts.map(function(p){return p.zh;}),datasets:[
+    {label:'',data:parts.map(function(p){return +p.v.toFixed(0);}),backgroundColor:parts.map(function(p){return p.v>=0?alpha(P.cobalt,0.78):alpha(P.rose,0.78);}),borderRadius:3}
+  ]},options:{indexAxis:'y',animation:{duration:reduceMotion?0:450},plugins:{legend:{display:false}},scales:{x:{ticks:{callback:money}},y:{grid:{display:false}}}}},
+  {labels:{zh:parts.map(function(p){return p.zh;}),en:parts.map(function(p){return p.en;})},ds:[{zh:'价值（$B）',en:'Value ($B)'}]});
+});
+
+/* ---------------- presets ---------------- */
+function bindPresets(){
+  document.querySelectorAll('#presetbar button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var p=b.getAttribute('data-p');
+      if(p==='reset'){cur=clone(BASE); activePreset='base';}
+      else { Object.keys(OPS[p]).forEach(function(k){cur[k]=OPS[p][k];}); activePreset=p; }
+      syncInputs(); markPreset(); recompute();
+    });
+  });
+}
+
+/* ---------------- language ---------------- */
+function setLang(l){
+  lang=l; root.setAttribute('data-lang',l); root.setAttribute('lang',l==='zh'?'zh-CN':'en');
+  var bz=document.getElementById('btn-zh'), be=document.getElementById('btn-en');
+  if(bz){bz.setAttribute('aria-pressed',String(l==='zh'));} if(be){be.setAttribute('aria-pressed',String(l==='en'));}
+  try{localStorage.setItem(LS_KEY,l);}catch(e){}
+  charts.forEach(function(ch){applyChartLang(ch); ch.update('none');});
+}
+var bz=document.getElementById('btn-zh'), be=document.getElementById('btn-en');
+if(bz){bz.addEventListener('click',function(){setLang('zh');});}
+if(be){be.addEventListener('click',function(){setLang('en');});}
+
+/* ---------------- TOC + drawer ---------------- */
+var links=Array.prototype.slice.call(document.querySelectorAll('.side a[href^="#"]'));
+var map={}; links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+if('IntersectionObserver' in window){
+  var tocIO=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ links.forEach(function(a){a.classList.remove('active');}); var a=map[en.target.id]; if(a){a.classList.add('active');} } });
+  },{rootMargin:'-40% 0px -55% 0px',threshold:0});
+  document.querySelectorAll('section.sec').forEach(function(s){tocIO.observe(s);});
+}
+var menubtn=document.getElementById('menubtn');
+if(menubtn){menubtn.addEventListener('click',function(){document.body.classList.toggle('nav-open');});}
+links.forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('nav-open');});});
+
+/* ---------------- init ---------------- */
+setLang(lang);
+buildControls();
+buildSotpControls();
+bindPresets();
+markPreset();
+recompute();
+})();
+</script>
+</body>
+</html>

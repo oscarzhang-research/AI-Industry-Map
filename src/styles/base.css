@@ -1,0 +1,259 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+img,
+svg,
+canvas {
+  max-width: 100%;
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+::selection {
+  background: var(--accent-wash);
+}
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+  margin: 0;
+  color: var(--ink);
+}
+h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--step-4);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--step-3);
+  line-height: 1.2;
+}
+h3 {
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.35;
+}
+h4 {
+  font-size: var(--step-0);
+  font-weight: 600;
+}
+p {
+  margin: 0;
+}
+small {
+  font-size: var(--step--1);
+}
+code,
+kbd,
+.mono {
+  font-family: var(--font-mono);
+}
+.num,
+table td.n,
+table th.n {
+  font-variant-numeric: tabular-nums;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+}
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+[hidden] {
+  display: none !important;
+}
+
+/* ---- Layout primitives ---------------------------------------------------- */
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.page {
+  flex: 1;
+  padding-block: 28px 72px;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap, 16px);
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap, 10px);
+}
+.grid {
+  display: grid;
+  gap: var(--gap, 16px);
+}
+.cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+@media (max-width: 960px) {
+  .cols-3,
+  .cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .cols-2,
+  .cols-3,
+  .cols-4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.min0 {
+  min-width: 0;
+}
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+.muted {
+  color: var(--muted);
+}
+.faint {
+  color: var(--faint);
+}
+.ink2 {
+  color: var(--ink-2);
+}
+.eyebrow {
+  font-family: var(--font-cond);
+  font-size: var(--step--2);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.lede {
+  font-size: var(--step-1);
+  color: var(--ink-2);
+  max-width: 68ch;
+  line-height: 1.65;
+}
+.prose {
+  max-width: 72ch;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.prose p + p,
+.prose p + ul,
+.prose ul + p,
+.prose p + ol,
+.prose ol + p {
+  margin-top: 0.8em;
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.3em;
+  margin: 0.6em 0;
+}
+.prose li + li {
+  margin-top: 0.25em;
+}
+.prose h2,
+.prose h3 {
+  margin: 1.2em 0 0.4em;
+  font-family: var(--font-sans);
+  font-size: var(--step-1);
+}
+.prose blockquote {
+  margin: 0.8em 0;
+  padding: 2px 0 2px 14px;
+  border-left: 3px solid var(--rule-2);
+  color: var(--ink-2);
+}
+.prose table {
+  border-collapse: collapse;
+  margin: 0.8em 0;
+  font-size: var(--step--1);
+}
+.prose th,
+.prose td {
+  border: 1px solid var(--rule);
+  padding: 5px 9px;
+  text-align: left;
+}
+.prose img {
+  border-radius: var(--radius-s);
+  border: 1px solid var(--rule);
+}
+.prose code {
+  background: var(--wash);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

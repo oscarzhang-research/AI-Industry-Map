@@ -1,0 +1,43 @@
+# Ecosystems ("chains") that cut across the five layers. Companies opt in via `ecosystems:` in their records.
+# Only well-documented, public supplier/customer relationships are tagged.
+ecosystems:
+  - id: nvidia
+    name: NVIDIA supply chain
+    nameZh: 英伟达链
+    description: Suppliers and partners whose AI revenue is tied to NVIDIA GPU and rack-scale platforms.
+  - id: google-tpu
+    name: Google TPU chain
+    nameZh: 谷歌 TPU 链
+    description: Design partners, foundry, optics, networking and systems suppliers behind Google's TPUs.
+  - id: aws-trainium
+    name: AWS Trainium chain
+    nameZh: 亚马逊 Trainium 链
+    description: Suppliers to Amazon's custom Trainium accelerators and AWS AI infrastructure.
+  - id: amd
+    name: AMD chain
+    nameZh: AMD 链
+    description: Partners and suppliers around AMD Instinct accelerators and EPYC servers.
+  - id: openai
+    name: OpenAI & Stargate
+    nameZh: OpenAI / 星际之门链
+    description: Compute, capital and infrastructure partners of OpenAI, including the Stargate build-out.
+  - id: meta
+    name: Meta infrastructure
+    nameZh: Meta 链
+    description: Suppliers to Meta's AI clusters, MTIA silicon and AI glasses.
+  - id: microsoft
+    name: Microsoft Azure & Maia
+    nameZh: 微软链
+    description: Suppliers and capacity partners for Azure AI and Microsoft's Maia silicon.
+  - id: apple
+    name: Apple chain
+    nameZh: 苹果链
+    description: Suppliers whose edge-AI exposure runs through Apple devices.
+  - id: china-compute
+    name: China domestic compute
+    nameZh: 国产算力链
+    description: China's domestic AI stack, from accelerators and foundry to servers and models, built under export controls.
+  - id: tesla
+    name: Tesla & Optimus chain
+    nameZh: 特斯拉链
+    description: Suppliers to Tesla's autonomy hardware and the Optimus humanoid program.

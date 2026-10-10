@@ -1,0 +1,476 @@
+# Upcoming events, 2026-10-10 -> 2027-06-30.
+# tentative: true = date estimated from prior-year timing or reported but not confirmed by the organizer.
+events:
+  - id: ocp-global-summit-2026
+    name: OCP Global Summit 2026
+    start: 2026-10-12
+    end: 2026-10-15
+    kind: conference
+    location: San Jose, CA
+    nodes: [infrastructure/networking, infrastructure/servers]
+    companies: []
+    tentative: false
+    note: "Hyperscalers and suppliers show rack, power, cooling and networking designs for next-generation AI clusters."
+
+  - id: asml-q3-2026-earnings
+    name: ASML Q3 2026 results
+    start: 2026-10-14
+    kind: earnings
+    nodes: [chips/equipment/lithography]
+    companies: [asml]
+    tentative: true
+    note: "First big chip-equipment print of the season; watch EUV orders and 2027 outlook from memory and logic customers."
+
+  - id: tsmc-q3-2026-earnings
+    name: TSMC Q3 2026 results
+    start: 2026-10-15
+    kind: earnings
+    nodes: [chips/foundry-packaging/leading-edge, chips/foundry-packaging/advanced-packaging]
+    companies: [tsmc]
+    tentative: true
+    note: "Q4 guidance, capex and CoWoS / 2nm capacity commentary after record monthly sales in Q3."
+
+  - id: nvidia-rtx-spark-laptops-on-sale
+    name: NVIDIA RTX Spark laptops go on sale
+    start: 2026-10-16
+    kind: product
+    nodes: [applications/devices/phones-pcs, chips/edge-silicon/mobile-pc-soc]
+    companies: [nvidia, microsoft]
+    url: https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event
+    tentative: false
+    note: "First read on demand for Nvidia-Microsoft Windows PCs built to run AI agents locally; desktops follow in November."
+
+  - id: nvidia-gtc-berlin-2026
+    name: NVIDIA GTC Berlin keynote
+    start: 2026-10-21
+    kind: conference
+    location: Berlin
+    nodes: [chips/compute/gpus]
+    companies: [nvidia]
+    tentative: true
+    note: "Watch for European AI-factory and sovereign-AI announcements."
+
+  - id: tesla-q3-2026-earnings
+    name: Tesla Q3 2026 results
+    start: 2026-10-21
+    kind: earnings
+    nodes: [applications/physical-ai/autonomous-driving, applications/physical-ai/humanoids]
+    companies: [tesla]
+    tentative: true
+    note: "Robotaxi expansion, Optimus progress and AI compute spending."
+
+  - id: lam-research-sep-2026-quarter-earnings
+    name: Lam Research September-quarter results
+    start: 2026-10-21
+    kind: earnings
+    nodes: [chips/equipment/deposition-etch]
+    companies: [lam-research]
+    tentative: true
+    note: "Read-through on DRAM, HBM and NAND wafer-fab equipment spending."
+
+  - id: vertiv-q3-2026-earnings
+    name: Vertiv Q3 2026 results
+    start: 2026-10-21
+    kind: earnings
+    nodes: [infrastructure/thermal/liquid-cooling, infrastructure/power-delivery/ups-switchgear]
+    companies: [vertiv]
+    tentative: true
+    note: "Orders and backlog for AI data-center power and liquid cooling."
+
+  - id: ge-vernova-q3-2026-earnings
+    name: GE Vernova Q3 2026 results
+    start: 2026-10-21
+    kind: earnings
+    nodes: [energy/generation-equipment/gas-turbines, energy/grid/transformers]
+    companies: [ge-vernova]
+    tentative: true
+    note: "Gas-turbine slot reservations, pricing and grid-equipment backlog tied to data centers."
+
+  - id: seagate-sep-2026-quarter-earnings
+    name: Seagate September-quarter results
+    start: 2026-10-27
+    kind: earnings
+    nodes: [chips/memory/hdd]
+    companies: [seagate]
+    tentative: true
+    note: "First report since Toshiba's reported plan to double HDD output; watch pricing and capacity plans."
+
+  - id: fomc-october-2026
+    name: FOMC meeting
+    start: 2026-10-27
+    end: 2026-10-28
+    kind: macro
+    location: Washington, DC
+    nodes: []
+    companies: []
+    tentative: true
+    note: "Rate decision; moves long-duration AI equities and the cost of data-center debt financing."
+
+  - id: microsoft-fy27-q1-earnings
+    name: Microsoft FY2027 Q1 results
+    start: 2026-10-28
+    kind: earnings
+    nodes: [infrastructure/cloud/hyperscalers]
+    companies: [microsoft]
+    tentative: true
+    note: "Azure growth, capex and capacity constraints."
+
+  - id: alphabet-q3-2026-earnings
+    name: Alphabet Q3 2026 results
+    start: 2026-10-28
+    kind: earnings
+    nodes: [infrastructure/cloud/hyperscalers, models/frontier-labs/closed-frontier]
+    companies: [alphabet]
+    tentative: true
+    note: "Google Cloud backlog, TPU demand and capex outlook."
+
+  - id: meta-q3-2026-earnings
+    name: Meta Q3 2026 results
+    start: 2026-10-28
+    kind: earnings
+    nodes: [applications/ads-commerce-content/ads-recsys, infrastructure/cloud/hyperscalers]
+    companies: [meta]
+    tentative: true
+    note: "Capex guidance and data-center financing; AI-driven ad growth."
+
+  - id: kla-sep-2026-quarter-earnings
+    name: KLA September-quarter results
+    start: 2026-10-28
+    kind: earnings
+    nodes: [chips/equipment/process-control]
+    companies: [kla]
+    tentative: true
+    note: "Process-control demand from leading-edge logic, HBM and advanced packaging."
+
+  - id: sk-hynix-q3-2026-earnings
+    name: SK hynix Q3 2026 results
+    start: 2026-10-28
+    kind: earnings
+    nodes: [chips/memory/dram-hbm]
+    companies: [sk-hynix]
+    tentative: true
+    note: "HBM4 shipments, 2027 supply agreements and DRAM pricing outlook."
+
+  - id: samsung-q3-2026-earnings
+    name: Samsung Electronics Q3 2026 full results
+    start: 2026-10-29
+    kind: earnings
+    nodes: [chips/memory/dram-hbm, chips/foundry-packaging/leading-edge]
+    companies: [samsung-electronics]
+    tentative: false
+    note: "Detail behind the record preliminary operating profit of about 107.4 trillion won; HBM and foundry updates."
+
+  - id: amazon-q3-2026-earnings
+    name: Amazon Q3 2026 results
+    start: 2026-10-29
+    kind: earnings
+    nodes: [infrastructure/cloud/hyperscalers, chips/compute/hyperscaler-silicon]
+    companies: [amazon]
+    tentative: true
+    note: "AWS growth, Trainium ramp and capex."
+
+  - id: apple-fq4-2026-earnings
+    name: Apple FY2026 Q4 results
+    start: 2026-10-29
+    kind: earnings
+    nodes: [applications/devices/phones-pcs]
+    companies: [apple]
+    tentative: true
+    note: "iPhone demand, memory-cost pressure on margins and Apple Intelligence plans."
+
+  - id: western-digital-sep-2026-quarter-earnings
+    name: Western Digital September-quarter results
+    start: 2026-10-29
+    kind: earnings
+    nodes: [chips/memory/hdd]
+    companies: [western-digital]
+    tentative: true
+    note: "HDD pricing and exabyte demand after the sell-off on Toshiba's expansion plans."
+
+  - id: palantir-q3-2026-earnings
+    name: Palantir Q3 2026 results
+    start: 2026-11-02
+    kind: earnings
+    nodes: [applications/enterprise/data-platforms]
+    companies: [palantir]
+    tentative: true
+    note: "US commercial growth and AI platform adoption."
+
+  - id: us-midterm-elections-2026
+    name: US midterm elections
+    start: 2026-11-03
+    kind: policy
+    location: United States
+    nodes: []
+    companies: []
+    tentative: false
+    note: "Control of Congress shapes chip export rules, energy permitting and AI regulation."
+
+  - id: amd-q3-2026-earnings
+    name: AMD Q3 2026 results
+    start: 2026-11-03
+    kind: earnings
+    nodes: [chips/compute/gpus]
+    companies: [amd]
+    tentative: true
+    note: "Instinct MI450-series and Helios rack ramp, and data-center GPU guidance."
+
+  - id: arista-q3-2026-earnings
+    name: Arista Networks Q3 2026 results
+    start: 2026-11-03
+    kind: earnings
+    nodes: [infrastructure/networking/switches]
+    companies: [arista]
+    tentative: true
+    note: "AI back-end and scale-up Ethernet networking demand."
+
+  - id: constellation-q3-2026-earnings
+    name: Constellation Energy Q3 2026 results
+    start: 2026-11-05
+    kind: earnings
+    nodes: [energy/power-producers/ipps]
+    companies: [constellation]
+    tentative: true
+    note: "First results since the Amazon Calvert Cliffs and Google uprate deals; pipeline of further data-center contracts."
+
+  - id: sandisk-sep-2026-quarter-earnings
+    name: SanDisk September-quarter results
+    start: 2026-11-05
+    kind: earnings
+    nodes: [chips/memory/nand-ssd]
+    companies: [sandisk]
+    tentative: true
+    note: "NAND pricing (TrendForce sees +15-20% in 4Q26) and enterprise SSD demand for inference."
+
+  - id: anthropic-ipo-roadshow
+    name: Anthropic IPO roadshow (reported target)
+    start: 2026-11-09
+    kind: macro
+    nodes: [models/frontier-labs/closed-frontier]
+    companies: [anthropic]
+    url: https://www.anthropic.com/news/confidential-draft-s1-sec
+    tentative: true
+    note: "Bloomberg reported marketing could begin this week; the public S-1 was not yet on EDGAR in early October."
+
+  - id: coreweave-q3-2026-earnings
+    name: CoreWeave Q3 2026 results
+    start: 2026-11-09
+    kind: earnings
+    nodes: [infrastructure/cloud/neoclouds]
+    companies: [coreweave]
+    tentative: true
+    note: "Backlog, contracted power and financing costs after the OpenAI-revenue sell-off."
+
+  - id: hon-hai-q3-2026-earnings
+    name: Hon Hai Q3 2026 results
+    start: 2026-11-12
+    kind: earnings
+    nodes: [infrastructure/servers/odm]
+    companies: [hon-hai]
+    tentative: false
+    note: "Margins on record AI-server revenue and the outlook for AI rack shipments."
+
+  - id: applied-materials-fq4-2026-earnings
+    name: Applied Materials FY2026 Q4 results
+    start: 2026-11-12
+    kind: earnings
+    nodes: [chips/equipment/deposition-etch]
+    companies: [applied-materials]
+    tentative: true
+    note: "2027 wafer-fab equipment outlook and China revenue mix."
+
+  - id: sc26
+    name: SC26 (Supercomputing 2026)
+    start: 2026-11-15
+    end: 2026-11-20
+    kind: conference
+    nodes: [chips/compute/gpus, infrastructure/servers/oem]
+    companies: []
+    tentative: true
+    note: "HPC and AI systems showcase where the November TOP500 list is released."
+
+  - id: microsoft-ignite-2026
+    name: Microsoft Ignite 2026
+    start: 2026-11-17
+    end: 2026-11-20
+    kind: conference
+    nodes: [applications/enterprise/productivity, infrastructure/cloud/hyperscalers]
+    companies: [microsoft]
+    tentative: true
+    note: "Copilot and agent platform updates, plus Azure AI infrastructure and custom silicon."
+
+  - id: nvidia-fq3-fy2027-earnings
+    name: NVIDIA FY2027 Q3 results
+    start: 2026-11-18
+    kind: earnings
+    nodes: [chips/compute/gpus]
+    companies: [nvidia]
+    tentative: true
+    note: "Data-center guidance and the Rubin ramp; the AI trade's key print of the quarter."
+
+  - id: aws-reinvent-2026
+    name: AWS re:Invent 2026
+    start: 2026-11-30
+    end: 2026-12-04
+    kind: conference
+    location: Las Vegas, NV
+    nodes: [infrastructure/cloud/hyperscalers, chips/compute/hyperscaler-silicon]
+    companies: [amazon]
+    tentative: true
+    note: "Trainium roadmap, Bedrock and agent services, and AWS capacity announcements."
+
+  - id: marvell-fq3-fy2027-earnings
+    name: Marvell FY2027 Q3 results
+    start: 2026-12-01
+    kind: earnings
+    nodes: [chips/compute/custom-asic, chips/connectivity-power/optical-silicon]
+    companies: [marvell]
+    tentative: true
+    note: "Custom ASIC programs and optical DSP demand."
+
+  - id: fomc-december-2026
+    name: FOMC meeting
+    start: 2026-12-08
+    end: 2026-12-09
+    kind: macro
+    location: Washington, DC
+    nodes: []
+    companies: []
+    tentative: true
+    note: "Final rate decision of 2026 with updated projections."
+
+  - id: oracle-fq2-fy2027-earnings
+    name: Oracle FY2027 Q2 results
+    start: 2026-12-09
+    kind: earnings
+    nodes: [infrastructure/cloud/hyperscalers]
+    companies: [oracle]
+    tentative: true
+    note: "Remaining performance obligations, OCI growth and funding of the OpenAI-linked buildout."
+
+  - id: broadcom-fq4-fy2026-earnings
+    name: Broadcom FY2026 Q4 results
+    start: 2026-12-10
+    kind: earnings
+    nodes: [chips/compute/custom-asic, chips/connectivity-power/switch-silicon]
+    companies: [broadcom]
+    tentative: true
+    note: "AI revenue guidance and the chip-financing arrangements for Anthropic and OpenAI."
+
+  - id: semicon-japan-2026
+    name: SEMICON Japan 2026
+    start: 2026-12-16
+    end: 2026-12-18
+    kind: conference
+    location: Tokyo
+    nodes: [chips/equipment, chips/materials]
+    companies: []
+    tentative: true
+    note: "Japanese equipment and materials suppliers' read on 2027 demand."
+
+  - id: micron-fq1-fy2027-earnings
+    name: Micron FY2027 Q1 results
+    start: 2026-12-23
+    kind: earnings
+    nodes: [chips/memory/dram-hbm]
+    companies: [micron]
+    tentative: true
+    note: "Test of the roughly $61.5 billion revenue guide and HBM / DRAM pricing into 2027."
+
+  - id: ces-2027
+    name: CES 2027
+    start: 2027-01-06
+    end: 2027-01-09
+    kind: conference
+    location: Las Vegas, NV
+    nodes: [applications/devices/phones-pcs, chips/edge-silicon/mobile-pc-soc]
+    companies: []
+    tentative: true
+    note: "AI PCs, edge AI, autonomous driving and robotics launches."
+
+  - id: isscc-2027
+    name: ISSCC 2027
+    start: 2027-02-14
+    end: 2027-02-18
+    kind: conference
+    location: San Francisco, CA
+    nodes: [chips/memory/dram-hbm, chips/compute]
+    companies: []
+    tentative: true
+    note: "Circuit papers on HBM, DRAM and accelerators preview chipmakers' 2027-28 roadmaps."
+
+  - id: mwc-2027
+    name: MWC Barcelona 2027
+    start: 2027-03-01
+    end: 2027-03-04
+    kind: conference
+    location: Barcelona
+    nodes: [applications/devices/phones-pcs, infrastructure/networking]
+    companies: []
+    tentative: true
+    note: "On-device AI phones and AI-RAN telecom networking."
+
+  - id: nvidia-gtc-2027
+    name: NVIDIA GTC 2027
+    start: 2027-03-15
+    end: 2027-03-18
+    kind: conference
+    location: San Jose, CA
+    nodes: [chips/compute/gpus, infrastructure/servers]
+    companies: [nvidia]
+    tentative: true
+    note: "Nvidia's main annual roadmap event for GPUs, networking and rack-scale systems."
+
+  - id: semicon-china-2027
+    name: SEMICON China 2027
+    start: 2027-03-24
+    end: 2027-03-26
+    kind: conference
+    location: Shanghai
+    nodes: [chips/equipment, chips/foundry-packaging/mature-foundry]
+    companies: []
+    tentative: true
+    note: "Gauge of China's domestic equipment push under export controls."
+
+  - id: tsmc-technology-symposium-2027
+    name: TSMC 2027 North America Technology Symposium
+    start: 2027-04-28
+    kind: conference
+    location: Santa Clara, CA
+    nodes: [chips/foundry-packaging/leading-edge, chips/foundry-packaging/advanced-packaging]
+    companies: [tsmc]
+    tentative: true
+    note: "Process-node and advanced-packaging roadmap updates."
+
+  - id: google-io-2027
+    name: Google I/O 2027
+    start: 2027-05-18
+    end: 2027-05-19
+    kind: conference
+    location: Mountain View, CA
+    nodes: [models/frontier-labs/closed-frontier, applications/assistants/chat-assistants]
+    companies: [alphabet]
+    tentative: true
+    note: "Gemini model and agent launches."
+
+  - id: computex-2027
+    name: Computex 2027
+    start: 2027-06-01
+    end: 2027-06-04
+    kind: conference
+    location: Taipei
+    nodes: [infrastructure/servers/odm, chips/compute/gpus]
+    companies: []
+    tentative: true
+    note: "AI server, rack and PC showcase for the Taiwan supply chain."
+
+  - id: apple-wwdc-2027
+    name: Apple WWDC 2027
+    start: 2027-06-07
+    end: 2027-06-11
+    kind: conference
+    location: Cupertino, CA
+    nodes: [applications/devices/phones-pcs]
+    companies: [apple]
+    tentative: true
+    note: "Apple Intelligence and on-device model updates."

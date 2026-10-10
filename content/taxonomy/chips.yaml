@@ -1,0 +1,278 @@
+# Layer 2 · Chips. Industries -> value-chain segments -> member companies.
+layer: chips
+industries:
+  - id: compute
+    name: AI Compute Silicon
+    nameZh: AI 计算芯片
+    description: >-
+      GPUs, custom accelerators (ASICs/XPUs) and server CPUs. Merchant GPUs still lead, while
+      hyperscalers co-design custom silicon with design partners to lower cost per token.
+    drivers: [Accelerator demand from hyperscalers and labs, GPU vs ASIC mix, Rack-scale systems, Export controls]
+    metrics: [Data-center revenue, ASIC program wins, CoWoS allocation, Gross margin]
+    segments:
+      - id: design-inputs
+        name: EDA, IP & design services
+        nameZh: EDA、IP 与设计服务
+        position: upstream
+        ref: chips/eda-ip
+      - id: gpus
+        name: GPUs
+        nameZh: GPU
+        position: midstream
+        companies: [nvidia, amd, intel]
+      - id: custom-asic
+        name: Custom AI ASICs & Design Partners
+        nameZh: 定制 AI ASIC 与设计伙伴
+        position: midstream
+        companies: [broadcom, marvell, mediatek, alchip, guc]
+      - id: hyperscaler-silicon
+        name: Hyperscaler In-house Accelerators
+        nameZh: 云厂商自研加速器
+        position: midstream
+        companies: [alphabet, amazon, microsoft, meta]
+      - id: china-accelerators
+        name: China AI Accelerators
+        nameZh: 中国 AI 加速芯片
+        position: midstream
+        companies: [cambricon, hygon, moore-threads, metax, biren, huawei, kunlunxin]
+      - id: ai-chip-challengers
+        name: AI Chip Challengers
+        nameZh: AI 芯片挑战者
+        position: midstream
+        companies: [cerebras, groq, sambanova, tenstorrent, etched]
+      - id: server-cpus
+        name: Server CPUs
+        nameZh: 服务器 CPU
+        position: midstream
+        companies: [amd, intel, arm, nvidia]
+      - id: to-systems
+        name: AI servers & systems
+        nameZh: AI 服务器与系统
+        position: downstream
+        ref: infrastructure/servers
+
+  - id: memory
+    name: Memory & Storage
+    nameZh: 存储
+    description: >-
+      HBM, DRAM, NAND/SSD and hard drives. AI training and inference are memory-bound, so
+      memory has moved from a commodity cycle toward contracted, capacity-constrained supply.
+    drivers: [HBM bit demand, DRAM wafer reallocation to HBM, Enterprise SSD for inference, Supply discipline]
+    metrics: [DRAM / NAND contract and spot prices, HBM share and qualification, Bit growth, Memory capex]
+    segments:
+      - id: memory-interface
+        name: Memory Interface & Controllers
+        nameZh: 内存接口与主控芯片
+        position: upstream
+        companies: [montage, rambus, silicon-motion, phison]
+      - id: memory-equipment
+        name: HBM equipment (bonding, test)
+        nameZh: HBM 设备（键合、测试）
+        position: upstream
+        ref: chips/equipment
+      - id: dram-hbm
+        name: DRAM & HBM
+        nameZh: DRAM 与 HBM
+        position: midstream
+        companies: [sk-hynix, samsung-electronics, micron, nanya, cxmt]
+      - id: nand-ssd
+        name: NAND & Enterprise SSD
+        nameZh: NAND 与企业级 SSD
+        position: midstream
+        companies: [sandisk, kioxia, samsung-electronics, sk-hynix, micron, ymtc]
+      - id: hdd
+        name: Hard Disk Drives
+        nameZh: 机械硬盘（HDD）
+        position: midstream
+        companies: [seagate, western-digital, toshiba]
+      - id: to-servers
+        name: AI servers & storage systems
+        nameZh: AI 服务器与存储系统
+        position: downstream
+        ref: infrastructure/servers
+
+  - id: foundry-packaging
+    name: Foundry & Advanced Packaging
+    nameZh: 晶圆代工与先进封装
+    description: >-
+      Leading-edge logic manufacturing and the 2.5D/3D packaging (CoWoS, SoIC, HBM stacking)
+      that turns dies into accelerators. Packaging capacity has repeatedly been the bottleneck.
+    drivers: [N3/N2 demand, CoWoS capacity, Pricing power, Onshoring]
+    metrics: [TSMC monthly revenue, Advanced-node mix, CoWoS wafer starts, Utilization at mature nodes]
+    segments:
+      - id: fab-inputs
+        name: Equipment & materials
+        nameZh: 设备与材料
+        position: upstream
+        ref: chips/equipment
+      - id: leading-edge
+        name: Leading-edge Foundry
+        nameZh: 先进制程代工
+        position: midstream
+        companies: [tsmc, samsung-electronics, intel]
+      - id: mature-foundry
+        name: Mature & Specialty Foundry
+        nameZh: 成熟与特色工艺代工
+        position: midstream
+        companies: [smic, hua-hong, umc, globalfoundries, tower]
+      - id: advanced-packaging
+        name: Advanced Packaging & OSAT
+        nameZh: 先进封装与封测
+        position: downstream
+        companies: [tsmc, ase, amkor, jcet, tongfu]
+      - id: test-services
+        name: Test Services
+        nameZh: 测试服务
+        position: downstream
+        companies: [kyec]
+
+  - id: equipment
+    name: Semiconductor Equipment
+    nameZh: 半导体设备
+    description: >-
+      Lithography, deposition, etch, metrology and back-end tools. Spending follows foundry and
+      memory capex, with HBM and advanced packaging adding new tool categories such as TC
+      bonders and hybrid bonding.
+    drivers: [Leading-edge logic capex, HBM and DRAM capex, Advanced packaging, China domestic substitution]
+    metrics: [Orders and backlog, China revenue share, WFE forecasts, Book-to-bill]
+    segments:
+      - id: subsystems
+        name: Subsystems & Components
+        nameZh: 子系统与零部件
+        position: upstream
+        companies: [mks, ultra-clean, vat-group]
+      - id: lithography
+        name: Lithography
+        nameZh: 光刻
+        position: midstream
+        companies: [asml]
+      - id: deposition-etch
+        name: Deposition & Etch
+        nameZh: 沉积与刻蚀
+        position: midstream
+        companies: [applied-materials, lam-research, tokyo-electron, asm-international, kokusai, naura, amec, piotech]
+      - id: process-control
+        name: Process Control & Metrology
+        nameZh: 量测与检测
+        position: midstream
+        companies: [kla, onto, nova, lasertec]
+      - id: clean-cmp
+        name: Cleaning & CMP
+        nameZh: 清洗与 CMP
+        position: midstream
+        companies: [screen, acm-research, hwatsing]
+      - id: backend-equipment
+        name: Back-end Bonding, Dicing & Test
+        nameZh: 后道键合、切割与测试设备
+        position: midstream
+        companies: [besi, disco, hanmi, asmpt, advantest, teradyne]
+      - id: to-fabs
+        name: Foundries & memory makers
+        nameZh: 晶圆厂与存储厂
+        position: downstream
+        ref: chips/foundry-packaging
+
+  - id: materials
+    name: Materials & Substrates
+    nameZh: 材料与载板
+    description: >-
+      Wafers, photoresists, specialty chemicals, sputtering targets and the ABF substrates that
+      carry large AI packages.
+    drivers: [Wafer starts, Package size growth, ABF and glass-core substrates, Purity requirements]
+    metrics: [Wafer shipments, Substrate utilization and pricing, Chemical volumes]
+    segments:
+      - id: wafers
+        name: Silicon Wafers
+        nameZh: 硅片
+        position: upstream
+        companies: [shin-etsu, sumco, globalwafers]
+      - id: chemicals
+        name: Photoresists, Chemicals & Targets
+        nameZh: 光刻胶、化学品与靶材
+        position: upstream
+        companies: [tokyo-ohka, entegris, resonac, jx-advanced-metals]
+      - id: abf-film
+        name: ABF Film
+        nameZh: ABF 膜
+        position: upstream
+        companies: [ajinomoto]
+      - id: substrates
+        name: IC Substrates
+        nameZh: IC 载板
+        position: midstream
+        companies: [ibiden, unimicron, nan-ya-pcb, shennan]
+
+  - id: eda-ip
+    name: EDA, IP & Design Services
+    nameZh: EDA、IP 与设计服务
+    description: >-
+      Design software, processor and interface IP, and ASIC design houses. Every new
+      accelerator, chiplet and interconnect standard starts here.
+    drivers: [Design starts, Chiplet and 3D-IC complexity, Custom silicon programs, Royalty rates]
+    metrics: [Bookings and backlog, Royalty revenue, Design wins]
+    segments:
+      - id: eda
+        name: EDA
+        nameZh: EDA
+        position: midstream
+        companies: [synopsys, cadence, siemens]
+      - id: ip
+        name: Processor & Interface IP
+        nameZh: 处理器与接口 IP
+        position: midstream
+        companies: [arm, rambus]
+      - id: design-services
+        name: ASIC Design Services
+        nameZh: ASIC 设计服务
+        position: midstream
+        companies: [alchip, guc]
+
+  - id: connectivity-power
+    name: Connectivity & Power Silicon
+    nameZh: 互联与电源芯片
+    description: >-
+      Switch and NIC silicon, retimers and SerDes, optical DSPs and lasers, and the power
+      semiconductors that feed kilowatt-class accelerators.
+    drivers: [Scale-up and scale-out networking, 1.6T optics, Rack power density (800V DC)]
+    metrics: [Switch ASIC share, Retimer attach rates, Optical DSP volumes, Power content per rack]
+    segments:
+      - id: switch-silicon
+        name: Switch, NIC & DPU Silicon
+        nameZh: 交换、网卡与 DPU 芯片
+        position: midstream
+        companies: [broadcom, marvell, nvidia]
+      - id: retimers-serdes
+        name: Retimers, SerDes & PCIe/CXL
+        nameZh: Retimer、SerDes 与 PCIe/CXL
+        position: midstream
+        companies: [astera-labs, credo, montage, marvell]
+      - id: optical-silicon
+        name: Optical DSPs & Laser Chips
+        nameZh: 光 DSP 与激光芯片
+        position: midstream
+        companies: [marvell, broadcom, lumentum, coherent, yuanjie]
+      - id: power-semis
+        name: Power Semiconductors for AI Servers
+        nameZh: AI 服务器功率半导体
+        position: midstream
+        companies: [mps, infineon, texas-instruments, navitas, vicor]
+
+  - id: edge-silicon
+    name: Edge AI Silicon
+    nameZh: 端侧 AI 芯片
+    description: >-
+      Processors with neural engines for phones, PCs and devices, where on-device inference
+      competes with the cloud.
+    drivers: [AI PC and phone refresh, On-device model size, NPU performance]
+    metrics: [Premium phone and PC shipments, NPU TOPS, Design wins]
+    segments:
+      - id: mobile-pc-soc
+        name: Mobile & PC SoCs
+        nameZh: 手机与 PC 处理器
+        position: midstream
+        companies: [qualcomm, mediatek, apple, amd, intel]
+      - id: to-devices
+        name: Edge AI devices
+        nameZh: 端侧 AI 设备
+        position: downstream
+        ref: applications/devices

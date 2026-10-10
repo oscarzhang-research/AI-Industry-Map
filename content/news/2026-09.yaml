@@ -1,0 +1,142 @@
+month: 2026-09
+items:
+  - id: 2026-09-30-micron-fq4-fy26-results
+    date: 2026-09-30
+    title: "Micron posts record $54.2 billion quarter, guides to about $61.5 billion"
+    summary: "Micron's fiscal fourth-quarter revenue hit a record $54.23 billion, up from $11.32 billion a year earlier, with adjusted EPS of $33.42. It guided fiscal first-quarter 2027 revenue to about $61.5 billion, plus or minus $1.5 billion."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/09/30/micron-mu-q4-earnings-report-2026.html" }
+    companies: [micron]
+    nodes: [chips/memory/dram-hbm]
+    themes: [hbm, memory-cycle]
+    impact: positive
+    importance: 3
+
+  - id: 2026-09-30-trendforce-4q26-memory-contract-prices
+    date: 2026-09-30
+    title: "TrendForce sees Q4 DRAM contract prices up 10–15%, NAND up 15–20%"
+    summary: "TrendForce projects conventional DRAM contract prices to rise 10–15% quarter on quarter in 4Q26 and NAND Flash 15–20%, as AI server demand keeps server DRAM undersupplied, though the pace of increases is moderating."
+    source: { name: "TrendForce", url: "https://www.trendforce.com/presscenter/news/20260930-13258.html" }
+    companies: [sk-hynix, samsung-electronics, micron, sandisk]
+    nodes: [chips/memory/dram-hbm, chips/memory/nand-ssd]
+    themes: [memory-cycle]
+    impact: positive
+    importance: 2
+
+  - id: 2026-09-30-amazon-constellation-calvert-cliffs
+    date: 2026-09-30
+    title: "Amazon signs 20-year deal for 690 MW of Calvert Cliffs nuclear power"
+    summary: "Constellation and Amazon signed a 20-year power purchase agreement for 690 MW from Maryland's Calvert Cliffs plant, including about 190 MW of uprates due between 2030 and 2032, supporting more than $3 billion of investment and a planned relicensing effort."
+    source: { name: "Constellation", url: "https://www.constellationenergy.com/news/2026/09/constellation-and-amazon-announce-20-year-power-purchase-agreement-at-calvert-cliffs.html" }
+    companies: [constellation, amazon]
+    nodes: [energy/power-producers/ipps]
+    themes: [nuclear, power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-09-30-hpe-vultr-amd-helios-order
+    date: 2026-09-30
+    title: "HPE wins $1.2 billion Vultr order, its first for AMD Helios racks"
+    summary: "Hewlett Packard Enterprise said Vultr placed a $1.2 billion order for AMD Helios AI rack systems for its US data centers, HPE's first Helios order; each rack pairs 72 AMD Instinct MI455X GPUs with EPYC 'Venice' CPUs."
+    source: { name: "Fierce Network", url: "https://www.fierce-network.com/broadband/hpe-lands-first-amd-helios-order-12b-vultr-deal" }
+    companies: [hpe, amd]
+    nodes: [infrastructure/servers/oem, chips/compute/gpus]
+    themes: [data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-09-30-spacexai-grok-x-subscription-plan
+    date: 2026-09-30
+    title: "SpaceXAI weighs folding Grok and X into one subscription, free to $100"
+    summary: "SpaceXAI is weighing a plan to combine Grok and X into a single subscription with four price tiers ranging from free to $100 a month, Bloomberg reported; the plan is still under consideration."
+    source: { name: "The Next Web", url: "https://thenextweb.com/news/spacexai-grok-x-subscription-tiers-ultra-lite" }
+    companies: [xai]
+    nodes: [applications/assistants/chat-assistants]
+    themes: [ai-monetization]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-09-29-openai-seeks-30-billion-1-4-trillion
+    date: 2026-09-29
+    title: "OpenAI seeks at least $30 billion at about $1.4 trillion valuation"
+    summary: "OpenAI is in early talks to raise at least $30 billion at a pre-money valuation of about $1.4 trillion, Bloomberg reported, after closing a $122 billion round at an $852 billion post-money valuation in March."
+    source: { name: "CNBC", url: "https://www.cnbc.com/video/2026/09/29/openai-seeks-to-raise-30-billion-in-new-funding-round-at-1-point-4-trillion-valuation.html" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [funding]
+    impact: positive
+    importance: 2
+
+  - id: 2026-09-29-openai-dots-always-on-agents
+    date: 2026-09-29
+    title: "OpenAI launches Dots, always-on ChatGPT agents with their own cloud computers"
+    summary: "At DevDay, OpenAI introduced Dots, always-on agents powered by GPT-6 Astra that each work from a dedicated cloud computer and connect to more than 4,000 apps; they are rolling out to ChatGPT Pro and Business Premium subscribers."
+    source: { name: "SiliconANGLE", url: "https://siliconangle.com/2026/09/29/openai-launches-dots-always-on-ai-agents-in-chatgpt-with-their-own-cloud-computers/" }
+    companies: [openai, microsoft]
+    nodes: [applications/assistants/chat-assistants]
+    themes: [agents]
+    impact: positive
+    importance: 2
+
+  - id: 2026-09-29-openai-devday-gpt-6-1-sol
+    date: 2026-09-29
+    title: "OpenAI unveils GPT-6.1 Sol and Ultrafast speed tier at DevDay"
+    summary: "At DevDay in San Francisco, OpenAI launched GPT-6.1 Sol, which it says offers near-GPT-6 Astra intelligence at one-fifth of Astra's token prices, and an Ultrafast tier for GPT-6 Astra priced at six times standard API rates."
+    source: { name: "Business Standard", url: "https://www.business-standard.com/amp/technology/tech-news/openai-devday-2026-dots-gpt-6-1-sol-codex-developer-tools-126093000396_1.html" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [coding, inference]
+    impact: positive
+    importance: 2
+
+  - id: 2026-09-29-samsung-1-billion-helix
+    date: 2026-09-29
+    title: "Samsung group to invest $1 billion in KKR-launched AI infrastructure firm Helix"
+    summary: "Samsung Electronics will invest $500 million, with five other Samsung affiliates supplying the rest of a $1 billion commitment, in Helix, a KKR-launched AI infrastructure company whose founding investors include the Kuwait Investment Authority, Nvidia and Vistra."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/09/29/samsung-investment-nvidia-kkr-ai-helix-digital.html" }
+    companies: [samsung-electronics, nvidia, vistra]
+    nodes: [infrastructure/data-centers]
+    themes: [data-centers, funding]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-09-28-amd-to-acquire-world-labs
+    date: 2026-09-28
+    title: "AMD agrees to buy Fei-Fei Li's World Labs for $8.2 billion in stock"
+    summary: "AMD agreed to acquire World Labs, which builds spatial-intelligence models that generate interactive 3D environments, in an all-stock deal valued at about $8.2 billion and expected to close by the end of 2026; co-founder and CEO Fei-Fei Li will become AMD's chief scientist."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/09/28/amd-fei-fei-li-world-labs.html" }
+    companies: [amd, world-labs]
+    nodes: [chips/compute/gpus, models/multimodal/world-models]
+    impact: mixed
+    importance: 3
+
+  - id: 2026-09-28-nvidia-150-billion-buyback
+    date: 2026-09-28
+    title: "Nvidia adds record $150 billion to buyback, lifting authorization to $235 billion"
+    summary: "Nvidia's board approved an additional $150 billion of share repurchases, which the company called the largest such increase in history, bringing its remaining authorization to $235 billion to be executed through fiscal 2028."
+    source: { name: "NVIDIA", url: "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-a-150-Billion-Share-Repurchase-Authorization-Increase/default.aspx" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    impact: positive
+    importance: 2
+
+  - id: 2026-09-28-anthropic-claude-sonnet-5-5
+    date: 2026-09-28
+    title: "Anthropic launches Claude Sonnet 5.5, faster at unchanged pricing"
+    summary: "Anthropic released Claude Sonnet 5.5, saying output is more than 30% faster than Sonnet 5 and cost per task falls by up to 30% through fewer tokens and tool calls, while prices stay at $2 and $10 per million input and output tokens."
+    source: { name: "Anthropic", url: "https://www.anthropic.com/claude-sonnet-5-5" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [coding, agents]
+    impact: positive
+    importance: 2
+
+  - id: 2026-09-27-china-weighs-nvidia-rtx-pro-5500
+    date: 2026-09-27
+    title: "China weighs letting ByteDance and Alibaba buy Nvidia RTX PRO 5500 chips"
+    summary: "Beijing has signaled it could let some domestic companies such as ByteDance and Alibaba buy Nvidia's RTX PRO 5500 chips, The Information reported; Nvidia said US firms remain restricted by outdated US export controls and China's own import limits."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/09/27/china-bytedance-alibaba-nvidia-chips.html" }
+    companies: [nvidia, bytedance, alibaba]
+    nodes: [chips/compute/gpus, models/china-models/china-bigtech]
+    themes: [export-controls, china-ai]
+    impact: positive
+    importance: 2
