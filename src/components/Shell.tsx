@@ -100,14 +100,22 @@ export function Header({ onSearch, onWrite }: { onSearch: () => void; onWrite: (
               New view
             </button>
           ) : null}
-          {mode !== 'visitor' ? (
-            <Link to="/settings" className="badge" title={mode === 'owner' ? `Signed in as ${owner?.login}` : 'Demo mode: edits stay in this browser'}>
-              {mode === 'owner' ? `Owner · ${owner?.login ?? ''}` : 'Demo'}
+          {mode === 'owner' ? (
+            <Link to="/settings" className="badge" title={`Signed in as ${owner?.login}`}>
+              {`Owner · ${owner?.login ?? ''}`}
             </Link>
           ) : (
-            <Link to="/settings" className="btn sm ghost signin" title="Owner sign-in and display settings">
-              Sign in
-            </Link>
+            <>
+              {mode === 'demo' ? (
+                <Link to="/settings" className="badge" title="Demo mode: edits stay in this browser">
+                  Demo
+                </Link>
+              ) : null}
+              {/* Shown in demo mode too, so the owner can always find the way to sign in. */}
+              <Link to="/settings" className="btn sm ghost signin" title="Owner sign-in and display settings">
+                Sign in
+              </Link>
+            </>
           )}
           <button type="button" className="btn icon menubtn" aria-label="Menu" aria-expanded={mobileOpen} onClick={() => setMobileOpen((v) => !v)}>
             <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
@@ -134,7 +142,7 @@ export function Header({ onSearch, onWrite }: { onSearch: () => void; onWrite: (
               </Link>
             ))}
             <Link to="/themes">Themes</Link>
-            <Link to="/settings">{mode === 'visitor' ? 'Sign in & settings' : 'Settings'}</Link>
+            <Link to="/settings">{mode === 'owner' ? 'Settings' : 'Sign in & settings'}</Link>
           </div>
         </div>
       ) : null}
