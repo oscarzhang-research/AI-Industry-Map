@@ -609,7 +609,7 @@ companies:
     aliases: [TRI, TRI.TO, Thomson Reuters Corporation, 湯森路透]
     listing: listed
     tickers:
-      - { symbol: TRI, exchange: NASDAQ, currency: USD }   # verify (US venue: Nasdaq vs NYSE)
+      - { symbol: TRI, exchange: NASDAQ, currency: USD }
       - { symbol: TRI.TO, exchange: TSX, currency: CAD }
     country: CA
     tier: watch
@@ -1030,9 +1030,9 @@ companies:
       Alphabet's autonomous-driving company and the largest fully driverless robotaxi operator in the US,
       expanding to more US and international cities, partly through partnerships with Uber and automakers.
     private:
-      valuation: { usd: 126e9, date: 2026-02, round: "$16B round" }   # verify
+      valuation: { usd: 126e9, date: 2026-02, round: "$16B round" }
       proxies: [alphabet]
-      note: "Majority-owned by Alphabet (reported in Other Bets); outside investors include Silver Lake, a16z, Fidelity and T. Rowe Price."
+      note: "Majority-owned by Alphabet (reported in Other Bets); the $16B round in February 2026 was led by Dragoneer, DST Global and Sequoia."
 
   pony-ai:
     name: Pony.ai

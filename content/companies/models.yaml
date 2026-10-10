@@ -231,8 +231,8 @@ companies:
       open-weight V-series and R1 reasoning models reset global price-performance expectations,
       and newer versions support domestic Chinese accelerators.
     private:
-      valuation: { usd: 52e9, date: 2026-05, round: "Series A (first outside round)" }   # verify
-      proxies: [tencent]   # verify
+      valuation: { usd: 52e9, date: 2026-06, round: "First outside round (~CNY 50B)" }
+      proxies: [tencent]
       note: "Founder Liang Wenfeng retains control; reported (Aug-Oct 2026) to be upsizing the round at a ~$74B valuation and preparing for a possible IPO."
 
   moonshot:
@@ -249,9 +249,9 @@ companies:
       known for long-context and agentic coding performance and sold through consumer
       subscriptions and API.
     private:
-      valuation: { usd: 20e9, date: 2026-05, round: "Meituan Long-Z-led round" }   # verify (later reports cite $30B+)
+      valuation: { usd: 35e9, date: 2026-07, round: "$3.5B round" }
       proxies: [alibaba, meituan, tencent]
-      note: "Alibaba is a major shareholder and Meituan's Long-Z led the May 2026 round; later reports value it at $30B+ as it prepares a possible Hong Kong IPO."
+      note: "Alibaba is a major shareholder; Meituan's Long-Z led a round at about $20B in May 2026. Reported to be raising again at about $50B ahead of a planned Hong Kong IPO."
 
   zhipu:
     name: Zhipu AI (Z.ai)
@@ -299,9 +299,9 @@ companies:
       vision and video, supplied to smartphone, auto and device makers; founded by former
       Microsoft executive Jiang Daxin.
     private:
-      valuation: { usd: 10e9, date: 2026-05, round: "Pre-IPO round" }   # verify
+      valuation: { usd: 10e9, date: 2026-05, round: "Pre-IPO round (~$2.5B)" }   # verify (some reports put the post-money at $5-6B; $10B may be the IPO target)
       proxies: [tencent]
-      note: "Reportedly filed confidentially for a Hong Kong IPO (June 2026); backers include Tencent and Shanghai state-backed funds."
+      note: "Reported in June 2026 to be preparing a Hong Kong IPO filing; backers include Tencent and Shanghai state-backed funds."
 
   kuaishou:
     name: Kuaishou
@@ -332,9 +332,9 @@ companies:
       New York-based developer of Gen-series AI video-generation models and creative tools used
       by filmmakers, studios and advertisers; also building general world models.
     private:
-      valuation: { usd: 3e9, date: 2025-04, round: "Series D" }   # verify (a later round may exist)
+      valuation: { usd: 5.3e9, date: 2026-02, round: "Series E" }
       proxies: []
-      note: "Series D led by General Atlantic, with NVIDIA, Fidelity and SoftBank Vision Fund 2 among backers."
+      note: "The $315M Series E was led by General Atlantic, with NVIDIA, Fidelity, Adobe Ventures and AMD Ventures among backers."
 
   elevenlabs:
     name: ElevenLabs
@@ -349,7 +349,7 @@ companies:
       Developer of AI voice models for text-to-speech, voice cloning, dubbing and real-time
       conversational agents, sold via API and apps to media companies, developers and enterprises.
     private:
-      valuation: { usd: 11e9, date: 2026-02, round: "Series D" }   # verify
+      valuation: { usd: 11e9, date: 2026-02, round: "Series D" }
       proxies: []
       note: "Backed by Sequoia, Andreessen Horowitz and ICONIQ; has run employee tender offers alongside its primary rounds."
 
@@ -382,7 +382,7 @@ companies:
       San Francisco startup building general-purpose robot foundation models, the π (pi)
       vision-language-action family, designed to control many kinds of robots across tasks.
     private:
-      valuation: { usd: 5.6e9, date: 2025-11, round: "CapitalG-led round" }   # verify (a 2026 round may exist)
+      valuation: { usd: 5.6e9, date: 2025-11, round: "CapitalG-led round" }   # verify (Mar 2026 reports: talks for ~$1B at over $11B; close not confirmed)
       proxies: [alphabet]
       note: "Latest disclosed round led by Alphabet's CapitalG; backers include Thrive Capital, Lux Capital, Jeff Bezos and OpenAI."
 
@@ -399,7 +399,7 @@ companies:
       Pittsburgh-based developer of Skild Brain, a general-purpose robotics foundation model
       designed to run across humanoids, quadrupeds and robotic arms.
     private:
-      valuation: { usd: 14e9, date: 2026-01, round: "SoftBank-led round" }   # verify
+      valuation: { usd: 14e9, date: 2026-01, round: "SoftBank-led Series C" }
       proxies: [softbank, nvidia]
       note: "SoftBank has led its recent rounds, with NVIDIA, Lightspeed, Coatue and Jeff Bezos among investors."
 
@@ -498,9 +498,9 @@ companies:
       AI cloud for running, fine-tuning and training open-source models via serverless API and
       dedicated NVIDIA GPU clusters; a contributor to open research such as FlashAttention.
     private:
-      valuation: { usd: 3.3e9, date: 2025-02, round: "Series B" }   # verify (a later round may exist)
+      valuation: { usd: 8.3e9, date: 2026-07, round: "Series C" }
       proxies: []
-      note: "Series B co-led by General Catalyst and Prosperity7; NVIDIA and Salesforce Ventures are also investors."
+      note: "The $800M Series C was led by Aramco Ventures; earlier backers include General Catalyst, Prosperity7 and NVIDIA."
 
   fireworks-ai:
     name: Fireworks AI
@@ -515,9 +515,9 @@ companies:
       Inference platform that serves and fine-tunes open-weight models for developers and
       enterprises at high speed and low cost; founded by former Meta PyTorch engineers.
     private:
-      valuation: { usd: 4e9, date: 2025-10, round: "Series C" }   # verify
+      valuation: { usd: 17.5e9, date: 2026-07, round: "Series D" }
       proxies: []
-      note: "Backers include Lightspeed, Index Ventures, Sequoia and NVIDIA."
+      note: "The $1.5B Series D was led by Atreides, Index Ventures and TCV; Lightspeed, Sequoia and NVIDIA are earlier backers."
 
   baseten:
     name: Baseten
@@ -532,9 +532,9 @@ companies:
       Inference platform for deploying and scaling open-source and custom models on dedicated GPU
       capacity across multiple clouds, used by AI application companies.
     private:
-      valuation: { usd: 5e9, date: 2026-01, round: "Series E" }   # verify
+      valuation: { usd: 13e9, date: 2026-06, round: "$1.5B round" }
       proxies: []
-      note: "Backers include IVP, CapitalG, BOND, Greylock and NVIDIA."
+      note: "Sands Capital and Wellington led the June 2026 round, with some investors reportedly in at $11B; earlier backers include IVP, CapitalG, BOND and NVIDIA."
 
   openrouter:
     name: OpenRouter
@@ -550,9 +550,9 @@ companies:
       from dozens of providers; its public token-usage rankings are a widely watched gauge of
       model adoption.
     private:
-      valuation: { usd: 500e6, date: 2025-06, round: "Seed + Series A" }   # verify (a later round may exist)
+      valuation: { usd: 1.3e9, date: 2026-05, round: "Series B" }
       proxies: []
-      note: "Backed by Andreessen Horowitz and Menlo Ventures; co-founded by former OpenSea CTO Alex Atallah."
+      note: "The $113M Series B was led by CapitalG; Andreessen Horowitz and Menlo Ventures are earlier backers. Co-founded by former OpenSea CTO Alex Atallah."
 
   hugging-face:
     name: Hugging Face

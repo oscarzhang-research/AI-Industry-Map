@@ -806,7 +806,7 @@ companies:
     tier: focus
     primary: infrastructure/pcb-ccl/pcb
     ecosystems: [nvidia]
-    website: vgtpcb.com   # verify
+    website: shpcb.com   # verify (domain from secondary sources)
     description: >-
       Chinese maker of high-layer-count and HDI printed circuit boards for AI servers, GPU modules
       and accelerator cards, and a major NVIDIA PCB supplier; A+H listed in Shenzhen and Hong Kong.
@@ -821,7 +821,7 @@ companies:
     country: CN
     tier: focus
     primary: infrastructure/pcb-ccl/pcb
-    website: wuspc.com   # verify
+    website: wuscn.com
     description: >-
       Kunshan-based PCB maker specializing in high-layer, high-speed boards for AI servers,
       data-center switches and accelerators, plus automotive boards; a key supplier to global
@@ -1281,7 +1281,7 @@ companies:
     country: US
     tier: watch
     primary: infrastructure/data-centers/ai-campuses
-    website: ciphermining.com   # verify
+    website: cipherdigital.com
     description: >-
       Former bitcoin miner, renamed from Cipher Mining, converting its Texas power sites into HPC/AI
       data centers, with leases to AWS and to Fluidstack backed by Google.
@@ -1452,7 +1452,7 @@ companies:
       NVIDIA is an investor and customer, and it has a multibillion-dollar infrastructure deal with
       Microsoft.
     private:
-      valuation: { usd: 5.9e9, date: 2025-11, round: "Series E" }   # verify
+      valuation: { usd: 5.9e9, date: 2025-11, round: "Series E" }   # verify (valuation not disclosed; reports cite about $6B)
       proxies: [nvidia]
       note: "NVIDIA-backed; reportedly raising up to $4B (WSJ, Oct 2026) ahead of a targeted 2027 IPO. No IPO filing yet."
 

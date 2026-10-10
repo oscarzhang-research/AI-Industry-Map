@@ -408,10 +408,10 @@ companies:
   cxmt:
     name: CXMT
     nameZh: 长鑫存储
-    aliases: [ChangXin Memory Technologies, 长鑫科技, 长鑫, 長鑫存儲]
+    aliases: ["688825", ChangXin Memory Technologies, CXMT Corporation, 长鑫科技, 长鑫, 長鑫存儲]
     listing: listed
-    # Listed on the Shanghai STAR Market in late July 2026; stock code not yet confirmed, so no price series yet.
-    tickers: []
+    tickers:
+      - { symbol: 688825.SS, exchange: SSE, currency: CNY }
     country: CN
     tier: watch
     primary: chips/memory/dram-hbm
