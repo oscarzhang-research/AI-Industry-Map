@@ -916,7 +916,7 @@ a.report-card:hover {
   color: var(--ink);
 }
 .rte-body .ProseMirror {
-  min-height: 90px;
+  min-height: var(--rte-min, 90px);
   padding: 10px 12px;
   outline: none;
   font-size: var(--step--1);
@@ -947,5 +947,37 @@ a.report-card:hover {
 @media (max-width: 760px) {
   .list-editor .row-item {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+/* ---- Journal: layer stance lines ------------------------------------------------------------------ */
+.stance-line {
+  display: grid;
+  grid-template-columns: minmax(130px, 1fr) auto minmax(0, 2fr);
+  gap: 10px;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid var(--rule);
+}
+.stance-line:first-child {
+  border-top: 0;
+}
+.stance-line .stance-name {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: var(--step--1);
+}
+.stance-line .code {
+  font-family: var(--font-mono);
+  color: var(--layer-ink);
+  font-weight: 500;
+  margin-right: 4px;
+}
+@media (max-width: 520px) {
+  .stance-line {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .stance-line > :last-child {
+    grid-column: 1 / -1;
   }
 }

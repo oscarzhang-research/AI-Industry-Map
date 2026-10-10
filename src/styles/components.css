@@ -878,6 +878,9 @@ table.data .tk {
   border-radius: 1px;
   display: inline-block;
 }
+.legend .key.dashed {
+  background: repeating-linear-gradient(90deg, var(--muted) 0 4px, transparent 4px 7px);
+}
 .legend .sw {
   width: 10px;
   height: 10px;

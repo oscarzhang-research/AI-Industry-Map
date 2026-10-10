@@ -93,10 +93,14 @@ export function Cake({
               {!compact ? (
                 <g className="cake-note">
                   <line x1={cx + rx + 6} x2={cx + rx + 30} y1={yt + H / 2} y2={yt + H / 2} />
-                  <text x={cx + rx + 38} y={yt + H / 2 - 4} className="cake-note-title">
-                    {l.tagline.length > 46 ? `${l.tagline.slice(0, 44)}…` : l.tagline}
+                  <text x={cx + rx + 38} y={yt + H / 2 - (wrap(l.tagline).length > 1 ? 14 : 4)} className="cake-note-title">
+                    {wrap(l.tagline).map((line, k) => (
+                      <tspan key={k} x={cx + rx + 38} dy={k === 0 ? 0 : 15}>
+                        {line}
+                      </tspan>
+                    ))}
                   </text>
-                  <text x={cx + rx + 38} y={yt + H / 2 + 13} className="cake-note-sub">
+                  <text x={cx + rx + 38} y={yt + H / 2 + (wrap(l.tagline).length > 1 ? 20 : 13)} className="cake-note-sub">
                     {st ? `${st.companies} companies` : ''}
                     {st?.ret !== undefined ? ` · ${st.retLabel} ` : ''}
                     {st?.ret !== undefined ? (
@@ -114,4 +118,21 @@ export function Cake({
       </svg>
     </div>
   );
+}
+
+/** Split a tagline into at most two lines that fit beside the cake (about 30 characters each). */
+function wrap(text: string, max = 29): string[] {
+  const words = text.split(/\s+/);
+  const lines: string[] = [''];
+  for (const w of words) {
+    const cur = lines[lines.length - 1];
+    if ((cur ? `${cur} ${w}` : w).length <= max) lines[lines.length - 1] = cur ? `${cur} ${w}` : w;
+    else if (lines.length < 2) lines.push(w);
+    else {
+      lines[1] = `${lines[1]}…`;
+      break;
+    }
+  }
+  if (lines[1] && lines[1].length > max + 1) lines[1] = `${lines[1].slice(0, max - 1)}…`;
+  return lines;
 }

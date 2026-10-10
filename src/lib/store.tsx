@@ -4,7 +4,7 @@ import { buildIndex, type TaxonomyIndex } from './nodes.ts';
 import { applyPrefs, loadPrefs, savePrefs, storageGet, storageSet, type Prefs } from './settings.ts';
 import { deleteDemoRecord, loadDemoRecords, saveDemoRecord } from './demo.ts';
 import { repoAccess, whoami } from './github.ts';
-import { clearVaultCache, deleteRecordFromGitHub, loadVault, saveRecordToGitHub, uploadReport, type UploadInput, type VaultData } from './vault.ts';
+import { clearVaultCache, deleteRecordFromGitHub, loadVault, saveRecordToGitHub, updateVaultReportMeta, uploadReport, type UploadInput, type VaultData } from './vault.ts';
 import type { AnyRecord, Company, Quote, ReportMeta } from './types.ts';
 
 export type Mode = 'visitor' | 'owner' | 'demo';
@@ -40,6 +40,7 @@ export interface Store extends CoreData {
   saveRecord: (rec: AnyRecord, previous?: AnyRecord) => Promise<void>;
   deleteRecord: (rec: AnyRecord) => Promise<void>;
   upload: (input: UploadInput) => Promise<ReportMeta>;
+  updateReport: (meta: ReportMeta) => Promise<void>;
   toast: (text: string, kind?: 'info' | 'error') => void;
   toasts: Toast[];
   quote: (symbol?: string) => Quote | undefined;
@@ -239,6 +240,18 @@ export function StoreProvider({ children, fallback }: { children: ReactNode; fal
     [core, mode, toast],
   );
 
+  const updateReport = useCallback(
+    async (meta: ReportMeta) => {
+      if (!core) return;
+      if (mode !== 'owner' || meta.origin !== 'vault') throw new Error('Only reports in your private vault can be updated here. Ask Claude to edit public report details.');
+      const token = storageGet(TOKEN_KEY);
+      if (!token) throw new Error('Missing GitHub token.');
+      await updateVaultReportMeta(token, core.site.config, meta);
+      setVault((v) => (v.data ? { ...v, data: { ...v.data, reports: v.data.reports.map((r) => (r.id === meta.id ? { ...meta } : r)) } } : v));
+    },
+    [core, mode],
+  );
+
   const value = useMemo<Store | null>(() => {
     if (!core) return null;
     const index = buildIndex(core.site);
@@ -264,13 +277,14 @@ export function StoreProvider({ children, fallback }: { children: ReactNode; fal
       saveRecord,
       deleteRecord,
       upload,
+      updateReport,
       toast,
       toasts,
       quote: (s?: string) => (s ? core.quotes.quotes[s] : undefined),
       company: (id?: string) => (id ? core.site.companies[id] : undefined),
       token: () => storageGet(TOKEN_KEY),
     };
-  }, [core, mode, owner, vault, allRecords, allReports, prefs, setPrefs, signIn, signOut, doLoadVault, startDemo, stopDemo, saveRecord, deleteRecord, upload, toast, toasts]);
+  }, [core, mode, owner, vault, allRecords, allReports, prefs, setPrefs, signIn, signOut, doLoadVault, startDemo, stopDemo, saveRecord, deleteRecord, upload, updateReport, toast, toasts]);
 
   if (!value) return <>{fallback(error)}</>;
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

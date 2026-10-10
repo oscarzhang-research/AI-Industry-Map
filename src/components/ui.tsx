@@ -73,6 +73,8 @@ export function CompanyChip({
 }) {
   const ticker = company.listing === 'listed' ? company.symbol : company.listing === 'private' ? 'Private' : 'Acq.';
   const change = show !== 'none' ? quote?.r[show] : undefined;
+  // Without a ticker the bare chip would just say "Private": show the name instead.
+  if (!withName && company.listing !== 'listed') withName = true;
   return (
     <Link
       to={`/company/${company.id}`}
@@ -157,5 +159,24 @@ export function Crumbs({ items }: { items: { label: string; to?: string }[] }) {
         </span>
       ))}
     </nav>
+  );
+}
+
+export type StatusKind = 'pending' | 'confirmed' | 'partial' | 'falsified' | 'watching' | 'triggered' | 'cleared' | 'upcoming' | 'happened' | 'missed';
+
+/** Small status mark for signals, risks and catalysts (drawn, so it never depends on font glyphs). */
+export function StatusIcon({ kind, label }: { kind: StatusKind; label: string }) {
+  const good = kind === 'confirmed' || kind === 'cleared' || kind === 'happened';
+  const bad = kind === 'falsified' || kind === 'triggered' || kind === 'missed';
+  const cls = good ? 'up' : bad ? 'down' : kind === 'partial' ? 'ink2' : 'muted';
+  return (
+    <svg className={cls} width="15" height="15" viewBox="0 0 16 16" role="img" aria-label={label} style={{ display: 'block', marginTop: 3 }}>
+      <title>{label}</title>
+      {good || bad ? <circle cx="8" cy="8" r="7" fill="currentColor" /> : <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" strokeWidth="1.5" />}
+      {kind === 'partial' ? <path d="M8 1.75a6.25 6.25 0 0 0 0 12.5Z" fill="currentColor" /> : null}
+      {good ? <path d="m4.6 8.2 2.2 2.2 4.6-4.7" fill="none" stroke="var(--sheet)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /> : null}
+      {kind === 'triggered' ? <path d="M8 4.3v4.6M8 11.2v.4" stroke="var(--sheet)" strokeWidth="1.8" strokeLinecap="round" /> : null}
+      {kind === 'falsified' || kind === 'missed' ? <path d="m5.4 5.4 5.2 5.2m0-5.2-5.2 5.2" stroke="var(--sheet)" strokeWidth="1.8" strokeLinecap="round" /> : null}
+    </svg>
   );
 }

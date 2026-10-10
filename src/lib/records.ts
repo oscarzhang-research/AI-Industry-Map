@@ -215,6 +215,7 @@ export function hiddenFieldsFor(rec: ThesisRecord, defaults: string[]): Hideable
 /** Sanitized copy for the public repo, or null if the record is private. */
 export function publicProjection(rec: AnyRecord, defaultHidden: string[]): AnyRecord | null {
   if (rec.visibility !== 'public') return null;
+  const freshTranslation = translationState(rec) === 'translated';
   const copy = structuredClone(rec) as AnyRecord & { origin?: string; path?: string };
   delete copy.origin;
   delete copy.path;
@@ -242,6 +243,8 @@ export function publicProjection(rec: AnyRecord, defaultHidden: string[]): AnyRe
       };
     }
   }
+  // Removing hidden fields changes the source text; keep an up-to-date translation marked as such.
+  if (copy.translation && freshTranslation) copy.translation = { ...copy.translation, sourceHash: sourceHash(translatableFields(copy)) };
   return copy;
 }
 

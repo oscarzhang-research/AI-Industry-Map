@@ -24,7 +24,8 @@ export function fmtPrice(x: number | undefined | null, ccy?: string): string {
   if (x === undefined || x === null || !Number.isFinite(x)) return '—';
   const sym = ccy ? CCY_SYMBOL[ccy.toUpperCase()] ?? `${ccy.toUpperCase()} ` : '';
   const abs = Math.abs(x);
-  const digits = abs >= 1000 ? 0 : abs >= 100 ? 1 : abs >= 1 ? 2 : 3;
+  if (abs === 0) return `${sym}0`;
+  const digits = abs >= 1000 ? 0 : abs >= 1 ? 2 : 3;
   return `${sym}${nf({ minimumFractionDigits: digits, maximumFractionDigits: digits }).format(x)}`;
 }
 

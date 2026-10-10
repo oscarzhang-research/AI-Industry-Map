@@ -7,8 +7,9 @@ import { Heatmap, LayerChart } from '../components/charts.tsx';
 import { CompanyChip, Change, DirectionBadge, ExampleBadge, Section, Segmented } from '../components/ui.tsx';
 import { ViewCard } from '../components/ViewCard.tsx';
 import { CatalystList, NewsList, useCatalysts } from '../components/lists.tsx';
-import { useIndices, useSeriesMany } from '../lib/hooks.ts';
-import { activeTheses, display, latestOutlook, thesisBenchmark, thesisSymbol, viewByCompany } from '../lib/views.ts';
+import { useIndices } from '../lib/hooks.ts';
+import { useThesisSeries } from '../lib/useThesis.ts';
+import { activeTheses, display, latestOutlook, viewByCompany } from '../lib/views.ts';
 import { fmtDate, fmtDateTime, LAYER_CODE } from '../lib/format.ts';
 import type { HeatPeriod } from '../components/heat.ts';
 import type { LayerId } from '../lib/types.ts';
@@ -53,8 +54,7 @@ export default function Home() {
     return o ? display(o) : undefined;
   }, [allRecords]);
   const active = useMemo(() => activeTheses(allRecords).map((t) => display(t)), [allRecords]);
-  const symbols = useMemo(() => active.flatMap((t) => [thesisSymbol(t, site), thesisBenchmark(t, site)]), [active, site]);
-  const seriesMap = useSeriesMany(symbols);
+  const seriesOf = useThesisSeries(active, site);
   const catalysts = useCatalysts(site, quotes.quotes, active, 45);
   const nodeName = (p: string) => index.nodes.get(p)?.name;
   const listed = Object.values(site.companies).filter((c) => c.listing === 'listed').length;
@@ -161,9 +161,9 @@ export default function Home() {
                 <Link className="btn primary" to={`/layer/${layer.id}`}>
                   Open {layer.name}
                 </Link>
-                <a className="btn" href="#heatmap">
+                <Link className="btn" to="#heatmap">
                   Heatmap
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -257,9 +257,8 @@ export default function Home() {
           {active.length ? (
             <div className="grid cols-3">
               {active.slice(0, 6).map((t) => {
-                const sym = thesisSymbol(t, site);
-                const b = thesisBenchmark(t, site);
-                return <ViewCard key={t.id} thesis={t} site={site} series={sym ? seriesMap.get(sym) : undefined} bench={b ? seriesMap.get(b) : undefined} nodeName={nodeName} />;
+                const { series, bench } = seriesOf(t);
+                return <ViewCard key={t.id} thesis={t} site={site} series={series} bench={bench} nodeName={nodeName} />;
               })}
             </div>
           ) : (

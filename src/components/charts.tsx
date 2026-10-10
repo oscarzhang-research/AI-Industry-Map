@@ -83,8 +83,9 @@ export function Heatmap({ site, quotes, period, height = 560 }: { site: SiteData
           upperLabel: { show: true, height: 18, color: t.ink2, fontFamily: t.font, fontSize: 11, fontWeight: 600 },
           itemStyle: { borderColor: t.surface, gapWidth: 2 },
           levels: [
-            { itemStyle: { borderColor: t.surface, borderWidth: 4, gapWidth: 4 }, upperLabel: { show: true, height: 22, fontSize: 12, color: t.ink, fontWeight: 700 } },
-            { itemStyle: { borderColor: t.surface, borderWidth: 2, gapWidth: 2 }, upperLabel: { show: true } },
+            { itemStyle: { borderWidth: 0, gapWidth: 4 }, upperLabel: { show: false } }, // the virtual root
+            { itemStyle: { borderColor: t.surface, borderWidth: 4, gapWidth: 2 }, upperLabel: { show: true, height: 22, fontSize: 12, color: t.ink, fontWeight: 700 } },
+            { itemStyle: { borderColor: t.surface, borderWidth: 2, gapWidth: 1 }, upperLabel: { show: true } },
             { itemStyle: { borderColor: t.surface, borderWidth: 1, gapWidth: 1 } },
           ],
         },
@@ -141,6 +142,20 @@ export function LayerChart({ series, layerNames }: { series: IndexSeries[]; laye
   }, [layers, range]);
   const option = useMemo<EChartsCoreOption>(() => {
     const t = chartTheme();
+    // Fixed log extent so end labels can be spread apart by hand (ECharts does not de-overlap them).
+    const values = rebased.flatMap((s) => s.v);
+    const lo = Math.min(...values) * 0.95;
+    const hi = Math.max(...values) * 1.05;
+    const plotH = 340 - 16 - 28;
+    const yOf = (v: number) => ((Math.log2(hi) - Math.log2(v)) / (Math.log2(hi) - Math.log2(lo))) * plotH;
+    const ends = rebased.map((s) => ({ id: s.id, y: yOf(s.v[s.v.length - 1]) })).sort((a, b) => a.y - b.y);
+    const shift = new Map<string, number>();
+    let prev = -Infinity;
+    for (const e of ends) {
+      const y = Math.max(e.y, prev + 14);
+      shift.set(e.id, y - e.y);
+      prev = y;
+    }
     return {
       animation: false,
       grid: { left: 48, right: 128, top: 16, bottom: 28 },
@@ -163,7 +178,8 @@ export function LayerChart({ series, layerNames }: { series: IndexSeries[]; laye
         axisLine: { show: false },
         axisLabel: { color: t.text, fontFamily: t.font, fontSize: 11, formatter: (v: number) => v.toFixed(0) },
         splitLine: { lineStyle: { color: t.grid } },
-        min: (v: { min: number }) => Math.floor(v.min * 0.95),
+        min: lo,
+        max: hi,
       },
       series: rebased.map((s) => ({
         name: `L${layerNames[s.id].order} ${layerNames[s.id].name}`,
@@ -179,9 +195,9 @@ export function LayerChart({ series, layerNames }: { series: IndexSeries[]; laye
           color: t.ink2,
           fontFamily: t.font,
           fontSize: 11,
+          offset: [0, shift.get(s.id) ?? 0],
           formatter: (p: { value: [string, number] }) => `${layerNames[s.id].name} ${fmtPct(p.value[1] / 100 - 1, 0)}`,
         },
-        labelLayout: { moveOverlap: 'shiftY' },
       })),
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -322,7 +338,7 @@ export function PriceChart({
     }
     return {
       animation: false,
-      grid: { left: 56, right: 92, top: 18, bottom: 28 },
+      grid: { left: 64, right: 20, top: 18, bottom: 28 },
       tooltip: {
         ...tooltipBase(t),
         trigger: 'axis',
@@ -387,7 +403,7 @@ export function PriceChart({
 
 function seg(from: string, to: string, y: number, label: string, color: string, type: 'solid' | 'dashed') {
   return [
-    { coord: [from, y], lineStyle: { color, width: 1.5, type }, label: { show: true, position: 'end', formatter: label, color, fontSize: 11 } },
+    { coord: [from, y], lineStyle: { color, width: 1.5, type }, label: { show: true, position: 'insideEndTop', formatter: label, color, fontSize: 11, fontWeight: 600 } },
     { coord: [to, y] },
   ];
 }
@@ -396,6 +412,103 @@ function shiftMonths(iso: string, months: number): string {
   const d = new Date(`${iso}T00:00:00Z`);
   d.setUTCMonth(d.getUTCMonth() + months);
   return d.toISOString().slice(0, 10);
+}
+
+// ---------------------------------------------------------------------------------------------
+// Relative performance since a view was opened: the subject and its benchmark, both rebased to 100.
+// ---------------------------------------------------------------------------------------------
+export function RelativeChart({
+  a,
+  b,
+  from,
+  to,
+  labelA,
+  labelB,
+  height = 240,
+}: {
+  a: PriceSeries;
+  b?: PriceSeries;
+  from: string;
+  to?: string;
+  labelA: string;
+  labelB?: string;
+  height?: number;
+}) {
+  const themeV = useThemeVersion();
+  const option = useMemo<EChartsCoreOption>(() => {
+    const t = chartTheme();
+    const rebase = (s: PriceSeries) => {
+      const i0 = Math.max(0, indexOnOrBefore(s.d, from.slice(0, 10)));
+      const i1 = to ? Math.max(i0, indexOnOrBefore(s.d, to.slice(0, 10))) : s.d.length - 1;
+      const base = s.c[i0];
+      const out: [string, number][] = [];
+      for (let i = i0; i <= i1; i++) out.push([s.d[i], Math.round((s.c[i] / base) * 1000) / 10]);
+      return out;
+    };
+    const lines = [
+      { name: labelA, data: rebase(a), color: t.accent, type: 'solid' as const, width: 2 },
+      ...(b && labelB ? [{ name: labelB, data: rebase(b), color: t.muted, type: 'dashed' as const, width: 1.5 }] : []),
+    ];
+    return {
+      animation: false,
+      grid: { left: 44, right: 120, top: 14, bottom: 26 },
+      tooltip: {
+        ...tooltipBase(t),
+        trigger: 'axis',
+        axisPointer: { type: 'line', lineStyle: { color: t.axis } },
+        valueFormatter: (v: number) => fmtPct(v / 100 - 1),
+      },
+      xAxis: {
+        type: 'time',
+        axisLine: { lineStyle: { color: t.axis } },
+        axisTick: { show: false },
+        axisLabel: { color: t.text, fontFamily: t.font, fontSize: 11 },
+        splitLine: { show: false },
+      },
+      yAxis: {
+        type: 'value',
+        scale: true,
+        axisLine: { show: false },
+        axisLabel: { color: t.text, fontFamily: t.font, fontSize: 11, formatter: (v: number) => fmtPct(v / 100 - 1, 0) },
+        splitLine: { lineStyle: { color: t.grid } },
+      },
+      series: lines.map((l) => ({
+        name: l.name,
+        type: 'line',
+        showSymbol: false,
+        data: l.data,
+        lineStyle: { width: l.width, color: l.color, type: l.type },
+        itemStyle: { color: l.color },
+        endLabel: {
+          show: true,
+          color: t.ink2,
+          fontFamily: t.font,
+          fontSize: 11,
+          formatter: (p: { value: [string, number] }) => `${l.name} ${fmtPct(p.value[1] / 100 - 1)}`,
+        },
+        labelLayout: { moveOverlap: 'shiftY' },
+        markLine: { symbol: 'none', silent: true, label: { show: false }, lineStyle: { color: t.axis, width: 1 }, data: [{ yAxis: 100 }] },
+      })),
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [a, b, from, to, labelA, labelB, themeV]);
+  return (
+    <div>
+      <div className="legend" style={{ marginBottom: 4 }}>
+        <span>
+          <i className="key" style={{ background: 'var(--accent)' }} />
+          {labelA}
+        </span>
+        {b && labelB ? (
+          <span>
+            <i className="key dashed" />
+            {labelB}
+          </span>
+        ) : null}
+      </div>
+      <EChart option={option} height={height} ariaLabel={`${labelA} versus ${labelB ?? 'benchmark'} since the view opened`} />
+    </div>
+  );
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -424,15 +537,15 @@ export function RiskRewardScatter({ points, onPick }: { points: ScatterPoint[]; 
       },
       xAxis: {
         type: 'value',
-        min: 0.5,
-        max: 5.5,
+        min: 0,
+        max: 6,
         interval: 1,
         name: 'Conviction',
         nameLocation: 'middle',
         nameGap: 26,
         nameTextStyle: { color: t.text, fontFamily: t.font },
         axisLine: { lineStyle: { color: t.axis } },
-        axisLabel: { color: t.text, formatter: (v: number) => (Number.isInteger(v) ? String(v) : '') },
+        axisLabel: { color: t.text, formatter: (v: number) => (v >= 1 && v <= 5 ? String(v) : '') },
         splitLine: { show: false },
       },
       yAxis: {

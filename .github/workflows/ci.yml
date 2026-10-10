@@ -1,0 +1,25 @@
+name: CI
+
+# Content validation, type checks, unit tests and a production build for every branch push.
+# Data-only commits from the market-data job are skipped.
+on:
+  push:
+    branches-ignore: [main]
+    paths-ignore:
+      - "data/**"
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run validate
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build

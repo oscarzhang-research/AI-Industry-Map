@@ -103,7 +103,7 @@ export default function App() {
         </Suspense>
       </main>
       <Footer />
-      {canEdit ? (
+      {canEdit && !editor ? (
         <button type="button" className="fab" onClick={() => setEditor({ kind: 'note' })}>
           <span aria-hidden="true">＋</span> Quick note
         </button>

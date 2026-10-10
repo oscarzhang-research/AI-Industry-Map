@@ -1,0 +1,113 @@
+/* Editor-only styles (loaded with the editor chunk). */
+.combo {
+  position: relative;
+  min-width: 0;
+}
+.combo-list {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  background: var(--sheet);
+  border: 1px solid var(--rule-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  max-height: 300px;
+  overflow: auto;
+}
+.combo-list button {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: baseline;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: none;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: var(--step--1);
+  color: var(--ink);
+}
+.combo-list li[aria-selected='true'] button {
+  background: var(--wash);
+}
+.combo-list .tk {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+.combo-list .faint {
+  font-size: var(--step--2);
+}
+.chip .x {
+  border: 0;
+  background: none;
+  padding: 0 0 0 2px;
+  margin-left: 2px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1;
+}
+.chip .x:hover {
+  color: var(--down);
+}
+.editor-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px 16px;
+}
+.editor-grid .full {
+  grid-column: 1 / -1;
+}
+@media (max-width: 700px) {
+  .editor-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.price-hint {
+  font-size: var(--step--2);
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+.price-hint b {
+  color: var(--ink-2);
+  font-weight: 600;
+}
+.picklist {
+  max-height: 220px;
+  overflow: auto;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 4px 10px;
+  background: var(--sheet-2);
+}
+.picklist label {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  padding: 5px 0;
+  font-size: var(--step--1);
+  border-top: 1px solid var(--rule);
+}
+.picklist label:first-child {
+  border-top: 0;
+}
+.dropzone {
+  border: 1.5px dashed var(--rule-2);
+  border-radius: var(--radius);
+  padding: 22px;
+  text-align: center;
+  background: var(--sheet-2);
+  color: var(--muted);
+}
+.dropzone.over {
+  border-color: var(--accent);
+  background: var(--accent-wash);
+}

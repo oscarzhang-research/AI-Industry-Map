@@ -1,0 +1,236 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useStore } from '../lib/store.tsx';
+import { Section, Segmented } from '../components/ui.tsx';
+import { dispatchWorkflow } from '../lib/github.ts';
+import { clearDemo, loadDemoRecords } from '../lib/demo.ts';
+import { fmtDateTime, plural } from '../lib/format.ts';
+
+export default function SettingsPage() {
+  const store = useStore();
+  const { site, prefs, setPrefs, mode, owner, vault, meta, signIn, signOut, reloadVault, startDemo, stopDemo, toast, token } = store;
+  const [tok, setTok] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState<string>();
+  const [exported, setExported] = useState<string>();
+  const repos = site.config.repos;
+  const guide = `https://github.com/${repos.public.owner}/${repos.public.repo}/blob/main/docs/OWNER-GUIDE.zh-CN.md`;
+
+  const doSignIn = async () => {
+    setBusy(true);
+    setErr(undefined);
+    try {
+      await signIn(tok);
+      setTok('');
+      toast('Signed in. Your private vault is loading.');
+    } catch (e) {
+      setErr((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const refreshData = async () => {
+    const t = token();
+    if (!t) return;
+    try {
+      await dispatchWorkflow(t, repos.public, 'market-data.yml', { markets: 'all' });
+      toast('Market data refresh started. Prices update in about five minutes.');
+    } catch (e) {
+      toast(`Could not start the refresh: ${(e as Error).message}. The token needs “Actions: Read and write” on the public repository.`, 'error');
+    }
+  };
+
+  return (
+    <div className="page">
+      <div className="wrap" style={{ maxWidth: 920 }}>
+        <div className="eyebrow">Settings</div>
+        <h1 style={{ marginTop: 4 }}>Settings</h1>
+        <p className="lede" style={{ marginTop: 8 }}>
+          Display preferences are saved in this browser only.
+        </p>
+
+        <Section title="Display">
+          <div className="stack" style={{ '--gap': '14px' } as React.CSSProperties}>
+            <Pref label="Theme">
+              <Segmented
+                label="Theme"
+                value={prefs.theme}
+                onChange={(v) => setPrefs({ theme: v })}
+                options={[
+                  { value: 'system', label: 'System' },
+                  { value: 'light', label: 'Light' },
+                  { value: 'dark', label: 'Dark' },
+                ]}
+              />
+            </Pref>
+            <Pref label="Price colors" hint="US convention is green for up; much of Asia uses red for up.">
+              <Segmented
+                label="Price colors"
+                value={prefs.updown}
+                onChange={(v) => setPrefs({ updown: v })}
+                options={[
+                  { value: 'green', label: 'Green up · red down' },
+                  { value: 'red', label: 'Red up · green down' },
+                ]}
+              />
+            </Pref>
+            <Pref label="Research language" hint="Bilingual reports open in this language.">
+              <Segmented
+                label="Research language"
+                value={prefs.reportLang}
+                onChange={(v) => setPrefs({ reportLang: v })}
+                options={[
+                  { value: 'en', label: 'English' },
+                  { value: 'zh', label: '中文' },
+                ]}
+              />
+            </Pref>
+          </div>
+        </Section>
+
+        <Section title="Owner sign-in" sub="Only the site owner needs this. Visitors can read everything public without signing in.">
+          {mode === 'owner' ? (
+            <div className="card stack" style={{ '--gap': '12px' } as React.CSSProperties}>
+              <div>
+                Signed in as <b>{owner?.login}</b>.{' '}
+                {vault.status === 'loading'
+                  ? `Loading the private vault${vault.progress?.[1] ? ` (${vault.progress[0]} of ${vault.progress[1]} files)` : ''}…`
+                  : vault.status === 'ready'
+                    ? `Vault loaded: ${plural(vault.data?.records.length ?? 0, 'record')} and ${plural(vault.data?.reports.length ?? 0, 'private report')} (${fmtDateTime(vault.data?.loadedAt, site.config.site.timezone)}).`
+                    : vault.status === 'error'
+                      ? `The vault did not load: ${vault.error}`
+                      : ''}
+              </div>
+              <div className="row">
+                <button type="button" className="btn" onClick={() => reloadVault()}>
+                  Reload vault
+                </button>
+                <button type="button" className="btn" onClick={refreshData}>
+                  Refresh market data now
+                </button>
+                <Link className="btn" to="/inbox">
+                  Open inbox
+                </Link>
+                <button type="button" className="btn ghost" onClick={signOut}>
+                  Sign out
+                </button>
+              </div>
+              <p className="faint" style={{ fontSize: 'var(--step--2)' }}>
+                The token is stored in this browser only and is sent only to api.github.com. Sign out on shared computers.
+              </p>
+            </div>
+          ) : (
+            <div className="card stack" style={{ '--gap': '12px' } as React.CSSProperties}>
+              <p style={{ fontSize: 'var(--step--1)', color: 'var(--ink-2)' }}>
+                Paste a fine-grained GitHub token with <b>Contents: Read and write</b> on <code>{repos.public.repo}</code> and the private <code>{repos.vault.repo}</code>{' '}
+                repository (add <b>Actions: Read and write</b> to refresh prices from here). Step-by-step instructions, in Chinese:{' '}
+                <a href={guide} target="_blank" rel="noopener noreferrer">
+                  owner guide
+                </a>
+                .
+              </p>
+              <div className="row">
+                <input
+                  className="input"
+                  type="password"
+                  autoComplete="off"
+                  spellCheck={false}
+                  placeholder="github_pat_…"
+                  value={tok}
+                  onChange={(e) => setTok(e.target.value)}
+                  style={{ maxWidth: 420 }}
+                  aria-label="GitHub token"
+                  id="owner-token"
+                />
+                <button type="button" className="btn primary" disabled={busy || tok.trim().length < 20} onClick={doSignIn}>
+                  {busy ? 'Checking…' : 'Sign in'}
+                </button>
+              </div>
+              {err ? (
+                <p className="down" style={{ fontSize: 'var(--step--1)' }}>
+                  {err}
+                </p>
+              ) : null}
+            </div>
+          )}
+        </Section>
+
+        <Section title="Demo mode" sub="Try the editors without signing in. Everything you write stays in this browser and is never uploaded.">
+          <div className="card stack" style={{ '--gap': '12px' } as React.CSSProperties}>
+            <div className="row">
+              {mode === 'demo' ? (
+                <>
+                  <span className="badge">Demo mode is on</span>
+                  <button type="button" className="btn" onClick={stopDemo}>
+                    Leave demo mode
+                  </button>
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => {
+                      setExported(JSON.stringify(loadDemoRecords(), null, 2));
+                    }}
+                  >
+                    Show my demo records
+                  </button>
+                  <button
+                    type="button"
+                    className="btn ghost"
+                    onClick={() => {
+                      clearDemo();
+                      stopDemo();
+                      startDemo();
+                      setExported(undefined);
+                      toast('Demo records cleared.');
+                    }}
+                  >
+                    Clear demo records
+                  </button>
+                </>
+              ) : (
+                <button type="button" className="btn" disabled={mode === 'owner'} onClick={startDemo}>
+                  Start demo mode
+                </button>
+              )}
+            </div>
+            {exported ? (
+              <textarea className="textarea" readOnly rows={8} value={exported} aria-label="Demo records as JSON" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }} />
+            ) : null}
+          </div>
+        </Section>
+
+        <Section title="Data">
+          <dl className="kv">
+            <dt>Prices as of</dt>
+            <dd>{meta.pricesAsOf ?? '—'}</dd>
+            <dt>Market data updated</dt>
+            <dd>{fmtDateTime(meta.dataUpdatedAt, site.config.site.timezone)}</dd>
+            <dt>Site built</dt>
+            <dd>{fmtDateTime(meta.generatedAt, site.config.site.timezone)}</dd>
+            <dt>Price series</dt>
+            <dd>{meta.counts.series ?? '—'}</dd>
+            <dt>Schedule</dt>
+            <dd>Weekdays at 10:30 UTC (after the Asian close) and 21:35 UTC (after the US close)</dd>
+          </dl>
+        </Section>
+      </div>
+    </div>
+  );
+}
+
+function Pref({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
+  return (
+    <div className="row" style={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <div className="min0">
+        <b style={{ fontSize: 'var(--step--1)' }}>{label}</b>
+        {hint ? (
+          <div className="muted" style={{ fontSize: 'var(--step--2)' }}>
+            {hint}
+          </div>
+        ) : null}
+      </div>
+      {children}
+    </div>
+  );
+}

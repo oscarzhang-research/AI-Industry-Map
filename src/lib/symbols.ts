@@ -58,6 +58,8 @@ export const MARKET_LABEL: Record<Market, string> = {
 
 /** Benchmark id for a listing, using the defaults in content/benchmarks.yaml. */
 export function benchmarkIdFor(symbol: string | undefined, layer: string | undefined, defaults: Record<string, string>): string {
+  // Baskets (industry, layer or theme views without a proxy) are mostly US-listed: use the US defaults.
+  if (!symbol || symbol.startsWith('basket:')) return (layer === 'chips' && defaults['US-chips']) || defaults.US || 'spx';
   const m = marketOf(symbol);
   if (m === 'US') return (layer === 'chips' && defaults['US-chips']) || defaults.US || 'spx';
   if (m === 'CN' && symbol?.startsWith('688')) return defaults['CN-STAR'] || defaults.CN || 'csi300';
