@@ -65,7 +65,7 @@ Private companies: `listing: private`, no tickers, `private: { valuation: { usd,
 `npm run ingest -- <file.html>` for a public Claude report (`--private` for a private one; PDFs and `--broker` always go to the vault clone at `../AI-Industry-Map-private`). Then complete `meta.yaml`: English `title`, `titleZh`, `date`, `reportType`, `languages`, `companies`, `nodes`, `tags`, 3–5 plain-English `summary.en` points (and `summary.zh` if the report is bilingual), a one-line `stance`, and `priceRef` when the report anchors on a price. For sell-side: `broker`, `analysts`, `rating`, `targetPrice`, `priceAtReport`. Summarize in your own words; never copy broker text into the public repo.
 
 ### Translate the owner's Chinese writing ("翻译待翻译的笔记")
-1. Clone the vault next to this repository (`../AI-Industry-Map-private`).
+1. Clone the vault next to this repository (`../AI-Industry-Map-private`; the scripts also find a lower-case `../ai-industry-map-private` clone).
 2. `npm run translate-queue` lists pending records; `npm run translate-queue -- --json /tmp/q.json` writes the source text per field.
 3. Translate each field into plain, concise English that keeps the owner's meaning, numbers and hedges. Do not add claims.
 4. Save `{ "<record id>": { "<field key>": "English…" } }` and run `npm run translate-queue -- --apply /tmp/a.json`. It stores the translation with a hash of the source (a later edit marks it stale) and refreshes public copies.

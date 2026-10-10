@@ -15,9 +15,13 @@ export function flag(name: string): boolean {
   return process.argv.includes(`--${name}`);
 }
 
-/** The vault clone: --vault <dir>, $VAULT_DIR, or ../AI-Industry-Map-private next to this repository. */
+/**
+ * The vault clone: --vault <dir>, $VAULT_DIR, or ../AI-Industry-Map-private next to this repository
+ * (cloud sessions clone it in lower case, ../ai-industry-map-private).
+ */
 export function vaultDir(required = true): string | undefined {
-  const dir = resolve(arg('vault') ?? process.env.VAULT_DIR ?? join(ROOT, '..', 'AI-Industry-Map-private'));
+  const sibling = ['AI-Industry-Map-private', 'ai-industry-map-private'].map((n) => join(ROOT, '..', n));
+  const dir = resolve(arg('vault') ?? process.env.VAULT_DIR ?? sibling.find((d) => existsSync(d)) ?? sibling[0]);
   if (!existsSync(join(dir, 'vault')) && !existsSync(join(dir, '.git'))) {
     if (!required) return undefined;
     console.error(`No vault clone at ${dir}. Clone the private repository there or pass --vault <dir>.`);
