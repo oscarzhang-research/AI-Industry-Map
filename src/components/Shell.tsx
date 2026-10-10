@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { LogoMark } from './Logo.tsx';
 import { useStore } from '../lib/store.tsx';
@@ -26,69 +26,118 @@ export function PreviewRibbon() {
   );
 }
 
+type NavItem = { to: string; label: string };
+const NAV_GAP = 2; // px; matches the .nav gap
+
 export function Header({ onSearch, onWrite }: { onSearch: () => void; onWrite: () => void }) {
   const { site, mode, owner, canEdit } = useStore();
-  const [layersOpen, setLayersOpen] = useState(false);
+  const [open, setOpen] = useState<'layers' | 'more' | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const loc = useLocation();
-  const popRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const measureRef = useRef<HTMLDivElement>(null);
+  const layersRef = useRef<HTMLDivElement>(null);
+  const moreRef = useRef<HTMLDivElement>(null);
+
+  // In display order; when the header is narrow, links leave from the end into "More".
+  const links: NavItem[] = [
+    { to: '/views', label: 'Views' },
+    { to: '/research', label: 'Research' },
+    { to: '/news', label: 'News' },
+    { to: '/journal', label: 'Journal' },
+    { to: '/notes', label: 'Notes' },
+    ...(canEdit ? [{ to: '/inbox', label: 'Inbox' }] : []),
+    { to: '/calendar', label: 'Calendar' },
+  ];
+  const [visible, setVisible] = useState(links.length);
 
   useEffect(() => {
-    setLayersOpen(false);
+    setOpen(null);
     setMobileOpen(false);
   }, [loc.pathname]);
 
   useEffect(() => {
-    if (!layersOpen) return;
+    if (!open) return;
+    const ref = open === 'layers' ? layersRef : moreRef;
     const close = (e: MouseEvent) => {
-      if (popRef.current && !popRef.current.contains(e.target as Node)) setLayersOpen(false);
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(null);
+    };
+    const esc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(null);
     };
     document.addEventListener('mousedown', close);
-    return () => document.removeEventListener('mousedown', close);
-  }, [layersOpen]);
+    document.addEventListener('keydown', esc);
+    return () => {
+      document.removeEventListener('mousedown', close);
+      document.removeEventListener('keydown', esc);
+    };
+  }, [open]);
 
+  // Show as many links as fit between the brand and the tools, measured from a hidden copy of the row.
+  useLayoutEffect(() => {
+    const nav = navRef.current;
+    const measure = measureRef.current;
+    if (!nav || !measure) return;
+    const fit = () => {
+      const widths = Array.from(measure.children, (c) => c.getBoundingClientRect().width);
+      let room = nav.clientWidth;
+      for (const el of nav.querySelectorAll<HTMLElement>(':scope > [data-fixed]')) room -= el.getBoundingClientRect().width + NAV_GAP;
+      let n = 0;
+      for (const w of widths) {
+        if (w + NAV_GAP > room) break;
+        room -= w + NAV_GAP;
+        n += 1;
+      }
+      setVisible(n);
+    };
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(nav);
+    void document.fonts?.ready.then(fit);
+    return () => ro.disconnect();
+  }, [links.length]);
+
+  const toggle = (which: 'layers' | 'more') => setOpen((v) => (v === which ? null : which));
   const layersActive = loc.pathname.startsWith('/layer') || loc.pathname.startsWith('/industry') || loc.pathname.startsWith('/theme');
-  const links = [
-    { to: '/views', label: 'Views' },
-    { to: '/research', label: 'Research' },
-    { to: '/news', label: 'News' },
-    { to: '/calendar', label: 'Calendar' },
-    { to: '/journal', label: 'Journal' },
-    { to: '/notes', label: 'Notes' },
-    ...(canEdit ? [{ to: '/inbox', label: 'Inbox' }] : []),
-  ];
+  const overflow = links.slice(visible);
+  const moreActive = [...overflow.map((l) => l.to), '/settings', '/about'].some((p) => loc.pathname.startsWith(p));
 
   return (
-    <header className="site-header">
+    <header className={`site-header${canEdit ? ' editing' : ''}`}>
       <div className="wrap">
         <Link to="/" className="brand" aria-label={`${site.config.site.name}, home`}>
           <LogoMark />
           <span className="brand-name">{site.config.site.name}</span>
         </Link>
-        <nav className="nav" aria-label="Main">
-          <NavLink to="/" end>
+        <nav className="nav" aria-label="Main" ref={navRef}>
+          <NavLink to="/" end data-fixed="true">
             Map
           </NavLink>
-          <div style={{ position: 'relative' }} ref={popRef}>
-            <button
-              type="button"
-              className={`navlink${layersActive ? ' active' : ''}`}
-              aria-expanded={layersOpen}
-              onClick={() => setLayersOpen((v) => !v)}
-              style={layersActive ? { background: 'var(--sheet)', boxShadow: 'inset 0 0 0 1px var(--rule)', color: 'var(--ink)' } : undefined}
-            >
+          <div className="navpop" ref={layersRef} data-fixed="true">
+            <button type="button" className={`navlink${layersActive ? ' active' : ''}`} aria-expanded={open === 'layers'} onClick={() => toggle('layers')}>
               Layers ▾
             </button>
-            {layersOpen ? <LayersMenu /> : null}
+            {open === 'layers' ? <LayersMenu /> : null}
           </div>
-          {links.map((l) => (
+          {links.slice(0, visible).map((l) => (
             <NavLink key={l.to} to={l.to}>
               {l.label}
             </NavLink>
           ))}
+          <div className="navpop" ref={moreRef} data-fixed="true">
+            <button type="button" className={`navlink${moreActive ? ' active' : ''}`} aria-expanded={open === 'more'} onClick={() => toggle('more')}>
+              More ▾
+            </button>
+            {open === 'more' ? <MoreMenu items={overflow} signedIn={mode === 'owner'} /> : null}
+          </div>
+          <div className="nav-measure" ref={measureRef} aria-hidden="true">
+            {links.map((l) => (
+              <span key={l.to}>{l.label}</span>
+            ))}
+          </div>
         </nav>
         <div className="header-tools">
-          <button type="button" className="searchbtn" onClick={onSearch} aria-label="Search">
+          <button type="button" className="searchbtn" onClick={onSearch} aria-label="Search" title="Search (⌘K)">
             <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true">
               <path fill="currentColor" d="M7 1.5a5.5 5.5 0 0 1 4.38 8.83l3.15 3.14-1.06 1.06-3.14-3.15A5.5 5.5 0 1 1 7 1.5Zm0 1.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" />
             </svg>
@@ -101,8 +150,8 @@ export function Header({ onSearch, onWrite }: { onSearch: () => void; onWrite: (
             </button>
           ) : null}
           {mode === 'owner' ? (
-            <Link to="/settings" className="badge" title={`Signed in as ${owner?.login}`}>
-              {`Owner · ${owner?.login ?? ''}`}
+            <Link to="/settings" className="badge" title={`Signed in as ${owner?.login ?? 'the owner'}`}>
+              Owner
             </Link>
           ) : (
             <>
@@ -147,6 +196,28 @@ export function Header({ onSearch, onWrite }: { onSearch: () => void; onWrite: (
         </div>
       ) : null}
     </header>
+  );
+}
+
+function MoreMenu({ items, signedIn }: { items: NavItem[]; signedIn: boolean }) {
+  return (
+    <div className="card nav-menu">
+      {items.map((l) => (
+        <Link key={l.to} to={l.to} className="menu-item">
+          {l.label}
+        </Link>
+      ))}
+      {items.length ? <hr /> : null}
+      <Link to="/themes" className="menu-item">
+        Themes
+      </Link>
+      <Link to="/about" className="menu-item">
+        About & method
+      </Link>
+      <Link to="/settings" className="menu-item">
+        {signedIn ? 'Settings' : 'Sign in & settings'}
+      </Link>
+    </div>
   );
 }
 
