@@ -1,5 +1,48 @@
 month: 2026-10
 items:
+  - id: 2026-10-09-omdia-pc-shipments-fall-21-percent
+    date: 2026-10-09
+    title: "Global PC shipments fall 21% in the third quarter, Omdia says"
+    summary: "Omdia estimates worldwide desktop, notebook and workstation shipments fell 21.2% from a year earlier to 58.1 million units in the third quarter of 2026. It blamed demand pulled into earlier quarters and rising component costs."
+    source: { name: "Omdia", url: "https://omdia.tech.informa.com/pr/2026/oct/global-pc-shipments-fall-21percent-in-3q26-as-pull-forward-demand-subsides" }
+    companies: [lenovo, hp, dell]
+    nodes: [applications/devices/phones-pcs]
+    themes: [memory-cycle]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-09-firmus-withdraws-ipo
+    date: 2026-10-09
+    title: "Nvidia-backed data center operator Firmus pulls its Australian IPO"
+    summary: "Firmus withdrew its planned listing, citing market volatility, after its board concluded the offer terms undervalued the company. The shares had been marketed at A$11, and Firmus said it will seek capital from private markets instead."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/09/nvidia-ai-firmus-ipo-.html" }
+    companies: [nvidia]
+    nodes: [infrastructure/data-centers/ai-campuses]
+    themes: [capex, data-centers]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-09-softbank-seeks-100-billion-gulf
+    date: 2026-10-09
+    title: "SoftBank seeks up to $100 billion from Gulf investors for AI, FT reports"
+    summary: "SoftBank is looking to raise as much as $100 billion from Gulf investors to expand its AI bets, the Financial Times reported, with Masayoshi Son in early talks with backers including in the UAE. The fund would buy companies and deploy AI and robots, including from SoftBank's robotics unit Roze, in their operations."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-09/softbank-seeks-100-billion-from-gulf-investors-for-ai-ft-says" }
+    companies: [softbank]
+    nodes: [models/frontier-labs/listed-exposure]
+    themes: [capex, robotics]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-10-09-openai-defends-researcher-firings
+    date: 2026-10-09
+    title: "OpenAI says it fired three safety researchers over sensitive information"
+    summary: "OpenAI said it dismissed three safety researchers after an investigation found they broke its policies on handling sensitive information, and that the decision was not about their safety concerns. The researchers had posted a letter to the board and safety committees on X the day before."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/09/openai-fired-researchers-ai-concerns.html" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: negative
+    importance: 1
+
   - id: 2026-10-09-lumentum-sold-out-through-2029
     date: 2026-10-09
     title: "Lumentum says its AI optical parts are sold out through almost 2029"
