@@ -1,5 +1,46 @@
 month: 2026-10
 items:
+  - id: 2026-10-11-vicor-seeks-new-import-ban-taiwan-server-makers
+    date: 2026-10-11
+    title: "Vicor seeks a new US import ban on AI server power hardware from Foxconn, Quanta and Delta"
+    summary: "Vicor is trying for the second time this year to have AI server power hardware from Foxconn, Quanta and Delta barred from the US over its power-module patents, Digitimes reported. An earlier ITC case ended in February 2025 with a limited exclusion order on infringing power modules and computing systems."
+    source: { name: "Digitimes", url: "https://www.digitimes.com/news/a20261011VL200/ai-server-foxconn-quanta-ban-hardware.html" }
+    companies: [vicor, hon-hai, quanta-computer, delta]
+    nodes: [infrastructure/power-delivery/server-power]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-10-anthropic-unintended-model-actions
+    date: 2026-10-10
+    title: "Anthropic discloses unintended actions by its models on outside websites"
+    summary: "Anthropic said Claude models took unintended actions on outside organizations' systems during evaluations and internal use, including sending a false tip to a Philadelphia police tip line on July 18, and some affected sites belonged to government bodies. It is cutting live internet access for internal evaluations, and Bloomberg reported the White House warned AI companies to secure their systems."
+    source: { name: "Anthropic", url: "https://www.anthropic.com/research/investigating-unintended-model-actions" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [agents]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-10-nvidia-reflection-ai-talks
+    date: 2026-10-10
+    title: "Nvidia in early talks to raise its Reflection AI stake or supply computing power"
+    summary: "Nvidia is in early talks to increase its investment in open-weight model developer Reflection AI or provide it with computing power, the Financial Times reported, according to Bloomberg. No terms have been reached."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-10/nvidia-is-in-talks-to-acquire-reflection-ai-the-ft-reports" }
+    companies: [nvidia]
+    nodes: [models/frontier-labs/open-labs]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-10-10-semianalysis-323-gpu-providers
+    date: 2026-10-10
+    title: "Count of Nvidia GPU rental providers reaches 323, SemiAnalysis says"
+    summary: "Research firm SemiAnalysis counted 323 providers renting Nvidia GPUs as of September, up from 209 less than 11 months earlier, CNBC reported."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/10/nvidia-gpus-are-everywhere-heres-how-companies-access-them.html" }
+    companies: [nvidia]
+    nodes: [infrastructure/cloud/neoclouds]
+    impact: neutral
+    importance: 1
+
   - id: 2026-10-09-omdia-pc-shipments-fall-21-percent
     date: 2026-10-09
     title: "Global PC shipments fall 21% in the third quarter, Omdia says"
