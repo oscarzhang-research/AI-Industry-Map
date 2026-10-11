@@ -8,6 +8,8 @@ site:
   baseCurrency: USD             # market caps are converted to this currency
   upColor: green                # green = green-up/red-down (US style); red = red-up/green-down (China style)
   experimental: true            # shows the "Preview" ribbon and asks search engines not to index
+  showExamples: true            # placeholder views, notes and journal (example: true); the owner can switch them off in Settings
+  url: https://oscarzhang-research.github.io/AI-Industry-Map/   # public address, used in link previews
   disclaimer: >-
     Personal research notes. Nothing on this site is investment advice or a recommendation to
     buy or sell any security. Views can change without notice and may be wrong.

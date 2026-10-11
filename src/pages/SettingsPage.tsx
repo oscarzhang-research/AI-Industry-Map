@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from '../lib/store.tsx';
 import { Section, Segmented } from '../components/ui.tsx';
-import { dispatchWorkflow } from '../lib/github.ts';
+import { commitFiles, dispatchWorkflow, getRawFile } from '../lib/github.ts';
+import { setSiteFlag } from '../lib/configEdit.ts';
 import { clearDemo, loadDemoRecords } from '../lib/demo.ts';
 import { fmtDateTime, plural } from '../lib/format.ts';
 
@@ -27,6 +28,25 @@ export default function SettingsPage() {
       setErr((e as Error).message);
     } finally {
       setBusy(false);
+    }
+  };
+
+  // The example records are switched for the whole site by editing site.config.yaml; the push rebuilds it.
+  const [examplesOn, setExamplesOn] = useState(site.config.site.showExamples !== false);
+  const [examplesSave, setExamplesSave] = useState<'idle' | 'saving' | 'saved'>('idle');
+  const setShowExamples = async (on: boolean) => {
+    const t = token();
+    if (!t || examplesSave === 'saving' || on === examplesOn) return;
+    setExamplesSave('saving');
+    try {
+      const path = 'site.config.yaml';
+      const current = new TextDecoder().decode(await getRawFile(t, repos.public, path));
+      await commitFiles(t, repos.public, [{ path, text: setSiteFlag(current, 'showExamples', on) }], on ? 'Show example content (site settings)' : 'Hide example content (site settings)');
+      setExamplesOn(on);
+      setExamplesSave('saved');
+    } catch (e) {
+      setExamplesSave('idle');
+      toast(`Could not save the change: ${(e as Error).message}`, 'error');
     }
   };
 
@@ -177,6 +197,35 @@ export default function SettingsPage() {
             </div>
           )}
         </Section>
+
+        {mode === 'owner' ? (
+          <Section
+            id="examples"
+            title="Example content"
+            sub="Placeholder views, notes and a journal entry that show how the site works before you write your own. The switch applies to everyone, you included."
+          >
+            <div className="card stack" style={{ '--gap': '10px' } as React.CSSProperties}>
+              <Pref label="Examples on the site">
+                <Segmented
+                  label="Example content"
+                  value={examplesOn ? 'shown' : 'hidden'}
+                  onChange={(v) => void setShowExamples(v === 'shown')}
+                  options={[
+                    { value: 'shown', label: 'Shown' },
+                    { value: 'hidden', label: 'Hidden' },
+                  ]}
+                />
+              </Pref>
+              <div className="muted" style={{ fontSize: 'var(--step--1)' }}>
+                {examplesSave === 'saving'
+                  ? 'Saving…'
+                  : examplesSave === 'saved'
+                    ? `Saved. The site is rebuilding; reload in about two minutes and the examples will be ${examplesOn ? 'back' : 'gone'}.`
+                    : 'Changing this edits site.config.yaml in the public repository, and the site rebuilds in about two minutes.'}
+              </div>
+            </div>
+          </Section>
+        ) : null}
 
         <Section id="demo" title="Demo mode" sub="Try the editors without signing in. Everything you write stays in this browser and is never uploaded.">
           <div className="card stack" style={{ '--gap': '12px' } as React.CSSProperties}>

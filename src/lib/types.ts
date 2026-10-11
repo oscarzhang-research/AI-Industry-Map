@@ -18,6 +18,8 @@ export interface SiteConfig {
     baseCurrency: string;
     upColor: 'green' | 'red';
     experimental?: boolean;
+    showExamples?: boolean; // false leaves records marked example out of the build
+    url?: string; // public address, for link previews
     disclaimer: string;
   };
   repos: {

@@ -9,7 +9,10 @@ export function PreviewRibbon() {
   if (!site.config.site.experimental) return null;
   return (
     <div className="preview-ribbon">
-      <b>Preview build.</b> Views marked Example are placeholders, not the author's positions.
+      <b>Preview build.</b>{' '}
+      {site.config.site.showExamples
+        ? "Views marked Example are placeholders, not the author's positions."
+        : 'Prices update every trading day; views and notes appear as they are written.'}
       {mode === 'visitor' ? (
         <button
           type="button"

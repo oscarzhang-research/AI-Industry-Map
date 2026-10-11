@@ -147,7 +147,9 @@ writeJson(join(OUT, 'reports-text.json'), reportText);
 
 // ---- News, records ------------------------------------------------------------
 writeJson(join(OUT, 'news.json'), content.news);
-writeJson(join(OUT, 'records.json'), { records: content.records });
+// Placeholder records (example: true) are validated but only shipped while showExamples is on.
+const records = content.records.filter((r) => content.config.site.showExamples || !r.example);
+writeJson(join(OUT, 'records.json'), { records });
 
 // ---- Meta + robots -----------------------------------------------------------------
 writeJson(join(OUT, 'meta.json'), {
@@ -161,7 +163,7 @@ writeJson(join(OUT, 'meta.json'), {
     series: series.size,
     reports: reportsOut.length,
     news: content.news.length,
-    records: content.records.length,
+    records: records.length,
   },
 });
 writeFileSync(
@@ -171,6 +173,6 @@ writeFileSync(
 
 console.log(
   `build-data: ${Object.keys(content.companies).length} companies, ${series.size} price series (as of ${asOf ?? 'n/a'}), ` +
-    `${indexSeries.length} baskets, ${reportsOut.length} reports, ${content.news.length} news, ${content.records.length} records` +
+    `${indexSeries.length} baskets, ${reportsOut.length} reports, ${content.news.length} news, ${records.length} records` +
     ` · ${warnings} warning(s) · ${Date.now() - t0} ms`,
 );

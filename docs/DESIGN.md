@@ -22,6 +22,8 @@ Owner's browser ── fine-grained token ──→ GitHub API
 - **Owner mode**: the owner pastes a fine-grained GitHub token (Contents read/write on both repositories) on the Settings page. The token stays in that browser's storage and is sent only to `api.github.com`. Saves are atomic multi-file commits through the Git Data API, retried on a moving head. The vault is read as one recursive tree; parsed files are cached in the browser by blob SHA, so edits Claude makes in a session are picked up on the next load.
 - **Public projection**: saving a public record writes a sanitized copy to `content/views/` in the same action; switching a record to private deletes the copy. Hidden fields (`target`, `stop`, `scenarios`, `plan`, `position` by default) are removed, along with their revisions and translations.
 - **Demo mode** lets anyone try the editors; records stay in that browser.
+- **Example content**: placeholder records (`example: true`) ship while `site.showExamples` is on. The owner flips it from Settings, which commits `site.config.yaml` and rebuilds the site for everyone.
+- **Link previews**: Open Graph and Twitter tags with absolute URLs from `site.url`, and a 1200×630 `public/og.png`. The site uses hash routing, so every page shares one card.
 - **Workflows**: `market-data.yml` (after the Asian and US closes, plus branch pushes that change the universe), `deploy.yml` (on pushes to `main` and after each data update), `ci.yml` (validate, typecheck, test, build on every branch). A Claude routine also runs every morning at about 6:48 New York time: it adds sourced news for all five layers, translates new Chinese writing, runs the checks and commits only those changes to `main`.
 
 ## Market data

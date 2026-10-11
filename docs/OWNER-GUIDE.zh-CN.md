@@ -119,11 +119,21 @@ Claude 需要通过 “Claude GitHub App” 访问仓库，才能帮你把卖方
 
 ### 研报库
 
-- **Research** → **Add a report** 上传：
+- **单篇上传**：**Research** → **Add a report**：
   - Claude 写的 HTML 报告：默认公开（上传前请确认里面没有个人信息）。
   - 卖方 PDF：**永远私有**，只存在私有仓库，只有你登录后能打开。
+- **批量上传**（几十上百份时用这个）：
+  1. 打开私有仓库 https://github.com/oscarzhang-research/AI-Industry-Map-private ，点进 `inbox` 文件夹。
+  2. 点 **Add file** → **Upload files**，把文件拖进去（一次最多 100 个，单个文件不超过 25 MB），再点 **Commit changes**。
+  3. 告诉 Claude：**“收件箱里有新研报，帮我归档”**。Claude 会逐份读取，写英文标题和摘要，做隐私检查：卖方 PDF 一律私有；Claude 写的 HTML 通过检查后公开，含个人信息的留在私有区，并告诉你是哪几份。
+  - 文件先进私有仓库，所以 Claude 检查完之前什么都不会公开。
 - 研报按月份 / 公司 / 行业分组，每组默认显示最近 5 篇，其余折叠。
 - 双语报告可以在阅读页右上角切换 English / 中文。
+
+### 示例内容
+
+- 网站默认显示示例：标着 **Example** 的观点、笔记和周报，帮访客看懂网站怎么用。它们不是你的观点。
+- 想关掉：登录后点右上角 **Owner** 进入 Settings → **Example content** 选 **Hidden**。约两分钟后网站重新生成，所有人（包括你自己）都看不到示例。想恢复就选 **Shown**。
 
 ### Inbox（待办）
 

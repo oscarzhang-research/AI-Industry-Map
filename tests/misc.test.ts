@@ -3,6 +3,7 @@ import { benchmarkIdFor, marketOf, safeSymbol } from '../src/lib/symbols.ts';
 import { htmlToText, injectReaderShim, withReaderLang } from '../src/lib/reportShim.ts';
 import { periodFor, prune, uniqueId } from '../src/editor/util.ts';
 import { fmtPct, fmtPrice } from '../src/lib/format.ts';
+import { setSiteFlag } from '../src/lib/configEdit.ts';
 import type { AnyRecord } from '../src/lib/types.ts';
 
 const defaults = { US: 'ndx', 'US-chips': 'sox', KR: 'kospi', CN: 'csi300', 'CN-STAR': 'star50', EU: 'stoxx50', OTHER: 'spx' };
@@ -74,5 +75,32 @@ describe('format', () => {
     expect(fmtPct(-0.0123)).toBe('−1.2%');
     expect(fmtPct(12.5)).toBe('+1,250%');
     expect(fmtPct(undefined)).toBe('—');
+  });
+});
+
+describe('site config switches', () => {
+  const yaml = [
+    '# Site-wide settings.',
+    'site:',
+    '  name: AI Industry Map',
+    '  showExamples: true            # placeholder records',
+    '  disclaimer: >-',
+    '    Not advice.',
+    '',
+    'defaults:',
+    '  showExamples: true',
+    '',
+  ].join('\n');
+
+  it('flips the flag in the site block and keeps its comment', () => {
+    const out = setSiteFlag(yaml, 'showExamples', false);
+    expect(out).toContain('  showExamples: false            # placeholder records');
+    expect(out.split('\n')[8]).toBe('  showExamples: true'); // other sections untouched
+    expect(setSiteFlag(out, 'showExamples', true)).toBe(yaml);
+  });
+
+  it('adds the flag when the site block lacks it', () => {
+    const out = setSiteFlag(yaml, 'experimental', false);
+    expect(out.split('\n')[2]).toBe('  experimental: false');
   });
 });
