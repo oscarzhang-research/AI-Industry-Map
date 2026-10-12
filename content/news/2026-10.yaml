@@ -1,5 +1,25 @@
 month: 2026-10
 items:
+  - id: 2026-10-11-amazon-decart-talks
+    date: 2026-10-11
+    title: "Amazon in talks to buy world-model startup Decart for about $7 billion, WSJ reports"
+    summary: "Amazon is negotiating to acquire Decart AI in a deal that could value it at around $7 billion and could close soon if talks hold, the Wall Street Journal reported. Decart builds world models and software that helps chips train AI more cheaply; Anthropic walked away from a roughly $6 billion deal for it in September."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-11/amazon-is-in-talks-to-buy-ai-startup-decart-wsj-reports" }
+    companies: [amazon, anthropic]
+    nodes: [models/multimodal/world-models]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-10-11-samsung-sk-hynix-accept-asml-parts-price-hike
+    date: 2026-10-11
+    title: "Samsung and SK Hynix accept a 10% rise in ASML spare-part prices, report says"
+    summary: "Samsung Electronics and SK Hynix agreed to a 10% increase in prices for replacement parts for ASML lithography systems in South Korea, effective for deliveries from January 2027, Digitimes reported, citing The Elec."
+    source: { name: "Digitimes", url: "https://www.digitimes.com/news/a20261012VL211/samsung-sk-hynix-asml-equipment-revenue.html" }
+    companies: [asml, samsung-electronics, sk-hynix]
+    nodes: [chips/equipment/lithography]
+    impact: mixed
+    importance: 1
+
   - id: 2026-10-11-vicor-seeks-new-import-ban-taiwan-server-makers
     date: 2026-10-11
     title: "Vicor seeks a new US import ban on AI server power hardware from Foxconn, Quanta and Delta"
