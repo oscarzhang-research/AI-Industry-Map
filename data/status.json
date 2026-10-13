@@ -1,9 +1,9 @@
 {
  "failed": [],
  "fundamentalsFailed": [],
- "markets": "all",
- "ok": 351,
- "seconds": 279.8,
- "symbols": 351,
- "updatedAt": "2026-10-13T02:46:46+00:00"
+ "markets": "asia",
+ "ok": 137,
+ "seconds": 21.1,
+ "symbols": 137,
+ "updatedAt": "2026-10-13T17:42:32+00:00"
 }
