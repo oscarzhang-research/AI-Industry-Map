@@ -1,5 +1,5 @@
 // Industry indicator cards (layer pages, /indicators) and the reported-revenue chart on company pages.
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import type { EChartsCoreOption } from 'echarts/core';
 import type { Financials, Kpi, KpiGrowthTable, KpiMonthly, KpiRanges, KpiStack, KpiValuations } from '../lib/types.ts';
@@ -262,9 +262,14 @@ function MonthlyChart({ kpi }: { kpi: KpiMonthly }) {
 function GrowthTable({ kpi }: { kpi: KpiGrowthTable }) {
   const { site } = useStore();
   useThemeVersion();
+  const wrap = useRef<HTMLDivElement>(null);
+  // On narrow screens the table scrolls sideways: start at the newest period.
+  useEffect(() => {
+    if (wrap.current) wrap.current.scrollLeft = wrap.current.scrollWidth;
+  }, [kpi]);
   const label = (p: string) => (kpi.frequency === 'month' ? monthLabel(p) : quarterLabel(p));
   return (
-    <div className="table-wrap">
+    <div className="table-wrap" ref={wrap}>
       <table className="data compact growth">
         <thead>
           <tr>

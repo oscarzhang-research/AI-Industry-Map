@@ -33,111 +33,129 @@ export function EarningsWeek() {
   }, [site, quotes, earnings, today]);
   const upcoming = useMemo(() => upcomingReports(site, quotes.quotes, earnings, today, shiftDays(today, 7)), [site, quotes, earnings, today]);
   if (!recent.list.length && !upcoming.length) return null;
-  const shownUp = upcoming.slice(0, 14);
-  const days = [...new Set(shownUp.map((u) => u.date))];
   return (
     <Section
       eyebrow="Earnings"
       title="This week's reports"
-      sub={`Results from the last ${recent.days === 7 ? 'seven' : '30'} days against consensus, and reports due in the next seven. ${SOURCE_NOTE}`}
+      sub={
+        recent.list.length
+          ? `Results from the last ${recent.days === 7 ? 'seven' : '30'} days against consensus, and reports due in the next seven. ${SOURCE_NOTE}`
+          : `Reports due in the next seven days, with the consensus for each. Results appear here, against that consensus, as they come out. ${SOURCE_NOTE}`
+      }
       tools={
         <Link to="/calendar" className="btn sm">
           Calendar
         </Link>
       }
     >
-      <div className="grid cols-2 earn-week" style={{ '--gap': '20px' } as React.CSSProperties}>
-        <div className="card min0">
-          <div className="eyebrow">Reported{recent.days === 30 ? ' in the last 30 days' : ''}</div>
-          {recent.list.length ? (
-            <div className="table-wrap" style={{ marginTop: 6 }}>
-              <table className="data compact">
-                <thead>
-                  <tr>
-                    <th>Company</th>
-                    <th className="n">EPS vs est.</th>
-                    <th className="n">Revenue vs est.</th>
-                    <th className="n">Move</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {recent.list.slice(0, 10).map(({ company, symbol, report: r, ccy }) => (
-                    <tr key={symbol}>
-                      <td>
-                        <Link to={`/company/${company.id}`}>{company.name}</Link>
-                        <div className="faint" style={{ fontSize: 'var(--step--2)' }}>
-                          {symbol} · {fmtDate(r.date, false)}
-                        </div>
-                      </td>
-                      <td className="n" title={r.epsActual !== undefined ? `EPS ${fmtEps(r.epsActual)} vs ${fmtEps(r.epsEst)} expected` : undefined}>
-                        {r.surprise !== undefined ? <Change value={r.surprise / 100} /> : fmtEps(r.epsActual)}
-                      </td>
-                      <td className="n" title={r.revActual ? `Revenue ${fmtCompact(r.revActual, ccy)}${r.revEst ? ` vs ${fmtCompact(r.revEst, ccy)} expected` : ''}` : undefined}>
-                        {r.revSurprise !== undefined ? <Change value={r.revSurprise} /> : r.revActual ? fmtCompact(r.revActual, ccy) : '—'}
-                      </td>
-                      <td className="n">
-                        <Change value={r.move} />
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              {recent.list.length > 10 ? (
-                <p className="faint" style={{ fontSize: 'var(--step--2)', marginTop: 6 }}>
-                  and {plural(recent.list.length - 10, 'more company', 'more companies')}
-                </p>
-              ) : null}
-            </div>
-          ) : (
-            <div className="empty" style={{ marginTop: 8 }}>
-              No results in the last month.
-            </div>
-          )}
-          <p className="faint" style={{ fontSize: 'var(--step--2)', marginTop: 8 }}>
-            {MOVE_NOTE}
-          </p>
-        </div>
-        <div className="card min0">
-          <div className="eyebrow">Coming up</div>
-          {days.length ? (
-            <div className="earn-days" style={{ marginTop: 6 }}>
-              {days.map((d) => (
-                <div key={d} className="earn-day">
-                  <div className="when">
-                    {weekday(d)} {fmtDate(d, false)}
-                    <div className="faint">{relativeDays(d, today)}</div>
-                  </div>
-                  <ul>
-                    {shownUp
-                      .filter((u) => u.date === d)
-                      .map((u) => {
-                        const time = reportTimeLabel(u.symbol, u.next?.time);
-                        return (
-                          <li key={u.symbol}>
-                            <Link to={`/company/${u.company.id}`}>{u.company.name}</Link>
-                            <span className="faint">
-                              {[u.symbol, time, u.next?.epsEst !== undefined ? `EPS est. ${fmtEps(u.next.epsEst)}` : '', u.estimated ? 'date estimated' : ''].filter(Boolean).join(' · ')}
-                            </span>
-                          </li>
-                        );
-                      })}
-                  </ul>
-                </div>
+      <div className={`grid earn-week${recent.list.length && upcoming.length ? ' cols-2' : ''}`} style={{ '--gap': '20px' } as React.CSSProperties}>
+        {recent.list.length ? <ReportedCard recent={recent} /> : null}
+        {upcoming.length ? <ComingUpCard upcoming={upcoming} today={today} /> : null}
+      </div>
+    </Section>
+  );
+}
+
+type Recent = { list: ReturnType<typeof recentReports>; days: number };
+
+function ReportedCard({ recent }: { recent: Recent }) {
+  return (
+    <div className="card min0">
+      <div className="eyebrow">Reported{recent.days === 30 ? ' in the last 30 days' : ''}</div>
+      {recent.list.length ? (
+        <div className="table-wrap" style={{ marginTop: 6 }}>
+          <table className="data compact">
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th className="n">EPS vs est.</th>
+                <th className="n">Revenue vs est.</th>
+                <th className="n">Move</th>
+              </tr>
+            </thead>
+            <tbody>
+              {recent.list.slice(0, 10).map(({ company, symbol, report: r, ccy }) => (
+                <tr key={symbol}>
+                  <td>
+                    <Link to={`/company/${company.id}`}>{company.name}</Link>
+                    <div className="faint" style={{ fontSize: 'var(--step--2)' }}>
+                      {symbol} · {fmtDate(r.date, false)}
+                    </div>
+                  </td>
+                  <td className="n" title={r.epsActual !== undefined ? `EPS ${fmtEps(r.epsActual)} vs ${fmtEps(r.epsEst)} expected` : undefined}>
+                    {r.surprise !== undefined ? <Change value={r.surprise / 100} /> : fmtEps(r.epsActual)}
+                  </td>
+                  <td className="n" title={r.revActual ? `Revenue ${fmtCompact(r.revActual, ccy)}${r.revEst ? ` vs ${fmtCompact(r.revEst, ccy)} expected` : ''}` : undefined}>
+                    {r.revSurprise !== undefined ? <Change value={r.revSurprise} /> : r.revActual ? fmtCompact(r.revActual, ccy) : '—'}
+                  </td>
+                  <td className="n">
+                    <Change value={r.move} />
+                  </td>
+                </tr>
               ))}
-            </div>
-          ) : (
-            <div className="empty" style={{ marginTop: 8 }}>
-              No reports due in the next week.
-            </div>
-          )}
-          {upcoming.length > shownUp.length ? (
-            <p className="faint" style={{ fontSize: 'var(--step--2)', marginTop: 8 }}>
-              {plural(upcoming.length - shownUp.length, 'more report')} this week on the <Link to="/calendar">calendar</Link>.
+            </tbody>
+          </table>
+          {recent.list.length > 10 ? (
+            <p className="faint" style={{ fontSize: 'var(--step--2)', marginTop: 6 }}>
+              and {plural(recent.list.length - 10, 'more company', 'more companies')}
             </p>
           ) : null}
         </div>
-      </div>
-    </Section>
+      ) : (
+        <div className="empty" style={{ marginTop: 8 }}>
+          No results in the last month.
+        </div>
+      )}
+      <p className="faint" style={{ fontSize: 'var(--step--2)', marginTop: 8 }}>
+        {MOVE_NOTE}
+      </p>
+    </div>
+  );
+}
+
+function ComingUpCard({ upcoming, today }: { upcoming: ReturnType<typeof upcomingReports>; today: string }) {
+  const shownUp = upcoming.slice(0, 14);
+  const days = [...new Set(shownUp.map((u) => u.date))];
+  return (
+    <div className="card min0">
+      <div className="eyebrow">Coming up</div>
+      {days.length ? (
+        <div className="earn-days" style={{ marginTop: 6 }}>
+          {days.map((d) => (
+            <div key={d} className="earn-day">
+              <div className="when">
+                {weekday(d)} {fmtDate(d, false)}
+                <div className="faint">{relativeDays(d, today)}</div>
+              </div>
+              <ul>
+                {shownUp
+                  .filter((u) => u.date === d)
+                  .map((u) => {
+                    const time = reportTimeLabel(u.symbol, u.next?.time);
+                    return (
+                      <li key={u.symbol}>
+                        <Link to={`/company/${u.company.id}`}>{u.company.name}</Link>
+                        <span className="faint">
+                          {[u.symbol, time, u.next?.epsEst !== undefined ? `EPS est. ${fmtEps(u.next.epsEst)}` : '', u.estimated ? 'date estimated' : ''].filter(Boolean).join(' · ')}
+                        </span>
+                      </li>
+                    );
+                  })}
+              </ul>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="empty" style={{ marginTop: 8 }}>
+          No reports due in the next week.
+        </div>
+      )}
+      {upcoming.length > shownUp.length ? (
+        <p className="faint" style={{ fontSize: 'var(--step--2)', marginTop: 8 }}>
+          {plural(upcoming.length - shownUp.length, 'more report')} this week on the <Link to="/calendar">calendar</Link>.
+        </p>
+      ) : null}
+    </div>
   );
 }
 
