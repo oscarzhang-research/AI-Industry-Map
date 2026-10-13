@@ -337,9 +337,9 @@
   "priceToSales": 448.22003,
   "recommendation": "buy",
   "sharesOutstanding": 268132774,
-  "targetHigh": 1302.2012,
-  "targetLow": 140.16171,
-  "targetMean": 588.6731
+  "targetHigh": 1302.2676,
+  "targetLow": 140.16885,
+  "targetMean": 588.7031
  },
  "010120.KS": {
   "analysts": 24,
@@ -457,9 +457,9 @@
   "priceToSales": 45.81548,
   "recommendation": "buy",
   "sharesOutstanding": 6014569609,
-  "targetHigh": 153.00854,
-  "targetLow": 35.001186,
-  "targetMean": 96.00888,
+  "targetHigh": 153.01636,
+  "targetLow": 35.00297,
+  "targetMean": 96.01378,
   "trailingPE": 55.55
  },
  "0992.HK": {
@@ -478,9 +478,9 @@
   "priceToSales": 4.2306795,
   "recommendation": "strong_buy",
   "sharesOutstanding": 12404659302,
-  "targetHigh": 70.99995,
-  "targetLow": 11.026299,
-  "targetMean": 45.33771,
+  "targetHigh": 70.99905,
+  "targetLow": 11.026158,
+  "targetMean": 45.33713,
   "trailingPE": 28.272726
  },
  "1024.HK": {
@@ -520,9 +520,9 @@
   "priceToSales": 74.36418,
   "recommendation": "buy",
   "sharesOutstanding": 1928494794,
-  "targetHigh": 335.03827,
-  "targetLow": 41.004753,
-  "targetMean": 144.01868,
+  "targetHigh": 335.05536,
+  "targetLow": 41.006844,
+  "targetMean": 144.02602,
   "trailingPE": 193.40909
  },
  "1810.HK": {
@@ -1079,7 +1079,7 @@
   "targetHigh": 5200.0,
   "targetLow": 3327.0,
   "targetMean": 4200.353,
-  "trailingPE": 43.68092
+  "trailingPE": 45.81006
  },
  "3037.TW": {
   "analysts": 19,
@@ -2291,9 +2291,9 @@
   "priceToSales": 4.034013,
   "recommendation": "hold",
   "sharesOutstanding": 1809132299,
-  "targetHigh": 97.06434,
-  "targetLow": 67.3285,
-  "targetMean": 84.13996,
+  "targetHigh": 97.06783,
+  "targetLow": 67.330925,
+  "targetMean": 84.14299,
   "trailingPE": 36.568806
  },
  "ACMR": {
@@ -2575,11 +2575,11 @@
   "dividendYield": 0.0,
   "evToEbitda": -130.818,
   "financialCurrency": "USD",
-  "forwardPE": 7.882452,
+  "forwardPE": 7.9207163,
   "high52": 1.975,
   "low52": 0.65,
-  "marketCap": 276579360,
-  "priceToSales": 1.1046517,
+  "marketCap": 277921952,
+  "priceToSales": 1.110014,
   "recommendation": "none",
   "sharesOutstanding": 268523648,
   "targetHigh": 2.6,
@@ -2644,9 +2644,9 @@
   "priceToSales": 18.67643,
   "recommendation": "strong_buy",
   "sharesOutstanding": 384100000,
-  "targetHigh": 2898.349,
-  "targetLow": 866.53235,
-  "targetMean": 2111.4653,
+  "targetHigh": 2898.6738,
+  "targetLow": 866.62933,
+  "targetMean": 2111.7017,
   "trailingPE": 55.753326
  },
  "ASX": {
@@ -4072,9 +4072,9 @@
   "marketCap": 7635459072,
   "recommendation": "strong_buy",
   "sharesOutstanding": 259356608,
-  "targetHigh": 106.19347,
-  "targetLow": 79.17056,
-  "targetMean": 91.74301,
+  "targetHigh": 106.18874,
+  "targetLow": 79.16704,
+  "targetMean": 91.73893,
   "trailingPE": 7.424242
  },
  "KLAC": {
@@ -4712,9 +4712,9 @@
   "nextEarnings": "2026-11-03",
   "recommendation": "buy",
   "sharesOutstanding": 670506101,
-  "targetHigh": 18.907438,
-  "targetLow": 13.792036,
-  "targetMean": 16.349737
+  "targetHigh": 18.907572,
+  "targetLow": 13.792132,
+  "targetMean": 16.349852
  },
  "OKLO": {
   "analysts": 20,
@@ -5389,9 +5389,9 @@
   "priceToSales": 5.986606,
   "recommendation": "buy",
   "sharesOutstanding": 205584205,
-  "targetHigh": 700.5489,
-  "targetLow": 408.4745,
-  "targetMean": 595.1144,
+  "targetHigh": 700.6273,
+  "targetLow": 408.52023,
+  "targetMean": 595.18097,
   "trailingPE": 30.31322
  },
  "STRL": {
