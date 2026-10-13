@@ -1,5 +1,49 @@
 month: 2026-10
 items:
+  - id: 2026-10-13-cxmt-claim-korean-memory-selloff
+    date: 2026-10-13
+    title: "Korean memory stocks slide after CXMT claims a DRAM design breakthrough"
+    summary: "CXMT's president told an industry conference in Shanghai that the company will launch a data center memory chip with a 4F² design before the end of the year, a claim it has not yet backed with volume production. SK Hynix and Samsung Electronics each fell more than 8% in Seoul on October 13."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-13/china-s-cxmt-claims-memory-breakthrough-ahead-of-samsung-hynix" }
+    companies: [cxmt, sk-hynix, samsung-electronics]
+    nodes: [chips/memory/dram-hbm]
+    themes: [memory-cycle, china-ai]
+    impact: negative
+    importance: 3
+
+  - id: 2026-10-12-microsoft-maia-300
+    date: 2026-10-12
+    title: "Microsoft unveils Maia 300 and will use its own chips mainly for inference"
+    summary: "Microsoft introduced Maia 300, its third-generation in-house AI accelerator, and said it will use Maia mainly for inference. Bloomberg reported that Microsoft plans to start installing Maia 300 in its data centers next year, eventually at multi-gigawatt scale."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/12/microsoft-will-mainly-use-its-maia-chips-for-ai-inference.html" }
+    companies: [microsoft]
+    nodes: [chips/compute/hyperscaler-silicon]
+    themes: [custom-asic, inference]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-12-intel-broadcom-capital-constraint
+    date: 2026-10-12
+    title: "Broadcom and Intel CEOs say access to capital may become AI's biggest constraint"
+    summary: "Broadcom CEO Hock Tan said financing could become a bigger limit on AI expansion than shortages of chips, memory or power, while Intel CEO Lip-Bu Tan said investors will want to see returns. Both said near-term demand remains strong, and Hock Tan said demand could outrun supply through 2029, possibly into 2030."
+    source: { name: "CNBC", url: "https://cnbc.com/2026/10/12/intel-broadcom-ceos-warn-capital-crunch-could-become-ai-bottleneck.html" }
+    companies: [broadcom, intel]
+    nodes: [chips/compute/custom-asic]
+    themes: [capex]
+    impact: mixed
+    importance: 1
+
+  - id: 2026-10-12-nebius-volt-rotterdam-loi
+    date: 2026-10-12
+    title: "Nebius signs a letter of intent to anchor Volt's planned Rotterdam AI campus"
+    summary: "Nebius signed a non-binding letter of intent to be the first customer at Volt's planned AI campus at the Port of Rotterdam, which Volt says could reach up to 800 MW in phases. Equipment and contract terms will be set later."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/nebius-signs-loi-with-volt-for-data-center-capacity-in-rotterdam-the-netherlands/" }
+    companies: [nebius]
+    nodes: [infrastructure/cloud/neoclouds]
+    themes: [data-centers]
+    impact: positive
+    importance: 1
+
   - id: 2026-10-11-amazon-decart-talks
     date: 2026-10-11
     title: "Amazon in talks to buy world-model startup Decart for about $7 billion, WSJ reports"
