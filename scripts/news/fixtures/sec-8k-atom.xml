@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Synthetic test fixture for scripts/news/test_fetch_feeds.py, in the shape of an EDGAR
+     company feed (browse-edgar ... output=atom). The filer and accession numbers are made up. -->
+<feed xmlns="http://www.w3.org/2005/Atom">
+<author>
+<email>webmaster@sec.gov</email>
+<name>Webmaster</name>
+</author>
+<company-info>
+<cik>0000000001</cik>
+<conformed-name>EXAMPLE CORP</conformed-name>
+<fiscal-year-end>1231</fiscal-year-end>
+</company-info>
+<id>https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=0000000001&amp;type=8-K</id>
+<link href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=0000000001&amp;type=8-K" rel="alternate" type="text/html" />
+<title>EXAMPLE CORP  (0000000001)</title>
+<updated>2026-10-13T08:00:00-04:00</updated>
+<entry>
+<category label="form type" scheme="https://www.sec.gov/" term="8-K" />
+<content type="text/xml">
+<accession-number>0000000001-26-000042</accession-number>
+<act>34</act>
+<filing-date>2026-10-12</filing-date>
+<filing-href>https://www.sec.gov/Archives/edgar/data/1/000000000126000042/0000000001-26-000042-index.htm</filing-href>
+<filing-type>8-K</filing-type>
+<form-name>Current report</form-name>
+<items-desc>items 2.02 and 9.01</items-desc>
+<size>412 KB</size>
+</content>
+<id>urn:tag:sec.gov,2008:accession-number=0000000001-26-000042</id>
+<link href="https://www.sec.gov/Archives/edgar/data/1/000000000126000042/0000000001-26-000042-index.htm" rel="alternate" type="text/html" />
+<summary type="html"> &lt;b&gt;Filed:&lt;/b&gt; 2026-10-12 &lt;b&gt;AccNo:&lt;/b&gt; 0000000001-26-000042 &lt;b&gt;Size:&lt;/b&gt; 412 KB&lt;br&gt;Item 2.02: Results of Operations and Financial Condition&lt;br&gt;Item 9.01: Financial Statements and Exhibits</summary>
+<title>8-K  - Current report</title>
+<updated>2026-10-12T16:05:09-04:00</updated>
+</entry>
+<entry>
+<category label="form type" scheme="https://www.sec.gov/" term="8-K/A" />
+<content type="text/xml">
+<accession-number>0000000001-26-000043</accession-number>
+<filing-date>2026-10-13</filing-date>
+<filing-href>https://www.sec.gov/Archives/edgar/data/1/000000000126000043/0000000001-26-000043-index.htm</filing-href>
+<filing-type>8-K/A</filing-type>
+<form-name>Current report</form-name>
+<items-desc>items 7.01 and 9.01</items-desc>
+</content>
+<id>urn:tag:sec.gov,2008:accession-number=0000000001-26-000043</id>
+<link href="https://www.sec.gov/Archives/edgar/data/1/000000000126000043/0000000001-26-000043-index.htm" rel="alternate" type="text/html" />
+<summary type="html"> &lt;b&gt;Filed:&lt;/b&gt; 2026-10-13 &lt;b&gt;AccNo:&lt;/b&gt; 0000000001-26-000043 &lt;b&gt;Size:&lt;/b&gt; 90 KB</summary>
+<title>8-K/A  - Current report</title>
+<updated>2026-10-13T06:30:00-04:00</updated>
+</entry>
+<entry>
+<category label="form type" scheme="https://www.sec.gov/" term="8-K" />
+<content type="text/xml">
+<accession-number>0000000001-26-000031</accession-number>
+<filing-date>2026-09-02</filing-date>
+<filing-href>https://www.sec.gov/Archives/edgar/data/1/000000000126000031/0000000001-26-000031-index.htm</filing-href>
+<filing-type>8-K</filing-type>
+<form-name>Current report</form-name>
+<items-desc>items 5.02</items-desc>
+</content>
+<id>urn:tag:sec.gov,2008:accession-number=0000000001-26-000031</id>
+<link href="https://www.sec.gov/Archives/edgar/data/1/000000000126000031/0000000001-26-000031-index.htm" rel="alternate" type="text/html" />
+<summary type="html"> &lt;b&gt;Filed:&lt;/b&gt; 2026-09-02 &lt;b&gt;AccNo:&lt;/b&gt; 0000000001-26-000031 &lt;b&gt;Size:&lt;/b&gt; 40 KB&lt;br&gt;Item 5.02: Departure of Directors or Certain Officers</summary>
+<title>8-K  - Current report</title>
+<updated>2026-09-02T17:00:00-04:00</updated>
+</entry>
+</feed>

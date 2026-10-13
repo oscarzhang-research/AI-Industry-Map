@@ -1,0 +1,91 @@
+name: News feeds
+
+# Every two hours: fetch the RSS/Atom feeds in content/news-sources.yaml (scripts/news/fetch_feeds.py)
+# and publish news-candidates.json to the orphan branch "feeds", which always holds a single commit.
+# A Claude routine reads that file each morning to pick and verify news items.
+# Scheduled runs only fire on the default branch (main). A push to a claude/** branch that changes the
+# fetcher or the source list runs the same fetch but only uploads the result as an artifact.
+on:
+  schedule:
+    - cron: "23 */2 * * *"
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+    paths:
+      - "scripts/news/**"
+      - "content/news-sources.yaml"
+      - ".github/workflows/news-feed.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news-feed-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install PyYAML
+      - name: Unit tests
+        run: python -m unittest discover -s scripts/news -p 'test_*.py'
+      - name: Previous candidates
+        run: |
+          git fetch --depth=1 origin feeds && git show origin/feeds:news-candidates.json > /tmp/prev.json || echo '{}' > /tmp/prev.json
+      - name: Fetch feeds
+        env:
+          # Optional repository variable (Settings -> Secrets and variables -> Actions -> Variables) for
+          # the User-Agent sent to sec.gov, e.g. "AI Industry Map research site contact@example.com".
+          # Unset, the script's default is used.
+          SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
+        run: python scripts/news/fetch_feeds.py --out out --previous /tmp/prev.json
+
+      - name: Publish to the feeds branch
+        if: github.ref == 'refs/heads/main'
+        working-directory: out
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git init -q -b feeds
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add news-candidates.json sources-status.json README.md
+          git commit -q -m "feeds: $(date -u +'%Y-%m-%d %H:%M') UTC"
+          git push -q --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:feeds
+
+      - name: Upload candidates
+        if: always() && github.ref != 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: news-candidates
+          path: out/
+          retention-days: 3
+          if-no-files-found: ignore
+      - name: Step summary
+        if: always() && github.ref != 'refs/heads/main'
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          try:
+              status = json.load(open("out/sources-status.json", encoding="utf-8"))
+              doc = json.load(open("out/news-candidates.json", encoding="utf-8"))
+          except (OSError, ValueError) as exc:
+              print(f"No feed output: {exc}")
+              raise SystemExit(0)
+          cell = lambda v: str(v).replace("|", "\\|")
+          print(f"### News feeds: {doc['sources']}/{len(status)} sources ok, {len(doc['items'])} items\n")
+          print("| Source | OK | Status | Entries | Kept |")
+          print("| --- | --- | --- | ---: | ---: |")
+          for sid, st in status.items():
+              print(f"| {sid} | {'yes' if st['ok'] else '**no**'} | {cell(st['status'])} | {st['entries']} | {st['kept']} |")
+          print("\n#### 25 newest\n")
+          for it in doc["items"][:25]:
+              when = it["published"][:16].replace("T", " ")
+              print(f"- {when} UTC · {cell(it['sourceName'])} · [{cell(it['title'])}]({it['url']})")
+          PY
