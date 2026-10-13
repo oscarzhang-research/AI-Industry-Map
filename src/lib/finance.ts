@@ -1,10 +1,11 @@
-import type { PriceSeries, Quote, Returns, ThesisRecord, ThesisStatus } from './types.ts';
+import type { EarningsReport, PriceSeries, Quote, Returns, ThesisRecord, ThesisStatus, ValuationSeries } from './types.ts';
 
 export const AI_BASE_DATE = '2022-12-30'; // last close before the 2023 AI rally; ChatGPT launched 2022-11-30
 
 export interface Fundamentals {
   marketCap?: number;
   currency?: string;
+  financialCurrency?: string; // currency of the financial statements and estimates
   trailingPE?: number;
   forwardPE?: number;
   priceToSales?: number;
@@ -42,6 +43,71 @@ export function parsePriceCsv(symbol: string, text: string): PriceSeries {
     l.push(Number.isFinite(lv) && lv > 0 ? lv : cv);
   }
   return { s: symbol, d, c, h, l };
+}
+
+/** Parse a data/valuation CSV (date,pe,fpe,ev_ebitda,ps,mcap,tgt,tgt_hi,tgt_lo,analysts,rec), matching columns by name. */
+export function parseValuationCsv(text: string): ValuationSeries {
+  const out: ValuationSeries = { d: [], pe: [], fpe: [], ev: [], ps: [], tgt: [], hi: [], lo: [], n: [], rec: [] };
+  const lines = text.split(/\r?\n/).filter(Boolean);
+  if (!lines.length) return out;
+  const col = new Map(lines[0].split(',').map((h, i) => [h.trim(), i]));
+  const numAt = (cells: string[], name: string, positive = true): number | null => {
+    const i = col.get(name);
+    if (i === undefined || !cells[i]) return null;
+    const v = Number(cells[i]);
+    return Number.isFinite(v) && (!positive || v > 0) ? v : null;
+  };
+  for (const line of lines.slice(1)) {
+    const cells = line.split(',');
+    const d = cells[col.get('date') ?? 0];
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(d ?? '')) continue;
+    out.d.push(d);
+    out.pe.push(numAt(cells, 'pe'));
+    out.fpe.push(numAt(cells, 'fpe'));
+    out.ev.push(numAt(cells, 'ev_ebitda'));
+    out.ps.push(numAt(cells, 'ps'));
+    out.tgt.push(numAt(cells, 'tgt'));
+    out.hi.push(numAt(cells, 'tgt_hi'));
+    out.lo.push(numAt(cells, 'tgt_lo'));
+    out.n.push(numAt(cells, 'analysts'));
+    const ri = col.get('rec');
+    out.rec.push((ri !== undefined && cells[ri]?.trim()) || null);
+  }
+  return out;
+}
+
+/** The valuation snapshot on or after `date` (within `maxDays`), else the latest one before it. */
+export function valuationNear(val: ValuationSeries | undefined, date: string, maxDays = 7): number {
+  if (!val?.d.length) return -1;
+  const i = indexOnOrBefore(val.d, date);
+  if (i >= 0 && val.d[i] === date) return i;
+  const next = i + 1;
+  if (next < val.d.length && daysBetween(date, val.d[next]) <= maxDays) return next;
+  return i;
+}
+
+/**
+ * Share price reaction to a report: from the last close before the report date to the close one
+ * session after it. The two sessions cover the reaction whether the company reported before the
+ * open or after the close. Uses the latest close when the second session has not happened yet.
+ */
+export function earningsMove(series: PriceSeries | undefined, date: string): number | undefined {
+  if (!series?.d.length) return undefined;
+  const i = indexOnOrBefore(series.d, date);
+  const onDay = i >= 0 && series.d[i] === date;
+  const before = onDay ? i - 1 : i;
+  if (before < 0) return undefined;
+  // A report on a trading day may come after the close, so the reaction can be the next session.
+  const after = Math.min(before + (onDay ? 2 : 1), series.d.length - 1);
+  if (after <= before) return undefined;
+  return series.c[after] / series.c[before] - 1;
+}
+
+/** Revenue surprise as a fraction; undefined when the two figures look like different currencies or units. */
+export function revenueSurprise(r: Pick<EarningsReport, 'revEst' | 'revActual'>): number | undefined {
+  if (!r.revEst || !r.revActual || r.revEst <= 0) return undefined;
+  const ratio = r.revActual / r.revEst;
+  return ratio > 0.5 && ratio < 2 ? ratio - 1 : undefined;
 }
 
 function retOver(c: number[], sessions: number): number | undefined {

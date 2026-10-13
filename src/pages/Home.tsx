@@ -7,6 +7,7 @@ import { Heatmap, LayerChart } from '../components/charts.tsx';
 import { CompanyChip, Change, DirectionBadge, ExampleBadge, Section, Segmented } from '../components/ui.tsx';
 import { ViewCard } from '../components/ViewCard.tsx';
 import { CatalystList, NewsList, useCatalysts } from '../components/lists.tsx';
+import { EarningsWeek } from '../components/earnings.tsx';
 import { useIndices } from '../lib/hooks.ts';
 import { useThesisSeries } from '../lib/useThesis.ts';
 import { activeTheses, display, latestOutlook, viewByCompany } from '../lib/views.ts';
@@ -248,6 +249,8 @@ export default function Home() {
             <LayerChart series={indices.series} layerNames={layerNames} companyName={(sym) => symbolName.get(sym) ?? sym} />
           </Section>
         ) : null}
+
+        <EarningsWeek />
 
         <Section
           eyebrow="Views"

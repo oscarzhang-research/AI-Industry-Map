@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import { useStore } from '../lib/store.tsx';
 import { Change, CompanyChip, Crumbs, LayerBadge, Section, Segmented } from '../components/ui.tsx';
 import { PriceChart, type Overlay } from '../components/charts.tsx';
+import { ValuationHistory } from '../components/valuation.tsx';
+import { EarningsSection } from '../components/earnings.tsx';
 import { NodeContent, splitRecords } from '../components/NodeContent.tsx';
 import { CatalystList, useCatalysts } from '../components/lists.tsx';
 import { useSeries } from '../lib/hooks.ts';
@@ -209,6 +211,7 @@ export default function CompanyPage() {
                 ) : null}
               </div>
             ) : null}
+            {company.listing === 'listed' && series ? <ValuationHistory series={series} ccy={q?.ccy} /> : null}
           </div>
 
           <aside className="stack" style={{ '--gap': '16px' } as React.CSSProperties}>
@@ -239,6 +242,8 @@ export default function CompanyPage() {
             </div>
           </aside>
         </div>
+
+        {company.listing === 'listed' && activeSymbol ? <EarningsSection symbol={activeSymbol} quote={q} /> : null}
 
         <NodeContent theses={theses} notes={notes} reports={reports} news={coNews} scopeLabel={company.name} addPreset={{ subject: { kind: 'company', company: company.id } }} />
 

@@ -3,10 +3,10 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadContent, printIssues, ROOT } from './lib/load.ts';
-import { basketIndex, capWeightIndex, computeQuote, parsePriceCsv, AI_BASE_DATE, type Fundamentals } from '../src/lib/finance.ts';
+import { basketIndex, capWeightIndex, computeQuote, earningsMove, parsePriceCsv, parseValuationCsv, revenueSurprise, AI_BASE_DATE, type Fundamentals } from '../src/lib/finance.ts';
 import { priceChunk, safeSymbol } from '../src/lib/symbols.ts';
 import { htmlToText, injectReaderShim } from '../src/lib/reportShim.ts';
-import type { IndexSeries, PriceSeries, Quote, QuotesFile, SiteData } from '../src/lib/types.ts';
+import type { EarningsFile, EarningsRecord, IndexSeries, PriceSeries, Quote, QuotesFile, SiteData } from '../src/lib/types.ts';
 
 const OUT = join(ROOT, 'public/generated');
 const DATA = join(ROOT, 'data');
@@ -64,6 +64,7 @@ for (const b of content.benchmarks) if (b.currency) currencyOf.set(b.symbol, b.c
 
 const series = new Map<string, PriceSeries>();
 const priceDir = join(DATA, 'prices');
+const valDir = join(DATA, 'valuation');
 const wanted = new Set<string>([
   ...Object.values(content.companies).flatMap((c) => c.tickers.map((t) => t.symbol)),
   ...content.benchmarks.map((b) => b.symbol),
@@ -77,6 +78,11 @@ if (existsSync(priceDir)) {
     const s = parsePriceCsv(symbol, readFileSync(join(priceDir, f), 'utf8'));
     if (!s.c.length) continue;
     if (splits[symbol]?.length) s.splits = splits[symbol];
+    const valFile = join(valDir, f);
+    if (existsSync(valFile)) {
+      const val = parseValuationCsv(readFileSync(valFile, 'utf8'));
+      if (val.d.length) s.val = val;
+    }
     series.set(symbol, s);
     if (!PRICE_CHUNKS) writeJson(join(OUT, 'prices', `${safeSymbol(symbol)}.json`), s);
   }
@@ -97,6 +103,29 @@ for (const [symbol, s] of series) {
 }
 const quotesFile: QuotesFile = { updatedAt: status.updatedAt ?? null, asOf, quotes, fx };
 writeJson(join(OUT, 'quotes.json'), quotesFile);
+
+// ---- Earnings ------------------------------------------------------------------------------------------
+// Consensus and results from data/earnings.json, with the share price reaction and the revenue surprise.
+// Revenue figures that look like a different currency from the estimate (ADRs, cross-listings) are dropped.
+const earningsRaw = readJson<EarningsFile>(join(DATA, 'earnings.json'), {});
+const earnings: EarningsFile = {};
+for (const [symbol, rec] of Object.entries(earningsRaw)) {
+  if (!wanted.has(symbol) || !rec) continue;
+  const s = series.get(symbol);
+  const history = (rec.history ?? []).map((h) => {
+    const out = { ...h, move: earningsMove(s, h.date), revSurprise: revenueSurprise(h) };
+    if (h.revEst && h.revActual && out.revSurprise === undefined) delete out.revEst;
+    return out;
+  });
+  const out: EarningsRecord = { updatedAt: rec.updatedAt, ccy: fundamentals[symbol]?.financialCurrency, history };
+  if (rec.next) {
+    out.next = { ...rec.next };
+    const lastRev = history.find((h) => h.revActual)?.revActual;
+    if (out.next.revEst && lastRev && !(out.next.revEst / lastRev > 0.4 && out.next.revEst / lastRev < 2.5)) delete out.next.revEst;
+  }
+  earnings[symbol] = out;
+}
+writeJson(join(OUT, 'earnings.json'), earnings);
 
 // ---- Indices -------------------------------------------------------------------------------------------
 // Layers: market-cap-weighted (where the money went), each company counted once in its primary layer, plus an
@@ -164,6 +193,8 @@ writeJson(join(OUT, 'meta.json'), {
     reports: reportsOut.length,
     news: content.news.length,
     records: records.length,
+    earnings: Object.keys(earnings).length,
+    valuationHistory: [...series.values()].filter((x) => x.val).length,
   },
 });
 writeFileSync(

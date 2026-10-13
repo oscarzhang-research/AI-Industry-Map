@@ -5,6 +5,7 @@ import { fmtDate, fmtPct, STATUS_LABEL } from '../lib/format.ts';
 import { Change, Conviction, DirectionBadge, ExampleBadge, PrivateBadge } from './ui.tsx';
 import { display, subjectLabel } from '../lib/views.ts';
 import { translationState } from '../lib/records.ts';
+import { EarningsBadge } from './earnings.tsx';
 
 export function ViewCard({
   thesis,
@@ -33,6 +34,7 @@ export function ViewCard({
         {t.visibility === 'private' ? <PrivateBadge /> : null}
         {tr === 'pending' || tr === 'stale' ? <span className="badge">EN pending</span> : null}
         {t.status !== 'active' ? <span className="badge">{STATUS_LABEL[t.status]}</span> : null}
+        {t.status === 'active' && t.subject?.kind === 'company' ? <EarningsBadge symbol={t.subject.symbol ?? company?.symbol} /> : null}
       </div>
       <div>
         <div className="subject">

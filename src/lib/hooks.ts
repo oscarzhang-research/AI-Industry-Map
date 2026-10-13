@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { loadIndices, loadSeries } from './data.ts';
-import type { IndicesFile, PriceSeries } from './types.ts';
+import { loadEarnings, loadIndices, loadSeries } from './data.ts';
+import type { EarningsFile, IndicesFile, PriceSeries } from './types.ts';
 
 /** Width of an element, tracked with ResizeObserver. */
 export function useElementWidth<T extends HTMLElement>(): [React.RefObject<T | null>, number] {
@@ -59,6 +59,19 @@ export function useIndices(): IndicesFile | null {
   useEffect(() => {
     let alive = true;
     loadIndices().then((x) => alive && setD(x));
+    return () => {
+      alive = false;
+    };
+  }, []);
+  return d;
+}
+
+/** Consensus and results around earnings reports (generated/earnings.json); empty until loaded. */
+export function useEarnings(): EarningsFile {
+  const [d, setD] = useState<EarningsFile>({});
+  useEffect(() => {
+    let alive = true;
+    loadEarnings().then((x) => alive && setD(x));
     return () => {
       alive = false;
     };

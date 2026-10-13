@@ -1,11 +1,17 @@
 name: Market data
 
-# Scheduled runs only fire on the default branch (main). The push trigger lets a feature branch
-# refresh its own snapshot when the company universe or the fetcher changes.
+# Scheduled runs only fire on the default branch (main). GitHub starts them late when its queue is busy
+# (five to nine hours in October 2026), so each market gets an off-peak slot plus backups; a run that
+# finds nothing new commits nothing. The push trigger covers two more cases: a feature branch refreshing
+# its own snapshot when the universe or the fetcher changes, and the morning routine's news commit on
+# main, which arrives on time every day and refreshes all markets before the New York morning.
 on:
   schedule:
-    - cron: "35 21 * * 1-5" # after the US close: 5:35pm EDT / 4:35pm EST
-    - cron: "30 10 * * 1-5" # after Asia closes: 6:30am EDT / 5:30am EST (Asia-Pacific listings only)
+    - cron: "41 21 * * 1-5" # after the US close: 5:41pm EDT / 4:41pm EST
+    - cron: "17 23 * * 1-5" # backup
+    - cron: "11 2 * * 2-6" # late backup, still hours before the New York morning
+    - cron: "13 9 * * 1-5" # after Asia closes (Asia-Pacific listings only)
+    - cron: "37 10 * * 1-5" # backup before the morning routine (Asia-Pacific listings only)
   workflow_dispatch:
     inputs:
       markets:
@@ -14,12 +20,13 @@ on:
         options: [all, asia]
         default: all
   push:
-    branches: ["claude/**"]
+    branches: ["claude/**", "main"]
     paths:
       - "content/companies/**"
       - "content/benchmarks.yaml"
       - "scripts/prices/**"
       - "data/.refresh"
+      - "content/news/**"
 
 permissions:
   contents: write
@@ -50,7 +57,8 @@ jobs:
           SCHEDULE: ${{ github.event.schedule }}
         run: |
           MARKETS="${INPUT_MARKETS:-all}"
-          if [ "$SCHEDULE" = "30 10 * * 1-5" ]; then MARKETS=asia; fi
+          case "$SCHEDULE" in "13 9 * * 1-5" | "37 10 * * 1-5") MARKETS=asia ;; esac
+          echo "MARKETS=$MARKETS" >> "$GITHUB_ENV"
           python scripts/prices/fetch_prices.py --markets "$MARKETS"
       - name: Commit data
         run: |

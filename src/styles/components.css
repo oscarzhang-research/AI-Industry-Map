@@ -408,6 +408,11 @@
   border-color: var(--layer-edge);
   color: var(--layer-ink);
 }
+.badge.earn {
+  color: var(--accent);
+  background: var(--accent-wash);
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+}
 .badge.status-good {
   color: var(--good-ink);
 }
@@ -542,6 +547,10 @@ table.data tbody tr:hover td {
 table.data .n {
   text-align: right;
   white-space: nowrap;
+}
+table.data.compact th,
+table.data.compact td {
+  padding: 7px 8px;
 }
 table.data .tk {
   font-family: var(--font-mono);
@@ -951,7 +960,7 @@ table.data .tk {
   display: inline-block;
 }
 .legend .key.dashed {
-  background: repeating-linear-gradient(90deg, var(--muted) 0 4px, transparent 4px 7px);
+  background: repeating-linear-gradient(90deg, var(--key-color, var(--muted)) 0 4px, transparent 4px 7px);
 }
 .legend .sw {
   width: 10px;
@@ -981,4 +990,48 @@ table.data .tk {
 }
 .linkish:hover {
   text-decoration: underline;
+}
+
+/* ---- Earnings week (home) ---------------------------------------------------------- */
+.earn-days {
+  display: grid;
+  gap: 10px;
+}
+.earn-day {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+}
+.earn-day:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.earn-day .when {
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+.earn-day .when .faint {
+  font-weight: 400;
+  font-size: var(--step--2);
+}
+.earn-day ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 5px;
+  font-size: var(--step--1);
+}
+.earn-day li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+}
+.earn-day li .faint {
+  font-size: var(--step--2);
 }

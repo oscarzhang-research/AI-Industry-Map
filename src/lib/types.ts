@@ -257,7 +257,57 @@ export interface PriceSeries {
   h: number[];
   l: number[];
   splits?: [string, number][];
+  val?: ValuationSeries; // daily valuation snapshots, when recorded
 }
+
+/** Daily valuation snapshots (data/valuation/<symbol>.csv), oldest first; null where Yahoo had no value. */
+export interface ValuationSeries {
+  d: string[];
+  pe: (number | null)[]; // trailing P/E
+  fpe: (number | null)[]; // forward P/E
+  ev: (number | null)[]; // EV/EBITDA
+  ps: (number | null)[]; // price/sales
+  tgt: (number | null)[]; // consensus target price (mean), trading currency
+  hi: (number | null)[];
+  lo: (number | null)[];
+  n: (number | null)[]; // analysts behind the target
+  rec: (string | null)[];
+}
+
+/** The next scheduled report and the consensus for it (data/earnings.json). EPS and revenue are in the reporting currency. */
+export interface EarningsNext {
+  date: string;
+  time?: 'bmo' | 'amc'; // before the US open / after the close
+  estimated?: boolean; // date projected, not confirmed by the company
+  epsEst?: number;
+  epsN?: number;
+  revEst?: number;
+  revN?: number;
+  asOf?: string; // when the consensus was read
+}
+
+export interface EarningsReport {
+  date: string;
+  time?: 'bmo' | 'amc';
+  period?: string; // end of the quarter reported
+  epsEst?: number;
+  epsActual?: number;
+  surprise?: number; // EPS surprise, percent
+  revEst?: number; // revenue consensus read before the report
+  revActual?: number;
+  revSurprise?: number; // fraction, added at build time
+  move?: number; // share price move from the last close before the report to one session after it
+}
+
+export interface EarningsRecord {
+  updatedAt: string;
+  checkedAt?: string; // last fetch (UTC), used to space out refreshes
+  ccy?: string; // reporting currency
+  next?: EarningsNext;
+  history: EarningsReport[];
+}
+
+export type EarningsFile = Record<string, EarningsRecord>;
 
 export interface IndexSeries {
   id: string; // layer id, industry path or theme id

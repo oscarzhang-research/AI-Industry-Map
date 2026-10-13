@@ -1,0 +1,66 @@
+name: Site health
+
+# Once a day, check that prices, news, the feeds branch and the indicators are fresh and that no
+# workflow on main is still failing. Problems open (or update) an issue labelled "site-health",
+# which GitHub emails to the owner; the issue closes itself once everything passes again.
+on:
+  schedule:
+    - cron: "29 12 * * *" # 8:29am EDT / 7:29am EST, after the morning routine
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  actions: read
+
+concurrency:
+  group: site-health
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Recent workflow runs and the feeds branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run list --branch main --limit 100 --json name,conclusion,createdAt,url,event,status > /tmp/runs.json
+          mkdir -p /tmp/feeds
+          if git fetch --depth=1 origin feeds; then
+            git show origin/feeds:news-candidates.json > /tmp/feeds/news-candidates.json || true
+            git show origin/feeds:sources-status.json > /tmp/feeds/sources-status.json || true
+          fi
+      - name: Check
+        id: check
+        run: |
+          set +e
+          node scripts/health.ts --runs /tmp/runs.json --feeds-dir /tmp/feeds > /tmp/report.md
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+          cat /tmp/report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Open, update or close the health issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CODE: ${{ steps.check.outputs.code }}
+        run: |
+          num=$(gh issue list --state open --label site-health --json number --jq '.[0].number // empty')
+          sig=$(grep -o 'signature: [0-9a-f]*' /tmp/report.md | head -1)
+          if [ "$CODE" = "1" ]; then
+            gh label create site-health --color B60205 --description "Automated site health check" 2>/dev/null || true
+            if [ -z "$num" ]; then
+              gh issue create --title "Site health: something needs attention" --label site-health --body-file /tmp/report.md
+            else
+              # Comment only when the set of findings changed, so a standing problem does not email every day.
+              last=$(gh issue view "$num" --json body,comments --jq '([.body] + [.comments[].body]) | map(select(test("signature: "))) | last // ""')
+              if ! printf '%s' "$last" | grep -q "$sig"; then gh issue comment "$num" --body-file /tmp/report.md; fi
+            fi
+          elif [ -n "$num" ]; then
+            gh issue close "$num" --comment "All checks pass again ($(date -u +'%Y-%m-%d %H:%M') UTC)."
+          fi

@@ -1,5 +1,5 @@
 // Loading of the generated JSON files (public/generated/*), with small in-memory caches.
-import type { IndicesFile, NewsItem, PriceSeries, QuotesFile, RecordsFile, ReportMeta, SiteData } from './types.ts';
+import type { EarningsFile, IndicesFile, NewsItem, PriceSeries, QuotesFile, RecordsFile, ReportMeta, SiteData } from './types.ts';
 import { priceChunk, safeSymbol } from './symbols.ts';
 
 export interface Meta {
@@ -75,4 +75,10 @@ let textPromise: Promise<Record<string, string>> | null = null;
 export function loadReportText(): Promise<Record<string, string>> {
   textPromise ??= getJson<Record<string, string>>('reports-text.json').catch(() => ({}));
   return textPromise;
+}
+
+let earningsPromise: Promise<EarningsFile> | null = null;
+export function loadEarnings(): Promise<EarningsFile> {
+  earningsPromise ??= getJson<EarningsFile>('earnings.json').catch(() => ({}));
+  return earningsPromise;
 }

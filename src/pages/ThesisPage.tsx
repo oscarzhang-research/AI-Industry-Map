@@ -4,6 +4,8 @@ import { useStore } from '../lib/store.tsx';
 import { Change, CompanyChip, Conviction, Crumbs, DirectionBadge, ExampleBadge, PrivateBadge, StatusIcon } from '../components/ui.tsx';
 import { PriceChart, RelativeChart } from '../components/charts.tsx';
 import { ReportRow } from '../components/lists.tsx';
+import { ValuationThenNow } from '../components/valuation.tsx';
+import { EarningsAside } from '../components/earnings.tsx';
 import { useThesisSeries } from '../lib/useThesis.ts';
 import { addMonths, daysBetween, indexOnOrBefore, scenarioStats, splitFactorSince, thesisPerformance } from '../lib/finance.ts';
 import { display, subjectLabel } from '../lib/views.ts';
@@ -27,7 +29,7 @@ const RELATION_LABEL: Record<string, string> = {
 
 export default function ThesisPage() {
   const { id } = useParams();
-  const { site, allRecords, allReports, index, canEdit, saveRecord, toast } = useStore();
+  const { site, quotes, allRecords, allReports, index, canEdit, saveRecord, toast } = useStore();
   const raw = allRecords.find((r) => r.id === id && r.type === 'thesis') as ThesisRecord | undefined;
   const [orig, setOrig] = useState(false);
   const [dismissed, setDismissed] = useState(false);
@@ -565,6 +567,8 @@ export default function ThesisPage() {
                 </div>
               ) : null}
             </div>
+            {symbol && !basket ? <ValuationThenNow series={series} quote={quotes.quotes[symbol]} from={t.createdAt} to={t.closed?.date} ccy={ccy} /> : null}
+            {symbol && !basket && t.status === 'active' ? <EarningsAside symbol={symbol} quote={quotes.quotes[symbol]} /> : null}
             {canEdit && hidden.length ? (
               <div className="note-callout">
                 Public, but visitors do not see: {hidden.join(', ')}. Change this under “Visibility” in the editor.
