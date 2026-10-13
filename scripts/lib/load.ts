@@ -9,6 +9,7 @@ import type {
 import { LAYER_IDS } from '../../src/lib/types.ts';
 import { marketOf } from '../../src/lib/symbols.ts';
 import { parseRecordFile } from '../../src/lib/records.ts';
+import { readKpiDoc, validateKpis, type KpiDoc } from './kpis.ts';
 
 export const ROOT = new URL('../../', import.meta.url).pathname.replace(/\/$/, '');
 
@@ -31,6 +32,7 @@ export interface Content {
   news: NewsItem[];
   reports: (ReportMeta & { dir: string })[];
   records: AnyRecord[];
+  kpis?: KpiDoc;
   nodes: Map<string, { kind: 'layer' | 'industry' | 'segment'; name: string }>;
   issues: Issue[];
 }
@@ -266,6 +268,15 @@ export function loadContent(): Content {
     }
   }
 
+  // ---- Indicators ---------------------------------------------------------------
+  let kpis: KpiDoc | undefined;
+  try {
+    kpis = readKpiDoc(join(ROOT, 'content/kpis.yaml'));
+  } catch (e) {
+    issues.push({ level: 'error', file: 'content/kpis.yaml', msg: `YAML error: ${(e as Error).message.split('\n')[0]}` });
+  }
+  validateKpis(kpis, companies, nodes, issues);
+
   return {
     config,
     layers,
@@ -279,6 +290,7 @@ export function loadContent(): Content {
     news,
     reports,
     records,
+    kpis,
     nodes,
     issues,
   };

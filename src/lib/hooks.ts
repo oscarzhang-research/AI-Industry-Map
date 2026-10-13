@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { loadEarnings, loadIndices, loadSeries } from './data.ts';
-import type { EarningsFile, IndicesFile, PriceSeries } from './types.ts';
+import { loadEarnings, loadIndices, loadKpis, loadSeries } from './data.ts';
+import type { EarningsFile, IndicesFile, KpisFile, PriceSeries } from './types.ts';
 
 /** Width of an element, tracked with ResizeObserver. */
 export function useElementWidth<T extends HTMLElement>(): [React.RefObject<T | null>, number] {
@@ -72,6 +72,19 @@ export function useEarnings(): EarningsFile {
   useEffect(() => {
     let alive = true;
     loadEarnings().then((x) => alive && setD(x));
+    return () => {
+      alive = false;
+    };
+  }, []);
+  return d;
+}
+
+/** Industry indicators (generated/kpis.json); null until loaded. */
+export function useKpis(): KpisFile | null {
+  const [d, setD] = useState<KpisFile | null>(null);
+  useEffect(() => {
+    let alive = true;
+    loadKpis().then((x) => alive && setD(x));
     return () => {
       alive = false;
     };

@@ -18,6 +18,7 @@ const JournalPage = lazy(() => import('./pages/JournalPage.tsx'));
 const NotesPage = lazy(() => import('./pages/NotesPage.tsx'));
 const ThemesPage = lazy(() => import('./pages/ThemesPage.tsx'));
 const ThemePage = lazy(() => import('./pages/ThemePage.tsx'));
+const IndicatorsPage = lazy(() => import('./pages/IndicatorsPage.tsx'));
 const AboutPage = lazy(() => import('./pages/AboutPage.tsx'));
 const SettingsPage = lazy(() => import('./pages/SettingsPage.tsx'));
 const InboxPage = lazy(() => import('./pages/InboxPage.tsx'));
@@ -95,6 +96,7 @@ export default function App() {
             <Route path="/notes" element={<NotesPage />} />
             <Route path="/themes" element={<ThemesPage />} />
             <Route path="/theme/:id" element={<ThemePage />} />
+            <Route path="/indicators" element={<IndicatorsPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/inbox" element={<InboxPage />} />

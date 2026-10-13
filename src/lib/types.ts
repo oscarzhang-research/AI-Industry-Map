@@ -258,6 +258,7 @@ export interface PriceSeries {
   l: number[];
   splits?: [string, number][];
   val?: ValuationSeries; // daily valuation snapshots, when recorded
+  fin?: Financials; // reported revenue (and capex), when available
 }
 
 /** Daily valuation snapshots (data/valuation/<symbol>.csv), oldest first; null where Yahoo had no value. */
@@ -323,6 +324,88 @@ export interface IndexSeries {
 export interface IndicesFile {
   base: string;
   series: IndexSeries[];
+}
+
+// ---------------------------------------------------------------------------
+// Industry indicators (content/kpis.yaml + data/kpis/), compiled to generated/kpis.json.
+// ---------------------------------------------------------------------------
+
+export interface KpiSource {
+  name: string;
+  url?: string;
+}
+
+interface KpiBase {
+  id: string;
+  name: string;
+  layer: LayerId;
+  nodes?: string[];
+  description: string;
+  note?: string;
+  unit?: string; // currency code for money, or a label such as "% QoQ"
+  sources: KpiSource[];
+  asOf?: string; // latest period end or month covered
+}
+
+/** One measure summed across companies, by calendar quarter ('2026Q3'). */
+export interface KpiStack extends KpiBase {
+  kind: 'stack';
+  metric: 'revenue' | 'capex';
+  periods: string[];
+  parts: { company: string; label: string; values: (number | null)[] }[];
+  total: (number | null)[];
+  complete: boolean[]; // every company has reported the quarter
+}
+
+/** One Taiwan listing's monthly revenue ('2026-09'), local currency. */
+export interface KpiMonthly extends KpiBase {
+  kind: 'monthly';
+  company: string;
+  months: string[];
+  values: number[];
+  yoy: (number | null)[];
+}
+
+/** Year-on-year growth by company, newest period last. */
+export interface KpiGrowthTable extends KpiBase {
+  kind: 'growth-table';
+  frequency: 'month' | 'quarter';
+  periods: string[];
+  rows: { company: string; label: string; values: (number | null)[] }[];
+}
+
+export interface KpiRangePoint {
+  period: string; // '1Q26'
+  low: number;
+  high: number;
+  basis: 'forecast' | 'actual';
+  published?: string;
+  url?: string;
+  note?: string;
+}
+
+export interface KpiRanges extends KpiBase {
+  kind: 'ranges';
+  series: { id: string; label: string; points: KpiRangePoint[] }[];
+}
+
+export interface KpiValuations extends KpiBase {
+  kind: 'valuations';
+  items: { company: string; label: string; usd: number; date?: string; round?: string }[];
+}
+
+export type Kpi = KpiStack | KpiMonthly | KpiGrowthTable | KpiRanges | KpiValuations;
+
+export interface KpisFile {
+  updatedAt: string | null;
+  indicators: Kpi[];
+}
+
+/** Reported figures for one listing (added to its price series file). */
+export interface Financials {
+  ccy?: string;
+  quarters?: { period: string; end: string; revenue?: number; capex?: number }[]; // from SEC filings, oldest first
+  months?: { month: string; revenue: number; yoy?: number }[]; // Taiwan monthly revenue, oldest first
 }
 
 // ---------------------------------------------------------------------------

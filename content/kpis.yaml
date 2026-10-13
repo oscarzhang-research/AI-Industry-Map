@@ -1,0 +1,169 @@
+# Industry indicators shown on /indicators and on the layer pages.
+#
+# Figures come from three places:
+#   - SEC filings: quarterly revenue and capital spending from XBRL company facts (data/kpis/sec/),
+#     fetched by scripts/prices/fetch_kpis.py for the listings in `sec` below
+#   - Taiwan's monthly revenue reports (TWSE and TPEx open data, data/kpis/tw/)
+#   - curated points with their own source on each point (memory contract prices), or the company
+#     records themselves (private valuations)
+#
+# Kinds:
+#   stack         quarterly totals of one measure (revenue or capex) across companies, by calendar quarter
+#   monthly       one Taiwan listing's monthly revenue
+#   growth-table  year-on-year growth by company, monthly (Taiwan) or quarterly (SEC revenue)
+#   ranges        published ranges per quarter (low/high), forecast or reported
+#   valuations    latest private valuations from content/companies
+
+# US listings whose filings the indicator fetcher reads (company pages also chart their revenue).
+sec:
+  [MSFT, AMZN, GOOGL, META, ORCL, CRWV, NBIS, NVDA, AVGO, AMD, MRVL, MU, INTC, QCOM, ARM, ANET, DELL, SMCI, HPE, CSCO, VRT, ETN,
+   AMAT, LRCX, KLAC, NEE, DUK, SO, D, AEP, ETR, CEG, VST, TLN, NRG, GEV, PWR, BE, CAT, CMI, BWXT, OKLO,
+   CRM, NOW, PLTR, SNOW, DDOG, MDB, ADBE, WDAY, HUBS, CRWD, NET, PANW, ZS, APP, SHOP, INTU, TEAM]
+
+indicators:
+  # ---- Energy -------------------------------------------------------------------------------------
+  - id: utility-capex
+    name: Utility capital spending
+    layer: energy
+    nodes: [energy/power-producers]
+    kind: stack
+    metric: capex
+    companies: [nextera, duke, southern, dominion, aep, entergy]
+    description: >-
+      Cash spent on plant and equipment by six large US utilities, by calendar quarter. Data-center load is
+      one of the main reasons utilities give for raising their spending plans.
+
+  - id: power-equipment-growth
+    name: Power and grid equipment, revenue growth
+    layer: energy
+    nodes: [energy/generation-equipment, energy/grid]
+    kind: growth-table
+    frequency: quarter
+    metric: revenue
+    companies: [ge-vernova, caterpillar, cummins, bloom-energy, quanta, bwx-technologies]
+    description: >-
+      Quarterly revenue against the same quarter a year earlier, for makers of turbines, engines, fuel cells
+      and grid construction.
+
+  # ---- Chips --------------------------------------------------------------------------------------
+  - id: ai-chip-revenue
+    name: AI chip makers' revenue
+    layer: chips
+    nodes: [chips/compute, chips/memory]
+    kind: stack
+    metric: revenue
+    companies: [nvidia, broadcom, amd, micron, marvell]
+    description: >-
+      Total quarterly revenue of five US suppliers of AI compute and memory, by calendar quarter. Includes
+      their other businesses, since filings do not report AI revenue in a standard way.
+
+  - id: tsmc-monthly-revenue
+    name: TSMC monthly revenue
+    layer: chips
+    nodes: [chips/foundry-packaging]
+    kind: monthly
+    company: tsmc
+    description: >-
+      TSMC reports revenue for each month by the tenth of the next. It is the quickest public read on demand
+      for leading-edge chips.
+
+  - id: memory-contract-prices
+    name: Memory contract prices
+    layer: chips
+    nodes: [chips/memory]
+    kind: ranges
+    unit: "% QoQ"
+    description: >-
+      TrendForce's quarter-on-quarter change in DRAM and NAND flash contract prices: the last forecast it
+      published for each quarter, or the reported change where it gave one. Ranges as published.
+    note: >-
+      Gaps: 4Q24 and 2Q25 DRAM, whose last published forecasts TrendForce later contradicted without a new
+      figure, and 2Q25 NAND, for which it gave product-level figures only. Conventional DRAM; HBM excluded.
+    series:
+      - id: dram
+        label: DRAM (conventional)
+        points:
+          - { period: 1Q24, low: 13, high: 18, basis: forecast, published: 2024-01-08, url: "https://www.trendforce.com/presscenter/news/20240108-11988.html" }
+          - { period: 2Q24, low: 13, high: 18, basis: forecast, published: 2024-05-07, url: "https://www.trendforce.com/presscenter/news/20240507-12128.html" }
+          - { period: 3Q24, low: 5, high: 10, basis: forecast, published: 2024-06-27, url: "https://www.trendforce.com/presscenter/news/20240627-12207.html" }
+          - { period: 1Q25, low: -13, high: -8, basis: forecast, published: 2024-12-30, url: "https://www.trendforce.com/presscenter/news/20241230-12424.html" }
+          - { period: 3Q25, low: 10, high: 15, basis: forecast, published: 2025-07-07, url: "https://www.trendforce.com/presscenter/news/20250707-12633.html" }
+          - { period: 4Q25, low: 45, high: 50, basis: actual, published: 2026-02-26, url: "https://www.trendforce.com/presscenter/news/20260226-12937.html" }
+          - { period: 1Q26, low: 93, high: 98, basis: actual, published: 2026-06-01, url: "https://www.trendforce.com/presscenter/news/20260601-13070.html" }
+          - { period: 2Q26, low: 58, high: 63, basis: forecast, published: 2026-03-31, url: "https://www.trendforce.com/presscenter/news/20260331-12995.html" }
+          - { period: 3Q26, low: 13, high: 18, basis: forecast, published: 2026-07-03, url: "https://www.trendforce.com/presscenter/news/20260703-13134.html" }
+          - { period: 4Q26, low: 10, high: 15, basis: forecast, published: 2026-09-30, url: "https://www.trendforce.com/presscenter/news/20260930-13258.html" }
+      - id: nand
+        label: NAND flash
+        points:
+          - { period: 1Q24, low: 18, high: 23, basis: forecast, published: 2024-01-19, url: "https://www.trendforce.com/presscenter/news/20240119-12005.html" }
+          - { period: 2Q24, low: 15, high: 20, basis: forecast, published: 2024-05-07, url: "https://www.trendforce.com/presscenter/news/20240507-12128.html" }
+          - { period: 3Q24, low: 5, high: 10, basis: forecast, published: 2024-06-28, url: "https://www.trendforce.com/presscenter/news/20240628-12210.html" }
+          - { period: 4Q24, low: -8, high: -3, basis: forecast, published: 2024-10-15, url: "https://www.trendforce.com/presscenter/news/20241015-12327.html" }
+          # verify: reported as a fall of "more than 15%", so -15 is a floor (research report abstract)
+          - { period: 1Q25, low: -15, high: -15, basis: actual, published: 2025-05-22, url: "https://www.trendforce.com/research/download/RP250522SY", note: "Fell by more than 15%" }
+          - { period: 3Q25, low: 5, high: 10, basis: forecast, published: 2025-07-09, url: "https://www.trendforce.com/presscenter/news/20250709-12638.html" }
+          - { period: 4Q25, low: 20, high: 25, basis: forecast, published: 2025-12-03, url: "https://www.trendforce.com/presscenter/news/20251203-12813.html" }
+          # verify: 85-90% attributed to the 2026-03-03 release in search summaries only
+          - { period: 1Q26, low: 85, high: 90, basis: forecast, published: 2026-03-03, url: "https://www.trendforce.com/presscenter/news/20260303-12943.html" }
+          - { period: 2Q26, low: 70, high: 75, basis: forecast, published: 2026-03-31, url: "https://www.trendforce.com/presscenter/news/20260331-12995.html" }
+          - { period: 3Q26, low: 10, high: 15, basis: forecast, published: 2026-07-03, url: "https://www.trendforce.com/presscenter/news/20260703-13134.html" }
+          - { period: 4Q26, low: 15, high: 20, basis: forecast, published: 2026-09-30, url: "https://www.trendforce.com/presscenter/news/20260930-13258.html" }
+
+  - id: taiwan-chip-supply-chain
+    name: Taiwan chip supply chain, monthly sales growth
+    layer: chips
+    nodes: [chips/foundry-packaging, chips/compute, chips/materials]
+    kind: growth-table
+    frequency: month
+    companies: [tsmc, mediatek, alchip, guc, ase, kyec, umc, nanya, phison, unimicron, nan-ya-pcb, globalwafers]
+    description: >-
+      Each company's monthly revenue against the same month a year earlier, from Taiwan's mandatory monthly
+      revenue reports.
+
+  # ---- Infrastructure -----------------------------------------------------------------------------
+  - id: hyperscaler-capex
+    name: Hyperscaler capital spending
+    layer: infrastructure
+    nodes: [infrastructure/cloud]
+    kind: stack
+    metric: capex
+    companies: [microsoft, amazon, alphabet, meta, oracle]
+    description: >-
+      Cash spent on property and equipment, mostly data centers, servers and network gear, by calendar
+      quarter. Finance leases, which some of these companies also use for data centers, are not included.
+
+  - id: taiwan-ai-hardware
+    name: Taiwan AI hardware, monthly sales growth
+    layer: infrastructure
+    nodes: [infrastructure/servers, infrastructure/networking, infrastructure/thermal, infrastructure/power-delivery, infrastructure/pcb-ccl]
+    kind: growth-table
+    frequency: month
+    companies: [hon-hai, quanta-computer, wiwynn, wistron, accton, delta, lite-on, emc, gold-circuit, avc, auras, king-slide, aspeed]
+    description: >-
+      Server assemblers and the suppliers of their boards, cooling, power and rails: monthly revenue against
+      the same month a year earlier.
+
+  # ---- Models -------------------------------------------------------------------------------------
+  - id: model-lab-valuations
+    name: Model lab valuations
+    layer: models
+    nodes: [models/frontier-labs, models/china-models]
+    kind: valuations
+    companies: [anthropic, openai, deepseek, moonshot, ssi, mistral, thinking-machines, stepfun, cohere]
+    description: >-
+      The latest valuation of each private model lab, from its most recent funding round or share sale, as
+      recorded on the company pages. Dates differ, so older figures may be stale.
+
+  # ---- Applications -------------------------------------------------------------------------------
+  - id: software-revenue-growth
+    name: Software revenue growth
+    layer: applications
+    nodes: [applications/enterprise, applications/security]
+    kind: growth-table
+    frequency: quarter
+    metric: revenue
+    companies: [palantir, servicenow, salesforce, adobe, snowflake, datadog, mongodb, workday, crowdstrike, cloudflare]
+    description: >-
+      Quarterly revenue against the same quarter a year earlier for large application and data software
+      companies: the plainest test of whether AI is adding to their sales.

@@ -5,6 +5,7 @@ import { Change, CompanyChip, Crumbs, LayerBadge, Section, Segmented } from '../
 import { PriceChart, type Overlay } from '../components/charts.tsx';
 import { ValuationHistory } from '../components/valuation.tsx';
 import { EarningsSection } from '../components/earnings.tsx';
+import { ReportedFigures } from '../components/kpis.tsx';
 import { NodeContent, splitRecords } from '../components/NodeContent.tsx';
 import { CatalystList, useCatalysts } from '../components/lists.tsx';
 import { useSeries } from '../lib/hooks.ts';
@@ -211,6 +212,7 @@ export default function CompanyPage() {
                 ) : null}
               </div>
             ) : null}
+            {company.listing === 'listed' && series?.fin ? <ReportedFigures fin={series.fin} /> : null}
             {company.listing === 'listed' && series ? <ValuationHistory series={series} ccy={q?.ccy} /> : null}
           </div>
 

@@ -26,16 +26,20 @@ export function EarningsWeek() {
   const { site, quotes } = useStore();
   const earnings = useEarnings();
   const today = todayISO(site.config.site.timezone);
-  const recent = useMemo(() => recentReports(site, quotes.quotes, earnings, shiftDays(today, -7), today), [site, quotes, earnings, today]);
+  // Between seasons the last week can be empty: then look back a month.
+  const recent = useMemo(() => {
+    const week = recentReports(site, quotes.quotes, earnings, shiftDays(today, -7), today);
+    return week.length >= 3 ? { list: week, days: 7 } : { list: recentReports(site, quotes.quotes, earnings, shiftDays(today, -30), today), days: 30 };
+  }, [site, quotes, earnings, today]);
   const upcoming = useMemo(() => upcomingReports(site, quotes.quotes, earnings, today, shiftDays(today, 7)), [site, quotes, earnings, today]);
-  if (!recent.length && !upcoming.length) return null;
+  if (!recent.list.length && !upcoming.length) return null;
   const shownUp = upcoming.slice(0, 14);
   const days = [...new Set(shownUp.map((u) => u.date))];
   return (
     <Section
       eyebrow="Earnings"
       title="This week's reports"
-      sub={`Results from the last seven days against consensus, and reports due in the next seven. ${SOURCE_NOTE}`}
+      sub={`Results from the last ${recent.days === 7 ? 'seven' : '30'} days against consensus, and reports due in the next seven. ${SOURCE_NOTE}`}
       tools={
         <Link to="/calendar" className="btn sm">
           Calendar
@@ -44,8 +48,8 @@ export function EarningsWeek() {
     >
       <div className="grid cols-2 earn-week" style={{ '--gap': '20px' } as React.CSSProperties}>
         <div className="card min0">
-          <div className="eyebrow">Reported</div>
-          {recent.length ? (
+          <div className="eyebrow">Reported{recent.days === 30 ? ' in the last 30 days' : ''}</div>
+          {recent.list.length ? (
             <div className="table-wrap" style={{ marginTop: 6 }}>
               <table className="data compact">
                 <thead>
@@ -57,7 +61,7 @@ export function EarningsWeek() {
                   </tr>
                 </thead>
                 <tbody>
-                  {recent.slice(0, 10).map(({ company, symbol, report: r, ccy }) => (
+                  {recent.list.slice(0, 10).map(({ company, symbol, report: r, ccy }) => (
                     <tr key={symbol}>
                       <td>
                         <Link to={`/company/${company.id}`}>{company.name}</Link>
@@ -78,15 +82,15 @@ export function EarningsWeek() {
                   ))}
                 </tbody>
               </table>
-              {recent.length > 10 ? (
+              {recent.list.length > 10 ? (
                 <p className="faint" style={{ fontSize: 'var(--step--2)', marginTop: 6 }}>
-                  and {plural(recent.length - 10, 'more company', 'more companies')}
+                  and {plural(recent.list.length - 10, 'more company', 'more companies')}
                 </p>
               ) : null}
             </div>
           ) : (
             <div className="empty" style={{ marginTop: 8 }}>
-              No results in the last week.
+              No results in the last month.
             </div>
           )}
           <p className="faint" style={{ fontSize: 'var(--step--2)', marginTop: 8 }}>

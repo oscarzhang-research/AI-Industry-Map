@@ -1,5 +1,5 @@
 // Loading of the generated JSON files (public/generated/*), with small in-memory caches.
-import type { EarningsFile, IndicesFile, NewsItem, PriceSeries, QuotesFile, RecordsFile, ReportMeta, SiteData } from './types.ts';
+import type { EarningsFile, IndicesFile, KpisFile, NewsItem, PriceSeries, QuotesFile, RecordsFile, ReportMeta, SiteData } from './types.ts';
 import { priceChunk, safeSymbol } from './symbols.ts';
 
 export interface Meta {
@@ -7,6 +7,7 @@ export interface Meta {
   priceChunks?: number; // prices packed into prices/chunk-<n>.json
   dataUpdatedAt: string | null;
   pricesAsOf: string | null;
+  valuationSince?: string | null; // first daily valuation snapshot
   counts: Record<string, number>;
 }
 
@@ -81,4 +82,10 @@ let earningsPromise: Promise<EarningsFile> | null = null;
 export function loadEarnings(): Promise<EarningsFile> {
   earningsPromise ??= getJson<EarningsFile>('earnings.json').catch(() => ({}));
   return earningsPromise;
+}
+
+let kpisPromise: Promise<KpisFile> | null = null;
+export function loadKpis(): Promise<KpisFile> {
+  kpisPromise ??= getJson<KpisFile>('kpis.json').catch(() => ({ updatedAt: null, indicators: [] }));
+  return kpisPromise;
 }

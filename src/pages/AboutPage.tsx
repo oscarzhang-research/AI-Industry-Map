@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useStore } from '../lib/store.tsx';
-import { LAYER_CODE, fmtDateTime } from '../lib/format.ts';
+import { LAYER_CODE, fmtDate, fmtDateTime } from '../lib/format.ts';
 
 export default function AboutPage() {
   const { site, meta, index } = useStore();
@@ -91,11 +91,30 @@ export default function AboutPage() {
 
         <section className="section">
           <h2>Data and caveats</h2>
-          <p style={{ marginTop: 10, color: 'var(--ink-2)' }}>
-            Market capitalizations are converted to US dollars at daily exchange rates. Valuations of private companies are the latest reported funding rounds and may be
-            stale. Consensus targets and earnings dates come from the same market-data feed and can be wrong; estimated dates are marked. Company placements in the map are
-            editorial judgments. {s.disclaimer}
-          </p>
+          <div className="prose" style={{ marginTop: 10 }}>
+            <ul>
+              <li>
+                <b>Prices and valuation.</b> Market capitalizations are converted to US dollars at daily exchange rates. P/E, EV/EBITDA, price/sales and analyst targets
+                come from Yahoo Finance and are recorded once a trading day{meta.valuationSince ? ` since ${fmtDate(meta.valuationSince)}` : ''}, so a view can
+                compare its opening valuation with today's. For listings that trade and report in different currencies, such as ADRs, price/sales and EV/EBITDA are left
+                out because the feed often mixes the two.
+              </li>
+              <li>
+                <b>Earnings.</b> Report dates, the consensus for EPS and revenue, and reported results come from the same feed. The consensus shown against a result is the
+                one recorded before the report. Estimated dates are marked.
+              </li>
+              <li>
+                <b>Indicators.</b> Quarterly revenue and capital spending come from companies' SEC filings (XBRL company facts), assigned to the calendar quarter that
+                holds most of each fiscal quarter. Monthly revenue of Taiwan-listed companies comes from the TWSE and TPEx monthly reports. Memory contract prices are
+                TrendForce's published ranges, with a link to each release.
+              </li>
+              <li>
+                <b>Private companies.</b> Valuations are the latest reported funding rounds or share sales and may be stale. Company placements in the map are editorial
+                judgments.
+              </li>
+            </ul>
+          </div>
+          <p style={{ marginTop: 10, color: 'var(--ink-2)' }}>{s.disclaimer}</p>
           <p className="faint" style={{ marginTop: 8, fontSize: 'var(--step--1)' }}>
             Prices as of {meta.pricesAsOf ?? '—'} · data updated {fmtDateTime(meta.dataUpdatedAt, s.timezone)} · site built {fmtDateTime(meta.generatedAt, s.timezone)}
           </p>

@@ -24,11 +24,18 @@ Owner's browser ── fine-grained token ──→ GitHub API
 - **Demo mode** lets anyone try the editors; records stay in that browser.
 - **Example content**: placeholder records (`example: true`) ship while `site.showExamples` is on. The owner flips it from Settings, which commits `site.config.yaml` and rebuilds the site for everyone.
 - **Link previews**: Open Graph and Twitter tags with absolute URLs from `site.url`, and a 1200×630 `public/og.png`. The site uses hash routing, so every page shares one card.
-- **Workflows**: `market-data.yml` (after the Asian and US closes, plus branch pushes that change the universe), `deploy.yml` (on pushes to `main` and after each data update), `ci.yml` (validate, typecheck, test, build on every branch). A Claude routine also runs every morning at about 6:48 New York time: it adds sourced news for all five layers, translates new Chinese writing, runs the checks and commits only those changes to `main`.
+- **Workflows**: `market-data.yml` (after the Asian and US closes with backup slots, on the morning routine's news commit, and on branch pushes that change the universe or the fetchers), `deploy.yml` (on pushes to `main` and after each data update), `ci.yml` (validate, typecheck, test, build on every branch), `health.yml` (a daily check that opens a `site-health` issue when something stalls). A Claude routine also runs every morning at about 6:48 New York time: it adds sourced news for all five layers, translates new Chinese writing, runs the checks and commits only those changes to `main`.
+- **Site health** (`scripts/health.ts`): checks the age of the market data, failed series, stale tickers, the newest news item, the feeds branch, the indicators and any workflow on `main` still failing after its last run. A problem opens an issue labelled `site-health` (GitHub emails the owner), a changed set of problems adds a comment, and the issue closes itself once everything passes.
 
 ## Market data
 
 `scripts/prices/fetch_prices.py` uses `yfinance` to download the full daily history since 2022-10-01 for every ticker, benchmark and ETF proxy on each run (so split adjustments stay consistent), plus splits, a fundamentals snapshot (market cap, P/E, consensus target, next earnings date) and FX rates for converting market caps to US dollars. Asian-only runs refresh Asian listings early. A run fails if fewer than half the symbols succeed. Yahoo is not reachable from Claude's sandbox, so the workflow is the only fetcher.
+
+GitHub starts scheduled runs late when its queue is busy (five to nine hours in October 2026), so each market has an off-peak slot plus backups, and the morning routine's news commit on `main` triggers a full refresh that arrives before the New York open. A run with nothing new commits nothing.
+
+- **Valuation history**: every full run appends the day's snapshot (trailing and forward P/E, EV/EBITDA, price/sales, market cap, mean, high and low targets, analyst count, rating) to `data/valuation/<symbol>.csv`, dated by the listing's last trading day. Yahoo serves only current values, so this file is the only history. The build drops implausible multiples, and price/sales and EV/EBITDA for listings whose trading and reporting currencies differ.
+- **Earnings**: for names reporting within ten days back to three weeks ahead (core tier first, at most 160 per run, each refreshed at most every eight hours unless it reports within a day), the fetcher reads Yahoo's earnings calendar (dates, EPS consensus and results), the quarter's EPS and revenue consensus and the latest quarterly revenue. Yahoo rolls the consensus forward after a report, so the revenue consensus is frozen from the last run before the report date. The build adds the two-session share price reaction and the revenue surprise, and drops revenue figures that look like a different currency from the estimate.
+- **Indicators**: `scripts/prices/fetch_kpis.py` reads quarterly revenue and capital spending from SEC company facts for the listings in `content/kpis.yaml → sec`, and monthly revenue of Taiwan listings from the TWSE and TPEx open data (with the MOPS monthly pages for history). The build assigns each fiscal quarter to the calendar quarter holding its midpoint and compiles the indicators defined in `content/kpis.yaml` into `generated/kpis.json`; each company's figures also go into its price file for the company page.
 
 ## Content model
 
@@ -58,8 +65,7 @@ The concept is a geological survey sheet: five pastel strata on paper, with ink-
 
 ## Roadmap
 
-- Let the morning routine also file reports dropped into an inbox folder.
 - Public track record once enough views have closed.
 - Model portfolio (positions, sizing, P&L against benchmarks).
-- Earnings-day digests and weekly email.
+- More indicators: backlog (remaining performance obligations), utility load forecasts, chip equipment orders.
 - More companies and segments; confirm the tickers marked `# verify`.

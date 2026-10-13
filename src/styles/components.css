@@ -1035,3 +1035,49 @@ table.data .tk {
 .earn-day li .faint {
   font-size: var(--step--2);
 }
+
+/* ---- Indicators -------------------------------------------------------------------- */
+.kpi-grid {
+  --gap: 18px;
+  align-items: start;
+}
+.kpi-card {
+  display: grid;
+  gap: 10px;
+}
+.kpi-head h3 {
+  font-size: var(--step-1);
+  text-wrap: balance;
+}
+.kpi-headline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin-top: 6px;
+  font-size: var(--step--1);
+}
+.kpi-headline .big {
+  font-size: var(--step-1);
+  font-weight: 650;
+  color: var(--ink);
+}
+.kpi-pair {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.kpi-desc {
+  font-size: var(--step--1);
+  max-width: 70ch;
+}
+.kpi-card .chart-foot {
+  margin-top: 0;
+}
+table.data.growth td.heat {
+  font-variant-numeric: tabular-nums;
+  min-width: 3.2em;
+}
+table.data.growth tbody tr:hover td.heat {
+  filter: brightness(0.97);
+}

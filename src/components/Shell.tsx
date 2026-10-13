@@ -47,6 +47,7 @@ export function Header({ onSearch, onWrite }: { onSearch: () => void; onWrite: (
     { to: '/views', label: 'Views' },
     { to: '/research', label: 'Research' },
     { to: '/news', label: 'News' },
+    { to: '/indicators', label: 'Indicators' },
     { to: '/journal', label: 'Journal' },
     { to: '/notes', label: 'Notes' },
     ...(canEdit ? [{ to: '/inbox', label: 'Inbox' }] : []),
@@ -245,6 +246,13 @@ function LayersMenu() {
           </Link>
         ))}
       <hr style={{ margin: '6px 4px' }} />
+      <Link to="/indicators" className="menu-layer">
+        <span className="menu-code">▮</span>
+        <span className="grow">
+          <b>Indicators</b>
+          <span className="menu-tag">Capex, chip sales, memory prices, Taiwan monthly sales</span>
+        </span>
+      </Link>
       <Link to="/themes" className="menu-layer">
         <span className="menu-code">✳</span>
         <span className="grow">

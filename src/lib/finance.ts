@@ -45,6 +45,37 @@ export function parsePriceCsv(symbol: string, text: string): PriceSeries {
   return { s: symbol, d, c, h, l };
 }
 
+/** Ranges outside which a multiple is a data error (or meaningless, as for a company with almost no earnings). */
+const MULTIPLE_BOUNDS = { pe: [1, 1000], fpe: [1, 1000], ps: [0.05, 500], ev: [1, 500] } as const;
+
+export function plausibleMultiple(kind: keyof typeof MULTIPLE_BOUNDS, v: number | null | undefined): number | undefined {
+  const [lo, hi] = MULTIPLE_BOUNDS[kind];
+  return v !== null && v !== undefined && Number.isFinite(v) && v >= lo && v <= hi ? v : undefined;
+}
+
+/**
+ * True when a listing trades in one currency and reports in another (ADRs, Hong Kong listings of mainland
+ * companies). Yahoo's price/sales and EV/EBITDA then often divide across the two currencies, so they are dropped;
+ * per-share earnings are converted, so P/E stays.
+ */
+export function mixedCurrency(f: Pick<Fundamentals, 'currency' | 'financialCurrency'> | undefined, ccy?: string): boolean {
+  const a = (ccy ?? f?.currency)?.toUpperCase();
+  const b = f?.financialCurrency?.toUpperCase();
+  return !!a && !!b && a !== b;
+}
+
+/** Blank values that fail the plausibility bounds, and the sales and EV multiples of mixed-currency listings. */
+export function cleanValuation(val: ValuationSeries, mixed: boolean): ValuationSeries {
+  const keep = (kind: keyof typeof MULTIPLE_BOUNDS, xs: (number | null)[]) => xs.map((x) => plausibleMultiple(kind, x) ?? null);
+  return {
+    ...val,
+    pe: keep('pe', val.pe),
+    fpe: keep('fpe', val.fpe),
+    ps: mixed ? val.ps.map(() => null) : keep('ps', val.ps),
+    ev: mixed ? val.ev.map(() => null) : keep('ev', val.ev),
+  };
+}
+
 /** Parse a data/valuation CSV (date,pe,fpe,ev_ebitda,ps,mcap,tgt,tgt_hi,tgt_lo,analysts,rec), matching columns by name. */
 export function parseValuationCsv(text: string): ValuationSeries {
   const out: ValuationSeries = { d: [], pe: [], fpe: [], ev: [], ps: [], tgt: [], hi: [], lo: [], n: [], rec: [] };
@@ -188,9 +219,9 @@ export function computeQuote(
       if (ccy && ccy.toUpperCase() === 'USD') q.mcapUsd = fundamentals.marketCap;
       else if (rate && rate > 0) q.mcapUsd = fundamentals.marketCap / rate;
     }
-    if (fundamentals.trailingPE && fundamentals.trailingPE > 0) q.pe = fundamentals.trailingPE;
-    if (fundamentals.forwardPE && fundamentals.forwardPE > 0) q.fpe = fundamentals.forwardPE;
-    if (fundamentals.priceToSales && fundamentals.priceToSales > 0) q.ps = fundamentals.priceToSales;
+    q.pe = plausibleMultiple('pe', fundamentals.trailingPE);
+    q.fpe = plausibleMultiple('fpe', fundamentals.forwardPE);
+    if (!mixedCurrency(fundamentals, ccy)) q.ps = plausibleMultiple('ps', fundamentals.priceToSales);
     if (fundamentals.targetMean && fundamentals.targetMean > 0) q.tgt = fundamentals.targetMean;
     if (fundamentals.analysts) q.tgtN = fundamentals.analysts;
     if (fundamentals.recommendation) q.rec = fundamentals.recommendation;

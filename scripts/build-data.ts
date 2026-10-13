@@ -3,10 +3,11 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadContent, printIssues, ROOT } from './lib/load.ts';
-import { basketIndex, capWeightIndex, computeQuote, earningsMove, parsePriceCsv, parseValuationCsv, revenueSurprise, AI_BASE_DATE, type Fundamentals } from '../src/lib/finance.ts';
+import { basketIndex, capWeightIndex, cleanValuation, computeQuote, earningsMove, mixedCurrency, parsePriceCsv, parseValuationCsv, revenueSurprise, AI_BASE_DATE, type Fundamentals } from '../src/lib/finance.ts';
 import { priceChunk, safeSymbol } from '../src/lib/symbols.ts';
 import { htmlToText, injectReaderShim } from '../src/lib/reportShim.ts';
-import type { EarningsFile, EarningsRecord, IndexSeries, PriceSeries, Quote, QuotesFile, SiteData } from '../src/lib/types.ts';
+import { compileKpis, financialsFor, loadKpiData } from './lib/kpis.ts';
+import type { Company, EarningsFile, EarningsRecord, IndexSeries, KpisFile, PriceSeries, Quote, QuotesFile, SiteData } from '../src/lib/types.ts';
 
 const OUT = join(ROOT, 'public/generated');
 const DATA = join(ROOT, 'data');
@@ -65,6 +66,9 @@ for (const b of content.benchmarks) if (b.currency) currencyOf.set(b.symbol, b.c
 const series = new Map<string, PriceSeries>();
 const priceDir = join(DATA, 'prices');
 const valDir = join(DATA, 'valuation');
+const kpiData = loadKpiData(DATA);
+const companyOf = new Map<string, Company>();
+for (const c of Object.values(content.companies)) for (const t of c.tickers) companyOf.set(t.symbol, c);
 const wanted = new Set<string>([
   ...Object.values(content.companies).flatMap((c) => c.tickers.map((t) => t.symbol)),
   ...content.benchmarks.map((b) => b.symbol),
@@ -81,8 +85,11 @@ if (existsSync(priceDir)) {
     const valFile = join(valDir, f);
     if (existsSync(valFile)) {
       const val = parseValuationCsv(readFileSync(valFile, 'utf8'));
-      if (val.d.length) s.val = val;
+      if (val.d.length) s.val = cleanValuation(val, mixedCurrency(fundamentals[symbol], currencyOf.get(symbol)));
     }
+    const co = companyOf.get(symbol);
+    const fin = co ? financialsFor(co, kpiData) : undefined;
+    if (fin) s.fin = fin;
     series.set(symbol, s);
     if (!PRICE_CHUNKS) writeJson(join(OUT, 'prices', `${safeSymbol(symbol)}.json`), s);
   }
@@ -126,6 +133,10 @@ for (const [symbol, rec] of Object.entries(earningsRaw)) {
   earnings[symbol] = out;
 }
 writeJson(join(OUT, 'earnings.json'), earnings);
+
+// ---- Industry indicators -------------------------------------------------------------------------------
+const kpisFile: KpisFile = { updatedAt: kpiData.updatedAt, indicators: compileKpis(content.kpis, content.companies, kpiData) };
+writeJson(join(OUT, 'kpis.json'), kpisFile);
 
 // ---- Indices -------------------------------------------------------------------------------------------
 // Layers: market-cap-weighted (where the money went), each company counted once in its primary layer, plus an
@@ -186,6 +197,7 @@ writeJson(join(OUT, 'meta.json'), {
   priceChunks: PRICE_CHUNKS || undefined,
   dataUpdatedAt: status.updatedAt ?? null,
   pricesAsOf: asOf,
+  valuationSince: [...series.values()].map((x) => x.val?.d[0]).filter(Boolean).sort()[0] ?? null,
   counts: {
     companies: Object.keys(content.companies).length,
     listed: Object.values(content.companies).filter((c) => c.listing === 'listed').length,
@@ -194,6 +206,7 @@ writeJson(join(OUT, 'meta.json'), {
     news: content.news.length,
     records: records.length,
     earnings: Object.keys(earnings).length,
+    indicators: kpisFile.indicators.length,
     valuationHistory: [...series.values()].filter((x) => x.val).length,
   },
 });

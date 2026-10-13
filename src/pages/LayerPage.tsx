@@ -4,7 +4,8 @@ import { useStore } from '../lib/store.tsx';
 import { Change, Crumbs, DirectionBadge, Section } from '../components/ui.tsx';
 import { CompanyTable } from '../components/CompanyTable.tsx';
 import { NodeContent, splitRecords } from '../components/NodeContent.tsx';
-import { useIndices } from '../lib/hooks.ts';
+import { useIndices, useKpis } from '../lib/hooks.ts';
+import { KpiCard } from '../components/kpis.tsx';
 import { industryLink, recordsForNode } from '../lib/nodes.ts';
 import { display, latestOutlook, viewByCompany } from '../lib/views.ts';
 import { LAYER_CODE, POSITION_LABEL } from '../lib/format.ts';
@@ -30,6 +31,7 @@ export default function LayerPage() {
   const { site, quotes, allRecords, allReports, news, index } = useStore();
   const layer = index.layerById.get(layerId as LayerId);
   const indices = useIndices();
+  const kpis = useKpis();
   const [industryFilter, setIndustryFilter] = useState<string>('all');
 
   const members = useMemo(() => new Set(layer ? index.companiesUnder(layer.id) : []), [layer, index]);
@@ -157,6 +159,26 @@ export default function LayerPage() {
             ))}
           </ul>
         </Section>
+
+        {kpis?.indicators.some((k) => k.layer === layer.id) ? (
+          <Section
+            eyebrow="Indicators"
+            title="Key numbers for this layer"
+            tools={
+              <Link to="/indicators" className="btn sm">
+                All indicators
+              </Link>
+            }
+          >
+            <div className="grid cols-2 kpi-grid">
+              {kpis.indicators
+                .filter((k) => k.layer === layer.id)
+                .map((k) => (
+                  <KpiCard key={k.id} kpi={k} />
+                ))}
+            </div>
+          </Section>
+        ) : null}
 
         <Section
           eyebrow="Companies"

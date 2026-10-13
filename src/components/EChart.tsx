@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import * as echarts from 'echarts/core';
-import { LineChart, TreemapChart, ScatterChart, BarChart } from 'echarts/charts';
+import { LineChart, TreemapChart, ScatterChart, BarChart, CustomChart } from 'echarts/charts';
 import {
   GridComponent,
   TooltipComponent,
@@ -18,6 +18,7 @@ echarts.use([
   TreemapChart,
   ScatterChart,
   BarChart,
+  CustomChart,
   GridComponent,
   TooltipComponent,
   MarkLineComponent,
