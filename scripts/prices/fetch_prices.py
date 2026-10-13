@@ -81,7 +81,7 @@ INFO_FIELDS = {
 
 
 def safe_symbol(symbol: str) -> str:
-    """File-system safe name; must match scripts/lib/symbols.ts."""
+    """File-system safe name; must match safeSymbol() in src/lib/symbols.ts."""
     return re.sub(r"[^A-Za-z0-9.\-]", "_", symbol)
 
 

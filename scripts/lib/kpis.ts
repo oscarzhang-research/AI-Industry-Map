@@ -171,7 +171,7 @@ export function validateKpis(doc: KpiDoc | undefined, companies: Record<string, 
       else if (k.kind === 'monthly' || (k.kind === 'growth-table' && k.frequency === 'month')) {
         if (!twCode(co)) issues.push({ level: 'warn', file, msg: `${k.id}: ${c} has no Taiwan listing` });
       } else if ((k.kind === 'stack' || k.kind === 'growth-table') && !usSymbol(co)) issues.push({ level: 'warn', file, msg: `${k.id}: ${c} has no US listing` });
-      else if ((k.kind === 'stack' || k.kind === 'growth-table') && !(doc?.sec ?? []).includes(usSymbol(co)!)) {
+      else if ((k.kind === 'stack' || k.kind === 'growth-table') && doc?.sec && !doc.sec.includes(usSymbol(co)!)) {
         issues.push({ level: 'warn', file, msg: `${k.id}: ${usSymbol(co)} is not in the sec list, so no filings are fetched` });
       }
     }

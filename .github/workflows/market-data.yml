@@ -25,6 +25,7 @@ on:
       - "content/companies/**"
       - "content/benchmarks.yaml"
       - "scripts/prices/**"
+      - "content/kpis.yaml"
       - "data/.refresh"
       - "content/news/**"
 
@@ -60,6 +61,16 @@ jobs:
           case "$SCHEDULE" in "13 9 * * 1-5" | "37 10 * * 1-5") MARKETS=asia ;; esac
           echo "MARKETS=$MARKETS" >> "$GITHUB_ENV"
           python scripts/prices/fetch_prices.py --markets "$MARKETS"
+      # SEC quarterly revenue/capex and Taiwan monthly revenue into data/kpis/, on full runs only.
+      # Filings change at most daily, so the SEC part runs once every 20 hours. A failure here never
+      # blocks the price commit.
+      - name: Fetch industry indicators
+        if: env.MARKETS == 'all'
+        continue-on-error: true
+        timeout-minutes: 20
+        env:
+          SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
+        run: python scripts/prices/fetch_kpis.py --sec-every-hours 20
       - name: Commit data
         run: |
           git config user.name "github-actions[bot]"

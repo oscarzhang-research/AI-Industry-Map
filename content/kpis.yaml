@@ -2,7 +2,8 @@
 #
 # Figures come from three places:
 #   - SEC filings: quarterly revenue and capital spending from XBRL company facts (data/kpis/sec/),
-#     fetched by scripts/prices/fetch_kpis.py for the listings in `sec` below
+#     fetched once a day by scripts/prices/fetch_kpis.py for up to 120 US listings (core and focus
+#     tiers first). A `sec: [SYMBOL, ...]` list here would replace that default.
 #   - Taiwan's monthly revenue reports (TWSE and TPEx open data, data/kpis/tw/)
 #   - curated points with their own source on each point (memory contract prices), or the company
 #     records themselves (private valuations)
@@ -13,12 +14,6 @@
 #   growth-table  year-on-year growth by company, monthly (Taiwan) or quarterly (SEC revenue)
 #   ranges        published ranges per quarter (low/high), forecast or reported
 #   valuations    latest private valuations from content/companies
-
-# US listings whose filings the indicator fetcher reads (company pages also chart their revenue).
-sec:
-  [MSFT, AMZN, GOOGL, META, ORCL, CRWV, NBIS, NVDA, AVGO, AMD, MRVL, MU, INTC, QCOM, ARM, ANET, DELL, SMCI, HPE, CSCO, VRT, ETN,
-   AMAT, LRCX, KLAC, NEE, DUK, SO, D, AEP, ETR, CEG, VST, TLN, NRG, GEV, PWR, BE, CAT, CMI, BWXT, OKLO,
-   CRM, NOW, PLTR, SNOW, DDOG, MDB, ADBE, WDAY, HUBS, CRWD, NET, PANW, ZS, APP, SHOP, INTU, TEAM]
 
 indicators:
   # ---- Energy -------------------------------------------------------------------------------------
