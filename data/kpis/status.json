@@ -1,18 +1,15 @@
 {
  "sec": {
-  "at": "2026-10-13T23:14:01+00:00",
-  "failed": [],
-  "ok": 0,
-  "skipped": 120,
-  "targets": 120
+  "at": "2026-10-13T23:28:04+00:00",
+  "skipped": "needs SEC_USER_AGENT"
  },
- "seconds": 265.6,
+ "seconds": 3.7,
  "tw": {
-  "backfilled": 875,
+  "backfilled": 0,
   "failed": [],
   "latestMonth": "2026-09",
   "ok": 25,
   "targets": 25
  },
- "updatedAt": "2026-10-13T23:14:01+00:00"
+ "updatedAt": "2026-10-13T23:28:04+00:00"
 }
