@@ -1,0 +1,18 @@
+{
+ "sec": {
+  "at": "2026-10-13T23:14:01+00:00",
+  "failed": [],
+  "ok": 0,
+  "skipped": 120,
+  "targets": 120
+ },
+ "seconds": 265.6,
+ "tw": {
+  "backfilled": 875,
+  "failed": [],
+  "latestMonth": "2026-09",
+  "ok": 25,
+  "targets": 25
+ },
+ "updatedAt": "2026-10-13T23:14:01+00:00"
+}
