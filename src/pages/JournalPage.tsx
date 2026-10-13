@@ -225,6 +225,11 @@ function Entry({ entry }: { entry: JournalRecord }) {
           </span>
           {j.example ? <ExampleBadge /> : null}
           {j.visibility === 'private' ? <PrivateBadge /> : null}
+          {j.tags?.includes('draft') ? (
+            <span className="badge earn" title="Prepared automatically with the week's numbers; add your read and remove the draft tag">
+              {j.tags.includes('fact-pack') ? 'Fact pack · draft' : 'Draft'}
+            </span>
+          ) : null}
           {isZh && (tr === 'pending' || tr === 'stale') ? <span className="badge">EN pending</span> : null}
         </div>
         <div className="row" style={{ gap: 4 }}>

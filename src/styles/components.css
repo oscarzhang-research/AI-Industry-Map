@@ -9,6 +9,15 @@
 .preview-ribbon b {
   font-weight: 600;
 }
+.preview-ribbon.warn {
+  background: color-mix(in srgb, var(--warning) 22%, var(--paper));
+  color: var(--ink);
+  border-bottom: 1px solid color-mix(in srgb, var(--warning) 45%, transparent);
+}
+.preview-ribbon.warn a {
+  color: var(--ink);
+  text-decoration: underline;
+}
 .site-header {
   position: sticky;
   top: env(safe-area-inset-top, 0px);

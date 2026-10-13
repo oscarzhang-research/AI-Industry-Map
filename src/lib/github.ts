@@ -12,6 +12,12 @@ export class GitHubError extends Error {
   }
 }
 
+let expiryHeader: string | undefined;
+/** The token's expiry (YYYY-MM-DD) from GitHub's response header, if the browser was allowed to read it. */
+export function tokenExpiryHeader(): string | undefined {
+  return expiryHeader;
+}
+
 async function call<T>(token: string, path: string, init: RequestInit = {}, accept = 'application/vnd.github+json'): Promise<T> {
   const res = await fetch(`${API}${path}`, {
     ...init,
@@ -23,6 +29,8 @@ async function call<T>(token: string, path: string, init: RequestInit = {}, acce
       ...(init.headers || {}),
     },
   });
+  const exp = res.headers.get('github-authentication-token-expiration'); // e.g. "2027-10-10 12:00:00 UTC"
+  if (exp && /^\d{4}-\d{2}-\d{2}/.test(exp)) expiryHeader = exp.slice(0, 10);
   if (!res.ok) {
     let msg = res.statusText;
     try {

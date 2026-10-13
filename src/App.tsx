@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { Footer, Header, PreviewRibbon, Toasts } from './components/Shell.tsx';
+import { Footer, Header, PreviewRibbon, Toasts, TokenRibbon } from './components/Shell.tsx';
 import { CommandPalette } from './components/CommandPalette.tsx';
 import { useStore } from './lib/store.tsx';
 import Home from './pages/Home.tsx';
@@ -22,6 +22,7 @@ const IndicatorsPage = lazy(() => import('./pages/IndicatorsPage.tsx'));
 const AboutPage = lazy(() => import('./pages/AboutPage.tsx'));
 const SettingsPage = lazy(() => import('./pages/SettingsPage.tsx'));
 const InboxPage = lazy(() => import('./pages/InboxPage.tsx'));
+const CallsPage = lazy(() => import('./pages/CallsPage.tsx'));
 const Editors = lazy(() => import('./editor/EditorHost.tsx'));
 
 export type EditorRequest =
@@ -77,6 +78,7 @@ export default function App() {
 
   return (
     <>
+      <TokenRibbon />
       <PreviewRibbon />
       <Header onSearch={() => setSearchOpen(true)} onWrite={() => setEditor({ kind: 'thesis' })} />
       <main id="main" style={{ flex: 1 }}>
@@ -100,6 +102,7 @@ export default function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/inbox" element={<InboxPage />} />
+            <Route path="/calls" element={<CallsPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

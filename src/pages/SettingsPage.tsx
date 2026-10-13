@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from '../lib/store.tsx';
 import { Section, Segmented } from '../components/ui.tsx';
 import { commitFiles, dispatchWorkflow, getRawFile } from '../lib/github.ts';
 import { setSiteFlag } from '../lib/configEdit.ts';
 import { clearDemo, loadDemoRecords } from '../lib/demo.ts';
-import { fmtDateTime, plural } from '../lib/format.ts';
+import { fmtDate, fmtDateTime, plural } from '../lib/format.ts';
+import { rememberExpiry, savedExpiry, SETTINGS_PATH, withTokenExpiry } from '../lib/tokenExpiry.ts';
+import { tokenExpiryHeader } from '../lib/github.ts';
 
 export default function SettingsPage() {
   const store = useStore();
@@ -158,6 +160,7 @@ export default function SettingsPage() {
                   Sign out
                 </button>
               </div>
+              <TokenExpiry />
               <p className="faint" style={{ fontSize: 'var(--step--2)' }}>
                 The token is stored in this browser only and is sent only to api.github.com. Sign out on shared computers.
               </p>
@@ -302,6 +305,88 @@ function Pref({ label, hint, children }: { label: string; hint?: string; childre
         ) : null}
       </div>
       {children}
+    </div>
+  );
+}
+
+/** The token's expiry: read from GitHub when possible, else entered here; saved to the vault for email reminders. */
+function TokenExpiry() {
+  const { site, token, toast } = useStore();
+  const header = tokenExpiryHeader();
+  const [vaultValue, setVaultValue] = useState<string | null | undefined>(undefined); // undefined: loading, null: none saved
+  const [draft, setDraft] = useState(savedExpiry() ?? header ?? '');
+  const [busy, setBusy] = useState(false);
+  const repo = site.config.repos.vault;
+
+  useEffect(() => {
+    const t = token();
+    if (!t) return;
+    let alive = true;
+    getRawFile(t, repo, SETTINGS_PATH)
+      .then((buf) => {
+        const day = /^tokenExpires:\s*(\d{4}-\d{2}-\d{2})/m.exec(new TextDecoder().decode(buf))?.[1] ?? null;
+        if (!alive) return;
+        setVaultValue(day);
+        if (day) {
+          rememberExpiry(day);
+          setDraft((d) => d || day);
+        }
+      })
+      .catch(() => alive && setVaultValue(null));
+    return () => {
+      alive = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [repo.owner, repo.repo, repo.branch]);
+
+  const save = async (day: string) => {
+    const t = token();
+    if (!t || !/^\d{4}-\d{2}-\d{2}$/.test(day)) return;
+    setBusy(true);
+    try {
+      let prev: string | undefined;
+      try {
+        prev = new TextDecoder().decode(await getRawFile(t, repo, SETTINGS_PATH));
+      } catch {
+        prev = undefined;
+      }
+      await commitFiles(t, repo, [{ path: SETTINGS_PATH, text: withTokenExpiry(prev, day) }], `Token expires ${day} (site settings)`);
+      rememberExpiry(day);
+      setVaultValue(day);
+      toast('Saved. You will get a reminder two weeks before.');
+    } catch (e) {
+      toast(`Could not save: ${(e as Error).message}`, 'error');
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const known = header ?? vaultValue ?? undefined;
+  return (
+    <div className="stack" style={{ '--gap': '6px', fontSize: 'var(--step--1)' } as React.CSSProperties}>
+      <div className="row" style={{ gap: 8 }}>
+        <span className="muted">Token expires</span>
+        {known ? <b>{fmtDate(known)}</b> : <span className="muted">not recorded</span>}
+        {header && header !== vaultValue ? (
+          <button type="button" className="btn sm" disabled={busy} onClick={() => void save(header)}>
+            Remind me before then
+          </button>
+        ) : null}
+      </div>
+      {!header ? (
+        <div className="row" style={{ gap: 8 }}>
+          <input className="input" type="date" value={draft} onChange={(e) => setDraft(e.target.value)} style={{ maxWidth: 180 }} aria-label="Token expiry date" />
+          <button type="button" className="btn sm" disabled={busy || !draft || draft === vaultValue} onClick={() => void save(draft)}>
+            {busy ? 'Saving…' : 'Save'}
+          </button>
+          <span className="faint" style={{ fontSize: 'var(--step--2)' }}>
+            The date GitHub showed when you created the token (Settings → Developer settings → Fine-grained tokens).
+          </span>
+        </div>
+      ) : null}
+      <span className="faint" style={{ fontSize: 'var(--step--2)' }}>
+        Two weeks before, a banner appears here and the private repository's alerts email you a reminder.
+      </span>
     </div>
   );
 }

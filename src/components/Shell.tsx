@@ -2,7 +2,21 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { LogoMark } from './Logo.tsx';
 import { useStore } from '../lib/store.tsx';
-import { fmtDateTime } from '../lib/format.ts';
+import { fmtDate, fmtDateTime } from '../lib/format.ts';
+import { daysToExpiry, knownExpiry, WARN_DAYS } from '../lib/tokenExpiry.ts';
+
+/** Owner only: the sign-in token is about to expire (or has). */
+export function TokenRibbon() {
+  const { mode } = useStore();
+  const days = mode === 'owner' ? daysToExpiry() : undefined;
+  if (days === undefined || days > WARN_DAYS) return null;
+  return (
+    <div className="preview-ribbon warn" role="status">
+      <b>{days < 0 ? 'Your sign-in token has expired.' : `Your sign-in token expires ${days === 0 ? 'today' : `in ${days} day${days === 1 ? '' : 's'}`} (${fmtDate(knownExpiry())}).`}</b>{' '}
+      Create a new one and sign in again with it: <Link to="/settings#owner">Settings</Link>.
+    </div>
+  );
+}
 
 export function PreviewRibbon() {
   const { site, mode, startDemo, toast } = useStore();
@@ -204,6 +218,7 @@ export function Header({ onSearch, onWrite }: { onSearch: () => void; onWrite: (
 }
 
 function MoreMenu({ items, signedIn }: { items: NavItem[]; signedIn: boolean }) {
+  const { canEdit } = useStore();
   return (
     <div className="card nav-menu">
       {items.map((l) => (
@@ -212,6 +227,11 @@ function MoreMenu({ items, signedIn }: { items: NavItem[]; signedIn: boolean }) 
         </Link>
       ))}
       {items.length ? <hr /> : null}
+      {canEdit ? (
+        <Link to="/calls" className="menu-item">
+          Sell-side calls
+        </Link>
+      ) : null}
       <Link to="/themes" className="menu-item">
         Themes
       </Link>

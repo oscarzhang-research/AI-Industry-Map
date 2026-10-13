@@ -16,6 +16,7 @@ import { hasCJK, slugify } from '../src/lib/records.ts';
 import type { ReportMeta } from '../src/lib/types.ts';
 import { ROOT } from './lib/load.ts';
 import { arg, flag, vaultDir, writeFile } from './lib/vaultfs.ts';
+import { htmlText, privacyHits } from './lib/privacy.ts';
 
 const VALUE_OPTS = new Set(['--id', '--date', '--title', '--kind', '--vault', '--broker']);
 const argv = process.argv.slice(2);
@@ -46,7 +47,7 @@ const id = arg('id') ?? `${date}-${slugify(title || fileName || 'report', 48) ||
 const toVault = isPdf || kind === 'sell-side' || flag('private');
 
 // Languages: a bilingual report has plenty of both scripts in its text.
-const text = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<[^>]+>/gi, ' ');
+const text = htmlText(html);
 const cjk = (text.match(/[㐀-鿿]/g) ?? []).length;
 const latin = (text.match(/[A-Za-z]{3,}/g) ?? []).length;
 const languages = isPdf ? [hasCJK(fileName) ? 'zh' : 'en'] : cjk > 200 && latin > 400 ? ['zh', 'en'] : cjk > 200 ? ['zh'] : ['en'];
@@ -95,14 +96,3 @@ copyFileSync(src, join(dir, meta.file));
 console.log(`Filed ${meta.visibility} ${meta.format.toUpperCase()} as ${id}\n  ${dir}`);
 console.log('Next: fill in companies, nodes, tags, summary.en (3–5 points) and stance in meta.yaml, then `npm run validate`.');
 
-function privacyHits(t: string): string[] {
-  const checks: [RegExp, string][] = [
-    [/[\w.+-]+@[\w-]+\.[a-z]{2,}/i, 'an email address'],
-    [/\(\d{3}\)\s?\d{3}-\d{4}|\+\d{1,3}[\s-]\d{1,4}[\s-]\d{3,4}[\s-]\d{3,4}/, 'a phone number'],
-    // SEC "Form F-1" filings are common in research, so only bare visa terms count.
-    [/(?<!Form\s)\b(F-1|OPT|CPT|H-1B)\b(?!\s+(registration|filing|statement))|\bSSN\b/, 'visa or ID terms'],
-    [/green card|passport|visa status/i, 'visa or ID terms'],
-    [/签证|绿卡|护照|女朋友|男朋友|写给/, 'personal terms in Chinese'],
-  ];
-  return checks.filter(([re]) => re.test(t)).map(([, label]) => label);
-}
