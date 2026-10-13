@@ -1,9 +1,9 @@
 {
  "sec": {
-  "at": "2026-10-13T23:33:53+00:00",
+  "at": "2026-10-13T23:39:45+00:00",
   "skipped": "needs SEC_USER_AGENT"
  },
- "seconds": 5.0,
+ "seconds": 5.7,
  "tw": {
   "backfilled": 0,
   "failed": [],
@@ -11,5 +11,5 @@
   "ok": 25,
   "targets": 25
  },
- "updatedAt": "2026-10-13T23:33:53+00:00"
+ "updatedAt": "2026-10-13T23:39:45+00:00"
 }
