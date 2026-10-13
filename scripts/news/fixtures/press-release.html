@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test release: quarterly dividend notice | Example Newsroom</title>
+<style>p { color: #333; }</style>
+<script>var tracking = "<p>script text that must not appear</p>";</script>
+</head>
+<body>
+<!-- Synthetic test fixture for scripts/news/test_fetch_feeds.py. Not real news. -->
+<div id="onetrust-banner-sdk" class="otFlat"><p>We use cookies to improve your experience on this site. Accept all cookies?</p></div>
+<header class="site-header">
+  <nav><ul><li><a href="/">Home</a></li><li><a href="/news">News</a></li></ul></nav>
+  <p>Example Newsroom header tagline that is long enough to count as a paragraph.</p>
+</header>
+<form id="aspnetForm" method="post" action="/news/dividend-notice">
+<div class="layout">
+<main>
+<article>
+  <h1>Test release: quarterly dividend notice</h1>
+  <p class="date">October 13, 2026</p>
+  <p>SANTA CLARA, Calif., Oct. 13, 2026 &ndash; Example Corp, a fictional company used only in tests, today said its board approved a regular quarterly dividend. <a href="/notice">Read the notice</a> for details.</p>
+  <div class="social-share"><p>Share this release on social media and with your friends today.</p></div>
+  <p>The second paragraph mentions Vertiv and the <strong>data center</strong> market so that tagging from the excerpt can be tested.
+  <p>An unclosed third paragraph continues here and should still be read as its own paragraph of body text.
+  <p>A fourth paragraph is filler. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+  <p>A fifth paragraph is more filler. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+  <p>A sixth paragraph pushes the text past the excerpt limit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+  <p>A seventh paragraph should be cut off. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+</article>
+<aside class="related"><p>Related: another release that should not appear in the excerpt at all.</p></aside>
+</main>
+</div>
+</form>
+<footer><p>Copyright 2026 Example Corp. All rights reserved. Privacy policy and terms of use.</p></footer>
+<script>document.write("<p>late script text</p>");</script>
+</body>
+</html>

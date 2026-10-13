@@ -19,6 +19,8 @@ npm test
 npm run build        # also regenerates public/generated/ (git-ignored)
 ```
 
+When you change a fetcher or `content/news-sources.yaml`, also run its offline tests: `python3 -m unittest discover -s scripts/news -p 'test_*.py'` and `python3 -m unittest discover -s scripts/prices -p 'test_fetch_kpis.py'` (CI runs both).
+
 ## Where things live
 
 | Path | Contents |
@@ -30,8 +32,10 @@ npm run build        # also regenerates public/generated/ (git-ignored)
 | `content/reports/<id>/` | Public research: `report.html` + `meta.yaml` |
 | `content/views/{theses,notes,journal,outlook}/` | Public copies of records (sanitized projections of vault originals, or examples) |
 | `content/news/YYYY-MM.yaml` | News items; `content/events.yaml` upcoming events; `themes.yaml`; `ecosystems.yaml`; `benchmarks.yaml` |
-| `data/` | Daily prices (`prices/<symbol>.csv`), `fundamentals.json`, `splits.json`, `fx.json`, `status.json` |
-| `scripts/` | `build-data.ts`, `validate.ts`, `ingest-report.ts`, `translate-queue.ts`, `sync-vault.ts`, `prices/fetch_prices.py` |
+| `content/kpis.yaml` | Industry indicators for `/indicators` and the layer pages (SEC, Taiwan monthly revenue, curated points with a source each) |
+| `content/news-sources.yaml` | Feeds for the news pipeline; candidates land on the `feeds` branch (`news-candidates.json`) |
+| `data/` | Daily prices (`prices/<symbol>.csv`), daily valuation snapshots (`valuation/<symbol>.csv`), `earnings.json`, `kpis/` (SEC and Taiwan figures), `fundamentals.json`, `splits.json`, `fx.json`, `status.json` |
+| `scripts/` | `build-data.ts`, `validate.ts`, `ingest-report.ts`, `translate-queue.ts`, `sync-vault.ts`, `health.ts`, `prices/fetch_prices.py`, `prices/fetch_kpis.py`, `news/fetch_feeds.py` |
 | `src/lib/` | Types, finance math (`finance.ts`), records and translation (`records.ts`), GitHub client, vault sync |
 | `src/pages/`, `src/components/`, `src/editor/` | The React app; editors are lazy-loaded |
 
@@ -75,7 +79,7 @@ Private companies: `listing: private`, no tickers, `private: { valuation: { usd,
 After changing files under the vault's `vault/`, run `npm run sync-vault` to rewrite the public copies (`--check` to preview). Public copies drop `target`, `stop`, `scenarios`, `plan` and `position` unless the record's `publicShow` turns them on.
 
 ### Add news
-Append to `content/news/YYYY-MM.yaml`:
+Start from the feed candidates (company releases, regulators, SEC filings and media, refreshed every two hours): `git fetch origin feeds && git show origin/feeds:news-candidates.json`. They are leads, not facts: check each number against the source before using it. Append to `content/news/YYYY-MM.yaml`:
 
 ```yaml
   - id: 2026-10-08-samsung-q3-preliminary-record-profit   # date + slug, unique
@@ -105,4 +109,4 @@ Plain, specific English. Short sentences, active voice, real numbers with units 
 
 ## Market data
 
-`.github/workflows/market-data.yml` runs `scripts/prices/fetch_prices.py` (yfinance) at 10:30 UTC (Asian close) and 21:35 UTC (US close) on weekdays, and on `claude/**` pushes that change companies or benchmarks. It rewrites `data/` and commits it; `deploy.yml` rebuilds the site afterwards. Yahoo is not reachable from Claude's sandbox, so price checks happen through the workflow.
+`.github/workflows/market-data.yml` runs `scripts/prices/fetch_prices.py` (yfinance) after the US close (21:41 UTC, with backups at 23:17 and 02:11 UTC) and the Asian close (09:13 and 10:37 UTC, Asian listings only) on weekdays, on the morning routine's news commit to `main`, and on `claude/**` pushes that change companies, benchmarks, `content/kpis.yaml` or the fetchers. Full runs also record valuation snapshots and earnings, and run `scripts/prices/fetch_kpis.py` (SEC part at most every 20 hours). It rewrites `data/` and commits it; `deploy.yml` rebuilds the site afterwards. Yahoo, the SEC and the Taiwan exchanges are not reachable from Claude's sandbox, so checks happen through the workflows. `health.yml` checks every morning that data, news, feeds and workflows are current and keeps a `site-health` issue open while something is wrong.

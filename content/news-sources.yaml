@@ -1,0 +1,481 @@
+# Feeds read by .github/workflows/news-feed.yml (scripts/news/fetch_feeds.py). Every two hours GitHub
+# Actions fetches them, keeps entries from the last four days, tags each entry with company ids and
+# layers, and publishes news-candidates.json to the "feeds" branch. A morning Claude routine reads that
+# file to pick and verify items for content/news/. Nothing here is shown on the site.
+#
+#   id         unique slug (lower case, digits, hyphens)
+#   name       copied to each item as sourceName
+#   kind       company | regulator | filing | media
+#   url        RSS 2.0 or Atom feed. SEC EDGAR company feeds accept a ticker as CIK.
+#   companies  optional: always tag these company ids (they must exist in content/companies)
+#   excerpt    true keeps the opening text of the linked page (primary sources only; never for media).
+#              For SEC filings the text comes from the EX-99.1 press-release exhibit.
+#
+# Media entries are kept only when they mention a company or a layer keyword; every company, regulator
+# and filing entry inside the window is kept. A trailing "# verify" marks a feed URL that has not been
+# confirmed: after a run, check sources-status.json on the feeds branch and fix or drop sources that
+# keep failing.
+
+# How feed text is matched to companies, on top of each company's name and aliases in content/companies.
+# Short names (4 characters or fewer) always match case-sensitively; bare tickers only count inside
+# exchange patterns such as "(NASDAQ: NVDA)" or "$NVDA".
+match:
+  # Short names the press uses that the company records do not list. Matched exactly as written.
+  extra:
+    meta: [Meta, Llama]
+    microsoft: [Copilot]
+    amazon: [AWS]
+    oracle: [OCI]
+    arista: [Arista]
+    hpe: [HPE]
+    hp: [HP]
+    constellation: [Constellation]
+    nextera: [NextEra]
+    talen: [Talen]
+    centrus: [Centrus]
+    dominion: [Dominion]
+    aep: [AEP]
+    nrg: [NRG]
+    bwx-technologies: [BWXT]
+    mitsubishi-heavy: [Mitsubishi Heavy, MHI]
+    lg-energy-solution: [LGES]
+  # Names or aliases that never tag a company on their own: ordinary words, places or other brands.
+  # Longer forms still match ("Scale AI", "Palo Alto Networks", "Galaxy Digital").
+  ignore: [Carrier, Chinese Online, Command, Figure, Fireworks, Galaxy, Inkling, Lam, Marble,
+           Network Appliance, North, Nova, Outlier, Palo Alto, SCREEN, Scale, Sohu, Spark, Step, Surge,
+           Talkie, Tinker, Together]
+  # Names that are also ordinary words or phrases: they match only with this capitalisation.
+  exactCase: [Alphabet, Applied Digital, Applied Materials, Cadence, Cognition, Cohere, Coherent,
+              Confluence, Core Scientific, Credo, Cursor, Disco, Elastic, Etched, Expand Energy,
+              First Solar, Fluence, Hugging Face, Intuit, Lambda, Micron, Moonshot, Now Assist,
+              Perplexity, Physical Intelligence, Pure Storage, Recursion, Runway,
+              Safe Superintelligence, Snowflake, Thinking Machines, Ultra Clean, Workday, World Labs]
+
+sources:
+  # ---- Company newsrooms and investor-relations feeds -------------------------------------------
+  # Chips
+  - id: nvidia-newsroom
+    name: NVIDIA Newsroom
+    kind: company
+    url: https://nvidianews.nvidia.com/releases.xml
+    companies: [nvidia]
+    excerpt: true
+
+  - id: amd-ir
+    name: AMD press releases
+    kind: company
+    url: https://ir.amd.com/news-events/press-releases/rss  # verify
+    companies: [amd]
+    excerpt: true
+
+  - id: broadcom-ir
+    name: Broadcom news releases
+    kind: company
+    url: https://investors.broadcom.com/rss/news-releases.xml  # verify
+    companies: [broadcom]
+    excerpt: true
+
+  - id: micron-ir
+    name: Micron news releases
+    kind: company
+    url: https://investors.micron.com/rss/news-releases.xml  # verify
+    companies: [micron]
+    excerpt: true
+
+  - id: intel-newsroom
+    name: Intel Newsroom
+    kind: company
+    url: https://newsroom.intel.com/feed/  # verify
+    companies: [intel]
+    excerpt: true
+
+  - id: samsung-newsroom
+    name: Samsung Newsroom
+    kind: company
+    url: https://news.samsung.com/global/feed
+    companies: [samsung-electronics]
+    excerpt: true
+
+  - id: sk-hynix-newsroom
+    name: SK hynix Newsroom
+    kind: company
+    url: https://news.skhynix.com/feed/
+    companies: [sk-hynix]
+    excerpt: true
+
+  # Infrastructure
+  - id: microsoft-blog
+    name: Official Microsoft Blog
+    kind: company
+    url: https://blogs.microsoft.com/feed/
+    companies: [microsoft]
+    excerpt: true
+
+  - id: aws-news-blog
+    name: AWS News Blog
+    kind: company
+    url: https://aws.amazon.com/blogs/aws/feed/
+    companies: [amazon]
+    excerpt: true
+
+  - id: google-cloud-blog
+    name: Google Cloud Blog
+    kind: company
+    url: https://cloudblog.withgoogle.com/rss/
+    companies: [alphabet]
+    excerpt: true
+
+  - id: oracle-oci-blog
+    name: Oracle Cloud Infrastructure Blog
+    kind: company
+    url: https://blogs.oracle.com/cloud-infrastructure/rss  # verify
+    companies: [oracle]
+    excerpt: true
+
+  - id: coreweave-ir
+    name: CoreWeave press releases
+    kind: company
+    url: https://investors.coreweave.com/rss/pressrelease.aspx  # verify
+    companies: [coreweave]
+    excerpt: true
+
+  - id: vertiv-ir
+    name: Vertiv press releases
+    kind: company
+    url: https://investors.vertiv.com/rss/pressrelease.aspx  # verify
+    companies: [vertiv]
+    excerpt: true
+
+  - id: arista-ir
+    name: Arista press releases
+    kind: company
+    url: https://investors.arista.com/rss/pressrelease.aspx  # verify
+    companies: [arista]
+    excerpt: true
+
+  - id: dell-ir
+    name: Dell Technologies news releases
+    kind: company
+    url: https://investors.delltechnologies.com/rss/news-releases.xml  # verify
+    companies: [dell]
+    excerpt: true
+
+  # Models
+  - id: openai-news
+    name: OpenAI News
+    kind: company
+    url: https://openai.com/news/rss.xml
+    companies: [openai]
+    excerpt: true
+
+  - id: google-blog
+    name: "Google: The Keyword"
+    kind: company
+    url: https://blog.google/rss/
+    companies: [alphabet]
+    excerpt: true
+
+  # Applications
+  - id: meta-newsroom
+    name: Meta Newsroom
+    kind: company
+    url: https://about.fb.com/feed/
+    companies: [meta]
+    excerpt: true
+
+  - id: apple-newsroom
+    name: Apple Newsroom
+    kind: company
+    url: https://www.apple.com/newsroom/rss-feed.rss
+    companies: [apple]
+    excerpt: true
+
+  # Energy
+  - id: ge-vernova-news
+    name: GE Vernova press releases
+    kind: company
+    url: https://www.gevernova.com/news/press-releases/rss.xml  # verify
+    companies: [ge-vernova]
+    excerpt: true
+
+  - id: nextera-newsroom
+    name: NextEra Energy newsroom
+    kind: company
+    url: https://newsroom.nexteraenergy.com/news-releases?pagetemplate=rss  # verify
+    companies: [nextera]
+    excerpt: true
+
+  # ---- Regulators, government and grid operators -------------------------------------------------
+  - id: nrc-news
+    name: NRC news releases
+    kind: regulator
+    url: https://www.nrc.gov/public-involve/rss?feed=news  # verify
+    excerpt: true
+
+  - id: ferc-news
+    name: FERC news
+    kind: regulator
+    url: https://www.ferc.gov/news-events/news/rss.xml  # verify
+    excerpt: true
+
+  # Federal Register API feeds. Their item descriptions carry the document abstract, and
+  # federalregister.gov blocks automated page reads, so no excerpt.
+  - id: ferc-rules
+    name: FERC rules and proposed rules (Federal Register)
+    kind: regulator
+    url: https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bagencies%5D%5B%5D=federal-energy-regulatory-commission&conditions%5Btype%5D%5B%5D=RULE&conditions%5Btype%5D%5B%5D=PRORULE&order=newest
+
+  - id: bis-federal-register
+    name: Commerce BIS rules and notices (Federal Register)
+    kind: regulator
+    url: https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&order=newest
+
+  - id: doe-news
+    name: U.S. Department of Energy newsroom
+    kind: regulator
+    url: https://www.energy.gov/newsroom/rss.xml  # verify (energy.gov may not publish a newsroom feed)
+    excerpt: true
+
+  - id: eia-today-in-energy
+    name: "EIA: Today in Energy"
+    kind: regulator
+    url: https://www.eia.gov/rss/todayinenergy.xml
+    excerpt: true
+
+  - id: pjm-inside-lines
+    name: PJM Inside Lines
+    kind: regulator
+    url: https://insidelines.pjm.com/feed/  # verify
+    excerpt: true
+
+  # ---- SEC EDGAR filings: 8-K current reports (6-K for foreign issuers) ---------------------------
+  - id: sec-nvda-8k
+    name: NVIDIA (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=NVDA&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [nvidia]
+    excerpt: true
+
+  - id: sec-amd-8k
+    name: AMD (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=AMD&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [amd]
+    excerpt: true
+
+  - id: sec-avgo-8k
+    name: Broadcom (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=AVGO&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [broadcom]
+    excerpt: true
+
+  - id: sec-mu-8k
+    name: Micron (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=MU&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [micron]
+    excerpt: true
+
+  - id: sec-intc-8k
+    name: Intel (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=INTC&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [intel]
+    excerpt: true
+
+  - id: sec-tsm-6k
+    name: TSMC (SEC 6-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=TSM&type=6-K&dateb=&owner=include&count=10&output=atom
+    companies: [tsmc]
+    excerpt: true
+
+  - id: sec-asml-6k
+    name: ASML (SEC 6-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=ASML&type=6-K&dateb=&owner=include&count=10&output=atom
+    companies: [asml]
+    excerpt: true
+
+  - id: sec-msft-8k
+    name: Microsoft (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=MSFT&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [microsoft]
+    excerpt: true
+
+  - id: sec-googl-8k
+    name: Alphabet (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=GOOGL&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [alphabet]
+    excerpt: true
+
+  - id: sec-amzn-8k
+    name: Amazon (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=AMZN&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [amazon]
+    excerpt: true
+
+  - id: sec-meta-8k
+    name: Meta Platforms (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=META&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [meta]
+    excerpt: true
+
+  - id: sec-orcl-8k
+    name: Oracle (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=ORCL&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [oracle]
+    excerpt: true
+
+  - id: sec-crwv-8k
+    name: CoreWeave (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=CRWV&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [coreweave]
+    excerpt: true
+
+  - id: sec-vrt-8k
+    name: Vertiv (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=VRT&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [vertiv]
+    excerpt: true
+
+  - id: sec-anet-8k
+    name: Arista Networks (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=ANET&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [arista]
+    excerpt: true
+
+  - id: sec-dell-8k
+    name: Dell Technologies (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=DELL&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [dell]
+    excerpt: true
+
+  - id: sec-gev-8k
+    name: GE Vernova (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=GEV&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [ge-vernova]
+    excerpt: true
+
+  - id: sec-ceg-8k
+    name: Constellation Energy (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=CEG&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [constellation]
+    excerpt: true
+
+  - id: sec-vst-8k
+    name: Vistra (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=VST&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [vistra]
+    excerpt: true
+
+  - id: sec-tsla-8k
+    name: Tesla (SEC 8-K)
+    kind: filing
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=TSLA&type=8-K&dateb=&owner=include&count=10&output=atom
+    companies: [tesla]
+    excerpt: true
+
+  # ---- Trade press and major outlets (feed summaries only) ---------------------------------------
+  # Energy
+  - id: utility-dive
+    name: Utility Dive
+    kind: media
+    url: https://www.utilitydive.com/feeds/news/
+
+  - id: world-nuclear-news
+    name: World Nuclear News
+    kind: media
+    url: https://www.world-nuclear-news.org/rss  # verify
+
+  - id: canary-media
+    name: Canary Media
+    kind: media
+    url: https://www.canarymedia.com/rss.rss  # verify
+
+  - id: cnbc-energy
+    name: CNBC Energy
+    kind: media
+    url: https://www.cnbc.com/id/19836768/device/rss/rss.html  # verify
+
+  - id: electrek
+    name: Electrek
+    kind: media
+    url: https://electrek.co/feed/
+
+  # Chips
+  - id: tomshardware
+    name: Tom's Hardware
+    kind: media
+    url: https://www.tomshardware.com/feeds/all
+
+  - id: eetimes
+    name: EE Times
+    kind: media
+    url: https://www.eetimes.com/feed/
+
+  - id: semiengineering
+    name: Semiconductor Engineering
+    kind: media
+    url: https://semiengineering.com/feed/
+
+  - id: trendforce
+    name: TrendForce press center (semiconductors)
+    kind: media
+    url: https://www.trendforce.com/feed/Semiconductors.html
+
+  # Infrastructure
+  - id: dcd
+    name: DCD
+    kind: media
+    url: https://www.datacenterdynamics.com/en/rss/  # verify
+
+  - id: data-center-knowledge
+    name: Data Center Knowledge
+    kind: media
+    url: https://www.datacenterknowledge.com/rss.xml  # verify
+
+  - id: the-register-on-prem
+    name: The Register (on-prem and data centre)
+    kind: media
+    url: https://www.theregister.com/on_prem/headlines.atom  # verify
+
+  - id: servethehome
+    name: ServeTheHome
+    kind: media
+    url: https://www.servethehome.com/feed/
+
+  # Models, applications and general technology
+  - id: techcrunch-ai
+    name: TechCrunch AI
+    kind: media
+    url: https://techcrunch.com/category/artificial-intelligence/feed/
+
+  - id: cnbc-technology
+    name: CNBC Technology
+    kind: media
+    url: https://www.cnbc.com/id/19854910/device/rss/rss.html
+
+  # Asia
+  - id: nikkei-asia
+    name: Nikkei Asia
+    kind: media
+    url: https://asia.nikkei.com/rss/feed/nar
+
+  - id: scmp-tech
+    name: South China Morning Post (Tech)
+    kind: media
+    url: https://www.scmp.com/rss/36/feed  # verify

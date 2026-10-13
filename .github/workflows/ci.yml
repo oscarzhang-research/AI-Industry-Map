@@ -23,3 +23,11 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
+      # The fetchers' offline tests (standard library and PyYAML only); the news tests also check
+      # content/news-sources.yaml against the company ids.
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install PyYAML
+      - run: python -m unittest discover -s scripts/news -p 'test_*.py'
+      - run: python -m unittest discover -s scripts/prices -p 'test_fetch_kpis.py'

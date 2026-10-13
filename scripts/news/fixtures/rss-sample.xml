@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Synthetic test fixture for scripts/news/test_fetch_feeds.py. Not real news. -->
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Example Newsroom</title>
+  <link>https://newsroom.example.com/</link>
+  <atom:link href="https://newsroom.example.com/feed/" rel="self" type="application/rss+xml"/>
+  <description>Test feed in the shape of a WordPress newsroom</description>
+
+  <item>
+    <title><![CDATA[Test release: Vertiv &amp; NVIDIA publish an 800 VDC <em>reference design</em>]]></title>
+    <link>https://newsroom.example.com/2026/10/12/reference-design/?utm_source=rss&amp;utm_medium=rss#more</link>
+    <pubDate>Mon, 12 Oct 2026 10:30:00 -0400</pubDate>
+    <guid isPermaLink="false">https://newsroom.example.com/?p=101</guid>
+    <description><![CDATA[<p>Vertiv (NYSE: VRT) and NVIDIA (NASDAQ: NVDA) describe a test design for this fixture.</p>
+<p>The post <a href="https://newsroom.example.com/2026/10/12/reference-design/">Test release</a> appeared first on <a href="https://newsroom.example.com">Example Newsroom</a>.</p>]]></description>
+    <content:encoded><![CDATA[<p>This fixture paragraph stands in for the full text of a release that a WordPress feed carries in content:encoded. It is long enough to be used as the excerpt without opening the page.</p>
+<p>The second paragraph adds more words about racks, power shelves and liquid cooling so that the body text passes the minimum length the fetcher expects from a feed body.</p>
+<p>A third paragraph closes the sample. None of these sentences describe a real announcement; they exist only to exercise the parser and the excerpt logic.</p>]]></content:encoded>
+  </item>
+
+  <item>
+    <title>Test release: quarterly dividend notice</title>
+    <link>HTTPS://NEWSROOM.EXAMPLE.COM/2026/10/13/Dividend-Notice/</link>
+    <dc:date>2026-10-13T08:00:00Z</dc:date>
+    <description>A short teaser that is not long enough to serve as the excerpt.</description>
+  </item>
+
+  <item>
+    <title>Test release: an older notice outside the window</title>
+    <link>https://newsroom.example.com/2026/10/01/older-notice/</link>
+    <pubDate>Thu, 01 Oct 2026 09:00:00 GMT</pubDate>
+    <description>Published twelve days before the test clock.</description>
+  </item>
+
+  <item>
+    <title>Test release: an entry without any date</title>
+    <link>https://newsroom.example.com/undated-entry/</link>
+    <description>Feeds sometimes leave the date out.</description>
+  </item>
+
+  <item>
+    <title>Test release: entry linked only through its guid</title>
+    <guid isPermaLink="true">https://newsroom.example.com/2026/10/11/guid-only/</guid>
+    <pubDate>Sun, 11 Oct 2026 16:00:00 EDT</pubDate>
+    <description><![CDATA[Only a guid permalink, no link element. [&#8230;]]]></description>
+  </item>
+</channel>
+</rss>
