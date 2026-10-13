@@ -30,6 +30,7 @@ import re
 import sys
 import time
 from datetime import date, datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
 import yaml
 
@@ -121,6 +122,41 @@ def is_asia(symbol: str) -> bool:
     return symbol.endswith(ASIA_SUFFIXES) or symbol in ASIA_INDICES
 
 
+# Exchange time zone and closing time, by symbol suffix (no suffix: US). A run during a session would
+# otherwise store the day's price so far as its close; that row is left for the run after the close.
+SESSIONS = [
+    ((".T",), "Asia/Tokyo", (15, 30)),
+    ((".KS", ".KQ"), "Asia/Seoul", (15, 30)),
+    ((".TW", ".TWO"), "Asia/Taipei", (13, 30)),
+    ((".HK",), "Asia/Hong_Kong", (16, 10)),
+    ((".SS", ".SZ"), "Asia/Shanghai", (15, 0)),
+    ((".AX",), "Australia/Sydney", (16, 10)),
+    ((".L",), "Europe/London", (16, 35)),
+    ((".AS", ".PA", ".DE", ".MI", ".MC", ".BR", ".VI", ".SW", ".CO", ".HE", ".ST", ".OL"), "Europe/Berlin", (17, 35)),
+    ((".TO",), "America/Toronto", (16, 0)),
+]
+SESSION_INDICES = {"^TWII": "Asia/Taipei", "^KS11": "Asia/Seoul", "^N225": "Asia/Tokyo", "^HSI": "Asia/Hong_Kong",
+                   "000300.SS": "Asia/Shanghai", "000688.SS": "Asia/Shanghai"}
+
+
+def session_of(symbol: str) -> tuple[str, tuple[int, int]]:
+    if symbol in SESSION_INDICES:
+        tz = SESSION_INDICES[symbol]
+        return tz, next(close for _, z, close in SESSIONS if z == tz)
+    for suffixes, tz, close in SESSIONS:
+        if symbol.endswith(suffixes):
+            return tz, close
+    return "America/New_York", (16, 0)
+
+
+def session_open_day(symbol: str, now: datetime | None = None) -> str | None:
+    """The exchange's local date while its session for that date has not closed (plus 15 minutes), else None."""
+    tz, (h, m) = session_of(symbol)
+    local = (now or datetime.now(timezone.utc)).astimezone(ZoneInfo(tz))
+    close = local.replace(hour=h, minute=m, second=0, microsecond=0) + timedelta(minutes=15)
+    return local.strftime("%Y-%m-%d") if local < close else None
+
+
 def fmt(x: float) -> str:
     if x is None or (isinstance(x, float) and (math.isnan(x) or math.isinf(x))):
         return ""
@@ -184,8 +220,11 @@ def download_batch(symbols: list[str], attempts: int = 4):
 
 def write_csv(symbol: str, frame) -> int:
     rows = ["date,close,high,low"]
+    unfinished = session_open_day(symbol)
     for idx, r in frame.iterrows():
         d = idx.strftime("%Y-%m-%d")
+        if d == unfinished:
+            continue  # today's session is still open: not a close yet
         rows.append(f"{d},{fmt(r.get('Close'))},{fmt(r.get('High'))},{fmt(r.get('Low'))}")
     path = os.path.join(PRICES, safe_symbol(symbol) + ".csv")
     with open(path, "w", encoding="utf-8", newline="\n") as f:
