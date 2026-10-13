@@ -1226,6 +1226,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--days", type=int, default=DEFAULT_DAYS, help="keep entries published in the last N days")
     ap.add_argument("--only", default="", help="comma-separated source ids to fetch")
     ap.add_argument("--no-excerpts", action="store_true", help="do not open linked pages for excerpts")
+    ap.add_argument("--require-sec-agent", action="store_true",
+                    help="skip sec.gov feeds unless SEC_USER_AGENT is set (the SEC refuses clients without a contact)")
     args = ap.parse_args(argv)
     if args.days < 1:
         ap.error("--days must be at least 1")
@@ -1249,11 +1251,20 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         selected = [s for s in sources if s["id"] in wanted]
 
+    skipped = []
+    if args.require_sec_agent and not os.environ.get("SEC_USER_AGENT"):
+        skipped = [s for s in selected if _is_sec(_host(s["url"]))]
+        selected = [s for s in selected if s not in skipped]
+        if skipped:
+            print(f"{len(skipped)} sec.gov feeds skipped: set the repository variable SEC_USER_AGENT to '<name> <contact email>'")
+
     previous = load_previous(args.previous)
     print(f"{len(selected)} sources, {len(previous)} previous items, window {args.days} days")
     matcher = Matcher(companies, extra, ignore, exact_case)
     doc, status, stats = run(selected, matcher, previous, now, days=args.days,
                              excerpts=not args.no_excerpts, all_sources=sources)
+    for src in skipped:
+        status[src["id"]] = {"ok": False, "skipped": True, "status": "skipped: needs SEC_USER_AGENT", "entries": 0, "kept": 0, "at": iso(now)}
     write_outputs(args.out, doc, status)
     print_summary(status, doc, stats, time.time() - started)
     # A few dead feeds are normal; fail only when nothing could be fetched (e.g. no network).

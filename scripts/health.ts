@@ -82,20 +82,24 @@ if (feedsDir) {
   const fage = hoursSince(cand?.generatedAt);
   if (fage > 8) add('News feeds', 'problem', `Candidates last refreshed ${fmtAge(fage)} (every two hours expected).`);
   else add('News feeds', 'ok', `${cand?.items?.length ?? 0} candidates, refreshed ${fmtAge(fage)}.`);
-  const src = readJson<Record<string, { ok: boolean; status?: unknown }>>(join(feedsDir, 'sources-status.json')) ?? {};
-  const bad = Object.entries(src).filter(([, s]) => !s.ok);
-  if (bad.length && bad.length >= Object.keys(src).length / 2) add('News feeds', 'problem', `${bad.length} of ${Object.keys(src).length} sources failed.`);
+  const src = readJson<Record<string, { ok: boolean; skipped?: boolean; status?: unknown }>>(join(feedsDir, 'sources-status.json')) ?? {};
+  const skipped = Object.entries(src).filter(([, s]) => s.skipped);
+  const tried = Object.entries(src).filter(([, s]) => !s.skipped);
+  const bad = tried.filter(([, s]) => !s.ok);
+  if (bad.length && bad.length >= tried.length / 2) add('News feeds', 'problem', `${bad.length} of ${tried.length} sources failed.`);
   else if (bad.length) add('News feeds', 'warn', `${bad.length} sources failed: ${list(bad.map(([id, s]) => `${id} (${String(s.status ?? 'error')})`))}.`);
+  if (skipped.length) add('News feeds', 'warn', `${skipped.length} SEC filing feeds are off until the repository variable SEC_USER_AGENT is set.`);
 }
 
 // ---- Indicators ------------------------------------------------------------------------------
-const kpi = readJson<{ updatedAt?: string; sec?: { failed?: string[] }; tw?: { failed?: string[] } }>(join(DATA, 'kpis', 'status.json'));
+const kpi = readJson<{ updatedAt?: string; sec?: { failed?: string[]; skipped?: unknown }; tw?: { failed?: string[] } }>(join(DATA, 'kpis', 'status.json'));
 if (kpi) {
   const kage = hoursSince(kpi.updatedAt);
   if (kage > 96) add('Indicators', 'warn', `Last refreshed ${fmtAge(kage)}.`);
   else add('Indicators', 'ok', `Refreshed ${fmtAge(kage)}.`);
   const kf = [...(kpi.sec?.failed ?? []), ...(kpi.tw?.failed ?? [])];
   if (kf.length) add('Indicators', 'warn', `Failed: ${list(kf)}.`);
+  if (typeof kpi.sec?.skipped === 'string') add('Indicators', 'warn', 'SEC figures are off until the repository variable SEC_USER_AGENT is set.');
 }
 
 // ---- Workflows ---------------------------------------------------------------------------------

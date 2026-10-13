@@ -14,7 +14,10 @@
 # Media entries are kept only when they mention a company or a layer keyword; every company, regulator
 # and filing entry inside the window is kept. A trailing "# verify" marks a feed URL that has not been
 # confirmed: after a run, check sources-status.json on the feeds branch and fix or drop sources that
-# keep failing.
+# keep failing. Removed after the first run (2026-10-13) because they failed or carried no dates:
+# broadcom-ir (403), micron-ir (404), intel-newsroom (not a feed), oracle-oci-blog (403),
+# ge-vernova-news (404), ferc-news (403), pjm-inside-lines (403), nikkei-asia (entries undated).
+# SEC 8-K/6-K feeds need the repository variable SEC_USER_AGENT and are skipped until it is set.
 
 # How feed text is matched to companies, on top of each company's name and aliases in content/companies.
 # Short names (4 characters or fewer) always match case-sensitively; bare tickers only count inside
@@ -68,27 +71,6 @@ sources:
     companies: [amd]
     excerpt: true
 
-  - id: broadcom-ir
-    name: Broadcom news releases
-    kind: company
-    url: https://investors.broadcom.com/rss/news-releases.xml  # verify
-    companies: [broadcom]
-    excerpt: true
-
-  - id: micron-ir
-    name: Micron news releases
-    kind: company
-    url: https://investors.micron.com/rss/news-releases.xml  # verify
-    companies: [micron]
-    excerpt: true
-
-  - id: intel-newsroom
-    name: Intel Newsroom
-    kind: company
-    url: https://newsroom.intel.com/feed/  # verify
-    companies: [intel]
-    excerpt: true
-
   - id: samsung-newsroom
     name: Samsung Newsroom
     kind: company
@@ -123,13 +105,6 @@ sources:
     kind: company
     url: https://cloudblog.withgoogle.com/rss/
     companies: [alphabet]
-    excerpt: true
-
-  - id: oracle-oci-blog
-    name: Oracle Cloud Infrastructure Blog
-    kind: company
-    url: https://blogs.oracle.com/cloud-infrastructure/rss  # verify
-    companies: [oracle]
     excerpt: true
 
   - id: coreweave-ir
@@ -191,13 +166,6 @@ sources:
     excerpt: true
 
   # Energy
-  - id: ge-vernova-news
-    name: GE Vernova press releases
-    kind: company
-    url: https://www.gevernova.com/news/press-releases/rss.xml  # verify
-    companies: [ge-vernova]
-    excerpt: true
-
   - id: nextera-newsroom
     name: NextEra Energy newsroom
     kind: company
@@ -210,12 +178,6 @@ sources:
     name: NRC news releases
     kind: regulator
     url: https://www.nrc.gov/public-involve/rss?feed=news  # verify
-    excerpt: true
-
-  - id: ferc-news
-    name: FERC news
-    kind: regulator
-    url: https://www.ferc.gov/news-events/news/rss.xml  # verify
     excerpt: true
 
   # Federal Register API feeds. Their item descriptions carry the document abstract, and
@@ -240,12 +202,6 @@ sources:
     name: "EIA: Today in Energy"
     kind: regulator
     url: https://www.eia.gov/rss/todayinenergy.xml
-    excerpt: true
-
-  - id: pjm-inside-lines
-    name: PJM Inside Lines
-    kind: regulator
-    url: https://insidelines.pjm.com/feed/  # verify
     excerpt: true
 
   # ---- SEC EDGAR filings: 8-K current reports (6-K for foreign issuers) ---------------------------
@@ -470,11 +426,6 @@ sources:
     url: https://www.cnbc.com/id/19854910/device/rss/rss.html
 
   # Asia
-  - id: nikkei-asia
-    name: Nikkei Asia
-    kind: media
-    url: https://asia.nikkei.com/rss/feed/nar
-
   - id: scmp-tech
     name: South China Morning Post (Tech)
     kind: media

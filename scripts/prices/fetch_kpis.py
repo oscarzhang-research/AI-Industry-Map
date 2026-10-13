@@ -1181,6 +1181,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--tw-backfill-months", type=int, default=36, metavar="N",
                     help="months of Taiwan history to backfill from MOPS when missing locally (0 = none)")
     ap.add_argument("--only", default="", help="comma-separated symbols or Taiwan codes")
+    ap.add_argument("--require-sec-agent", action="store_true",
+                    help="skip the SEC part unless SEC_USER_AGENT is set (the SEC refuses clients without a contact)")
     ap.add_argument("--sec-every-hours", type=float, default=0, metavar="H",
                     help="skip the SEC part if it ran less than H hours ago (0 = always run)")
     args = ap.parse_args(argv)
@@ -1204,7 +1206,12 @@ def main(argv: list[str] | None = None) -> int:
     status = load_json(status_path, {})
     status = status if isinstance(status, dict) else {}
     health = []
-    last_sec = parse_time((status.get("sec") or {}).get("at")) if isinstance(status.get("sec"), dict) else None
+    prev_sec = status.get("sec") if isinstance(status.get("sec"), dict) else {}
+    last_sec = None if prev_sec.get("skipped") else parse_time(prev_sec.get("at"))  # a skipped run does not count
+    if do_sec and args.require_sec_agent and not os.environ.get("SEC_USER_AGENT"):
+        print("SEC: skipped; set the repository variable SEC_USER_AGENT to '<name> <contact email>'")
+        status["sec"] = {"skipped": "needs SEC_USER_AGENT", "at": iso(now)}
+        do_sec = False
     if do_sec and not only and args.sec_every_hours > 0 and last_sec and now - last_sec < timedelta(hours=args.sec_every_hours):
         print(f"SEC: last run {iso(last_sec)}, less than {args.sec_every_hours:g} hours ago; skipped")
         do_sec = False

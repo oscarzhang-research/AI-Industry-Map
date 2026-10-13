@@ -36,7 +36,7 @@ export function KpiCard({ kpi, showLayer = false }: { kpi: Kpi; showLayer?: bool
   const { index } = useStore();
   const layerName = index.layerById.get(kpi.layer)?.name;
   return (
-    <article className="card kpi-card min0" id={kpi.id}>
+    <article className={`card kpi-card min0${kpi.kind === 'growth-table' ? ' wide' : ''}`} id={kpi.id}>
       <header className="kpi-head">
         <div className="min0">
           {showLayer ? (

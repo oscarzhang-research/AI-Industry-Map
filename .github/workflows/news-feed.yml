@@ -44,7 +44,7 @@ jobs:
           # the User-Agent sent to sec.gov, e.g. "AI Industry Map research site contact@example.com".
           # Unset, the script's default is used.
           SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
-        run: python scripts/news/fetch_feeds.py --out out --previous /tmp/prev.json
+        run: python scripts/news/fetch_feeds.py --out out --previous /tmp/prev.json --require-sec-agent
 
       - name: Publish to the feeds branch
         if: github.ref == 'refs/heads/main'
