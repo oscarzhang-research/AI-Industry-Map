@@ -52,6 +52,15 @@ jobs:
           MARKETS="${INPUT_MARKETS:-all}"
           if [ "$SCHEDULE" = "30 10 * * 1-5" ]; then MARKETS=asia; fi
           python scripts/prices/fetch_prices.py --markets "$MARKETS"
+      # SEC quarterly revenue/capex and Taiwan monthly revenue into data/kpis/. Same MARKETS rule as
+      # above: skipped on the Asia-only run. A failure here never blocks the price commit.
+      - name: Fetch industry indicators
+        if: ${{ github.event.schedule != '30 10 * * 1-5' && (github.event.inputs.markets || 'all') == 'all' }}
+        continue-on-error: true
+        timeout-minutes: 20
+        env:
+          SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
+        run: python scripts/prices/fetch_kpis.py
       - name: Commit data
         run: |
           git config user.name "github-actions[bot]"
