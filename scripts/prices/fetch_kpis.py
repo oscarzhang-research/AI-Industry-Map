@@ -740,7 +740,7 @@ def run_sec(
             if forbidden >= SEC_MAX_FORBIDDEN:
                 failed.extend(t.symbol for t in targets[i + 1 :])
                 log("  ! the SEC refused several requests in a row (HTTP 403); stopping. Set "
-                    "SEC_USER_AGENT to '<name> <contact email>' (for example as a repository variable).")
+                    "SEC_USER_AGENT to '<name> <contact email>' (for example as a repository secret).")
                 break
             continue
         except ValueError as exc:
@@ -1209,7 +1209,7 @@ def main(argv: list[str] | None = None) -> int:
     prev_sec = status.get("sec") if isinstance(status.get("sec"), dict) else {}
     last_sec = None if prev_sec.get("skipped") else parse_time(prev_sec.get("at"))  # a skipped run does not count
     if do_sec and args.require_sec_agent and not os.environ.get("SEC_USER_AGENT"):
-        print("SEC: skipped; set the repository variable SEC_USER_AGENT to '<name> <contact email>'")
+        print("SEC: skipped; set the repository secret SEC_USER_AGENT to '<name> <contact email>'")
         status["sec"] = {"skipped": "needs SEC_USER_AGENT", "at": iso(now)}
         do_sec = False
     if do_sec and not only and args.sec_every_hours > 0 and last_sec and now - last_sec < timedelta(hours=args.sec_every_hours):

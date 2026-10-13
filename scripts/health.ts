@@ -88,7 +88,7 @@ if (feedsDir) {
   const bad = tried.filter(([, s]) => !s.ok);
   if (bad.length && bad.length >= tried.length / 2) add('News feeds', 'problem', `${bad.length} of ${tried.length} sources failed.`);
   else if (bad.length) add('News feeds', 'warn', `${bad.length} sources failed: ${list(bad.map(([id, s]) => `${id} (${String(s.status ?? 'error')})`))}.`);
-  if (skipped.length) add('News feeds', 'warn', `${skipped.length} SEC filing feeds are off until the repository variable SEC_USER_AGENT is set.`);
+  if (skipped.length) add('News feeds', 'warn', `${skipped.length} SEC filing feeds are off until the repository secret SEC_USER_AGENT is set.`);
 }
 
 // ---- Indicators ------------------------------------------------------------------------------
@@ -99,7 +99,7 @@ if (kpi) {
   else add('Indicators', 'ok', `Refreshed ${fmtAge(kage)}.`);
   const kf = [...(kpi.sec?.failed ?? []), ...(kpi.tw?.failed ?? [])];
   if (kf.length) add('Indicators', 'warn', `Failed: ${list(kf)}.`);
-  if (typeof kpi.sec?.skipped === 'string') add('Indicators', 'warn', 'SEC figures are off until the repository variable SEC_USER_AGENT is set.');
+  if (typeof kpi.sec?.skipped === 'string') add('Indicators', 'warn', 'SEC figures are off until the repository secret SEC_USER_AGENT is set.');
 }
 
 // ---- Workflows ---------------------------------------------------------------------------------

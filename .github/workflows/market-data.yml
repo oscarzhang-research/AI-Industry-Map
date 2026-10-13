@@ -69,7 +69,8 @@ jobs:
         continue-on-error: true
         timeout-minutes: 20
         env:
-          SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
+          # A repository secret (masked in these public logs): '<name> <contact email>', as the SEC asks.
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
         run: python scripts/prices/fetch_kpis.py --sec-every-hours 20 --require-sec-agent
       - name: Commit data
         run: |

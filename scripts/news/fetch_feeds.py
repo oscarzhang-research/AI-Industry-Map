@@ -1256,7 +1256,7 @@ def main(argv: list[str] | None = None) -> int:
         skipped = [s for s in selected if _is_sec(_host(s["url"]))]
         selected = [s for s in selected if s not in skipped]
         if skipped:
-            print(f"{len(skipped)} sec.gov feeds skipped: set the repository variable SEC_USER_AGENT to '<name> <contact email>'")
+            print(f"{len(skipped)} sec.gov feeds skipped: set the repository secret SEC_USER_AGENT to '<name> <contact email>'")
 
     previous = load_previous(args.previous)
     print(f"{len(selected)} sources, {len(previous)} previous items, window {args.days} days")

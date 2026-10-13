@@ -17,7 +17,7 @@
 # keep failing. Removed after the first run (2026-10-13) because they failed or carried no dates:
 # broadcom-ir (403), micron-ir (404), intel-newsroom (not a feed), oracle-oci-blog (403),
 # ge-vernova-news (404), ferc-news (403), pjm-inside-lines (403), nikkei-asia (entries undated).
-# SEC 8-K/6-K feeds need the repository variable SEC_USER_AGENT and are skipped until it is set.
+# SEC 8-K/6-K feeds need the repository secret SEC_USER_AGENT and are skipped until it is set.
 
 # How feed text is matched to companies, on top of each company's name and aliases in content/companies.
 # Short names (4 characters or fewer) always match case-sensitively; bare tickers only count inside

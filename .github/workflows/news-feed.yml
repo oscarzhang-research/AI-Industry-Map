@@ -40,10 +40,10 @@ jobs:
           git fetch --depth=1 origin feeds && git show origin/feeds:news-candidates.json > /tmp/prev.json || echo '{}' > /tmp/prev.json
       - name: Fetch feeds
         env:
-          # Optional repository variable (Settings -> Secrets and variables -> Actions -> Variables) for
-          # the User-Agent sent to sec.gov, e.g. "AI Industry Map research site contact@example.com".
-          # Unset, the script's default is used.
-          SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
+          # Optional repository secret (Settings -> Secrets and variables -> Actions -> Secrets), masked in
+          # these public logs: the User-Agent sent to sec.gov, '<name> <contact email>' as the SEC asks.
+          # Unset, the sec.gov feeds are skipped.
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
         run: python scripts/news/fetch_feeds.py --out out --previous /tmp/prev.json --require-sec-agent
 
       - name: Publish to the feeds branch
