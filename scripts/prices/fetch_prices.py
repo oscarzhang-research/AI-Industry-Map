@@ -59,7 +59,7 @@ EARN_HISTORY = 8
 EARN_REFRESH_HOURS = 8  # several runs a day: refresh a name at most this often unless it reports around now
 START = "2022-10-01"  # a few weeks before ChatGPT's launch: covers the whole AI cycle
 ASIA_SUFFIXES = (".T", ".KS", ".KQ", ".HK", ".SS", ".SZ", ".TW", ".TWO", ".AX")
-ASIA_INDICES = {"^TWII", "^KS11", "^N225", "^HSI", "000300.SS", "000688.SS"}
+ASIA_INDICES = {"^TWII", "^KS11", "^N225", "^HSI"}
 BATCH = 40
 INFO_FIELDS = {
     "marketCap": "marketCap",
@@ -135,8 +135,7 @@ SESSIONS = [
     ((".AS", ".PA", ".DE", ".MI", ".MC", ".BR", ".VI", ".SW", ".CO", ".HE", ".ST", ".OL"), "Europe/Berlin", (17, 35)),
     ((".TO",), "America/Toronto", (16, 0)),
 ]
-SESSION_INDICES = {"^TWII": "Asia/Taipei", "^KS11": "Asia/Seoul", "^N225": "Asia/Tokyo", "^HSI": "Asia/Hong_Kong",
-                   "000300.SS": "Asia/Shanghai", "000688.SS": "Asia/Shanghai"}
+SESSION_INDICES = {"^TWII": "Asia/Taipei", "^KS11": "Asia/Seoul", "^N225": "Asia/Tokyo", "^HSI": "Asia/Hong_Kong"}
 
 
 def session_of(symbol: str) -> tuple[str, tuple[int, int]]:
