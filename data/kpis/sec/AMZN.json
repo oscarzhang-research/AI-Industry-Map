@@ -3,7 +3,7 @@
  "cik": "0001018724",
  "name": "AMAZON COM INC",
  "company": "amazon",
- "updatedAt": "2026-10-14T06:41:33+00:00",
+ "updatedAt": "2026-10-14T07:47:44+00:00",
  "revenue": [
   {"start": "2016-07-01", "end": "2016-09-30", "value": 32714000000, "fy": 2016, "fp": "Q3", "form": "10-K", "filed": "2018-02-02", "derived": false, "concept": "SalesRevenueNet"},
   {"start": "2016-10-01", "end": "2016-12-31", "value": 43741000000, "fy": 2016, "fp": "Q4", "form": "10-K", "filed": "2018-02-02", "derived": false, "concept": "SalesRevenueNet"},
@@ -47,10 +47,10 @@
   {"start": "2026-04-01", "end": "2026-06-30", "value": 200606000000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-07-31", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
  ],
  "capex": [
-  {"start": "2016-04-01", "end": "2016-06-30", "value": 1711000000, "fy": 2016, "fp": "Q2", "form": "10-Q", "filed": "2016-07-29", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
   {"start": "2016-07-01", "end": "2016-09-30", "value": 1841000000, "fy": 2016, "fp": "Q3", "form": "10-Q", "filed": "2016-10-28", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
   {"start": "2016-10-01", "end": "2016-12-31", "value": 2006000000, "fy": 2016, "fp": "Q4", "form": "10-K", "filed": "2017-02-10", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
   {"start": "2017-01-01", "end": "2017-03-31", "value": 1861000000, "fy": 2017, "fp": "Q1", "form": "10-Q", "filed": "2017-04-28", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2017-04-01", "end": "2017-06-30", "value": 3113000000, "fy": 2017, "fp": "Q2", "form": "10-Q", "filed": "2018-07-27", "derived": false, "concept": "PaymentsForProceedsFromProductiveAssets"},
   {"start": "2017-07-01", "end": "2017-09-30", "value": 3074000000, "fy": 2017, "fp": "Q3", "form": "10-Q", "filed": "2018-10-26", "derived": false, "concept": "PaymentsToAcquireProductiveAssets"},
   {"start": "2017-10-01", "end": "2017-12-31", "value": 3619000000, "fy": 2017, "fp": "Q4", "form": "10-K", "filed": "2020-01-31", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
   {"start": "2018-01-01", "end": "2018-03-31", "value": 3098000000, "fy": 2018, "fp": "Q1", "form": "10-Q", "filed": "2019-04-26", "derived": false, "concept": "PaymentsToAcquireProductiveAssets"},

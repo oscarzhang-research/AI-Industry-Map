@@ -3,7 +3,7 @@
  "cik": "0000715957",
  "name": "DOMINION ENERGY, INC",
  "company": "dominion",
- "updatedAt": "2026-10-14T06:41:33+00:00",
+ "updatedAt": "2026-10-14T07:47:44+00:00",
  "revenue": [
   {"start": "2016-04-01", "end": "2016-06-30", "value": 2598000000, "fy": 2016, "fp": "Q2", "form": "10-K", "filed": "2018-02-27", "derived": false, "concept": "SalesRevenueNet"},
   {"start": "2016-07-01", "end": "2016-09-30", "value": 3132000000, "fy": 2016, "fp": "Q3", "form": "10-K", "filed": "2018-02-27", "derived": false, "concept": "SalesRevenueNet"},
@@ -47,15 +47,6 @@
   {"start": "2026-01-01", "end": "2026-03-31", "value": 5019000000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-05-01", "derived": false, "concept": "Revenues"}
  ],
  "capex": [
-  {"start": "2010-01-01", "end": "2010-03-31", "value": 904000000, "fy": 2010, "fp": "Q1", "form": "10-Q", "filed": "2011-04-29", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
-  {"start": "2010-04-01", "end": "2010-06-30", "value": 750000000, "fy": 2010, "fp": "Q2", "form": "10-Q", "filed": "2011-07-29", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
-  {"start": "2010-10-01", "end": "2010-12-31", "value": 5931000000, "fy": 2010, "fp": "Q4", "form": "10-K", "filed": "2013-02-28", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
-  {"start": "2011-01-01", "end": "2011-03-31", "value": 806000000, "fy": 2011, "fp": "Q1", "form": "10-Q", "filed": "2012-04-26", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
-  {"start": "2011-04-01", "end": "2011-06-30", "value": 829000000, "fy": 2011, "fp": "Q2", "form": "10-Q", "filed": "2012-08-01", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
-  {"start": "2011-07-01", "end": "2011-09-30", "value": 981000000, "fy": 2011, "fp": "Q3", "form": "10-Q", "filed": "2012-10-25", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
-  {"start": "2011-10-01", "end": "2011-12-31", "value": 1036000000, "fy": 2011, "fp": "Q4", "form": "10-K", "filed": "2014-02-28", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
-  {"start": "2012-01-01", "end": "2012-03-31", "value": 981000000, "fy": 2012, "fp": "Q1", "form": "10-Q", "filed": "2013-04-25", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
-  {"start": "2012-04-01", "end": "2012-06-30", "value": 979000000, "fy": 2012, "fp": "Q2", "form": "10-Q", "filed": "2013-08-06", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
   {"start": "2012-07-01", "end": "2012-09-30", "value": 924000000, "fy": 2012, "fp": "Q3", "form": "10-Q", "filed": "2013-11-05", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
   {"start": "2012-10-01", "end": "2012-12-31", "value": 1261000000, "fy": 2012, "fp": "Q4", "form": "10-K", "filed": "2015-02-27", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
   {"start": "2013-01-01", "end": "2013-03-31", "value": 904000000, "fy": 2013, "fp": "Q1", "form": "10-Q", "filed": "2014-04-30", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
@@ -86,6 +77,15 @@
   {"start": "2019-04-01", "end": "2019-06-30", "value": 1110000000, "fy": 2019, "fp": "Q2", "form": "10-Q", "filed": "2020-05-05", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
   {"start": "2019-07-01", "end": "2019-09-30", "value": 1295000000, "fy": 2019, "fp": "Q3", "form": "10-Q", "filed": "2019-11-01", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
   {"start": "2019-10-01", "end": "2019-12-31", "value": 1573000000, "fy": 2019, "fp": "Q4", "form": "10-K", "filed": "2020-02-28", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
-  {"start": "2020-01-01", "end": "2020-03-31", "value": 1462000000, "fy": 2020, "fp": "Q1", "form": "10-Q", "filed": "2020-05-05", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"}
+  {"start": "2020-01-01", "end": "2020-03-31", "value": 1462000000, "fy": 2020, "fp": "Q1", "form": "10-Q", "filed": "2020-05-05", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2024-01-01", "end": "2024-03-31", "value": 2930000000, "fy": 2024, "fp": "Q1", "form": "10-Q", "filed": "2025-05-01", "derived": false, "concept": "PaymentsForProceedsFromProductiveAssets"},
+  {"start": "2024-04-01", "end": "2024-06-30", "value": 2991000000, "fy": 2024, "fp": "Q2", "form": "10-Q", "filed": "2025-08-01", "derived": true, "concept": "PaymentsForProceedsFromProductiveAssets"},
+  {"start": "2024-07-01", "end": "2024-09-30", "value": 3000000000, "fy": 2024, "fp": "Q3", "form": "10-Q", "filed": "2025-10-31", "derived": true, "concept": "PaymentsForProceedsFromProductiveAssets"},
+  {"start": "2024-10-01", "end": "2024-12-31", "value": 3506000000, "fy": 2024, "fp": "Q4", "form": "10-K", "filed": "2026-02-23", "derived": true, "concept": "PaymentsForProceedsFromProductiveAssets"},
+  {"start": "2025-01-01", "end": "2025-03-31", "value": 3214000000, "fy": 2025, "fp": "Q1", "form": "10-Q", "filed": "2026-05-01", "derived": false, "concept": "PaymentsForProceedsFromProductiveAssets"},
+  {"start": "2025-04-01", "end": "2025-06-30", "value": 3012000000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-05-01", "derived": true, "concept": "PaymentsForProceedsFromProductiveAssets"},
+  {"start": "2025-07-01", "end": "2025-09-30", "value": 3041000000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2025-10-31", "derived": true, "concept": "PaymentsForProceedsFromProductiveAssets"},
+  {"start": "2025-10-01", "end": "2025-12-31", "value": 3386000000, "fy": 2025, "fp": "Q4", "form": "10-K", "filed": "2026-02-23", "derived": true, "concept": "PaymentsForProceedsFromProductiveAssets"},
+  {"start": "2026-01-01", "end": "2026-03-31", "value": 3030000000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-05-01", "derived": false, "concept": "PaymentsForProceedsFromProductiveAssets"}
  ]
 }
