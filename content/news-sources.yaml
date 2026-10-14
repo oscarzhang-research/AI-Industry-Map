@@ -292,7 +292,7 @@ sources:
   - id: sec-crwv-8k
     name: CoreWeave (SEC 8-K)
     kind: filing
-    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=CRWV&type=8-K&dateb=&owner=include&count=10&output=atom
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001769628&type=8-K&dateb=&owner=include&count=10&output=atom
     companies: [coreweave]
     excerpt: true
 
@@ -320,7 +320,7 @@ sources:
   - id: sec-gev-8k
     name: GE Vernova (SEC 8-K)
     kind: filing
-    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=GEV&type=8-K&dateb=&owner=include&count=10&output=atom
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001996810&type=8-K&dateb=&owner=include&count=10&output=atom
     companies: [ge-vernova]
     excerpt: true
 
