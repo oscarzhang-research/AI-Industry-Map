@@ -1,0 +1,25 @@
+{
+ "symbol": "OKLO",
+ "cik": "0001849056",
+ "name": "Oklo Inc.",
+ "company": "oklo",
+ "updatedAt": "2026-10-14T06:41:33+00:00",
+ "revenue": [
+  {"start": "2025-04-01", "end": "2025-06-30", "value": 0, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-08-07", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 1210000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-07", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
+ ],
+ "capex": [
+  {"start": "2023-07-01", "end": "2023-09-30", "value": 34686, "fy": 2023, "fp": "Q3", "form": "10-Q", "filed": "2024-11-14", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2023-10-01", "end": "2023-12-31", "value": 22913, "fy": 2023, "fp": "Q4", "form": "10-K", "filed": "2025-03-24", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2024-01-01", "end": "2024-03-31", "value": 97000, "fy": 2024, "fp": "Q1", "form": "10-Q", "filed": "2025-05-13", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2024-04-01", "end": "2024-06-30", "value": 75000, "fy": 2024, "fp": "Q2", "form": "10-Q", "filed": "2025-08-11", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2024-07-01", "end": "2024-09-30", "value": 111000, "fy": 2024, "fp": "Q3", "form": "10-Q", "filed": "2025-11-12", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2024-10-01", "end": "2024-12-31", "value": 69000, "fy": 2024, "fp": "Q4", "form": "10-K", "filed": "2026-03-17", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2025-01-01", "end": "2025-03-31", "value": 332000, "fy": 2025, "fp": "Q1", "form": "10-Q/A", "filed": "2026-06-17", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2025-04-01", "end": "2025-06-30", "value": 877000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-08-07", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2025-07-01", "end": "2025-09-30", "value": 5046000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2026-08-07", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2025-10-01", "end": "2025-12-31", "value": 26950000, "fy": 2025, "fp": "Q4", "form": "10-K", "filed": "2026-03-17", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2026-01-01", "end": "2026-03-31", "value": 32810000, "fy": 2026, "fp": "Q1", "form": "10-Q/A", "filed": "2026-06-17", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 94091000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-07", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"}
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "symbol": "SPCX",
+ "cik": "0001181412",
+ "name": "SPACE EXPLORATION TECHNOLOGIES CORP.",
+ "company": "xai",
+ "updatedAt": "2026-10-14T06:41:33+00:00",
+ "revenue": [
+  {"start": "2025-04-01", "end": "2025-06-30", "value": 4071000000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-08-04", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 7814000000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-04", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
+ ],
+ "capex": []
+}

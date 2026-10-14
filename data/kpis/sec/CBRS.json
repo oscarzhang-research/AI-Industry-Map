@@ -1,0 +1,19 @@
+{
+ "symbol": "CBRS",
+ "cik": "0002021728",
+ "name": "Cerebras Systems Inc.",
+ "company": "cerebras",
+ "updatedAt": "2026-10-14T06:41:33+00:00",
+ "revenue": [
+  {"start": "2025-01-01", "end": "2025-03-31", "value": 99512000, "fy": 2025, "fp": "Q1", "form": "10-Q", "filed": "2026-06-24", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2025-04-01", "end": "2025-06-30", "value": 103322000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-08-12", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2026-01-01", "end": "2026-03-31", "value": 193406000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-06-24", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 180110000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-12", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
+ ],
+ "capex": [
+  {"start": "2025-01-01", "end": "2025-03-31", "value": 98244000, "fy": 2025, "fp": "Q1", "form": "10-Q", "filed": "2026-06-24", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2025-04-01", "end": "2025-06-30", "value": 86850000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-08-12", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2026-01-01", "end": "2026-03-31", "value": 131970000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-06-24", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 416903000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-12", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"}
+ ]
+}
