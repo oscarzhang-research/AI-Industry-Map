@@ -245,7 +245,7 @@
   "updatedAt": "2026-10-14"
  },
  "042700.KS": {
-  "checkedAt": "2026-10-14T07:34+00:00",
+  "checkedAt": "2026-10-14T10:55+00:00",
   "history": [
    {
     "date": "2026-08-14",
@@ -3116,8 +3116,18 @@
   "updatedAt": "2026-10-14"
  },
  "ASML": {
-  "checkedAt": "2026-10-14T07:34+00:00",
+  "checkedAt": "2026-10-14T10:55+00:00",
   "history": [
+   {
+    "date": "2026-10-14",
+    "epsActual": 11.82,
+    "epsEst": 10.76,
+    "period": "2026-06-30",
+    "revActual": 9326500000.0,
+    "revEst": 11716143870.0,
+    "surprise": 9.86,
+    "time": "bmo"
+   },
    {
     "date": "2026-07-13",
     "epsActual": 7.58,
@@ -3176,12 +3186,6 @@
     "epsEst": 6.73,
     "surprise": 1.57,
     "time": "bmo"
-   },
-   {
-    "date": "2024-10-15",
-    "epsActual": 5.28,
-    "epsEst": 4.86,
-    "surprise": 8.61
    }
   ],
   "next": {
@@ -9725,7 +9729,7 @@
   "updatedAt": "2026-10-14"
  },
  "TSM": {
-  "checkedAt": "2026-10-14T07:34+00:00",
+  "checkedAt": "2026-10-14T10:55+00:00",
   "history": [
    {
     "date": "2026-07-16",
