@@ -1,5 +1,113 @@
 month: 2026-10
 items:
+  - id: 2026-10-14-asml-q3-2026-results
+    date: 2026-10-14
+    title: "ASML posts record €11.7 billion quarterly sales and lifts its 2026 outlook"
+    summary: "ASML reported third-quarter net sales of €11.7 billion, net income of €5.0 billion and a 57.5% gross margin, and guided fourth-quarter sales of €14.2 billion to €15.2 billion. It now expects 2026 sales of €44 billion to €45 billion and said planned supply for 2027 and 2028 will not fully meet customer demand."
+    source: { name: "ASML", url: "https://investor.asml.com/news-releases/news-release-details/asml-reports-eu11.7-billion-total-net-sales-and-eu5.0-billion-net-income-q3-2026" }
+    companies: [asml]
+    nodes: [chips/equipment/lithography]
+    themes: [capex]
+    impact: positive
+    importance: 3
+
+  - id: 2026-10-14-trendforce-csp-capex-2027
+    date: 2026-10-14
+    title: "TrendForce sees top cloud providers' capex passing $1.5 trillion in 2027"
+    summary: "TrendForce expects combined capital spending by the nine largest cloud providers to rise 106% to $957 billion in 2026 and about 60% more to over $1.5 trillion in 2027, both revised up. It forecasts AI server revenue growing more than 90% on higher shipments and prices."
+    source: { name: "TrendForce", url: "https://www.trendforce.com/presscenter/news/20261014-13269.html" }
+    companies: []
+    nodes: [infrastructure/cloud/hyperscalers]
+    themes: [capex]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-14-nvidia-uk-agentic-safety-compute
+    date: 2026-10-14
+    title: "Nvidia commits $250 million in compute for UK agentic AI safety research"
+    summary: "Nvidia announced a five-year compute donation valued at $250 million to build the United Kingdom's research capacity on the safety and security of AI agents."
+    source: { name: "NVIDIA Newsroom", url: "https://nvidianews.nvidia.com/news/nvidia-commits-250-million-to-advance-uk-agentic-safety-and-security-research-over-the-next-five-years" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    themes: [agents, sovereign-ai]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-10-13-gemini-4-argon-general-availability
+    date: 2026-10-13
+    title: "Google makes Gemini 4 Argon generally available"
+    summary: "Google released its Gemini 4 Argon frontier model to developers through the paid Gemini API, to Google AI Pro and Ultra subscribers in the Gemini app, and to Google Cloud customers. Introductory API pricing is $2 per million input tokens and $10 per million output tokens through November 30, then $4 and $20."
+    source: { name: "Google", url: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/" }
+    companies: [alphabet]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: positive
+    importance: 3
+
+  - id: 2026-10-13-anthropic-seeks-rehearing-pentagon-case
+    date: 2026-10-13
+    title: "Anthropic asks the full D.C. appeals court to rehear its Pentagon blacklisting case"
+    summary: "Anthropic petitioned the D.C. Circuit for a rehearing after a three-judge panel ruled 2-1 in September that the Defense Department could keep it designated a supply-chain risk. The company argues the panel ignored evidence that the designation was retaliation for its statements on AI safety."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/13/anthropic-wants-court-in-dc-to-rehear-appeal-of-pentagon-blacklist-.html" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-10-13-ntt-anthropic-japan-data-center
+    date: 2026-10-13
+    title: "NTT nears a $6.3 billion data center deal for Anthropic in Japan, Nikkei reports"
+    summary: "NTT is in final-stage talks to build Anthropic's first dedicated data center in Japan, in Osaka Prefecture, with up to 500 MW of capacity and an estimated cost of $6.3 billion, Nikkei reported. Partial operations would start in 2028."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/ntt-to-build-63bn-data-center-for-anthropic-in-japan-report/" }
+    companies: [anthropic]
+    nodes: [infrastructure/data-centers/ai-campuses]
+    themes: [data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-13-doe-tva-grid-expansion
+    date: 2026-10-13
+    title: "DOE backs $581 million TVA grid package adding about 2.5 GW across eight states"
+    summary: "The Energy Department will support the Tennessee Valley Authority in funding 84 transmission and distribution projects in eight states, adding about 2.5 GW of grid capacity. The award totals about $581 million, including $250 million in federal funds."
+    source: { name: "U.S. Department of Energy", url: "https://www.energy.gov/articles/energy-department-backs-major-grid-expansion-across-eight-states-strengthen-reliability" }
+    companies: []
+    nodes: [energy/grid/grid-epc]
+    themes: [power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-13-ferc-pjm-data-center-database
+    date: 2026-10-13
+    title: "FERC lets PJM build a data center database but rejects its curtailment plan"
+    summary: "FERC approved PJM's request to collect site-level data on data centers, including in-service dates, load ramp-up and backup generation. It rejected PJM's proposal to cut grid power to data centers during peak stress, saying a revised plan would need to explain why data centers rather than other large users would be curtailed."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/ferc-approves-pjms-request-to-create-data-center-database/" }
+    companies: []
+    nodes: [energy/power-producers/to-data-centers]
+    themes: [power-bottleneck, data-centers]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-10-13-apple-homeview-siri-ai
+    date: 2026-10-13
+    title: "Apple launches the $299 HomeView home hub built around Siri AI"
+    summary: "Apple introduced HomeView, a 7-inch home display priced at $299 in the US, along with a new Apple TV 4K and HomePod mini, all featuring its new Siri AI. HomeView ships November 13 and will not be sold in the EU, where Siri AI is not yet available."
+    source: { name: "Apple Newsroom", url: "https://www.apple.com/newsroom/2026/10/meet-apple-homeview-a-new-way-to-enjoy-entertainment-and-manage-the-home/" }
+    companies: [apple]
+    nodes: [applications/devices/phones-pcs]
+    themes: [edge-ai]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-13-x-subscription-grok-cursor-bundle
+    date: 2026-10-13
+    title: "SpaceX's AI unit bundles X Premium, Grok and Cursor into one subscription"
+    summary: "SpaceX Super Intelligence launched a single X Subscription covering X Premium, Grok and the Cursor coding tool, with plans from $8 to $200 a month. The latest Grok models require the $30 Premium tier or higher."
+    source: { name: "TechCrunch", url: "https://techcrunch.com/2026/10/13/spacexsi-bundles-x-premium-grok-and-cursor-into-one-subscription/" }
+    companies: [xai, anysphere]
+    nodes: [applications/coding/coding-agents]
+    themes: [coding]
+    impact: neutral
+    importance: 1
+
   - id: 2026-10-13-cxmt-claim-korean-memory-selloff
     date: 2026-10-13
     title: "Korean memory stocks slide after CXMT claims a DRAM design breakthrough"
