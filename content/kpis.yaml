@@ -25,7 +25,7 @@ indicators:
     metric: capex
     companies: [nextera, duke, southern, dominion, aep, entergy]
     description: >-
-      Cash spent on plant and equipment by six large US utilities, by calendar quarter. Data-center load is
+      Cash spent on plant and equipment by large US utilities, by calendar quarter. Data-center load is
       one of the main reasons utilities give for raising their spending plans.
 
   - id: power-equipment-growth

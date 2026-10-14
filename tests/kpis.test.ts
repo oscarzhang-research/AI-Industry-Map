@@ -62,6 +62,18 @@ describe('compileKpis', () => {
     expect(k.complete).toEqual([true, false]);
   });
 
+  it('leaves out a company without figures and names it in the note', () => {
+    const [k] = compileKpis(
+      { indicators: [{ id: 'capex', name: 'Capex', layer: 'energy', kind: 'stack', metric: 'capex', companies: ['msft', 'nee'], description: 'x' }] },
+      { ...companies, nee: co('nee', 'NEE') },
+      data,
+    );
+    if (k.kind !== 'stack') throw new Error('expected a stack');
+    expect(k.parts.map((p) => p.company)).toEqual(['msft']);
+    expect(k.complete).toEqual([true, true]);
+    expect(k.note).toBe("NEE not included: the SEC's standardized data has no figures for it.");
+  });
+
   it('builds monthly and growth tables from Taiwan data, and company financials', () => {
     const out = compileKpis(
       {

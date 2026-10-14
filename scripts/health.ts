@@ -7,6 +7,7 @@
 import { createHash } from 'node:crypto';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { safeSymbol } from '../src/lib/symbols.ts';
 import { loadContent, ROOT } from './lib/load.ts';
 import { arg } from './lib/vaultfs.ts';
 
@@ -68,8 +69,17 @@ if (existsSync(priceDir)) {
   }
 }
 
-// ---- News ----------------------------------------------------------------------------
+// Benchmarks are long-established indices or funds, so a short history means Yahoo has stopped carrying
+// the symbol's daily data (as it did for the CSI 300 and STAR 50 indices) and relative returns go blank.
 const content = loadContent();
+const shortBench = content.benchmarks.flatMap((b) => {
+  const f = join(priceDir, `${safeSymbol(b.symbol)}.csv`);
+  const days = existsSync(f) ? readFileSync(f, 'utf8').trim().split('\n').length - 1 : 0;
+  return days < 250 ? [`${b.name} (${b.symbol}, ${days} days)`] : [];
+});
+if (shortBench.length) add('Market data', 'warn', `Benchmarks with less than a year of daily prices: ${list(shortBench)}. Returns against them are missing.`);
+
+// ---- News ----------------------------------------------------------------------------
 const latestNews = content.news[0]?.date;
 const newsAge = latestNews ? (now.getTime() - new Date(`${latestNews}T23:59:59Z`).getTime()) / 864e5 : Infinity;
 if (newsAge > 2) add('News', 'problem', `Newest item is from ${latestNews ?? 'never'}; the morning routine adds news every day.`);

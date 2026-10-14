@@ -185,6 +185,7 @@ export function validateKpis(doc: KpiDoc | undefined, companies: Record<string, 
 }
 
 const nameOf = (companies: Record<string, Company>, id: string) => companies[id]?.name ?? id;
+const joinNames = (names: string[]) => (names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}` : names[0]);
 
 /** Build every indicator that has data. Indicators without any data are left out. */
 export function compileKpis(doc: KpiDoc | undefined, companies: Record<string, Company>, data: KpiData): Kpi[] {
@@ -196,10 +197,17 @@ export function compileKpis(doc: KpiDoc | undefined, companies: Record<string, C
       const all = [...new Set(members.flatMap((m) => [...m.q.keys()]))].sort();
       if (!all.length) continue;
       const periods = all.slice(-QUARTERS_SHOWN);
-      const parts = members.map((m) => ({ company: m.id, label: nameOf(companies, m.id), values: periods.map((p) => m.q.get(p)?.value ?? null) }));
+      const listed = members.map((m) => ({ company: m.id, label: nameOf(companies, m.id), values: periods.map((p) => m.q.get(p)?.value ?? null) }));
+      // A company with no figures at all (NextEra tags its capex only with its own XBRL concepts, which
+      // the SEC's company facts leave out) is named in the note instead of leaving every quarter incomplete.
+      const parts = listed.filter((p) => p.values.some((v) => v !== null));
+      const missing = listed.filter((p) => !parts.includes(p)).map((p) => p.label);
+      const note = [base.note, missing.length ? `${joinNames(missing)} not included: the SEC's standardized data has no figures for ${missing.length > 1 ? 'them' : 'it'}.` : '']
+        .filter(Boolean)
+        .join(' ') || undefined;
       const complete = periods.map((_, i) => parts.every((p) => p.values[i] !== null));
       const total = periods.map((_, i) => (parts.some((p) => p.values[i] !== null) ? parts.reduce((a, p) => a + (p.values[i] ?? 0), 0) : null));
-      out.push({ ...base, kind: 'stack', metric: k.metric, unit: k.unit ?? 'USD', periods, parts, total, complete, sources: [SEC_SOURCE], asOf: periods[periods.length - 1] });
+      out.push({ ...base, note, kind: 'stack', metric: k.metric, unit: k.unit ?? 'USD', periods, parts, total, complete, sources: [SEC_SOURCE], asOf: periods[periods.length - 1] });
     } else if (k.kind === 'monthly' && k.company) {
       const rows = data.tw.get(twCode(companies[k.company]) ?? '');
       if (!rows?.length) continue;

@@ -83,6 +83,16 @@ FOREIGN_PAGE = (
 
 
 class HelperTests(unittest.TestCase):
+    def test_sec_throttle(self):
+        recent, key = "2026-10-13T08:00:00+00:00", k.SEC_CONCEPTS_KEY
+        self.assertTrue(k.sec_throttled({"at": recent, "concepts": key, "skipped": 1}, NOW, 20))  # 1 company skipped
+        self.assertFalse(k.sec_throttled({"at": recent, "concepts": key, "skipped": "needs SEC_USER_AGENT"}, NOW, 20))
+        self.assertFalse(k.sec_throttled({"at": recent}, NOW, 20))  # made before the concept key existed
+        self.assertFalse(k.sec_throttled({"at": recent, "concepts": "00000000"}, NOW, 20))  # other concept lists
+        self.assertFalse(k.sec_throttled({"at": "2026-10-12T21:00:00+00:00", "concepts": key}, NOW, 20))
+        self.assertFalse(k.sec_throttled({"at": recent, "concepts": key}, NOW, 0))
+        self.assertFalse(k.sec_throttled({}, NOW, 20))
+
     def test_safe_symbol_matches_the_site(self):
         self.assertEqual(k.safe_symbol("BRK-B"), "BRK-B")
         self.assertEqual(k.safe_symbol("2330.TW"), "2330.TW")
@@ -218,6 +228,17 @@ class SecSeriesTests(unittest.TestCase):
         }
         series = k.merged_series(by_concept, concepts, {})
         self.assertEqual([(q.value, q.concept) for q in series], [(1, "A"), (2, "A"), (30, "B")])
+
+    def test_net_productive_assets_tag_fills_capex_when_no_gross_tag(self):
+        def fact(end, val, fp, form="10-Q"):
+            return {"start": "2025-01-01", "end": end, "val": val, "fy": 2025, "fp": fp, "form": form,
+                    "filed": "2026-02-20", "accn": "0000000001-26-000001"}
+        raw = {"entityName": "Example Utility", "facts": {"us-gaap": {"PaymentsForProceedsFromProductiveAssets": {"units": {"USD": [
+            fact("2025-03-31", 3.0 * B, "Q1"), fact("2025-06-30", 6.4 * B, "Q2"),
+            fact("2025-09-30", 9.27 * B, "Q3"), fact("2025-12-31", 12.65 * B, "FY", "10-K")]}}}}}
+        doc = k.build_sec_doc(raw, "EXU", 1, None, NOW)
+        self.assertEqual([(q["end"], round(q["value"] / B, 2)) for q in doc["capex"]],
+                         [("2025-03-31", 3.0), ("2025-06-30", 3.4), ("2025-09-30", 2.87), ("2025-12-31", 3.38)])
 
     def test_keeps_the_last_40_quarters(self):
         rows, start = [], date(2010, 1, 1)

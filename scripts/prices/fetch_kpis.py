@@ -93,13 +93,18 @@ REVENUE_CONCEPTS = (
 )
 # Plain PP&E purchases first; the broader tags only fill periods it lacks. NVIDIA and Broadcom, for
 # example, report capex as PaymentsToAcquireProductiveAssets (PP&E plus intangibles). Utilities and
-# REITs often use PaymentsForCapitalImprovements.
+# REITs often use PaymentsForCapitalImprovements. The net tag comes last: Dominion has reported its
+# "plant construction and other property additions" with it since 2020.
 CAPEX_CONCEPTS = (
     "PaymentsToAcquirePropertyPlantAndEquipment",
     "PaymentsToAcquireProductiveAssets",
     "PaymentsForCapitalImprovements",
     "PaymentsToAcquirePropertyPlantAndEquipmentAndIntangibleAssets",
+    "PaymentsForProceedsFromProductiveAssets",
 )
+# Stored with each full SEC run: a run made with other concept lists does not hold off the next one,
+# so a newly added tag reaches the site on the next market-data run.
+SEC_CONCEPTS_KEY = format(zlib.crc32(json.dumps([REVENUE_CONCEPTS, CAPEX_CONCEPTS]).encode()), "08x")
 MAX_QUARTERS = 40
 # Duration in days (end - start) of a fact by the number of quarters it covers; the bounds allow
 # 52/53-week years and 13/14-week quarters.
@@ -1172,6 +1177,16 @@ def run_guarded(name: str, fn: Callable[[], tuple[dict, bool]], log: Log) -> tup
         return {"error": f"{type(exc).__name__}: {exc}"}, False
 
 
+def sec_throttled(prev: dict, now: datetime, every_hours: float) -> bool:
+    """True when the last SEC run is recent enough to skip this one. A run that skipped the SEC as a
+    whole ("skipped" holds the reason; after a normal run it counts skipped companies) does not count,
+    and neither does a run made with other concept lists."""
+    if every_hours <= 0 or isinstance(prev.get("skipped"), str) or prev.get("concepts") != SEC_CONCEPTS_KEY:
+        return False
+    last = parse_time(prev.get("at"))
+    return last is not None and now - last < timedelta(hours=every_hours)
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(
         description="Fetch SEC quarterly revenue/capex and Taiwan monthly revenue into data/kpis/.")
@@ -1207,13 +1222,12 @@ def main(argv: list[str] | None = None) -> int:
     status = status if isinstance(status, dict) else {}
     health = []
     prev_sec = status.get("sec") if isinstance(status.get("sec"), dict) else {}
-    last_sec = None if prev_sec.get("skipped") else parse_time(prev_sec.get("at"))  # a skipped run does not count
     if do_sec and args.require_sec_agent and not os.environ.get("SEC_USER_AGENT"):
         print("SEC: skipped; set the repository secret SEC_USER_AGENT to '<name> <contact email>'")
         status["sec"] = {"skipped": "needs SEC_USER_AGENT", "at": iso(now)}
         do_sec = False
-    if do_sec and not only and args.sec_every_hours > 0 and last_sec and now - last_sec < timedelta(hours=args.sec_every_hours):
-        print(f"SEC: last run {iso(last_sec)}, less than {args.sec_every_hours:g} hours ago; skipped")
+    if do_sec and not only and sec_throttled(prev_sec, now, args.sec_every_hours):
+        print(f"SEC: last run {prev_sec.get('at')}, less than {args.sec_every_hours:g} hours ago; skipped")
         do_sec = False
     if do_sec:
         http = Http(os.environ.get("SEC_USER_AGENT") or SEC_USER_AGENT)
@@ -1221,6 +1235,8 @@ def main(argv: list[str] | None = None) -> int:
         status["sec"], healthy = run_guarded(
             "SEC", lambda: run_sec(sec_targets, http, KPIS, now, keep), print)
         status["sec"]["at"] = iso(now)
+        if healthy and not only:  # a failed or partial run does not hold off the next one
+            status["sec"]["concepts"] = SEC_CONCEPTS_KEY
         health.append(healthy)
     if do_tw:
         http = Http(os.environ.get("TW_USER_AGENT") or TW_USER_AGENT)
