@@ -1,0 +1,28 @@
+{
+ "symbol": "FIG",
+ "cik": "0001579878",
+ "name": "FIGMA, INC.",
+ "company": "figma",
+ "updatedAt": "2026-10-14T06:41:33+00:00",
+ "revenue": [
+  {"start": "2024-04-01", "end": "2024-06-30", "value": 177198000, "fy": 2024, "fp": "Q2", "form": "10-Q", "filed": "2025-09-03", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2024-07-01", "end": "2024-09-30", "value": 198639000, "fy": 2024, "fp": "Q3", "form": "10-Q", "filed": "2025-11-05", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2024-10-01", "end": "2024-12-31", "value": 216945000, "fy": 2024, "fp": "Q4", "form": "10-K", "filed": "2026-02-18", "derived": true, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2025-01-01", "end": "2025-03-31", "value": 228199000, "fy": 2025, "fp": "Q1", "form": "10-Q", "filed": "2026-05-14", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2025-04-01", "end": "2025-06-30", "value": 249640000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-08-05", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2025-07-01", "end": "2025-09-30", "value": 274173000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2025-11-05", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2025-10-01", "end": "2025-12-31", "value": 303776000, "fy": 2025, "fp": "Q4", "form": "10-K", "filed": "2026-02-18", "derived": true, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2026-01-01", "end": "2026-03-31", "value": 333439000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-05-14", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 370083000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-05", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
+ ],
+ "capex": [
+  {"start": "2024-07-01", "end": "2024-09-30", "value": 413000, "fy": 2024, "fp": "Q3", "form": "10-Q", "filed": "2025-11-05", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2024-10-01", "end": "2024-12-31", "value": 662000, "fy": 2024, "fp": "Q4", "form": "10-K", "filed": "2026-02-18", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2025-01-01", "end": "2025-03-31", "value": 874000, "fy": 2025, "fp": "Q1", "form": "10-Q", "filed": "2026-05-14", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2025-04-01", "end": "2025-06-30", "value": 1134000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-08-05", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2025-07-01", "end": "2025-09-30", "value": 1702000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2026-08-05", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2025-10-01", "end": "2025-12-31", "value": 734000, "fy": 2025, "fp": "Q4", "form": "10-K", "filed": "2026-02-18", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2026-01-01", "end": "2026-03-31", "value": 7812000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-05-14", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 6688000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-05", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"}
+ ]
+}

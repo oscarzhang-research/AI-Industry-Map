@@ -1,0 +1,29 @@
+{
+ "symbol": "GLXY",
+ "cik": "0001859392",
+ "name": "Galaxy Digital Inc.",
+ "company": "galaxy",
+ "updatedAt": "2026-10-14T06:41:33+00:00",
+ "revenue": [
+  {"start": "2024-01-01", "end": "2024-03-31", "value": 0, "fy": 2024, "fp": "Q1", "form": "10-Q", "filed": "2025-05-13", "derived": false, "concept": "Revenues"},
+  {"start": "2024-04-01", "end": "2024-06-30", "value": 8882891000, "fy": 2024, "fp": "Q2", "form": "10-Q", "filed": "2025-08-05", "derived": false, "concept": "Revenues"},
+  {"start": "2024-07-01", "end": "2024-09-30", "value": 8570657000, "fy": 2024, "fp": "Q3", "form": "10-Q", "filed": "2025-11-10", "derived": false, "concept": "Revenues"},
+  {"start": "2024-10-01", "end": "2024-12-31", "value": 15807753000, "fy": 2024, "fp": "Q4", "form": "10-K", "filed": "2026-02-26", "derived": true, "concept": "Revenues"},
+  {"start": "2025-01-01", "end": "2025-03-31", "value": 12976206000, "fy": 2025, "fp": "Q1", "form": "10-Q", "filed": "2026-05-08", "derived": false, "concept": "Revenues"},
+  {"start": "2025-04-01", "end": "2025-06-30", "value": 8661555000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-08-10", "derived": false, "concept": "Revenues"},
+  {"start": "2025-07-01", "end": "2025-09-30", "value": 28401871000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2025-11-10", "derived": false, "concept": "Revenues"},
+  {"start": "2025-10-01", "end": "2025-12-31", "value": 10367096000, "fy": 2025, "fp": "Q4", "form": "10-K", "filed": "2026-02-26", "derived": true, "concept": "Revenues"},
+  {"start": "2026-01-01", "end": "2026-03-31", "value": 10041444000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-05-08", "derived": false, "concept": "Revenues"},
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 8557336000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-10", "derived": false, "concept": "Revenues"}
+ ],
+ "capex": [
+  {"start": "2024-07-01", "end": "2024-09-30", "value": 3382000, "fy": 2024, "fp": "Q3", "form": "10-Q", "filed": "2025-11-10", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2024-10-01", "end": "2024-12-31", "value": 25907000, "fy": 2024, "fp": "Q4", "form": "10-K", "filed": "2026-02-26", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2025-01-01", "end": "2025-03-31", "value": 91642000, "fy": 2025, "fp": "Q1", "form": "10-Q", "filed": "2026-05-08", "derived": false, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2025-04-01", "end": "2025-06-30", "value": 304817000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-08-10", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2025-07-01", "end": "2025-09-30", "value": 238050000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2026-08-10", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2025-10-01", "end": "2025-12-31", "value": 558025000, "fy": 2025, "fp": "Q4", "form": "10-K", "filed": "2026-02-26", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2026-01-01", "end": "2026-03-31", "value": 337884000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-05-08", "derived": false, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 398790000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-10", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"}
+ ]
+}
