@@ -35,7 +35,7 @@ When you change a fetcher or `content/news-sources.yaml`, also run its offline t
 | `content/kpis.yaml` | Industry indicators for `/indicators` and the layer pages (SEC, Taiwan monthly revenue, curated points with a source each) |
 | `content/news-sources.yaml` | Feeds for the news pipeline; candidates land on the `feeds` branch (`news-candidates.json`) |
 | `data/` | Daily prices (`prices/<symbol>.csv`), daily valuation snapshots (`valuation/<symbol>.csv`), `earnings.json`, `kpis/` (SEC and Taiwan figures), `fundamentals.json`, `splits.json`, `fx.json`, `status.json` |
-| `scripts/` | `build-data.ts`, `validate.ts`, `ingest-report.ts`, `translate-queue.ts`, `sync-vault.ts`, `health.ts`, `prices/fetch_prices.py`, `prices/fetch_kpis.py`, `news/fetch_feeds.py` |
+| `scripts/` | `build-data.ts`, `validate.ts`, `ingest-report.ts`, `translate-queue.ts`, `sync-vault.ts`, `health.ts`, `prices/fetch_prices.py`, `prices/fetch_kpis.py`, `news/fetch_feeds.py`; owner tools that read the vault clone: `inbox.ts` (what to do with each inbox file), `fact-pack.ts` (weekly journal draft, facts only), `alerts.ts` (run by the vault's alerts workflow) |
 | `src/lib/` | Types, finance math (`finance.ts`), records and translation (`records.ts`), GitHub client, vault sync |
 | `src/pages/`, `src/components/`, `src/editor/` | The React app; editors are lazy-loaded |
 
