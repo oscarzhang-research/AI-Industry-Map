@@ -1,5 +1,101 @@
 month: 2026-10
 items:
+  - id: 2026-10-15-tsmc-q3-2026-results
+    date: 2026-10-15
+    title: "TSMC third-quarter profit jumps 69% and it guides up to $54.3 billion for the fourth quarter"
+    summary: "TSMC reported third-quarter revenue of NT$1.494 trillion (US$46.72 billion), above its US$44.6 billion to US$45.8 billion guidance, and net income of NT$763.1 billion, up 68.7% from a year earlier, with a 66.4% gross margin. It guided fourth-quarter revenue of US$52.3 billion to US$54.3 billion and a gross margin of 65% to 67%."
+    source: { name: "TSMC", url: "https://pr.tsmc.com/english/news/3346" }
+    companies: [tsmc]
+    nodes: [chips/foundry-packaging/leading-edge]
+    themes: [capex]
+    impact: positive
+    importance: 3
+
+  - id: 2026-10-14-globalfoundries-new-york-fabs
+    date: 2026-10-14
+    title: "GlobalFoundries to run two new New York fabs funded under a US-Japan deal of up to $21 billion"
+    summary: "GlobalFoundries was selected to operate two new 300mm fabs at its Malta, New York site, funded by Japan under a US-Japan initiative of up to $21 billion. The first fab, with about $10 billion, is due online in 2029, and both together would add around 900,000 wafers of annual capacity."
+    source: { name: "GlobalFoundries", url: "https://gf.com/news-and-events/news/globalfoundries-selected-to-operate-two-new-semiconductor-fabs-in-new-york-under-landmark-us-japan-initiative/" }
+    companies: [globalfoundries]
+    nodes: [chips/foundry-packaging/mature-foundry]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-14-aep-google-702mw-fuel-cells
+    date: 2026-10-14
+    title: "AEP to build a 702 MW Bloom fuel cell plant in Wyoming to power Google"
+    summary: "AEP plans to invest about $4 billion in a 702 MW fuel cell facility near Cheyenne, Wyoming, selling its output to Google under a 20-year power purchase agreement. Bloom Energy will supply the fuel cells, and the plant is expected to be fully running by the end of 2028."
+    source: { name: "AEP", url: "https://www.aep.com/news/stories/view/12314/" }
+    companies: [aep, bloom-energy, alphabet]
+    nodes: [energy/generation-equipment/fuel-cells]
+    themes: [power-bottleneck, data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-14-ls-electric-bloom-switchgear-order
+    date: 2026-10-14
+    title: "LS Electric wins a $138.5 million Bloom Energy order for a Pennsylvania data center"
+    summary: "LS Electric will supply 38kV switchgear and distribution transformers worth 185.3 billion won (about $138.5 million) for Bloom Energy fuel cells at a Pennsylvania data center, with deliveries from April to July 2027. It is the second such deal after a $216.5 million order in April."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/ls-electric-secures-138m-order-to-supply-switchgear-for-bloom-fuel-cells-at-pennsylvania-data-center/" }
+    companies: [ls-electric, bloom-energy]
+    nodes: [energy/grid/switchgear]
+    themes: [power-bottleneck]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-14-dell-falls-barclays-downgrade
+    date: 2026-10-14
+    title: "Dell falls 11% after Barclays downgrades it, HPE and NetApp on enterprise AI timing"
+    summary: "Barclays cut Dell, HPE and NetApp to hold, arguing that only about a quarter of enterprise AI spending goes to hardware and that recent revenue gains largely reflect higher memory prices. Dell fell about 11% on October 14 and the Nasdaq closed down 1.9%."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/14/dell-stock-barclays-enterprise-ai.html" }
+    companies: [dell, hpe, netapp]
+    nodes: [infrastructure/servers/oem]
+    themes: [memory-cycle]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-14-coreweave-bond-yields-near-15
+    date: 2026-10-14
+    title: "CoreWeave drops 15.5% as yields on its bonds near 15%"
+    summary: "CoreWeave shares fell 15.5% on October 14 as yields on its 2031 and 2032 bonds rose to about 14.8% to 14.9% on concern about AI borrowing. The CEO said in a memo that its backlog supports all of its debt obligations; Nebius and Iren fell as much as 10%."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/14/coreweave-stock-bond-yields-ai-debt.html" }
+    companies: [coreweave, nebius, iren]
+    nodes: [infrastructure/cloud/neoclouds]
+    themes: [capex]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-14-anthropic-q3-revenue-16-8-billion
+    date: 2026-10-14
+    title: "Anthropic's third-quarter revenue reaches $16.8 billion ahead of its IPO, reports say"
+    summary: "Anthropic told prospective investors that third-quarter revenue reached $16.8 billion, up from about $11.6 billion in the second quarter, and that it was profitable on an adjusted basis, CNBC and Bloomberg reported, citing people familiar with the matter. The IPO is reportedly slated for November."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/15/anthropics-third-quarter-revenue-hits-16point8-billion-ipo.html" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: positive
+    importance: 3
+
+  - id: 2026-10-14-openai-sued-by-eight-states
+    date: 2026-10-14
+    title: "Eight US states sue OpenAI over ChatGPT's safety for minors"
+    summary: "Iowa, Kansas, Nebraska, West Virginia, Arkansas, Arizona, Idaho and Montana each sued OpenAI in state court, alleging ChatGPT is a dangerous product that has harmed children and misled parents. OpenAI pointed to its age-specific protections and parental controls."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/14/openai-sued-by-8-states-over-chatgpt-safety-concerns-.html" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-14-china-approves-alibaba-models-iphone
+    date: 2026-10-14
+    title: "China clears Alibaba's AI models for the iPhone Duo and other Apple phones"
+    summary: "Updated network access permits from China's industry ministry for the iPhone Duo, iPhone 18 Pro and several earlier models list Apple Intelligence plus Alibaba's Qwen and Wanxiang models as approved AI systems. Apple has not yet launched Apple Intelligence on the Chinese mainland."
+    source: { name: "South China Morning Post", url: "https://www.scmp.com/tech/big-tech/article/3370893/china-approves-alibaba-ai-models-use-iphone-duo-and-other-apple-handsets" }
+    companies: [apple, alibaba]
+    nodes: [applications/devices/phones-pcs]
+    themes: [china-ai, edge-ai]
+    impact: positive
+    importance: 1
+
   - id: 2026-10-14-asml-q3-2026-results
     date: 2026-10-14
     title: "ASML posts record €11.7 billion quarterly sales and lifts its 2026 outlook"
