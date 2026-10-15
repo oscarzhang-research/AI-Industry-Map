@@ -36,7 +36,7 @@
   "targetHigh": 51.0,
   "targetLow": 28.6,
   "targetMean": 41.444,
-  "trailingPE": 27.414894
+  "trailingPE": 26.295918
  },
  "000977.SZ": {
   "analysts": 9,
@@ -188,7 +188,7 @@
   "targetHigh": 1380.0,
   "targetLow": 600.0,
   "targetMean": 877.712,
-  "trailingPE": 78.406166
+  "trailingPE": 77.80612
  },
  "002463.SZ": {
   "analysts": 7,
@@ -207,7 +207,7 @@
   "targetHigh": 190.3,
   "targetLow": 86.8,
   "targetMean": 147.52286,
-  "trailingPE": 45.03101
+  "trailingPE": 44.684616
  },
  "002475.SZ": {
   "analysts": 17,
@@ -245,7 +245,7 @@
   "targetHigh": 125.0,
   "targetLow": 40.0,
   "targetMean": 80.03746,
-  "trailingPE": 117.55263
+  "trailingPE": 114.53846
  },
  "002851.SZ": {
   "analysts": 7,
@@ -330,16 +330,16 @@
   "dividendYield": 0.0,
   "evToEbitda": -129.865,
   "financialCurrency": "USD",
-  "forwardPE": -10.135518,
+  "forwardPE": -9.984691,
   "high52": 1330.0,
   "low52": 178.8,
-  "marketCap": 63456051200,
-  "priceToSales": 384.1584,
+  "marketCap": 62687735808,
+  "priceToSales": 379.50705,
   "recommendation": "buy",
   "sharesOutstanding": 268132774,
-  "targetHigh": 1302.0685,
-  "targetLow": 140.14743,
-  "targetMean": 588.61316
+  "targetHigh": 1302.0021,
+  "targetLow": 140.14029,
+  "targetMean": 588.5831
  },
  "010120.KS": {
   "analysts": 24,
@@ -407,18 +407,18 @@
   "earningsEstimated": false,
   "evToEbitda": 30.882,
   "financialCurrency": "HKD",
-  "forwardPE": 23.442944,
+  "forwardPE": 23.305952,
   "high52": 244.4,
   "low52": 68.9,
-  "marketCap": 57414352896,
+  "marketCap": 57078849536,
   "nextEarnings": "2026-10-28",
-  "priceToSales": 3.5031087,
+  "priceToSales": 3.4826381,
   "recommendation": "buy",
   "sharesOutstanding": 419389033,
   "targetHigh": 310.0,
   "targetLow": 73.7,
   "targetMean": 197.32777,
-  "trailingPE": 36.409573
+  "trailingPE": 36.19681
  },
  "0700.HK": {
   "analysts": 41,
@@ -428,18 +428,18 @@
   "earningsEstimated": false,
   "evToEbitda": 13.167,
   "financialCurrency": "CNY",
-  "forwardPE": 11.646603,
+  "forwardPE": 11.635463,
   "high52": 664.0,
   "low52": 411.0,
-  "marketCap": 3765916139520,
+  "marketCap": 3762314018816,
   "nextEarnings": "2026-11-18",
-  "priceToSales": 4.7761536,
+  "priceToSales": 4.7715855,
   "recommendation": "strong_buy",
   "sharesOutstanding": 9005060353,
-  "targetHigh": 887.455,
-  "targetLow": 429.1213,
-  "targetMean": 662.0973,
-  "trailingPE": 14.720169
+  "targetHigh": 887.0008,
+  "targetLow": 428.90167,
+  "targetMean": 661.7584,
+  "trailingPE": 14.706089
  },
  "0981.HK": {
   "analysts": 21,
@@ -449,18 +449,18 @@
   "earningsEstimated": false,
   "evToEbitda": 90.648,
   "financialCurrency": "USD",
-  "forwardPE": 28.872625,
+  "forwardPE": 29.06771,
   "high52": 93.0,
   "low52": 49.32,
-  "marketCap": 443531362304,
+  "marketCap": 446528225280,
   "nextEarnings": "2026-11-12",
-  "priceToSales": 42.722805,
+  "priceToSales": 43.011475,
   "recommendation": "none",
   "sharesOutstanding": 6014605927,
-  "targetHigh": 152.99101,
-  "targetLow": 34.997173,
-  "targetMean": 95.99788,
-  "trailingPE": 50.784313
+  "targetHigh": 152.99374,
+  "targetLow": 34.9978,
+  "targetMean": 95.99959,
+  "trailingPE": 51.127453
  },
  "0992.HK": {
   "analysts": 19,
@@ -470,18 +470,18 @@
   "earningsEstimated": true,
   "evToEbitda": 96.74,
   "financialCurrency": "USD",
-  "forwardPE": 8.493329,
+  "forwardPE": 8.486795,
   "high52": 37.88,
   "low52": 8.52,
-  "marketCap": 322521137152,
+  "marketCap": 322273050624,
   "nextEarnings": "2026-11-18",
-  "priceToSales": 3.5369024,
+  "priceToSales": 3.5341818,
   "recommendation": "strong_buy",
   "sharesOutstanding": 12404659302,
-  "targetHigh": 70.991806,
-  "targetLow": 11.025035,
-  "targetMean": 45.33212,
-  "trailingPE": 24.528303
+  "targetHigh": 70.99217,
+  "targetLow": 11.025091,
+  "targetMean": 45.33235,
+  "trailingPE": 24.509436
  },
  "1024.HK": {
   "analysts": 30,
@@ -491,18 +491,18 @@
   "earningsEstimated": true,
   "evToEbitda": 4.099,
   "financialCurrency": "CNY",
-  "forwardPE": 9.968838,
+  "forwardPE": 9.989809,
   "high52": 85.2,
   "low52": 28.24,
-  "marketCap": 122642522112,
+  "marketCap": 122900537344,
   "nextEarnings": "2026-11-18",
-  "priceToSales": 0.8494837,
+  "priceToSales": 0.8512709,
   "recommendation": "buy",
   "sharesOutstanding": 3640879546,
-  "targetHigh": 102.13722,
-  "targetLow": 27.580624,
-  "targetMean": 47.790203,
-  "trailingPE": 7.1478696
+  "targetHigh": 102.14594,
+  "targetLow": 27.582977,
+  "targetMean": 47.794285,
+  "trailingPE": 7.162907
  },
  "1347.HK": {
   "analysts": 17,
@@ -512,18 +512,18 @@
   "earningsEstimated": false,
   "evToEbitda": 194.228,
   "financialCurrency": "USD",
-  "forwardPE": 53.35389,
+  "forwardPE": 53.528706,
   "high52": 219.6,
   "low52": 64.55,
-  "marketCap": 178255478784,
+  "marketCap": 178839535616,
   "nextEarnings": "2026-11-05",
-  "priceToSales": 66.674355,
+  "priceToSales": 66.892815,
   "recommendation": "buy",
   "sharesOutstanding": 1928494794,
-  "targetHigh": 334.99988,
-  "targetLow": 41.000053,
-  "targetMean": 144.00215,
-  "trailingPE": 165.86957
+  "targetHigh": 335.00586,
+  "targetLow": 41.000786,
+  "targetMean": 144.00473,
+  "trailingPE": 166.41304
  },
  "1810.HK": {
   "analysts": 28,
@@ -533,18 +533,18 @@
   "earningsEstimated": true,
   "evToEbitda": 21.292,
   "financialCurrency": "CNY",
-  "forwardPE": 17.621038,
+  "forwardPE": 17.67325,
   "high52": 49.86,
   "low52": 21.3,
-  "marketCap": 695111385088,
+  "marketCap": 697170919424,
   "nextEarnings": "2026-11-17",
-  "priceToSales": 1.5866482,
+  "priceToSales": 1.5913494,
   "recommendation": "buy",
   "sharesOutstanding": 21315629329,
-  "targetHigh": 58.156357,
-  "targetLow": 20.532255,
-  "targetMean": 34.671036,
-  "trailingPE": 18.881119
+  "targetHigh": 58.126587,
+  "targetLow": 20.521746,
+  "targetMean": 34.65329,
+  "trailingPE": 19.911764
  },
  "2059.TW": {
   "analysts": 13,
@@ -574,11 +574,11 @@
   "dividendYield": 0.0,
   "evToEbitda": -28.043,
   "financialCurrency": "CNY",
-  "forwardPE": 159.2553,
+  "forwardPE": 157.78194,
   "high52": 14.28,
   "low52": 5.855,
-  "marketCap": 25564661760,
-  "priceToSales": 37.640812,
+  "marketCap": 25328150528,
+  "priceToSales": 37.29258,
   "recommendation": "none",
   "sharesOutstanding": 4300195179,
   "targetHigh": 12.1,
@@ -604,7 +604,7 @@
   "targetHigh": 400.0,
   "targetLow": 265.0,
   "targetMean": 314.25,
-  "trailingPE": 30.733944
+  "trailingPE": 31.529411
  },
  "2308.TW": {
   "analysts": 22,
@@ -800,16 +800,16 @@
   "dividendYield": 0.0,
   "evToEbitda": -63.585,
   "financialCurrency": "CNY",
-  "forwardPE": -48.035557,
+  "forwardPE": -47.618263,
   "high52": 2980.0,
   "low52": 116.1,
-  "marketCap": 252570632192,
-  "priceToSales": 169.81262,
+  "marketCap": 250376486912,
+  "priceToSales": 168.33742,
   "recommendation": "buy",
   "sharesOutstanding": 263059605,
-  "targetHigh": 2209.34,
-  "targetLow": 642.59467,
-  "targetMean": 1552.9153
+  "targetHigh": 2209.5286,
+  "targetLow": 642.64954,
+  "targetMean": 1553.0479
  },
  "267260.KS": {
   "analysts": 23,
@@ -870,7 +870,7 @@
   "targetHigh": 66666.664,
   "targetLow": 16333.333,
   "targetMean": 37470.94,
-  "trailingPE": 15.968263
+  "trailingPE": 15.452909
  },
  "298040.KS": {
   "analysts": 20,
@@ -1231,17 +1231,17 @@
   "earningsEstimated": true,
   "evToEbitda": -10.602,
   "financialCurrency": "CNY",
-  "forwardPE": 15.483846,
+  "forwardPE": 15.56637,
   "high52": 108.0,
   "low52": 63.65,
-  "marketCap": 463196684288,
+  "marketCap": 465665392640,
   "nextEarnings": "2026-11-26",
-  "priceToSales": 1.2098951,
+  "priceToSales": 1.2163436,
   "recommendation": "buy",
   "sharesOutstanding": 5592688176,
-  "targetHigh": 153.20772,
-  "targetLow": 63.345688,
-  "targetMean": 110.81666
+  "targetHigh": 153.12929,
+  "targetLow": 63.313263,
+  "targetMean": 110.75993
  },
  "373220.KS": {
   "analysts": 31,
@@ -1303,7 +1303,7 @@
   "targetHigh": 15000.0,
   "targetLow": 5250.0,
   "targetMean": 12432.353,
-  "trailingPE": 80.09215
+  "trailingPE": 79.14948
  },
  "4063.T": {
   "analysts": 17,
@@ -1386,7 +1386,7 @@
   "targetHigh": 26660.0,
   "targetLow": 17363.637,
   "targetMean": 22593.467,
-  "trailingPE": 122.48426
+  "trailingPE": 123.54719
  },
  "5706.T": {
   "analysts": 10,
@@ -1603,7 +1603,7 @@
   "targetHigh": 123.88,
   "targetLow": 98.98,
   "targetMean": 111.43,
-  "trailingPE": 42.66879
+  "trailingPE": 40.6
  },
  "6082.HK": {
   "analysts": 6,
@@ -1612,16 +1612,16 @@
   "dividendYield": 0.0,
   "evToEbitda": -98.8,
   "financialCurrency": "CNY",
-  "forwardPE": 21.241234,
+  "forwardPE": 21.08927,
   "high52": 70.75,
   "low52": 24.9,
-  "marketCap": 68688703488,
-  "priceToSales": 31.063221,
+  "marketCap": 68197289984,
+  "priceToSales": 30.840988,
   "recommendation": "strong_buy",
   "sharesOutstanding": 1492062574,
-  "targetHigh": 139.98647,
-  "targetLow": 67.68165,
-  "targetMean": 97.69252
+  "targetHigh": 139.91481,
+  "targetLow": 67.64701,
+  "targetMean": 97.64252
  },
  "6146.T": {
   "analysts": 20,
@@ -1863,7 +1863,7 @@
   "targetHigh": 631.0,
   "targetLow": 115.0,
   "targetMean": 322.66153,
-  "trailingPE": 307.89474
+  "trailingPE": 300.0
  },
  "688041.SS": {
   "analysts": 6,
@@ -2184,16 +2184,16 @@
   "dividendYield": 0.0,
   "evToEbitda": -14.306,
   "financialCurrency": "CNY",
-  "forwardPE": -25.72016,
+  "forwardPE": -25.686625,
   "high52": 9.8,
   "low52": 3.6,
-  "marketCap": 60874821632,
-  "priceToSales": 14.265803,
+  "marketCap": 60795453440,
+  "priceToSales": 14.247204,
   "recommendation": "strong_buy",
   "sharesOutstanding": 13760720129,
-  "targetHigh": 13.167322,
-  "targetLow": 5.518718,
-  "targetMean": 8.160551
+  "targetHigh": 13.160583,
+  "targetLow": 5.515893,
+  "targetMean": 8.156375
  },
  "9880.HK": {
   "analysts": 10,
@@ -2202,16 +2202,16 @@
   "dividendYield": 0.0,
   "evToEbitda": -70.265,
   "financialCurrency": "CNY",
-  "forwardPE": 44.269485,
+  "forwardPE": 44.05851,
   "high52": 156.4,
-  "low52": 62.65,
-  "marketCap": 31689117696,
-  "priceToSales": 11.964168,
+  "low52": 62.6,
+  "marketCap": 31538096128,
+  "priceToSales": 11.907149,
   "recommendation": "none",
   "sharesOutstanding": 432735396,
-  "targetHigh": 177.69263,
-  "targetLow": 74.23777,
-  "targetMean": 139.14119
+  "targetHigh": 177.60167,
+  "targetLow": 74.19977,
+  "targetMean": 139.06998
  },
  "9984.T": {
   "analysts": 18,
@@ -2283,18 +2283,18 @@
   "earningsEstimated": false,
   "evToEbitda": 20.56,
   "financialCurrency": "USD",
-  "forwardPE": 25.151491,
+  "forwardPE": 25.184849,
   "high52": 89.14,
   "low52": 53.78,
-  "marketCap": 136408580096,
+  "marketCap": 136589484032,
   "nextEarnings": "2026-10-20",
-  "priceToSales": 3.815411,
+  "priceToSales": 3.820471,
   "recommendation": "hold",
   "sharesOutstanding": 1809132299,
-  "targetHigh": 96.65292,
-  "targetLow": 67.04312,
-  "targetMean": 83.783325,
-  "trailingPE": 34.587154
+  "targetHigh": 96.7485,
+  "targetLow": 67.10941,
+  "targetMean": 83.86617,
+  "trailingPE": 34.633026
  },
  "ACMR": {
   "analysts": 9,
@@ -2378,7 +2378,7 @@
   "targetHigh": 173.0,
   "targetLow": 120.0,
   "targetMean": 141.64285,
-  "trailingPE": 21.85962
+  "trailingPE": 21.784111
  },
  "ALAB": {
   "analysts": 22,
@@ -2615,18 +2615,18 @@
   "earningsEstimated": false,
   "evToEbitda": 34.024,
   "financialCurrency": "EUR",
-  "forwardPE": 23.552279,
+  "forwardPE": 24.084105,
   "high52": 1092.5,
   "low52": 459.7,
-  "marketCap": 36319870976,
+  "marketCap": 37139996672,
   "nextEarnings": "2026-10-27",
-  "priceToSales": 10.796632,
+  "priceToSales": 11.040427,
   "recommendation": "buy",
   "sharesOutstanding": 48817034,
   "targetHigh": 1457.0,
   "targetLow": 690.0,
   "targetMean": 1148.4,
-  "trailingPE": 34.034767
+  "trailingPE": 34.64481
  },
  "ASML": {
   "analysts": 17,
@@ -2635,7 +2635,7 @@
   "dividendYield": 0.53,
   "evToEbitda": 2609.914,
   "financialCurrency": "EUR",
-  "forwardPE": 26.819744,
+  "forwardPE": 26.435236,
   "high52": 1999.96,
   "low52": 946.11,
   "marketCap": 633764970496,
@@ -2697,7 +2697,7 @@
   "earningsEstimated": true,
   "evToEbitda": 2.061,
   "financialCurrency": "CNY",
-  "forwardPE": 11.973985,
+  "forwardPE": 11.992064,
   "high52": 182.5,
   "low52": 91.99,
   "marketCap": 276562608128,
@@ -2705,9 +2705,9 @@
   "priceToSales": 0.26466057,
   "recommendation": "strong_buy",
   "sharesOutstanding": 2487744939,
-  "targetHigh": 238.86105,
-  "targetLow": 95.458664,
-  "targetMean": 186.02135,
+  "targetHigh": 239.2257,
+  "targetLow": 95.60439,
+  "targetMean": 186.30533,
   "trailingPE": 26.852657
  },
  "BE": {
@@ -2718,7 +2718,7 @@
   "earningsEstimated": false,
   "evToEbitda": 168.751,
   "financialCurrency": "USD",
-  "forwardPE": 49.101425,
+  "forwardPE": 48.50271,
   "high52": 351.28,
   "low52": 75.7,
   "marketCap": 70492176384,
@@ -2729,7 +2729,7 @@
   "targetHigh": 380.0,
   "targetLow": 97.0,
   "targetMean": 283.0077,
-  "trailingPE": 314.92105
+  "trailingPE": 346.86957
  },
  "BESI.AS": {
   "analysts": 23,
@@ -2739,18 +2739,18 @@
   "earningsEstimated": false,
   "evToEbitda": 50.082,
   "financialCurrency": "EUR",
-  "forwardPE": 24.572645,
+  "forwardPE": 25.220497,
   "high52": 328.4,
   "low52": 120.15,
-  "marketCap": 12753125376,
+  "marketCap": 13089357824,
   "nextEarnings": "2026-10-22",
-  "priceToSales": 17.378855,
+  "priceToSales": 17.837044,
   "recommendation": "buy",
   "sharesOutstanding": 79113680,
   "targetHigh": 400.0,
   "targetLow": 159.0,
   "targetMean": 270.56522,
-  "trailingPE": 61.52672
+  "trailingPE": 62.43396
  },
  "BIDU": {
   "analysts": 30,
@@ -2768,9 +2768,9 @@
   "priceToSales": 0.2188846,
   "recommendation": "buy",
   "sharesOutstanding": 274921041,
-  "targetHigh": 207.21515,
-  "targetLow": 80.48542,
-  "targetMean": 144.85803
+  "targetHigh": 207.5315,
+  "targetLow": 80.60829,
+  "targetMean": 145.07918
  },
  "BWXT": {
   "analysts": 16,
@@ -2871,9 +2871,9 @@
   "priceToSales": 10.21201,
   "recommendation": "buy",
   "sharesOutstanding": 435532978,
-  "targetHigh": 169.60583,
-  "targetLow": 83.37158,
-  "targetMean": 127.41088,
+  "targetHigh": 169.65,
+  "targetLow": 83.39329,
+  "targetMean": 127.44406,
   "trailingPE": 148.12727
  },
  "CDNS": {
@@ -2905,7 +2905,7 @@
   "earningsEstimated": false,
   "evToEbitda": 15.517,
   "financialCurrency": "USD",
-  "forwardPE": 20.986235,
+  "forwardPE": 21.008663,
   "high52": 411.69,
   "low52": 228.63,
   "marketCap": 99043090432,
@@ -2916,7 +2916,7 @@
   "targetHigh": 395.0,
   "targetLow": 290.0,
   "targetMean": 341.532,
-  "trailingPE": 27.325516
+  "trailingPE": 28.907963
  },
  "CIEN": {
   "analysts": 20,
@@ -2925,7 +2925,7 @@
   "dividendYield": 0.0,
   "evToEbitda": 50.364,
   "financialCurrency": "USD",
-  "forwardPE": 30.401587,
+  "forwardPE": 30.313171,
   "high52": 637.51,
   "low52": 159.56,
   "marketCap": 50994348032,
@@ -2935,7 +2935,7 @@
   "targetHigh": 660.0,
   "targetLow": 347.0,
   "targetMean": 512.9907,
-  "trailingPE": 80.44743
+  "trailingPE": 89.675804
  },
  "CIFR": {
   "analysts": 21,
@@ -2976,7 +2976,7 @@
   "targetHigh": 550.0,
   "targetLow": 375.0,
   "targetMean": 473.9143,
-  "trailingPE": 33.57425
+  "trailingPE": 37.120552
  },
  "CMI": {
   "analysts": 19,
@@ -3080,7 +3080,7 @@
   "targetHigh": 475.0,
   "targetLow": 165.0,
   "targetMean": 285.67557,
-  "trailingPE": 22.030811
+  "trailingPE": 21.766605
  },
  "CRWD": {
   "analysts": 50,
@@ -3111,7 +3111,7 @@
   "earningsEstimated": false,
   "evToEbitda": 21.735,
   "financialCurrency": "USD",
-  "forwardPE": -35.879086,
+  "forwardPE": -35.873215,
   "high52": 150.4,
   "low52": 60.55,
   "marketCap": 36280074240,
@@ -3236,18 +3236,18 @@
   "earningsEstimated": false,
   "evToEbitda": 16.333,
   "financialCurrency": "EUR",
-  "forwardPE": 16.163052,
+  "forwardPE": 15.916833,
   "high52": 30.36,
   "low52": 15.825,
-  "marketCap": 29908553728,
+  "marketCap": 29474906112,
   "nextEarnings": "2026-10-28",
-  "priceToSales": 4.8191414,
+  "priceToSales": 4.749268,
   "recommendation": "hold",
   "sharesOutstanding": 1314084061,
   "targetHigh": 33.35,
   "targetLow": 16.0,
   "targetMean": 23.325,
-  "trailingPE": 23.463917
+  "trailingPE": 23.12371
  },
  "DUK": {
   "analysts": 18,
@@ -3257,7 +3257,7 @@
   "earningsEstimated": false,
   "evToEbitda": 11.308,
   "financialCurrency": "USD",
-  "forwardPE": 16.691196,
+  "forwardPE": 16.690079,
   "high52": 134.49,
   "low52": 112.4,
   "marketCap": 93283573760,
@@ -3268,7 +3268,7 @@
   "targetHigh": 147.0,
   "targetLow": 121.0,
   "targetMean": 133.94444,
-  "trailingPE": 18.018072
+  "trailingPE": 17.803572
  },
  "DUOL": {
   "analysts": 18,
@@ -3298,17 +3298,17 @@
   "dividendYield": 2.73,
   "evToEbitda": 14.038,
   "financialCurrency": "EUR",
-  "forwardPE": 18.915615,
+  "forwardPE": 18.814054,
   "high52": 323.8,
   "low52": 138.3,
-  "marketCap": 68297482240,
-  "priceToSales": 2.3321662,
+  "marketCap": 67930779648,
+  "priceToSales": 2.3196442,
   "recommendation": "buy",
   "sharesOutstanding": 458372353,
   "targetHigh": 361.0,
   "targetLow": 135.0,
   "targetMean": 223.95651,
-  "trailingPE": 27.850468
+  "trailingPE": 27.343172
  },
  "EME": {
   "analysts": 7,
@@ -3318,7 +3318,7 @@
   "earningsEstimated": true,
   "evToEbitda": 16.328,
   "financialCurrency": "USD",
-  "forwardPE": 20.009266,
+  "forwardPE": 19.942879,
   "high52": 951.96,
   "low52": 564.92,
   "marketCap": 32877312000,
@@ -3339,18 +3339,18 @@
   "earningsEstimated": false,
   "evToEbitda": 23.261,
   "financialCurrency": "EUR",
-  "forwardPE": 20.157421,
+  "forwardPE": 20.358837,
   "high52": 191.66,
   "low52": 94.4,
-  "marketCap": 107292000256,
+  "marketCap": 108364079104,
   "nextEarnings": "2026-11-11",
-  "priceToSales": 2.5640953,
+  "priceToSales": 2.5897162,
   "recommendation": "buy",
   "sharesOutstanding": 850848567,
   "targetHigh": 260.0,
   "targetLow": 100.0,
   "targetMean": 194.73741,
-  "trailingPE": 40.809063
+  "trailingPE": 43.616436
  },
  "ENTG": {
   "analysts": 14,
@@ -3444,7 +3444,7 @@
   "earningsEstimated": true,
   "evToEbitda": 27.033,
   "financialCurrency": "USD",
-  "forwardPE": 25.110905,
+  "forwardPE": 25.1077,
   "high52": 478.0,
   "low52": 311.92,
   "marketCap": 158797348864,
@@ -3497,7 +3497,7 @@
   "targetHigh": 156.0,
   "targetLow": 93.0,
   "targetMean": 123.03704,
-  "trailingPE": 7.85431
+  "trailingPE": 7.9572053
  },
  "FCX": {
   "analysts": 22,
@@ -3548,7 +3548,7 @@
   "earningsEstimated": false,
   "evToEbitda": 26.281,
   "financialCurrency": "USD",
-  "forwardPE": 25.640535,
+  "forwardPE": 25.61876,
   "high52": 2073.99,
   "low52": 770.47,
   "marketCap": 54258393088,
@@ -3600,7 +3600,7 @@
   "targetHigh": 850.0,
   "targetLow": 598.0,
   "targetMean": 734.1111,
-  "trailingPE": 30.11111
+  "trailingPE": 32.773148
  },
  "FSLR": {
   "analysts": 30,
@@ -3631,7 +3631,7 @@
   "earningsEstimated": false,
   "evToEbitda": 50.671,
   "financialCurrency": "USD",
-  "forwardPE": 48.703876,
+  "forwardPE": 48.723217,
   "high52": 197.13,
   "low52": 73.55,
   "marketCap": 135040000000,
@@ -3642,7 +3642,7 @@
   "targetHigh": 225.0,
   "targetLow": 104.0,
   "targetMean": 165.70833,
-  "trailingPE": 65.03534
+  "trailingPE": 67.41758
  },
  "GDS": {
   "analysts": 15,
@@ -3660,10 +3660,10 @@
   "priceToSales": 0.4225226,
   "recommendation": "strong_buy",
   "sharesOutstanding": 194928821,
-  "targetHigh": 62.92728,
-  "targetLow": 40.129128,
-  "targetMean": 50.26905,
-  "trailingPE": 12.027906
+  "targetHigh": 63.023346,
+  "targetLow": 40.190388,
+  "targetMean": 50.345795,
+  "trailingPE": 13.75532
  },
  "GEV": {
   "analysts": 33,
@@ -3684,7 +3684,7 @@
   "targetHigh": 1450.0,
   "targetLow": 940.0,
   "targetMean": 1223.9773,
-  "trailingPE": 27.000574
+  "trailingPE": 28.783007
  },
  "GFS": {
   "analysts": 22,
@@ -3694,7 +3694,7 @@
   "earningsEstimated": false,
   "evToEbitda": 13.242,
   "financialCurrency": "USD",
-  "forwardPE": 18.858908,
+  "forwardPE": 18.643383,
   "high52": 92.55,
   "low52": 32.02,
   "marketCap": 27280066560,
@@ -3827,7 +3827,7 @@
   "targetHigh": 92.0,
   "targetLow": 52.59,
   "targetMean": 71.74238,
-  "trailingPE": 32.530926
+  "trailingPE": 35.455055
  },
  "HPQ": {
   "analysts": 17,
@@ -3900,7 +3900,7 @@
   "earningsEstimated": false,
   "evToEbitda": 32.518,
   "financialCurrency": "USD",
-  "forwardPE": 33.46069,
+  "forwardPE": 33.4504,
   "high52": 310.0,
   "low52": 187.46,
   "marketCap": 86755254272,
@@ -3921,18 +3921,18 @@
   "earningsEstimated": false,
   "evToEbitda": 18.559,
   "financialCurrency": "EUR",
-  "forwardPE": 17.62323,
+  "forwardPE": 17.868532,
   "high52": 88.83,
   "low52": 31.27,
-  "marketCap": 65351839744,
+  "marketCap": 66261487616,
   "nextEarnings": "2026-11-10",
-  "priceToSales": 4.191639,
+  "priceToSales": 4.2499833,
   "recommendation": "buy",
   "sharesOutstanding": 1299499659,
   "targetHigh": 124.0,
   "targetLow": 50.0,
   "targetMean": 86.73913,
-  "trailingPE": 59.164707
+  "trailingPE": 60.702385
  },
  "INOD": {
   "analysts": 4,
@@ -3963,7 +3963,7 @@
   "earningsEstimated": false,
   "evToEbitda": 31.552,
   "financialCurrency": "USD",
-  "forwardPE": 46.930305,
+  "forwardPE": 46.664482,
   "high52": 142.35,
   "low52": 32.89,
   "marketCap": 518672646144,
@@ -4070,10 +4070,10 @@
   "marketCap": 7635459072,
   "recommendation": "strong_buy",
   "sharesOutstanding": 259356608,
-  "targetHigh": 105.44944,
-  "targetLow": 78.61587,
-  "targetMean": 90.585335,
-  "trailingPE": 7.424242
+  "targetHigh": 105.36096,
+  "targetLow": 78.549904,
+  "targetMean": 90.50933,
+  "trailingPE": 7.35
  },
  "KLAC": {
   "analysts": 26,
@@ -4166,18 +4166,18 @@
   "earningsEstimated": false,
   "evToEbitda": 18.608,
   "financialCurrency": "EUR",
-  "forwardPE": 18.739464,
+  "forwardPE": 18.819052,
   "high52": 166.95,
   "low52": 121.95,
-  "marketCap": 33943711744,
+  "marketCap": 34087874560,
   "nextEarnings": "2026-11-05",
-  "priceToSales": 3.3585687,
+  "priceToSales": 3.372833,
   "recommendation": "buy",
   "sharesOutstanding": 262113593,
   "targetHigh": 200.0,
   "targetLow": 120.0,
   "targetMean": 169.22221,
-  "trailingPE": 26.05634
+  "trailingPE": 26.167004
  },
  "LRCX": {
   "analysts": 31,
@@ -4312,7 +4312,7 @@
   "earningsEstimated": false,
   "evToEbitda": 59.678,
   "financialCurrency": "USD",
-  "forwardPE": 35.54245,
+  "forwardPE": 35.428997,
   "high52": 1714.09,
   "low52": 833.18,
   "marketCap": 61090152448,
@@ -4344,7 +4344,7 @@
   "targetHigh": 450.0,
   "targetLow": 210.0,
   "targetMean": 339.35742,
-  "trailingPE": 80.68421
+  "trailingPE": 88.54874
  },
  "MSFT": {
   "analysts": 53,
@@ -4354,7 +4354,7 @@
   "earningsEstimated": false,
   "evToEbitda": 20.67,
   "financialCurrency": "USD",
-  "forwardPE": 22.528917,
+  "forwardPE": 22.508812,
   "high52": 553.72,
   "low52": 349.2,
   "marketCap": 3962939637760,
@@ -4365,7 +4365,7 @@
   "targetHigh": 870.0,
   "targetLow": 440.0,
   "targetMean": 590.27527,
-  "trailingPE": 29.732033
+  "trailingPE": 30.271698
  },
  "MTZ": {
   "analysts": 20,
@@ -4386,7 +4386,7 @@
   "targetHigh": 518.0,
   "targetLow": 280.0,
   "targetMean": 388.65,
-  "trailingPE": 31.014355
+  "trailingPE": 32.847973
  },
  "MU": {
   "analysts": 46,
@@ -4396,7 +4396,7 @@
   "earningsEstimated": true,
   "evToEbitda": 9.151,
   "financialCurrency": "USD",
-  "forwardPE": 4.430375,
+  "forwardPE": 4.4708185,
   "high52": 1255.0,
   "low52": 192.4,
   "marketCap": 1034267918336,
@@ -4428,7 +4428,7 @@
   "targetHigh": 410.0,
   "targetLow": 84.0,
   "targetMean": 283.6,
-  "trailingPE": 145.32031
+  "trailingPE": 161.74782
  },
  "NEE": {
   "analysts": 19,
@@ -4449,7 +4449,7 @@
   "targetHigh": 114.0,
   "targetLow": 56.0,
   "targetMean": 97.0,
-  "trailingPE": 17.611237
+  "trailingPE": 17.571749
  },
  "NET": {
   "analysts": 31,
@@ -4478,11 +4478,11 @@
   "dividendYield": 2.21,
   "evToEbitda": 9.013,
   "financialCurrency": "EUR",
-  "forwardPE": 13.487205,
+  "forwardPE": 13.454758,
   "high52": 169.0,
   "low52": 109.7,
-  "marketCap": 5434359808,
-  "priceToSales": 0.63418835,
+  "marketCap": 5421286400,
+  "priceToSales": 0.63266265,
   "recommendation": "buy",
   "sharesOutstanding": 43579474,
   "targetHigh": 190.0,
@@ -4497,7 +4497,7 @@
   "earningsEstimated": false,
   "evToEbitda": 20.464,
   "financialCurrency": "USD",
-  "forwardPE": 18.597921,
+  "forwardPE": 18.536808,
   "high52": 124.86,
   "low52": 65.08,
   "marketCap": 293849202688,
@@ -4518,15 +4518,15 @@
   "earningsEstimated": false,
   "evToEbitda": 64.734,
   "financialCurrency": "EUR",
-  "forwardPE": 20.264336,
+  "forwardPE": 20.077253,
   "high52": 1135.0,
   "low52": 697.0,
   "nextEarnings": "2026-11-19",
   "recommendation": "buy",
-  "targetHigh": 1277.0267,
-  "targetLow": 495.2121,
-  "targetMean": 964.8289,
-  "trailingPE": 22.495983
+  "targetHigh": 1277.061,
+  "targetLow": 495.22537,
+  "targetMean": 964.8548,
+  "trailingPE": 22.850925
  },
  "NOK": {
   "analysts": 12,
@@ -4547,7 +4547,7 @@
   "targetHigh": 21.0,
   "targetLow": 8.5,
   "targetMean": 14.96667,
-  "trailingPE": 67.14285
+  "trailingPE": 72.30769
  },
  "NOW": {
   "analysts": 46,
@@ -4568,7 +4568,7 @@
   "targetHigh": 248.0,
   "targetLow": 72.0,
   "targetMean": 150.27522,
-  "trailingPE": 87.487495
+  "trailingPE": 86.4074
  },
  "NRG": {
   "analysts": 16,
@@ -4710,9 +4710,9 @@
   "nextEarnings": "2026-11-03",
   "recommendation": "buy",
   "sharesOutstanding": 670506101,
-  "targetHigh": 18.925804,
-  "targetLow": 13.805433,
-  "targetMean": 16.36562
+  "targetHigh": 18.930204,
+  "targetLow": 13.808642,
+  "targetMean": 16.369423
  },
  "OKLO": {
   "analysts": 20,
@@ -4853,9 +4853,9 @@
   "priceToSales": 0.25719142,
   "recommendation": "buy",
   "sharesOutstanding": 1423396462,
-  "targetHigh": 150.67477,
-  "targetLow": 85.40397,
-  "targetMean": 114.817345,
+  "targetHigh": 150.9048,
+  "targetLow": 85.53435,
+  "targetMean": 114.99262,
   "trailingPE": 9.2138
  },
  "PINS": {
@@ -4928,18 +4928,18 @@
   "earningsEstimated": false,
   "evToEbitda": 16.918,
   "financialCurrency": "EUR",
-  "forwardPE": 17.282793,
+  "forwardPE": 17.347492,
   "high52": 157.25,
   "low52": 79.16,
-  "marketCap": 31977435136,
+  "marketCap": 32097144832,
   "nextEarnings": "2026-10-29",
-  "priceToSales": 1.4984038,
+  "priceToSales": 1.5040132,
   "recommendation": "buy",
   "sharesOutstanding": 299274068,
   "targetHigh": 181.0,
   "targetLow": 90.0,
   "targetMean": 154.55556,
-  "trailingPE": 22.734043
+  "trailingPE": 24.155405
  },
  "PTC": {
   "analysts": 15,
@@ -5093,17 +5093,17 @@
   "dividendYield": 0.89,
   "evToEbitda": 21.805,
   "financialCurrency": "GBP",
-  "forwardPE": 26.402655,
+  "forwardPE": 26.758005,
   "high52": 1586.0,
   "low52": 990.0,
-  "marketCap": 109999742976,
-  "priceToSales": 4.748532,
+  "marketCap": 111480225792,
+  "priceToSales": 4.8124423,
   "recommendation": "buy",
   "sharesOutstanding": 8224894943,
   "targetHigh": 2000.0,
   "targetLow": 1199.0,
   "targetMean": 1732.0499,
-  "trailingPE": 37.15
+  "trailingPE": 36.63243
  },
  "RXRX": {
   "analysts": 6,
@@ -5175,18 +5175,18 @@
   "earningsEstimated": false,
   "evToEbitda": 20.674,
   "financialCurrency": "EUR",
-  "forwardPE": 20.630754,
+  "forwardPE": 20.580652,
   "high52": 291.7,
   "low52": 198.0,
-  "marketCap": 204876201984,
+  "marketCap": 204378652672,
   "nextEarnings": "2026-11-12",
-  "priceToSales": 2.5257812,
+  "priceToSales": 2.5196471,
   "recommendation": "buy",
   "sharesOutstanding": 765463106,
   "targetHigh": 345.0,
   "targetLow": 240.0,
   "targetMean": 306.0526,
-  "trailingPE": 26.447628
+  "trailingPE": 26.33136
  },
  "SIMO": {
   "analysts": 10,
@@ -5387,9 +5387,9 @@
   "priceToSales": 5.9469943,
   "recommendation": "buy",
   "sharesOutstanding": 205584205,
-  "targetHigh": 701.4917,
-  "targetLow": 409.02423,
-  "targetMean": 595.9866,
+  "targetHigh": 701.413,
+  "targetLow": 408.97836,
+  "targetMean": 595.91974,
   "trailingPE": 30.304222
  },
  "STRL": {
@@ -5432,7 +5432,7 @@
   "targetHigh": 1600.0,
   "targetLow": 700.0,
   "targetMean": 1138.3334,
-  "trailingPE": 51.333813
+  "trailingPE": 53.77091
  },
  "SU.PA": {
   "analysts": 22,
@@ -5441,17 +5441,17 @@
   "dividendYield": 1.59,
   "evToEbitda": 19.392,
   "financialCurrency": "EUR",
-  "forwardPE": 20.310034,
+  "forwardPE": 20.483694,
   "high52": 312.3,
   "low52": 220.4,
-  "marketCap": 141642088448,
-  "priceToSales": 3.3690617,
+  "marketCap": 142853177344,
+  "priceToSales": 3.3978684,
   "recommendation": "buy",
   "sharesOutstanding": 563301211,
   "targetHigh": 370.0,
   "targetLow": 262.0,
   "targetMean": 329.15,
-  "trailingPE": 30.222357
+  "trailingPE": 30.480772
  },
  "TEAM": {
   "analysts": 31,
@@ -5533,7 +5533,7 @@
   "targetHigh": 550.0,
   "targetLow": 350.0,
   "targetMean": 446.46667,
-  "trailingPE": 49.373627
+  "trailingPE": 52.244186
  },
  "TLN": {
   "analysts": 17,
@@ -5605,7 +5605,7 @@
   "earningsEstimated": false,
   "evToEbitda": 132.341,
   "financialCurrency": "USD",
-  "forwardPE": 168.60687,
+  "forwardPE": 169.32222,
   "high52": 498.83,
   "low52": 297.38,
   "marketCap": 1450115858432,
@@ -5647,7 +5647,7 @@
   "earningsEstimated": false,
   "evToEbitda": 24.839,
   "financialCurrency": "USD",
-  "forwardPE": 26.701242,
+  "forwardPE": 26.7315,
   "high52": 505.87,
   "low52": 348.06,
   "marketCap": 103694729216,
@@ -5792,17 +5792,17 @@
   "dividendYield": 1.1,
   "evToEbitda": 71.432,
   "financialCurrency": "CHF",
-  "forwardPE": 35.02625,
+  "forwardPE": 36.021976,
   "high52": 727.2,
   "low52": 305.1,
-  "marketCap": 17920221184,
-  "priceToSales": 17.441538,
+  "marketCap": 18429659136,
+  "priceToSales": 17.937368,
   "recommendation": "buy",
   "sharesOutstanding": 29966926,
   "targetHigh": 860.0,
   "targetLow": 390.0,
   "targetMean": 720.05554,
-  "trailingPE": 85.06401
+  "trailingPE": 89.00145
  },
  "VICR": {
   "analysts": 4,
@@ -5841,9 +5841,9 @@
   "priceToSales": 0.119259894,
   "recommendation": "strong_buy",
   "sharesOutstanding": 280102991,
-  "targetHigh": 25.079659,
-  "targetLow": 7.516739,
-  "targetMean": 13.634465
+  "targetHigh": 25.117947,
+  "targetLow": 7.5282145,
+  "targetMean": 13.655279
  },
  "VRT": {
   "analysts": 28,
@@ -5944,7 +5944,7 @@
   "targetHigh": 120.0,
   "targetLow": 56.0,
   "targetMean": 89.90625,
-  "trailingPE": 13.606837
+  "trailingPE": 13.747841
  },
  "WMB": {
   "analysts": 24,
@@ -5983,9 +5983,9 @@
   "priceToSales": 1.6668957,
   "recommendation": "strong_buy",
   "sharesOutstanding": 310684647,
-  "targetHigh": 20.149153,
-  "targetLow": 10.504544,
-  "targetMean": 13.386728
+  "targetHigh": 20.179913,
+  "targetLow": 10.52058,
+  "targetMean": 13.407165
  },
  "WRT1V.HE": {
   "analysts": 17,
@@ -5995,18 +5995,18 @@
   "earningsEstimated": false,
   "evToEbitda": 18.199,
   "financialCurrency": "EUR",
-  "forwardPE": 21.607971,
+  "forwardPE": 21.630999,
   "high52": 40.75,
   "low52": 24.84,
-  "marketCap": 16595726336,
+  "marketCap": 16613412864,
   "nextEarnings": "2026-10-27",
-  "priceToSales": 2.4079695,
+  "priceToSales": 2.4105358,
   "recommendation": "hold",
   "sharesOutstanding": 589546248,
   "targetHigh": 43.0,
   "targetLow": 19.5,
   "targetMean": 33.03529,
-  "trailingPE": 24.911505
+  "trailingPE": 24.938053
  },
  "WULF": {
   "analysts": 25,
@@ -6044,9 +6044,9 @@
   "priceToSales": 0.11966438,
   "recommendation": "buy",
   "sharesOutstanding": 783622601,
-  "targetHigh": 25.292234,
-  "targetLow": 11.532989,
-  "targetMean": 18.434496
+  "targetHigh": 25.331985,
+  "targetLow": 11.551114,
+  "targetMean": 18.463469
  },
  "ZS": {
   "analysts": 44,
