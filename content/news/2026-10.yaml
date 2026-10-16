@@ -1,5 +1,90 @@
 month: 2026-10
 items:
+  - id: 2026-10-15-nerc-large-load-standards-ballot
+    date: 2026-10-15
+    title: "NERC reliability standards for AI data centers pass their final stakeholder ballot"
+    summary: "Proposed NERC standards for computational loads of 50 MW or more connected at 100 kV or higher passed a final ballot on October 15 and now go to NERC's board, then to FERC. The first standard covers protection coordination and disturbance monitoring, after data centers unexpectedly dropped or swung load earlier this year."
+    source: { name: "Utility Dive", url: "https://www.utilitydive.com/news/reliability-standards-ai-data-centers-crypto-miners-pass-final-nerc-ba/833094/" }
+    companies: []
+    nodes: [energy/power-producers/to-data-centers]
+    themes: [power-bottleneck, data-centers]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-10-15-ai-chip-stocks-global-rout
+    date: 2026-10-15
+    title: "AI chip stocks extend a global selloff on funding and rate worries"
+    summary: "Nvidia fell 1.8%, AMD 1.5% and Dell 6.8% on October 15, while SoftBank Group dropped 7.9% and Advantest almost 14% in Tokyo, as hot US inflation data raised fears of higher rates and harder AI financing. About 20 major AI and chip stocks lost more than $1 trillion in value over the week, CNBC reported."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/15/sk-hynix-samsung-softbank-stocks-asia-tech-rout-ai-funding-worries.html" }
+    companies: [nvidia, amd, dell, softbank, advantest]
+    nodes: [chips/compute/gpus]
+    themes: [capex]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-15-intel-kiryat-gat-fab-explosion
+    date: 2026-10-15
+    title: "Two workers die after an explosion at Intel's Kiryat Gat fab in Israel"
+    summary: "An explosion at Intel's Kiryat Gat site on October 14 killed two workers and seriously injured a third; police suspect a gas cylinder malfunction during a delivery. Intel said it is cooperating with the investigation and has not commented on any production impact."
+    source: { name: "Tom's Hardware", url: "https://www.tomshardware.com/tech-industry/semiconductors/two-killed-one-seriously-hurt-in-explosion-at-intels-chip-plant-in-israel-police-suspect-a-gas-cylinder-malfunction-and-the-fire-involved-a-toxic-gas-used-to-clean-chipmaking-tools" }
+    companies: [intel]
+    nodes: [chips/foundry-packaging/leading-edge]
+    impact: negative
+    importance: 1
+
+  - id: 2026-10-15-tsmc-terafab-talks
+    date: 2026-10-15
+    title: "TSMC confirms Terafab talks with Musk but says it would have to run any plant"
+    summary: "TSMC CEO C.C. Wei said on the earnings call that the company is discussing a possible role in Elon Musk's Texas Terafab project, with no conclusion yet, and that any partner fab would have to be operated by TSMC. Musk said on October 7 that his companies plan to run Terafab themselves."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-15/tsmc-open-to-working-with-terafab-but-must-control-plants" }
+    companies: [tsmc, tesla, intel]
+    nodes: [chips/foundry-packaging/leading-edge]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-10-15-coreweave-cds-distress
+    date: 2026-10-15
+    title: "CoreWeave's credit default swaps reach distress levels"
+    summary: "CoreWeave's five-year credit default swap spread passed 1,140 basis points on October 15, above the roughly 1,000 points generally seen as distress, and the yield on its 2031 bond reached 15.78%. CEO Mike Intrator said the company's backlog more than supports all of its debt obligations."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html" }
+    companies: [coreweave]
+    nodes: [infrastructure/cloud/neoclouds]
+    themes: [capex]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-15-meta-muse-spark-open-macs
+    date: 2026-10-15
+    title: "Meta and Apple make Meta's 816-billion-parameter open-weight model run on Macs"
+    summary: "Meta released Muse Spark Open, an 816-billion-parameter mixture-of-experts model under a license that allows limited commercial use, and worked with Apple so developers can run it locally across two to four linked Mac Studios. A Mac Studio with Apple's M5 Ultra and 256GB of memory starts at $10,799."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/15/apple-meta-partner-ai.html" }
+    companies: [meta, apple]
+    nodes: [models/frontier-labs/open-labs]
+    themes: [edge-ai]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-10-15-anthropic-metr-employee-access
+    date: 2026-10-15
+    title: "Anthropic gives METR evaluators employee-level access to assess its risks"
+    summary: "Anthropic onboarded six METR staff with access to internal tools and systems roughly on par with its own risk teams, and said it cannot veto their published findings, only require narrow redactions. SecureBio joins as a more limited evaluator reviewing the chemical and biological sections of Anthropic's August risk report."
+    source: { name: "Anthropic", url: "https://www.anthropic.com/news/an-update-on-independent-evaluators" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-10-15-amazon-bee-frontier-eclipse
+    date: 2026-10-15
+    title: "Amazon's Bee launches two new personal AI devices from $74.99"
+    summary: "Amazon's Bee unit released the Bee Frontier wearable at $74.99 and announced the Bee Eclipse, a $99.99 device that snaps onto a phone, both of which record and summarize conversations. A $11.99-a-month Bee Pro plan adds unlimited summaries and links to Alexa+ and Amazon.com."
+    source: { name: "Amazon", url: "https://www.aboutamazon.com/news/devices/amazon-personal-ai-bee-frontier-bee-eclipse" }
+    companies: [amazon]
+    nodes: [applications/devices/wearables-glasses]
+    themes: [edge-ai]
+    impact: neutral
+    importance: 1
+
   - id: 2026-10-15-tsmc-q3-2026-results
     date: 2026-10-15
     title: "TSMC third-quarter profit jumps 69% and it guides up to $54.3 billion for the fourth quarter"
