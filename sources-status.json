@@ -1,0 +1,402 @@
+{
+ "nvidia-newsroom": {
+  "ok": true,
+  "status": 200,
+  "entries": 20,
+  "kept": 14,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "amd-ir": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "samsung-newsroom": {
+  "ok": true,
+  "status": 200,
+  "entries": 50,
+  "kept": 5,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sk-hynix-newsroom": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 8,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "microsoft-blog": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "aws-news-blog": {
+  "ok": true,
+  "status": 200,
+  "entries": 20,
+  "kept": 1,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "google-cloud-blog": {
+  "ok": true,
+  "status": 200,
+  "entries": 20,
+  "kept": 16,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "coreweave-ir": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "vertiv-ir": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 2,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "arista-ir": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "dell-ir": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "openai-news": {
+  "ok": true,
+  "status": 200,
+  "entries": 1299,
+  "kept": 11,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "google-blog": {
+  "ok": true,
+  "status": 200,
+  "entries": 20,
+  "kept": 18,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "meta-newsroom": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 4,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "apple-newsroom": {
+  "ok": true,
+  "status": 200,
+  "entries": 20,
+  "kept": 2,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "nextera-newsroom": {
+  "ok": true,
+  "status": 200,
+  "entries": 5,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "nrc-news": {
+  "ok": true,
+  "status": 200,
+  "entries": 164,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "ferc-rules": {
+  "ok": true,
+  "status": 200,
+  "entries": 0,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "bis-federal-register": {
+  "ok": true,
+  "status": 200,
+  "entries": 8,
+  "kept": 1,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "doe-news": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 2,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "eia-today-in-energy": {
+  "ok": true,
+  "status": 200,
+  "entries": 18,
+  "kept": 3,
+  "at": "2026-10-17T22:25:34Z",
+  "undated": 1
+ },
+ "sec-nvda-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-amd-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-avgo-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-mu-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-intc-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-tsm-6k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 1,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-asml-6k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 1,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-msft-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-googl-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-amzn-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-meta-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-orcl-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-crwv-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-vrt-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-anet-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-dell-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-gev-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-ceg-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-vst-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "sec-tsla-8k": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 0,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "utility-dive": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 7,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "world-nuclear-news": {
+  "ok": true,
+  "status": 200,
+  "entries": 49,
+  "kept": 13,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "canary-media": {
+  "ok": true,
+  "status": 200,
+  "entries": 100,
+  "kept": 3,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "cnbc-energy": {
+  "ok": true,
+  "status": 200,
+  "entries": 30,
+  "kept": 1,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "electrek": {
+  "ok": true,
+  "status": 200,
+  "entries": 100,
+  "kept": 18,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "tomshardware": {
+  "ok": true,
+  "status": 200,
+  "entries": 50,
+  "kept": 32,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "eetimes": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 9,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "semiengineering": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 7,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "trendforce": {
+  "ok": true,
+  "status": 200,
+  "entries": 10,
+  "kept": 1,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "dcd": {
+  "ok": true,
+  "status": 200,
+  "entries": 20,
+  "kept": 17,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "data-center-knowledge": {
+  "ok": true,
+  "status": 200,
+  "entries": 50,
+  "kept": 7,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "the-register-on-prem": {
+  "ok": true,
+  "status": 200,
+  "entries": 50,
+  "kept": 2,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "servethehome": {
+  "ok": true,
+  "status": 200,
+  "entries": 6,
+  "kept": 3,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "techcrunch-ai": {
+  "ok": true,
+  "status": 200,
+  "entries": 20,
+  "kept": 15,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "cnbc-technology": {
+  "ok": true,
+  "status": 200,
+  "entries": 30,
+  "kept": 21,
+  "at": "2026-10-17T22:25:34Z"
+ },
+ "scmp-tech": {
+  "ok": true,
+  "status": 200,
+  "entries": 50,
+  "kept": 19,
+  "at": "2026-10-17T22:25:34Z"
+ }
+}
