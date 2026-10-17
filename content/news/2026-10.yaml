@@ -1,5 +1,69 @@
 month: 2026-10
 items:
+  - id: 2026-10-16-taiwan-texas-industrial-park
+    date: 2026-10-16
+    title: "Taiwan plans a Texas industrial park of up to $4 billion for TSMC and Foxconn suppliers"
+    summary: "Taiwan's economy minister said the first US industrial park, in Texas, could cost as much as $4 billion and would help smaller suppliers to TSMC and Foxconn set up in the US. Private companies would fund it, with government loan guarantees and help on visas, permits and land."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-16/taiwan-to-fund-4-billion-texas-complex-for-ai-nvidia-partners" }
+    companies: [tsmc, hon-hai]
+    nodes: [chips/foundry-packaging/leading-edge, infrastructure/servers/odm]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-15-wolfspeed-infineon-200mm-sic
+    date: 2026-10-15
+    title: "Infineon extends its Wolfspeed silicon carbide wafer deal to 200mm"
+    summary: "Infineon and Wolfspeed expanded their multi-year supply agreement to add 200mm silicon carbide wafers to the existing 150mm supply, supporting Infineon's move to 200mm SiC production. The companies did not disclose volumes or value."
+    source: { name: "Infineon", url: "https://www.infineon.com/press-release/2026/infpr202610-008" }
+    companies: [infineon]
+    nodes: [chips/connectivity-power/power-semis]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-16-digital-realty-kokomo-campus
+    date: 2026-10-16
+    title: "Digital Realty plans a campus of about 1 GW in Kokomo, Indiana"
+    summary: "Digital Realty plans three data centers on 476 acres in Kokomo, about 50 miles north of Indianapolis, with around 1 GW of IT capacity and full build-out possible by 2033. The city says there will be no tax abatements and the company will pay for infrastructure upgrades."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/digital-realty-eyes-gigawatt-scale-data-center-site-outside-indianapolis-indiana/" }
+    companies: [digital-realty]
+    nodes: [infrastructure/data-centers/colocation]
+    themes: [data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-16-doe-dpa-virginia-transmission
+    date: 2026-10-16
+    title: "DOE picks a Virginia and West Virginia grid upgrade for up to $50 million in Defense Production Act funds"
+    summary: "The Energy Department plans up to $50 million for a Virginia Energy-led project that would add about 290 MW of capacity on existing Appalachian Power lines through reconductoring and dynamic line ratings. DOE says the 48-month project is one to four years faster than conventional upgrades."
+    source: { name: "U.S. Department of Energy", url: "https://www.energy.gov/articles/energy-department-announces-virginia-and-west-virginia-transmission-project-receive" }
+    companies: [aep]
+    nodes: [energy/grid/grid-epc]
+    themes: [power-bottleneck]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-16-replit-moves-off-anthropic
+    date: 2026-10-16
+    title: "Replit's CEO says the company is no longer working with Anthropic"
+    summary: "Replit CEO Amjad Masad said at TechCrunch Disrupt that Replit has stopped working with Anthropic, citing cost, partnership and OpenAI models' better results on its app-building benchmark. A person familiar with the matter told TechCrunch the partnership is still in place."
+    source: { name: "TechCrunch", url: "https://techcrunch.com/2026/10/16/replit-is-no-longer-working-with-anthropic-ceo-says/" }
+    companies: [replit, anthropic, openai]
+    nodes: [applications/coding/coding-agents, models/frontier-labs/to-apps]
+    themes: [coding]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-10-16-waymo-toronto
+    date: 2026-10-16
+    title: "Waymo picks Toronto as its first Canadian city, aiming for riders in 2028"
+    summary: "Waymo will start manually driving and mapping in Toronto under Ontario's automated vehicle pilot program, with the goal of carrying its first public riders in 2028. Element Fleet Management will run fleet operations."
+    source: { name: "Waymo", url: "https://waymo.com/blog/2026/10/waymo-in-toronto/" }
+    companies: [waymo]
+    nodes: [applications/physical-ai/autonomous-driving]
+    themes: [robotics]
+    impact: positive
+    importance: 1
+
   - id: 2026-10-15-nerc-large-load-standards-ballot
     date: 2026-10-15
     title: "NERC reliability standards for AI data centers pass their final stakeholder ballot"
