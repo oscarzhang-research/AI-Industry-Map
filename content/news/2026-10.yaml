@@ -1,5 +1,16 @@
 month: 2026-10
 items:
+  - id: 2026-10-17-taiwan-ai-server-export-controls
+    date: 2026-10-17
+    title: "Taiwan moves to bring AI servers under export controls, with prison terms for smuggling"
+    summary: "Taiwan is expanding its export controls to cover AI servers; once they take effect, smuggling them would be a criminal offense under the Foreign Trade Act with up to five years in prison and fines of around $92,500, Tom's Hardware reported. The move follows the indictment of nine people in August over AI server shipments to China."
+    source: { name: "Tom's Hardware", url: "https://www.tomshardware.com/tech-industry/semiconductors/taiwan-targets-illicit-ai-server-exports-to-china-with-five-year-prison-terms-strict-new-controls-follow-us-tariff-deal-and-super-micro-raid" }
+    companies: [nvidia, supermicro]
+    nodes: [infrastructure/servers/oem]
+    themes: [export-controls, china-ai]
+    impact: neutral
+    importance: 1
+
   - id: 2026-10-16-taiwan-texas-industrial-park
     date: 2026-10-16
     title: "Taiwan plans a Texas industrial park of up to $4 billion for TSMC and Foxconn suppliers"
