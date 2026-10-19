@@ -1,5 +1,26 @@
 month: 2026-10
 items:
+  - id: 2026-10-19-cxmt-profit-forecast-shares-fall
+    date: 2026-10-19
+    title: "CXMT shares fall about 8% despite forecasting a swing to a large nine-month profit"
+    summary: "CXMT expects net profit of 131 billion to 132.5 billion yuan for the first nine months of 2026, against a 5.28 billion yuan loss a year earlier, on revenue of about 265 billion to 270 billion yuan, and its chairman proposed a 1 billion to 2 billion yuan buyback. The shares still closed down 7.8% on October 19 amid a wider memory-stock selloff."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/19/china-cxmt-profit-outlook-shares.html" }
+    companies: [cxmt]
+    nodes: [chips/memory/dram-hbm]
+    themes: [memory-cycle, china-ai]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-10-18-anthropic-public-benefit-fund
+    date: 2026-10-18
+    title: "Anthropic plans to put 5% of its shares into a public benefit fund"
+    summary: "Anthropic said it will place 5% of its shares in a new public benefit fund, subject to shareholder approval, with the board able to add 2% for every 50% rise in value above a baseline. The fund could support large donations or approaches to AI's effect on jobs and cannot be used for lobbying or political giving."
+    source: { name: "Anthropic", url: "https://www.anthropic.com/news/public-benefit-fund" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: neutral
+    importance: 1
+
   - id: 2026-10-17-taiwan-ai-server-export-controls
     date: 2026-10-17
     title: "Taiwan moves to bring AI servers under export controls, with prison terms for smuggling"
