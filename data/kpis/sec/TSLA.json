@@ -1,9 +1,9 @@
 {
  "symbol": "TSLA",
  "cik": "0001318605",
- "name": "Tesla, Inc.",
+ "name": "TESLA, INC.",
  "company": "tesla",
- "updatedAt": "2026-10-14T06:41:33+00:00",
+ "updatedAt": "2026-10-19T10:58:40+00:00",
  "revenue": [
   {"start": "2016-07-01", "end": "2016-09-30", "value": 2298436000, "fy": 2016, "fp": "Q3", "form": "10-K", "filed": "2018-02-23", "derived": false, "concept": "Revenues"},
   {"start": "2016-10-01", "end": "2016-12-31", "value": 2284631000, "fy": 2016, "fp": "Q4", "form": "10-K", "filed": "2018-02-23", "derived": false, "concept": "Revenues"},
