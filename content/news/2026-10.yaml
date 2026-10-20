@@ -1,5 +1,69 @@
 month: 2026-10
 items:
+  - id: 2026-10-19-aep-amazon-x-energy-indiana-smr
+    date: 2026-10-19
+    title: "AEP, Amazon and X-energy explore a 960 MW small reactor plant in Indiana"
+    summary: "AEP and X-energy signed a joint development agreement to study 12 Xe-100 reactors of 80 MW each at a former coal plant site in Sullivan County, Indiana, with Amazon funding development work. If it proceeds, Amazon would buy the power under a long-term contract; no timeline or cost was given."
+    source: { name: "AEP", url: "https://www.aep.com/news/stories/view/12330/" }
+    companies: [aep, amazon]
+    nodes: [energy/generation-equipment/nuclear-smr]
+    themes: [nuclear, power-bottleneck]
+    impact: positive
+    importance: 3
+
+  - id: 2026-10-19-doe-dpa-constitution-pipeline
+    date: 2026-10-19
+    title: "DOE puts up to $42 million of Defense Production Act funds into the Constitution gas pipeline"
+    summary: "The Energy Department will fund up to $42 million of pre-construction and permitting work for the proposed 125-mile Constitution natural gas pipeline from Pennsylvania to New York. It cited a presidential determination that treats gas pipelines and storage as essential to national defense."
+    source: { name: "U.S. Department of Energy", url: "https://www.energy.gov/articles/energy-department-advances-constitution-pipeline-project-42-million-defense-production-act" }
+    companies: []
+    nodes: [energy/fuel/gas-midstream]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-19-tenstorrent-series-e
+    date: 2026-10-19
+    title: "Tenstorrent raises $1.5 billion at a $6.2 billion valuation"
+    summary: "AI chip startup Tenstorrent closed a $1.5 billion Series E at a $6.2 billion post-money valuation, led by Trace Capital and Innovation X with ARK Invest, Fidelity and Morgan Stanley among the investors. The valuation is more than double its late-2024 round."
+    source: { name: "Tenstorrent", url: "https://tenstorrent.com/en/newsroom/tenstorrent-announces-series-e" }
+    companies: [tenstorrent]
+    nodes: [chips/compute/ai-chip-challengers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-19-nvidia-germany-industrial-ai
+    date: 2026-10-19
+    title: "Nvidia signs an industrial AI declaration with Germany and backs four German startups"
+    summary: "Chancellor Friedrich Merz's government and Nvidia signed a joint declaration of intent on advanced models for physical AI at the Invest in Germany Summit, and Nvidia announced undisclosed investments in four German startups. The stakes fall under Nvidia's nearly $10 billion of commitments across Europe."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/20/german-chancellor-urges-businesses-to-embrace-ai.html" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    themes: [sovereign-ai, robotics]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-19-microsoft-exits-nscale-loughton
+    date: 2026-10-19
+    title: "Microsoft drops Nscale's Loughton data center as UK grid power slips to the 2030s"
+    summary: "Microsoft ended its agreement to anchor Nscale's planned data center in Loughton, Essex, which was due to open in 2027 but may not get enough grid power until the early to mid-2030s. Nscale confirmed the termination and said it is pursuing the project with alternative power."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/microsoft-pulls-out-of-delayed-nscale-data-center-in-loughton-essex/" }
+    companies: [microsoft]
+    nodes: [infrastructure/cloud/neoclouds]
+    themes: [power-bottleneck, data-centers]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-19-anthropic-nscale-second-deal-talks
+    date: 2026-10-19
+    title: "Anthropic in talks to buy about $45 billion more of computing from Nscale, Bloomberg reports"
+    summary: "Nscale is negotiating to sell Anthropic computing capacity worth about $45 billion at a second facility on its Monarch campus in West Virginia, Bloomberg reported, citing people familiar with the matter. The talks are not final; Nscale's IPO filing already lists Anthropic agreements worth up to about $44.6 billion."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-19/nscale-anthropic-in-talks-for-45-billion-cloud-computing-deal" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/compute-partners]
+    themes: [capex]
+    impact: positive
+    importance: 2
+
   - id: 2026-10-19-cxmt-profit-forecast-shares-fall
     date: 2026-10-19
     title: "CXMT shares fall about 8% despite forecasting a swing to a large nine-month profit"
