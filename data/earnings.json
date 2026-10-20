@@ -245,7 +245,7 @@
   "updatedAt": "2026-10-20"
  },
  "042700.KS": {
-  "checkedAt": "2026-10-20T01:56+00:00",
+  "checkedAt": "2026-10-20T07:31+00:00",
   "history": [
    {
     "date": "2026-08-14",
@@ -3456,7 +3456,7 @@
   "updatedAt": "2026-10-20"
  },
  "ABBN.SW": {
-  "checkedAt": "2026-10-20T01:56+00:00",
+  "checkedAt": "2026-10-20T07:31+00:00",
   "history": [
    {
     "date": "2026-07-15",
@@ -8453,7 +8453,7 @@
   "updatedAt": "2026-10-20"
  },
  "KMI": {
-  "checkedAt": "2026-10-20T01:56+00:00",
+  "checkedAt": "2026-10-20T07:31+00:00",
   "history": [
    {
     "date": "2026-07-22",
@@ -8778,7 +8778,7 @@
   "updatedAt": "2026-10-20"
  },
  "LRCX": {
-  "checkedAt": "2026-10-20T01:56+00:00",
+  "checkedAt": "2026-10-20T07:31+00:00",
   "history": [
    {
     "date": "2026-07-29",
@@ -8942,7 +8942,7 @@
   "updatedAt": "2026-10-20"
  },
  "META": {
-  "checkedAt": "2026-10-20T01:56+00:00",
+  "checkedAt": "2026-10-20T07:31+00:00",
   "history": [
    {
     "date": "2026-07-29",
@@ -8955,11 +8955,11 @@
    },
    {
     "date": "2026-04-29",
-    "epsActual": 7.31,
-    "epsEst": 6.82,
+    "epsActual": 10.44,
+    "epsEst": 6.66,
     "period": "2026-03-31",
     "revActual": 56311000000.0,
-    "surprise": 7.2,
+    "surprise": 56.79,
     "time": "amc"
    },
    {
@@ -8973,41 +8973,41 @@
    },
    {
     "date": "2025-10-29",
-    "epsActual": 7.25,
-    "epsEst": 6.67,
+    "epsActual": 1.05,
+    "epsEst": 6.71,
     "period": "2025-09-30",
     "revActual": 51242000000.0,
-    "surprise": 8.66,
+    "surprise": -84.34,
     "time": "amc"
    },
    {
     "date": "2025-07-30",
     "epsActual": 7.14,
-    "epsEst": 5.86,
+    "epsEst": 5.9,
     "period": "2025-06-30",
     "revActual": 47516000000.0,
-    "surprise": 21.82,
+    "surprise": 20.96,
     "time": "amc"
    },
    {
     "date": "2025-04-30",
     "epsActual": 6.43,
-    "epsEst": 5.21,
-    "surprise": 23.53,
+    "epsEst": 5.22,
+    "surprise": 23.11,
     "time": "amc"
    },
    {
     "date": "2025-01-29",
     "epsActual": 8.02,
-    "epsEst": 6.74,
-    "surprise": 19.0,
+    "epsEst": 6.76,
+    "surprise": 18.67,
     "time": "amc"
    },
    {
     "date": "2024-10-30",
     "epsActual": 6.03,
-    "epsEst": 5.3,
-    "surprise": 13.86,
+    "epsEst": 5.29,
+    "surprise": 13.94,
     "time": "amc"
    }
   ],
@@ -9514,7 +9514,7 @@
   "updatedAt": "2026-10-20"
  },
  "NEE": {
-  "checkedAt": "2026-10-20T01:56+00:00",
+  "checkedAt": "2026-10-20T07:31+00:00",
   "history": [
    {
     "date": "2026-07-24",
@@ -9677,7 +9677,7 @@
   "updatedAt": "2026-10-20"
  },
  "NFLX": {
-  "checkedAt": "2026-10-20T01:56+00:00",
+  "checkedAt": "2026-10-20T07:31+00:00",
   "history": [
    {
     "date": "2026-07-16",
@@ -9691,10 +9691,10 @@
    {
     "date": "2026-04-16",
     "epsActual": 1.23,
-    "epsEst": 1.32,
+    "epsEst": 1.25,
     "period": "2026-03-31",
     "revActual": 12249757000.0,
-    "surprise": -6.93,
+    "surprise": -1.4,
     "time": "amc"
    },
    {
@@ -9718,31 +9718,31 @@
    {
     "date": "2025-07-17",
     "epsActual": 0.72,
-    "epsEst": 0.71,
+    "epsEst": 0.7,
     "period": "2025-06-30",
     "revActual": 11079166000.0,
-    "surprise": 1.95,
+    "surprise": 2.24,
     "time": "amc"
    },
    {
     "date": "2025-04-17",
     "epsActual": 0.66,
     "epsEst": 0.57,
-    "surprise": 16.37,
+    "surprise": 16.82,
     "time": "amc"
    },
    {
     "date": "2025-01-21",
     "epsActual": 0.43,
     "epsEst": 0.42,
-    "surprise": 1.78,
+    "surprise": 1.41,
     "time": "amc"
    },
    {
     "date": "2024-10-17",
     "epsActual": 0.54,
     "epsEst": 0.51,
-    "surprise": 5.32,
+    "surprise": 5.56,
     "time": "amc"
    }
   ],
@@ -11306,7 +11306,7 @@
   "updatedAt": "2026-10-20"
  },
  "SAP": {
-  "checkedAt": "2026-10-20T01:56+00:00",
+  "checkedAt": "2026-10-20T07:31+00:00",
   "history": [
    {
     "date": "2026-07-22",
@@ -11936,7 +11936,7 @@
   "updatedAt": "2026-10-19"
  },
  "SPCX": {
-  "checkedAt": "2026-10-20T01:56+00:00",
+  "checkedAt": "2026-10-20T07:31+00:00",
   "history": [
    {
     "date": "2026-08-04",
@@ -12780,7 +12780,7 @@
   "updatedAt": "2026-10-19"
  },
  "TSLA": {
-  "checkedAt": "2026-10-20T01:56+00:00",
+  "checkedAt": "2026-10-20T07:31+00:00",
   "history": [
    {
     "date": "2026-07-22",
