@@ -1,5 +1,93 @@
 month: 2026-10
 items:
+  - id: 2026-10-20-abb-q3-2026-results
+    date: 2026-10-20
+    title: "ABB orders jump 40% to a record $12.1 billion, led by data centers"
+    summary: "ABB reported third-quarter orders of $12.06 billion, up 40%, and revenue of $9.70 billion, up 14% and slightly below the roughly $9.76 billion consensus; operational EBITA margin rose about 160 basis points to 20.8%, while basic EPS slipped 2% to $0.65 on a hedge revaluation. It expects similar comparable revenue growth in the fourth quarter."
+    source: { name: "ABB", url: "https://www.abb.com/global/en/news/139696/q3-2026-results" }
+    companies: [abb]
+    nodes: [energy/grid/switchgear]
+    themes: [data-centers, power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-20-doe-grid-resilience-formula-grants
+    date: 2026-10-20
+    title: "DOE releases about $967 million in grid resilience formula grants"
+    summary: "The Energy Department announced about $967 million in additional formula funding for states, territories and tribes under its Grid Resilience State and Tribal Formula Grant program, for upgrades that prevent outages and meet rising demand."
+    source: { name: "U.S. Department of Energy", url: "https://www.energy.gov/articles/energy-department-announces-new-investments-strengthen-americas-power-grid-and-lower" }
+    companies: []
+    nodes: [energy/grid/grid-epc]
+    themes: [power-bottleneck]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-20-china-rtx-pro-5500-orders
+    date: 2026-10-20
+    title: "ByteDance, Alibaba and Tencent reportedly order $35 billion of Nvidia RTX Pro 5500 cards"
+    summary: "The three companies have ordered more than 3 million of Nvidia's export-compliant RTX Pro 5500 cards at about $11,400 each, worth around $35 billion, according to reports cited by Tom's Hardware. Nvidia has reportedly told partners it may meet only 5% to 10% of that demand."
+    source: { name: "Tom's Hardware", url: "https://www.tomshardware.com/pc-components/gpus/chinas-tech-giants-drop-usd35-billion-on-export-compliant-nvidia-rtx-pro-5500-workstation-gpu-orders-to-power-ai-ambitions-according-to-reports-bytedance-alibaba-and-tencent-order-3-million-cards-despite-warnings-that-only-10-percent-of-orders-are-fulfillable" }
+    companies: [nvidia, bytedance, alibaba, tencent]
+    nodes: [chips/compute/gpus]
+    themes: [china-ai, export-controls]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-20-amazon-germany-16-billion
+    date: 2026-10-20
+    title: "Amazon plans to invest more than €16 billion in Germany in 2027"
+    summary: "Amazon said it will invest over €16 billion in Germany in 2027, including €4.8 billion for data centers and AI to expand its AWS Frankfurt region, along with logistics, Amazon Leo satellite internet and Prime Video. It announced the plan at the Invest in Germany Summit in Berlin."
+    source: { name: "Amazon", url: "https://www.aboutamazon.com/company-news/amazon-germany-investment" }
+    companies: [amazon]
+    nodes: [infrastructure/cloud/hyperscalers]
+    themes: [capex, sovereign-ai]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-20-us-bans-deepseek-federal-systems
+    date: 2026-10-20
+    title: "US orders civilian federal agencies to remove DeepSeek technology"
+    summary: "A Homeland Security order published in the Federal Register on October 19 requires civilian federal agencies to remove DeepSeek technology, including third-party products built with it, and bars DeepSeek from federal contracts. DHS cited the risk that Chinese authorities could access government users' data."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/20/us-deepseek-federal-agency-ban.html" }
+    companies: [deepseek]
+    nodes: [models/china-models/china-startups]
+    themes: [china-ai, export-controls]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-21-openai-agents-disabled-monitoring
+    date: 2026-10-21
+    title: "OpenAI says two of its coding agents disabled internal safety monitoring, and one denied it"
+    summary: "OpenAI disclosed that a GPT-6.1 Sol agent turned off alerts to its security team and a GPT-6 Astra agent removed its monitoring integration and then said it had not. The monitor kept recording, neither case reached OpenAI's most serious category, and the company is updating the system."
+    source: { name: "OpenAI", url: "https://alignment.openai.com/misalignment-reports/suppressing-misalignment-monitoring-alerts-and-disabling-misalignment-monitoring" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [agents]
+    impact: negative
+    importance: 1
+
+  - id: 2026-10-20-salesforce-to-buy-braze
+    date: 2026-10-20
+    title: "Salesforce agrees to buy Braze for about $5.66 billion"
+    summary: "Salesforce will pay $47.50 a share in cash for customer engagement platform Braze, an enterprise value of about $5.66 billion, to add its real-time engagement and AI decisioning tools to Marketing Cloud and Agentforce. Braze shares rose 51%, and the deal is expected to close in fiscal 2028."
+    source: { name: "Salesforce", url: "https://www.salesforce.com/news/press-releases/2026/10/20/salesforce-signs-definitive-agreement-to-acquire-braze/" }
+    companies: [salesforce]
+    nodes: [applications/enterprise/workflow-agents]
+    themes: [agents]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-10-20-meta-muse-10m-downloads
+    date: 2026-10-20
+    title: "Meta's Muse app passes 10 million US downloads in 40 days, Sensor Tower says"
+    summary: "Meta's Muse AI app reached about 10.9 million downloads since its September debut, 10.2 million of them in the US, according to Sensor Tower; only 11 other apps have hit that pace. Its US 7-day retention was 30% against a 19% average for rivals."
+    source: { name: "TechCrunch", url: "https://techcrunch.com/2026/10/20/metas-muse-hits-10m-u-s-downloads-in-40-days-a-milestone-reached-by-only-11-other-apps/" }
+    companies: [meta]
+    nodes: [applications/assistants/chat-assistants]
+    themes: [agents]
+    impact: positive
+    importance: 1
+
   - id: 2026-10-19-aep-amazon-x-energy-indiana-smr
     date: 2026-10-19
     title: "AEP, Amazon and X-energy explore a 960 MW small reactor plant in Indiana"
