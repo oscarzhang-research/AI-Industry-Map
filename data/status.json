@@ -2,9 +2,9 @@
  "earningsFailed": [],
  "failed": [],
  "fundamentalsFailed": [],
- "markets": "asia",
- "ok": 137,
- "seconds": 19.3,
- "symbols": 137,
- "updatedAt": "2026-10-20T15:21:17+00:00"
+ "markets": "all",
+ "ok": 351,
+ "seconds": 428.0,
+ "symbols": 351,
+ "updatedAt": "2026-10-21T00:13:39+00:00"
 }
