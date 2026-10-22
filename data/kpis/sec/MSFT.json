@@ -1,9 +1,9 @@
 {
  "symbol": "MSFT",
  "cik": "0000789019",
- "name": "MICROSOFT CORPORATION",
+ "name": "Microsoft Corporation",
  "company": "microsoft",
- "updatedAt": "2026-10-14T06:41:33+00:00",
+ "updatedAt": "2026-10-22T00:17:50+00:00",
  "revenue": [
   {"start": "2016-07-02", "end": "2016-09-30", "value": 21928000000, "fy": 2017, "fp": "Q1", "form": "10-K", "filed": "2018-08-03", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2016-10-01", "end": "2016-12-31", "value": 25826000000, "fy": 2017, "fp": "Q2", "form": "10-K", "filed": "2018-08-03", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
