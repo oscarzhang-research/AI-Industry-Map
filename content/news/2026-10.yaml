@@ -1,5 +1,98 @@
 month: 2026-10
 items:
+  - id: 2026-10-21-meta-q3-2026-results
+    date: 2026-10-21
+    title: "Meta revenue rises 26% to $64.6 billion; a $9.9 billion legal charge cuts profit"
+    summary: "Meta reported third-quarter revenue of $64.6 billion, up 26% and above the roughly $63.4 billion analysts expected, while diluted EPS was $3.83 after a $9.9 billion legal charge. It guided fourth-quarter revenue of $73 billion to $76 billion and narrowed 2026 capital spending to $135 billion to $145 billion."
+    source: { name: "Meta", url: "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx" }
+    companies: [meta]
+    nodes: [applications/ads-commerce-content/ads-recsys, infrastructure/cloud/hyperscalers]
+    themes: [capex]
+    impact: mixed
+    importance: 3
+
+  - id: 2026-10-21-tesla-q3-2026-results
+    date: 2026-10-21
+    title: "Tesla beats on earnings as energy revenue falls 16%"
+    summary: "Tesla reported third-quarter revenue of $28.05 billion, flat from a year earlier and above the $27.9 billion estimate cited by CNBC, and adjusted EPS of $0.48 against $0.43 expected; GAAP net income fell 43% to $787 million. Energy generation and storage revenue dropped 16% to $2.88 billion, which Tesla partly tied to tariff-related refunds."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/21/tesla-tsla-q3-2026-earnings-report.html" }
+    companies: [tesla]
+    nodes: [applications/physical-ai/autonomous-driving, energy/storage/storage-integrators]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-10-21-nextera-q3-2026-results
+    date: 2026-10-21
+    title: "NextEra adjusted EPS rises 9.7% to $1.24, ahead of estimates"
+    summary: "NextEra Energy reported third-quarter adjusted earnings of $2.59 billion, or $1.24 a share, up 9.7% and above the $1.19 consensus, and GAAP net income of $4.78 billion. The company said its pending combination with Dominion Energy continues to advance after shareholder approval."
+    source: { name: "NextEra Energy", url: "https://www.sec.gov/Archives/edgar/data/0000753308/000075330826000077/neeq32026exhibit99.htm" }
+    companies: [nextera, dominion]
+    nodes: [energy/power-producers/utilities]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-21-westinghouse-leu-plus-fuel-plant
+    date: 2026-10-21
+    title: "Westinghouse to build a $1 billion LEU+ nuclear fuel plant in South Carolina"
+    summary: "Westinghouse began construction of an LEU+ fuel factory at its Columbia site in Hopkins, South Carolina, a project of about $1 billion due to start operating in 2030. The higher-enrichment fuel is meant to support reactor uprates and longer operating cycles under DOE's goal of adding 5 GW from the existing fleet by 2029."
+    source: { name: "World Nuclear News", url: "https://www.world-nuclear-news.org/articles/westinghouse-invests-usd1-billion-in-us-leu-fuel-plant" }
+    companies: []
+    nodes: [energy/fuel/enrichment-fuel]
+    themes: [nuclear]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-21-nvidia-dsx-pod-vera-rubin
+    date: 2026-10-21
+    title: "Nvidia unveils truck-shippable DSX POD AI factories built on Vera Rubin"
+    summary: "At GTC Berlin, Nvidia introduced DSX POD, a reference design that packs seven Vera Rubin racks into a shipping container that partners integrate and test before delivery, with deliveries planned from early 2027. Google Cloud said its Vera Rubin-based A5X instances become generally available next month."
+    source: { name: "NVIDIA Newsroom", url: "https://nvidianews.nvidia.com/news/nvidia-introduces-dsx-pod-ai-factories-to-accelerate-europes-infrastructure-deployment" }
+    companies: [nvidia, alphabet]
+    nodes: [chips/compute/gpus, infrastructure/data-centers/ai-campuses]
+    themes: [data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-21-tsmc-kaohsiung-site-accident
+    date: 2026-10-21
+    title: "Four workers die at TSMC's 2nm fab construction site; TSMC slows steel work across Taiwan"
+    summary: "Four contract workers died after a fall at TSMC's Fab 22 construction site in Kaohsiung on October 20, with snapped bolts on a steel connection plate the preliminary suspected cause. TSMC suspended work at the site and halted similar steel construction at its other Taiwan sites."
+    source: { name: "Focus Taiwan", url: "https://focustaiwan.tw/society/202610210009" }
+    companies: [tsmc]
+    nodes: [chips/foundry-packaging/leading-edge]
+    impact: negative
+    importance: 1
+
+  - id: 2026-10-21-openai-models-on-google-cloud
+    date: 2026-10-21
+    title: "OpenAI's frontier models come to Google Cloud"
+    summary: "Google Cloud will offer OpenAI's GPT-6 Astra, GPT-6.1 Sol and GPT-6 Luna and Codex workflows through its Model Garden, billed via Google Cloud Marketplace and counted toward customers' spend commitments. The models are in private preview, with general availability planned in the coming weeks."
+    source: { name: "OpenAI", url: "https://openai.com/index/openai-models-google-cloud/" }
+    companies: [openai, alphabet]
+    nodes: [models/frontier-labs/compute-partners, infrastructure/cloud/hyperscalers]
+    impact: positive
+    importance: 3
+
+  - id: 2026-10-21-chatgpt-ads-26-countries
+    date: 2026-10-21
+    title: "OpenAI expands ChatGPT ads to 26 more countries, with over 100,000 advertisers so far"
+    summary: "OpenAI extended ChatGPT ads to 26 more countries, for 89 in total, and said more than 100,000 advertisers have run campaigns since ads launched about eight months ago. Ads appear only on the Free and Go plans."
+    source: { name: "OpenAI", url: "https://openai.com/index/chatgpt-ads-expands-26-new-countries/" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier, applications/assistants/chat-assistants]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-21-meta-new-mexico-25-billion-penalty
+    date: 2026-10-21
+    title: "Court orders Meta to pay a $25 billion penalty in New Mexico's Cambridge Analytica case"
+    summary: "A New Mexico judge set a $25 billion civil penalty after a jury found more than 43 million violations of the state's unfair practices act, cutting the state's $219.5 billion award. Meta said it has accrued for the matter and intends to appeal."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/21/meta-new-mexico-cambridge-analytica-penalty.html" }
+    companies: [meta]
+    nodes: [applications/ads-commerce-content/ads-recsys]
+    impact: negative
+    importance: 2
+
   - id: 2026-10-20-abb-q3-2026-results
     date: 2026-10-20
     title: "ABB orders jump 40% to a record $12.1 billion, led by data centers"
