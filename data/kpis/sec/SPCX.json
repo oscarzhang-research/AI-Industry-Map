@@ -1,12 +1,17 @@
 {
  "symbol": "SPCX",
  "cik": "0001181412",
- "name": "SPACE EXPLORATION TECHNOLOGIES CORP.",
+ "name": "Space Exploration Technologies Corp.",
  "company": "xai",
- "updatedAt": "2026-10-14T06:41:33+00:00",
+ "updatedAt": "2026-10-23T00:14:49+00:00",
  "revenue": [
   {"start": "2025-04-01", "end": "2025-06-30", "value": 4071000000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-08-04", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
-  {"start": "2026-04-01", "end": "2026-06-30", "value": 7814000000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-04", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
+  {"start": "2025-07-01", "end": "2025-09-30", "value": 5576000000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2026-10-22", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 7814000000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-04", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2026-07-01", "end": "2026-09-30", "value": 14575000000, "fy": 2026, "fp": "Q3", "form": "10-Q", "filed": "2026-10-22", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
  ],
- "capex": []
+ "capex": [
+  {"start": "2025-07-01", "end": "2025-09-30", "value": 6881000000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2026-10-22", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2026-07-01", "end": "2026-09-30", "value": 19593000000, "fy": 2026, "fp": "Q3", "form": "10-Q", "filed": "2026-10-22", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"}
+ ]
 }
