@@ -1,5 +1,92 @@
 month: 2026-10
 items:
+  - id: 2026-10-22-western-digital-fq1-2027-results
+    date: 2026-10-22
+    title: "Western Digital revenue jumps 55% to $4.38 billion and beats estimates"
+    summary: "Western Digital reported fiscal first-quarter revenue of $4.38 billion, up 55% and above the roughly $4.15 billion consensus, with non-GAAP EPS of $4.64 against $4.10 expected and a 58.1% non-GAAP gross margin. It guided second-quarter revenue up 66% to 72% from a year earlier."
+    source: { name: "Western Digital", url: "https://investor.wdc.com/news-releases/news-release-details/wd-reports-fiscal-first-quarter-2027-financial-results" }
+    companies: [western-digital]
+    nodes: [chips/memory/hdd]
+    themes: [memory-cycle]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-22-google-voltus-1gw-vpp
+    date: 2026-10-22
+    title: "Google expands its PJM virtual power plant with Voltus to more than 1 GW"
+    summary: "Google and Voltus added 1,070 MW to their 100 MW virtual power plant agreement in PJM, pooling batteries, thermostats and industrial loads from homes and businesses that Voltus will bid into the market when the grid is strained. Voltus expects to reach full capacity over three to four years."
+    source: { name: "Google", url: "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/virtual-power-plant-1-gigawatt/" }
+    companies: [alphabet]
+    nodes: [energy/power-producers/to-data-centers]
+    themes: [power-bottleneck, data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-22-micron-drops-4f2-dram
+    date: 2026-10-22
+    title: "Micron drops plans to commercialize 4F² DRAM"
+    summary: "Micron said 4F² DRAM cells offer no meaningful density gain while adding manufacturing complexity and cost, and that it will keep scaling 6F² DRAM before moving to 3D DRAM. Samsung, SK Hynix and CXMT still have 4F² on their roadmaps, Tom's Hardware reported."
+    source: { name: "Tom's Hardware", url: "https://www.tomshardware.com/pc-components/dram/micron-pulls-the-plug-on-future-4f2-dram-after-two-decades-of-research-in-dramatic-shift-company-says-architecture-offers-no-meaningful-density-advantages-increases-manufacturing-complexity-and-costs-and-has-fundamental-scaling-limitations" }
+    companies: [micron, cxmt]
+    nodes: [chips/memory/dram-hbm]
+    themes: [memory-cycle]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-10-23-solidigm-ipo-scrapped
+    date: 2026-10-23
+    title: "SK Hynix scraps plans for a US listing of its Solidigm unit"
+    summary: "Solidigm stopped reviewing a US IPO, citing market and share price conditions, after Korean regulators raised concerns about dual-listing rules and dilution, according to Bloomberg and CNBC. SK Hynix shares closed 4.4% higher on October 23."
+    source: { name: "SK hynix Newsroom", url: "https://news.skhynix.com/en/fact-12/" }
+    companies: [sk-hynix]
+    nodes: [chips/memory/nand-ssd]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-10-22-google-tpus-in-production-at-meta
+    date: 2026-10-22
+    title: "Google's TPUs are now serving AI in production at Meta"
+    summary: "Google released a PyTorch-native version of the SGLang inference engine for TPUs, co-developed with Meta's PyTorch team, and a Meta engineer said it is running in production at Meta. Tom's Hardware described it as the first time Google TPUs have been sold to an outside customer."
+    source: { name: "Tom's Hardware", url: "https://www.tomshardware.com/tech-industry/artificial-intelligence/googles-tpus-for-ai-workloads-now-run-in-at-metas-data-centers-tpus-sold-to-external-customers-for-the-first-time-threaten-nvidias-market-dominance" }
+    companies: [alphabet, meta, nvidia]
+    nodes: [chips/compute/hyperscaler-silicon, infrastructure/cloud/hyperscalers]
+    themes: [custom-asic, inference]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-10-22-openai-30-billion-raise
+    date: 2026-10-22
+    title: "OpenAI nears a raise of up to $30 billion at a $1.25 trillion valuation, led by UAE investors"
+    summary: "OpenAI is close to raising up to $30 billion at a $1.25 trillion pre-money valuation, led by UAE investors with Coatue, as a bridge to a possible 2027 IPO, CNBC reported. Bloomberg said the valuation target was cut from $1.4 trillion; terms are not final."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/22/openai-funding-round-uae-investors.html" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [capex]
+    impact: positive
+    importance: 3
+
+  - id: 2026-10-22-meta-shares-fall-negative-fcf
+    date: 2026-10-22
+    title: "Meta falls nearly 7% as AI spending turns free cash flow negative"
+    summary: "Meta shares fell nearly 7% on October 22 after third-quarter free cash flow came in at negative $2.12 billion and the company raised the low end of its 2026 capex range to $135 billion. Meta also plans a new class of nonvoting Class C shares to help finance growth, and its credit default swap spreads hit record highs."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/22/meta-stock-q3-earnings-free-cash-flow.html" }
+    companies: [meta]
+    nodes: [applications/ads-commerce-content/ads-recsys]
+    themes: [capex]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-22-uber-chatgpt-work-rollout
+    date: 2026-10-22
+    title: "Uber rolls out OpenAI's ChatGPT Work agent to its roughly 30,000 employees"
+    summary: "Uber is extending ChatGPT Work, an agent inside ChatGPT Enterprise, from a 1,000-person pilot to its full workforce of about 30,000, with about 80% of early users outside engineering. Its developers will keep using Codex for coding."
+    source: { name: "OpenAI", url: "https://openai.com/index/uber-chatgpt-work-rollout/" }
+    companies: [uber, openai]
+    nodes: [applications/enterprise/workflow-agents]
+    themes: [agents]
+    impact: positive
+    importance: 1
+
   - id: 2026-10-21-meta-q3-2026-results
     date: 2026-10-21
     title: "Meta revenue rises 26% to $64.6 billion; a $9.9 billion legal charge cuts profit"
