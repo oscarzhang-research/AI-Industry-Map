@@ -13308,7 +13308,7 @@
   "updatedAt": "2026-10-24"
  },
  "TRI": {
-  "checkedAt": "2026-10-19T10:55+00:00",
+  "checkedAt": "2026-10-24T01:42+00:00",
   "history": [
    {
     "date": "2026-08-05",
@@ -13378,16 +13378,16 @@
    }
   ],
   "next": {
-   "asOf": "2026-10-19",
+   "asOf": "2026-10-24",
    "date": "2026-11-03",
-   "epsEst": 0.9,
-   "epsN": 14,
+   "epsEst": 0.87,
+   "epsN": 6,
    "estimated": false,
-   "revEst": 1906226500.0,
-   "revN": 12,
+   "revEst": 1801013500.0,
+   "revN": 4,
    "time": "bmo"
   },
-  "updatedAt": "2026-10-19"
+  "updatedAt": "2026-10-24"
  },
  "TSEM": {
   "checkedAt": "2026-10-19T10:55+00:00",
