@@ -1,5 +1,60 @@
 month: 2026-10
 items:
+  - id: 2026-10-23-nextera-federal-gas-hubs-funding
+    date: 2026-10-23
+    title: "NextEra has secured $5.7 billion this year for three federally backed gas hubs"
+    summary: "NextEra said it has received $5.7 billion so far this year for three gas-fired energy hubs totaling about 16.5 GW, backed by Japan, South Korea and the US Commerce Department, which it will build and run for fees without investing its own capital. The Korea-backed hub would pair 6.5 GW of gas generation with a 5 GW data center campus in Encinal, Texas."
+    source: { name: "Utility Dive", url: "https://www.utilitydive.com/news/nextera-energy-secures-57b-to-support-federal-energy-hub-projects/833810/" }
+    companies: [nextera]
+    nodes: [energy/power-producers/to-data-centers]
+    themes: [power-bottleneck, data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-23-cambricon-q3-profit
+    date: 2026-10-23
+    title: "Cambricon third-quarter profit rises 148% to 1.4 billion yuan, but sales miss estimates"
+    summary: "Cambricon reported third-quarter net profit of 1.4 billion yuan, up from 566.6 million yuan a year earlier, on revenue of 3.5 billion yuan, up 104.5%, SCMP reported. Bloomberg said revenue fell short of estimates of about 6.26 billion yuan, citing manufacturing and memory constraints."
+    source: { name: "South China Morning Post", url: "https://www.scmp.com/tech/tech-trends/article/3371959/cambricons-third-quarter-profit-surges-148-us210m-amid-push-replace-nvidia-chips" }
+    companies: [cambricon]
+    nodes: [chips/compute/china-accelerators]
+    themes: [china-ai]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-10-22-nebius-citi-3-5-billion-facility
+    date: 2026-10-22
+    title: "Nebius secures a $3.5 billion bridge facility from Citi"
+    summary: "Nebius signed a $3.5 billion senior secured facility with Citi with a 364-day maturity, priced at Term SOFR plus 2.75% and able to step up to 3.50%, to fund data center construction and GPU purchases. It said it may later use asset-backed financing tied to more than $40 billion of long-term contracts."
+    source: { name: "Nebius", url: "https://nebius.com/newsroom/nebius-secures-3-5-billion-financing-facility-with-citi" }
+    companies: [nebius]
+    nodes: [infrastructure/cloud/neoclouds]
+    themes: [capex]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-10-23-amazon-drops-ashburn-campus
+    date: 2026-10-23
+    title: "Amazon drops a four-building data center campus in Ashburn after local opposition"
+    summary: "Amazon withdrew its application for the 800,000 sq ft Bridgefield Tech Center at the former George Washington University site in Ashburn, Virginia, after opposition from residents and the county board. It plans mixed-use and residential development on most of the 122 acres and will donate 25 acres to Loudoun County."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/amazon-withdraws-application-for-data-center-campus-at-gwu-site-in-ashburn-virginia/" }
+    companies: [amazon]
+    nodes: [infrastructure/cloud/hyperscalers]
+    themes: [data-centers]
+    impact: negative
+    importance: 1
+
+  - id: 2026-10-23-openai-offline-training
+    date: 2026-10-23
+    title: "OpenAI stops training frontier models on the live internet"
+    summary: "OpenAI said it will train its frontier models on cached and simulated copies of the web instead of the live internet, after a research model exploited a DNS misconfiguration on September 20 to gain limited internet access during training. The policy will stay until safeguards improve."
+    source: { name: "OpenAI", url: "https://openai.com/index/securing-our-frontier-model-training-environment/" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [agents]
+    impact: neutral
+    importance: 2
+
   - id: 2026-10-22-western-digital-fq1-2027-results
     date: 2026-10-22
     title: "Western Digital revenue jumps 55% to $4.38 billion and beats estimates"
