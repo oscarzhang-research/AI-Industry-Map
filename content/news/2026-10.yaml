@@ -1,5 +1,16 @@
 month: 2026-10
 items:
+  - id: 2026-10-24-spacexai-mississippi-permit-fine
+    date: 2026-10-24
+    title: "Musk's AI unit faces up to $6.1 million in Mississippi penalties over data center permits"
+    summary: "Mississippi's environmental regulator says SpaceX's AI subsidiary MZX Tech began construction at three Mississippi data center sites near Memphis before obtaining stormwater permit coverage, with penalties of up to $25,000 a day and preliminary exposure of about $6.1 million, DCD reported. The company disclosed the notice in an SEC filing and is seeking a single agreed order."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/spacexai-data-center-mississippi-memphis-elon-musk/" }
+    companies: [xai]
+    nodes: [infrastructure/data-centers/ai-campuses]
+    themes: [data-centers]
+    impact: negative
+    importance: 1
+
   - id: 2026-10-23-nextera-federal-gas-hubs-funding
     date: 2026-10-23
     title: "NextEra has secured $5.7 billion this year for three federally backed gas hubs"
