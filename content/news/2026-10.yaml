@@ -1,5 +1,27 @@
 month: 2026-10
 items:
+  - id: 2026-10-25-spacex-40-billion-gpu-debt
+    date: 2026-10-25
+    title: "Musk says SpaceX has closed $40 billion of debt to buy GPUs; Bloomberg says pricing talks continue"
+    summary: "Elon Musk said SpaceX closed $40 billion of mostly callable debt to buy GPUs, with the money expected in the first half of 2027. People familiar with the talks told Bloomberg that pricing was still being negotiated, with Goldman Sachs leading discussions with investors including Apollo."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-25/musk-says-spacex-closed-40-billion-debt-deal-blasts-neoclouds" }
+    companies: [xai, nvidia]
+    nodes: [models/frontier-labs/compute-partners, chips/compute/gpus]
+    themes: [capex]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-10-25-softbank-malaysia-50-billion
+    date: 2026-10-25
+    title: "SoftBank's Son plans $50 billion of AI and data center investment in Malaysia, prime minister says"
+    summary: "Malaysian Prime Minister Anwar Ibrahim said Masayoshi Son has picked sites in Kuching, Sarawak and peninsular Malaysia for $50 billion of investment in AI, new technologies and data centers, Bloomberg reported. SoftBank has not confirmed the figure."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-25/softbank-s-son-plans-50-billion-malaysia-tech-outlay-pm-says" }
+    companies: [softbank]
+    nodes: [infrastructure/data-centers/ai-campuses]
+    themes: [sovereign-ai, data-centers]
+    impact: positive
+    importance: 2
+
   - id: 2026-10-24-spacexai-mississippi-permit-fine
     date: 2026-10-24
     title: "Musk's AI unit faces up to $6.1 million in Mississippi penalties over data center permits"
