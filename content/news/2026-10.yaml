@@ -1,5 +1,144 @@
 month: 2026-10
 items:
+  - id: 2026-10-28-sk-hynix-q3-2026-results
+    date: 2026-10-28
+    title: "SK Hynix posts record quarterly revenue above 100 trillion won and an 80% operating margin"
+    summary: "SK Hynix reported third-quarter revenue of 104.6 trillion won, up 328% from a year earlier, and operating profit of 83.3 trillion won, both above the 98.3 trillion and 76.7 trillion won analysts expected. It plans about 100 trillion won of shareholder returns for 2026 and said long-term agreements cover more than half of 2027-2028 capacity; the shares closed 10.9% higher."
+    source: { name: "SK hynix Newsroom", url: "https://news.skhynix.com/en/q3-2026-business-results/" }
+    companies: [sk-hynix]
+    nodes: [chips/memory/dram-hbm]
+    themes: [memory-cycle, hbm]
+    impact: positive
+    importance: 3
+
+  - id: 2026-10-27-seagate-fq1-2027-results
+    date: 2026-10-27
+    title: "Seagate beats estimates and guides about $4.8 billion of revenue for next quarter"
+    summary: "Seagate reported fiscal first-quarter revenue of about $4.2 billion, above the roughly $4.15 billion consensus, and non-GAAP EPS of $7.68 against $7.43 expected, with a 57.8% non-GAAP gross margin. It guided second-quarter revenue of $4.8 billion, plus or minus $100 million, and non-GAAP EPS of $9.20, plus or minus $0.20."
+    source: { name: "Seagate", url: "https://investors.seagate.com/news/news-details/2026/Seagate-Technology-Reports-Fiscal-First-Quarter-2027-Financial-Results/default.aspx" }
+    companies: [seagate]
+    nodes: [chips/memory/hdd]
+    themes: [memory-cycle]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-27-teradyne-q3-2026-results
+    date: 2026-10-27
+    title: "Teradyne revenue rises 70% to $1.31 billion on semiconductor test demand"
+    summary: "Teradyne reported third-quarter revenue of $1.306 billion, up 70% and above the roughly $1.27 billion consensus, with non-GAAP EPS of $2.29 against $2.06 expected; semiconductor test contributed $1.07 billion. It guided fourth-quarter revenue of $1.25 billion to $1.35 billion and non-GAAP EPS of $1.95 to $2.25."
+    source: { name: "Teradyne", url: "https://investors.teradyne.com/news-events/press-releases/detail/455/teradyne-reports-third-quarter-2026-results" }
+    companies: [teradyne]
+    nodes: [chips/equipment/backend-equipment]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-27-corning-q3-2026-results
+    date: 2026-10-27
+    title: "Corning core sales rise 19% as optical sales jump 44%"
+    summary: "Corning reported third-quarter core sales of $5.08 billion, up 19% and above its own $4.9 billion to $5.0 billion guidance, and core EPS of $0.91 against $0.88 expected. Optical communications sales rose 44% to $2.38 billion, with generative AI product sales more than doubling, and it guided fourth-quarter core sales of $5.2 billion to $5.3 billion."
+    source: { name: "Corning", url: "https://investor.corning.com/news-and-events/news/news-details/2026/Corning-Delivers-Outstanding-Third-Quarter-Results1/default.aspx" }
+    companies: [corning]
+    nodes: [infrastructure/networking/fiber]
+    themes: [optical]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-27-doe-constellation-5-billion-loan
+    date: 2026-10-27
+    title: "DOE offers Constellation a conditional loan of up to $5 billion for nuclear uprates"
+    summary: "The Energy Department made a conditional commitment of up to $5 billion to fund uprates and modernization across Constellation's reactors in Illinois, Maryland and Pennsylvania, adding nearly 1.1 GW in PJM and MISO. Constellation said 20-year deals with Google and Amazon underpin more than $7 billion of investment for about 1,080 MW of added capacity."
+    source: { name: "Constellation", url: "https://www.constellationenergy.com/news/2026/10/constellation-secures-conditional-doe-loan-commitment-of-up-to-5-billion-to-expand-nuclear-output.html" }
+    companies: [constellation, alphabet, amazon]
+    nodes: [energy/power-producers/ipps]
+    themes: [nuclear, power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-27-oracle-vera-rubin-google-tpu
+    date: 2026-10-27
+    title: "Oracle makes Nvidia Vera Rubin generally available and will offer Google TPUs from 2027"
+    summary: "Oracle made Nvidia's Vera Rubin NVL72 systems and Vera CPUs generally available on its cloud, starting with 150,000 Vera CPUs and planning multi-gigawatt Rubin superclusters. It also said it will be the first cloud outside Google to offer Google TPUs, starting in 2027 and ramping to gigawatt scale."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/oracle-will-offer-googles-tpu-ai-chip-via-oci/" }
+    companies: [oracle, nvidia, alphabet]
+    nodes: [infrastructure/cloud/hyperscalers, chips/compute/hyperscaler-silicon]
+    themes: [custom-asic, capex]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-26-celestica-q3-2026-results
+    date: 2026-10-26
+    title: "Celestica revenue jumps 83% to $5.83 billion and it sees $40 billion in 2027"
+    summary: "Celestica reported third-quarter revenue of $5.83 billion, up 83% and above the roughly $5.47 billion consensus, with adjusted EPS of $3.30 against $2.96 expected. It raised its 2026 outlook to $21.0 billion of revenue and $11.55 of adjusted EPS and gave an initial 2027 outlook of $40.0 billion and $21.50."
+    source: { name: "Celestica", url: "https://corporate.celestica.com/news-releases/news-release-details/celestica-announces-third-quarter-2026-financial-results-and" }
+    companies: [celestica]
+    nodes: [infrastructure/networking/switches]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-26-cadence-q3-2026-results
+    date: 2026-10-26
+    title: "Cadence beats guidance and lifts its 2026 outlook for a third time"
+    summary: "Cadence reported third-quarter revenue of $1.633 billion, above the roughly $1.615 billion consensus, and non-GAAP EPS of $2.11 against $2.05 expected, with a record $8.2 billion backlog. It raised 2026 revenue growth to about 21% and non-GAAP EPS to $8.40, and authorized another $2.5 billion of buybacks."
+    source: { name: "Cadence", url: "https://www.sec.gov/Archives/edgar/data/0000813672/000081367226000116/cdns10262026ex9901.htm" }
+    companies: [cadence]
+    nodes: [chips/eda-ip/eda]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-26-amkor-q3-2026-results
+    date: 2026-10-26
+    title: "Amkor sales of $1.99 billion miss estimates, with a softer fourth-quarter guide"
+    summary: "Amkor reported third-quarter net sales of $1.99 billion, below the roughly $2.04 billion consensus, and EPS of $0.76 against $0.78 expected, both within its own guidance. It guided fourth-quarter sales of $1.9 billion to $2.0 billion and EPS of $0.65 to $0.75, and trimmed 2026 capex to about $2.5 billion."
+    source: { name: "Amkor", url: "https://ir.amkor.com/news-releases/news-release-details/amkor-technology-reports-financial-results-third-quarter-2026" }
+    companies: [amkor]
+    nodes: [chips/foundry-packaging/advanced-packaging]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-26-anthropic-files-s1
+    date: 2026-10-26
+    title: "Anthropic files for its IPO, showing $16.3 billion of first-half revenue and about $417 billion of compute obligations"
+    summary: "Anthropic filed an S-1 to list on the Nasdaq Global Select Market under the ticker ANT. The filing shows first-half 2026 revenue of $16.3 billion, a first-half loss of $80.7 billion driven mostly by fair-value changes on convertible notes, and about $417 billion of future compute obligations, including at least $114.5 billion with Google."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/anthropic-files-s-1-for-ipo-with-417bn-in-compute-commitments/" }
+    companies: [anthropic, alphabet]
+    nodes: [models/frontier-labs/closed-frontier, models/frontier-labs/compute-partners]
+    themes: [capex]
+    impact: positive
+    importance: 3
+
+  - id: 2026-10-26-openai-gpt-6-1-terra
+    date: 2026-10-26
+    title: "OpenAI releases GPT-6.1 Terra for computer use at about half the price"
+    summary: "OpenAI released GPT-6.1 Terra, a faster model for visual reasoning and computer use, priced at $1 per million input tokens and $5 per million output tokens, about half the price of GPT-6.1 Sol. It is available in ChatGPT Work, Codex and the API, and OpenAI rates it at the Critical cybersecurity threshold of its Preparedness Framework."
+    source: { name: "OpenAI", url: "https://openai.com/index/introducing-gpt-6-1-terra/" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [agents]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-26-meta-95-billion-equity-raise
+    date: 2026-10-26
+    title: "Meta plans up to $95 billion of stock sales for AI, with Nvidia and AMD investing $4 billion"
+    summary: "Meta launched $35 billion of underwritten equity offerings and plans a further $60 billion at-the-market program to fund AI infrastructure. Nvidia said it will invest $3 billion and AMD $1 billion, alongside expanded Vera Rubin, Helios and EPYC deployments at Meta."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/27/nvidia-invest-meta.html" }
+    companies: [meta, nvidia, amd]
+    nodes: [applications/ads-commerce-content/ads-recsys, infrastructure/cloud/hyperscalers]
+    themes: [capex]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-10-26-microsoft-voluntary-buyouts
+    date: 2026-10-26
+    title: "Microsoft offers voluntary buyouts to about 60,000 employees"
+    summary: "Microsoft offered voluntary buyouts to roughly 60,000 employees at vice president level and below in the US, Canada, India and the UK, about 27% of its workforce, to balance heavy AI infrastructure spending. Employees who accept will leave on December 31."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/26/microsoft-msft-voluntary-buyouts.html" }
+    companies: [microsoft]
+    nodes: [infrastructure/cloud/hyperscalers]
+    themes: [capex]
+    impact: neutral
+    importance: 1
+
   - id: 2026-10-25-spacex-40-billion-gpu-debt
     date: 2026-10-25
     title: "Musk says SpaceX has closed $40 billion of debt to buy GPUs; Bloomberg says pricing talks continue"
