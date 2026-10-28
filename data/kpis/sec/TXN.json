@@ -1,9 +1,9 @@
 {
  "symbol": "TXN",
  "cik": "0000097476",
- "name": "TEXAS INSTRUMENTS INCORPORATED",
+ "name": "TEXAS INSTRUMENTS INC",
  "company": "texas-instruments",
- "updatedAt": "2026-10-24T00:05:32+00:00",
+ "updatedAt": "2026-10-28T11:06:41+00:00",
  "revenue": [
   {"start": "2016-10-01", "end": "2016-12-31", "value": 3414000000, "fy": 2016, "fp": "Q4", "form": "10-K", "filed": "2018-02-22", "derived": false, "concept": "SalesRevenueNet"},
   {"start": "2017-01-01", "end": "2017-03-31", "value": 3402000000, "fy": 2017, "fp": "Q1", "form": "10-K", "filed": "2019-02-22", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
