@@ -1,5 +1,92 @@
 month: 2026-10
 items:
+  - id: 2026-10-29-samsung-q3-2026-results
+    date: 2026-10-29
+    title: "Samsung confirms record 107.4 trillion won quarterly profit; shares fall 4%"
+    summary: "Samsung Electronics reported third-quarter revenue of 195.3 trillion won and operating profit of 107.4 trillion won, roughly in line with estimates, with its chip division earning 106.5 trillion won on rising HBM4 and server SSD sales. It declared 30 trillion won in third-quarter dividends, but the shares closed 4.1% lower."
+    source: { name: "Samsung Newsroom", url: "https://news.samsung.com/global/samsung-electronics-announces-third-quarter-2026-results" }
+    companies: [samsung-electronics]
+    nodes: [chips/memory/dram-hbm]
+    themes: [memory-cycle, hbm]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-10-28-microsoft-fq1-2027-results
+    date: 2026-10-28
+    title: "Microsoft beats with Azure up 48% to $33.2 billion and capex below forecasts"
+    summary: "Microsoft reported fiscal first-quarter revenue of $92.3 billion, up 19% and above the roughly $90.7 billion consensus, and adjusted EPS of $4.89 against $4.72 expected, with Azure revenue up 48%. Capital spending including leases was $45.2 billion, below what analysts expected, and it guided Azure growth of 49% to 50%; neocloud stocks fell on the lower capex."
+    source: { name: "Microsoft", url: "https://news.microsoft.com/source/2026/10/28/microsoft-announces-first-quarter-results-2/" }
+    companies: [microsoft]
+    nodes: [infrastructure/cloud/hyperscalers]
+    themes: [capex]
+    impact: positive
+    importance: 3
+
+  - id: 2026-10-28-alphabet-q3-2026-results
+    date: 2026-10-28
+    title: "Alphabet misses estimates despite Google Cloud more than doubling; shares fall 10%"
+    summary: "Alphabet reported third-quarter revenue of $127.6 billion, up 25% but slightly below the roughly $127.9 billion consensus, and GAAP EPS of $2.12 against $3.01 expected after an $8.66 billion loss on equity holdings. Google Cloud revenue rose 103% to $30.7 billion with TPU sales contributing; Alphabet kept 2026 capex at $195 billion to $205 billion and expects a significant increase in 2027."
+    source: { name: "Alphabet", url: "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000080/googexhibit991q32026.htm" }
+    companies: [alphabet]
+    nodes: [infrastructure/cloud/hyperscalers, chips/compute/hyperscaler-silicon]
+    themes: [capex, custom-asic]
+    impact: negative
+    importance: 3
+
+  - id: 2026-10-28-ge-vernova-q3-2026-results
+    date: 2026-10-28
+    title: "GE Vernova orders jump 96% to $29 billion and it raises 2026 guidance"
+    summary: "GE Vernova reported third-quarter orders of about $29 billion, up 96% organically, and revenue of $12.6 billion, up 27% and above the roughly $12.0 billion consensus, with EPS of $4.81 against $4.01 expected. It raised 2026 revenue guidance to $46.5 billion to $47.5 billion, said gas turbine backlog and slot reservations reached 122 GW, and agreed to buy Trench Group."
+    source: { name: "GE Vernova", url: "https://www.gevernova.com/news/articles/ge-vernova-releases-third-quarter-2026-financial-results-announces-agreement-acquire" }
+    companies: [ge-vernova]
+    nodes: [energy/generation-equipment/gas-turbines]
+    themes: [power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-28-vertiv-q3-2026-results
+    date: 2026-10-28
+    title: "Vertiv sales rise 61% to $4.31 billion as organic orders more than double"
+    summary: "Vertiv reported third-quarter net sales of $4.31 billion, up 61%, and adjusted EPS of $2.21 against the $1.82 consensus, with organic orders up more than 100% and a 25.2% adjusted operating margin. It raised 2026 guidance to $14.65 billion of sales and $7.15 of adjusted EPS at the midpoint; the shares rose about 14%."
+    source: { name: "Vertiv", url: "https://investors.vertiv.com/news/news-details/2026/Vertiv-Reports-Strong-Third-Quarter-2026-with-Net-Sales-Growth-of-61-Organic-Orders-Growth-over-100-and-Diluted-EPS-Growth-of-91-Adjusted-Diluted-EPS-Growth-of-78-Raises-Full-Year-2026-Guidance-Across-All-Key-Metrics/default.aspx" }
+    companies: [vertiv]
+    nodes: [infrastructure/power-delivery/ups-switchgear, infrastructure/thermal/liquid-cooling]
+    themes: [data-centers, liquid-cooling]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-28-kla-fq1-2027-results
+    date: 2026-10-28
+    title: "KLA revenue of $4.14 billion beats estimates; it guides $4.7 billion next quarter"
+    summary: "KLA reported fiscal first-quarter revenue of $4.14 billion, above the roughly $4.04 billion consensus, and non-GAAP EPS of $1.22 against $1.18 expected. It guided second-quarter revenue of $4.7 billion, plus or minus $200 million."
+    source: { name: "KLA", url: "https://ir.kla.com/news-events/press-releases/detail/523/kla-corporation-reports-fiscal-2027-first-quarter-results" }
+    companies: [kla]
+    nodes: [chips/equipment/process-control]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-28-oracle-2030-forecast
+    date: 2026-10-28
+    title: "Oracle forecasts $225 billion of revenue by fiscal 2030 and caps new fundraising at $20 billion"
+    summary: "Oracle forecast fiscal 2030 revenue of $225 billion, implying about 35% annual growth, an operating margin above 40% and positive free cash flow from the second half of fiscal 2028. It said additional fundraising through fiscal 2030 will be limited to $20 billion, split between equity and debt, and the shares rose about 11%."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/28/oracle-forecast-growth-2030.html" }
+    companies: [oracle]
+    nodes: [infrastructure/cloud/hyperscalers]
+    themes: [capex]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-28-apple-touchscreen-macbook-pro
+    date: 2026-10-28
+    title: "Apple launches its first touchscreen Mac, an OLED MacBook Pro from $2,899"
+    summary: "Apple introduced the MacBook Pro with PROLED XDR Display, a tandem OLED laptop with touch support, starting at $2,899 for the 14-inch M5 Pro model and $3,399 for the 16-inch. Pre-orders opened October 28, with deliveries from November 6."
+    source: { name: "Apple Newsroom", url: "https://www.apple.com/newsroom/2026/10/apple-unveils-groundbreaking-macbook-pro-with-proled-xdr-display/" }
+    companies: [apple]
+    nodes: [applications/devices/phones-pcs]
+    themes: [edge-ai]
+    impact: neutral
+    importance: 1
+
   - id: 2026-10-28-sk-hynix-q3-2026-results
     date: 2026-10-28
     title: "SK Hynix posts record quarterly revenue above 100 trillion won and an 80% operating margin"
