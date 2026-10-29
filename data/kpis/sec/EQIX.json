@@ -1,11 +1,10 @@
 {
  "symbol": "EQIX",
  "cik": "0001101239",
- "name": "EQUINIX, INC.",
+ "name": "EQUINIX INC",
  "company": "equinix",
- "updatedAt": "2026-10-14T06:41:33+00:00",
+ "updatedAt": "2026-10-29T01:20:10+00:00",
  "revenue": [
-  {"start": "2016-07-01", "end": "2016-09-30", "value": 924676000, "fy": 2016, "fp": "Q3", "form": "10-Q", "filed": "2017-11-03", "derived": false, "concept": "Revenues"},
   {"start": "2016-10-01", "end": "2016-12-31", "value": 942647000, "fy": 2016, "fp": "Q4", "form": "10-K", "filed": "2019-02-22", "derived": true, "concept": "Revenues"},
   {"start": "2017-01-01", "end": "2017-03-31", "value": 949525000, "fy": 2017, "fp": "Q1", "form": "10-K", "filed": "2019-02-22", "derived": false, "concept": "Revenues"},
   {"start": "2017-04-01", "end": "2017-06-30", "value": 1066421000, "fy": 2017, "fp": "Q2", "form": "10-K", "filed": "2019-02-22", "derived": false, "concept": "Revenues"},
@@ -41,10 +40,11 @@
   {"start": "2024-10-01", "end": "2024-12-31", "value": 2261000000, "fy": 2024, "fp": "Q4", "form": "10-K", "filed": "2026-02-11", "derived": true, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2025-01-01", "end": "2025-03-31", "value": 2225000000, "fy": 2025, "fp": "Q1", "form": "10-Q", "filed": "2026-04-29", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2025-04-01", "end": "2025-06-30", "value": 2256000000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-07-29", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
-  {"start": "2025-07-01", "end": "2025-09-30", "value": 2316000000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2025-10-29", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
-  {"start": "2025-10-01", "end": "2025-12-31", "value": 2420000000, "fy": 2025, "fp": "Q4", "form": "10-K", "filed": "2026-02-11", "derived": true, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2025-07-01", "end": "2025-09-30", "value": 2316000000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2026-10-28", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2025-10-01", "end": "2025-12-31", "value": 2420000000, "fy": 2025, "fp": "Q4", "form": "10-Q", "filed": "2026-10-28", "derived": true, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2026-01-01", "end": "2026-03-31", "value": 2444000000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-04-29", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
-  {"start": "2026-04-01", "end": "2026-06-30", "value": 2625000000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-07-29", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 2625000000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-07-29", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2026-07-01", "end": "2026-09-30", "value": 2571000000, "fy": 2026, "fp": "Q3", "form": "10-Q", "filed": "2026-10-28", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
  ],
  "capex": [
   {"start": "2015-10-01", "end": "2015-12-31", "value": 232082000, "fy": 2015, "fp": "Q4", "form": "10-K", "filed": "2018-02-26", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
