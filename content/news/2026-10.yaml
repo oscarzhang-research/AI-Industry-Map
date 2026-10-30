@@ -1,5 +1,124 @@
 month: 2026-10
 items:
+  - id: 2026-10-30-china-optical-suppliers-extend-selloff
+    date: 2026-10-30
+    title: "Chinese optical module makers extend sell-off despite strong earnings"
+    summary: "Eoptolink fell as much as 15% in Shenzhen on October 30 after an 11.1% drop the day before, and Innolight fell 8.5% on October 29, the South China Morning Post reported. Investors focused on weaker quarter-on-quarter profit, including a roughly 19% sequential fall at Eoptolink, while both companies said demand for 1.6T modules remains strong."
+    source: { name: "South China Morning Post", url: "https://www.scmp.com/tech/tech-trends/article/3372672/chinas-optical-suppliers-extend-sell-fears-slower-ai-growth-trump-upbeat-earnings" }
+    companies: [eoptolink, innolight]
+    nodes: [infrastructure/networking/optical-transceivers]
+    themes: [optical, china-ai]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-29-amazon-q3-2026-results
+    date: 2026-10-29
+    title: "Amazon misses on sales and EPS as AWS growth reaches 39%"
+    summary: "Amazon reported third-quarter net sales of $201.9 billion, up 12% and just below the $202.3 billion consensus, and EPS of $1.89 against $1.96 expected. AWS sales rose 39% to $46.0 billion with $17.8 billion of operating income; Amazon guided fourth-quarter sales to $240 billion to $247 billion and kept 2026 capex at about $220 billion."
+    source: { name: "Amazon", url: "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Third-Quarter-Results/default.aspx" }
+    companies: [amazon]
+    nodes: [infrastructure/cloud/hyperscalers]
+    themes: [capex]
+    impact: mixed
+    importance: 3
+
+  - id: 2026-10-29-intel-q3-2026-results
+    date: 2026-10-29
+    title: "Intel beats on EPS but guides fourth quarter below, citing a PC slowdown"
+    summary: "Intel reported third-quarter revenue of $16.5 billion, up 21% and in line with the $16.5 billion consensus, and non-GAAP EPS of $0.52 against $0.40 expected, helped by data center revenue growth. It guided fourth-quarter revenue to $15.0 billion to $16.0 billion and non-GAAP EPS to $0.25, citing near-term PC headwinds; CNBC reported the shares fell 21%."
+    source: { name: "Intel", url: "https://www.intc.com/news-events/press-releases/detail/1786/intel-reports-third-quarter-2026-financial-results" }
+    companies: [intel]
+    nodes: [chips/compute/server-cpus]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-29-sandisk-fq1-2027-results
+    date: 2026-10-29
+    title: "Sandisk revenue rises 23% sequentially to $11.0 billion on data center demand"
+    summary: "Sandisk reported fiscal first-quarter revenue of $11.0 billion, above the $10.7 billion consensus, and non-GAAP EPS of $49.51 against $46.41 expected, with an 85.1% non-GAAP gross margin. It guided fiscal second-quarter revenue to $12.2 billion to $12.6 billion and non-GAAP EPS to $55.00 to $57.00 before its pending stock split."
+    source: { name: "Sandisk", url: "https://investor.sandisk.com/news-releases/news-release-details/sandisk-reports-fiscal-first-quarter-2027-financial-results" }
+    companies: [sandisk]
+    nodes: [chips/memory/nand-ssd]
+    themes: [memory-cycle]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-29-quanta-q3-2026-results
+    date: 2026-10-29
+    title: "Quanta Services beats and raises 2026 EPS guidance on record backlog"
+    summary: "Quanta Services reported third-quarter revenue of $12.0 billion, above the $11.0 billion consensus, and adjusted EPS of $6.06 against $5.03 expected. Backlog reached a record $63.7 billion, and Quanta raised its 2026 adjusted EPS guidance to $17.90 to $18.30 from $16.45 to $16.95."
+    source: { name: "Quanta Services", url: "https://investors.quantaservices.com/news-events/press-releases/detail/407/quanta-services-reports-third-quarter-2026-results" }
+    companies: [quanta]
+    nodes: [energy/grid/grid-epc]
+    themes: [power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-29-caterpillar-q3-2026-results
+    date: 2026-10-29
+    title: "Caterpillar Power & Energy sales rise 18% on data center demand"
+    summary: "Caterpillar reported third-quarter sales and revenues of $20.7 billion, up 17% and in line with the $20.7 billion consensus, and adjusted EPS of $7.20 against $7.03 expected. Power & Energy sales rose 18% to $8.8 billion and segment profit rose 31%, driven by turbines and large engines largely for data centers."
+    source: { name: "Caterpillar", url: "https://www.caterpillar.com/en/news/corporate-press-releases/h/3q26-results-caterpillar-inc.html" }
+    companies: [caterpillar]
+    nodes: [energy/generation-equipment/engines-gensets]
+    themes: [power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-29-microsoft-25-billion-bond-sale
+    date: 2026-10-29
+    title: "Microsoft raises $25 billion in its first US bond sale since 2017"
+    summary: "Microsoft sold $25 billion of bonds in 10 parts to fund general corporate purposes including capital spending, with the offering expected to close on November 4. Bloomberg reported orders peaked at about $115 billion, 4.6 times the deal size."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/29/microsoft-25-billion-debt-offering.html" }
+    companies: [microsoft]
+    nodes: [infrastructure/cloud/hyperscalers]
+    themes: [capex]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-10-29-alphabet-worst-day-on-record
+    date: 2026-10-29
+    title: "Alphabet falls about 13% in its worst day on record after earnings"
+    summary: "Alphabet shares dropped about 13% on October 29, the largest one-day fall since Google's 2004 listing, erasing roughly $500 billion of market value. Investors reacted to search revenue of $63.35 billion against a $64.96 billion estimate and third-quarter free cash flow of minus $9.07 billion."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/29/alphabet-google-microsoft-msft-shares-today-earnings.html" }
+    companies: [alphabet]
+    nodes: [models/frontier-labs/closed-frontier, infrastructure/cloud/hyperscalers]
+    themes: [capex]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-29-mistral-large-4-open-weights
+    date: 2026-10-29
+    title: "Mistral releases open weights for its 1-trillion-parameter Large 4 model"
+    summary: "Mistral published the weights of Mistral Large 4, a multimodal mixture-of-experts model with 1.05 trillion total and 52 billion active parameters, under its Ecosystem Open-Weight license. Companies offering it as a hosted service need a separate commercial license, and Mistral is pitching the model for defensive cybersecurity work."
+    source: { name: "Mistral AI", url: "https://mistral.ai/news/mistral-large-4-oss/" }
+    companies: [mistral]
+    nodes: [models/frontier-labs/open-labs]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-10-29-servicenow-worst-day-on-record
+    date: 2026-10-29
+    title: "ServiceNow shares fall 27% in their worst day on record"
+    summary: "ServiceNow shares fell 27% on October 29 after third-quarter revenue of $4.11 billion only matched the $4.10 billion estimate, reviving concern that AI will erode enterprise software. The company slightly raised its 2026 subscription revenue outlook to $15.78 billion to $15.79 billion and said net new AI contract value rose 65%."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/29/servicenow-now-earnings-q3-2026.html" }
+    companies: [servicenow]
+    nodes: [applications/enterprise/workflow-agents]
+    themes: [agents]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-29-moore-threads-shares-fall-after-results
+    date: 2026-10-29
+    title: "Moore Threads shares fall 12% despite higher third-quarter revenue"
+    summary: "Moore Threads closed down 12.45% in Shanghai on October 29 after reporting third-quarter revenue of 1.55 billion yuan, the South China Morning Post reported. Investors focused on cash burn: the GPU maker had a nine-month operating cash outflow of 3.31 billion yuan."
+    source: { name: "South China Morning Post", url: "https://www.scmp.com/tech/tech-trends/article/3372535/google-supplier-biwin-gpu-leader-moore-threads-see-stocks-plunge-despite-revenue-surge" }
+    companies: [moore-threads]
+    nodes: [chips/compute/china-accelerators]
+    themes: [china-ai]
+    impact: negative
+    importance: 1
+
   - id: 2026-10-29-samsung-q3-2026-results
     date: 2026-10-29
     title: "Samsung confirms record 107.4 trillion won quarterly profit; shares fall 4%"
