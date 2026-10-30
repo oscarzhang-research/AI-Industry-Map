@@ -3,7 +3,7 @@
  "cik": "0001783180",
  "name": "CARRIER GLOBAL CORPORATION",
  "company": "carrier",
- "updatedAt": "2026-10-14T06:41:33+00:00",
+ "updatedAt": "2026-10-30T01:26:43+00:00",
  "revenue": [
   {"start": "2019-01-01", "end": "2019-03-31", "value": 4323000000, "fy": 2019, "fp": "Q1", "form": "10-K", "filed": "2021-02-09", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2019-04-01", "end": "2019-06-30", "value": 4962000000, "fy": 2019, "fp": "Q2", "form": "10-K", "filed": "2021-02-09", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
@@ -30,10 +30,12 @@
   {"start": "2024-07-01", "end": "2024-09-30", "value": 5984000000, "fy": 2024, "fp": "Q3", "form": "10-Q", "filed": "2025-10-28", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2024-10-01", "end": "2024-12-31", "value": 5148000000, "fy": 2024, "fp": "Q4", "form": "10-K", "filed": "2025-02-11", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2025-01-01", "end": "2025-03-31", "value": 5218000000, "fy": 2025, "fp": "Q1", "form": "10-Q", "filed": "2026-04-30", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
-  {"start": "2025-04-01", "end": "2025-06-30", "value": 6113000000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2025-07-29", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
-  {"start": "2025-07-01", "end": "2025-09-30", "value": 5579000000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2025-10-28", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
-  {"start": "2025-10-01", "end": "2025-12-31", "value": 4837000000, "fy": 2025, "fp": "Q4", "form": "10-K", "filed": "2026-02-05", "derived": true, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
-  {"start": "2026-01-01", "end": "2026-03-31", "value": 5341000000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-04-30", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
+  {"start": "2025-04-01", "end": "2025-06-30", "value": 6113000000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-07-28", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2025-07-01", "end": "2025-09-30", "value": 5579000000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2026-10-29", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2025-10-01", "end": "2025-12-31", "value": 4837000000, "fy": 2025, "fp": "Q4", "form": "10-Q", "filed": "2026-10-29", "derived": true, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2026-01-01", "end": "2026-03-31", "value": 5341000000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-04-30", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 6351000000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-07-28", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2026-07-01", "end": "2026-09-30", "value": 6263000000, "fy": 2026, "fp": "Q3", "form": "10-Q", "filed": "2026-10-29", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
  ],
  "capex": [
   {"start": "2019-01-01", "end": "2019-03-31", "value": 41000000, "fy": 2019, "fp": "Q1", "form": "10-Q", "filed": "2020-05-11", "derived": false, "concept": "PaymentsToAcquireProductiveAssets"},
@@ -61,9 +63,11 @@
   {"start": "2024-07-01", "end": "2024-09-30", "value": 92000000, "fy": 2024, "fp": "Q3", "form": "10-Q", "filed": "2025-10-28", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
   {"start": "2024-10-01", "end": "2024-12-31", "value": 217000000, "fy": 2024, "fp": "Q4", "form": "10-K", "filed": "2026-02-05", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
   {"start": "2025-01-01", "end": "2025-03-31", "value": 63000000, "fy": 2025, "fp": "Q1", "form": "10-Q", "filed": "2026-04-30", "derived": false, "concept": "PaymentsToAcquireProductiveAssets"},
-  {"start": "2025-04-01", "end": "2025-06-30", "value": 81000000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-04-30", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
-  {"start": "2025-07-01", "end": "2025-09-30", "value": 117000000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2025-10-28", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
-  {"start": "2025-10-01", "end": "2025-12-31", "value": 131000000, "fy": 2025, "fp": "Q4", "form": "10-K", "filed": "2026-02-05", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
-  {"start": "2026-01-01", "end": "2026-03-31", "value": 94000000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-04-30", "derived": false, "concept": "PaymentsToAcquireProductiveAssets"}
+  {"start": "2025-04-01", "end": "2025-06-30", "value": 81000000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-07-28", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2025-07-01", "end": "2025-09-30", "value": 117000000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2026-10-29", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2025-10-01", "end": "2025-12-31", "value": 131000000, "fy": 2025, "fp": "Q4", "form": "10-Q", "filed": "2026-10-29", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2026-01-01", "end": "2026-03-31", "value": 94000000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-04-30", "derived": false, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 117000000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-07-28", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2026-07-01", "end": "2026-09-30", "value": 139000000, "fy": 2026, "fp": "Q3", "form": "10-Q", "filed": "2026-10-29", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"}
  ]
 }
