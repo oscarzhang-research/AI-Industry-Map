@@ -1,5 +1,111 @@
 month: 2026-10
 items:
+  - id: 2026-10-30-doosan-nuscale-upper-reactor-vessel
+    date: 2026-10-30
+    title: "Doosan Enerbility will build the upper reactor vessel for NuScale's SMR"
+    summary: "NuScale contracted Doosan Enerbility to manufacture the upper section of the reactor pressure vessel for its small modular reactor at Doosan's Changwon plant. The deal moves the partners from preparing materials to making reactor components for commercial deployment."
+    source: { name: "World Nuclear News", url: "https://www.world-nuclear-news.org/articles/doosan-to-manufacture-upper-reactor-vessel-for-nuscale-smr" }
+    companies: [doosan-enerbility, nuscale]
+    nodes: [energy/generation-equipment/nuclear-smr]
+    themes: [nuclear]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-30-doe-grid-supply-chain-funding
+    date: 2026-10-30
+    title: "DOE opens $237 million in funding for US grid equipment supply chains"
+    summary: "The Energy Department opened its first Grid Supply Chain Program funding round, with up to $187 million for US-made alternative materials and subcomponents and up to $50 million for refurbishing and reusing grid equipment. Concept papers are due November 20, 2026."
+    source: { name: "US Department of Energy", url: "https://www.energy.gov/articles/energy-department-announces-over-230-million-funding-opportunity-strengthen-americas-grid" }
+    companies: []
+    nodes: [energy/grid/transformers]
+    themes: [power-bottleneck]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-30-centrus-first-centrifuge-piketon
+    date: 2026-10-30
+    title: "Centrus ships the first centrifuge for its Piketon enrichment expansion"
+    summary: "Centrus shipped the first new centrifuge from its Oak Ridge, Tennessee, plant for the expansion of its Piketon, Ohio, enrichment site, backed by a $900 million DOE task order that includes HALEU production. The new centrifuges are expected to start operating in Ohio in 2029."
+    source: { name: "World Nuclear News", url: "https://www.world-nuclear-news.org/articles/centrus-ships-first-centrifuge-for-piketon-plant-expansion" }
+    companies: [centrus]
+    nodes: [energy/fuel/enrichment-fuel]
+    themes: [nuclear]
+    impact: positive
+    importance: 1
+
+  - id: 2026-10-30-intel-fab-28-explosion-600-million
+    date: 2026-10-30
+    title: "Intel expects about $600 million revenue hit from the Fab 28 explosion"
+    summary: "Intel said the explosion at its Kiryat Gat fab shut the plant for about two weeks and will cut about $300 million from fourth-quarter revenue, with a similar hit expected in the first quarter of 2027, mostly in 10nm server processors. It also expects about two points off fourth-quarter non-GAAP gross margin."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/intel-says-israel-fab-explosion-will-cost-company-600m-in-losses-as-q3-26-revenue-hits-165bn/" }
+    companies: [intel]
+    nodes: [chips/compute/server-cpus]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-30-google-suncatcher-first-response
+    date: 2026-10-30
+    title: "Google's Suncatcher satellite returns its first AI output from a TPU in orbit"
+    summary: "Google said its Project Suncatcher prototype satellite, launched on October 1, ran the open Gemma model on a TPU in orbit and sent back its first response. Google plans thermal and radiation tests next and aims to fly a pair of linked satellites in 2027."
+    source: { name: "Google", url: "https://blog.google/innovation-and-ai/models-and-research/google-research/project-suncatcher-satellite-response/" }
+    companies: [alphabet]
+    nodes: [chips/compute/hyperscaler-silicon]
+    themes: [data-centers]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-10-30-foxconn-targets-half-of-ai-server-market
+    date: 2026-10-30
+    title: "Foxconn aims for half of the global AI server market within two years"
+    summary: "Foxconn chairman Young Liu told CNBC the company holds about 40% of the global AI server market and could reach around 45% next year and 50% in a couple of years. He said capacity is fully booked for at least 18 months."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/30/hon-hai-technology-group-foxconn-ai-server-young-liu-.html" }
+    companies: [hon-hai]
+    nodes: [infrastructure/servers/odm]
+    impact: positive
+    importance: 2
+
+  - id: 2026-10-30-anthropic-junk-rating-expected
+    date: 2026-10-30
+    title: "Blackstone expects Anthropic to get a high junk credit rating, FT reports"
+    summary: "Blackstone, anchor investor in a $63 billion deal financing Anthropic's chips, told investors it now expects Anthropic to receive a high junk rating after its IPO, reversing an earlier forecast of investment grade, the Financial Times reported. Anthropic and Blackstone declined to comment."
+    source: { name: "TechCrunch", url: "https://techcrunch.com/2026/10/30/anthropic-expected-to-receive-high-junk-rating-from-credit-agencies-following-ipo-report-says/" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-30-sp-meta-outlook-negative
+    date: 2026-10-30
+    title: "S&P moves Meta's credit outlook to negative on capex and cash flow"
+    summary: "S&P Global Ratings kept Meta at AA- but cut its outlook to negative from stable, citing uncertainty about elevated capex and negative free cash flow. Meta guided 2026 capex to $135 billion to $145 billion and reported third-quarter free cash flow of minus $2.12 billion."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/30/meta-outlook-to-revised-to-negative-by-sp-after-cash-flow-negative.html" }
+    companies: [meta]
+    nodes: [applications/ads-commerce-content/ads-recsys]
+    themes: [capex]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-30-reddit-worst-day-on-record
+    date: 2026-10-30
+    title: "Reddit shares fall 29% after a weak fourth-quarter forecast"
+    summary: "Reddit fell about 29% on October 30, its worst day since its 2024 listing, after guiding fourth-quarter sales to $1.00 billion to $1.03 billion against a $1.05 billion estimate. It also plans to test requiring users to log in, as AI search answers cut referral traffic from Google."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/30/reddit-stock-q3-earnings.html" }
+    companies: [reddit, alphabet]
+    nodes: [applications/ads-commerce-content/ads-recsys]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-30-waymo-toyota-bz4x-robotaxi
+    date: 2026-10-30
+    title: "Waymo picks the Toyota bZ4X as its next robotaxi, starting in Japan in 2027"
+    summary: "Toyota will build an autonomous bZ4X for Waymo at its Takaoka plant, integrating Waymo's hardware on the same line. Testing and validation of the fleet starts in Japan in 2027, with the UK and other Waymo markets to follow."
+    source: { name: "Waymo", url: "https://waymo.com/blog/2026/10/toyota-bz4x-partnership/" }
+    companies: [waymo]
+    nodes: [applications/physical-ai/autonomous-driving]
+    themes: [robotics]
+    impact: positive
+    importance: 2
+
   - id: 2026-10-30-china-optical-suppliers-extend-selloff
     date: 2026-10-30
     title: "Chinese optical module makers extend sell-off despite strong earnings"
