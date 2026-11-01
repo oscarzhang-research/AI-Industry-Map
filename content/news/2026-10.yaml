@@ -1,5 +1,37 @@
 month: 2026-10
 items:
+  - id: 2026-10-31-openai-cuts-round-target-to-20-billion
+    date: 2026-10-31
+    title: "OpenAI lowers its funding round target to $20 billion"
+    summary: "OpenAI is now seeking up to $20 billion in its new round, down from an earlier target of up to $30 billion, CNBC confirmed after a Financial Times report. The FT said the company is seeking a $1.25 trillion post-money valuation, with UAE investors and Coatue leading; the round has not closed."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/31/openai-fundraising-20-billion-valuation.html" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: negative
+    importance: 2
+
+  - id: 2026-10-31-xai-naacp-turbine-lawsuit-proceeds
+    date: 2026-10-31
+    title: "Judge lets NAACP Clean Air Act suit over xAI's Southaven turbines proceed"
+    summary: "A federal judge in Mississippi denied SpaceX's motion to dismiss the NAACP's Clean Air Act lawsuit over gas turbines run without an air permit at xAI's Southaven site, rejecting the argument that they are exempt mobile sources. SpaceX says the turbines are temporary and permitted units with pollution controls are planned."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/10/31/xai-naacp-clean-air-act-lawsuit-dismissal.html" }
+    companies: [xai]
+    nodes: [models/frontier-labs/closed-frontier, energy/generation-equipment/gas-turbines]
+    themes: [power-bottleneck, data-centers]
+    impact: negative
+    importance: 1
+
+  - id: 2026-10-31-intel-prioritizes-server-cpu-capacity
+    date: 2026-10-31
+    title: "Intel shifts capacity from PC to server CPUs as supply stays short"
+    summary: "Intel is prioritizing data center CPUs over consumer chips while server demand outruns supply, Tom's Hardware reported from its earnings call. Intel expects industry server CPU units to grow 30% in 2026 and 2027 and said growth would be higher with more supply; new capacity in Ireland and Oregon arrives in 2027."
+    source: { name: "Tom's Hardware", url: "https://www.tomshardware.com/pc-components/cpus/intel-shifts-production-capacity-from-consumer-to-server-cpus-in-face-of-unprecedented-ai-demand-company-navigating-one-of-the-most-significant-supply-shortages-in-history" }
+    companies: [intel]
+    nodes: [chips/compute/server-cpus]
+    themes: [inference]
+    impact: mixed
+    importance: 2
+
   - id: 2026-10-30-doosan-nuscale-upper-reactor-vessel
     date: 2026-10-30
     title: "Doosan Enerbility will build the upper reactor vessel for NuScale's SMR"

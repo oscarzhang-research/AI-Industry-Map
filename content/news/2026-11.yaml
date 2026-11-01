@@ -1,0 +1,12 @@
+month: 2026-11
+items:
+  - id: 2026-11-01-nvidia-rubin-shipping-specs
+    date: 2026-11-01
+    title: "Nvidia trims Rubin GPU memory and NVLink bandwidth in shipping specs"
+    summary: "Nvidia's Vera Rubin NVL72 page now lists 19.2 TB/s of HBM4 bandwidth and 3.0 TB/s of NVLink per Rubin GPU, down from the 22 TB/s and 3.6 TB/s it announced earlier, ServeTheHome reported as production hardware arrives. Rated FP4 compute is unchanged at 50 petaflops for inference."
+    source: { name: "ServeTheHome", url: "https://www.servethehome.com/nvidia-updates-rubin-gpu-specs-as-first-production-hardware-arrives/" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    themes: [hbm]
+    impact: negative
+    importance: 2
