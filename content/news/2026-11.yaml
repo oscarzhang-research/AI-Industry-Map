@@ -1,5 +1,27 @@
 month: 2026-11
 items:
+  - id: 2026-11-02-south-korea-record-ai-budget
+    date: 2026-11-02
+    title: "South Korea proposes 4.7 trillion won for a sovereign frontier AI model"
+    summary: "President Lee Jae Myung's proposed 2027 budget raises total spending 12.8% to a record 820.9 trillion won, including 21.3 trillion won for semiconductors, physical AI and AI data centers, nearly double 2026. It sets aside 4.7 trillion won for a sovereign model aiming for the world's highest performance, pending National Assembly approval."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/02/south-korea-ai-spending-budget.html" }
+    companies: []
+    nodes: [models/frontier-labs]
+    themes: [sovereign-ai]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-01-deepseek-super-agent-prototype
+    date: 2026-11-01
+    title: "DeepSeek releases an open-source prototype of a multi-agent coding system"
+    summary: "DeepSeek's Harness team described a 'super agent' in which a central agent hands tasks to parallel agents that report back, and released an open-source research prototype, the South China Morning Post reported. In the team's test, one task took just under 16 minutes against more than 29 minutes with a conventional setup."
+    source: { name: "South China Morning Post", url: "https://www.scmp.com/tech/article/3372884/deepseek-unveils-ai-super-agent-coding-race-openai-anthropic" }
+    companies: [deepseek]
+    nodes: [models/china-models/china-startups]
+    themes: [coding, agents, china-ai]
+    impact: neutral
+    importance: 1
+
   - id: 2026-11-01-nvidia-rubin-shipping-specs
     date: 2026-11-01
     title: "Nvidia trims Rubin GPU memory and NVLink bandwidth in shipping specs"
