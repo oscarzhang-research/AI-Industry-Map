@@ -1,9 +1,9 @@
 {
  "symbol": "CARR",
  "cik": "0001783180",
- "name": "CARRIER GLOBAL CORPORATION",
+ "name": "CARRIER GLOBAL Corp",
  "company": "carrier",
- "updatedAt": "2026-10-30T01:26:43+00:00",
+ "updatedAt": "2026-11-03T03:09:20+00:00",
  "revenue": [
   {"start": "2019-01-01", "end": "2019-03-31", "value": 4323000000, "fy": 2019, "fp": "Q1", "form": "10-K", "filed": "2021-02-09", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2019-04-01", "end": "2019-06-30", "value": 4962000000, "fy": 2019, "fp": "Q2", "form": "10-K", "filed": "2021-02-09", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},

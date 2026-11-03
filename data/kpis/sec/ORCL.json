@@ -1,9 +1,9 @@
 {
  "symbol": "ORCL",
  "cik": "0001341439",
- "name": "Oracle Corporation",
+ "name": "ORACLE CORP",
  "company": "oracle",
- "updatedAt": "2026-10-14T06:41:33+00:00",
+ "updatedAt": "2026-11-03T03:09:20+00:00",
  "revenue": [
   {"start": "2016-09-01", "end": "2016-11-30", "value": 9035000000, "fy": 2017, "fp": "Q2", "form": "10-Q", "filed": "2017-12-18", "derived": false, "concept": "Revenues"},
   {"start": "2016-12-01", "end": "2017-02-28", "value": 9205000000, "fy": 2017, "fp": "Q3", "form": "10-Q", "filed": "2018-03-21", "derived": false, "concept": "Revenues"},
