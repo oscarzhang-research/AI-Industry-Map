@@ -1,5 +1,103 @@
 month: 2026-11
 items:
+  - id: 2026-11-04-tencent-hy4-release
+    date: 2026-11-04
+    title: "Tencent releases its Hy4 model and says it will open the weights"
+    summary: "Tencent released the full version of its Hy4 large language model, adding visual understanding for the first time, and said it plans to publish the weights. The August preview had 770 billion total and 49 billion active parameters; Tencent says Hy4 still trails leading closed models on research-level math, long-horizon coding and visual question answering."
+    source: { name: "Tencent", url: "https://www.tencent.com/tencent-releases-and-open-sources-tencent-hy4-preview/" }
+    companies: [tencent]
+    nodes: [models/china-models/china-bigtech]
+    themes: [china-ai]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-11-03-amd-q3-2026-results
+    date: 2026-11-03
+    title: "AMD data center revenue nearly doubles and it guides fourth quarter to $17 billion"
+    summary: "AMD reported record third-quarter revenue of $13.4 billion, up 45% and above the $13.09 billion consensus, and adjusted EPS of $2.09 against $1.95 expected, with data center revenue up 97% on Instinct GPUs and EPYC CPUs. It guided fourth-quarter revenue to about $17 billion, plus or minus 3%."
+    source: { name: "AMD", url: "https://ir.amd.com/news-events/press-releases/detail/1303/amd-reports-third-quarter-2026-financial-results" }
+    companies: [amd]
+    nodes: [chips/compute/gpus, chips/compute/server-cpus]
+    themes: [inference]
+    impact: positive
+    importance: 3
+
+  - id: 2026-11-03-eaton-q3-2026-results
+    date: 2026-11-03
+    title: "Eaton sales rise 28% and it raises 2026 EPS guidance"
+    summary: "Eaton reported record third-quarter sales of $8.9 billion, up 28% with 19% organic growth and above the $8.5 billion consensus, and adjusted EPS of $3.68 against $3.55 expected. Electrical backlog rose 46%, and Eaton raised 2026 adjusted EPS guidance to $13.70 to $13.80 and agreed to buy COL Group to add European data center capacity."
+    source: { name: "Eaton", url: "https://www.eaton.com/us/en-us/company/news-insights/news-releases/2026/eaton-reports-record-third-quarter-2026-results.html" }
+    companies: [eaton]
+    nodes: [infrastructure/power-delivery/ups-switchgear]
+    themes: [data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-03-shopify-q3-2026-results
+    date: 2026-11-03
+    title: "Shopify revenue grows 32% but sales and GMV come in just short of estimates"
+    summary: "Shopify reported third-quarter revenue of $3.74 billion, up 32% and just below the $3.75 billion consensus, and adjusted EPS of $0.49 against $0.46 expected. GMV of $119.1 billion also missed estimates, Shopify guided fourth-quarter revenue growth to the low thirties, and the shares fell 8.7%."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/03/shopify-q3-2026-earnings-gmv.html" }
+    companies: [shopify]
+    nodes: [applications/ads-commerce-content/commerce]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-03-nvidia-caps-china-business-at-cloud-clients
+    date: 2026-11-03
+    title: "Nvidia tells cloud clients to keep China-linked business below half, FT reports"
+    summary: "Nvidia has asked data center and cloud customers to keep at least 51% of their services with companies outside China, the Financial Times reported, according to Bloomberg. The instruction reportedly applies beyond Asia; Nvidia has not commented publicly."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-11-03/nvidia-tells-data-center-clients-to-trim-china-business-ft-says" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    themes: [export-controls, china-ai]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-03-meta-bond-sale-20-25-billion
+    date: 2026-11-03
+    title: "Meta markets a $20 billion to $25 billion bond sale to fund AI spending"
+    summary: "Meta sought to raise $20 billion to $25 billion in a bond sale split about two-thirds dollars and one-third euros, CNBC reported, days after S&P moved its outlook to negative. The company sold $25 billion of bonds in April."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/03/meta-bond-sale-ai-funding.html" }
+    companies: [meta]
+    nodes: [applications/ads-commerce-content/ads-recsys]
+    themes: [capex]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-11-03-anthropic-queensland-lease
+    date: 2026-11-03
+    title: "Anthropic signs a lease for the first stage of a Queensland data center campus"
+    summary: "Anthropic's Australian unit signed a lease with Australian Data Centres, a Dexus-majority consortium, for the first stage of a proposed hyperscale campus in Western Downs, Queensland, subject to approvals including Dexus's board, DCD reported. Terms were not disclosed."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/anthropic-signs-lease-with-australian-data-centres-in-western-downs-queensland/" }
+    companies: [anthropic]
+    nodes: [infrastructure/data-centers/ai-campuses]
+    themes: [data-centers]
+    impact: positive
+    importance: 1
+
+  - id: 2026-11-02-crc-bloom-1gw-fuel-cells
+    date: 2026-11-02
+    title: "California Resources and Bloom Energy study 1 GW of fuel cells with carbon capture"
+    summary: "California Resources and Bloom Energy signed a non-binding memorandum to evaluate 1 GW or more of solid-oxide fuel cell power in California paired with carbon capture and storage. They plan to sell the power to data centers, utilities and industrial users."
+    source: { name: "California Resources", url: "https://www.crc.com/news-releases/news-release-details/california-resources-corporation-announces-strategic" }
+    companies: [bloom-energy]
+    nodes: [energy/generation-equipment/fuel-cells]
+    themes: [power-bottleneck]
+    impact: positive
+    importance: 1
+
+  - id: 2026-11-02-openai-grid-protectors-program
+    date: 2026-11-02
+    title: "OpenAI pledges up to 1 GW of flexible demand from its data centers"
+    summary: "OpenAI launched a voluntary Grid Protectors Program under which its future campuses will cut or curtail power use and join demand-response programs when the grid is stressed, offering up to 1 GW of flexible demand. Its Effingham County, Georgia, campus will be the pilot."
+    source: { name: "OpenAI", url: "https://openai.com/index/grid-protectors-program/" }
+    companies: [openai]
+    nodes: [energy/power-producers/to-data-centers]
+    themes: [power-bottleneck, data-centers]
+    impact: neutral
+    importance: 1
+
   - id: 2026-11-02-apple-fq4-2026-results
     date: 2026-11-02
     title: "Apple beats on sales and EPS but guides gross margin lower"
