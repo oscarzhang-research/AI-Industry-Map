@@ -1,5 +1,111 @@
 month: 2026-11
 items:
+  - id: 2026-11-05-digital-realty-goodman-nextdc-stake
+    date: 2026-11-05
+    title: "Digital Realty and Goodman bid for 9.9% of NextDC, and its shares jump 43%"
+    summary: "Digital Realty and Goodman Group offered about A$715 million for up to 9.9% of Australian data center operator NextDC at A$9.50 a share, a 45.5% premium to the last close. NextDC shares rose about 43%; the buyers said they have no current plan to bid for the whole company."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/05/nextdc-goodman-group-digital-realty-data-centers-.html" }
+    companies: [digital-realty]
+    nodes: [infrastructure/data-centers/colocation]
+    themes: [data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-04-google-15-billion-malaysia
+    date: 2026-11-04
+    title: "Google commits $15 billion to Malaysian data centers in 2027 and 2028"
+    summary: "Google will invest $15 billion in Malaysia over 2027 and 2028, expanding its Elmina campus in Selangor and building new campuses in Selangor and Negeri Sembilan. It also plans to bring 1 GW of clean energy capacity to Malaysia's grid."
+    source: { name: "Google", url: "https://blog.google/intl/en-my/company-news/inside-google/google-investment-malaysia-digital-infrastructure-november-2026/" }
+    companies: [alphabet]
+    nodes: [infrastructure/cloud/hyperscalers]
+    themes: [capex, data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-04-qualcomm-spacex-starlink-mobile-5g
+    date: 2026-11-04
+    title: "Qualcomm will supply SpaceX's nationwide Starlink Mobile 5G network"
+    summary: "SpaceX will use Qualcomm's Dragonwing radios, baseband units and software for Starlink Mobile's US terrestrial 5G network, which Qualcomm called its largest 5G deal to date. Deployment across tens of thousands of base station sites is planned to start in 2027; terms were not disclosed."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/04/spacex-strikes-deal-with-qualcomm-for-mobile-network-infrastructure.html" }
+    companies: [qualcomm, xai]
+    nodes: [chips/edge-silicon/mobile-pc-soc]
+    impact: positive
+    importance: 1
+
+  - id: 2026-11-04-meta-acquires-conductor
+    date: 2026-11-04
+    title: "Meta buys AI coding startup Conductor"
+    summary: "Meta acquired Conductor, whose tool runs several coding agents in parallel workspaces, TechCrunch reported; terms were not disclosed. Conductor's cloud service shuts down on November 20, and Meta already offers its own coding agent, Muse Code."
+    source: { name: "TechCrunch", url: "https://techcrunch.com/2026/11/04/meta-acquires-ai-coding-startup-conductor/" }
+    companies: [meta]
+    nodes: [applications/ads-commerce-content/ads-recsys]
+    themes: [coding, agents]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-11-03-pjm-revised-data-center-backstop
+    date: 2026-11-03
+    title: "PJM files a revised plan to procure backstop capacity for data centers"
+    summary: "PJM filed a revised plan with federal regulators to buy capacity for new data center load, aiming to start on March 1, after FERC rejected most of its first proposal in September. Jefferies analysts said the procurement could shrink to about 630 MW from the original 6,800 MW target, Utility Dive reported."
+    source: { name: "Utility Dive", url: "https://www.utilitydive.com/news/pjm-revised-data-center-backstop-procurement-ferc/873551/" }
+    companies: []
+    nodes: [energy/power-producers/to-data-centers]
+    themes: [power-bottleneck]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-11-04-arm-fq2-2027-results
+    date: 2026-11-04
+    title: "Arm revenue rises 27% to a record $1.44 billion on licensing growth"
+    summary: "Arm reported fiscal second-quarter revenue of $1.44 billion, up 27% and above the $1.38 billion consensus, with licensing revenue up 50% to $773 million and royalties up 8%. GAAP EPS fell to $0.12 from $0.22 a year earlier, while non-GAAP EPS rose to $0.52, and Arm said data center royalties doubled."
+    source: { name: "Arm", url: "https://newsroom.arm.com/news/arm-q2-fye27-results" }
+    companies: [arm]
+    nodes: [chips/eda-ip/ip]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-11-04-qualcomm-fq4-2026-results
+    date: 2026-11-04
+    title: "Qualcomm meets estimates but guides below as memory costs hit phone demand"
+    summary: "Qualcomm reported fiscal fourth-quarter revenue of $10.44 billion, above the $10.14 billion consensus, and adjusted EPS of $2.17 against $2.16 expected, including $650 million of data center revenue. It guided first-quarter revenue to $10.4 billion to $11.2 billion and EPS to $2.15 to $2.35, citing memory costs that are raising handset prices."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/04/qualcomm-qcom-earnings-report-q4-2026.html" }
+    companies: [qualcomm]
+    nodes: [chips/edge-silicon/mobile-pc-soc]
+    themes: [memory-cycle]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-04-coherent-fq1-2027-results
+    date: 2026-11-04
+    title: "Coherent beats EPS guidance and targets its first $3 billion quarter this fiscal year"
+    summary: "Coherent reported fiscal first-quarter revenue of $2.37 billion, above the $2.30 billion consensus, and non-GAAP EPS of $2.09 against $1.97 expected, with pro forma revenue up 56%. It expects its first $3 billion revenue quarter by the end of fiscal 2027 and full-year pro forma growth above 60%."
+    source: { name: "Coherent", url: "https://ir.coherent.com/news-releases/news-release-details/coherent-corp-reports-first-quarter-fiscal-2027-results" }
+    companies: [coherent]
+    nodes: [infrastructure/networking/optical-transceivers]
+    themes: [optical]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-04-applovin-q3-2026-results
+    date: 2026-11-04
+    title: "AppLovin revenue grows 55% with an 84% adjusted EBITDA margin"
+    summary: "AppLovin reported third-quarter revenue of $2.19 billion, up 55% and above the $2.07 billion consensus, and diluted EPS of $4.30 against $4.03 expected. Net income rose 72% to $1.44 billion, and the board added about $3.2 billion to its buyback authorization."
+    source: { name: "AppLovin", url: "https://investors.applovin.com/news/news-details/2026/AppLovin-Announces-Third-Quarter-2026-Financial-Results/default.aspx" }
+    companies: [applovin]
+    nodes: [applications/ads-commerce-content/ads-recsys]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-04-datadog-q3-2026-results
+    date: 2026-11-04
+    title: "Datadog revenue grows 35% and it raises full-year EPS guidance"
+    summary: "Datadog reported third-quarter revenue of $1.20 billion, up 35% and above the $1.15 billion consensus, and non-GAAP EPS of $0.81 against $0.64 expected. It guided fourth-quarter revenue to $1.19 billion to $1.20 billion and raised 2026 non-GAAP EPS guidance to $2.73 to $2.75."
+    source: { name: "Datadog", url: "https://investors.datadoghq.com/news-releases/news-release-details/datadog-announces-third-quarter-2026-financial-results" }
+    companies: [datadog]
+    nodes: [applications/enterprise/data-platforms]
+    impact: positive
+    importance: 2
+
   - id: 2026-11-04-tencent-hy4-release
     date: 2026-11-04
     title: "Tencent releases its Hy4 model and says it will open the weights"
