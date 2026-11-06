@@ -1,5 +1,79 @@
 month: 2026-11
 items:
+  - id: 2026-11-05-ai-stock-selloff-nvidia-qualcomm
+    date: 2026-11-05
+    title: "Nvidia and Qualcomm fall more than 9% as the Nasdaq has its worst day since April 2025"
+    summary: "Nvidia and Qualcomm each dropped more than 9% on November 5, with Nvidia losing almost $450 billion of market value, CNBC reported. Qualcomm's weak forecast and worries that the midterm results could bring tighter state limits on data center construction drove the sell-off."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/05/qualcomm-earnings-chip-stocks-election.html" }
+    companies: [nvidia, qualcomm]
+    nodes: [chips/compute/gpus]
+    themes: [data-centers]
+    impact: negative
+    importance: 3
+
+  - id: 2026-11-05-moonshot-sought-blackwell-in-europe
+    date: 2026-11-05
+    title: "Moonshot AI sought Nvidia Blackwell capacity from European neoclouds, sources tell CNBC"
+    summary: "China's Moonshot AI held talks to rent Blackwell clusters of 8,000 or more GPUs from neoclouds in Europe, mainly for inference, CNBC reported citing sources. Current US law gives regulators little power over chip access through cloud services hosted abroad."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/05/moonshot-ai-nvidia-chips-europe-china.html" }
+    companies: [moonshot, nvidia]
+    nodes: [models/china-models/china-startups, chips/compute/gpus]
+    themes: [export-controls, china-ai]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-11-05-iren-revenue-delay
+    date: 2026-11-05
+    title: "IREN beats on revenue but says some AI cloud revenue slips into 2027"
+    summary: "IREN reported fiscal first-quarter revenue of $228 million, up 66% from the prior quarter and above the $221 million estimate, with AI cloud revenue more than doubling to $200 million. It said some revenue will move from 2026 to early next year at a customer's request, while its $4 billion annualized revenue target remains fully contracted and backlog rose 22% to $20.3 billion."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/05/iren-earnings-report-q1-2027-.html" }
+    companies: [iren]
+    nodes: [infrastructure/cloud/neoclouds]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-11-05-openai-data-center-commitments
+    date: 2026-11-05
+    title: "OpenAI pledges to pay its full power costs and drop NDAs at its own data centers"
+    summary: "Two days after the midterms, OpenAI said it will pay the full cost of the electricity and grid infrastructure its data centers need, provide financial assurances if a project is cut, publish construction plans and stop using NDAs with public officials at sites it owns and operates. It urged lawmakers to turn similar rules into law."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/05/openai-to-pay-for-data-center-power-after-election-shows-ai-concern.html" }
+    companies: [openai]
+    nodes: [energy/power-producers/to-data-centers, infrastructure/data-centers/ai-campuses]
+    themes: [power-bottleneck, data-centers]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-11-05-openai-gpt-6-cyber
+    date: 2026-11-05
+    title: "OpenAI releases GPT-6 Cyber to approved security customers"
+    summary: "OpenAI's GPT-6 Cyber scores 48.5% on the ExploitGym benchmark, up from 32.1% for GPT-5.6 Cyber, and OpenAI rates it Critical for cybersecurity under its Preparedness Framework. Access starts with approved Daybreak Red customers through the API and Codex."
+    source: { name: "OpenAI", url: "https://openai.com/index/introducing-gpt-6-cyber/" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-11-05-china-blocks-softbank-abb-robotics
+    date: 2026-11-05
+    title: "China blocks SoftBank's purchase of ABB Robotics' China business"
+    summary: "China's foreign investment security review office prohibited SoftBank from buying the China business of ABB Robotics, part of the $5.375 billion deal agreed in October 2025, ABB said. China accounts for about 30% of ABB's robotics business, and the two companies say they are discussing next steps."
+    source: { name: "ABB", url: "https://www.abb.com/global/en/news/140154/update-on-divestment-of-abb-robotics" }
+    companies: [softbank, abb]
+    nodes: [applications/physical-ai/industrial-robots]
+    themes: [robotics, china-ai]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-05-cummins-q3-2026-results
+    date: 2026-11-05
+    title: "Cummins misses revenue estimates and trims guidance on weak pickup demand"
+    summary: "Cummins reported third-quarter revenue of $9.4 billion, up 13% but below the $9.9 billion consensus, and EPS of $8.25 against $8.28 expected, including $0.54 of tax benefits. It cut 2026 revenue growth guidance to about 10% from 10% to 13% on weak North American pickup demand, while saying power generation demand remains strong."
+    source: { name: "Cummins", url: "https://investor.cummins.com/news/detail/705/cummins-reports-strong-third-quarter-2026-results" }
+    companies: [cummins]
+    nodes: [energy/generation-equipment/engines-gensets]
+    impact: negative
+    importance: 2
+
   - id: 2026-11-05-digital-realty-goodman-nextdc-stake
     date: 2026-11-05
     title: "Digital Realty and Goodman bid for 9.9% of NextDC, and its shares jump 43%"
