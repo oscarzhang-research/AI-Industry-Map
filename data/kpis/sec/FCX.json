@@ -3,9 +3,8 @@
  "cik": "0000831259",
  "name": "Freeport-McMoRan Inc.",
  "company": "freeport",
- "updatedAt": "2026-10-14T06:41:33+00:00",
+ "updatedAt": "2026-11-07T01:16:11+00:00",
  "revenue": [
-  {"start": "2016-07-01", "end": "2016-09-30", "value": 3877000000, "fy": 2016, "fp": "Q3", "form": "10-K", "filed": "2018-02-20", "derived": false, "concept": "Revenues"},
   {"start": "2016-10-01", "end": "2016-12-31", "value": 4377000000, "fy": 2016, "fp": "Q4", "form": "10-K", "filed": "2018-02-20", "derived": false, "concept": "Revenues"},
   {"start": "2017-01-01", "end": "2017-03-31", "value": 3341000000, "fy": 2017, "fp": "Q1", "form": "10-K", "filed": "2019-02-15", "derived": false, "concept": "Revenues"},
   {"start": "2017-04-01", "end": "2017-06-30", "value": 3711000000, "fy": 2017, "fp": "Q2", "form": "10-K", "filed": "2019-02-15", "derived": false, "concept": "Revenues"},
@@ -41,10 +40,11 @@
   {"start": "2024-10-01", "end": "2024-12-31", "value": 5720000000, "fy": 2023, "fp": "Q4", "form": "10-K", "filed": "2026-02-13", "derived": true, "concept": "Revenues"},
   {"start": "2025-01-01", "end": "2025-03-31", "value": 5728000000, "fy": 2025, "fp": "Q1", "form": "10-Q", "filed": "2026-05-08", "derived": false, "concept": "Revenues"},
   {"start": "2025-04-01", "end": "2025-06-30", "value": 7582000000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-08-06", "derived": false, "concept": "Revenues"},
-  {"start": "2025-07-01", "end": "2025-09-30", "value": 6972000000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2025-11-06", "derived": false, "concept": "Revenues"},
-  {"start": "2025-10-01", "end": "2025-12-31", "value": 5633000000, "fy": 2025, "fp": "Q4", "form": "10-K", "filed": "2026-02-13", "derived": true, "concept": "Revenues"},
+  {"start": "2025-07-01", "end": "2025-09-30", "value": 6972000000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2026-11-06", "derived": false, "concept": "Revenues"},
+  {"start": "2025-10-01", "end": "2025-12-31", "value": 5633000000, "fy": 2025, "fp": "Q4", "form": "10-Q", "filed": "2026-11-06", "derived": true, "concept": "Revenues"},
   {"start": "2026-01-01", "end": "2026-03-31", "value": 6234000000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-05-08", "derived": false, "concept": "Revenues"},
-  {"start": "2026-04-01", "end": "2026-06-30", "value": 7029000000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-06", "derived": false, "concept": "Revenues"}
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 7029000000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-06", "derived": false, "concept": "Revenues"},
+  {"start": "2026-07-01", "end": "2026-09-30", "value": 7546000000, "fy": 2026, "fp": "Q3", "form": "10-Q", "filed": "2026-11-06", "derived": false, "concept": "Revenues"}
  ],
  "capex": [
   {"start": "2016-04-01", "end": "2016-06-30", "value": 833000000, "fy": 2016, "fp": "Q2", "form": "10-Q", "filed": "2017-08-04", "derived": false, "concept": "PaymentsToAcquireProductiveAssets"},
