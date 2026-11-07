@@ -1,5 +1,80 @@
 month: 2026-11
 items:
+  - id: 2026-11-06-vistra-q3-2026-results
+    date: 2026-11-06
+    title: "Vistra adjusted EBITDA rises more than 50% and it sets 2027 guidance"
+    summary: "Vistra reported third-quarter ongoing operations adjusted EBITDA of $2.38 billion, up more than 50%, and net income of $1.14 billion including a $559 million unrealized hedge gain. It narrowed 2026 adjusted EBITDA guidance to $7.1 billion to $7.5 billion, set 2027 at $7.7 billion to $8.5 billion, and added $1.5 billion to its buyback."
+    source: { name: "Vistra", url: "https://investor.vistracorp.com/2026-11-06-Vistra-Reports-Third-Quarter-2026-Results" }
+    companies: [vistra]
+    nodes: [energy/power-producers/ipps]
+    themes: [power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-06-duke-keeps-data-center-plan
+    date: 2026-11-06
+    title: "Duke Energy keeps its data center growth plan after the midterm elections"
+    summary: "Duke Energy CEO Harry Sideris said the company's $103 billion growth plan is unchanged despite voters backing candidates who pledged to limit data centers, Utility Dive reported. Duke's large-load pipeline of 15.4 GW is virtually unchanged since the first quarter."
+    source: { name: "Utility Dive", url: "https://www.utilitydive.com/news/historic-election-night-wont-change-growth-focus-at-duke-energy-executi/873965/" }
+    companies: [duke]
+    nodes: [energy/power-producers/utilities]
+    themes: [power-bottleneck, data-centers]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-11-06-h200s-stranded-in-hong-kong
+    date: 2026-11-06
+    title: "About 600,000 Nvidia H200s are waiting in Hong Kong for Chinese import approval, Reuters reports"
+    summary: "Roughly 600,000 Nvidia H200 chips bound for mainland China are held in Hong Kong while Beijing stalls on import approvals, DCD reported citing Reuters. Only small volumes have reached Chinese buyers through intermediaries."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/almost-600000-nvidia-h200s-stranded-in-hong-kong-as-chinese-govt-stalls-on-import-approvals-report/" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    themes: [export-controls, china-ai]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-06-microsoft-consolidates-neoclouds
+    date: 2026-11-06
+    title: "Microsoft plans to work with fewer neoclouds, sources tell CNBC"
+    summary: "Microsoft is cutting the number of neocloud suppliers it uses and focusing on a few key partners while expanding its own data centers, CNBC reported citing sources; it has not decided which to drop. Two people said it also chose not to renew a deal with Oracle, and Microsoft said its strategy is built on flexibility and choice."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/06/microsoft-moves-to-consolidate-its-relationships-with-neoclouds-in-ai.html" }
+    companies: [microsoft, coreweave, nebius, oracle]
+    nodes: [infrastructure/cloud/neoclouds]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-06-google-takes-over-crusoe-wyoming-site
+    date: 2026-11-06
+    title: "Google buys Crusoe's Wyoming data center site and plans a $17 billion campus"
+    summary: "Crusoe sold its unfinished southeast Wyoming data center project to Google, which plans to invest $17 billion in a campus near Cheyenne; the price was not disclosed. Crusoe had paused the site in June at its customer's request and is still building a campus for Google near Amarillo, Texas."
+    source: { name: "Crusoe", url: "https://www.crusoe.ai/resources/newsroom/crusoe-wyoming-data-center-campus-update" }
+    companies: [alphabet, crusoe]
+    nodes: [infrastructure/data-centers/ai-campuses]
+    themes: [data-centers, capex]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-11-06-openai-closes-11-billion
+    date: 2026-11-06
+    title: "OpenAI closes $11 billion of its new round at a $1.25 trillion valuation"
+    summary: "OpenAI closed about $11 billion, the first part of a round that could reach $20 billion, at a $1.25 trillion valuation, Bloomberg reported. Investors include Coatue, T. Rowe Price, SoftBank, Sequoia, Founders Fund and Andreessen Horowitz, and CFO Sarah Friar said OpenAI will keep investing in data centers."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-11-06/openai-completes-11-billion-portion-of-funding-at-1-25-trillion-value" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-06-tesla-ends-cybertruck-for-cybercab
+    date: 2026-11-06
+    title: "Tesla will wind down Cybertruck production in Texas to make room for Cybercab"
+    summary: "Elon Musk said Tesla will wind down Cybertruck production at Gigafactory Texas around mid-2027 to free space for its Cybercab robotaxi. Cox Automotive estimated 2025 US Cybertruck sales at 20,237 units, down 48% from 2024."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/06/tesla-cybertruck-texas-musk.html" }
+    companies: [tesla]
+    nodes: [applications/physical-ai/autonomous-driving]
+    themes: [robotics]
+    impact: neutral
+    importance: 1
+
   - id: 2026-11-05-ai-stock-selloff-nvidia-qualcomm
     date: 2026-11-05
     title: "Nvidia and Qualcomm fall more than 9% as the Nasdaq has its worst day since April 2025"
