@@ -1,5 +1,26 @@
 month: 2026-11
 items:
+  - id: 2026-11-08-nvidia-board-investigates-huang
+    date: 2026-11-08
+    title: "Nvidia's board opens an independent investigation into CEO Jensen Huang"
+    summary: "Nvidia's board said independent directors and outside counsel will review reports that Jensen Huang was the target of a foreign intelligence effort, adding it has no reason to believe national security or company secrets were compromised; Huang admitted an affair with the woman at the center of the reports. Nvidia shares fell about 5% in premarket trading on November 9, CNBC reported."
+    source: { name: "NVIDIA", url: "https://nvidianews.nvidia.com/news/statement-from-nvidia-board-of-directors" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    impact: negative
+    importance: 3
+
+  - id: 2026-11-08-nvidia-rebellions-skt-nvlink-fusion
+    date: 2026-11-08
+    title: "Nvidia, Rebellions and SK Telecom plan mixed GPU-NPU systems for Korean sovereign AI"
+    summary: "Rebellions will connect its Rebel R200 NPUs to Nvidia's platform through NVLink Fusion, with Nvidia GPUs handling prefill and the NPUs handling decode, and SK Telecom will deploy the systems for public and private Korean AI services. Nvidia expects the R200 systems in 2028."
+    source: { name: "NVIDIA", url: "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    themes: [sovereign-ai, inference]
+    impact: positive
+    importance: 1
+
   - id: 2026-11-06-vistra-q3-2026-results
     date: 2026-11-06
     title: "Vistra adjusted EBITDA rises more than 50% and it sets 2027 guidance"
