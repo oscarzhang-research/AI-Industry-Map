@@ -3,9 +3,8 @@
  "cik": "0001404655",
  "name": "HubSpot, Inc.",
  "company": "hubspot",
- "updatedAt": "2026-10-14T06:41:33+00:00",
+ "updatedAt": "2026-11-05T01:51:34+00:00",
  "revenue": [
-  {"start": "2016-07-01", "end": "2016-09-30", "value": 70589000, "fy": 2016, "fp": "Q3", "form": "10-K", "filed": "2018-02-13", "derived": false, "concept": "Revenues"},
   {"start": "2016-10-01", "end": "2016-12-31", "value": 76444000, "fy": 2016, "fp": "Q4", "form": "10-K", "filed": "2018-02-13", "derived": false, "concept": "Revenues"},
   {"start": "2017-01-01", "end": "2017-03-31", "value": 82252000, "fy": 2017, "fp": "Q1", "form": "10-K", "filed": "2019-02-12", "derived": false, "concept": "Revenues"},
   {"start": "2017-04-01", "end": "2017-06-30", "value": 89093000, "fy": 2017, "fp": "Q2", "form": "10-K", "filed": "2019-02-12", "derived": false, "concept": "Revenues"},
@@ -41,13 +40,13 @@
   {"start": "2024-10-01", "end": "2024-12-31", "value": 703178000, "fy": 2024, "fp": "Q4", "form": "10-K", "filed": "2026-02-11", "derived": true, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2025-01-01", "end": "2025-03-31", "value": 714137000, "fy": 2025, "fp": "Q1", "form": "10-Q", "filed": "2026-05-07", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2025-04-01", "end": "2025-06-30", "value": 760866000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-08-05", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
-  {"start": "2025-07-01", "end": "2025-09-30", "value": 809518000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2025-11-05", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
-  {"start": "2025-10-01", "end": "2025-12-31", "value": 846746000, "fy": 2025, "fp": "Q4", "form": "10-K", "filed": "2026-02-11", "derived": true, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2025-07-01", "end": "2025-09-30", "value": 809518000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2026-11-04", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2025-10-01", "end": "2025-12-31", "value": 846746000, "fy": 2025, "fp": "Q4", "form": "10-Q", "filed": "2026-11-04", "derived": true, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2026-01-01", "end": "2026-03-31", "value": 880995000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-05-07", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
-  {"start": "2026-04-01", "end": "2026-06-30", "value": 911740000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-05", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 911740000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-05", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2026-07-01", "end": "2026-09-30", "value": 947565000, "fy": 2026, "fp": "Q3", "form": "10-Q", "filed": "2026-11-04", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
  ],
  "capex": [
-  {"start": "2016-07-01", "end": "2016-09-30", "value": 2081000, "fy": 2016, "fp": "Q3", "form": "10-Q", "filed": "2017-11-01", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
   {"start": "2016-10-01", "end": "2016-12-31", "value": 2439000, "fy": 2016, "fp": "Q4", "form": "10-K", "filed": "2019-02-12", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
   {"start": "2017-01-01", "end": "2017-03-31", "value": 5835000, "fy": 2017, "fp": "Q1", "form": "10-Q", "filed": "2018-05-10", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
   {"start": "2017-04-01", "end": "2017-06-30", "value": 5237000, "fy": 2017, "fp": "Q2", "form": "10-Q", "filed": "2018-08-01", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
@@ -83,9 +82,10 @@
   {"start": "2024-10-01", "end": "2024-12-31", "value": 12726000, "fy": 2024, "fp": "Q4", "form": "10-K", "filed": "2026-02-11", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
   {"start": "2025-01-01", "end": "2025-03-31", "value": 13345000, "fy": 2025, "fp": "Q1", "form": "10-Q", "filed": "2026-05-07", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
   {"start": "2025-04-01", "end": "2025-06-30", "value": 16025000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-08-05", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
-  {"start": "2025-07-01", "end": "2025-09-30", "value": 10345000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2026-08-05", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
-  {"start": "2025-10-01", "end": "2025-12-31", "value": 13450000, "fy": 2025, "fp": "Q4", "form": "10-K", "filed": "2026-02-11", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2025-07-01", "end": "2025-09-30", "value": 10345000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2026-11-04", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2025-10-01", "end": "2025-12-31", "value": 13450000, "fy": 2025, "fp": "Q4", "form": "10-Q", "filed": "2026-11-04", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
   {"start": "2026-01-01", "end": "2026-03-31", "value": 15422000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-05-07", "derived": false, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
-  {"start": "2026-04-01", "end": "2026-06-30", "value": 19652000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-05", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"}
+  {"start": "2026-04-01", "end": "2026-06-30", "value": 19652000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-08-05", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"},
+  {"start": "2026-07-01", "end": "2026-09-30", "value": 16021000, "fy": 2026, "fp": "Q3", "form": "10-Q", "filed": "2026-11-04", "derived": true, "concept": "PaymentsToAcquirePropertyPlantAndEquipment"}
  ]
 }

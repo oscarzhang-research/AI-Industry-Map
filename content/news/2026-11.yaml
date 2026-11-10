@@ -1,0 +1,570 @@
+month: 2026-11
+items:
+  - id: 2026-11-09-constellation-q3-2026-results
+    date: 2026-11-09
+    title: "Constellation beats on EPS and raises its 2026 earnings guidance"
+    summary: "Constellation Energy reported third-quarter adjusted operating EPS of $5.06, against $3.89 expected and $3.04 a year earlier, and GAAP EPS of $5.19. It raised the midpoint and narrowed 2026 adjusted operating EPS guidance to $12.50 to $12.80."
+    source: { name: "Constellation", url: "https://www.constellationenergy.com/news/2026/11/constellation-reports-third-quarter-2026-results.html" }
+    companies: [constellation]
+    nodes: [energy/power-producers/ipps]
+    themes: [nuclear, power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-09-nrg-q3-2026-results
+    date: 2026-11-09
+    title: "NRG beats on EPS and agrees to sell $4 billion of generation assets"
+    summary: "NRG Energy reported third-quarter adjusted EPS of $4.68, against $3.03 expected and $1.90 above a year earlier, with adjusted EBITDA of $2.01 billion. It reaffirmed 2026 guidance, set 2027 guidance, and agreed to sell some generation assets for $4 billion to fund buybacks and debt reduction."
+    source: { name: "NRG Energy", url: "https://investors.nrg.com/news-releases/news-release-details/nrg-energy-reports-third-quarter-2026-results-reaffirms-2026" }
+    companies: [nrg]
+    nodes: [energy/power-producers/ipps]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-09-anthropic-caterpillar-generators
+    date: 2026-11-09
+    title: "Anthropic buys $3.4 billion of Caterpillar gas generators for 1.7 GW, FT reports"
+    summary: "Anthropic took over Caterpillar generator orders placed by OnePWR Solutions, about $3.4 billion of equipment rated at 1.7 GW, according to the Financial Times as reported by DCD. The generators are expected within two years, and OnePWR will handle installation at Anthropic's data centers."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/anthropic-signs-34bn-gas-generator-deal-to-support-17gw-of-data-center-power/" }
+    companies: [anthropic, caterpillar]
+    nodes: [energy/generation-equipment/engines-gensets]
+    themes: [power-bottleneck, data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-09-google-tpu-8tx-8i-max
+    date: 2026-11-09
+    title: "Google adds TPU 8tx for confidential inference and a dual-chip TPU 8i Max"
+    summary: "Google's TPU 8tx uses TPU 8t silicon with AMD EPYC hosts and hardware-level security for confidential inference, while TPU 8i Max packages two TPU 8i chips with 384 GB of HBM and 17.2 TB/s of bandwidth for long-context inference."
+    source: { name: "Google", url: "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/" }
+    companies: [alphabet, amd]
+    nodes: [chips/compute/hyperscaler-silicon]
+    themes: [custom-asic, inference]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-09-anthropic-fable-mythos-5-2
+    date: 2026-11-09
+    title: "Anthropic releases Claude Fable 5.2 and Mythos 5.2"
+    summary: "Anthropic made Claude Fable 5.2 generally available at $8 per million input tokens and $40 per million output tokens, down from $10 and $50, and offered Mythos 5.2, the same model with fewer safeguards, to vetted cyber and life-sciences organizations. Anthropic says the models run up to 30% faster than the 5.1 versions."
+    source: { name: "Anthropic", url: "https://www.anthropic.com/claude-fable-and-mythos-5-2" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [coding]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-11-08-nvidia-board-investigates-huang
+    date: 2026-11-08
+    title: "Nvidia's board opens an independent investigation into CEO Jensen Huang"
+    summary: "Nvidia's board said independent directors and outside counsel will review reports that Jensen Huang was the target of a foreign intelligence effort, adding it has no reason to believe national security or company secrets were compromised; Huang admitted an affair with the woman at the center of the reports. Nvidia shares fell about 5% in premarket trading on November 9, CNBC reported."
+    source: { name: "NVIDIA", url: "https://nvidianews.nvidia.com/news/statement-from-nvidia-board-of-directors" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    impact: negative
+    importance: 3
+
+  - id: 2026-11-08-nvidia-rebellions-skt-nvlink-fusion
+    date: 2026-11-08
+    title: "Nvidia, Rebellions and SK Telecom plan mixed GPU-NPU systems for Korean sovereign AI"
+    summary: "Rebellions will connect its Rebel R200 NPUs to Nvidia's platform through NVLink Fusion, with Nvidia GPUs handling prefill and the NPUs handling decode, and SK Telecom will deploy the systems for public and private Korean AI services. Nvidia expects the R200 systems in 2028."
+    source: { name: "NVIDIA", url: "https://nvidianews.nvidia.com/news/nvidia-rebellions-and-sk-telecom-announce-collaboration-to-advance-sovereign-ai-infrastructure-with-nvidia-nvlink-fusion" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    themes: [sovereign-ai, inference]
+    impact: positive
+    importance: 1
+
+  - id: 2026-11-06-vistra-q3-2026-results
+    date: 2026-11-06
+    title: "Vistra adjusted EBITDA rises more than 50% and it sets 2027 guidance"
+    summary: "Vistra reported third-quarter ongoing operations adjusted EBITDA of $2.38 billion, up more than 50%, and net income of $1.14 billion including a $559 million unrealized hedge gain. It narrowed 2026 adjusted EBITDA guidance to $7.1 billion to $7.5 billion, set 2027 at $7.7 billion to $8.5 billion, and added $1.5 billion to its buyback."
+    source: { name: "Vistra", url: "https://investor.vistracorp.com/2026-11-06-Vistra-Reports-Third-Quarter-2026-Results" }
+    companies: [vistra]
+    nodes: [energy/power-producers/ipps]
+    themes: [power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-06-duke-keeps-data-center-plan
+    date: 2026-11-06
+    title: "Duke Energy keeps its data center growth plan after the midterm elections"
+    summary: "Duke Energy CEO Harry Sideris said the company's $103 billion growth plan is unchanged despite voters backing candidates who pledged to limit data centers, Utility Dive reported. Duke's large-load pipeline of 15.4 GW is virtually unchanged since the first quarter."
+    source: { name: "Utility Dive", url: "https://www.utilitydive.com/news/historic-election-night-wont-change-growth-focus-at-duke-energy-executi/873965/" }
+    companies: [duke]
+    nodes: [energy/power-producers/utilities]
+    themes: [power-bottleneck, data-centers]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-11-06-h200s-stranded-in-hong-kong
+    date: 2026-11-06
+    title: "About 600,000 Nvidia H200s are waiting in Hong Kong for Chinese import approval, Reuters reports"
+    summary: "Roughly 600,000 Nvidia H200 chips bound for mainland China are held in Hong Kong while Beijing stalls on import approvals, DCD reported citing Reuters. Only small volumes have reached Chinese buyers through intermediaries."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/almost-600000-nvidia-h200s-stranded-in-hong-kong-as-chinese-govt-stalls-on-import-approvals-report/" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    themes: [export-controls, china-ai]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-06-microsoft-consolidates-neoclouds
+    date: 2026-11-06
+    title: "Microsoft plans to work with fewer neoclouds, sources tell CNBC"
+    summary: "Microsoft is cutting the number of neocloud suppliers it uses and focusing on a few key partners while expanding its own data centers, CNBC reported citing sources; it has not decided which to drop. Two people said it also chose not to renew a deal with Oracle, and Microsoft said its strategy is built on flexibility and choice."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/06/microsoft-moves-to-consolidate-its-relationships-with-neoclouds-in-ai.html" }
+    companies: [microsoft, coreweave, nebius, oracle]
+    nodes: [infrastructure/cloud/neoclouds]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-06-google-takes-over-crusoe-wyoming-site
+    date: 2026-11-06
+    title: "Google buys Crusoe's Wyoming data center site and plans a $17 billion campus"
+    summary: "Crusoe sold its unfinished southeast Wyoming data center project to Google, which plans to invest $17 billion in a campus near Cheyenne; the price was not disclosed. Crusoe had paused the site in June at its customer's request and is still building a campus for Google near Amarillo, Texas."
+    source: { name: "Crusoe", url: "https://www.crusoe.ai/resources/newsroom/crusoe-wyoming-data-center-campus-update" }
+    companies: [alphabet, crusoe]
+    nodes: [infrastructure/data-centers/ai-campuses]
+    themes: [data-centers, capex]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-11-06-openai-closes-11-billion
+    date: 2026-11-06
+    title: "OpenAI closes $11 billion of its new round at a $1.25 trillion valuation"
+    summary: "OpenAI closed about $11 billion, the first part of a round that could reach $20 billion, at a $1.25 trillion valuation, Bloomberg reported. Investors include Coatue, T. Rowe Price, SoftBank, Sequoia, Founders Fund and Andreessen Horowitz, and CFO Sarah Friar said OpenAI will keep investing in data centers."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-11-06/openai-completes-11-billion-portion-of-funding-at-1-25-trillion-value" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-06-tesla-ends-cybertruck-for-cybercab
+    date: 2026-11-06
+    title: "Tesla will wind down Cybertruck production in Texas to make room for Cybercab"
+    summary: "Elon Musk said Tesla will wind down Cybertruck production at Gigafactory Texas around mid-2027 to free space for its Cybercab robotaxi. Cox Automotive estimated 2025 US Cybertruck sales at 20,237 units, down 48% from 2024."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/06/tesla-cybertruck-texas-musk.html" }
+    companies: [tesla]
+    nodes: [applications/physical-ai/autonomous-driving]
+    themes: [robotics]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-11-05-ai-stock-selloff-nvidia-qualcomm
+    date: 2026-11-05
+    title: "Nvidia and Qualcomm fall more than 9% as the Nasdaq has its worst day since April 2025"
+    summary: "Nvidia and Qualcomm each dropped more than 9% on November 5, with Nvidia losing almost $450 billion of market value, CNBC reported. Qualcomm's weak forecast and worries that the midterm results could bring tighter state limits on data center construction drove the sell-off."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/05/qualcomm-earnings-chip-stocks-election.html" }
+    companies: [nvidia, qualcomm]
+    nodes: [chips/compute/gpus]
+    themes: [data-centers]
+    impact: negative
+    importance: 3
+
+  - id: 2026-11-05-moonshot-sought-blackwell-in-europe
+    date: 2026-11-05
+    title: "Moonshot AI sought Nvidia Blackwell capacity from European neoclouds, sources tell CNBC"
+    summary: "China's Moonshot AI held talks to rent Blackwell clusters of 8,000 or more GPUs from neoclouds in Europe, mainly for inference, CNBC reported citing sources. Current US law gives regulators little power over chip access through cloud services hosted abroad."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/05/moonshot-ai-nvidia-chips-europe-china.html" }
+    companies: [moonshot, nvidia]
+    nodes: [models/china-models/china-startups, chips/compute/gpus]
+    themes: [export-controls, china-ai]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-11-05-iren-revenue-delay
+    date: 2026-11-05
+    title: "IREN beats on revenue but says some AI cloud revenue slips into 2027"
+    summary: "IREN reported fiscal first-quarter revenue of $228 million, up 66% from the prior quarter and above the $221 million estimate, with AI cloud revenue more than doubling to $200 million. It said some revenue will move from 2026 to early next year at a customer's request, while its $4 billion annualized revenue target remains fully contracted and backlog rose 22% to $20.3 billion."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/05/iren-earnings-report-q1-2027-.html" }
+    companies: [iren]
+    nodes: [infrastructure/cloud/neoclouds]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-11-05-openai-data-center-commitments
+    date: 2026-11-05
+    title: "OpenAI pledges to pay its full power costs and drop NDAs at its own data centers"
+    summary: "Two days after the midterms, OpenAI said it will pay the full cost of the electricity and grid infrastructure its data centers need, provide financial assurances if a project is cut, publish construction plans and stop using NDAs with public officials at sites it owns and operates. It urged lawmakers to turn similar rules into law."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/05/openai-to-pay-for-data-center-power-after-election-shows-ai-concern.html" }
+    companies: [openai]
+    nodes: [energy/power-producers/to-data-centers, infrastructure/data-centers/ai-campuses]
+    themes: [power-bottleneck, data-centers]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-11-05-openai-gpt-6-cyber
+    date: 2026-11-05
+    title: "OpenAI releases GPT-6 Cyber to approved security customers"
+    summary: "OpenAI's GPT-6 Cyber scores 48.5% on the ExploitGym benchmark, up from 32.1% for GPT-5.6 Cyber, and OpenAI rates it Critical for cybersecurity under its Preparedness Framework. Access starts with approved Daybreak Red customers through the API and Codex."
+    source: { name: "OpenAI", url: "https://openai.com/index/introducing-gpt-6-cyber/" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-11-05-china-blocks-softbank-abb-robotics
+    date: 2026-11-05
+    title: "China blocks SoftBank's purchase of ABB Robotics' China business"
+    summary: "China's foreign investment security review office prohibited SoftBank from buying the China business of ABB Robotics, part of the $5.375 billion deal agreed in October 2025, ABB said. China accounts for about 30% of ABB's robotics business, and the two companies say they are discussing next steps."
+    source: { name: "ABB", url: "https://www.abb.com/global/en/news/140154/update-on-divestment-of-abb-robotics" }
+    companies: [softbank, abb]
+    nodes: [applications/physical-ai/industrial-robots]
+    themes: [robotics, china-ai]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-05-cummins-q3-2026-results
+    date: 2026-11-05
+    title: "Cummins misses revenue estimates and trims guidance on weak pickup demand"
+    summary: "Cummins reported third-quarter revenue of $9.4 billion, up 13% but below the $9.9 billion consensus, and EPS of $8.25 against $8.28 expected, including $0.54 of tax benefits. It cut 2026 revenue growth guidance to about 10% from 10% to 13% on weak North American pickup demand, while saying power generation demand remains strong."
+    source: { name: "Cummins", url: "https://investor.cummins.com/news/detail/705/cummins-reports-strong-third-quarter-2026-results" }
+    companies: [cummins]
+    nodes: [energy/generation-equipment/engines-gensets]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-05-digital-realty-goodman-nextdc-stake
+    date: 2026-11-05
+    title: "Digital Realty and Goodman bid for 9.9% of NextDC, and its shares jump 43%"
+    summary: "Digital Realty and Goodman Group offered about A$715 million for up to 9.9% of Australian data center operator NextDC at A$9.50 a share, a 45.5% premium to the last close. NextDC shares rose about 43%; the buyers said they have no current plan to bid for the whole company."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/05/nextdc-goodman-group-digital-realty-data-centers-.html" }
+    companies: [digital-realty]
+    nodes: [infrastructure/data-centers/colocation]
+    themes: [data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-04-google-15-billion-malaysia
+    date: 2026-11-04
+    title: "Google commits $15 billion to Malaysian data centers in 2027 and 2028"
+    summary: "Google will invest $15 billion in Malaysia over 2027 and 2028, expanding its Elmina campus in Selangor and building new campuses in Selangor and Negeri Sembilan. It also plans to bring 1 GW of clean energy capacity to Malaysia's grid."
+    source: { name: "Google", url: "https://blog.google/intl/en-my/company-news/inside-google/google-investment-malaysia-digital-infrastructure-november-2026/" }
+    companies: [alphabet]
+    nodes: [infrastructure/cloud/hyperscalers]
+    themes: [capex, data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-04-qualcomm-spacex-starlink-mobile-5g
+    date: 2026-11-04
+    title: "Qualcomm will supply SpaceX's nationwide Starlink Mobile 5G network"
+    summary: "SpaceX will use Qualcomm's Dragonwing radios, baseband units and software for Starlink Mobile's US terrestrial 5G network, which Qualcomm called its largest 5G deal to date. Deployment across tens of thousands of base station sites is planned to start in 2027; terms were not disclosed."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/04/spacex-strikes-deal-with-qualcomm-for-mobile-network-infrastructure.html" }
+    companies: [qualcomm, xai]
+    nodes: [chips/edge-silicon/mobile-pc-soc]
+    impact: positive
+    importance: 1
+
+  - id: 2026-11-04-meta-acquires-conductor
+    date: 2026-11-04
+    title: "Meta buys AI coding startup Conductor"
+    summary: "Meta acquired Conductor, whose tool runs several coding agents in parallel workspaces, TechCrunch reported; terms were not disclosed. Conductor's cloud service shuts down on November 20, and Meta already offers its own coding agent, Muse Code."
+    source: { name: "TechCrunch", url: "https://techcrunch.com/2026/11/04/meta-acquires-ai-coding-startup-conductor/" }
+    companies: [meta]
+    nodes: [applications/ads-commerce-content/ads-recsys]
+    themes: [coding, agents]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-11-03-pjm-revised-data-center-backstop
+    date: 2026-11-03
+    title: "PJM files a revised plan to procure backstop capacity for data centers"
+    summary: "PJM filed a revised plan with federal regulators to buy capacity for new data center load, aiming to start on March 1, after FERC rejected most of its first proposal in September. Jefferies analysts said the procurement could shrink to about 630 MW from the original 6,800 MW target, Utility Dive reported."
+    source: { name: "Utility Dive", url: "https://www.utilitydive.com/news/pjm-revised-data-center-backstop-procurement-ferc/873551/" }
+    companies: []
+    nodes: [energy/power-producers/to-data-centers]
+    themes: [power-bottleneck]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-11-04-arm-fq2-2027-results
+    date: 2026-11-04
+    title: "Arm revenue rises 27% to a record $1.44 billion on licensing growth"
+    summary: "Arm reported fiscal second-quarter revenue of $1.44 billion, up 27% and above the $1.38 billion consensus, with licensing revenue up 50% to $773 million and royalties up 8%. GAAP EPS fell to $0.12 from $0.22 a year earlier, while non-GAAP EPS rose to $0.52, and Arm said data center royalties doubled."
+    source: { name: "Arm", url: "https://newsroom.arm.com/news/arm-q2-fye27-results" }
+    companies: [arm]
+    nodes: [chips/eda-ip/ip]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-11-04-qualcomm-fq4-2026-results
+    date: 2026-11-04
+    title: "Qualcomm meets estimates but guides below as memory costs hit phone demand"
+    summary: "Qualcomm reported fiscal fourth-quarter revenue of $10.44 billion, above the $10.14 billion consensus, and adjusted EPS of $2.17 against $2.16 expected, including $650 million of data center revenue. It guided first-quarter revenue to $10.4 billion to $11.2 billion and EPS to $2.15 to $2.35, citing memory costs that are raising handset prices."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/04/qualcomm-qcom-earnings-report-q4-2026.html" }
+    companies: [qualcomm]
+    nodes: [chips/edge-silicon/mobile-pc-soc]
+    themes: [memory-cycle]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-04-coherent-fq1-2027-results
+    date: 2026-11-04
+    title: "Coherent beats EPS guidance and targets its first $3 billion quarter this fiscal year"
+    summary: "Coherent reported fiscal first-quarter revenue of $2.37 billion, above the $2.30 billion consensus, and non-GAAP EPS of $2.09 against $1.97 expected, with pro forma revenue up 56%. It expects its first $3 billion revenue quarter by the end of fiscal 2027 and full-year pro forma growth above 60%."
+    source: { name: "Coherent", url: "https://ir.coherent.com/news-releases/news-release-details/coherent-corp-reports-first-quarter-fiscal-2027-results" }
+    companies: [coherent]
+    nodes: [infrastructure/networking/optical-transceivers]
+    themes: [optical]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-04-applovin-q3-2026-results
+    date: 2026-11-04
+    title: "AppLovin revenue grows 55% with an 84% adjusted EBITDA margin"
+    summary: "AppLovin reported third-quarter revenue of $2.19 billion, up 55% and above the $2.07 billion consensus, and diluted EPS of $4.30 against $4.03 expected. Net income rose 72% to $1.44 billion, and the board added about $3.2 billion to its buyback authorization."
+    source: { name: "AppLovin", url: "https://investors.applovin.com/news/news-details/2026/AppLovin-Announces-Third-Quarter-2026-Financial-Results/default.aspx" }
+    companies: [applovin]
+    nodes: [applications/ads-commerce-content/ads-recsys]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-04-datadog-q3-2026-results
+    date: 2026-11-04
+    title: "Datadog revenue grows 35% and it raises full-year EPS guidance"
+    summary: "Datadog reported third-quarter revenue of $1.20 billion, up 35% and above the $1.15 billion consensus, and non-GAAP EPS of $0.81 against $0.64 expected. It guided fourth-quarter revenue to $1.19 billion to $1.20 billion and raised 2026 non-GAAP EPS guidance to $2.73 to $2.75."
+    source: { name: "Datadog", url: "https://investors.datadoghq.com/news-releases/news-release-details/datadog-announces-third-quarter-2026-financial-results" }
+    companies: [datadog]
+    nodes: [applications/enterprise/data-platforms]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-04-tencent-hy4-release
+    date: 2026-11-04
+    title: "Tencent releases its Hy4 model and says it will open the weights"
+    summary: "Tencent released the full version of its Hy4 large language model, adding visual understanding for the first time, and said it plans to publish the weights. The August preview had 770 billion total and 49 billion active parameters; Tencent says Hy4 still trails leading closed models on research-level math, long-horizon coding and visual question answering."
+    source: { name: "Tencent", url: "https://www.tencent.com/tencent-releases-and-open-sources-tencent-hy4-preview/" }
+    companies: [tencent]
+    nodes: [models/china-models/china-bigtech]
+    themes: [china-ai]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-11-03-amd-q3-2026-results
+    date: 2026-11-03
+    title: "AMD data center revenue nearly doubles and it guides fourth quarter to $17 billion"
+    summary: "AMD reported record third-quarter revenue of $13.4 billion, up 45% and above the $13.09 billion consensus, and adjusted EPS of $2.09 against $1.95 expected, with data center revenue up 97% on Instinct GPUs and EPYC CPUs. It guided fourth-quarter revenue to about $17 billion, plus or minus 3%."
+    source: { name: "AMD", url: "https://ir.amd.com/news-events/press-releases/detail/1303/amd-reports-third-quarter-2026-financial-results" }
+    companies: [amd]
+    nodes: [chips/compute/gpus, chips/compute/server-cpus]
+    themes: [inference]
+    impact: positive
+    importance: 3
+
+  - id: 2026-11-03-eaton-q3-2026-results
+    date: 2026-11-03
+    title: "Eaton sales rise 28% and it raises 2026 EPS guidance"
+    summary: "Eaton reported record third-quarter sales of $8.9 billion, up 28% with 19% organic growth and above the $8.5 billion consensus, and adjusted EPS of $3.68 against $3.55 expected. Electrical backlog rose 46%, and Eaton raised 2026 adjusted EPS guidance to $13.70 to $13.80 and agreed to buy COL Group to add European data center capacity."
+    source: { name: "Eaton", url: "https://www.eaton.com/us/en-us/company/news-insights/news-releases/2026/eaton-reports-record-third-quarter-2026-results.html" }
+    companies: [eaton]
+    nodes: [infrastructure/power-delivery/ups-switchgear]
+    themes: [data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-03-shopify-q3-2026-results
+    date: 2026-11-03
+    title: "Shopify revenue grows 32% but sales and GMV come in just short of estimates"
+    summary: "Shopify reported third-quarter revenue of $3.74 billion, up 32% and just below the $3.75 billion consensus, and adjusted EPS of $0.49 against $0.46 expected. GMV of $119.1 billion also missed estimates, Shopify guided fourth-quarter revenue growth to the low thirties, and the shares fell 8.7%."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/03/shopify-q3-2026-earnings-gmv.html" }
+    companies: [shopify]
+    nodes: [applications/ads-commerce-content/commerce]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-03-nvidia-caps-china-business-at-cloud-clients
+    date: 2026-11-03
+    title: "Nvidia tells cloud clients to keep China-linked business below half, FT reports"
+    summary: "Nvidia has asked data center and cloud customers to keep at least 51% of their services with companies outside China, the Financial Times reported, according to Bloomberg. The instruction reportedly applies beyond Asia; Nvidia has not commented publicly."
+    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-11-03/nvidia-tells-data-center-clients-to-trim-china-business-ft-says" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    themes: [export-controls, china-ai]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-03-meta-bond-sale-20-25-billion
+    date: 2026-11-03
+    title: "Meta markets a $20 billion to $25 billion bond sale to fund AI spending"
+    summary: "Meta sought to raise $20 billion to $25 billion in a bond sale split about two-thirds dollars and one-third euros, CNBC reported, days after S&P moved its outlook to negative. The company sold $25 billion of bonds in April."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/03/meta-bond-sale-ai-funding.html" }
+    companies: [meta]
+    nodes: [applications/ads-commerce-content/ads-recsys]
+    themes: [capex]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-11-03-anthropic-queensland-lease
+    date: 2026-11-03
+    title: "Anthropic signs a lease for the first stage of a Queensland data center campus"
+    summary: "Anthropic's Australian unit signed a lease with Australian Data Centres, a Dexus-majority consortium, for the first stage of a proposed hyperscale campus in Western Downs, Queensland, subject to approvals including Dexus's board, DCD reported. Terms were not disclosed."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/anthropic-signs-lease-with-australian-data-centres-in-western-downs-queensland/" }
+    companies: [anthropic]
+    nodes: [infrastructure/data-centers/ai-campuses]
+    themes: [data-centers]
+    impact: positive
+    importance: 1
+
+  - id: 2026-11-02-crc-bloom-1gw-fuel-cells
+    date: 2026-11-02
+    title: "California Resources and Bloom Energy study 1 GW of fuel cells with carbon capture"
+    summary: "California Resources and Bloom Energy signed a non-binding memorandum to evaluate 1 GW or more of solid-oxide fuel cell power in California paired with carbon capture and storage. They plan to sell the power to data centers, utilities and industrial users."
+    source: { name: "California Resources", url: "https://www.crc.com/news-releases/news-release-details/california-resources-corporation-announces-strategic" }
+    companies: [bloom-energy]
+    nodes: [energy/generation-equipment/fuel-cells]
+    themes: [power-bottleneck]
+    impact: positive
+    importance: 1
+
+  - id: 2026-11-02-openai-grid-protectors-program
+    date: 2026-11-02
+    title: "OpenAI pledges up to 1 GW of flexible demand from its data centers"
+    summary: "OpenAI launched a voluntary Grid Protectors Program under which its future campuses will cut or curtail power use and join demand-response programs when the grid is stressed, offering up to 1 GW of flexible demand. Its Effingham County, Georgia, campus will be the pilot."
+    source: { name: "OpenAI", url: "https://openai.com/index/grid-protectors-program/" }
+    companies: [openai]
+    nodes: [energy/power-producers/to-data-centers]
+    themes: [power-bottleneck, data-centers]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-11-02-apple-fq4-2026-results
+    date: 2026-11-02
+    title: "Apple beats on sales and EPS but guides gross margin lower"
+    summary: "Apple reported fiscal fourth-quarter revenue of $114.5 billion, up 12% and above the $113.4 billion consensus, and EPS of $2.10 against $1.99 expected, including $0.05 from tariff refunds. Mac revenue rose nearly 24% to $10.8 billion, and Apple guided December-quarter gross margin to 45% to 46%, below the 47.9% just reported."
+    source: { name: "Apple", url: "https://www.apple.com/newsroom/2026/11/apple-reports-fourth-quarter-results/" }
+    companies: [apple]
+    nodes: [applications/devices/phones-pcs]
+    impact: mixed
+    importance: 3
+
+  - id: 2026-11-02-palantir-q3-2026-results
+    date: 2026-11-02
+    title: "Palantir revenue grows 96% as US commercial sales rise 148%"
+    summary: "Palantir reported third-quarter revenue of $2.31 billion, above the $2.18 billion consensus, and adjusted EPS of $0.44 against $0.41 expected, with US commercial revenue up 148% to $984 million. It raised 2026 revenue guidance to $8.530 billion to $8.534 billion and guided fourth-quarter revenue to $2.649 billion to $2.653 billion."
+    source: { name: "Palantir", url: "https://www.businesswire.com/news/home/20261101396214/en/Palantir-Reports-Q3-2026-U.S.-Comm-Revenue-Growth-of-148-YY-and-Revenue-Growth-of-96-YY-Raises-FY-2026-Revenue-Guidance-to-91-YY-Growth-and-U.S.-Comm-Revenue-Guidance-to-143-YY-Crushing-Consensus-Expectations" }
+    companies: [palantir]
+    nodes: [applications/enterprise/data-platforms]
+    themes: [agents]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-02-lumentum-fq1-2027-results
+    date: 2026-11-02
+    title: "Lumentum beats its EPS guidance and forecasts revenue above $1.5 billion"
+    summary: "Lumentum reported fiscal first-quarter revenue of $1.26 billion and non-GAAP EPS of $4.57 against the $4.22 consensus. It guided second-quarter revenue to $1.575 billion to $1.625 billion and non-GAAP EPS to $5.90 to $6.20, on the day it agreed to combine with Marvell."
+    source: { name: "Lumentum", url: "https://investor.lumentum.com/financial-news-releases/news-details/2026/Lumentum-Announces-First-Quarter-of-Fiscal-Year-2027-Financial-Results/default.aspx" }
+    companies: [lumentum]
+    nodes: [infrastructure/networking/optical-components]
+    themes: [optical]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-02-bwxt-q3-2026-results
+    date: 2026-11-02
+    title: "BWXT beats on EPS and tightens 2026 guidance"
+    summary: "BWX Technologies reported third-quarter revenue of $953.0 million, just below the $972 million consensus, and non-GAAP EPS of $1.26 against $1.19 expected. It tightened 2026 non-GAAP EPS guidance to $4.72 to $4.77, kept revenue guidance at about $3.8 billion, and pointed to high-single-digit revenue growth in 2027."
+    source: { name: "BWX Technologies", url: "https://investors.bwxt.com/news-releases/news-release-details/bwx-technologies-reports-third-quarter-2026-results" }
+    companies: [bwx-technologies]
+    nodes: [energy/generation-equipment/nuclear-smr]
+    themes: [nuclear]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-11-02-tempus-ai-q3-2026-results
+    date: 2026-11-02
+    title: "Tempus AI turns a non-GAAP profit and raises 2026 revenue guidance"
+    summary: "Tempus AI reported third-quarter revenue of $411.5 million, up 23% and slightly above the $409 million consensus, and non-GAAP EPS of $0.07 against an expected loss of $0.08. It raised 2026 revenue guidance to $1.60 billion to $1.605 billion and kept adjusted EBITDA guidance at about $65 million."
+    source: { name: "Tempus AI", url: "https://www.sec.gov/Archives/edgar/data/0001717115/000119312526442619/tem-ex99_1.htm" }
+    companies: [tempus-ai]
+    nodes: [applications/vertical/health-bio]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-02-marvell-to-acquire-lumentum
+    date: 2026-11-02
+    title: "Marvell agrees to buy Lumentum in an all-stock deal valued at $115 billion"
+    summary: "Marvell will give 4.5 of its shares for each Lumentum share, an implied enterprise value of about $115 billion, leaving Marvell holders with about 67% of the combined company. The deal pairs Marvell's custom silicon and electrical interconnect with Lumentum's lasers and optical circuit switches, targets more than $1 billion of annual cost synergies, and is expected to close in the first half of 2028."
+    source: { name: "Marvell", url: "https://investor.marvell.com/_assets/_4b2ef940d8378f4928a6a90255e70f76/marvell/news/2026-11-02_Marvell_and_Lumentum_to_Combine_Creating_a_1040.pdf" }
+    companies: [marvell, lumentum]
+    nodes: [chips/compute/custom-asic, infrastructure/networking/optical-components]
+    themes: [optical, custom-asic]
+    impact: positive
+    importance: 3
+
+  - id: 2026-11-02-anthropic-amended-s1-q3
+    date: 2026-11-02
+    title: "Anthropic's amended S-1 shows a $23.3 billion third-quarter loss and $895 billion of commitments"
+    summary: "Anthropic's amended IPO filing reports about $17 billion of third-quarter revenue, up 47% from the second quarter, and a net loss of $23.29 billion, CNBC reported. Purchase commitments and leases total about $895.4 billion, substantially all for compute and infrastructure, up from $265.6 billion at the end of June."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/02/anthropic-ant-s-1-quarter-financials.html" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [capex]
+    impact: mixed
+    importance: 3
+
+  - id: 2026-11-02-openai-abu-dhabi-agreements
+    date: 2026-11-02
+    title: "OpenAI signs four agreements in Abu Dhabi spanning energy, government and investment"
+    summary: "OpenAI agreed with ADNOC and G42 to bring its models into ADNOC's operations, with Mubadala and Inception42 on AI for investment analysis, and with Inception42 on a five-year deal covering government, enterprise and education, CNBC reported. Abu Dhabi's government also launched a project with OpenAI to make its policies and regulations machine-readable."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/02/openai-abu-dhabi-ai-deals.html" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [sovereign-ai]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-02-spacexai-two-more-southaven-campuses
+    date: 2026-11-02
+    title: "Musk says SpaceXAI will add two more Colossus 2 campuses in Southaven"
+    summary: "Elon Musk said SpaceXAI will expand Colossus 2 to two more sites in Southaven, Mississippi, and claimed both will run by the end of the year, DCD reported. The existing Colossus 2 sites are set to host about 770,000 GPUs, and the site's gas turbines face a Clean Air Act lawsuit that a judge allowed to proceed last week."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/spacexai-launching-two-additional-data-center-campuses-in-mississippi-to-further-expand-colossus-2/" }
+    companies: [xai]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [data-centers, power-bottleneck]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-11-02-doe-transuranic-fuel-awards
+    date: 2026-11-02
+    title: "DOE awards up to $50 million to eight advanced reactor fuel projects including Oklo"
+    summary: "The Energy Department's ARPA-E selected eight projects, including Oklo, Westinghouse, Standard Nuclear and Idaho National Laboratory, to share up to $50 million for recycled transuranic fuels for advanced reactors. Individual awards range from $1.3 million to $7 million."
+    source: { name: "World Nuclear News", url: "https://www.world-nuclear-news.org/articles/next-generation-fuel-projects-get-us-federal-funding" }
+    companies: [oklo]
+    nodes: [energy/fuel/enrichment-fuel]
+    themes: [nuclear]
+    impact: positive
+    importance: 1
+
+  - id: 2026-11-02-south-korea-record-ai-budget
+    date: 2026-11-02
+    title: "South Korea proposes 4.7 trillion won for a sovereign frontier AI model"
+    summary: "President Lee Jae Myung's proposed 2027 budget raises total spending 12.8% to a record 820.9 trillion won, including 21.3 trillion won for semiconductors, physical AI and AI data centers, nearly double 2026. It sets aside 4.7 trillion won for a sovereign model aiming for the world's highest performance, pending National Assembly approval."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/02/south-korea-ai-spending-budget.html" }
+    companies: []
+    nodes: [models/frontier-labs]
+    themes: [sovereign-ai]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-01-deepseek-super-agent-prototype
+    date: 2026-11-01
+    title: "DeepSeek releases an open-source prototype of a multi-agent coding system"
+    summary: "DeepSeek's Harness team described a 'super agent' in which a central agent hands tasks to parallel agents that report back, and released an open-source research prototype, the South China Morning Post reported. In the team's test, one task took just under 16 minutes against more than 29 minutes with a conventional setup."
+    source: { name: "South China Morning Post", url: "https://www.scmp.com/tech/article/3372884/deepseek-unveils-ai-super-agent-coding-race-openai-anthropic" }
+    companies: [deepseek]
+    nodes: [models/china-models/china-startups]
+    themes: [coding, agents, china-ai]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-11-01-nvidia-rubin-shipping-specs
+    date: 2026-11-01
+    title: "Nvidia trims Rubin GPU memory and NVLink bandwidth in shipping specs"
+    summary: "Nvidia's Vera Rubin NVL72 page now lists 19.2 TB/s of HBM4 bandwidth and 3.0 TB/s of NVLink per Rubin GPU, down from the 22 TB/s and 3.6 TB/s it announced earlier, ServeTheHome reported as production hardware arrives. Rated FP4 compute is unchanged at 50 petaflops for inference."
+    source: { name: "ServeTheHome", url: "https://www.servethehome.com/nvidia-updates-rubin-gpu-specs-as-first-production-hardware-arrives/" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    themes: [hbm]
+    impact: negative
+    importance: 2
