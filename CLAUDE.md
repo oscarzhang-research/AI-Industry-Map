@@ -119,9 +119,9 @@ Plain, specific English. Short sentences, active voice, real numbers with units 
 
 ## Routines
 
-Two Claude routines (claude.ai, Routines) keep the site current. Each run starts in a new session with no memory of earlier runs, attaches the repositories it needs and follows this file.
+Two Claude routines (claude.ai, Routines) keep the site current. Each fires into its own long-lived session, named like the routine, which keeps its clones between runs. A run does not rely on what earlier runs did, and follows this file.
 
-- **AI Industry Map morning update**, every day at about 6:48am New York time: adds sourced news for all five layers and the earnings items, translates the owner's new Chinese writing, files the vault's inbox, and on Saturdays writes the weekly fact pack. It commits to `main` in both repositories and ends with a short summary in Chinese, which the owner gets as a phone notification.
+- **AI Industry Map morning update**, every day at about 6:48am New York time: adds sourced news for all five layers and the earnings items, translates the owner's new Chinese writing, files the vault's inbox, and on Saturdays writes the weekly fact pack. It commits to `main` in both repositories and ends with a short summary in Chinese, whose first line it also sends to the owner's phone as a notification.
 - **AI Industry Map US close refresh**, weekdays at about 4:38pm New York time: starts `market-data.yml` on `main`.
 
-The prompts live with the routines, not in this repository. A change to how news, translations or the inbox are handled belongs in this file, where the next run reads it.
+The prompts live with the routines, not in this repository. A change to how news, translations or the inbox are handled belongs in this file, where the next run reads it. The morning session's conversation grows every day; when it gets long (every month or two), set the routine up in a new session and disable the old one. A routine that starts a brand-new session on every run does not work here: such a session has no write access to the repositories and cannot read the vault (tested 2026-11-10).
