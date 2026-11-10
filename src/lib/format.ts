@@ -20,9 +20,20 @@ const CCY_SYMBOL: Record<string, string> = {
   AUD: 'A$', CAD: 'C$', SEK: 'SEK ',
 };
 
+/**
+ * A currency prefix for a three-letter code, and nothing for anything else. Codes arrive from the market
+ * data feed and these strings end up inside chart tooltips, which are HTML: a value that is not a plain
+ * code must never be printed.
+ */
+function ccySymbol(ccy: string | undefined): string {
+  if (!ccy || !/^[A-Za-z]{3}$/.test(ccy)) return '';
+  const code = ccy.toUpperCase();
+  return CCY_SYMBOL[code] ?? `${code} `;
+}
+
 export function fmtPrice(x: number | undefined | null, ccy?: string): string {
   if (x === undefined || x === null || !Number.isFinite(x)) return '—';
-  const sym = ccy ? CCY_SYMBOL[ccy.toUpperCase()] ?? `${ccy.toUpperCase()} ` : '';
+  const sym = ccySymbol(ccy);
   const abs = Math.abs(x);
   if (abs === 0) return `${sym}0`;
   const digits = abs >= 1000 ? 0 : abs >= 1 ? 2 : 3;
@@ -32,7 +43,7 @@ export function fmtPrice(x: number | undefined | null, ccy?: string): string {
 /** Compact money in a currency: $1.23T, $845B, ₩1,095T. */
 export function fmtCompact(x: number | undefined | null, ccy = 'USD'): string {
   if (x === undefined || x === null || !Number.isFinite(x)) return '—';
-  const sym = CCY_SYMBOL[ccy.toUpperCase()] ?? `${ccy.toUpperCase()} `;
+  const sym = ccySymbol(ccy);
   const abs = Math.abs(x);
   const units: [number, string][] = [
     [1e12, 'T'],
@@ -61,7 +72,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 export function fmtDate(iso: string | undefined | null, withYear = true): string {
   if (!iso) return '—';
   const [y, m, d] = iso.slice(0, 10).split('-').map(Number);
-  if (!y || !m || !d) return iso;
+  if (!y || !m || !d) return iso.replace(/[^\w\s,.:/+-]/g, ''); // not a date: print it, but only plain characters
   return withYear ? `${MONTHS[m - 1]} ${d}, ${y}` : `${MONTHS[m - 1]} ${d}`;
 }
 

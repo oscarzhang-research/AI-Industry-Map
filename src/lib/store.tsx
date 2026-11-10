@@ -3,7 +3,7 @@ import { loadCore, type CoreData } from './data.ts';
 import { buildIndex, type TaxonomyIndex } from './nodes.ts';
 import { applyPrefs, loadPrefs, savePrefs, storageGet, storageSet, type Prefs } from './settings.ts';
 import { deleteDemoRecord, loadDemoRecords, saveDemoRecord } from './demo.ts';
-import { repoAccess, whoami } from './github.ts';
+import { repoAccess, whoami, GitHubError } from './github.ts';
 import { clearVaultCache, deleteRecordFromGitHub, loadVault, saveRecordToGitHub, updateVaultReportMeta, uploadReport, type UploadInput, type VaultData } from './vault.ts';
 import type { AnyRecord, Company, Quote, ReportMeta } from './types.ts';
 
@@ -115,9 +115,17 @@ export function StoreProvider({ children, fallback }: { children: ReactNode; fal
           setMode('owner');
           return doLoadVault(token);
         })
-        .catch(() => {
+        .catch((e: unknown) => {
           setMode('visitor');
-          toast('Your saved GitHub token no longer works. Sign in again from Settings.', 'error');
+          if (e instanceof GitHubError && (e.status === 401 || e.status === 403)) {
+            // GitHub rejected the token (expired or revoked): do not keep it, or the private copies, in this browser.
+            storageSet(TOKEN_KEY, null);
+            storageSet(MODE_KEY, null);
+            clearVaultCache();
+            toast('Your saved GitHub token no longer works. Sign in again from Settings.', 'error');
+          } else {
+            toast('Could not reach GitHub to check your sign-in. Reload the page to try again.', 'error');
+          }
         });
     } else if (saved === 'demo') {
       setDemoRecords(loadDemoRecords());

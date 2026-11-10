@@ -289,6 +289,8 @@ def clean_info(info: dict) -> dict:
             continue
         if isinstance(v, float) and (math.isnan(v) or math.isinf(v)):
             continue
+        if dst in ("currency", "financialCurrency") and not re.fullmatch(r"[A-Za-z]{3}", str(v)):
+            continue  # shown on the site: a currency is a three-letter code or nothing
         out[dst] = v
     # Upcoming earnings: Yahoo exposes epoch seconds.
     for key in ("earningsTimestampStart", "earningsTimestamp", "earningsTimestampEnd"):

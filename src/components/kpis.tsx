@@ -323,7 +323,8 @@ function RangesChart({ kpi }: { kpi: KpiRanges }) {
           const s = kpi.series[p.seriesIndex];
           const pt = s?.points[p.dataIndex];
           if (!pt) return '';
-          return `<div style="color:${t.muted}">${esc(s.label)} · ${pt.period}</div><div style="font-weight:600;font-size:14px">${rangeText(pt.low, pt.high)}</div><div>${pt.basis === 'actual' ? 'Reported' : 'Forecast'}${pt.published ? `, published ${fmtDate(pt.published)}` : ''}</div>${pt.note ? `<div>${esc(pt.note)}</div>` : ''}${pt.url ? `<div style="margin-top:4px"><a href="${esc(pt.url)}" target="_blank" rel="noopener noreferrer">TrendForce release</a></div>` : ''}`;
+          const url = pt.url && /^https:\/\//i.test(pt.url) ? pt.url : undefined;
+          return `<div style="color:${t.muted}">${esc(s.label)} · ${esc(String(pt.period))}</div><div style="font-weight:600;font-size:14px">${rangeText(pt.low, pt.high)}</div><div>${pt.basis === 'actual' ? 'Reported' : 'Forecast'}${pt.published ? `, published ${fmtDate(pt.published)}` : ''}</div>${pt.note ? `<div>${esc(pt.note)}</div>` : ''}${url ? `<div style="margin-top:4px"><a href="${esc(url)}" target="_blank" rel="noopener noreferrer">TrendForce release</a></div>` : ''}`;
         },
       },
       xAxis: { type: 'category', data: periods, ...axisBase(t), axisLine: { onZero: false, lineStyle: { color: t.axis } } },
