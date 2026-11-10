@@ -12,7 +12,7 @@ import type { ReportMeta } from '../lib/types.ts';
 
 type Lang = 'en' | 'zh';
 
-export default function ReportPage() {
+export default function ReportPage({ full = false }: { full?: boolean }) {
   const { id } = useParams();
   const { site, allReports, allRecords, prefs, setPrefs, mode, token, updateReport, toast } = useStore();
   const r = allReports.find((x) => x.id === id);
@@ -84,6 +84,60 @@ export default function ReportPage() {
 
   const summary = (effLang === 'zh' ? r.summary?.zh : r.summary?.en) ?? r.summary?.en ?? r.summary?.zh;
   const title = effLang === 'zh' && r.titleZh ? r.titleZh : r.title;
+  const langSwitch = both ? (
+    <Segmented
+      label="Report language"
+      value={lang}
+      onChange={(v) => {
+        setLang(v);
+        setPrefs({ reportLang: v });
+      }}
+      options={[
+        { value: 'en', label: 'English' },
+        { value: 'zh', label: '中文' },
+      ]}
+    />
+  ) : null;
+  // Reports run their own scripts, so they are only ever shown inside this sandboxed frame: it has no
+  // access to the site's storage (where the owner's token lives) and cannot navigate the window.
+  const frame = srcDoc ? (
+    <iframe
+      key={effLang}
+      className="reader-frame"
+      title={r.title}
+      srcDoc={srcDoc}
+      sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
+      referrerPolicy="no-referrer"
+    />
+  ) : null;
+
+  if (full) {
+    return (
+      <div className="reader-full">
+        <div className="reader-full-bar">
+          <Link className="btn sm" to={`/report/${encodeURIComponent(r.id)}`}>
+            ← {site.config.site.name}
+          </Link>
+          <span className="reader-full-title" title={title}>
+            {title}
+          </span>
+          {langSwitch}
+        </div>
+        {error ? (
+          <div className="empty">{error}</div>
+        ) : r.format === 'pdf' && pdf ? (
+          <iframe className="reader-frame" title={r.title} src={pdf} />
+        ) : (
+          frame ?? (
+            <div className="empty">
+              <span className="spinner" /> Loading…
+            </div>
+          )
+        )}
+      </div>
+    );
+  }
+
   const kindLabel = r.kind === 'claude' ? 'Claude research' : r.kind === 'sell-side' ? `Sell-side · ${r.broker ?? 'broker'}` : 'Research';
 
   return (
@@ -110,19 +164,8 @@ export default function ReportPage() {
             ) : null}
           </div>
           <div className="row" style={{ justifyContent: 'flex-end' }}>
-            {both ? (
-              <Segmented
-                label="Report language"
-                value={lang}
-                onChange={(v) => {
-                  setLang(v);
-                  setPrefs({ reportLang: v });
-                }}
-                options={[
-                  { value: 'en', label: 'English' },
-                  { value: 'zh', label: '中文' },
-                ]}
-              />
+            {langSwitch ? (
+              langSwitch
             ) : r.languages?.length === 1 && r.languages[0] === 'zh' ? (
               <span className="badge" title="This report exists in Chinese only">
                 Chinese only
@@ -131,10 +174,10 @@ export default function ReportPage() {
             <button type="button" className="btn sm" onClick={() => setDetails((v) => !v)} aria-expanded={details}>
               {details ? 'Hide key points' : 'Key points'}
             </button>
-            {r.origin !== 'vault' && r.url ? (
-              <a className="btn sm" href={`${r.url}${effLang ? `?lang=${effLang}` : ''}`} target="_blank" rel="noopener noreferrer">
+            {r.format === 'html' ? (
+              <Link className="btn sm" to={`/report/${encodeURIComponent(r.id)}/full`} target="_blank" rel="noopener">
                 Open full page
-              </a>
+              </Link>
             ) : pdf ? (
               <a className="btn sm" href={pdf} download={`${r.id}.pdf`}>
                 Download
@@ -170,15 +213,8 @@ export default function ReportPage() {
                 <span className="spinner" /> Loading the PDF from your private vault…
               </div>
             )
-          ) : srcDoc ? (
-            <iframe
-              key={effLang}
-              className="reader-frame"
-              title={r.title}
-              srcDoc={srcDoc}
-              sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
-              referrerPolicy="no-referrer"
-            />
+          ) : frame ? (
+            frame
           ) : (
             <div className="empty">
               <span className="spinner" /> Loading…

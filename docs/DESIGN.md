@@ -55,7 +55,7 @@ The owner writes in Chinese. Every translatable field has a stable key (`summary
 ## Security and privacy
 
 - No analytics, no third-party scripts beyond Google Fonts; the preview is `noindex`.
-- Reports render in a sandboxed `srcdoc` frame without same-origin access; a small shim gives them in-memory storage, a fixed language and working in-page anchors.
+- Reports render in a sandboxed `srcdoc` frame without same-origin access; a small shim gives them in-memory storage, a fixed language and working in-page anchors. The built copies are served as `.txt`, never as pages: a report runs its own scripts (and chart libraries from public CDNs), and as a page of this site it could read the owner's token from the browser's storage. "Open full page" is the same sandboxed frame in a window of its own (`#/report/<id>/full`).
 - Sell-side research never enters the public repository; validation and ingestion both refuse it. Public ingestion also scans for personal details.
 - The token needs only Contents (and optionally Actions) on two repositories. Signing out clears it and the vault cache.
 

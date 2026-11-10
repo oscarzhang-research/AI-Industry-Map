@@ -55,6 +55,11 @@ writeJson(join(OUT, 'site.json'), site);
 // ---- Prices & quotes ----------------------------------------------------------------
 const splits = readJson<Record<string, [string, number][]>>(join(DATA, 'splits.json'), {});
 const fundamentals = readJson<Record<string, Fundamentals>>(join(DATA, 'fundamentals.json'), {});
+// Currency codes come from the market-data feed and are printed on the site: keep three-letter codes only.
+for (const f of Object.values(fundamentals)) {
+  if (f.currency && !/^[A-Za-z]{3}$/.test(f.currency)) delete f.currency;
+  if (f.financialCurrency && !/^[A-Za-z]{3}$/.test(f.financialCurrency)) delete f.financialCurrency;
+}
 const fxDoc = readJson<{ asOf?: string; rates?: Record<string, number> }>(join(DATA, 'fx.json'), {});
 const status = readJson<{ updatedAt?: string }>(join(DATA, 'status.json'), {});
 const fx = { USD: 1, ...(fxDoc.rates ?? {}) };
@@ -178,12 +183,16 @@ for (const theme of content.themes) {
 writeJson(join(OUT, 'indices.json'), { base: AI_BASE_DATE, series: indexSeries });
 
 // ---- Reports: served copies with the reader shim, metadata and search text -----------
+// The copies are served as .txt on purpose. A report is a full HTML page with its own scripts (and chart
+// libraries from public CDNs); opened as a page of this site it would run with the site's origin and could
+// read the owner's sign-in token from the browser's storage. As text it cannot run: the reader fetches it
+// and shows it inside a sandboxed frame, which has no access to the site.
 const reportText: Record<string, string> = {};
 const reportsOut = content.reports.map(({ dir, ...meta }) => {
   const html = readFileSync(join(dir, meta.file), 'utf8');
-  writeFileSync(join(OUT, 'reports', `${meta.id}.html`), injectReaderShim(html));
+  writeFileSync(join(OUT, 'reports', `${meta.id}.txt`), injectReaderShim(html));
   reportText[meta.id] = htmlToText(html);
-  return { ...meta, url: `generated/reports/${meta.id}.html`, origin: 'public' as const };
+  return { ...meta, url: `generated/reports/${meta.id}.txt`, origin: 'public' as const };
 });
 writeJson(join(OUT, 'reports.json'), reportsOut);
 writeJson(join(OUT, 'reports-text.json'), reportText);

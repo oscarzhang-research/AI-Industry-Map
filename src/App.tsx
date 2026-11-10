@@ -76,6 +76,18 @@ export default function App() {
     document.title = site.config.site.name;
   }, [site]);
 
+  // The full-window report reader: the report in its sandboxed frame and nothing else.
+  if (/^\/report\/[^/]+\/full\/?$/.test(loc.pathname)) {
+    return (
+      <Suspense fallback={<div className="page"><div className="wrap"><span className="spinner" /></div></div>}>
+        <Routes>
+          <Route path="/report/:id/full" element={<ReportPage full />} />
+        </Routes>
+        <Toasts />
+      </Suspense>
+    );
+  }
+
   return (
     <>
       <TokenRibbon />

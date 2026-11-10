@@ -857,6 +857,33 @@ a.report-card:hover {
   border-radius: var(--radius);
   background: #fff;
 }
+.reader-full {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+}
+.reader-full-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+.reader-full-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: var(--step--1);
+}
+.reader-full .reader-frame {
+  border: 0;
+  border-radius: 0;
+}
 
 /* ---- Editor -------------------------------------------------------------------------------------------------- */
 .editor-section {
