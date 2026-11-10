@@ -8,7 +8,7 @@ import { earningsFlag, fmtEps, recentReports, reportTimeLabel, upcomingReports, 
 import { fmtCompact, fmtDate, fmtPct, plural, relativeDays, todayISO } from '../lib/format.ts';
 import { Change, Section } from './ui.tsx';
 
-const SOURCE_NOTE = 'Consensus and results from Yahoo Finance. The consensus is the one shown before each report.';
+const SOURCE_NOTE = 'Consensus and results from Yahoo Finance. The consensus is the one shown before each report. A surprise is left blank when the result and the estimate are plainly on different bases.';
 const MOVE_NOTE = 'Move: share price change from the last close before the report to one session after it.';
 
 function shiftDays(iso: string, n: number): string {

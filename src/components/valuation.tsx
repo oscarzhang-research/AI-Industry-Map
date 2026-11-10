@@ -91,7 +91,7 @@ export function ValuationHistory({ series, ccy }: { series: PriceSeries; ccy?: s
         <div>
           <div className="eyebrow">Valuation over time</div>
           <div className="muted" style={{ fontSize: 'var(--step--2)' }}>
-            Daily snapshot of Yahoo Finance multiples and analyst targets, recorded since {fmtDate(val.d[0])}.
+            Yahoo Finance multiples and analyst targets, recorded daily since {fmtDate(val.d[0])} and set against each day's close.
           </div>
         </div>
         {option && available.length > 1 ? (

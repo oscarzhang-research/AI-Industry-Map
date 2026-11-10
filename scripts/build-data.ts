@@ -3,7 +3,8 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadContent, printIssues, ROOT } from './lib/load.ts';
-import { basketIndex, capWeightIndex, cleanValuation, computeQuote, earningsMove, mixedCurrency, parsePriceCsv, parseValuationCsv, revenueSurprise, AI_BASE_DATE, type Fundamentals } from '../src/lib/finance.ts';
+import { alignQuote, basketIndex, capWeightIndex, cleanValuation, computeQuote, earningsMove, epsSurprise, impliedShares, mixedCurrency, parsePriceCsv, parseValuationSnapshots, rebaseValuation, revenueSurprise, AI_BASE_DATE, type Fundamentals } from '../src/lib/finance.ts';
+import { withMarketDates } from '../src/lib/earnings.ts';
 import { priceChunk, safeSymbol } from '../src/lib/symbols.ts';
 import { htmlToText, injectReaderShim } from '../src/lib/reportShim.ts';
 import { compileKpis, financialsFor, loadKpiData } from './lib/kpis.ts';
@@ -50,7 +51,7 @@ const site: SiteData = {
   benchmarkDefaults: content.benchmarkDefaults,
   events: content.events,
 };
-writeJson(join(OUT, 'site.json'), site);
+// site.json is written further down, once the market data is loaded: earnings events take their dates from it.
 
 // ---- Prices & quotes ----------------------------------------------------------------
 const splits = readJson<Record<string, [string, number][]>>(join(DATA, 'splits.json'), {});
@@ -69,6 +70,8 @@ for (const c of Object.values(content.companies)) for (const t of c.tickers) if 
 for (const b of content.benchmarks) if (b.currency) currencyOf.set(b.symbol, b.currency);
 
 const series = new Map<string, PriceSeries>();
+const sharesOf = new Map<string, number | null>(); // shares implied by the valuation history, to align quotes
+const addDaysISO = (day: string, n: number) => new Date(new Date(`${day}T00:00:00Z`).getTime() + n * 864e5).toISOString().slice(0, 10);
 const priceDir = join(DATA, 'prices');
 const valDir = join(DATA, 'valuation');
 const kpiData = loadKpiData(DATA);
@@ -89,8 +92,13 @@ if (existsSync(priceDir)) {
     if (splits[symbol]?.length) s.splits = splits[symbol];
     const valFile = join(valDir, f);
     if (existsSync(valFile)) {
-      const val = parseValuationCsv(readFileSync(valFile, 'utf8'));
-      if (val.d.length) s.val = cleanValuation(val, mixedCurrency(fundamentals[symbol], currencyOf.get(symbol)));
+      const snap = parseValuationSnapshots(readFileSync(valFile, 'utf8'));
+      if (snap.d.length) {
+        // Snapshots are put on the close of their own date; the latest implied share count also aligns the quote.
+        s.val = cleanValuation(rebaseValuation(snap, s), mixedCurrency(fundamentals[symbol], currencyOf.get(symbol)));
+        const lastDay = s.d[s.d.length - 1];
+        if (snap.d[snap.d.length - 1] >= addDaysISO(lastDay, -7)) sharesOf.set(symbol, impliedShares(snap, s).at(-1) ?? null);
+      }
     }
     const co = companyOf.get(symbol);
     const fin = co ? financialsFor(co, kpiData) : undefined;
@@ -108,8 +116,9 @@ if (PRICE_CHUNKS) {
 const quotes: Record<string, Quote> = {};
 let asOf: string | null = null;
 for (const [symbol, s] of series) {
-  const q = computeQuote(s, fundamentals[symbol], fx, currencyOf.get(symbol));
-  if (!q) continue;
+  const raw = computeQuote(s, fundamentals[symbol], fx, currencyOf.get(symbol));
+  if (!raw) continue;
+  const q = alignQuote(raw, sharesOf.get(symbol));
   quotes[symbol] = q;
   if (!asOf || q.d > asOf) asOf = q.d;
 }
@@ -127,7 +136,8 @@ for (const [symbol, rec] of Object.entries(earningsRaw)) {
   if (!wanted.has(symbol) || !rec) continue;
   const s = series.get(symbol);
   const history = (rec.history ?? []).filter((h) => h.date >= earningsFrom).map((h) => {
-    const out = { ...h, move: earningsMove(s, h.date), revSurprise: revenueSurprise(h) };
+    const out = { ...h, surprise: epsSurprise(h), move: earningsMove(s, h.date), revSurprise: revenueSurprise(h) };
+    if (out.surprise === undefined) delete out.surprise;
     if (h.revEst && h.revActual && out.revSurprise === undefined) delete out.revEst;
     return out;
   });
@@ -141,6 +151,10 @@ for (const [symbol, rec] of Object.entries(earningsRaw)) {
   earnings[symbol] = out;
 }
 writeJson(join(OUT, 'earnings.json'), earnings);
+
+// Curated earnings events follow the feed's dates (confirmed or actual) where it has them.
+site.events = withMarketDates(content.events, content.companies, quotes, earnings);
+writeJson(join(OUT, 'site.json'), site);
 
 // ---- Industry indicators -------------------------------------------------------------------------------
 const kpisFile: KpisFile = { updatedAt: kpiData.updatedAt, indicators: compileKpis(content.kpis, content.companies, kpiData) };

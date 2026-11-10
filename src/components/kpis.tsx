@@ -127,8 +127,11 @@ function Headline({ kpi }: { kpi: Kpi }) {
     );
   }
   if (kpi.kind === 'ranges') {
+    // The newest quarter TrendForce has published for each series, forecast or reported: the reported
+    // figures alone run quarters behind (it rarely publishes one), which made the headline look stale.
+    const quarterKey = (period: string) => Number(period.slice(2)) * 4 + Number(period[0]);
     const latest = kpi.series
-      .map((s) => ({ s, p: s.points.filter((p) => p.basis === 'actual').pop() }))
+      .map((s) => ({ s, p: [...s.points].sort((a, b) => quarterKey(String(a.period)) - quarterKey(String(b.period))).pop() }))
       .filter((x) => x.p);
     if (!latest.length) return null;
     return (
@@ -137,11 +140,12 @@ function Headline({ kpi }: { kpi: Kpi }) {
           <span key={s.id} className="kpi-pair">
             <span className="muted">
               {s.label.split(' ')[0]} {p!.period}
+              {p!.basis === 'actual' ? '' : ' forecast'}
             </span>{' '}
             <span className="big num">{rangeText(p!.low, p!.high)}</span>
           </span>
         ))}
-        <span className="muted">latest reported, quarter on quarter</span>
+        <span className="muted">quarter on quarter, latest published</span>
       </div>
     );
   }
@@ -204,7 +208,7 @@ function StackChart({ kpi }: { kpi: KpiStack }) {
             .map((p, k) => `<div><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${colors[k]};margin-right:6px"></span>${esc(p.label)}: <b>${p.values[i] === null ? 'not reported' : fmtCompact(p.values[i]!, ccy)}</b></div>`)
             .join('');
           const tot = kpi.total[i];
-          return `<div style="color:${t.muted}">${quarterLabel(kpi.periods[i])}${kpi.complete[i] ? '' : ' · not all reported'}</div>${rows}<div style="margin-top:4px">Total <b>${tot === null ? '—' : fmtCompact(tot, ccy)}</b></div>`;
+          return `<div style="color:${t.muted}">${quarterLabel(kpi.periods[i])}${kpi.complete[i] ? '' : ' · a company is missing'}</div>${rows}<div style="margin-top:4px">Total <b>${tot === null ? '—' : fmtCompact(tot, ccy)}</b></div>`;
         },
       },
       xAxis: { type: 'category', data: kpi.periods.map(quarterLabel), ...axisBase(t) },
@@ -226,7 +230,7 @@ function StackChart({ kpi }: { kpi: KpiStack }) {
       <EChart option={option} height={240} ariaLabel={`${kpi.name} by quarter`} />
       {kpi.complete.some((c) => !c) ? (
         <p className="faint" style={{ fontSize: 'var(--step--2)', marginTop: 2 }}>
-          Faded bars: quarters not every company has reported yet.
+          Faded bars: quarters where a company's figure is missing, either not reported yet or absent from the filings data.
         </p>
       ) : null}
     </div>

@@ -1,6 +1,6 @@
 // Earnings calendar and results, combined from the quotes (next report date for every listed company)
 // and generated/earnings.json (consensus and results for names reporting around now). Pure functions.
-import type { Company, EarningsFile, EarningsNext, EarningsReport, Quote, SiteData, Tier } from './types.ts';
+import type { Company, EarningsFile, EarningsNext, EarningsReport, EventItem, Quote, SiteData, Tier } from './types.ts';
 import { daysBetween } from './finance.ts';
 import { marketOf } from './symbols.ts';
 
@@ -95,4 +95,39 @@ export function fmtEps(x: number | undefined): string {
   if (x === undefined || !Number.isFinite(x)) return '—';
   const digits = Math.abs(x) < 0.1 && x !== 0 ? 3 : 2;
   return x.toFixed(digits).replace('-', '−');
+}
+
+/**
+ * Curated earnings events with their dates taken from market data when it has one within twelve days.
+ * The calendar is written ahead of time, mostly from last year's timing, and companies move their dates:
+ * the feed's date (the confirmed next report, or the day a report actually came out) replaces the curated
+ * one, and the event stops being tentative once that date is confirmed or past.
+ */
+export function withMarketDates(
+  events: EventItem[],
+  companies: Record<string, Pick<Company, 'symbol'>>,
+  quotes: Record<string, Quote>,
+  earnings: EarningsFile,
+): EventItem[] {
+  return events.map((e) => {
+    const symbol = e.kind === 'earnings' && e.companies?.length === 1 ? companies[e.companies[0]]?.symbol : undefined;
+    if (!symbol) return e;
+    const q = quotes[symbol];
+    const rec = earnings[symbol];
+    const candidates: { date: string; estimated: boolean }[] = [];
+    if (q?.earn) candidates.push({ date: q.earn, estimated: !!q.earnEst });
+    if (rec?.next?.date) candidates.push({ date: rec.next.date, estimated: !!rec.next.estimated });
+    for (const h of rec?.history ?? []) if (h.epsActual !== undefined || h.revActual !== undefined) candidates.push({ date: h.date, estimated: false });
+    const near = candidates
+      .map((c) => ({ ...c, gap: Math.abs(daysBetween(e.start, c.date)) }))
+      .filter((c) => c.gap <= 12)
+      .sort((a, b) => a.gap - b.gap || Number(a.estimated) - Number(b.estimated))[0];
+    if (!near) return e;
+    // A date a person confirmed is not moved by one day: the feed can be a day off across time zones.
+    if (!e.tentative && near.gap <= 1) return e;
+    const out: EventItem = { ...e, start: near.date };
+    if (near.estimated) out.tentative = true;
+    else delete out.tentative;
+    return out;
+  });
 }

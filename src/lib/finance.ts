@@ -76,9 +76,19 @@ export function cleanValuation(val: ValuationSeries, mixed: boolean): ValuationS
   };
 }
 
+/** The stored snapshots: the multiples plus the market value the feed showed with them (trading currency). */
+export interface ValuationSnapshots extends ValuationSeries {
+  mcap: (number | null)[];
+}
+
 /** Parse a data/valuation CSV (date,pe,fpe,ev_ebitda,ps,mcap,tgt,tgt_hi,tgt_lo,analysts,rec), matching columns by name. */
 export function parseValuationCsv(text: string): ValuationSeries {
-  const out: ValuationSeries = { d: [], pe: [], fpe: [], ev: [], ps: [], tgt: [], hi: [], lo: [], n: [], rec: [] };
+  const { mcap: _mcap, ...series } = parseValuationSnapshots(text);
+  return series;
+}
+
+export function parseValuationSnapshots(text: string): ValuationSnapshots {
+  const out: ValuationSnapshots = { d: [], pe: [], fpe: [], ev: [], ps: [], tgt: [], hi: [], lo: [], n: [], rec: [], mcap: [] };
   const lines = text.split(/\r?\n/).filter(Boolean);
   if (!lines.length) return out;
   const col = new Map(lines[0].split(',').map((h, i) => [h.trim(), i]));
@@ -97,12 +107,78 @@ export function parseValuationCsv(text: string): ValuationSeries {
     out.fpe.push(numAt(cells, 'fpe'));
     out.ev.push(numAt(cells, 'ev_ebitda'));
     out.ps.push(numAt(cells, 'ps'));
+    out.mcap.push(numAt(cells, 'mcap'));
     out.tgt.push(numAt(cells, 'tgt'));
     out.hi.push(numAt(cells, 'tgt_hi'));
     out.lo.push(numAt(cells, 'tgt_lo'));
     out.n.push(numAt(cells, 'analysts'));
     const ri = col.get('rec');
     out.rec.push((ri !== undefined && cells[ri]?.trim()) || null);
+  }
+  return out;
+}
+
+/**
+ * Shares implied by each snapshot (its market value over the close of its date), smoothed with a rolling
+ * median so that snapshots taken at some other price do not count. Null where there is too little to go on.
+ */
+export function impliedShares(snap: Pick<ValuationSnapshots, 'd' | 'mcap'>, closes: Pick<PriceSeries, 'd' | 'c'>, halfWindow = 10): (number | null)[] {
+  const closeOn = new Map(closes.d.map((d, i) => [d, closes.c[i]]));
+  const raw = snap.d.map((d, i) => {
+    const c = closeOn.get(d);
+    const m = snap.mcap[i];
+    return c && m && c > 0 ? m / c : null;
+  });
+  if (raw.filter((x) => x !== null).length < 5) return raw.map(() => null);
+  return raw.map((_, i) => {
+    const w = raw.slice(Math.max(0, i - halfWindow), i + halfWindow + 1).filter((x): x is number => x !== null).sort((a, b) => a - b);
+    if (w.length < 3) return null;
+    return w.length % 2 ? w[(w.length - 1) / 2] : (w[w.length / 2 - 1] + w[w.length / 2]) / 2;
+  });
+}
+
+/**
+ * Put every snapshot on the close of its own date.
+ *
+ * A snapshot is whatever the feed showed when the run happened: often a live price from the next session,
+ * or the previous day's figures (one in seven US snapshots repeated the day before although the close had
+ * moved). Its market value and its multiples come from that same price, though, so the earnings, sales and
+ * EBITDA behind them can be carried over to the day's actual close: each multiple is scaled by
+ * close x shares / market value. EV/EBITDA is scaled the same way, which treats net debt as small next to
+ * the market value. A snapshot whose price is more than 40% from the close is left as it is.
+ */
+export function rebaseValuation(snap: ValuationSnapshots, closes: Pick<PriceSeries, 'd' | 'c'>): ValuationSeries {
+  const { mcap, ...series } = snap;
+  const shares = impliedShares(snap, closes);
+  const closeOn = new Map(closes.d.map((d, i) => [d, closes.c[i]]));
+  const factor = snap.d.map((d, i) => {
+    const c = closeOn.get(d);
+    const sh = shares[i];
+    const m = mcap[i];
+    if (!c || !sh || !m) return 1;
+    const f = (c * sh) / m;
+    return f > 0.6 && f < 1 / 0.6 ? f : 1;
+  });
+  const scale = (xs: (number | null)[]) => xs.map((x, i) => (x === null ? null : Math.round(x * factor[i] * 1e4) / 1e4));
+  return { ...series, pe: scale(snap.pe), fpe: scale(snap.fpe), ps: scale(snap.ps), ev: scale(snap.ev) };
+}
+
+/**
+ * Bring a quote's market value and multiples onto its close, with the shares implied by the valuation
+ * history. The fundamentals snapshot can be from a live session while the quote shows the last close.
+ */
+export function alignQuote(q: Quote, shares: number | null | undefined): Quote {
+  if (!shares || !q.mcap || !(q.c > 0)) return q;
+  const f = (q.c * shares) / q.mcap;
+  if (!(f > 0.75 && f < 1 / 0.75) || Math.abs(f - 1) < 1e-6) return q;
+  const out: Quote = { ...q, mcap: q.c * shares };
+  if (q.mcapUsd) out.mcapUsd = q.mcapUsd * f;
+  for (const k of ['pe', 'fpe', 'ps'] as const) {
+    if (q[k] !== undefined) {
+      const v = plausibleMultiple(k, q[k]! * f);
+      if (v === undefined) delete out[k];
+      else out[k] = Math.round(v * 1e4) / 1e4;
+    }
   }
   return out;
 }
@@ -132,6 +208,20 @@ export function earningsMove(series: PriceSeries | undefined, date: string): num
   const after = Math.min(before + (onDay ? 2 : 1), series.d.length - 1);
   if (after <= before) return undefined;
   return series.c[after] / series.c[before] - 1;
+}
+
+/**
+ * EPS surprise in percent, or undefined when the comparison means nothing. The feed sometimes sets a
+ * GAAP result against an adjusted estimate (a holding company's investment gains, a one-off charge),
+ * which produces figures like -2,032%. A result and an estimate of opposite sign, an estimate of zero,
+ * or a gap of more than 200% is treated as two different measures and left blank.
+ */
+export function epsSurprise(r: Pick<EarningsReport, 'epsEst' | 'epsActual'>): number | undefined {
+  const { epsEst: est, epsActual: actual } = r;
+  if (est === undefined || actual === undefined || !Number.isFinite(est) || !Number.isFinite(actual)) return undefined;
+  if (est === 0 || est * actual < 0) return undefined;
+  const pct = ((actual - est) / Math.abs(est)) * 100;
+  return Math.abs(pct) <= 200 ? Math.round(pct * 100) / 100 : undefined;
 }
 
 /** Revenue surprise as a fraction; undefined when the two figures look like different currencies or units. */

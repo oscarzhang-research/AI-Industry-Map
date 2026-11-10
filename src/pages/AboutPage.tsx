@@ -96,12 +96,14 @@ export default function AboutPage() {
               <li>
                 <b>Prices and valuation.</b> Market capitalizations are converted to US dollars at daily exchange rates. P/E, EV/EBITDA, price/sales and analyst targets
                 come from Yahoo Finance and are recorded once a trading day{meta.valuationSince ? ` since ${fmtDate(meta.valuationSince)}` : ''}, so a view can
-                compare its opening valuation with today's. For listings that trade and report in different currencies, such as ADRs, price/sales and EV/EBITDA are left
-                out because the feed often mixes the two.
+                compare its opening valuation with today's. The feed takes its figures at whatever price it sees at that moment, so each day's multiples are set against
+                that day's closing price here. For listings that trade and report in different currencies, such as ADRs, price/sales and EV/EBITDA are left out because the
+                feed often mixes the two.
               </li>
               <li>
                 <b>Earnings.</b> Report dates, the consensus for EPS and revenue, and reported results come from the same feed. The consensus shown against a result is the
-                one recorded before the report. Estimated dates are marked.
+                one recorded before the report. The feed sometimes sets a GAAP result against an adjusted estimate, so an EPS surprise is left blank when the two are of
+                opposite sign or more than 200% apart. Estimated dates are marked.
               </li>
               <li>
                 <b>Indicators.</b> Quarterly revenue and capital spending come from companies' SEC filings (XBRL company facts), assigned to the calendar quarter that

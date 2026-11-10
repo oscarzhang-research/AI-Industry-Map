@@ -281,7 +281,9 @@ def splits_from(frame) -> list[list]:
     return out
 
 
-def clean_info(info: dict) -> dict:
+def clean_info(info: dict, tz: str = "America/New_York") -> dict:
+    """The fields the site uses from Yahoo's info. `tz` is the listing's time zone: the next report date is
+    the calendar day there (a Seoul report at 8am is still the evening before in New York or UTC)."""
     out = {}
     for src, dst in INFO_FIELDS.items():
         v = info.get(src)
@@ -296,8 +298,8 @@ def clean_info(info: dict) -> dict:
     for key in ("earningsTimestampStart", "earningsTimestamp", "earningsTimestampEnd"):
         ts = info.get(key)
         if isinstance(ts, (int, float)) and ts > 0:
-            day = datetime.fromtimestamp(ts, tz=timezone.utc).strftime("%Y-%m-%d")
-            if day >= datetime.now(timezone.utc).strftime("%Y-%m-%d"):
+            day = datetime.fromtimestamp(ts, tz=ZoneInfo(tz)).strftime("%Y-%m-%d")
+            if day >= datetime.now(ZoneInfo(tz)).strftime("%Y-%m-%d"):
                 out["nextEarnings"] = day
                 out["earningsEstimated"] = bool(info.get("isEarningsDateEstimate", False))
                 break
@@ -320,7 +322,7 @@ def fetch_fundamentals(symbols: list[str], previous: dict) -> tuple[dict, list[s
                 print(f"  info {sym} attempt {attempt + 1}: {exc}", file=sys.stderr)
                 time.sleep(3 * (attempt + 1))
         if info:
-            rec = clean_info(info)
+            rec = clean_info(info, session_of(sym)[0])
             if rec:
                 rec["asOf"] = today
                 result[sym] = rec
@@ -397,23 +399,30 @@ def num(v):
     return None if math.isnan(x) or math.isinf(x) else x
 
 
-def report_time(ts) -> str | None:
-    """'bmo' (before the US open) or 'amc' (after the close) from a report timestamp, when the hour says so."""
+def local_time(ts, tz: str):
+    """A report timestamp in the listing's time zone; None when it carries no zone."""
     try:
-        et = ts.tz_convert("America/New_York") if getattr(ts, "tzinfo", None) else None
+        return ts.tz_convert(tz) if getattr(ts, "tzinfo", None) else None
     except Exception:
-        et = None
-    if et is None or (et.hour == 0 and et.minute == 0):
+        return None
+
+
+def report_time(ts, tz: str = "America/New_York", close: tuple[int, int] = (16, 0)) -> str | None:
+    """'bmo' (before the listing's market opens) or 'amc' (after it closes), when the hour says so."""
+    local = local_time(ts, tz)
+    if local is None or (local.hour == 0 and local.minute == 0):
         return None  # date only
-    if et.hour < 9 or (et.hour == 9 and et.minute < 30):
+    if local.hour < 9 or (tz == "America/New_York" and local.hour == 9 and local.minute < 30):
         return "bmo"
-    if et.hour >= 16:
+    if (local.hour, local.minute) >= close:
         return "amc"
     return None
 
 
-def earnings_rows(ticker) -> list[dict]:
-    """Report dates with consensus and reported EPS (Yahoo's earnings calendar), newest first."""
+def earnings_rows(ticker, tz: str = "America/New_York", close: tuple[int, int] = (16, 0)) -> list[dict]:
+    """Report dates with consensus and reported EPS (Yahoo's earnings calendar), newest first. Dates are
+    calendar days where the company is listed: Yahoo's timestamps are in New York time, where an Asian
+    morning report is still the day before."""
     df = ticker.get_earnings_dates(limit=12)
     out = []
     if df is None or len(df) == 0:
@@ -421,8 +430,8 @@ def earnings_rows(ticker) -> list[dict]:
     for ts, r in df.iterrows():
         out.append(
             {
-                "date": ts.strftime("%Y-%m-%d"),
-                "time": report_time(ts),
+                "date": (local_time(ts, tz) or ts).strftime("%Y-%m-%d"),
+                "time": report_time(ts, tz, close),
                 "epsEst": num(r.get("EPS Estimate")),
                 "epsActual": num(r.get("Reported EPS")),
                 "surprise": num(r.get("Surprise(%)")),
@@ -500,12 +509,14 @@ def earnings_due(symbols: list[str], fundamentals: dict, previous: dict, tiers: 
             window.append(sym)
             continue
         newest = parse_day(((prev.get("history") or [{}])[0]).get("date"))
-        if newest is None or (today - newest).days > EARN_STALE_DAYS:
+        # Records of listings outside New York written before dates were local carry New York dates: redo them once.
+        old_dates = bool(prev.get("history")) and prev.get("dates") != "local" and session_of(sym)[0] != "America/New_York"
+        if newest is None or old_dates or (today - newest).days > EARN_STALE_DAYS:
             try:
                 checked = datetime.fromisoformat(prev.get("checkedAt", ""))
             except ValueError:
                 checked = None
-            if checked is None or now - checked >= timedelta(days=EARN_RETRY_DAYS):
+            if checked is None or old_dates or now - checked >= timedelta(days=EARN_RETRY_DAYS):
                 catch_up.append(sym)
     return sorted(window, key=order)[:EARN_MAX_SYMBOLS] + sorted(catch_up, key=order)[:EARN_CATCH_UP]
 
@@ -523,7 +534,7 @@ def earnings_record(prev: dict, rows: list[dict], estimates: tuple, estimated: b
     today_s = today.isoformat()
     future = sorted((r for r in rows if r["date"] >= today_s and r["epsActual"] is None), key=lambda r: r["date"])
     past = [r for r in rows if r["epsActual"] is not None]
-    rec: dict = {"updatedAt": today_s, "checkedAt": now.isoformat(timespec="minutes")}
+    rec: dict = {"updatedAt": today_s, "checkedAt": now.isoformat(timespec="minutes"), "dates": "local"}
     if future:
         nxt = dict(future[0])
         nxt.pop("epsActual", None)
@@ -542,10 +553,20 @@ def earnings_record(prev: dict, rows: list[dict], estimates: tuple, estimated: b
     exp_day = parse_day(expected["date"]) if expected else None
 
     history = {h["date"]: h for h in prev.get("history") or []}
+    fresh = {r["date"] for r in past}
     matched = False
     for r in past[:EARN_HISTORY]:
-        h = dict(history.get(r["date"]) or {})
+        day = parse_day(r["date"])
+        # The same report stored under a neighbouring date (New York time, before dates were local): take over
+        # what was recorded with it, and drop the old row.
+        twins = [d for d in history if d not in fresh and abs((parse_day(d) - day).days) <= 2]
+        h = {}
+        for d in twins:
+            h.update(history.pop(d))
+        h.update(history.get(r["date"]) or {})
         h.update({k: v for k, v in r.items() if v is not None})
+        if r["time"] is None:
+            h.pop("time", None)
         if exp_day is not None and abs((parse_day(r["date"]) - exp_day).days) <= 3:
             matched = True
             if expected.get("revEst") is not None and "revEst" not in h:
@@ -586,7 +607,7 @@ def fetch_earnings(symbols: list[str], fundamentals: dict, previous: dict, tiers
             continue
         try:
             t = yf.Ticker(sym)
-            rows = earnings_rows(t)
+            rows = earnings_rows(t, *session_of(sym))
             estimates = quarter_estimate(t.revenue_estimate) + quarter_estimate(t.earnings_estimate)
         except Exception as exc:
             print(f"  earnings {sym}: {exc}", file=sys.stderr)

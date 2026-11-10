@@ -158,5 +158,68 @@ class EarningsTests(unittest.TestCase):
             self.assertEqual(fp.earnings_due(symbols, fundamentals, previous, tiers, now), ["SOON", "WIN", "OLD"])
 
 
+class Stamp(datetime):
+    """Enough of a pandas Timestamp for earnings_rows: tz_convert, strftime, hour and minute."""
+
+    def tz_convert(self, tz):
+        d = self.astimezone(fp.ZoneInfo(tz))
+        return Stamp(d.year, d.month, d.day, d.hour, d.minute, tzinfo=d.tzinfo)
+
+
+class FakeTicker:
+    def __init__(self, rows):
+        self.rows = rows
+
+    def get_earnings_dates(self, limit=12):
+        rows = self.rows
+
+        class Frame:
+            def __len__(self):
+                return len(rows)
+
+            def iterrows(self):
+                return iter(rows)
+
+        return Frame()
+
+
+def ny(text: str) -> Stamp:
+    d = datetime.strptime(text, "%Y-%m-%d %H:%M").replace(tzinfo=fp.ZoneInfo("America/New_York"))
+    return Stamp(d.year, d.month, d.day, d.hour, d.minute, tzinfo=d.tzinfo)
+
+
+class LocalDateTests(unittest.TestCase):
+    def test_report_dates_are_calendar_days_where_the_company_is_listed(self):
+        # Yahoo stamps reports in New York time: 7pm on Oct 28 there is 8am on Oct 29 in Seoul.
+        ticker = FakeTicker([(ny("2026-10-28 19:00"), {"EPS Estimate": 9000, "Reported EPS": 9500}), (ny("2026-07-29 02:30"), {"EPS Estimate": 1, "Reported EPS": 2})])
+        seoul = fp.earnings_rows(ticker, *fp.session_of("005930.KS"))
+        self.assertEqual([(r["date"], r["time"]) for r in seoul], [("2026-10-29", "bmo"), ("2026-07-29", "amc")])  # 8:00 and 15:30 in Seoul
+        new_york = fp.earnings_rows(ticker, *fp.session_of("NVDA"))
+        self.assertEqual([(r["date"], r["time"]) for r in new_york], [("2026-10-28", "amc"), ("2026-07-29", "bmo")])
+
+    def test_the_next_report_date_is_local_too(self):
+        stamp = datetime(2027, 1, 27, 23, 0, tzinfo=timezone.utc).timestamp()  # 8am on Jan 28 in Seoul
+        self.assertEqual(fp.clean_info({"earningsTimestamp": stamp}, "Asia/Seoul")["nextEarnings"], "2027-01-28")
+        self.assertEqual(fp.clean_info({"earningsTimestamp": stamp})["nextEarnings"], "2027-01-27")
+        self.assertNotIn("currency", fp.clean_info({"currency": "<b>"}))
+        self.assertEqual(fp.clean_info({"currency": "KRW"})["currency"], "KRW")
+
+    def test_a_row_stored_under_the_new_york_date_is_replaced_not_doubled(self):
+        prev = {"history": [{"date": "2026-10-28", "time": "amc", "epsEst": 9000, "epsActual": 9500, "revEst": 100.0, "revActual": 104.0, "period": "2026-09-30"},
+                            {"date": "2026-07-29", "epsEst": 1, "epsActual": 2}]}
+        rows = [row("2026-10-29", 9000, 9500), row("2026-07-29", 1, 2)]
+        rows[0]["time"] = "bmo"
+        rec = fp.earnings_record(prev, rows, ESTIMATES, False, utc("2026-11-10 22:00"), NO_REVENUE)
+        self.assertEqual([h["date"] for h in rec["history"]], ["2026-10-29", "2026-07-29"])
+        self.assertEqual(rec["history"][0], {"date": "2026-10-29", "time": "bmo", "epsEst": 9000, "epsActual": 9500, "revEst": 100.0, "revActual": 104.0, "period": "2026-09-30"})
+        self.assertEqual(rec["dates"], "local")
+
+    def test_records_with_new_york_dates_are_redone_once(self):
+        now = utc("2026-11-10 22:00")
+        fresh = {"history": [{"date": "2026-10-28"}], "checkedAt": "2026-11-09T22:00+00:00"}
+        previous = {"005930.KS": dict(fresh), "NVDA": dict(fresh), "6857.T": dict(fresh, dates="local")}
+        self.assertEqual(fp.earnings_due(["005930.KS", "NVDA", "6857.T"], {}, previous, {}, now), ["005930.KS"])
+
+
 if __name__ == "__main__":
     unittest.main()
