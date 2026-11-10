@@ -217,8 +217,38 @@ def download_batch(symbols: list[str], attempts: int = 4):
     return None
 
 
+def stored_rows(path: str) -> list[str]:
+    """Data rows of a stored price file; [] when there is none."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            return [ln for ln in f.read().splitlines()[1:] if ln.strip()]
+    except OSError:
+        return []
+
+
+def kept_tail(stored: list[str], rows: list[str], unfinished: str | None) -> list[str]:
+    """Stored rows newer than the newest downloaded row.
+
+    For some hours after an exchange's local midnight Yahoo returns the last finished session as an
+    empty bar, which frame_for drops; without this a later run removes a close an earlier run stored
+    (Asian listings lost their latest day every afternoon, New York time). The rows are kept only when
+    the stored file and the download agree on the newest downloaded day: after a split Yahoo rescales
+    the whole history, and the stored rows would no longer fit it."""
+    if not stored or not rows:
+        return []
+    day, close = rows[-1].split(",")[:2]
+    same = next((ln.split(",") for ln in stored if ln.startswith(day + ",")), None)
+    try:
+        agree = same is not None and abs(float(same[1]) / float(close) - 1) < 0.005
+    except (ValueError, ZeroDivisionError, IndexError):
+        agree = False
+    if not agree:
+        return []
+    return [ln for ln in stored if day < ln.split(",")[0] != unfinished]
+
+
 def write_csv(symbol: str, frame) -> int:
-    rows = ["date,close,high,low"]
+    rows = []
     unfinished = session_open_day(symbol)
     for idx, r in frame.iterrows():
         d = idx.strftime("%Y-%m-%d")
@@ -226,9 +256,10 @@ def write_csv(symbol: str, frame) -> int:
             continue  # today's session is still open: not a close yet
         rows.append(f"{d},{fmt(r.get('Close'))},{fmt(r.get('High'))},{fmt(r.get('Low'))}")
     path = os.path.join(PRICES, safe_symbol(symbol) + ".csv")
+    rows += kept_tail(stored_rows(path), rows, unfinished)
     with open(path, "w", encoding="utf-8", newline="\n") as f:
-        f.write("\n".join(rows) + "\n")
-    return len(rows) - 1
+        f.write("\n".join(["date,close,high,low"] + rows) + "\n")
+    return len(rows)
 
 
 def splits_from(frame) -> list[list]:

@@ -19,7 +19,7 @@ npm test
 npm run build        # also regenerates public/generated/ (git-ignored)
 ```
 
-When you change a fetcher or `content/news-sources.yaml`, also run its offline tests: `python3 -m unittest discover -s scripts/news -p 'test_*.py'` and `python3 -m unittest discover -s scripts/prices -p 'test_fetch_kpis.py'` (CI runs both).
+When you change a fetcher or `content/news-sources.yaml`, also run its offline tests: `python3 -m unittest discover -s scripts/news -p 'test_*.py'` and `python3 -m unittest discover -s scripts/prices -p 'test_*.py'` (CI runs both).
 
 ## Where things live
 
