@@ -116,10 +116,12 @@ writeJson(join(OUT, 'quotes.json'), quotesFile);
 // Revenue figures that look like a different currency from the estimate (ADRs, cross-listings) are dropped.
 const earningsRaw = readJson<EarningsFile>(join(DATA, 'earnings.json'), {});
 const earnings: EarningsFile = {};
+// For a few listings Yahoo's only report rows are years old; they say nothing about the company now.
+const earningsFrom = new Date(Date.now() - 3 * 365 * 864e5).toISOString().slice(0, 10);
 for (const [symbol, rec] of Object.entries(earningsRaw)) {
   if (!wanted.has(symbol) || !rec) continue;
   const s = series.get(symbol);
-  const history = (rec.history ?? []).map((h) => {
+  const history = (rec.history ?? []).filter((h) => h.date >= earningsFrom).map((h) => {
     const out = { ...h, move: earningsMove(s, h.date), revSurprise: revenueSurprise(h) };
     if (h.revEst && h.revActual && out.revSurprise === undefined) delete out.revEst;
     return out;
