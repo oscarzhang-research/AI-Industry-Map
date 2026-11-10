@@ -56,7 +56,7 @@ export default function AboutPage() {
                 too, as an objective reference.
               </li>
               <li>
-                <b>Daily prices.</b> Split-adjusted daily closes from Yahoo Finance, fetched after the US close and again after the Asian close for Asian listings. A
+                <b>Daily prices.</b> Split-adjusted daily closes from Yahoo Finance, fetched after the US close and again every morning New York time, which picks up the Asian closes. A
                 price entered before a stock split is divided by the split ratio so it stays comparable.
               </li>
               <li>

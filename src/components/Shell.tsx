@@ -297,7 +297,7 @@ export function Footer() {
           </p>
           <p>{s.disclaimer}</p>
           <p className="faint">
-            Prices: daily closes via Yahoo Finance, updated after the Asian and US closes{meta.dataUpdatedAt ? ` · last update ${fmtDateTime(meta.dataUpdatedAt, s.timezone)}` : ''}.
+            Prices: daily closes via Yahoo Finance, updated after the US close and every morning New York time{meta.dataUpdatedAt ? ` · last update ${fmtDateTime(meta.dataUpdatedAt, s.timezone)}` : ''}.
           </p>
         </div>
         <div className="stack" style={{ '--gap': '6px' } as React.CSSProperties}>

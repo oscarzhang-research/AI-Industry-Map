@@ -285,7 +285,7 @@ export default function SettingsPage() {
             <dt>Price series</dt>
             <dd>{meta.counts.series ?? '—'}</dd>
             <dt>Schedule</dt>
-            <dd>Weekdays at 10:30 UTC (after the Asian close) and 21:35 UTC (after the US close)</dd>
+            <dd>Weekdays after the US close (about 4:40pm New York time), and every morning with the news update (about 7am New York time), which picks up the Asian closes</dd>
           </dl>
         </Section>
       </div>

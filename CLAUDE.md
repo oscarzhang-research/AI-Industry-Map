@@ -115,4 +115,13 @@ Plain, specific English. Short sentences, active voice, real numbers with units 
 
 ## Market data
 
-`.github/workflows/market-data.yml` runs `scripts/prices/fetch_prices.py` (yfinance) after the US close (21:41 UTC, with backups at 23:17 and 02:11 UTC) and the Asian close (09:13 and 10:37 UTC, Asian listings only) on weekdays, on the morning routine's news commit to `main`, and on `claude/**` pushes that change companies, benchmarks, `content/kpis.yaml` or the fetchers. Full runs also record valuation snapshots and earnings, and run `scripts/prices/fetch_kpis.py` (SEC part at most every 20 hours). It rewrites `data/` and commits it; `deploy.yml` rebuilds the site afterwards. Yahoo, the SEC and the Taiwan exchanges are not reachable from Claude's sandbox, so checks happen through the workflows. `health.yml` checks every morning that data, news, feeds and workflows are current and keeps a `site-health` issue open while something is wrong.
+`.github/workflows/market-data.yml` runs `scripts/prices/fetch_prices.py` (yfinance) for every market. GitHub starts this repository's scheduled runs hours late, so the two on-time runs come from the owner's routines (below): one starts the workflow on weekdays right after the US close, and the morning update's news commit to `main` triggers a run that picks up the Asian closes. The workflow's own schedule (21:41, 23:17 and 02:11 UTC on weekdays) is the backup for the US close. It also runs on `claude/**` pushes that change companies, benchmarks, `content/kpis.yaml` or the fetchers. Full runs also record valuation snapshots and earnings, and run `scripts/prices/fetch_kpis.py` (SEC part at most every 20 hours). It rewrites `data/` and commits it; `deploy.yml` rebuilds the site afterwards. Yahoo, the SEC and the Taiwan exchanges are not reachable from Claude's sandbox, so checks happen through the workflows. `health.yml` checks every morning that data, news, feeds and workflows are current and keeps a `site-health` issue open while something is wrong.
+
+## Routines
+
+Two Claude routines (claude.ai, Routines) keep the site current. Each run starts in a new session with no memory of earlier runs, attaches the repositories it needs and follows this file.
+
+- **AI Industry Map morning update**, every day at about 6:48am New York time: adds sourced news for all five layers and the earnings items, translates the owner's new Chinese writing, files the vault's inbox, and on Saturdays writes the weekly fact pack. It commits to `main` in both repositories and ends with a short summary in Chinese, which the owner gets as a phone notification.
+- **AI Industry Map US close refresh**, weekdays at about 4:38pm New York time: starts `market-data.yml` on `main`.
+
+The prompts live with the routines, not in this repository. A change to how news, translations or the inbox are handled belongs in this file, where the next run reads it.

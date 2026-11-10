@@ -149,7 +149,7 @@ events:
     kind: earnings
     nodes: [chips/memory/dram-hbm]
     companies: [sk-hynix]
-    tentative: true
+    tentative: false
     note: "HBM4 shipments, 2027 supply agreements and DRAM pricing outlook."
 
   - id: samsung-q3-2026-earnings
