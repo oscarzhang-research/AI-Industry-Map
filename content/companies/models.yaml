@@ -35,9 +35,9 @@ companies:
       subscriptions, API access and enterprise agents, and anchors the multi-gigawatt Stargate
       data-center buildout.
     private:
-      valuation: { usd: 852e9, date: 2026-03, round: "$122B round" }
+      valuation: { usd: 1250e9, date: 2026-11, round: "First close of about $11B (reported)" }   # verify (Bloomberg, 2026-11-06; OpenAI has not confirmed it, and reports differ on pre- or post-money)
       proxies: [microsoft, softbank, amazon, nvidia]
-      note: "Microsoft and SoftBank are the largest outside holders; Altman has ruled out a 2026 IPO, and talks (Sep 2026) target ~$30B at ~$1.4T."
+      note: "Microsoft and SoftBank are the largest outside holders. About $11B of a round of up to $20B was reported closed on 2026-11-06 at a $1.25T valuation (Bloomberg); the target had been cut from $30B. The March 2026 round valued it at $852B. Altman has ruled out a 2026 IPO."
 
   anthropic:
     name: Anthropic
@@ -56,7 +56,7 @@ companies:
     private:
       valuation: { usd: 965e9, date: 2026-05, round: "Series H" }
       proxies: [amazon, alphabet]
-      note: "Filed a confidential draft S-1 (June 2026) and reportedly chose Nasdaq for its IPO; Amazon and Alphabet are major minority holders."
+      note: "Filed a public S-1 on 2026-10-26 to list on Nasdaq as ANT and launched its IPO roadshow on 2026-11-10: 825M Class A shares at $70 to $78 each. Not priced yet. Amazon and Alphabet are major minority holders."
 
   xai:
     name: SpaceX (xAI)

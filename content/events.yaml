@@ -1,4 +1,5 @@
-# Upcoming events, 2026-10-10 -> 2027-06-30.
+# Events from 2026-10-10 to 2027-06-30. Past entries stay for the calendar's "Past 60 days" view.
+# Earnings dates here are a first guess: the site replaces them with the market-data date when it has one.
 # tentative: true = date estimated from prior-year timing or reported but not confirmed by the organizer.
 events:
   - id: ocp-global-summit-2026
@@ -86,6 +87,15 @@ events:
     tentative: true
     note: "Gas-turbine slot reservations, pricing and grid-equipment backlog tied to data centers."
 
+  - id: meta-q3-2026-earnings
+    name: Meta Q3 2026 results
+    start: 2026-10-21
+    kind: earnings
+    nodes: [applications/ads-commerce-content/ads-recsys, infrastructure/cloud/hyperscalers]
+    companies: [meta]
+    tentative: false
+    note: "Capex guidance and data-center financing; AI-driven ad growth."
+
   - id: seagate-sep-2026-quarter-earnings
     name: Seagate September-quarter results
     start: 2026-10-27
@@ -123,15 +133,6 @@ events:
     companies: [alphabet]
     tentative: true
     note: "Google Cloud backlog, TPU demand and capex outlook."
-
-  - id: meta-q3-2026-earnings
-    name: Meta Q3 2026 results
-    start: 2026-10-28
-    kind: earnings
-    nodes: [applications/ads-commerce-content/ads-recsys, infrastructure/cloud/hyperscalers]
-    companies: [meta]
-    tentative: true
-    note: "Capex guidance and data-center financing; AI-driven ad growth."
 
   - id: kla-sep-2026-quarter-earnings
     name: KLA September-quarter results
@@ -187,6 +188,15 @@ events:
     tentative: true
     note: "HDD pricing and exabyte demand after the sell-off on Toshiba's expansion plans."
 
+  - id: sandisk-sep-2026-quarter-earnings
+    name: SanDisk September-quarter results
+    start: 2026-10-29
+    kind: earnings
+    nodes: [chips/memory/nand-ssd]
+    companies: [sandisk]
+    tentative: false
+    note: "NAND pricing (TrendForce sees +15-20% in 4Q26) and enterprise SSD demand for inference."
+
   - id: palantir-q3-2026-earnings
     name: Palantir Q3 2026 results
     start: 2026-11-02
@@ -226,39 +236,30 @@ events:
 
   - id: constellation-q3-2026-earnings
     name: Constellation Energy Q3 2026 results
-    start: 2026-11-05
+    start: 2026-11-09
     kind: earnings
     nodes: [energy/power-producers/ipps]
     companies: [constellation]
-    tentative: true
+    tentative: false
     note: "First results since the Amazon Calvert Cliffs and Google uprate deals; pipeline of further data-center contracts."
 
-  - id: sandisk-sep-2026-quarter-earnings
-    name: SanDisk September-quarter results
-    start: 2026-11-05
-    kind: earnings
-    nodes: [chips/memory/nand-ssd]
-    companies: [sandisk]
-    tentative: true
-    note: "NAND pricing (TrendForce sees +15-20% in 4Q26) and enterprise SSD demand for inference."
-
   - id: anthropic-ipo-roadshow
-    name: Anthropic IPO roadshow (reported target)
-    start: 2026-11-09
+    name: Anthropic IPO roadshow begins
+    start: 2026-11-10
     kind: macro
     nodes: [models/frontier-labs/closed-frontier]
     companies: [anthropic]
-    url: https://www.anthropic.com/news/confidential-draft-s1-sec
-    tentative: true
-    note: "Bloomberg reported marketing could begin this week; the public S-1 was not yet on EDGAR in early October."
+    url: https://www.anthropic.com/news/roadshow-launch
+    tentative: false
+    note: "825 million Class A shares offered at $70 to $78 each, to list on Nasdaq as ANT."
 
   - id: coreweave-q3-2026-earnings
     name: CoreWeave Q3 2026 results
-    start: 2026-11-09
+    start: 2026-11-10
     kind: earnings
     nodes: [infrastructure/cloud/neoclouds]
     companies: [coreweave]
-    tentative: true
+    tentative: false
     note: "Backlog, contracted power and financing costs after the OpenAI-revenue sell-off."
 
   - id: hon-hai-q3-2026-earnings
@@ -276,8 +277,18 @@ events:
     kind: earnings
     nodes: [chips/equipment/deposition-etch]
     companies: [applied-materials]
-    tentative: true
+    tentative: false
     note: "2027 wafer-fab equipment outlook and China revenue mix."
+
+  - id: apple-homeview-ships
+    name: Apple HomeView goes on sale
+    start: 2026-11-13
+    kind: product
+    nodes: [applications/devices/phones-pcs]
+    companies: [apple]
+    url: https://www.apple.com/newsroom/2026/10/meet-apple-homeview-a-new-way-to-enjoy-entertainment-and-manage-the-home/
+    tentative: false
+    note: "Apple's home hub with Siri AI, priced at $299."
 
   - id: sc26
     name: SC26 (Supercomputing 2026)
@@ -286,7 +297,7 @@ events:
     kind: conference
     nodes: [chips/compute/gpus, infrastructure/servers/oem]
     companies: []
-    tentative: true
+    tentative: false
     note: "HPC and AI systems showcase where the November TOP500 list is released."
 
   - id: microsoft-ignite-2026
@@ -296,17 +307,47 @@ events:
     kind: conference
     nodes: [applications/enterprise/productivity, infrastructure/cloud/hyperscalers]
     companies: [microsoft]
-    tentative: true
+    tentative: false
     note: "Copilot and agent platform updates, plus Azure AI infrastructure and custom silicon."
 
   - id: nvidia-fq3-fy2027-earnings
     name: NVIDIA FY2027 Q3 results
-    start: 2026-11-18
+    start: 2026-11-17
     kind: earnings
     nodes: [chips/compute/gpus]
     companies: [nvidia]
-    tentative: true
+    tentative: false
     note: "Data-center guidance and the Rubin ramp; the AI trade's key print of the quarter."
+
+  - id: anthropic-ipo-pricing
+    name: Anthropic IPO pricing (reported)
+    start: 2026-11-18
+    kind: macro
+    nodes: [models/frontier-labs/closed-frontier]
+    companies: [anthropic]
+    url: https://www.cnbc.com/2026/11/10/anthropic-sets-price-range-of-70-to-78-in-upcoming-ipo.html
+    tentative: true
+    note: "Press reports expect pricing on Nov 18 and a first trade on Nov 19; the company has not given dates."
+
+  - id: sandisk-stock-split
+    name: Sandisk trades split-adjusted (8-for-1)
+    start: 2026-11-20
+    kind: macro
+    nodes: [chips/memory/nand-ssd]
+    companies: [sandisk]
+    url: https://www.sec.gov/Archives/edgar/data/0002023554/000162828026068243/sndkq1-27ex991xpressrelease.htm
+    tentative: false
+    note: "Seven additional shares per share are issued after the close on Nov 19."
+
+  - id: doe-grid-supply-chain-concept-papers
+    name: DOE grid supply chain funding, concept papers due
+    start: 2026-11-20
+    kind: policy
+    nodes: [energy/grid]
+    companies: []
+    url: https://www.energy.gov/articles/energy-department-announces-over-230-million-funding-opportunity-strengthen-americas-grid
+    tentative: false
+    note: "$237 million for US grid equipment supply chains; full applications are due Feb 8, 2027."
 
   - id: aws-reinvent-2026
     name: AWS re:Invent 2026
@@ -316,8 +357,18 @@ events:
     location: Las Vegas, NV
     nodes: [infrastructure/cloud/hyperscalers, chips/compute/hyperscaler-silicon]
     companies: [amazon]
-    tentative: true
+    tentative: false
     note: "Trainium roadmap, Bedrock and agent services, and AWS capacity announcements."
+
+  - id: gemini-4-argon-intro-pricing-ends
+    name: Gemini 4 Argon introductory pricing ends
+    start: 2026-11-30
+    kind: product
+    nodes: [models/frontier-labs/closed-frontier]
+    companies: [alphabet]
+    url: https://ai.google.dev/gemini-api/docs/pricing
+    tentative: false
+    note: "API prices double from $2 / $10 to $4 / $20 per million input / output tokens."
 
   - id: marvell-fq3-fy2027-earnings
     name: Marvell FY2027 Q3 results
@@ -325,7 +376,7 @@ events:
     kind: earnings
     nodes: [chips/compute/custom-asic, chips/connectivity-power/optical-silicon]
     companies: [marvell]
-    tentative: true
+    tentative: false
     note: "Custom ASIC programs and optical DSP demand."
 
   - id: fomc-december-2026
@@ -336,7 +387,7 @@ events:
     location: Washington, DC
     nodes: []
     companies: []
-    tentative: true
+    tentative: false
     note: "Final rate decision of 2026 with updated projections."
 
   - id: oracle-fq2-fy2027-earnings
@@ -350,23 +401,33 @@ events:
 
   - id: broadcom-fq4-fy2026-earnings
     name: Broadcom FY2026 Q4 results
-    start: 2026-12-10
+    start: 2026-12-09
     kind: earnings
     nodes: [chips/compute/custom-asic, chips/connectivity-power/switch-silicon]
     companies: [broadcom]
-    tentative: true
+    tentative: false
     note: "AI revenue guidance and the chip-financing arrangements for Anthropic and OpenAI."
 
   - id: semicon-japan-2026
     name: SEMICON Japan 2026
-    start: 2026-12-16
-    end: 2026-12-18
+    start: 2026-12-09
+    end: 2026-12-11
     kind: conference
     location: Tokyo
     nodes: [chips/equipment, chips/materials]
     companies: []
-    tentative: true
+    tentative: false
     note: "Japanese equipment and materials suppliers' read on 2027 demand."
+
+  - id: tsmc-november-2026-revenue
+    name: TSMC November revenue
+    start: 2026-12-10
+    kind: macro
+    nodes: [chips/foundry-packaging/leading-edge]
+    companies: [tsmc]
+    url: https://investor.tsmc.com/english/financial-calendar
+    tentative: false
+    note: "Monthly sales for November; TSMC reports them around the 10th of the following month."
 
   - id: micron-fq1-fy2027-earnings
     name: Micron FY2027 Q1 results
@@ -377,6 +438,16 @@ events:
     tentative: true
     note: "Test of the roughly $61.5 billion revenue guide and HBM / DRAM pricing into 2027."
 
+  - id: amd-world-labs-expected-close
+    name: AMD's purchase of World Labs expected to close
+    start: 2026-12-31
+    kind: macro
+    nodes: [models/multimodal/world-models]
+    companies: [amd, world-labs]
+    url: https://ir.amd.com/news-events/press-releases/detail/1299/amd-to-acquire-world-labs-to-advance-the-future-of-ai-compute
+    tentative: true
+    note: "AMD expects the all-stock deal, about $8.2 billion, to close by the end of 2026."
+
   - id: ces-2027
     name: CES 2027
     start: 2027-01-06
@@ -385,7 +456,7 @@ events:
     location: Las Vegas, NV
     nodes: [applications/devices/phones-pcs, chips/edge-silicon/mobile-pc-soc]
     companies: []
-    tentative: true
+    tentative: false
     note: "AI PCs, edge AI, autonomous driving and robotics launches."
 
   - id: isscc-2027
@@ -396,7 +467,7 @@ events:
     location: San Francisco, CA
     nodes: [chips/memory/dram-hbm, chips/compute]
     companies: []
-    tentative: true
+    tentative: false
     note: "Circuit papers on HBM, DRAM and accelerators preview chipmakers' 2027-28 roadmaps."
 
   - id: mwc-2027
@@ -407,8 +478,18 @@ events:
     location: Barcelona
     nodes: [applications/devices/phones-pcs, infrastructure/networking]
     companies: []
-    tentative: true
+    tentative: false
     note: "On-device AI phones and AI-RAN telecom networking."
+
+  - id: pjm-backstop-procurement-target
+    name: PJM backstop procurement, target start
+    start: 2027-03-01
+    kind: policy
+    nodes: [energy/power-producers]
+    companies: []
+    url: https://insidelines.pjm.com/pjm-files-amended-reliability-backstop-proposal/
+    tentative: true
+    note: "PJM's goal in its amended filing for large data-center loads; FERC has not ruled."
 
   - id: nvidia-gtc-2027
     name: NVIDIA GTC 2027
@@ -429,7 +510,7 @@ events:
     location: Shanghai
     nodes: [chips/equipment, chips/foundry-packaging/mature-foundry]
     companies: []
-    tentative: true
+    tentative: false
     note: "Gauge of China's domestic equipment push under export controls."
 
   - id: tsmc-technology-symposium-2027
@@ -461,7 +542,7 @@ events:
     location: Taipei
     nodes: [infrastructure/servers/odm, chips/compute/gpus]
     companies: []
-    tentative: true
+    tentative: false
     note: "AI server, rack and PC showcase for the Taiwan supply chain."
 
   - id: apple-wwdc-2027

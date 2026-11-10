@@ -80,7 +80,8 @@ companies:
     description: >-
       Designs data-center interconnect and custom silicon: electro-optic DSPs for optical
       modules, custom XPUs for hyperscalers such as AWS and Microsoft, plus switch and storage
-      chips.
+      chips. Agreed in November 2026 to buy Lumentum in an all-stock deal with an enterprise value
+      of about $115 billion.
 
   mediatek:
     name: MediaTek
@@ -298,7 +299,8 @@ companies:
     aliases: [Tenstorrent Inc.]
     listing: private
     private:
-      note: "Led by CEO Jim Keller; backers include Samsung, LG, Hyundai, Fidelity and Bezos Expeditions; valuation of its latest round not disclosed."
+      valuation: { usd: 6.2e9, date: 2026-10, round: "Series E ($1.5B)" }
+      note: "Led by CEO Jim Keller. The $1.5B Series E of October 2026 was led by Trace Capital and Innovation X; earlier backers include Samsung, LG, Hyundai, Fidelity and Bezos Expeditions."
     country: CA
     tier: watch
     primary: chips/compute/ai-chip-challengers

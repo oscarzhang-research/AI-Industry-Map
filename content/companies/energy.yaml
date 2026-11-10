@@ -383,8 +383,8 @@ companies:
     website: constellationenergy.com
     description: >-
       The largest US nuclear fleet operator and, after acquiring Calpine, the largest US power
-      producer; sells carbon-free power to hyperscalers, including the Crane (Three Mile Island)
-      restart for Microsoft and a Clinton plant deal with Meta.
+      producer; sells carbon-free power to hyperscalers: the Crane (Three Mile Island) restart for
+      Microsoft, Clinton for Meta, and 2026 nuclear deals with Amazon (Calvert Cliffs) and Google.
 
   vistra:
     name: Vistra
@@ -449,7 +449,8 @@ companies:
     description: >-
       Owner of Florida Power & Light, the largest US electric utility, and NextEra Energy
       Resources, a leading wind, solar and storage developer; signs large power deals with
-      hyperscalers, including Meta and Google (Duane Arnold nuclear restart).
+      hyperscalers, including Meta and Google (Duane Arnold nuclear restart). Agreed in May 2026 to
+      combine with Dominion Energy in an all-stock deal expected to close in the second half of 2027.
 
   dominion:
     name: Dominion Energy
@@ -465,7 +466,8 @@ companies:
     description: >-
       Regulated utility serving Virginia and the Carolinas, including Northern Virginia's "Data
       Center Alley", the world's largest data-center market; expanding generation and
-      transmission to meet data-center load.
+      transmission to meet data-center load. Agreed in May 2026 to combine with NextEra Energy in an
+      all-stock deal expected to close in the second half of 2027.
 
   southern:
     name: Southern Company

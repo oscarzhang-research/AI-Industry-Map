@@ -321,8 +321,8 @@ companies:
     website: lumentum.com
     description: >-
       Supplies indium-phosphide lasers (EMLs, CW lasers) for 800G/1.6T transceivers, optical circuit
-      switches and laser sources for co-packaged optics; a key optical-components supplier for AI
-      networks and an NVIDIA CPO partner.
+      switches and laser sources for co-packaged optics; an NVIDIA CPO partner. Agreed in November
+      2026 to be acquired by Marvell in an all-stock deal expected to close in the first half of 2028.
 
   tfc:
     name: TFC Optical
@@ -1454,7 +1454,7 @@ companies:
     private:
       valuation: { usd: 5.9e9, date: 2025-11, round: "Series E" }   # verify (valuation not disclosed; reports cite about $6B)
       proxies: [nvidia]
-      note: "NVIDIA-backed; reportedly raising up to $4B (WSJ, Oct 2026) ahead of a targeted 2027 IPO. No IPO filing yet."
+      note: "NVIDIA-backed; reportedly raising up to $4B at a $14.5B pre-money valuation, led by Blackstone and Coatue (WSJ, Oct 2026), ahead of a targeted 2027 IPO. No public IPO filing."
 
   crusoe:
     name: Crusoe
