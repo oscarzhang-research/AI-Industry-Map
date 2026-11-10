@@ -4,6 +4,7 @@
 import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
 import { commitFiles, getBlobText, getRawFile, getTree, type FileChange, type TreeEntry } from './github.ts';
 import { parseRecordFile, publicProjection, recordPath, serializeRecord } from './records.ts';
+import { reportConcerns } from './privacy.ts';
 import type { AnyRecord, ReportMeta, SiteConfig } from './types.ts';
 import { storageGet, storageSet } from './settings.ts';
 
@@ -122,7 +123,11 @@ export async function saveRecordToGitHub(
   data.vaultPaths.set(vaultPath, 'pending');
 
   const pubPath = recordPath(clean, 'content/views');
-  const projection = publicProjection(clean, config.defaults.publicHiddenFields);
+  // A public copy must not name private reports or records (a sell-side report's id names the broker).
+  const projection = publicProjection(clean, config.defaults.publicHiddenFields, {
+    reports: new Set(data.reports.map((r) => r.id)),
+    records: new Set(data.records.filter((r) => r.visibility !== 'public' && r.id !== clean.id).map((r) => r.id)),
+  });
   if (projection) {
     await commitFiles(token, config.repos.public, [{ path: pubPath, text: serializeRecord(projection) }], `publish ${clean.type}: ${clean.title || clean.id}`);
     data.publicPaths.set(pubPath, 'pending');
@@ -148,6 +153,7 @@ export async function deleteRecordFromGitHub(token: string, config: SiteConfig, 
 export interface UploadInput {
   file: File;
   meta: ReportMeta;
+  privateTerms?: string[]; // the owner's private terms, when the dialog could read the vault's settings
 }
 
 /**
@@ -161,6 +167,12 @@ export async function uploadReport(token: string, config: SiteConfig, input: Upl
   delete meta.url;
   delete meta.origin;
   const goesPublic = !isPdf && meta.visibility === 'public' && meta.kind !== 'sell-side';
+  if (goesPublic) {
+    // Last gate before the public repository, whatever the dialog allowed: the same check the command line runs.
+    const concerns = reportConcerns(new TextDecoder().decode(bytes), { meta: stringifyYaml(meta, { lineWidth: 0 }), privateTerms: input.privateTerms });
+    if (concerns.length) throw new Error(`Not published: the file may contain ${concerns.join(', ')}. Store it privately, or ask Claude for a version without them.`);
+    if (meta.broker || meta.analysts?.length || meta.rating || meta.targetPrice || meta.priceAtReport) throw new Error('Not published: broker details belong to sell-side research, which is always private.');
+  }
   const root = goesPublic ? 'content/reports' : 'vault/reports';
   const repo = goesPublic ? config.repos.public : config.repos.vault;
   const metaYaml = stringifyYaml(meta, { lineWidth: 0 });

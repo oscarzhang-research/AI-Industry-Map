@@ -10,7 +10,7 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { extname, join } from 'node:path';
 import { ROOT } from './lib/load.ts';
-import { htmlText, privacyHits } from './lib/privacy.ts';
+import { privateTerms, reportConcerns } from './lib/privacy.ts';
 import { arg, vaultDir } from './lib/vaultfs.ts';
 
 export interface InboxItem {
@@ -56,6 +56,7 @@ export function scanInbox(vault: string): InboxItem[] {
   const dir = join(vault, 'inbox');
   if (!existsSync(dir)) return [];
   const filed = filedHashes(vault);
+  const terms = privateTerms(vault);
   const items: InboxItem[] = [];
   for (const name of readdirSync(dir).sort()) {
     const path = join(dir, name);
@@ -75,10 +76,10 @@ export function scanInbox(vault: string): InboxItem[] {
     } else if (kind === 'html') {
       const html = readFileSync(path, 'utf8');
       item.title = /<title[^>]*>([\s\S]*?)<\/title>/i.exec(html)?.[1]?.replace(/\s+/g, ' ').trim();
-      const hits = privacyHits(htmlText(html));
+      const hits = reportConcerns(html, { privateTerms: terms });
       if (hits.length) {
         item.route = 'vault';
-        item.reasons.push(`possible personal information: ${hits.join(', ')}`);
+        item.reasons.push(`not for the public site as it is: ${hits.join(', ')}`);
       } else {
         item.route = 'public';
         item.reasons.push('privacy check passed');

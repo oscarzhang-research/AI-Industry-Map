@@ -9,7 +9,7 @@ import { existsSync, readFileSync, rmSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { publicProjection, recordPath, serializeRecord } from '../src/lib/records.ts';
 import { ROOT } from './lib/load.ts';
-import { flag, readRecords, siteConfig, syncPublicCopy, vaultDir } from './lib/vaultfs.ts';
+import { flag, privateIds, readRecords, siteConfig, syncPublicCopy, vaultDir } from './lib/vaultfs.ts';
 
 const config = siteConfig();
 const vault = vaultDir()!;
@@ -22,7 +22,7 @@ let changes = 0;
 for (const { rec } of records) {
   const pubFile = join(ROOT, recordPath(rec, 'content/views'));
   if (check) {
-    const proj = publicProjection(rec, config.defaults.publicHiddenFields);
+    const proj = publicProjection(rec, config.defaults.publicHiddenFields, privateIds());
     const want = proj ? serializeRecord(proj) : null;
     const have = existsSync(pubFile) ? readFileSync(pubFile, 'utf8') : null;
     if (want !== have) {

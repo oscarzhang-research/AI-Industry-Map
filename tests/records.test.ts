@@ -12,7 +12,7 @@ import {
   translationState,
   withTranslation,
 } from '../src/lib/records.ts';
-import type { NoteRecord, ThesisRecord } from '../src/lib/types.ts';
+import type { AnyRecord, NoteRecord, ThesisRecord } from '../src/lib/types.ts';
 
 const HIDDEN = ['target', 'stop', 'scenarios', 'plan', 'position'];
 
@@ -96,6 +96,18 @@ describe('translation', () => {
 describe('publicProjection', () => {
   it('returns nothing for private records', () => {
     expect(publicProjection(thesis({ visibility: 'private' }), HIDDEN)).toBeNull();
+  });
+
+  it('keeps references to private reports and records out of the public copy', () => {
+    const priv = { reports: new Set(['2026-08-20-hsbc-sk-hynix-buy']), records: new Set(['nt-2026-10-01-private-note']) };
+    const p = publicProjection(thesis({ reports: ['2026-08-20-hsbc-sk-hynix-buy', '2026-10-07-ai-memory-stack'] }), HIDDEN, priv) as ThesisRecord;
+    expect(p.reports).toEqual(['2026-10-07-ai-memory-stack']);
+    const only = publicProjection(thesis({ reports: ['2026-08-20-hsbc-sk-hynix-buy'] }), HIDDEN, priv) as ThesisRecord;
+    expect(only.reports).toBeUndefined();
+    const journal = { id: 'jr-1', type: 'journal', visibility: 'public', createdAt: '2026-10-10T00:00:00Z', period: { kind: 'week', start: '2026-10-05', end: '2026-10-09' }, links: ['nt-2026-10-01-private-note', 'th-public'] } as unknown as AnyRecord;
+    expect((publicProjection(journal, HIDDEN, priv) as { links: string[] }).links).toEqual(['th-public']);
+    const note = { id: 'nt-2', type: 'note', visibility: 'public', createdAt: '2026-10-10T00:00:00Z', text: 'x', source: { kind: 'report', reportId: '2026-08-20-hsbc-sk-hynix-buy', label: 'a broker note' } } as unknown as AnyRecord;
+    expect((publicProjection(note, HIDDEN, priv) as { source: { reportId?: string; label?: string } }).source).toEqual({ kind: 'report', label: 'a broker note' });
   });
 
   it('hides sensitive fields unless shown per thesis', () => {

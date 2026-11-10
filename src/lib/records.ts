@@ -212,8 +212,14 @@ export function hiddenFieldsFor(rec: ThesisRecord, defaults: string[]): Hideable
   return HIDEABLE_THESIS_FIELDS.filter((f) => defaults.includes(f) && !rec.publicShow?.[f]);
 }
 
+/** Ids that must not appear in a public copy: the vault's reports and the owner's private records. */
+export interface PrivateIds {
+  reports?: ReadonlySet<string>;
+  records?: ReadonlySet<string>;
+}
+
 /** Sanitized copy for the public repo, or null if the record is private. */
-export function publicProjection(rec: AnyRecord, defaultHidden: string[]): AnyRecord | null {
+export function publicProjection(rec: AnyRecord, defaultHidden: string[], priv?: PrivateIds): AnyRecord | null {
   if (rec.visibility !== 'public') return null;
   const freshTranslation = translationState(rec) === 'translated';
   const copy = structuredClone(rec) as AnyRecord & { origin?: string; path?: string };
@@ -242,6 +248,17 @@ export function publicProjection(rec: AnyRecord, defaultHidden: string[]): AnyRe
         ),
       };
     }
+  }
+  // A reference to a private report or record would reveal that it exists (a broker note's id names the
+  // broker and the rating), so public copies keep only references to public items.
+  if (priv) {
+    const c = copy as { reports?: string[]; links?: string[]; source?: { reportId?: string } };
+    if (c.reports) {
+      c.reports = c.reports.filter((id) => !priv.reports?.has(id));
+      if (!c.reports.length) delete c.reports;
+    }
+    if (c.links) c.links = c.links.filter((id) => !priv.records?.has(id));
+    if (c.source?.reportId && priv.reports?.has(c.source.reportId)) delete c.source.reportId;
   }
   // Removing hidden fields changes the source text; keep an up-to-date translation marked as such.
   if (copy.translation && freshTranslation) copy.translation = { ...copy.translation, sourceHash: sourceHash(translatableFields(copy)) };

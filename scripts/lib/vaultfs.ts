@@ -2,7 +2,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { parse as parseYaml } from 'yaml';
-import { parseRecordFile, publicProjection, recordPath, RECORD_DIRS, serializeRecord } from '../../src/lib/records.ts';
+import { parseRecordFile, publicProjection, recordPath, RECORD_DIRS, serializeRecord, type PrivateIds } from '../../src/lib/records.ts';
 import type { AnyRecord, SiteConfig } from '../../src/lib/types.ts';
 import { ROOT } from './load.ts';
 
@@ -49,6 +49,17 @@ export function readRecords(root: string): { rec: AnyRecord; file: string }[] {
   return out;
 }
 
+let privateIdsCache: PrivateIds | undefined;
+/** Ids of the vault's reports and private records: public copies must not refer to them. */
+export function privateIds(): PrivateIds {
+  if (privateIdsCache) return privateIdsCache;
+  const vault = vaultDir(false);
+  const reportsDir = vault ? join(vault, 'vault', 'reports') : '';
+  const reports = new Set(reportsDir && existsSync(reportsDir) ? readdirSync(reportsDir) : []);
+  const records = new Set(vault ? readRecords(join(vault, 'vault')).filter((r) => r.rec.visibility !== 'public').map((r) => r.rec.id) : []);
+  return (privateIdsCache = { reports, records });
+}
+
 export function writeFile(file: string, text: string): void {
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, text);
@@ -60,7 +71,7 @@ export function writeFile(file: string, text: string): void {
  */
 export function syncPublicCopy(rec: AnyRecord, config: SiteConfig): 'published' | 'removed' | 'unchanged' {
   const pubFile = join(ROOT, recordPath(rec, 'content/views'));
-  const proj = publicProjection(rec, config.defaults.publicHiddenFields);
+  const proj = publicProjection(rec, config.defaults.publicHiddenFields, privateIds());
   if (proj) {
     const text = serializeRecord(proj);
     if (existsSync(pubFile) && readFileSync(pubFile, 'utf8') === text) return 'unchanged';

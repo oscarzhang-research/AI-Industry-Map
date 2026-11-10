@@ -6,12 +6,15 @@ import { Modal } from './Modal.tsx';
 import { CompanyMulti, Field, NodeMulti, numOrUndef, TagInput } from './fields.tsx';
 import { hasCJK, slugify } from '../lib/records.ts';
 import { todayISO } from '../lib/format.ts';
+import { getRawFile } from '../lib/github.ts';
+import { privateTermsFrom, reportConcerns } from '../lib/privacy.ts';
+import { SETTINGS_PATH } from '../lib/tokenExpiry.ts';
 import type { ReportMeta } from '../lib/types.ts';
 
 const MAX_BYTES = 45 * 1024 * 1024;
 
 export default function UploadDialog({ onClose }: { onClose: () => void }) {
-  const { site, allReports, upload, mode } = useStore();
+  const { site, allReports, upload, mode, token } = useStore();
   const navigate = useNavigate();
   const today = todayISO(site.config.site.timezone);
   const [file, setFile] = useState<File>();
@@ -32,9 +35,14 @@ export default function UploadDialog({ onClose }: { onClose: () => void }) {
   const [summaryZh, setSummaryZh] = useState('');
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string>();
+  // Reasons the chosen file may not be published (personal details, a broker's disclosures). The same check
+  // the command-line filing runs: a flagged file can only be stored privately from here.
+  const [concerns, setConcerns] = useState<string[]>([]);
+  const [privateTerms, setPrivateTerms] = useState<string[]>([]);
   const input = useRef<HTMLInputElement>(null);
   const set = (patch: Partial<ReportMeta>) => setMeta((m) => ({ ...m, ...patch }));
   const sellSide = meta.kind === 'sell-side';
+  const privateOnly = sellSide || meta.format === 'pdf' || concerns.length > 0;
 
   const accept = async (f: File) => {
     setError(undefined);
@@ -47,10 +55,21 @@ export default function UploadDialog({ onClose }: { onClose: () => void }) {
     const date = dateInName ? `${dateInName[1]}-${dateInName[2]}-${dateInName[3]}` : today;
     const baseTitle = f.name.replace(/\.(html?|pdf)$/i, '').replace(/[_-]+/g, ' ').trim();
     if (isPdf) {
+      setConcerns([]);
       set({ format: 'pdf', file: 'report.pdf', kind: 'sell-side', visibility: 'private', date, title: hasCJK(baseTitle) ? '' : baseTitle, titleZh: hasCJK(baseTitle) ? baseTitle : undefined, languages: hasCJK(baseTitle) ? ['zh'] : ['en'] });
       return;
     }
     const text = await f.text();
+    let terms: string[] = [];
+    try {
+      const t = token();
+      if (t) terms = privateTermsFrom(new TextDecoder().decode(await getRawFile(t, site.config.repos.vault, SETTINGS_PATH)));
+    } catch {
+      // No settings file in the vault yet: the built-in checks still run.
+    }
+    const found = reportConcerns(text, { privateTerms: terms });
+    setPrivateTerms(terms);
+    setConcerns(found);
     const title = /<title[^>]*>([\s\S]*?)<\/title>/i.exec(text)?.[1]?.replace(/\s+/g, ' ').trim() ?? baseTitle;
     const desc = /<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i.exec(text)?.[1];
     const body = text.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<[^>]+>/gi, ' ');
@@ -61,7 +80,7 @@ export default function UploadDialog({ onClose }: { onClose: () => void }) {
       format: 'html',
       file: 'report.html',
       kind: meta.kind === 'sell-side' ? 'claude' : meta.kind,
-      visibility: site.config.defaults.claudeReportVisibility,
+      visibility: found.length ? 'private' : site.config.defaults.claudeReportVisibility,
       date,
       title: hasCJK(title) ? '' : title,
       titleZh: hasCJK(title) ? title : undefined,
@@ -85,13 +104,13 @@ export default function UploadDialog({ onClose }: { onClose: () => void }) {
     const out: ReportMeta = {
       ...meta,
       id,
-      visibility: sellSide || meta.format === 'pdf' ? 'private' : meta.visibility,
+      visibility: privateOnly ? 'private' : meta.visibility,
       summary: summary.en.length || summary.zh.length ? { ...(summary.en.length ? { en: summary.en } : {}), ...(summary.zh.length ? { zh: summary.zh } : {}) } : undefined,
     };
     for (const k of Object.keys(out) as (keyof ReportMeta)[]) if (out[k] === undefined || out[k] === '') delete out[k];
     setSaving(true);
     try {
-      const saved = await upload({ file, meta: out });
+      const saved = await upload({ file, meta: out, privateTerms });
       onClose();
       if (saved.origin === 'vault') navigate(`/report/${encodeURIComponent(saved.id)}`);
       else navigate('/research');
@@ -181,11 +200,20 @@ export default function UploadDialog({ onClose }: { onClose: () => void }) {
               ]}
             />
           </Field>
-          <Field label="Visibility" hint={sellSide || meta.format === 'pdf' ? 'Sell-side research and PDFs are always private (copyright).' : 'Check there is nothing personal in it before making it public.'}>
+          <Field
+            label="Visibility"
+            hint={
+              concerns.length
+                ? `Private only: the file may contain ${concerns.join(', ')}. To publish it, ask Claude for a version without them.`
+                : sellSide || meta.format === 'pdf'
+                  ? 'Sell-side research and PDFs are always private (copyright).'
+                  : 'Checked for personal details and broker text; still read it once before making it public.'
+            }
+          >
             <Segmented
               label="Visibility"
-              value={sellSide || meta.format === 'pdf' ? 'private' : meta.visibility}
-              onChange={(visibility) => !(sellSide || meta.format === 'pdf') && set({ visibility })}
+              value={privateOnly ? 'private' : meta.visibility}
+              onChange={(visibility) => !privateOnly && set({ visibility })}
               options={[
                 { value: 'public', label: 'Public' },
                 { value: 'private', label: 'Private' },
@@ -276,15 +304,15 @@ export default function UploadDialog({ onClose }: { onClose: () => void }) {
           </label>
         </div>
         <p className="faint" style={{ fontSize: 'var(--step--2)' }}>
-          {toastHint(meta)}
+          {toastHint(meta, privateOnly)}
         </p>
       </div>
     </Modal>
   );
 }
 
-function toastHint(m: ReportMeta): string {
-  return m.format === 'pdf' || m.kind === 'sell-side' || m.visibility === 'private'
+function toastHint(m: ReportMeta, privateOnly: boolean): string {
+  return privateOnly || m.visibility === 'private'
     ? 'Goes to your private vault; only you can open it after signing in.'
     : 'Goes to the public repository; it appears in the library after the next site build (about two minutes).';
 }

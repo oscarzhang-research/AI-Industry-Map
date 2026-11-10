@@ -16,7 +16,7 @@ import { hasCJK, slugify } from '../src/lib/records.ts';
 import type { ReportMeta } from '../src/lib/types.ts';
 import { ROOT } from './lib/load.ts';
 import { arg, flag, vaultDir, writeFile } from './lib/vaultfs.ts';
-import { htmlText, privacyHits } from './lib/privacy.ts';
+import { htmlText, privateTerms, reportConcerns } from './lib/privacy.ts';
 
 const VALUE_OPTS = new Set(['--id', '--date', '--title', '--kind', '--vault', '--broker']);
 const argv = process.argv.slice(2);
@@ -52,12 +52,12 @@ const cjk = (text.match(/[㐀-鿿]/g) ?? []).length;
 const latin = (text.match(/[A-Za-z]{3,}/g) ?? []).length;
 const languages = isPdf ? [hasCJK(fileName) ? 'zh' : 'en'] : cjk > 200 && latin > 400 ? ['zh', 'en'] : cjk > 200 ? ['zh'] : ['en'];
 
-// Personal details must not reach the public site. Flag likely ones and stop unless forced.
+// Personal details and broker research must not reach the public site. Flag likely ones and stop unless forced.
 if (!toVault && !flag('force-public')) {
-  const hits = privacyHits(text);
+  const hits = reportConcerns(html, { privateTerms: privateTerms(vaultDir(false)) });
   if (hits.length) {
-    console.error(`Possible personal information in this report: ${hits.join(', ')}.`);
-    console.error('Use --private to keep it in the vault, or --force-public after checking it is safe.');
+    console.error(`This report should not be public as it is: ${hits.join(', ')}.`);
+    console.error('Use --private to keep it in the vault, or --force-public after a person has checked it is safe.');
     process.exit(3);
   }
 }

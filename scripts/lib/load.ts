@@ -235,6 +235,8 @@ export function loadContent(): Content {
     if (r.id !== d) issues.push({ level: 'warn', file: rel(metaPath), msg: `id ${r.id} differs from folder ${d}` });
     if (r.visibility !== 'public') issues.push({ level: 'error', file: rel(metaPath), msg: 'non-public report in the public repo' });
     if (r.kind === 'sell-side') issues.push({ level: 'error', file: rel(metaPath), msg: 'sell-side research must live in the private vault' });
+    const brokerFields = (['broker', 'analysts', 'rating', 'targetPrice', 'priceAtReport'] as const).filter((k) => r[k] !== undefined);
+    if (brokerFields.length) issues.push({ level: 'error', file: rel(metaPath), msg: `a public report carries sell-side fields (${brokerFields.join(', ')}); broker research must live in the private vault` });
     reports.push(r);
   }
   reports.sort((a, b) => (a.date < b.date ? 1 : -1));
