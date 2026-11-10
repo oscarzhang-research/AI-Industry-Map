@@ -1,0 +1,108 @@
+# Temporary diagnostics; removed before anything is merged to main.
+# Asian price files lose their latest completed day in runs made between about 15:00 and 24:00 UTC
+# (after local midnight in Asia, before the next session). See what Yahoo and yfinance return then.
+name: Diagnostics (temporary)
+
+on:
+  push:
+    branches: ["claude/**"]
+    paths: [".github/workflows/diag-tmp.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -q -r scripts/prices/requirements.txt
+
+      - name: Latest daily bars for Asian listings
+        continue-on-error: true
+        run: |
+          python - <<'PY'
+          import inspect, json, time
+          from datetime import datetime, timedelta, timezone
+          import pandas as pd
+          import yfinance as yf
+          from curl_cffi import requests as cr
+
+          now = datetime.now(timezone.utc)
+          print("now UTC", now.isoformat(timespec="seconds"), "| yfinance", yf.__version__, "| pandas", pd.__version__)
+          syms = ["000660.KS", "6857.T", "2330.TW", "0700.HK", "688256.SS", "NVDA"]
+
+          def utc(t):
+              return datetime.fromtimestamp(t, timezone.utc).strftime("%m-%d %H:%M")
+
+          print("== raw chart API")
+          p1 = int((now - timedelta(days=9)).timestamp())
+          for s in syms:
+              for label, q in (("range=5d", "range=5d&interval=1d"),
+                               ("p2=now", f"period1={p1}&period2={int(now.timestamp())}&interval=1d"),
+                               ("p2=now+2d", f"period1={p1}&period2={int((now + timedelta(days=2)).timestamp())}&interval=1d")):
+                  try:
+                      r = cr.get(f"https://query2.finance.yahoo.com/v8/finance/chart/{s}?{q}", impersonate="chrome", timeout=30)
+                      res = (r.json().get("chart", {}).get("result") or [{}])[0]
+                      meta = res.get("meta", {})
+                      ts = res.get("timestamp") or []
+                      closes = ((res.get("indicators", {}).get("quote") or [{}])[0].get("close")) or []
+                      tail = [(utc(t), None if c is None else round(c, 2)) for t, c in list(zip(ts, closes))[-4:]]
+                      reg = (meta.get("currentTradingPeriod") or {}).get("regular") or {}
+                      print(f"  {s:10} {label:10} http {r.status_code} n={len(ts)} tail(UTC)={tail}")
+                      if label == "range=5d":
+                          print(f"      meta: tz={meta.get('exchangeTimezoneName')} gmtoffset={meta.get('gmtoffset')} "
+                                f"regularMarketTime={utc(meta['regularMarketTime']) if meta.get('regularMarketTime') else None} "
+                                f"regularMarketPrice={meta.get('regularMarketPrice')} prevClose={meta.get('chartPreviousClose')} "
+                                f"currentRegular={utc(reg['start']) if reg.get('start') else None}..{utc(reg['end']) if reg.get('end') else None}")
+                  except Exception as exc:
+                      print(f"  {s:10} {label:10} error {exc}")
+                  time.sleep(0.3)
+
+          def tail(df, n=4):
+              if df is None or not len(df):
+                  return "empty"
+              sub = df[["Close"]].tail(n)
+              return [(str(i)[:19], None if pd.isna(c) else round(float(c), 2)) for i, c in zip(sub.index, sub["Close"])]
+
+          print("== yfinance Ticker.history")
+          for s in syms:
+              t = yf.Ticker(s)
+              for kw in ({"period": "5d"}, {"start": "2026-11-01"}):
+                  try:
+                      print(f"  {s:10} {kw} {tail(t.history(auto_adjust=False, **kw))}")
+                  except Exception as exc:
+                      print(f"  {s:10} {kw} error {exc}")
+
+          print("== yf.download, as the fetcher does it (one batch, start only)")
+          df = yf.download(tickers=syms, start="2022-10-01", interval="1d", auto_adjust=False, actions=True,
+                           group_by="ticker", threads=True, progress=False, multi_level_index=True)
+          print("  index tail:", [str(i)[:19] for i in df.index[-4:]], "tz:", getattr(df.index, "tz", None))
+          for s in syms:
+              print(f"  {s:10} {tail(df[s])}")
+
+          print("== yf.download with end = the day after tomorrow")
+          end = (now + timedelta(days=2)).strftime("%Y-%m-%d")
+          df2 = yf.download(tickers=syms, start="2026-10-20", end=end, interval="1d", auto_adjust=False, actions=True,
+                            group_by="ticker", threads=True, progress=False, multi_level_index=True)
+          for s in syms:
+              print(f"  {s:10} {tail(df2[s])}")
+
+          print("== yf.download, Asian symbols only, ignore_tz False")
+          df3 = yf.download(tickers=syms[:5], start="2026-10-20", interval="1d", auto_adjust=False, actions=True,
+                            group_by="ticker", threads=True, progress=False, multi_level_index=True, ignore_tz=False)
+          print("  index tail:", [str(i) for i in df3.index[-4:]])
+          for s in syms[:5]:
+              print(f"  {s:10} {tail(df3[s])}")
+
+          print("== yfinance source lines that trim the last row")
+          import yfinance.scrapers.history as h
+          src = inspect.getsource(h)
+          lines = src.splitlines()
+          for i, line in enumerate(lines):
+              if "after end date" in line or "endDt" in line or "end = " in line and "time" in line:
+                  print("   ", i, line.rstrip()[:160])
+          PY
