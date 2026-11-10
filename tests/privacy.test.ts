@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { looksLikeBrokerResearch, privacyHits, privateTermsFrom, reportConcerns, scannableText } from '../src/lib/privacy.ts';
+import { looksLikeBrokerResearch, privacyHits, privateLifeWord, privateTermsFrom, reportConcerns, scannableText } from '../src/lib/privacy.ts';
 
 describe('privacy scan', () => {
   it('finds personal details wherever a reader could see them', () => {
@@ -42,5 +42,14 @@ describe('privacy scan', () => {
   it('reads attribute values, script strings and comments', () => {
     const text = scannableText('<p title="tip">a</p><script>var s = "in a script";</script><!-- a comment -->');
     for (const part of ['tip', 'in a script', 'a comment']) expect(text).toContain(part);
+  });
+});
+
+describe('news items stay on the business', () => {
+  it('flags private-life words and leaves business language alone', () => {
+    expect(privateLifeWord('The CEO admitted an affair with a consultant.')).toBe('an affair');
+    expect(privateLifeWord('The founder is divorcing; shares may be split.')).toBe('divorcing');
+    expect(privateLifeWord('The Ministry of Foreign Affairs and the head of corporate affairs commented.')).toBeUndefined();
+    expect(privateLifeWord('The board opened an independent review; shares fell 5%.')).toBeUndefined();
   });
 });

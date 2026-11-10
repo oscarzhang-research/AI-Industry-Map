@@ -96,10 +96,14 @@ Start from the feed candidates (company releases, regulators, SEC filings and me
 
 Cover all five layers; energy and infrastructure are easy to under-cover. Prefer items from the last two weeks.
 
+Two rules for every item:
+- **Primary source for key items.** An `importance: 3` item links the company's release, the filing or the regulator's page whenever one exists. Link a media report only when it is where the news comes from (a scoop), and say so in the summary ("Bloomberg reported ...").
+- **Business only.** Leave out details of anyone's private life (relationships, family, health) even when the source reports them. Say what the company or the regulator did and what it means for the business.
+
 After earnings: for core and focus companies whose latest report in `public/generated/earnings.json` (`history[0].date`, after `npm run build-data`) is from yesterday or today and has no item yet, add one from the company's own release: revenue and EPS against the consensus in that file, and guidance if given. These come on top of the day's other items (up to five a day).
 
 ### Events
-`content/events.yaml`: `id`, `name`, `start`, optional `end`, `kind` (conference | earnings | policy | product | macro), `nodes`, `companies`, `url`, `tentative`, `note`. Earnings dates also come from market data; add an event only when it adds context.
+`content/events.yaml`: `id`, `name`, `start`, optional `end`, `kind` (conference | earnings | policy | product | macro), `nodes`, `companies`, `url`, `tentative`, `note`, kept in date order. Earnings dates also come from market data; add an event only when it adds context. Use `earnings` only for a company's quarterly report: the site moves such an entry to the market-data date when the two are within 12 days. Monthly sales, deal closings, stock splits and other dated company items use `macro`.
 
 ## Records (owner content)
 

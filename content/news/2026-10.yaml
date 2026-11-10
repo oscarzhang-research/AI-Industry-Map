@@ -1580,7 +1580,7 @@ items:
     date: 2026-10-06
     title: "Google signs 3.6 GW nuclear deal with Constellation, including 890 MW uprates"
     summary: "Google agreed to a 20-year PPA for 890 MW of new capacity from uprates at 11 Constellation reactors in Illinois, Pennsylvania and New Jersey, backed by more than $4.3 billion of investment, plus a 15-year contract for 2,700 MW of existing PJM output. The first uprate is due online by 2028."
-    source: { name: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-06/google-constellation-near-billion-dollar-deal-for-nuclear-power" }
+    source: { name: "Google", url: "https://www.googlecloudpresscorner.com/2026-10-06-Google-and-Constellation-Announce-Landmark-Agreement-to-Bring-890-MW-of-New-Nuclear-Capacity-to-PJM-Grid-as-Part-of-Long-Term-Power-Deal" }
     companies: [constellation, alphabet]
     nodes: [energy/power-producers/ipps]
     themes: [nuclear, power-bottleneck, data-centers]

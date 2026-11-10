@@ -56,6 +56,14 @@ export function privacyHits(text: string, privateTerms: string[] = []): string[]
   return [...hits];
 }
 
+/**
+ * A word that points at someone's private life, if a news text has one. News items say what a company or a
+ * regulator did; relationships, family and health stay out even when the source reports them.
+ */
+export function privateLifeWord(text: string): string | undefined {
+  return /\b(an affair|extramarital|mistress|girlfriend|boyfriend|romantic(?:ally)?|divorc\w+|pregnan\w+)\b/i.exec(text)?.[0];
+}
+
 // Boilerplate that broker research carries and research written for this site does not.
 const BROKER_SIGNS: RegExp[] = [
   /analyst certification/i,

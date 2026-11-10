@@ -9,6 +9,7 @@ import type {
 import { LAYER_IDS } from '../../src/lib/types.ts';
 import { marketOf } from '../../src/lib/symbols.ts';
 import { parseRecordFile } from '../../src/lib/records.ts';
+import { privateLifeWord } from '../../src/lib/privacy.ts';
 import { readKpiDoc, validateKpis, type KpiDoc } from './kpis.ts';
 
 export const ROOT = new URL('../../', import.meta.url).pathname.replace(/\/$/, '');
@@ -195,6 +196,8 @@ export function loadContent(): Content {
         return false;
       });
       for (const t of it.themes ?? []) if (!themeIds.has(t)) issues.push({ level: 'warn', file: rel(path), msg: `${it.id}: unknown theme ${t}` });
+      const personal = privateLifeWord(`${it.title} ${it.summary}`);
+      if (personal) issues.push({ level: 'warn', file: rel(path), msg: `${it.id}: "${personal}" reads like a private-life detail; news items cover the business only` });
       news.push(it);
     }
   }

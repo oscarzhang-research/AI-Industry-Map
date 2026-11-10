@@ -14,7 +14,7 @@ items:
   - id: 2026-11-09-nrg-q3-2026-results
     date: 2026-11-09
     title: "NRG beats on EPS and agrees to sell $4 billion of generation assets"
-    summary: "NRG Energy reported third-quarter adjusted EPS of $4.68, against $3.03 expected and $1.90 above a year earlier, with adjusted EBITDA of $2.01 billion. It reaffirmed 2026 guidance, set 2027 guidance, and agreed to sell some generation assets for $4 billion to fund buybacks and debt reduction."
+    summary: "NRG Energy reported third-quarter adjusted EPS of $4.68, up from $2.78 a year earlier and above the $3.03 expected, with adjusted EBITDA of $2.01 billion. It reaffirmed 2026 guidance, set 2027 guidance, and agreed to sell six gas plants (about 4.9 GW) to LS Power for $4 billion to fund buybacks and debt reduction."
     source: { name: "NRG Energy", url: "https://investors.nrg.com/news-releases/news-release-details/nrg-energy-reports-third-quarter-2026-results-reaffirms-2026" }
     companies: [nrg]
     nodes: [energy/power-producers/ipps]
@@ -57,7 +57,7 @@ items:
   - id: 2026-11-08-nvidia-board-investigates-huang
     date: 2026-11-08
     title: "Nvidia's board opens an independent investigation into CEO Jensen Huang"
-    summary: "Nvidia's board said independent directors and outside counsel will review reports that Jensen Huang was the target of a foreign intelligence effort, adding it has no reason to believe national security or company secrets were compromised; Huang admitted an affair with the woman at the center of the reports. Nvidia shares fell about 5% in premarket trading on November 9, CNBC reported."
+    summary: "Nvidia's board said independent directors and outside counsel will review reports that Jensen Huang was the target of a foreign intelligence effort, and that it has no reason to believe national security or company secrets were compromised. Nvidia shares fell about 5% in premarket trading on November 9, CNBC reported."
     source: { name: "NVIDIA", url: "https://nvidianews.nvidia.com/news/statement-from-nvidia-board-of-directors" }
     companies: [nvidia]
     nodes: [chips/compute/gpus]
