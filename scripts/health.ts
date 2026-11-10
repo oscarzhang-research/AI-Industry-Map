@@ -53,10 +53,15 @@ if (fundFailed.length > 30) add('Market data', 'warn', `Valuation data missing f
 if ((status?.earningsFailed ?? []).length) add('Market data', 'warn', `Earnings data failed for ${list(status!.earningsFailed!)}.`);
 
 // Series that stopped updating while the rest moved on: usually a delisting or a changed ticker.
+// Files of symbols that left the universe (a replaced benchmark, a removed company) are not watched.
+const content = loadContent();
+const watched = new Set(
+  [...Object.values(content.companies).flatMap((c) => c.tickers.map((t) => t.symbol)), ...content.benchmarks.map((b) => b.symbol), ...content.extraSymbols].map(safeSymbol),
+);
 const priceDir = join(DATA, 'prices');
 if (existsSync(priceDir)) {
   const last = new Map<string, string>();
-  for (const f of readdirSync(priceDir).filter((x) => x.endsWith('.csv'))) {
+  for (const f of readdirSync(priceDir).filter((x) => x.endsWith('.csv') && watched.has(x.slice(0, -4)))) {
     const lines = readFileSync(join(priceDir, f), 'utf8').trim().split('\n');
     const d = lines[lines.length - 1]?.split(',')[0];
     if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) last.set(f.slice(0, -4), d);
@@ -71,7 +76,6 @@ if (existsSync(priceDir)) {
 
 // Benchmarks are long-established indices or funds, so a short history means Yahoo has stopped carrying
 // the symbol's daily data (as it did for the CSI 300 and STAR 50 indices) and relative returns go blank.
-const content = loadContent();
 const shortBench = content.benchmarks.flatMap((b) => {
   const f = join(priceDir, `${safeSymbol(b.symbol)}.csv`);
   const days = existsSync(f) ? readFileSync(f, 'utf8').trim().split('\n').length - 1 : 0;
