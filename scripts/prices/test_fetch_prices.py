@@ -87,5 +87,76 @@ class WriteCsvTests(unittest.TestCase):
             self.assertEqual(self.run_at("2026-11-11 03:50", live), lines)
 
 
+def row(day, est=None, actual=None):
+    return {"date": day, "time": "amc", "epsEst": est, "epsActual": actual, "surprise": None}
+
+
+NO_REVENUE = lambda day: (None, None)  # noqa: E731
+ESTIMATES = (120.0, 30, 2.5, 28)  # revenue estimate, analysts, EPS estimate, analysts
+
+
+class EarningsTests(unittest.TestCase):
+    prev = {
+        "updatedAt": "2026-10-27",
+        "checkedAt": "2026-10-27T21:50+00:00",
+        "next": {"date": "2026-10-28", "time": "amc", "epsEst": 2.0, "epsN": 30, "revEst": 100.0, "revN": 28, "asOf": "2026-10-27"},
+        "history": [{"date": "2026-07-29", "epsEst": 1.8, "epsActual": 1.9, "revActual": 90.0}],
+    }
+
+    def test_a_report_whose_figures_arrive_late_is_still_recorded(self):
+        # The day after the report Yahoo lists the next date but not yet the reported EPS.
+        rows = [row("2027-01-27", 2.5), row("2026-10-28", 2.0), row("2026-07-29", 1.8, 1.9)]
+        rec = fp.earnings_record(self.prev, rows, ESTIMATES, True, utc("2026-10-29 21:50"), NO_REVENUE)
+        self.assertEqual(rec["next"]["date"], "2027-01-27")
+        self.assertEqual(rec["pending"]["date"], "2026-10-28")
+        self.assertEqual(rec["pending"]["revEst"], 100.0)
+        self.assertEqual(rec["history"][0]["date"], "2026-07-29")
+        # A week later Yahoo's next date is far outside the window, but the name is still asked about.
+        fundamentals = {"META": {"nextEarnings": "2027-01-27"}}
+        now = utc("2026-11-05 21:50")
+        self.assertEqual(fp.earnings_due(["META"], fundamentals, {"META": rec}, {"META": "core"}, now), ["META"])
+        rows = [row("2027-01-27", 2.5), row("2026-10-28", 2.0, 2.2), row("2026-07-29", 1.8, 1.9)]
+        rec2 = fp.earnings_record(rec, rows, ESTIMATES, True, now, lambda day: (104.0, "2026-09-30") if day == "2026-10-28" else (None, None))
+        self.assertNotIn("pending", rec2)
+        self.assertEqual(rec2["history"][0], {"date": "2026-10-28", "time": "amc", "epsEst": 2.0, "epsActual": 2.2,
+                                              "revEst": 100.0, "revActual": 104.0, "period": "2026-09-30"})
+        self.assertEqual(rec2["history"][1]["revActual"], 90.0)
+
+    def test_the_report_day_itself_is_not_pending(self):
+        rows = [row("2026-10-28", 2.0), row("2026-07-29", 1.8, 1.9)]
+        rec = fp.earnings_record(self.prev, rows, ESTIMATES, False, utc("2026-10-28 12:00"), NO_REVENUE)
+        self.assertEqual(rec["next"]["date"], "2026-10-28")
+        self.assertNotIn("pending", rec)
+
+    def test_a_report_a_day_off_the_expected_date_gets_the_frozen_consensus(self):
+        rows = [row("2026-10-29", 2.0, 2.1), row("2026-07-29", 1.8, 1.9)]
+        rec = fp.earnings_record(self.prev, rows, ESTIMATES, False, utc("2026-10-30 12:00"), NO_REVENUE)
+        self.assertEqual(rec["history"][0]["revEst"], 100.0)
+        self.assertNotIn("pending", rec)
+
+    def test_waiting_ends_after_a_month(self):
+        rows = [row("2026-07-29", 1.8, 1.9)]
+        rec = fp.earnings_record(self.prev, rows, ESTIMATES, False, utc("2026-11-10 12:00"), NO_REVENUE)
+        self.assertEqual(rec["pending"]["date"], "2026-10-28")
+        rec = fp.earnings_record(rec, rows, ESTIMATES, False, utc("2026-12-01 12:00"), NO_REVENUE)
+        self.assertNotIn("pending", rec)
+
+    def test_catch_up_follows_the_window_and_waits_a_week_between_tries(self):
+        now = utc("2026-11-10 21:40")
+        previous = {
+            "WIN": {"next": {"date": "2026-11-12"}, "history": [{"date": "2026-08-12"}]},
+            "OLD": {"history": [{"date": "2026-07-28"}]},  # missed its October report
+            "FRESH": {"history": [{"date": "2026-10-20"}]},
+            "TRIED": {"history": [], "checkedAt": "2026-11-08T21:40+00:00"},
+            "RETRY": {"history": [], "checkedAt": "2026-11-01T21:40+00:00"},
+        }
+        symbols = ["NEW", "WIN", "OLD", "FRESH", "TRIED", "RETRY", "SOON"]
+        fundamentals = {"SOON": {"nextEarnings": "2026-11-20"}}
+        tiers = {"OLD": "core", "NEW": "focus", "WIN": "watch", "SOON": "focus", "RETRY": "watch"}
+        self.assertEqual(fp.earnings_due(symbols, fundamentals, previous, tiers, now), ["SOON", "WIN", "OLD", "NEW", "RETRY"])
+        with mock.patch.object(fp, "EARN_CATCH_UP", 1):
+            self.assertEqual(fp.earnings_due(symbols, fundamentals, previous, tiers, now), ["SOON", "WIN", "OLD"])
+
+
 if __name__ == "__main__":
     unittest.main()

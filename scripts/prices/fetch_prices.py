@@ -57,6 +57,10 @@ EARN_DAYS_AHEAD = 21
 EARN_MAX_SYMBOLS = 160
 EARN_HISTORY = 8
 EARN_REFRESH_HOURS = 8  # several runs a day: refresh a name at most this often unless it reports around now
+EARN_PENDING_DAYS = 30  # keep asking for a report this long after its date
+EARN_STALE_DAYS = 100  # a record whose newest report is older has missed one
+EARN_CATCH_UP = 30  # names without a current record refreshed per run, core companies first
+EARN_RETRY_DAYS = 7  # ask again about a catch-up name that had nothing new
 START = "2022-10-01"  # a few weeks before ChatGPT's launch: covers the whole AI cycle
 ASIA_SUFFIXES = (".T", ".KS", ".KQ", ".HK", ".SS", ".SZ", ".TW", ".TWO", ".AX")
 ASIA_INDICES = {"^TWII", "^KS11", "^N225", "^HSI"}
@@ -459,26 +463,108 @@ def latest_revenue(ticker, report_day: str) -> tuple[float | None, str | None]:
     return (best[1], best[0].isoformat()) if best else (None, None)
 
 
-def fetch_earnings(symbols: list[str], fundamentals: dict, previous: dict, tiers: dict[str, str]) -> tuple[dict, list[str]]:
-    """Consensus before each report and results after it, for names reporting within the window.
+def parse_day(text) -> date | None:
+    try:
+        return date.fromisoformat(str(text)[:10])
+    except ValueError:
+        return None
 
-    Yahoo's quarter estimates roll forward once a company reports, so the consensus is frozen from the
-    last run before the report date and paired with the reported figures afterwards.
+
+def earnings_due(symbols: list[str], fundamentals: dict, previous: dict, tiers: dict[str, str], now: datetime) -> list[str]:
+    """Names to ask Yahoo about, most important first.
+
+    First the names with a report inside the window (by Yahoo's next date or the one stored), and the
+    names whose report date has passed without results (`pending`). Then a limited catch-up: names with
+    no record, or whose newest stored report is old, which means a report was missed or the name was
+    never inside the window. A catch-up name that still has nothing new is asked again a week later.
     """
-    import yfinance as yf
-
-    today = datetime.now(timezone.utc).date()
+    today = now.date()
     lo, hi = today - timedelta(days=EARN_DAYS_BACK), today + timedelta(days=EARN_DAYS_AHEAD)
 
-    def in_window(day: str | None) -> bool:
-        try:
-            return day is not None and lo <= date.fromisoformat(day) <= hi
-        except ValueError:
-            return False
+    def within(day, start: date = lo, end: date = hi) -> bool:
+        d = parse_day(day)
+        return d is not None and start <= d <= end
 
-    result = {s: v for s, v in previous.items() if s in symbols}
     rank = {"core": 0, "focus": 1, "watch": 2}
+    order = lambda s: (rank.get(tiers.get(s, "watch"), 3), s)  # noqa: E731
+    window, catch_up = [], []
+    for sym in symbols:
+        prev = previous.get(sym) or {}
+        if (
+            within((fundamentals.get(sym) or {}).get("nextEarnings"))
+            or within((prev.get("next") or {}).get("date"))
+            or within((prev.get("pending") or {}).get("date"), today - timedelta(days=EARN_PENDING_DAYS), today)
+        ):
+            window.append(sym)
+            continue
+        newest = parse_day(((prev.get("history") or [{}])[0]).get("date"))
+        if newest is None or (today - newest).days > EARN_STALE_DAYS:
+            try:
+                checked = datetime.fromisoformat(prev.get("checkedAt", ""))
+            except ValueError:
+                checked = None
+            if checked is None or now - checked >= timedelta(days=EARN_RETRY_DAYS):
+                catch_up.append(sym)
+    return sorted(window, key=order)[:EARN_MAX_SYMBOLS] + sorted(catch_up, key=order)[:EARN_CATCH_UP]
+
+
+def earnings_record(prev: dict, rows: list[dict], estimates: tuple, estimated: bool, now: datetime, revenue_of) -> dict:
+    """The stored record for one name, from Yahoo's report rows and what the last run stored.
+
+    Yahoo's quarter estimates roll forward once a company reports, so the consensus is frozen from the
+    last run before the report date and paired with the reported figures afterwards. The figures can
+    arrive days after the date: until they do, the expected report stays in `pending` so the name keeps
+    being asked about (it used to drop out of the window, and the report was never recorded).
+    """
+    rev_est, rev_n, eps_est0, eps_n = estimates
+    today = now.date()
+    today_s = today.isoformat()
+    future = sorted((r for r in rows if r["date"] >= today_s and r["epsActual"] is None), key=lambda r: r["date"])
+    past = [r for r in rows if r["epsActual"] is not None]
+    rec: dict = {"updatedAt": today_s, "checkedAt": now.isoformat(timespec="minutes")}
+    if future:
+        nxt = dict(future[0])
+        nxt.pop("epsActual", None)
+        nxt.pop("surprise", None)
+        if nxt.get("epsEst") is None:
+            nxt["epsEst"] = eps_est0
+        nxt.update({"epsN": eps_n, "revEst": rev_est, "revN": rev_n, "asOf": today_s, "estimated": estimated})
+        rec["next"] = {k: v for k, v in nxt.items() if v is not None}
+
+    # The report we are waiting for: the stored next date once it is not the upcoming one any more.
+    expected = None
+    for cand in (prev.get("pending"), prev.get("next")):
+        day = parse_day((cand or {}).get("date"))
+        if day is not None and day <= today and cand["date"] != (rec.get("next") or {}).get("date"):
+            expected = cand
+    exp_day = parse_day(expected["date"]) if expected else None
+
+    history = {h["date"]: h for h in prev.get("history") or []}
+    matched = False
+    for r in past[:EARN_HISTORY]:
+        h = dict(history.get(r["date"]) or {})
+        h.update({k: v for k, v in r.items() if v is not None})
+        if exp_day is not None and abs((parse_day(r["date"]) - exp_day).days) <= 3:
+            matched = True
+            if expected.get("revEst") is not None and "revEst" not in h:
+                h["revEst"] = expected["revEst"]  # the consensus Yahoo showed before this report
+        if "revActual" not in h:
+            rev, period = revenue_of(r["date"])
+            if rev is not None:
+                h["revActual"], h["period"] = rev, period
+        history[r["date"]] = h
+    if exp_day is not None and not matched and (today - exp_day).days <= EARN_PENDING_DAYS:
+        rec["pending"] = {k: expected[k] for k in ("date", "time", "epsEst", "epsN", "revEst", "revN", "asOf") if k in expected}
+    rec["history"] = sorted(history.values(), key=lambda h: h["date"], reverse=True)[:EARN_HISTORY]
+    return rec
+
+
+def fetch_earnings(symbols: list[str], fundamentals: dict, previous: dict, tiers: dict[str, str]) -> tuple[dict, list[str]]:
+    """Consensus before each report and results after it; see earnings_due and earnings_record."""
+    import yfinance as yf
+
     now = datetime.now(timezone.utc)
+    today = now.date()
 
     def recent(prev: dict) -> bool:
         """Refreshed in the last EARN_REFRESH_HOURS, with no report due within a day either side."""
@@ -486,64 +572,27 @@ def fetch_earnings(symbols: list[str], fundamentals: dict, previous: dict, tiers
             at = datetime.fromisoformat(prev.get("checkedAt", ""))
         except ValueError:
             return False
-        nxt = (prev.get("next") or {}).get("date")
-        around = False
-        if nxt:
-            try:
-                around = abs((date.fromisoformat(nxt) - today).days) <= 1
-            except ValueError:
-                pass
+        nxt = parse_day((prev.get("next") or {}).get("date"))
+        around = nxt is not None and abs((nxt - today).days) <= 1
         return not around and now - at < timedelta(hours=EARN_REFRESH_HOURS)
 
-    due = [
-        s
-        for s in symbols
-        if in_window((fundamentals.get(s) or {}).get("nextEarnings")) or in_window(((previous.get(s) or {}).get("next") or {}).get("date"))
-    ]
-    due.sort(key=lambda s: (rank.get(tiers.get(s, "watch"), 3), s))
+    result = {s: v for s, v in previous.items() if s in symbols}
     failed = []
-    for sym in due[:EARN_MAX_SYMBOLS]:
+    for sym in earnings_due(symbols, fundamentals, previous, tiers, now):
         prev = previous.get(sym) or {}
-        prev_next = prev.get("next") or {}
         if recent(prev):
             continue
         try:
             t = yf.Ticker(sym)
             rows = earnings_rows(t)
-            rev_est, rev_n = quarter_estimate(t.revenue_estimate)
-            eps_est0, eps_n = quarter_estimate(t.earnings_estimate)
+            estimates = quarter_estimate(t.revenue_estimate) + quarter_estimate(t.earnings_estimate)
         except Exception as exc:
             print(f"  earnings {sym}: {exc}", file=sys.stderr)
             failed.append(sym)
             time.sleep(1.0)
             continue
-        today_s = today.isoformat()
-        future = sorted((r for r in rows if r["date"] >= today_s and r["epsActual"] is None), key=lambda r: r["date"])
-        past = [r for r in rows if r["epsActual"] is not None]
-        rec: dict = {"updatedAt": today_s, "checkedAt": now.isoformat(timespec="minutes")}
-        if future:
-            nxt = dict(future[0])
-            nxt.pop("epsActual", None)
-            nxt.pop("surprise", None)
-            if nxt.get("epsEst") is None:
-                nxt["epsEst"] = eps_est0
-            nxt.update({"epsN": eps_n, "revEst": rev_est, "revN": rev_n, "asOf": today_s})
-            nxt["estimated"] = bool((fundamentals.get(sym) or {}).get("earningsEstimated", False))
-            rec["next"] = {k: v for k, v in nxt.items() if v is not None}
-        history = {h["date"]: h for h in prev.get("history") or []}
-        for r in past[:EARN_HISTORY]:
-            h = dict(history.get(r["date"]) or {})
-            h.update({k: v for k, v in r.items() if v is not None})
-            # The revenue consensus Yahoo showed before this report, frozen on the last run before it.
-            if prev_next.get("date") == r["date"] and prev_next.get("revEst") is not None and "revEst" not in h:
-                h["revEst"] = prev_next["revEst"]
-            if "revActual" not in h:
-                rev, period = latest_revenue(t, r["date"])
-                if rev is not None:
-                    h["revActual"], h["period"] = rev, period
-            history[r["date"]] = h
-        rec["history"] = sorted(history.values(), key=lambda h: h["date"], reverse=True)[:EARN_HISTORY]
-        result[sym] = rec
+        estimated = bool((fundamentals.get(sym) or {}).get("earningsEstimated", False))
+        result[sym] = earnings_record(prev, rows, estimates, estimated, now, lambda day, t=t: latest_revenue(t, day))
         time.sleep(0.6)
     return result, failed
 

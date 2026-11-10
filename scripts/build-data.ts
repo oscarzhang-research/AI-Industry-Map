@@ -124,6 +124,7 @@ for (const [symbol, rec] of Object.entries(earningsRaw)) {
     if (h.revEst && h.revActual && out.revSurprise === undefined) delete out.revEst;
     return out;
   });
+  if (!history.length && !rec.next) continue; // asked, and Yahoo has no report dates for this listing
   const out: EarningsRecord = { updatedAt: rec.updatedAt, ccy: fundamentals[symbol]?.financialCurrency, history };
   if (rec.next) {
     out.next = { ...rec.next };
