@@ -1,5 +1,59 @@
 month: 2026-11
 items:
+  - id: 2026-11-09-constellation-q3-2026-results
+    date: 2026-11-09
+    title: "Constellation beats on EPS and raises its 2026 earnings guidance"
+    summary: "Constellation Energy reported third-quarter adjusted operating EPS of $5.06, against $3.89 expected and $3.04 a year earlier, and GAAP EPS of $5.19. It raised the midpoint and narrowed 2026 adjusted operating EPS guidance to $12.50 to $12.80."
+    source: { name: "Constellation", url: "https://www.constellationenergy.com/news/2026/11/constellation-reports-third-quarter-2026-results.html" }
+    companies: [constellation]
+    nodes: [energy/power-producers/ipps]
+    themes: [nuclear, power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-09-nrg-q3-2026-results
+    date: 2026-11-09
+    title: "NRG beats on EPS and agrees to sell $4 billion of generation assets"
+    summary: "NRG Energy reported third-quarter adjusted EPS of $4.68, against $3.03 expected and $1.90 above a year earlier, with adjusted EBITDA of $2.01 billion. It reaffirmed 2026 guidance, set 2027 guidance, and agreed to sell some generation assets for $4 billion to fund buybacks and debt reduction."
+    source: { name: "NRG Energy", url: "https://investors.nrg.com/news-releases/news-release-details/nrg-energy-reports-third-quarter-2026-results-reaffirms-2026" }
+    companies: [nrg]
+    nodes: [energy/power-producers/ipps]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-09-anthropic-caterpillar-generators
+    date: 2026-11-09
+    title: "Anthropic buys $3.4 billion of Caterpillar gas generators for 1.7 GW, FT reports"
+    summary: "Anthropic took over Caterpillar generator orders placed by OnePWR Solutions, about $3.4 billion of equipment rated at 1.7 GW, according to the Financial Times as reported by DCD. The generators are expected within two years, and OnePWR will handle installation at Anthropic's data centers."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/anthropic-signs-34bn-gas-generator-deal-to-support-17gw-of-data-center-power/" }
+    companies: [anthropic, caterpillar]
+    nodes: [energy/generation-equipment/engines-gensets]
+    themes: [power-bottleneck, data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-09-google-tpu-8tx-8i-max
+    date: 2026-11-09
+    title: "Google adds TPU 8tx for confidential inference and a dual-chip TPU 8i Max"
+    summary: "Google's TPU 8tx uses TPU 8t silicon with AMD EPYC hosts and hardware-level security for confidential inference, while TPU 8i Max packages two TPU 8i chips with 384 GB of HBM and 17.2 TB/s of bandwidth for long-context inference."
+    source: { name: "Google", url: "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/" }
+    companies: [alphabet, amd]
+    nodes: [chips/compute/hyperscaler-silicon]
+    themes: [custom-asic, inference]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-09-anthropic-fable-mythos-5-2
+    date: 2026-11-09
+    title: "Anthropic releases Claude Fable 5.2 and Mythos 5.2"
+    summary: "Anthropic made Claude Fable 5.2 generally available at $8 per million input tokens and $40 per million output tokens, down from $10 and $50, and offered Mythos 5.2, the same model with fewer safeguards, to vetted cyber and life-sciences organizations. Anthropic says the models run up to 30% faster than the 5.1 versions."
+    source: { name: "Anthropic", url: "https://www.anthropic.com/claude-fable-and-mythos-5-2" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [coding]
+    impact: neutral
+    importance: 2
+
   - id: 2026-11-08-nvidia-board-investigates-huang
     date: 2026-11-08
     title: "Nvidia's board opens an independent investigation into CEO Jensen Huang"
