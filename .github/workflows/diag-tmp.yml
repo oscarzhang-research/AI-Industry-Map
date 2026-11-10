@@ -33,7 +33,7 @@ jobs:
 
           now = datetime.now(timezone.utc)
           print("now UTC", now.isoformat(timespec="seconds"), "| yfinance", yf.__version__, "| pandas", pd.__version__)
-          syms = ["000660.KS", "6857.T", "2330.TW", "0700.HK", "688256.SS", "NVDA"]
+          syms = ["^KS11", "^N225", "^TWII", "^HSI", "510300.SS", "588000.SS", "000660.KS"]
 
           def utc(t):
               return datetime.fromtimestamp(t, timezone.utc).strftime("%m-%d %H:%M")
@@ -92,10 +92,10 @@ jobs:
               print(f"  {s:10} {tail(df2[s])}")
 
           print("== yf.download, Asian symbols only, ignore_tz False")
-          df3 = yf.download(tickers=syms[:5], start="2026-10-20", interval="1d", auto_adjust=False, actions=True,
+          df3 = yf.download(tickers=syms[:6], start="2026-10-20", interval="1d", auto_adjust=False, actions=True,
                             group_by="ticker", threads=True, progress=False, multi_level_index=True, ignore_tz=False)
           print("  index tail:", [str(i) for i in df3.index[-4:]])
-          for s in syms[:5]:
+          for s in syms[:6]:
               print(f"  {s:10} {tail(df3[s])}")
 
           print("== yfinance source lines that trim the last row")
