@@ -1,90 +1,83 @@
 {
  "000660.KS": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
-    "date": "2026-10-27",
+    "date": "2026-10-28",
     "epsActual": 54454.0,
     "epsEst": 83401.84,
     "period": "2026-06-30",
     "revActual": 79318746000000.0,
-    "surprise": -34.71,
-    "time": "amc"
+    "surprise": -34.71
    },
    {
-    "date": "2026-07-28",
+    "date": "2026-07-29",
     "epsActual": 131478.0,
     "epsEst": 70975.39,
     "period": "2026-06-30",
     "revActual": 79318746000000.0,
-    "surprise": 85.24,
-    "time": "amc"
+    "surprise": 85.24
    },
    {
-    "date": "2026-04-22",
+    "date": "2026-04-23",
     "epsActual": 56670.0,
     "epsEst": 40016.55,
     "period": "2026-03-31",
     "revActual": 52576287000000.0,
-    "surprise": 41.62,
-    "time": "amc"
+    "surprise": 41.62
    },
    {
-    "date": "2026-01-28",
+    "date": "2026-01-29",
     "epsActual": 21522.0,
     "epsEst": 17822.42,
     "period": "2025-12-31",
     "revActual": 32826653000000.0,
-    "surprise": 20.76,
-    "time": "amc"
+    "surprise": 20.76
    },
    {
-    "date": "2025-10-28",
+    "date": "2025-10-29",
     "epsActual": 17850.0,
     "epsEst": 12586.41,
     "period": "2025-09-30",
     "revActual": 24448929000000.0,
-    "surprise": 41.82,
-    "time": "amc"
+    "surprise": 41.82
    },
    {
-    "date": "2025-07-23",
+    "date": "2025-07-24",
     "epsActual": 9572.0,
     "epsEst": 9338.13,
     "period": "2025-06-30",
     "revActual": 22231952000000.0,
-    "surprise": 2.5,
-    "time": "amc"
+    "surprise": 2.5
    },
    {
-    "date": "2025-04-23",
+    "date": "2025-04-24",
     "epsActual": 11411.0,
     "epsEst": 6916.46,
-    "surprise": 64.98,
-    "time": "amc"
+    "surprise": 64.98
    },
    {
-    "date": "2025-01-22",
+    "date": "2025-01-23",
     "epsActual": 11571.0,
     "epsEst": 8544.13,
-    "surprise": 35.43,
-    "time": "amc"
+    "surprise": 35.43
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2027-01-27",
    "epsEst": 120252.05,
    "epsN": 10,
    "estimated": true,
    "revEst": 131521972530000.0,
-   "revN": 25,
-   "time": "bmo"
+   "revN": 25
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "000938.SZ": {
-  "checkedAt": "2026-11-10T22:19+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-10-29",
@@ -92,7 +85,8 @@
     "epsEst": 0.12,
     "period": "2026-09-30",
     "revActual": 38639623988.84,
-    "surprise": 75.0
+    "surprise": 75.0,
+    "time": "amc"
    },
    {
     "date": "2026-08-28",
@@ -100,32 +94,36 @@
     "epsEst": 0.33,
     "period": "2026-06-30",
     "revActual": 35530968102.09,
-    "surprise": 45.45
+    "surprise": 45.45,
+    "time": "amc"
    },
    {
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "epsActual": 0.28,
     "epsEst": 0.25,
     "period": "2026-03-31",
     "revActual": 27984855967.39,
-    "surprise": 10.2
+    "surprise": 10.2,
+    "time": "bmo"
    },
    {
-    "date": "2026-04-14",
+    "date": "2026-04-15",
     "epsActual": 0.1,
     "epsEst": 0.2,
     "period": "2026-03-31",
     "revActual": 27984855967.39,
-    "surprise": -50.0
+    "surprise": -50.0,
+    "time": "bmo"
    },
    {
     "date": "2025-10-30",
     "epsActual": 0.13,
     "epsEst": 0.25,
-    "surprise": -48.0
+    "surprise": -48.0,
+    "time": "amc"
    },
    {
-    "date": "2025-08-29",
+    "date": "2025-08-30",
     "epsActual": 0.24,
     "epsEst": 0.2,
     "period": "2025-06-30",
@@ -133,7 +131,7 @@
     "surprise": 20.0
    },
    {
-    "date": "2018-08-24",
+    "date": "2018-08-25",
     "epsActual": 0.13,
     "epsEst": 0.09,
     "surprise": 44.0
@@ -142,13 +140,15 @@
     "date": "2018-04-25",
     "epsActual": 0.07,
     "epsEst": 0.09,
-    "surprise": -24.83
+    "surprise": -24.83,
+    "time": "amc"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "000977.SZ": {
-  "checkedAt": "2026-11-10T22:19+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-10-28",
@@ -157,10 +157,10 @@
     "period": "2026-09-30",
     "revActual": 44950270691.46,
     "surprise": -24.36,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2026-08-28",
+    "date": "2026-08-29",
     "epsActual": 1.25,
     "epsEst": 1.17,
     "period": "2026-06-30",
@@ -168,16 +168,16 @@
     "surprise": 6.84
    },
    {
-    "date": "2026-04-29",
+    "date": "2026-04-30",
     "epsActual": 0.4,
     "epsEst": 0.25,
     "period": "2026-03-31",
     "revActual": 35470325836.04,
     "surprise": 60.78,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2026-04-10",
+    "date": "2026-04-11",
     "epsActual": 0.5,
     "epsEst": 0.51,
     "period": "2026-03-31",
@@ -188,10 +188,11 @@
     "date": "2025-10-30",
     "epsActual": 0.45,
     "epsEst": 0.27,
-    "surprise": 66.67
+    "surprise": 66.67,
+    "time": "amc"
    },
    {
-    "date": "2025-08-26",
+    "date": "2025-08-27",
     "epsActual": 0.17,
     "epsEst": 0.18,
     "period": "2025-06-30",
@@ -199,27 +200,28 @@
     "surprise": -5.56
    },
    {
-    "date": "2025-04-29",
+    "date": "2025-04-30",
     "epsActual": 0.29,
     "epsEst": 0.25,
     "surprise": 16.03,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2025-03-28",
+    "date": "2025-03-29",
     "epsActual": 0.68,
     "epsEst": 0.46,
     "surprise": 49.25,
-    "time": "amc"
+    "time": "bmo"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "002028.SZ": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
-    "date": "2026-10-23",
+    "date": "2026-10-24",
     "epsActual": 1.17,
     "epsEst": 1.57,
     "period": "2026-09-30",
@@ -233,24 +235,25 @@
     "period": "2026-06-30",
     "revActual": 6226543842.7,
     "surprise": -0.85,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2026-04-24",
+    "date": "2026-04-25",
     "epsActual": 0.63,
     "epsEst": 0.8,
     "period": "2026-03-31",
     "revActual": 4568663867.62,
     "surprise": -21.28,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2026-04-17",
+    "date": "2026-04-18",
     "epsActual": 1.2,
     "epsEst": 1.16,
     "period": "2026-03-31",
     "revActual": 4568663867.62,
-    "surprise": 3.35
+    "surprise": 3.35,
+    "time": "bmo"
    },
    {
     "date": "2025-10-17",
@@ -258,35 +261,38 @@
     "epsEst": 0.93,
     "period": "2025-06-30",
     "revActual": 5270321218.29,
-    "surprise": 11.35
+    "surprise": 11.35,
+    "time": "amc"
    },
    {
-    "date": "2025-08-15",
+    "date": "2025-08-16",
     "epsActual": 1.03,
     "epsEst": 0.83,
     "period": "2025-06-30",
     "revActual": 5270321218.29,
-    "surprise": 24.6
+    "surprise": 24.6,
+    "time": "bmo"
    },
    {
-    "date": "2025-04-25",
+    "date": "2025-04-26",
     "epsActual": 0.56,
     "epsEst": 0.53,
     "surprise": 6.1,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2025-04-18",
+    "date": "2025-04-19",
     "epsActual": 0.6,
     "epsEst": 0.52,
     "surprise": 15.8,
-    "time": "amc"
+    "time": "bmo"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "002050.SZ": {
-  "checkedAt": "2026-11-10T22:19+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-10-28",
@@ -295,7 +301,7 @@
     "period": "2026-09-30",
     "revActual": 8373537505.49,
     "surprise": -16.72,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-08-26",
@@ -303,99 +309,108 @@
     "epsEst": 0.3,
     "period": "2026-06-30",
     "revActual": 9126417141.28,
-    "surprise": -6.67
+    "surprise": -6.67,
+    "time": "amc"
    },
    {
-    "date": "2026-04-29",
+    "date": "2026-04-30",
     "epsActual": 0.23,
     "epsEst": 0.25,
     "period": "2026-03-31",
     "revActual": 7773555419.29,
     "surprise": -6.3,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2026-03-23",
+    "date": "2026-03-24",
     "epsActual": 0.27,
     "epsEst": 0.26,
     "period": "2025-12-31",
     "revActual": 6982431056.96,
-    "surprise": 3.85
+    "surprise": 3.85,
+    "time": "bmo"
    },
    {
     "date": "2025-10-30",
     "epsActual": 0.19,
     "epsEst": 0.2,
-    "surprise": -5.0
+    "surprise": -5.0,
+    "time": "amc"
    },
    {
-    "date": "2025-08-28",
+    "date": "2025-08-29",
     "epsActual": 0.31,
     "epsEst": 0.26,
     "period": "2025-06-30",
     "revActual": 8593336963.63,
-    "surprise": 19.23
+    "surprise": 19.23,
+    "time": "bmo"
    },
    {
-    "date": "2025-04-29",
+    "date": "2025-04-30",
     "epsActual": 0.23,
     "epsEst": 0.21,
     "surprise": 8.87,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2025-03-26",
+    "date": "2025-03-27",
     "epsActual": 0.24,
     "epsEst": 0.19,
-    "surprise": 26.32
+    "surprise": 26.32,
+    "time": "bmo"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "002156.SZ": {
-  "checkedAt": "2026-11-10T22:19+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
-    "date": "2026-10-29",
+    "date": "2026-10-30",
     "epsActual": 0.88,
     "epsEst": 0.31,
     "period": "2026-09-30",
     "revActual": 8844155077.61,
-    "surprise": 186.28
+    "surprise": 186.28,
+    "time": "bmo"
    },
    {
-    "date": "2026-08-28",
+    "date": "2026-08-29",
     "epsActual": 0.91,
     "epsEst": 0.25,
     "period": "2026-06-30",
     "revActual": 8559345232.7,
     "surprise": 271.28,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2026-04-29",
+    "date": "2026-04-30",
     "epsActual": 0.22,
     "epsEst": 0.1,
     "period": "2026-03-31",
     "revActual": 7481674677.05,
     "surprise": 113.43,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2026-04-16",
+    "date": "2026-04-17",
     "epsActual": 0.23,
     "epsEst": 0.28,
     "period": "2026-03-31",
     "revActual": 7481674677.05,
-    "surprise": -18.33
+    "surprise": -18.33,
+    "time": "bmo"
    },
    {
-    "date": "2025-10-27",
+    "date": "2025-10-28",
     "epsActual": 0.3,
     "epsEst": 0.28,
     "period": "2025-06-30",
     "revActual": 6945811605.71,
-    "surprise": 5.89
+    "surprise": 5.89,
+    "time": "bmo"
    },
    {
     "date": "2025-08-28",
@@ -403,23 +418,25 @@
     "epsEst": 0.17,
     "period": "2025-06-30",
     "revActual": 6945811605.71,
-    "surprise": 18.18
-   },
-   {
-    "date": "2025-04-29",
-    "epsActual": 0.07,
-    "epsEst": 0.12,
-    "surprise": -45.89,
+    "surprise": 18.18,
     "time": "amc"
    },
    {
-    "date": "2025-04-11",
+    "date": "2025-04-30",
+    "epsActual": 0.07,
+    "epsEst": 0.12,
+    "surprise": -45.89,
+    "time": "bmo"
+   },
+   {
+    "date": "2025-04-12",
     "epsActual": 0.09,
     "epsEst": 0.12,
-    "surprise": -26.16
+    "surprise": -26.16,
+    "time": "bmo"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "002230.SZ": {
   "checkedAt": "2026-11-10T22:19+00:00",
@@ -586,15 +603,17 @@
   "updatedAt": "2026-11-10"
  },
  "002371.SZ": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
-    "date": "2026-10-29",
+    "date": "2026-10-30",
     "epsActual": 2.72,
     "epsEst": 2.84,
     "period": "2026-09-30",
     "revActual": 11305675488.89,
-    "surprise": -4.36
+    "surprise": -4.36,
+    "time": "bmo"
    },
    {
     "date": "2026-08-25",
@@ -603,50 +622,55 @@
     "period": "2026-06-30",
     "revActual": 9838552981.74,
     "surprise": -28.21,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2026-04-29",
+    "date": "2026-04-30",
     "epsActual": 2.24,
     "epsEst": 2.2,
     "period": "2026-03-31",
     "revActual": 10322863908.82,
     "surprise": 2.01,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2026-04-17",
+    "date": "2026-04-18",
     "epsActual": 0.34,
     "epsEst": 2.45,
     "period": "2026-03-31",
     "revActual": 10322863908.82,
-    "surprise": -86.12
+    "surprise": -86.12,
+    "time": "bmo"
    },
    {
-    "date": "2025-10-30",
+    "date": "2025-10-31",
     "epsActual": 2.64,
     "epsEst": 2.86,
-    "surprise": -7.69
+    "surprise": -7.69,
+    "time": "bmo"
    },
    {
-    "date": "2025-08-28",
+    "date": "2025-08-29",
     "epsActual": 2.23,
     "epsEst": 2.47,
     "period": "2025-06-30",
     "revActual": 7935516975.91,
-    "surprise": -9.46
+    "surprise": -9.46,
+    "time": "bmo"
    },
    {
-    "date": "2025-04-25",
-    "epsActual": 2.18,
-    "epsEst": 1.5,
-    "surprise": 44.89
+    "date": "2025-04-26",
+    "epsActual": 1.81,
+    "epsEst": 1.65,
+    "surprise": 9.87,
+    "time": "bmo"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "002463.SZ": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-10-27",
@@ -655,15 +679,16 @@
     "period": "2026-09-30",
     "revActual": 9536012843.0,
     "surprise": 17.8,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2026-08-25",
+    "date": "2026-08-26",
     "epsActual": 0.85,
     "epsEst": 0.73,
     "period": "2026-06-30",
     "revActual": 7475271098.0,
-    "surprise": 16.44
+    "surprise": 16.44,
+    "time": "bmo"
    },
    {
     "date": "2026-04-22",
@@ -671,17 +696,18 @@
     "epsEst": 0.51,
     "period": "2026-03-31",
     "revActual": 6214156406.0,
-    "surprise": 17.7
+    "surprise": 17.7,
+    "time": "amc"
    },
    {
-    "date": "2026-03-24",
+    "date": "2026-03-25",
     "epsActual": 0.57,
     "epsEst": 0.57,
     "period": "2025-12-31",
     "revActual": 5432830354.0
    },
    {
-    "date": "2025-10-28",
+    "date": "2025-10-29",
     "epsActual": 0.53,
     "epsEst": 0.5,
     "period": "2025-06-30",
@@ -689,29 +715,30 @@
     "surprise": 6.0
    },
    {
-    "date": "2025-08-21",
+    "date": "2025-08-22",
     "epsActual": 0.47,
     "epsEst": 0.43,
     "period": "2025-06-30",
     "revActual": 4456244556.0,
-    "surprise": 9.3
+    "surprise": 9.3,
+    "time": "bmo"
    },
    {
-    "date": "2025-04-24",
+    "date": "2025-04-25",
     "epsActual": 0.39,
     "epsEst": 0.32,
     "surprise": 21.38,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2025-03-26",
     "epsActual": 0.39,
     "epsEst": 0.36,
     "surprise": 8.33,
-    "time": "bmo"
+    "time": "amc"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "002475.SZ": {
   "checkedAt": "2026-11-10T22:19+00:00",
@@ -773,15 +800,17 @@
   "updatedAt": "2026-11-10"
  },
  "002837.SZ": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
-    "date": "2026-10-26",
+    "date": "2026-10-27",
     "epsActual": 0.14,
     "epsEst": 0.14,
     "period": "2026-09-30",
     "revActual": 1932998920.94,
-    "surprise": -2.51
+    "surprise": -2.51,
+    "time": "bmo"
    },
    {
     "date": "2026-08-24",
@@ -790,7 +819,7 @@
     "period": "2026-06-30",
     "revActual": 1841385335.57,
     "surprise": 1.56,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-04-20",
@@ -799,7 +828,7 @@
     "period": "2026-03-31",
     "revActual": 1175329313.61,
     "surprise": -74.55,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-10-13",
@@ -808,7 +837,7 @@
     "period": "2025-06-30",
     "revActual": 1640553679.64,
     "surprise": -14.64,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-08-18",
@@ -817,17 +846,17 @@
     "period": "2025-06-30",
     "revActual": 1640553679.64,
     "surprise": 39.47,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2025-04-21",
+    "date": "2025-04-22",
     "epsActual": 0.08,
     "epsEst": 0.19,
     "surprise": -60.28,
-    "time": "amc"
+    "time": "bmo"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "002851.SZ": {
   "checkedAt": "2026-11-10T22:19+00:00",
@@ -1175,7 +1204,8 @@
   "updatedAt": "2026-11-10"
  },
  "034020.KS": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-14",
@@ -1184,7 +1214,7 @@
     "period": "2026-06-30",
     "revActual": 4724808000000.0,
     "surprise": 50.5,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-05-14",
@@ -1193,7 +1223,7 @@
     "period": "2026-03-31",
     "revActual": 4261130000000.0,
     "surprise": -99.21,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-03-20",
@@ -1202,7 +1232,7 @@
     "period": "2025-12-31",
     "revActual": 4859931000000.0,
     "surprise": -61.01,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-11-13",
@@ -1211,7 +1241,7 @@
     "period": "2025-09-30",
     "revActual": 3880350000000.0,
     "surprise": -150.72,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-08-14",
@@ -1220,31 +1250,31 @@
     "period": "2025-06-30",
     "revActual": 4569021000000.0,
     "surprise": 24.01,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2018-05-15",
     "epsActual": -691.0,
     "epsEst": 209.0,
     "surprise": -430.62,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2018-03-19",
     "epsActual": -1469.0,
     "epsEst": 490.0,
     "surprise": -399.8,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2017-11-14",
     "epsActual": -387.0,
     "epsEst": 577.0,
     "surprise": -167.07,
-    "time": "bmo"
+    "time": "amc"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "042700.KS": {
   "checkedAt": "2026-11-10T22:53+00:00",
@@ -1392,7 +1422,8 @@
   "updatedAt": "2026-10-29"
  },
  "0700.HK": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-12",
@@ -1400,29 +1431,25 @@
     "epsEst": 7.24,
     "period": "2026-06-30",
     "revActual": 204785000000.0,
-    "surprise": 2.73,
-    "time": "bmo"
+    "surprise": 2.73
    },
    {
     "date": "2026-05-13",
     "epsActual": 7.36,
     "epsEst": 7.23,
-    "surprise": 1.79,
-    "time": "bmo"
+    "surprise": 1.79
    },
    {
     "date": "2026-03-18",
     "epsActual": 6.97,
     "epsEst": 6.86,
-    "surprise": 1.48,
-    "time": "bmo"
+    "surprise": 1.48
    },
    {
     "date": "2025-11-13",
     "epsActual": 7.58,
     "epsEst": 7.03,
-    "surprise": 7.71,
-    "time": "bmo"
+    "surprise": 7.71
    },
    {
     "date": "2025-08-13",
@@ -1430,45 +1457,40 @@
     "epsEst": 6.49,
     "period": "2025-06-30",
     "revActual": 184504000000.0,
-    "surprise": 4.62,
-    "time": "bmo"
+    "surprise": 4.62
    },
    {
     "date": "2025-05-14",
     "epsActual": 6.58,
     "epsEst": 6.34,
-    "surprise": 3.85,
-    "time": "bmo"
+    "surprise": 3.85
    },
    {
     "date": "2025-03-19",
     "epsActual": 5.91,
     "epsEst": 5.6,
-    "surprise": 5.57,
-    "time": "bmo"
+    "surprise": 5.57
    },
    {
     "date": "2024-11-13",
     "epsActual": 6.34,
     "epsEst": 5.7,
-    "surprise": 11.17,
-    "time": "bmo"
+    "surprise": 11.17
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-18",
    "epsEst": 7.21,
    "epsN": 12,
    "estimated": false,
-   "revEst": 210342886430.0,
-   "revN": 22,
-   "time": "bmo"
+   "revEst": 210239931880.0,
+   "revN": 22
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "0981.HK": {
-  "checkedAt": "2026-11-11T02:53+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
   "dates": "local",
   "history": [
    {
@@ -1539,7 +1561,8 @@
   "updatedAt": "2026-11-11"
  },
  "0992.HK": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-13",
@@ -1548,34 +1571,33 @@
     "surprise": 131.09
    },
    {
-    "date": "2026-05-21",
+    "date": "2026-05-22",
     "epsActual": 0.04,
     "epsEst": 0.03,
     "surprise": 58.02,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2026-02-11",
+    "date": "2026-02-12",
     "epsActual": 0.04,
     "epsEst": 0.04,
-    "surprise": 13.18,
-    "time": "amc"
+    "surprise": 13.18
    },
    {
-    "date": "2025-11-19",
+    "date": "2025-11-20",
     "epsActual": 0.04,
     "epsEst": 0.03,
     "period": "2025-09-30",
     "revActual": 20452022000.0,
     "surprise": 20.51,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2025-08-13",
+    "date": "2025-08-14",
     "epsActual": 0.04,
     "epsEst": 0.03,
     "surprise": 28.75,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2025-05-22",
@@ -1584,34 +1606,33 @@
     "surprise": -59.68
    },
    {
-    "date": "2025-02-19",
+    "date": "2025-02-20",
     "epsActual": 0.05,
     "epsEst": 0.03,
-    "surprise": 90.94,
-    "time": "amc"
+    "surprise": 90.94
    },
    {
-    "date": "2024-11-14",
+    "date": "2024-11-15",
     "epsActual": 0.03,
     "epsEst": 0.03,
     "surprise": -2.42,
-    "time": "amc"
+    "time": "bmo"
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-19",
    "epsEst": 0.07,
    "epsN": 5,
    "estimated": false,
    "revEst": 27436164780.0,
-   "revN": 9,
-   "time": "bmo"
+   "revN": 9
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "1024.HK": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-19",
@@ -1619,29 +1640,26 @@
     "epsEst": 0.89,
     "period": "2026-06-30",
     "revActual": 35535000000.0,
-    "surprise": 0.71,
-    "time": "bmo"
+    "surprise": 0.71
    },
    {
     "date": "2026-05-27",
     "epsActual": 0.77,
     "epsEst": 0.69,
     "surprise": 10.86,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-03-25",
     "epsActual": 1.23,
     "epsEst": 1.24,
-    "surprise": -0.38,
-    "time": "bmo"
+    "surprise": -0.38
    },
    {
     "date": "2025-11-19",
     "epsActual": 1.13,
     "epsEst": 1.12,
-    "surprise": 1.38,
-    "time": "bmo"
+    "surprise": 1.38
    },
    {
     "date": "2025-08-21",
@@ -1649,42 +1667,37 @@
     "epsEst": 1.17,
     "period": "2025-06-30",
     "revActual": 35046000000.0,
-    "surprise": 10.33,
-    "time": "bmo"
+    "surprise": 10.33
    },
    {
     "date": "2025-05-27",
     "epsActual": 1.05,
     "epsEst": 1.01,
-    "surprise": 3.93,
-    "time": "bmo"
+    "surprise": 3.93
    },
    {
     "date": "2025-03-25",
     "epsActual": 1.06,
     "epsEst": 1.08,
-    "surprise": -2.05,
-    "time": "bmo"
+    "surprise": -2.05
    },
    {
     "date": "2024-11-20",
     "epsActual": 0.9,
     "epsEst": 0.89,
-    "surprise": 0.78,
-    "time": "bmo"
+    "surprise": 0.78
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-19",
    "epsEst": 0.17,
    "epsN": 8,
    "estimated": false,
    "revEst": 33154717930.0,
-   "revN": 11,
-   "time": "bmo"
+   "revN": 11
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "1347.HK": {
   "checkedAt": "2026-11-06T01:50+00:00",
@@ -1749,7 +1762,8 @@
   "updatedAt": "2026-11-06"
  },
  "1810.HK": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-18",
@@ -1758,28 +1772,28 @@
     "period": "2026-06-30",
     "revActual": 108921609000.0,
     "surprise": 2.22,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-05-26",
     "epsActual": 0.23,
     "epsEst": 0.21,
     "surprise": 7.32,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-03-24",
     "epsActual": 0.22,
     "epsEst": 0.23,
     "surprise": -2.26,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-11-18",
     "epsActual": 0.42,
     "epsEst": 0.39,
     "surprise": 8.9,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-08-19",
@@ -1788,44 +1802,43 @@
     "period": "2025-06-30",
     "revActual": 115956091000.0,
     "surprise": 6.05,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-05-27",
     "epsActual": 0.41,
     "epsEst": 0.35,
     "surprise": 16.03,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-03-18",
     "epsActual": 0.32,
     "epsEst": 0.25,
     "surprise": 28.13,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2024-11-18",
     "epsActual": 0.25,
     "epsEst": 0.21,
     "surprise": 17.05,
-    "time": "bmo"
+    "time": "amc"
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-24",
    "epsEst": 0.19,
    "epsN": 12,
    "estimated": false,
    "revEst": 105662296850.0,
-   "revN": 15,
-   "time": "bmo"
+   "revN": 15
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "2059.TW": {
-  "checkedAt": "2026-11-11T02:53+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
   "dates": "local",
   "history": [
    {
@@ -2081,7 +2094,7 @@
   "updatedAt": "2026-11-10"
  },
  "2317.TW": {
-  "checkedAt": "2026-11-11T02:53+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
   "dates": "local",
   "history": [
    {
@@ -2163,7 +2176,7 @@
   "updatedAt": "2026-11-11"
  },
  "2345.TW": {
-  "checkedAt": "2026-11-11T02:53+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
   "dates": "local",
   "history": [
    {
@@ -2316,7 +2329,7 @@
   "updatedAt": "2026-11-10"
  },
  "2382.TW": {
-  "checkedAt": "2026-11-11T02:53+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
   "dates": "local",
   "history": [
    {
@@ -2877,7 +2890,8 @@
   "updatedAt": "2026-11-10"
  },
  "298040.KS": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-13",
@@ -2886,7 +2900,7 @@
     "period": "2026-06-30",
     "revActual": 1686977905840.0,
     "surprise": -15.54,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-05-14",
@@ -2895,7 +2909,7 @@
     "period": "2026-03-31",
     "revActual": 1358209344990.0,
     "surprise": -31.69,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-03-11",
@@ -2904,7 +2918,7 @@
     "period": "2025-12-31",
     "revActual": 1742955363410.0,
     "surprise": 22.63,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-11-13",
@@ -2913,7 +2927,7 @@
     "period": "2025-09-30",
     "revActual": 1624136435060.0,
     "surprise": 55.83,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-08-14",
@@ -2922,34 +2936,35 @@
     "period": "2025-06-30",
     "revActual": 1525284991620.0,
     "surprise": 11.97,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-05-14",
     "epsActual": 10971.0,
     "epsEst": 6196.54,
     "surprise": 77.05,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-03-12",
     "epsActual": 9780.0,
     "epsEst": 5370.56,
     "surprise": 82.1,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2024-11-13",
     "epsActual": 7938.0,
     "epsEst": 5450.17,
     "surprise": 45.65,
-    "time": "bmo"
+    "time": "amc"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "300274.SZ": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-10-30",
@@ -2958,7 +2973,7 @@
     "period": "2026-09-30",
     "revActual": 17950273750.62,
     "surprise": -49.67,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-08-28",
@@ -2966,24 +2981,26 @@
     "epsEst": 1.81,
     "period": "2026-06-30",
     "revActual": 15351620321.09,
-    "surprise": -39.23
+    "surprise": -39.23,
+    "time": "amc"
    },
    {
-    "date": "2026-04-27",
+    "date": "2026-04-28",
     "epsActual": 0.98,
     "epsEst": 1.41,
     "period": "2026-03-31",
     "revActual": 15560645284.03,
     "surprise": -30.48,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2026-03-31",
+    "date": "2026-04-01",
     "epsActual": 0.71,
     "epsEst": 1.97,
     "period": "2026-03-31",
     "revActual": 15560645284.03,
-    "surprise": -63.96
+    "surprise": -63.96,
+    "time": "bmo"
    },
    {
     "date": "2025-10-28",
@@ -2991,69 +3008,77 @@
     "epsEst": 1.44,
     "period": "2025-06-30",
     "revActual": 24496676545.97,
-    "surprise": 33.33
+    "surprise": 33.33,
+    "time": "amc"
    },
    {
-    "date": "2025-08-25",
+    "date": "2025-08-26",
     "epsActual": 1.88,
     "epsEst": 2.01,
     "period": "2025-06-30",
     "revActual": 24496676545.97,
-    "surprise": -6.46
+    "surprise": -6.46,
+    "time": "bmo"
    },
    {
-    "date": "2025-04-25",
-    "epsActual": 1.77,
-    "epsEst": 1.03,
-    "surprise": 72.16
+    "date": "2025-04-26",
+    "epsActual": 1.6,
+    "epsEst": 1.37,
+    "surprise": 16.79,
+    "time": "bmo"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "300308.SZ": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
-    "date": "2026-10-29",
+    "date": "2026-10-30",
     "epsActual": 6.97,
     "epsEst": 7.84,
     "period": "2026-09-30",
     "revActual": 27769195927.06,
-    "surprise": -11.1
+    "surprise": -11.1,
+    "time": "bmo"
    },
    {
-    "date": "2026-08-21",
+    "date": "2026-08-22",
     "epsActual": 6.65,
     "epsEst": 6.04,
     "period": "2026-06-30",
     "revActual": 22281463711.08,
-    "surprise": 10.1
+    "surprise": 10.1,
+    "time": "bmo"
    },
    {
-    "date": "2026-04-16",
+    "date": "2026-04-17",
     "epsActual": 5.15,
     "epsEst": 3.11,
     "period": "2026-03-31",
     "revActual": 19496398083.95,
-    "surprise": 65.46
+    "surprise": 65.46,
+    "time": "bmo"
    },
    {
-    "date": "2026-03-30",
+    "date": "2026-03-31",
     "epsActual": 3.34,
     "epsEst": 3.38,
     "period": "2025-12-31",
     "revActual": 13235134789.35,
     "surprise": -1.04,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2025-10-30",
     "epsActual": 2.76,
     "epsEst": 3.12,
-    "surprise": -11.54
+    "surprise": -11.54,
+    "time": "amc"
    },
    {
-    "date": "2025-08-26",
+    "date": "2025-08-27",
     "epsActual": 2.16,
     "epsEst": 1.81,
     "period": "2025-06-30",
@@ -3061,16 +3086,17 @@
     "surprise": 19.67
    },
    {
-    "date": "2025-04-20",
+    "date": "2025-04-21",
     "epsActual": 1.3,
     "epsEst": 1.53,
     "surprise": -15.03
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "300394.SZ": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-10-28",
@@ -3079,7 +3105,7 @@
     "period": "2026-09-30",
     "revActual": 1923161156.63,
     "surprise": -30.68,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-08-18",
@@ -3087,7 +3113,8 @@
     "epsEst": 0.72,
     "period": "2026-06-30",
     "revActual": 1497668573.01,
-    "surprise": -34.94
+    "surprise": -34.94,
+    "time": "amc"
    },
    {
     "date": "2026-04-20",
@@ -3096,10 +3123,10 @@
     "period": "2026-03-31",
     "revActual": 1330270175.36,
     "surprise": -23.84,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2026-04-07",
+    "date": "2026-04-08",
     "epsActual": 0.35,
     "epsEst": 0.65,
     "period": "2026-03-31",
@@ -3110,43 +3137,47 @@
     "date": "2025-10-29",
     "epsActual": 0.51,
     "epsEst": 0.69,
-    "surprise": -25.0
+    "surprise": -25.0,
+    "time": "amc"
    },
    {
-    "date": "2025-08-25",
+    "date": "2025-08-26",
     "epsActual": 0.49,
     "epsEst": 0.36,
     "period": "2025-06-30",
     "revActual": 1511259024.73,
     "surprise": 35.78,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2025-04-23",
+    "date": "2025-04-24",
     "epsActual": 0.31,
     "epsEst": 0.35,
     "surprise": -13.08,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2025-04-20",
+    "date": "2025-04-21",
     "epsActual": 0.33,
     "epsEst": 0.34,
-    "surprise": -2.98
+    "surprise": -2.98,
+    "time": "bmo"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "300476.SZ": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
-    "date": "2026-10-29",
+    "date": "2026-10-30",
     "epsActual": 1.1,
     "epsEst": 2.13,
     "period": "2026-09-30",
     "revActual": 6831165212.44,
-    "surprise": -48.36
+    "surprise": -48.36,
+    "time": "bmo"
    },
    {
     "date": "2026-08-27",
@@ -3155,7 +3186,7 @@
     "period": "2026-06-30",
     "revActual": 6109882223.96,
     "surprise": -35.45,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-04-28",
@@ -3164,10 +3195,10 @@
     "period": "2026-03-31",
     "revActual": 5519485066.85,
     "surprise": -1.04,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2026-03-12",
+    "date": "2026-03-13",
     "epsActual": 1.23,
     "epsEst": 1.29,
     "period": "2025-12-31",
@@ -3181,7 +3212,7 @@
     "period": "2025-06-30",
     "revActual": 4718525501.89,
     "surprise": -19.67,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-08-26",
@@ -3190,27 +3221,28 @@
     "period": "2025-06-30",
     "revActual": 4718525501.89,
     "surprise": -6.3,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2025-04-21",
+    "date": "2025-04-22",
     "epsActual": 1.07,
     "epsEst": 0.94,
     "surprise": 13.32,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2025-03-28",
+    "date": "2025-03-29",
     "epsActual": 0.45,
     "epsEst": 0.41,
     "surprise": 9.27,
-    "time": "amc"
+    "time": "bmo"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "300502.SZ": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-10-29",
@@ -3218,15 +3250,17 @@
     "epsEst": 4.49,
     "period": "2026-09-30",
     "revActual": 10940148779.03,
-    "surprise": -42.09
+    "surprise": -42.09,
+    "time": "amc"
    },
    {
-    "date": "2026-08-24",
+    "date": "2026-08-25",
     "epsActual": 3.39,
     "epsEst": 4.48,
     "period": "2026-06-30",
     "revActual": 12571844921.46,
-    "surprise": -24.33
+    "surprise": -24.33,
+    "time": "bmo"
    },
    {
     "date": "2026-04-23",
@@ -3235,13 +3269,14 @@
     "period": "2026-03-31",
     "revActual": 8337902040.74,
     "surprise": -12.38,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-10-29",
     "epsActual": 1.7,
     "epsEst": 1.94,
-    "surprise": -12.18
+    "surprise": -12.18,
+    "time": "amc"
    },
    {
     "date": "2025-08-25",
@@ -3249,28 +3284,31 @@
     "epsEst": 1.08,
     "period": "2025-06-30",
     "revActual": 6384913727.13,
-    "surprise": 15.45
+    "surprise": 15.45,
+    "time": "amc"
    },
    {
-    "date": "2025-04-22",
-    "epsActual": 0.85,
-    "epsEst": 0.77,
-    "surprise": 10.59
+    "date": "2025-04-23",
+    "epsActual": 1.13,
+    "epsEst": 0.78,
+    "surprise": 45.13,
+    "time": "bmo"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "300750.SZ": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
-    "date": "2026-10-20",
+    "date": "2026-10-21",
     "epsActual": 4.1,
     "epsEst": 4.99,
     "period": "2026-09-30",
     "revActual": 165220844000.0,
     "surprise": -17.76,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2026-07-24",
@@ -3279,7 +3317,7 @@
     "period": "2026-06-30",
     "revActual": 147785539000.0,
     "surprise": -1.81,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-04-15",
@@ -3288,16 +3326,16 @@
     "period": "2026-03-31",
     "revActual": 129131041000.0,
     "surprise": 17.99,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2026-03-09",
+    "date": "2026-03-10",
     "epsActual": 4.62,
     "epsEst": 4.01,
     "period": "2025-12-31",
     "revActual": 140629847000.0,
     "surprise": 15.03,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2025-10-20",
@@ -3306,44 +3344,45 @@
     "period": "2025-06-30",
     "revActual": 94181664000.0,
     "surprise": -1.45,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2025-07-30",
+    "date": "2025-07-31",
     "epsActual": 3.48,
     "epsEst": 3.28,
     "period": "2025-06-30",
     "revActual": 94181664000.0,
     "surprise": 6.26,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2025-04-14",
+    "date": "2025-04-15",
     "epsActual": 2.69,
     "epsEst": 2.55,
     "surprise": 5.65,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2025-03-14",
     "epsActual": 2.95,
     "epsEst": 3.34,
     "surprise": -11.45,
-    "time": "bmo"
+    "time": "amc"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "3017.TW": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-11-10",
     "epsActual": 29.32,
-    "epsEst": 28.18,
+    "epsEst": 28.1,
     "revEst": 57802789850.0,
-    "surprise": 4.05,
-    "time": "bmo"
+    "surprise": 4.33,
+    "time": "amc"
    },
    {
     "date": "2026-08-13",
@@ -3352,7 +3391,7 @@
     "period": "2026-06-30",
     "revActual": 49120964000.0,
     "surprise": 6.84,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-05-15",
@@ -3360,8 +3399,7 @@
     "epsEst": 19.26,
     "period": "2026-03-31",
     "revActual": 49037946000.0,
-    "surprise": 4.75,
-    "time": "bmo"
+    "surprise": 4.75
    },
    {
     "date": "2026-03-11",
@@ -3370,7 +3408,7 @@
     "period": "2025-12-31",
     "revActual": 47775002000.0,
     "surprise": -3.01,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-11-12",
@@ -3379,33 +3417,33 @@
     "period": "2025-09-30",
     "revActual": 38936900000.0,
     "surprise": 0.53,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2025-08-13",
+    "date": "2025-08-14",
     "epsActual": 10.3,
     "epsEst": 9.96,
     "period": "2025-06-30",
     "revActual": 29594509000.0,
     "surprise": 3.46,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2025-05-13",
     "epsActual": 8.28,
     "epsEst": 7.11,
     "surprise": 16.43,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-03-12",
     "epsActual": 6.03,
     "epsEst": 6.35,
     "surprise": -5.03,
-    "time": "bmo"
+    "time": "amc"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "3037.TW": {
   "checkedAt": "2026-10-28T00:47+00:00",
@@ -3550,7 +3588,7 @@
   "updatedAt": "2026-11-10"
  },
  "3436.T": {
-  "checkedAt": "2026-11-11T02:53+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
   "dates": "local",
   "history": [
    {
@@ -3778,73 +3816,67 @@
   "updatedAt": "2026-11-10"
  },
  "3690.HK": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2023-03-24",
     "epsActual": -0.19,
     "epsEst": -0.23,
-    "surprise": 17.51,
-    "time": "bmo"
+    "surprise": 17.51
    },
    {
     "date": "2022-11-25",
     "epsActual": 0.13,
     "epsEst": 0.15,
-    "surprise": -15.75,
-    "time": "bmo"
+    "surprise": -15.75
    },
    {
     "date": "2022-08-26",
     "epsActual": 0.34,
     "epsEst": -0.4,
-    "surprise": 183.55,
-    "time": "bmo"
+    "surprise": 183.55
    },
    {
     "date": "2022-06-02",
     "epsActual": -0.81,
     "epsEst": -0.81,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2022-03-25",
     "epsActual": -0.63,
     "epsEst": -0.97,
-    "surprise": 34.73,
-    "time": "bmo"
+    "surprise": 34.73
    },
    {
     "date": "2021-11-26",
     "epsActual": -0.9,
     "epsEst": -0.9,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2021-08-30",
     "epsActual": -0.37,
     "epsEst": -0.66,
-    "surprise": 44.2,
-    "time": "bmo"
+    "surprise": 44.2
    },
    {
     "date": "2021-05-28",
     "epsActual": -0.64,
-    "epsEst": -0.64,
-    "time": "bmo"
+    "epsEst": -0.64
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-26",
    "epsEst": 0.3,
    "epsN": 10,
    "estimated": true,
    "revEst": 113081742500.0,
-   "revN": 18,
-   "time": "bmo"
+   "revN": 18
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "373220.KS": {
   "checkedAt": "2026-11-04T01:41+00:00",
@@ -3921,7 +3953,7 @@
   "updatedAt": "2026-11-04"
  },
  "4004.T": {
-  "checkedAt": "2026-11-11T02:53+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
   "dates": "local",
   "history": [
    {
@@ -4524,7 +4556,8 @@
   "updatedAt": "2026-10-31"
  },
  "5803.T": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-11-10",
@@ -4534,11 +4567,10 @@
     "surprise": 24.48
    },
    {
-    "date": "2026-08-06",
+    "date": "2026-08-07",
     "epsActual": 48.58,
     "epsEst": 37.63,
-    "surprise": 29.09,
-    "time": "amc"
+    "surprise": 29.09
    },
    {
     "date": "2026-05-14",
@@ -4546,8 +4578,7 @@
     "epsEst": 30.45,
     "period": "2026-03-31",
     "revActual": 327427000000.0,
-    "surprise": -10.28,
-    "time": "bmo"
+    "surprise": -10.28
    },
    {
     "date": "2026-02-09",
@@ -4558,13 +4589,12 @@
     "surprise": 12.98
    },
    {
-    "date": "2025-11-06",
+    "date": "2025-11-07",
     "epsActual": 21.64,
     "epsEst": 20.02,
     "period": "2025-09-30",
     "revActual": 291086000000.0,
-    "surprise": 8.09,
-    "time": "amc"
+    "surprise": 8.09
    },
    {
     "date": "2025-08-07",
@@ -4572,8 +4602,7 @@
     "epsEst": 16.04,
     "period": "2025-06-30",
     "revActual": 267908000000.0,
-    "surprise": 17.92,
-    "time": "bmo"
+    "surprise": 17.92
    },
    {
     "date": "2025-05-13",
@@ -4581,21 +4610,20 @@
     "epsEst": 17.46,
     "period": "2025-03-31",
     "revActual": 268388000000.0,
-    "surprise": 10.87,
-    "time": "bmo"
+    "surprise": 10.87
    },
    {
-    "date": "2025-02-09",
+    "date": "2025-02-10",
     "epsActual": 18.34,
     "epsEst": 11.65,
-    "surprise": 57.4,
-    "time": "amc"
+    "surprise": 57.4
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "601138.SS": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-10-29",
@@ -4604,10 +4632,10 @@
     "period": "2026-09-30",
     "revActual": 383553853000.0,
     "surprise": 2.64,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2026-08-11",
+    "date": "2026-08-12",
     "epsActual": 0.64,
     "epsEst": 0.6,
     "period": "2026-06-30",
@@ -4621,22 +4649,23 @@
     "period": "2026-03-31",
     "revActual": 251078078000.0,
     "surprise": 12.69,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2026-03-10",
+    "date": "2026-03-11",
     "epsActual": 0.63,
     "epsEst": 0.65,
     "period": "2025-12-31",
     "revActual": 298955758000.0,
-    "surprise": -3.08
+    "surprise": -3.08,
+    "time": "bmo"
    },
    {
     "date": "2025-10-29",
     "epsActual": 0.5,
     "epsEst": 0.51,
     "surprise": -1.81,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-08-10",
@@ -4645,23 +4674,24 @@
     "period": "2025-06-30",
     "revActual": 200344602000.0,
     "surprise": 15.25,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-04-29",
     "epsActual": 0.24,
     "epsEst": 0.26,
-    "surprise": -6.27
+    "surprise": -6.27,
+    "time": "amc"
    },
    {
     "date": "2025-02-21",
     "epsActual": 0.44,
     "epsEst": 0.4,
     "surprise": 10.1,
-    "time": "bmo"
+    "time": "amc"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "6146.T": {
   "checkedAt": "2026-11-10T23:00+00:00",
@@ -4746,25 +4776,24 @@
   "updatedAt": "2026-11-10"
  },
  "6268.T": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
-    "date": "2026-07-30",
+    "date": "2026-07-31",
     "epsActual": 59.16,
     "epsEst": 32.05,
     "period": "2026-06-30",
     "revActual": 84369000000.0,
-    "surprise": 84.62,
-    "time": "amc"
+    "surprise": 84.62
    },
    {
-    "date": "2026-04-29",
+    "date": "2026-04-30",
     "epsActual": 58.01,
     "epsEst": 40.14,
     "period": "2026-03-31",
     "revActual": 83032000000.0,
-    "surprise": 44.52,
-    "time": "amc"
+    "surprise": 44.52
    },
    {
     "date": "2026-02-12",
@@ -4773,62 +4802,58 @@
     "period": "2025-12-31",
     "revActual": 88725000000.0,
     "surprise": -47.01,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2025-10-30",
+    "date": "2025-10-31",
     "epsActual": 43.89,
     "epsEst": 28.85,
     "period": "2025-09-30",
     "revActual": 53571000000.0,
-    "surprise": 52.13,
-    "time": "amc"
+    "surprise": 52.13
    },
    {
-    "date": "2025-07-30",
+    "date": "2025-07-31",
     "epsActual": 26.87,
     "epsEst": 18.81,
     "period": "2025-06-30",
     "revActual": 83918000000.0,
-    "surprise": 42.85,
-    "time": "amc"
+    "surprise": 42.85
    },
    {
     "date": "2025-04-30",
     "epsActual": 27.33,
     "epsEst": 31.87,
     "surprise": -14.25,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2024-10-30",
+    "date": "2024-10-31",
     "epsActual": 9.12,
     "epsEst": 27.5,
-    "surprise": -66.84,
-    "time": "amc"
+    "surprise": -66.84
    },
    {
     "date": "2024-07-31",
     "epsActual": 13.02,
     "epsEst": 21.3,
     "surprise": -38.87,
-    "time": "bmo"
+    "time": "amc"
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-13",
    "epsEst": 50.27,
    "epsN": 1,
    "estimated": false,
    "revEst": 83953623270.0,
-   "revN": 5,
-   "time": "bmo"
+   "revN": 5
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "6324.T": {
-  "checkedAt": "2026-11-11T02:53+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
   "dates": "local",
   "history": [
    {
@@ -5206,7 +5231,8 @@
   "updatedAt": "2026-11-10"
  },
  "688008.SS": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-10-29",
@@ -5215,7 +5241,7 @@
     "period": "2026-09-30",
     "revActual": 2078918669.66,
     "surprise": 86.05,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-08-28",
@@ -5224,7 +5250,7 @@
     "period": "2026-06-30",
     "revActual": 1874779205.38,
     "surprise": -10.64,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-04-27",
@@ -5233,7 +5259,7 @@
     "period": "2026-03-31",
     "revActual": 1460718316.43,
     "surprise": 18.23,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-03-30",
@@ -5242,14 +5268,14 @@
     "period": "2025-12-31",
     "revActual": 1398628292.82,
     "surprise": -6.42,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-10-30",
     "epsActual": 0.33,
     "epsEst": 0.56,
     "surprise": -41.3,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-08-29",
@@ -5258,27 +5284,28 @@
     "period": "2025-06-30",
     "revActual": 1411247007.15,
     "surprise": 10.64,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-04-23",
     "epsActual": 0.46,
     "epsEst": 0.47,
     "surprise": -1.08,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-02-24",
     "epsActual": 0.38,
     "epsEst": 0.35,
     "surprise": 9.61,
-    "time": "bmo"
+    "time": "amc"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "688012.SS": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-10-30",
@@ -5287,7 +5314,7 @@
     "period": "2026-09-30",
     "revActual": 3634861207.18,
     "surprise": -31.45,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-08-19",
@@ -5296,30 +5323,32 @@
     "period": "2026-06-30",
     "revActual": 3776300808.94,
     "surprise": 54.08,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2026-04-27",
+    "date": "2026-04-28",
     "epsActual": 0.51,
     "epsEst": 0.52,
     "period": "2026-03-31",
     "revActual": 2914986518.73,
-    "surprise": -2.3
+    "surprise": -2.3,
+    "time": "bmo"
    },
    {
-    "date": "2026-03-30",
+    "date": "2026-03-31",
     "epsActual": 0.72,
     "epsEst": 1.06,
     "period": "2025-12-31",
     "revActual": 4322073152.69,
     "surprise": -32.0,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2025-10-29",
     "epsActual": 0.37,
     "epsEst": 0.61,
-    "surprise": -39.8
+    "surprise": -39.8,
+    "time": "amc"
    },
    {
     "date": "2025-08-28",
@@ -5328,26 +5357,28 @@
     "period": "2025-06-30",
     "revActual": 2787322884.42,
     "surprise": -58.56,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-04-24",
     "epsActual": 0.34,
     "epsEst": 0.51,
     "surprise": -33.73,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2025-04-17",
+    "date": "2025-04-18",
     "epsActual": 0.63,
     "epsEst": 1.04,
-    "surprise": -39.45
+    "surprise": -39.45,
+    "time": "bmo"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "688041.SS": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-10-19",
@@ -5355,10 +5386,11 @@
     "epsEst": 0.48,
     "period": "2026-09-30",
     "revActual": 5855689454.32,
-    "surprise": -14.58
+    "surprise": -14.58,
+    "time": "amc"
    },
    {
-    "date": "2026-08-13",
+    "date": "2026-08-14",
     "epsActual": 0.44,
     "epsEst": 0.33,
     "period": "2026-06-30",
@@ -5371,7 +5403,8 @@
     "epsEst": 0.32,
     "period": "2026-03-31",
     "revActual": 4033592186.34,
-    "surprise": -34.37
+    "surprise": -34.37,
+    "time": "amc"
    },
    {
     "date": "2025-10-15",
@@ -5380,13 +5413,14 @@
     "period": "2025-06-30",
     "revActual": 3064086242.17,
     "surprise": -26.63,
-    "time": "bmo"
+    "time": "amc"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "688256.SS": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-10-23",
@@ -5395,7 +5429,7 @@
     "period": "2026-09-30",
     "revActual": 3530828294.64,
     "surprise": -9.61,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2026-08-07",
@@ -5403,23 +5437,26 @@
     "epsEst": 2.0,
     "period": "2026-06-30",
     "revActual": 3110876872.75,
-    "surprise": -36.5
+    "surprise": -36.5,
+    "time": "amc"
    },
    {
-    "date": "2026-04-29",
+    "date": "2026-04-30",
     "epsActual": 1.6,
     "epsEst": 0.79,
     "period": "2026-03-31",
     "revActual": 2884696746.86,
-    "surprise": 101.69
+    "surprise": 101.69,
+    "time": "bmo"
    },
    {
-    "date": "2026-03-12",
+    "date": "2026-03-13",
     "epsActual": 0.72,
     "epsEst": 0.91,
     "period": "2025-12-31",
     "revActual": 1889771835.02,
-    "surprise": -20.74
+    "surprise": -20.74,
+    "time": "bmo"
    },
    {
     "date": "2025-10-17",
@@ -5428,7 +5465,7 @@
     "period": "2025-06-30",
     "revActual": 1769244544.29,
     "surprise": 16.52,
-    "time": "bmo"
+    "time": "amc"
    },
    {
     "date": "2025-08-26",
@@ -5437,19 +5474,21 @@
     "period": "2025-06-30",
     "revActual": 1769244544.29,
     "surprise": 94.05,
-    "time": "bmo"
+    "time": "amc"
    },
    {
-    "date": "2025-04-18",
-    "epsActual": 0.44,
-    "epsEst": 0.47,
-    "surprise": -7.14
+    "date": "2025-04-19",
+    "epsActual": 0.57,
+    "epsEst": -0.01,
+    "surprise": 8601.79,
+    "time": "bmo"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "688836.SS": {
-  "checkedAt": "2026-11-10T22:19+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-10-28",
@@ -5458,10 +5497,10 @@
     "period": "2026-09-30",
     "revActual": 665044497.9,
     "surprise": -49.5,
-    "time": "bmo"
+    "time": "amc"
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "6920.T": {
   "checkedAt": "2026-10-31T01:04+00:00",
@@ -5826,66 +5865,59 @@
   "updatedAt": "2026-11-10"
  },
  "9984.T": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
-    "date": "2026-11-09",
+    "date": "2026-11-10",
     "epsActual": -196.54,
     "epsEst": 10.18,
-    "surprise": -2031.53,
-    "time": "amc"
+    "surprise": -2031.53
    },
    {
     "date": "2026-08-06",
     "epsActual": 60.08,
     "epsEst": 44.13,
-    "surprise": 36.15,
-    "time": "bmo"
+    "surprise": 36.15
    },
    {
-    "date": "2026-05-12",
+    "date": "2026-05-13",
     "epsActual": 320.04,
     "epsEst": 54.12,
-    "surprise": 491.32,
-    "time": "amc"
+    "surprise": 491.32
    },
    {
     "date": "2026-02-12",
     "epsActual": 42.62,
     "epsEst": 215.0,
-    "surprise": -80.18,
-    "time": "bmo"
+    "surprise": -80.18
    },
    {
-    "date": "2025-11-10",
+    "date": "2025-11-11",
     "epsActual": 437.45,
     "epsEst": 41.19,
-    "surprise": 962.1,
-    "time": "amc"
+    "surprise": 962.1
    },
    {
     "date": "2025-08-07",
     "epsActual": 72.93,
     "epsEst": 20.48,
-    "surprise": 256.15,
-    "time": "bmo"
+    "surprise": 256.15
    },
    {
     "date": "2025-05-13",
     "epsActual": 88.52,
     "epsEst": -28.93,
-    "surprise": 405.93,
-    "time": "bmo"
+    "surprise": 405.93
    },
    {
     "date": "2025-02-12",
     "epsActual": -64.78,
     "epsEst": -5.68,
-    "surprise": -1040.06,
-    "time": "bmo"
+    "surprise": -1040.06
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "AAOI": {
   "checkedAt": "2026-11-06T01:50+00:00",
@@ -6275,7 +6307,8 @@
   "updatedAt": "2026-11-10"
  },
  "ADSK": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-27",
@@ -6345,7 +6378,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-24",
    "epsEst": 3.07,
    "epsN": 28,
@@ -6354,7 +6387,7 @@
    "revN": 27,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "AEP": {
   "checkedAt": "2026-10-29T01:16+00:00",
@@ -6504,7 +6537,7 @@
   "updatedAt": "2026-11-04"
  },
  "AMAT": {
-  "checkedAt": "2026-11-11T02:53+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
   "dates": "local",
   "history": [
    {
@@ -7180,7 +7213,8 @@
   "updatedAt": "2026-11-05"
  },
  "ASM.AS": {
-  "checkedAt": "2026-11-10T22:19+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-07-28",
@@ -7188,16 +7222,17 @@
     "epsEst": 5.65,
     "period": "2026-06-30",
     "revActual": 1003100000.0,
-    "surprise": 5.5
+    "surprise": 5.5,
+    "time": "amc"
    },
    {
-    "date": "2026-04-20",
+    "date": "2026-04-21",
     "epsActual": 5.01,
     "epsEst": 4.24,
     "period": "2026-03-31",
     "revActual": 862500000.0,
     "surprise": 18.19,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2026-03-03",
@@ -7205,7 +7240,8 @@
     "epsEst": 3.06,
     "period": "2025-12-31",
     "revActual": 698300000.0,
-    "surprise": 12.99
+    "surprise": 12.99,
+    "time": "amc"
    },
    {
     "date": "2025-10-28",
@@ -7213,16 +7249,17 @@
     "epsEst": 3.76,
     "period": "2025-06-30",
     "revActual": 835600000.0,
-    "surprise": 11.79
+    "surprise": 11.79,
+    "time": "amc"
    },
    {
-    "date": "2025-07-21",
+    "date": "2025-07-22",
     "epsActual": 3.5,
     "epsEst": 4.16,
     "period": "2025-06-30",
     "revActual": 835600000.0,
     "surprise": -15.85,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2025-04-29",
@@ -7230,7 +7267,8 @@
     "epsEst": 4.03,
     "period": "2025-03-31",
     "revActual": 839200000.0,
-    "surprise": -3.06
+    "surprise": -3.06,
+    "time": "amc"
    },
    {
     "date": "2025-02-25",
@@ -7243,12 +7281,11 @@
     "date": "2024-10-29",
     "epsActual": 2.71,
     "epsEst": 3.62,
-    "surprise": -25.13,
-    "time": "bmo"
+    "surprise": -25.13
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2027-02-23",
    "epsEst": 7.26,
    "epsN": 3,
@@ -7256,7 +7293,7 @@
    "revEst": 1260560210.0,
    "revN": 5
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "ASML": {
   "checkedAt": "2026-10-15T00:08+00:00",
@@ -7498,7 +7535,8 @@
   "updatedAt": "2026-11-10"
  },
  "BABA": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-20",
@@ -7568,7 +7606,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-19",
    "epsEst": 11.01,
    "epsN": 18,
@@ -7577,7 +7615,7 @@
    "revN": 21,
    "time": "bmo"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "BE": {
   "checkedAt": "2026-11-10T22:01+00:00",
@@ -7747,7 +7785,8 @@
   "updatedAt": "2026-11-11"
  },
  "BIDU": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-18",
@@ -7817,16 +7856,16 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-16",
-   "epsEst": 6.25,
+   "epsEst": 6.16,
    "epsN": 15,
    "estimated": false,
-   "revEst": 30598757870.0,
+   "revEst": 30621257870.0,
    "revN": 20,
    "time": "bmo"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "BWXT": {
   "checkedAt": "2026-11-03T03:06+00:00",
@@ -8048,7 +8087,7 @@
   "updatedAt": "2026-10-30"
  },
  "CBRS": {
-  "checkedAt": "2026-11-11T02:53+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
   "dates": "local",
   "history": [
    {
@@ -8765,7 +8804,8 @@
   "updatedAt": "2026-11-06"
  },
  "CRDO": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-09-01",
@@ -8835,7 +8875,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-30",
    "epsEst": 1.28,
    "epsN": 18,
@@ -8844,10 +8884,11 @@
    "revN": 17,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "CRM": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-26",
@@ -8917,19 +8958,20 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-12-02",
    "epsEst": 3.45,
    "epsN": 42,
-   "estimated": true,
+   "estimated": false,
    "revEst": 11462302380.0,
    "revN": 40,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "CRWD": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-26",
@@ -8999,7 +9041,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-12-01",
    "epsEst": 0.31,
    "epsN": 44,
@@ -9008,7 +9050,7 @@
    "revN": 43,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "CRWV": {
   "checkedAt": "2026-11-11T01:31+00:00",
@@ -9078,7 +9120,7 @@
   "updatedAt": "2026-11-11"
  },
  "CSCO": {
-  "checkedAt": "2026-11-11T02:53+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
   "dates": "local",
   "history": [
    {
@@ -9309,7 +9351,8 @@
   "updatedAt": "2026-11-05"
  },
  "DELL": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-09-01",
@@ -9379,7 +9422,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-24",
    "epsEst": 6.55,
    "epsN": 24,
@@ -9388,7 +9431,7 @@
    "revN": 21,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "DLR": {
   "checkedAt": "2026-10-30T01:23+00:00",
@@ -9769,7 +9812,7 @@
   "updatedAt": "2026-10-30"
  },
  "ENR.DE": {
-  "checkedAt": "2026-11-11T02:53+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
   "dates": "local",
   "history": [
    {
@@ -10076,7 +10119,8 @@
   "updatedAt": "2026-10-28"
  },
  "ESTC": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-27",
@@ -10146,7 +10190,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-19",
    "epsEst": 0.81,
    "epsN": 28,
@@ -10155,7 +10199,7 @@
    "revN": 25,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "ETN": {
   "checkedAt": "2026-11-04T01:41+00:00",
@@ -10593,7 +10637,8 @@
   "updatedAt": "2026-11-10"
  },
  "FLNC": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-05",
@@ -10663,7 +10708,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-23",
    "epsEst": -0.61,
    "epsN": 6,
@@ -10672,7 +10717,7 @@
    "revN": 18,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "FN": {
   "checkedAt": "2026-11-03T03:06+00:00",
@@ -10896,7 +10941,8 @@
   "updatedAt": "2026-10-29"
  },
  "GDS": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-13",
@@ -10966,7 +11012,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-18",
    "epsEst": -1.28,
    "epsN": 1,
@@ -10975,7 +11021,7 @@
    "revN": 6,
    "time": "bmo"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "GEV": {
   "checkedAt": "2026-10-29T01:16+00:00",
@@ -11426,7 +11472,8 @@
   "updatedAt": "2026-10-29"
  },
  "GTLB": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-09-01",
@@ -11496,7 +11543,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-12-01",
    "epsEst": 0.2,
    "epsN": 27,
@@ -11505,10 +11552,11 @@
    "revN": 25,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "HPE": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-09-02",
@@ -11578,7 +11626,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-23",
    "epsEst": 1.28,
    "epsN": 19,
@@ -11587,10 +11635,11 @@
    "revN": 18,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "HPQ": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-26",
@@ -11660,7 +11709,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-24",
    "epsEst": 0.75,
    "epsN": 13,
@@ -11669,7 +11718,7 @@
    "revN": 12,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "HUBB": {
   "checkedAt": "2026-10-28T00:47+00:00",
@@ -11893,50 +11942,51 @@
   "updatedAt": "2026-10-30"
  },
  "IFX.DE": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
-    "date": "2026-11-09",
+    "date": "2026-11-10",
     "epsActual": 0.6,
     "epsEst": 0.62,
     "surprise": -3.94,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2026-08-04",
+    "date": "2026-08-05",
     "epsActual": 0.44,
     "epsEst": 0.44,
     "period": "2026-06-30",
     "revActual": 4172000000.0,
     "surprise": -0.59,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2026-05-05",
+    "date": "2026-05-06",
     "epsActual": 0.34,
     "epsEst": 0.37,
     "period": "2026-03-31",
     "revActual": 3813000000.0,
     "surprise": -7.04,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2026-02-03",
+    "date": "2026-02-04",
     "epsActual": 0.35,
     "epsEst": 0.33,
     "period": "2025-12-31",
     "revActual": 3662000000.0,
     "surprise": 4.54,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2025-11-11",
+    "date": "2025-11-12",
     "epsActual": 0.34,
     "epsEst": 0.43,
     "period": "2025-09-30",
     "revActual": 3944000000.0,
     "surprise": -21.08,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2025-08-05",
@@ -11944,25 +11994,22 @@
     "epsEst": 0.34,
     "period": "2025-06-30",
     "revActual": 3704000000.0,
-    "surprise": 10.17,
-    "time": "bmo"
+    "surprise": 10.17
    },
    {
     "date": "2025-05-08",
     "epsActual": 0.35,
     "epsEst": 0.33,
-    "surprise": 7.05,
-    "time": "bmo"
+    "surprise": 7.05
    },
    {
     "date": "2025-02-04",
     "epsActual": 0.33,
     "epsEst": 0.25,
-    "surprise": 30.37,
-    "time": "bmo"
+    "surprise": 30.37
    }
   ],
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "INOD": {
   "checkedAt": "2026-11-06T01:50+00:00",
@@ -12109,7 +12156,8 @@
   "updatedAt": "2026-10-30"
  },
  "INTU": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-25",
@@ -12179,7 +12227,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-19",
    "epsEst": 2.64,
    "epsN": 26,
@@ -12188,7 +12236,7 @@
    "revN": 23,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "IREN": {
   "checkedAt": "2026-11-06T01:50+00:00",
@@ -12858,7 +12906,8 @@
   "updatedAt": "2026-10-30"
  },
  "MDB": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-09-01",
@@ -12928,16 +12977,16 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-12-01",
    "epsEst": 1.61,
    "epsN": 36,
    "estimated": false,
-   "revEst": 761812730.0,
-   "revN": 34,
+   "revEst": 761773220.0,
+   "revN": 35,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "META": {
   "checkedAt": "2026-11-10T22:01+00:00",
@@ -13253,7 +13302,8 @@
   "updatedAt": "2026-11-10"
  },
  "MRVL": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-27",
@@ -13323,7 +13373,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-12-01",
    "epsEst": 1.1,
    "epsN": 32,
@@ -13332,7 +13382,7 @@
    "revN": 30,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "MSFT": {
   "checkedAt": "2026-10-29T01:16+00:00",
@@ -13564,7 +13614,7 @@
   "updatedAt": "2026-11-10"
  },
  "NBIS": {
-  "checkedAt": "2026-11-11T02:53+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
   "dates": "local",
   "history": [
    {
@@ -13877,25 +13927,26 @@
   "updatedAt": "2026-11-10"
  },
  "NKT.CO": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
-    "date": "2026-08-12",
+    "date": "2026-08-13",
     "epsActual": 0.93,
     "epsEst": 0.9,
     "period": "2026-06-30",
     "revActual": 947000000.0,
     "surprise": 3.91,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2026-05-12",
+    "date": "2026-05-13",
     "epsActual": 1.1,
     "epsEst": 0.67,
     "period": "2026-03-31",
     "revActual": 864000000.0,
     "surprise": 65.41,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2026-02-25",
@@ -13946,7 +13997,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-19",
    "epsEst": 1.13,
    "epsN": 3,
@@ -13954,7 +14005,7 @@
    "revEst": 930210800.0,
    "revN": 6
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "NOK": {
   "checkedAt": "2026-11-10T22:19+00:00",
@@ -14189,7 +14240,8 @@
   "updatedAt": "2026-11-10"
  },
  "NTAP": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-09-02",
@@ -14259,7 +14311,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-12-01",
    "epsEst": 2.6,
    "epsN": 19,
@@ -14268,10 +14320,11 @@
    "revN": 17,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "NVDA": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-26",
@@ -14341,7 +14394,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-17",
    "epsEst": 2.47,
    "epsN": 44,
@@ -14350,7 +14403,7 @@
    "revN": 44,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "NVMI": {
   "checkedAt": "2026-11-06T01:50+00:00",
@@ -14867,7 +14920,8 @@
   "updatedAt": "2026-11-10"
  },
  "P": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-26",
@@ -14937,7 +14991,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-18",
    "epsEst": 0.77,
    "epsN": 19,
@@ -14946,10 +15000,11 @@
    "revN": 17,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "PANW": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-09-01",
@@ -15019,7 +15074,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-18",
    "epsEst": 0.97,
    "epsN": 44,
@@ -15028,10 +15083,11 @@
    "revN": 45,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "PDD": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-24",
@@ -15101,7 +15157,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-18",
    "epsEst": 18.84,
    "epsN": 11,
@@ -15110,7 +15166,7 @@
    "revN": 12,
    "time": "bmo"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "PINS": {
   "checkedAt": "2026-10-30T01:23+00:00",
@@ -15258,7 +15314,8 @@
   "updatedAt": "2026-11-03"
  },
  "PONY": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-18",
@@ -15289,7 +15346,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-18",
    "epsEst": -0.18,
    "epsN": 2,
@@ -15298,19 +15355,20 @@
    "revN": 2,
    "time": "bmo"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "PRY.MI": {
-  "checkedAt": "2026-11-10T22:19+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
-    "date": "2026-10-29",
+    "date": "2026-10-30",
     "epsActual": 1.54,
     "epsEst": 1.43,
     "period": "2026-09-30",
     "revActual": 6417000000.0,
     "surprise": 7.62,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2026-07-30",
@@ -15339,11 +15397,11 @@
     "surprise": -6.4
    },
    {
-    "date": "2025-10-29",
+    "date": "2025-10-30",
     "epsActual": 1.23,
     "epsEst": 1.24,
     "surprise": -0.67,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2025-07-31",
@@ -15351,28 +15409,27 @@
     "epsEst": 0.92,
     "period": "2025-06-30",
     "revActual": 4883000000.0,
-    "surprise": 4.0,
-    "time": "bmo"
+    "surprise": 4.0
    },
    {
-    "date": "2025-05-07",
+    "date": "2025-05-08",
     "epsActual": 0.75,
     "epsEst": 0.87,
     "period": "2025-03-31",
     "revActual": 4771000000.0,
     "surprise": -13.33,
-    "time": "amc"
+    "time": "bmo"
    },
    {
-    "date": "2025-02-26",
+    "date": "2025-02-27",
     "epsActual": 0.62,
     "epsEst": 0.91,
     "surprise": -32.42,
-    "time": "amc"
+    "time": "bmo"
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2027-02-25",
    "epsEst": 1.39,
    "epsN": 1,
@@ -15380,7 +15437,7 @@
    "revEst": 6397576140.0,
    "revN": 2
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "PTC": {
   "checkedAt": "2026-11-05T01:49+00:00",
@@ -16050,7 +16107,7 @@
   "updatedAt": "2026-11-04"
  },
  "SIE.DE": {
-  "checkedAt": "2026-11-11T02:53+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
   "dates": "local",
   "history": [
    {
@@ -16406,7 +16463,8 @@
   "updatedAt": "2026-10-30"
  },
  "SNOW": {
-  "checkedAt": "2026-11-10T22:19+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-05-27",
@@ -16474,7 +16532,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-12-02",
    "epsEst": 0.6,
    "epsN": 41,
@@ -16483,7 +16541,7 @@
    "revN": 39,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "SNPS": {
   "checkedAt": "2026-11-10T22:19+00:00",
@@ -16950,14 +17008,15 @@
   "updatedAt": "2026-10-28"
  },
  "SU.PA": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
-    "date": "2020-07-28",
+    "date": "2020-07-29",
     "epsActual": 0.7,
     "epsEst": 1.23,
     "surprise": -43.09,
-    "time": "amc"
+    "time": "bmo"
    },
    {
     "date": "2018-10-25",
@@ -16977,8 +17036,7 @@
     "date": "2010-07-30",
     "epsActual": 0.64,
     "epsEst": 0.65,
-    "surprise": -1.33,
-    "time": "bmo"
+    "surprise": -1.33
    },
    {
     "date": "2010-04-22",
@@ -16991,8 +17049,7 @@
     "date": "2010-02-18",
     "epsActual": 0.54,
     "epsEst": 0.65,
-    "surprise": -17.07,
-    "time": "bmo"
+    "surprise": -17.07
    },
    {
     "date": "2009-10-22",
@@ -17002,13 +17059,13 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2027-02-18",
    "estimated": false,
    "revEst": 12709679000.0,
    "revN": 1
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "TEAM": {
   "checkedAt": "2026-11-06T01:50+00:00",
@@ -18302,7 +18359,8 @@
   "updatedAt": "2026-10-28"
  },
  "VNET": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-18",
@@ -18372,7 +18430,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-23",
    "epsEst": -0.22,
    "epsN": 2,
@@ -18381,7 +18439,7 @@
    "revN": 5,
    "time": "bmo"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "VRT": {
   "checkedAt": "2026-10-29T01:16+00:00",
@@ -18531,7 +18589,8 @@
   "updatedAt": "2026-11-07"
  },
  "WDAY": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-27",
@@ -18601,7 +18660,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-24",
    "epsEst": 2.74,
    "epsN": 36,
@@ -18610,7 +18669,7 @@
    "revN": 34,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "WDC": {
   "checkedAt": "2026-10-23T00:11+00:00",
@@ -18761,7 +18820,8 @@
   "updatedAt": "2026-11-03"
  },
  "WRD": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-12",
@@ -18792,7 +18852,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-20",
    "epsEst": -0.99,
    "epsN": 1,
@@ -18801,7 +18861,7 @@
    "revN": 2,
    "time": "bmo"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "WRT1V.HE": {
   "checkedAt": "2026-10-28T02:25+00:00",
@@ -18953,7 +19013,8 @@
   "updatedAt": "2026-11-07"
  },
  "XPEV": {
-  "checkedAt": "2026-11-10T21:42+00:00",
+  "checkedAt": "2026-11-11T09:20+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-08-24",
@@ -19023,7 +19084,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
+   "asOf": "2026-11-11",
    "date": "2026-11-16",
    "epsEst": -0.7,
    "epsN": 2,
@@ -19032,7 +19093,7 @@
    "revN": 9,
    "time": "bmo"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-11"
  },
  "ZS": {
   "checkedAt": "2026-11-11T01:31+00:00",
