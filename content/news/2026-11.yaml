@@ -1,5 +1,145 @@
 month: 2026-11
 items:
+  - id: 2026-11-10-coreweave-q3-2026-results
+    date: 2026-11-10
+    title: "CoreWeave raises 2026 guidance as backlog reaches $132.5 billion"
+    summary: "CoreWeave's third-quarter revenue rose to $3.66 billion from $1.37 billion a year earlier, and its net loss of $1.27 per share was narrower than the $1.55 expected. Backlog reached about $132.5 billion, and it raised 2026 guidance to $13.0 to $13.3 billion of revenue and $1.275 to $1.375 billion of adjusted operating income."
+    source: { name: "CoreWeave", url: "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Third-Quarter-2026-Results/default.aspx" }
+    companies: [coreweave]
+    nodes: [infrastructure/cloud/neoclouds]
+    themes: [capex, data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-10-infineon-fq4-2026-results
+    date: 2026-11-10
+    title: "Infineon guides to about €20 billion of revenue in fiscal 2027"
+    summary: "Infineon's fiscal fourth-quarter revenue rose 19% from a year earlier to €4.706 billion, with a segment result margin of 23.8%. EPS of €0.60 was just below the €0.62 expected. For fiscal 2027 it expects revenue of about €20 billion, more than 20% growth, with data center power supplies close to €4 billion."
+    source: { name: "Infineon", url: "https://www.infineon.com/press-release/2026/infpr202611-025" }
+    companies: [infineon]
+    nodes: [chips/connectivity-power/power-semis]
+    themes: [power-bottleneck, data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-10-softbank-fq2-2027-results
+    date: 2026-11-10
+    title: "SoftBank Group swings to a $7 billion quarterly loss"
+    summary: "SoftBank Group posted a net loss of about ¥1.1 trillion (about $7 billion) for July to September, its first quarterly loss in two years, or ¥196.54 per share against an expected profit of ¥10.18. A $3.7 billion charge tied to advance payments for US data center power equipment, including an Ohio project, was the largest drag."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/10/softbank-2q-earnings-tech-selloff.html" }
+    companies: [softbank]
+    nodes: [models/frontier-labs/listed-exposure]
+    themes: [capex, data-centers]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-10-fujikura-h1-fy2026-results
+    date: 2026-11-10
+    title: "Fujikura's first-half operating profit rises 161% on data center demand"
+    summary: "Fujikura's net sales rose 55% to ¥867.4 billion in the six months to September, and operating profit rose 161% to ¥235 billion. Quarterly EPS of ¥60.29 beat the ¥48.43 expected. It now expects full-year net sales of ¥1.768 trillion and operating profit of ¥429 billion, slightly below the ¥432 billion it guided in August."
+    source: { name: "Investing.com", url: "https://www.investing.com/news/earnings/fujikura-raises-fullyear-forecast-after-1h-operating-profit-more-than-doubles-5014117" }
+    companies: [fujikura]
+    nodes: [infrastructure/networking/fiber]
+    themes: [optical, data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-10-avc-q3-2026-results
+    date: 2026-11-10
+    title: "AVC posts record quarter as revenue rises 52%"
+    summary: "Asia Vital Components' third-quarter revenue rose 51.8% from a year earlier to NT$59.09 billion, against NT$57.80 billion expected, and EPS of NT$29.32 beat the NT$28.10 expected. Gross margin rose to 33.86%, and the company said it remains positive on the fourth quarter and 2027."
+    source: { name: "CNA", url: "https://www.cna.com.tw/news/afe/202611100249.aspx" }
+    companies: [avc]
+    nodes: [infrastructure/thermal/liquid-cooling]
+    themes: [liquid-cooling]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-10-anthropic-ipo-price-range
+    date: 2026-11-10
+    title: "Anthropic sets IPO range of $70 to $78 a share"
+    summary: "Anthropic plans to sell 825 million shares at $70 to $78 each and start trading on Nasdaq on Nov. 19 under the ticker ANT, CNBC reported. The top of the range would raise about $64 billion and, per TechCrunch, value the company at up to $1.404 trillion on a fully diluted basis."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/10/anthropic-sets-price-range-of-70-to-78-in-upcoming-ipo.html" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: neutral
+    importance: 3
+
+  - id: 2026-11-10-google-gemini-4-carbon
+    date: 2026-11-10
+    title: "Google releases Gemini 4 Carbon, its strongest model"
+    summary: "Google made Gemini 4 Carbon available to developers, enterprises and consumers, aimed at long-horizon agentic work, coding and cybersecurity. Google said it ranks first on CursorBench 4.0, Perplexity's WANDR and Zapier's AutomationBench at less than half the cost per task of the next best external model."
+    source: { name: "Google", url: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/" }
+    companies: [alphabet]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [agents, coding]
+    impact: positive
+    importance: 3
+
+  - id: 2026-11-10-tsmc-october-2026-revenue
+    date: 2026-11-10
+    title: "TSMC's October revenue hits a record NT$586.9 billion, up 60%"
+    summary: "TSMC's October revenue was about NT$586.89 billion, up 14.7% from September and 59.7% from a year earlier. Revenue for January to October totaled NT$4,485.62 billion, up 43.3%."
+    source: { name: "TSMC", url: "https://pr.tsmc.com/english/news/3349" }
+    companies: [tsmc]
+    nodes: [chips/foundry-packaging/leading-edge]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-10-alibaba-t-head-spin-off
+    date: 2026-11-10
+    title: "Alibaba proposes a separate Hong Kong listing for chip unit T-Head"
+    summary: "Alibaba told the Hong Kong exchange it proposes to spin off chip-design unit T-Head and list it on the Main Board, after a confidential filing in September. The listing still needs approval from the exchange's listing committee and a filing with China's securities regulator, and Alibaba says there is no assurance it will happen."
+    source: { name: "Alibaba (SEC 6-K)", url: "https://www.sec.gov/Archives/edgar/data/0001577552/000110465926124859/tm2629456d1_6k.htm" }
+    companies: [alibaba]
+    nodes: [chips/compute/china-accelerators]
+    themes: [china-ai, custom-asic]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-11-09-long-mott-smr-construction-permit
+    date: 2026-11-09
+    title: "NRC issues construction permit for Dow and X-energy's Texas SMR plant"
+    summary: "The NRC issued a construction permit for the Long Mott Generating Station, four 80 MWe Xe-100 reactors at Dow's Seadrift, Texas site, the first for a high-temperature gas-cooled reactor in the US in nearly 60 years. Dow said the permit is not a final investment decision and expects to consider a preliminary one in 2027."
+    source: { name: "Dow", url: "https://corporate.dow.com/en-us/news/press-releases/dows-long-mott-generating-station-receives-nrc-construction-permit.html" }
+    companies: []
+    nodes: [energy/generation-equipment/nuclear-smr]
+    themes: [nuclear]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-09-norway-pauses-data-center-grid-reservations
+    date: 2026-11-09
+    title: "Norway's grid operator pauses new data center grid reservations"
+    summary: "Statnett stopped new grid capacity reservations for data centers until no later than Aug. 1, 2027, while it writes technical rules for their fast-changing loads. About 800 MW of data centers are connected, 4.2 GW reserved and 9.1 GW queued, and the government proposed a licensing regime for new sites."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/norway-halts-grid-connection-applications-for-new-data-centers/" }
+    companies: []
+    nodes: [energy/power-producers/to-data-centers]
+    themes: [power-bottleneck, data-centers]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-09-softbank-grab-petros-sarawak
+    date: 2026-11-09
+    title: "SoftBank, Grab and Petros commit $1 billion to Sarawak AI infrastructure"
+    summary: "SoftBank Group, Grab and Sarawak's Petros plan $1 billion of initial seed capital for AI infrastructure in Sarawak, Malaysia: $800 million from SoftBank and $100 million each from Grab and Petros. The SoftBank-led project has a long-term target of 5 GW of AI compute, with money deployed in stages as customer contracts are signed."
+    source: { name: "SoftBank Group", url: "https://group.softbank/en/news/press/20261109" }
+    companies: [softbank]
+    nodes: [infrastructure/data-centers/ai-campuses]
+    themes: [sovereign-ai, data-centers]
+    impact: positive
+    importance: 1
+
+  - id: 2026-11-09-tesla-china-october-retail
+    date: 2026-11-09
+    title: "Tesla's China retail sales fall 66% to the lowest since 2022"
+    summary: "Tesla sold an estimated 8,817 cars in China in October, down 66% from a year earlier and the lowest since July 2022, based on CPCA data. Exports from Shanghai reached 59,012, about 87% of its 67,829 wholesale shipments."
+    source: { name: "CnEVPost", url: "https://cnevpost.com/2026/11/09/tesla-retail-sales-china-oct-2026/" }
+    companies: [tesla]
+    nodes: [applications/physical-ai/autonomous-driving]
+    impact: negative
+    importance: 1
+
   - id: 2026-11-09-constellation-q3-2026-results
     date: 2026-11-09
     title: "Constellation beats on EPS and raises its 2026 earnings guidance"
