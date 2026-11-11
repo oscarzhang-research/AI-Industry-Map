@@ -7,13 +7,13 @@
   "skipped": 1,
   "targets": 120
  },
- "seconds": 20.9,
+ "seconds": 4.0,
  "tw": {
-  "backfilled": 21,
+  "backfilled": 0,
   "failed": [],
   "latestMonth": "2026-10",
   "ok": 25,
   "targets": 25
  },
- "updatedAt": "2026-11-11T09:22:18+00:00"
+ "updatedAt": "2026-11-11T11:58:51+00:00"
 }
