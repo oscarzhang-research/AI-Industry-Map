@@ -1534,7 +1534,7 @@
   "updatedAt": "2026-11-12"
  },
  "0981.HK": {
-  "checkedAt": "2026-11-12T09:47+00:00",
+  "checkedAt": "2026-11-12T11:55+00:00",
   "dates": "local",
   "history": [
    {
@@ -1885,7 +1885,7 @@
   "updatedAt": "2026-11-12"
  },
  "2059.TW": {
-  "checkedAt": "2026-11-12T02:33+00:00",
+  "checkedAt": "2026-11-12T11:55+00:00",
   "dates": "local",
   "history": [
    {
@@ -1953,6 +1953,15 @@
     "time": "amc"
    }
   ],
+  "next": {
+   "asOf": "2026-11-12",
+   "date": "2026-11-12",
+   "epsEst": 115.53,
+   "epsN": 10,
+   "estimated": true,
+   "revEst": 16910850840.0,
+   "revN": 9
+  },
   "pending": {
    "asOf": "2026-11-11",
    "date": "2026-11-11",
@@ -2144,7 +2153,7 @@
   "updatedAt": "2026-11-10"
  },
  "2317.TW": {
-  "checkedAt": "2026-11-12T09:47+00:00",
+  "checkedAt": "2026-11-12T11:55+00:00",
   "dates": "local",
   "history": [
    {
@@ -2226,7 +2235,7 @@
   "updatedAt": "2026-11-12"
  },
  "2345.TW": {
-  "checkedAt": "2026-11-12T09:47+00:00",
+  "checkedAt": "2026-11-12T11:55+00:00",
   "dates": "local",
   "history": [
    {
@@ -5656,7 +5665,7 @@
   "updatedAt": "2026-11-10"
  },
  "6268.T": {
-  "checkedAt": "2026-11-12T09:47+00:00",
+  "checkedAt": "2026-11-12T11:55+00:00",
   "dates": "local",
   "history": [
    {
@@ -8068,7 +8077,7 @@
   "updatedAt": "2026-11-04"
  },
  "AMAT": {
-  "checkedAt": "2026-11-12T09:47+00:00",
+  "checkedAt": "2026-11-12T11:55+00:00",
   "dates": "local",
   "history": [
    {
@@ -9631,7 +9640,7 @@
   "updatedAt": "2026-10-30"
  },
  "CBRS": {
-  "checkedAt": "2026-11-12T09:47+00:00",
+  "checkedAt": "2026-11-12T11:55+00:00",
   "dates": "local",
   "history": [
    {
@@ -10664,7 +10673,7 @@
   "updatedAt": "2026-11-11"
  },
  "CSCO": {
-  "checkedAt": "2026-11-12T09:47+00:00",
+  "checkedAt": "2026-11-12T11:55+00:00",
   "dates": "local",
   "history": [
    {
@@ -15368,7 +15377,7 @@
   "updatedAt": "2026-11-10"
  },
  "NBIS": {
-  "checkedAt": "2026-11-12T09:47+00:00",
+  "checkedAt": "2026-11-12T11:55+00:00",
   "dates": "local",
   "history": [
    {
@@ -18018,7 +18027,7 @@
   "updatedAt": "2026-11-04"
  },
  "SIE.DE": {
-  "checkedAt": "2026-11-12T09:47+00:00",
+  "checkedAt": "2026-11-12T11:55+00:00",
   "dates": "local",
   "history": [
    {
@@ -18091,10 +18100,10 @@
    "asOf": "2026-11-12",
    "date": "2026-11-12",
    "epsEst": 2.81,
-   "epsN": 5,
+   "epsN": 1,
    "estimated": false,
-   "revEst": 23239932540.0,
-   "revN": 8
+   "revEst": 21715638000.0,
+   "revN": 1
   },
   "updatedAt": "2026-11-12"
  },
