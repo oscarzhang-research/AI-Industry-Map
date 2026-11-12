@@ -1,5 +1,60 @@
 month: 2026-11
 items:
+  - id: 2026-11-11-siemens-energy-fq4-2026-results
+    date: 2026-11-11
+    title: "Siemens Energy posts record quarter and guides to 14% to 16% growth"
+    summary: "Siemens Energy's fiscal fourth-quarter revenue reached a record €12.8 billion, up 21.5% on a comparable basis and above the €12.66 billion expected, while EPS of €1.32 missed the €1.38 expected. For fiscal 2027 it expects comparable revenue growth of 14% to 16%, a profit margin before special items of 14% to 16% and about €10 billion of pre-tax free cash flow, with a record €164 billion backlog."
+    source: { name: "Siemens Energy", url: "https://www.siemens-energy.com/global/en/home/press-releases/earnings-release-q4-fy-2026--siemens-energy-reports-a-record-yea.html" }
+    companies: [siemens-energy]
+    nodes: [energy/generation-equipment/gas-turbines, energy/grid/transformers]
+    themes: [power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-11-quanta-q3-2026-results
+    date: 2026-11-11
+    title: "Quanta's third-quarter revenue more than doubles on AI servers"
+    summary: "Quanta's third-quarter revenue rose 125% from a year earlier to about NT$1.12 trillion, above the NT$1.10 trillion expected, and EPS of NT$7.08 was just below the NT$7.15 expected. The company said AI server production capacity remains on track to double by the end of 2026 from a year earlier."
+    source: { name: "CNA", url: "https://www.cna.com.tw/news/afe/202611110267.aspx" }
+    companies: [quanta-computer]
+    nodes: [infrastructure/servers/odm]
+    themes: [capex]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-11-11-google-gemini-decisions-api
+    date: 2026-11-11
+    title: "Google launches a Gemini API for fast yes-or-no and multiple-choice decisions"
+    summary: "Google released the Gemini Decisions API, powered by a new Gemini Decision 1 model, for bounded choices such as tool selection, policy checks and model routing. It scores up to 1,000 questions against one multimodal input of up to 256,000 tokens in a single pass instead of generating text."
+    source: { name: "Google", url: "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" }
+    companies: [alphabet]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [agents, inference]
+    impact: positive
+    importance: 1
+
+  - id: 2026-11-10-opg-darlington-smr-delay
+    date: 2026-11-10
+    title: "Ontario's first BWRX-300 reactor will miss its 2030 date and C$7.7 billion budget"
+    summary: "Ontario Power Generation said the first BWRX-300 small modular reactor at Darlington will not reach commercial operation by October 2030 or be finished within its C$7.7 billion estimate, citing first-of-a-kind engineering and supply chain pressures. It expects a revised cost and schedule by mid-2027."
+    source: { name: "World Nuclear News", url: "https://www.world-nuclear-news.org/articles/opg-to-revise-timeline-and-cost-of-first-smr-unit" }
+    companies: [ge-vernova]
+    nodes: [energy/generation-equipment/nuclear-smr]
+    themes: [nuclear]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-10-ibm-microsoft-agent-platform
+    date: 2026-11-10
+    title: "IBM and Microsoft launch a joint platform for industry AI agents"
+    summary: "IBM and Microsoft launched a platform for enterprises to build, run and govern AI agents for industry-specific work. IBM Consulting supplies more than 6,000 pre-built agents, and Microsoft provides the AI, cloud and security layer."
+    source: { name: "IBM Newsroom", url: "https://newsroom.ibm.com/2026-11-10-ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation" }
+    companies: [microsoft]
+    nodes: [applications/enterprise/productivity]
+    themes: [agents]
+    impact: positive
+    importance: 1
+
   - id: 2026-11-10-coreweave-q3-2026-results
     date: 2026-11-10
     title: "CoreWeave raises 2026 guidance as backlog reaches $132.5 billion"
