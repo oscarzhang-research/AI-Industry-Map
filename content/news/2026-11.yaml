@@ -1,5 +1,114 @@
 month: 2026-11
 items:
+  - id: 2026-11-12-nvidia-ceo-transition
+    date: 2026-11-12
+    title: "Jensen Huang resigns as Nvidia CEO; CFO Colette Kress becomes interim CEO"
+    summary: "Nvidia's board said Jensen Huang resigned as president, CEO and director, effective immediately. CFO Colette Kress will serve as interim CEO while keeping her finance role, the board will consider internal and external candidates for a permanent CEO, and former Synopsys CEO Harvey Jones becomes Nvidia's first board chair."
+    source: { name: "NVIDIA Newsroom", url: "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    impact: negative
+    importance: 3
+
+  - id: 2026-11-12-google-gemini-4-hydrogen
+    date: 2026-11-12
+    title: "Google releases Gemini 4 Hydrogen across Search, the Gemini app and its API"
+    summary: "Google released Gemini 4 Hydrogen, a faster model for everyday coding and agentic work, to all tiers of its API, AI Studio, the Gemini app and Search. Google said it scores 51 on the Artificial Analysis Intelligence Index against 50 for Gemini 4 Argon, at $1.50 per million input tokens and $7.50 per million output tokens across a 1 million-token context."
+    source: { name: "Google", url: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/" }
+    companies: [alphabet]
+    nodes: [models/frontier-labs/closed-frontier, applications/assistants/ai-search]
+    themes: [agents, coding, inference]
+    impact: positive
+    importance: 3
+
+  - id: 2026-11-12-applied-materials-fq4-2026-results
+    date: 2026-11-12
+    title: "Applied Materials posts record $10.41 billion quarter and guides higher"
+    summary: "Applied Materials' fiscal fourth-quarter revenue rose 53% from a year earlier to a record $10.41 billion, just above the $10.30 billion expected, and non-GAAP EPS of $4.16 beat the $4.05 expected. It guided first-quarter revenue to about $11.1 billion, plus or minus $500 million, and non-GAAP EPS to $4.35, plus or minus $0.20."
+    source: { name: "Applied Materials", url: "https://ir.appliedmaterials.com/news-releases/news-release-details/applied-materials-announces-fourth-quarter-and-fiscal-year-2026" }
+    companies: [applied-materials]
+    nodes: [chips/equipment/deposition-etch]
+    themes: [capex]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-12-cisco-fq1-2027-results
+    date: 2026-11-12
+    title: "Cisco raises its AI infrastructure revenue target to $9 billion"
+    summary: "Cisco's fiscal first-quarter revenue rose 24% to about $18.5 billion, above the $18.13 billion expected, and non-GAAP EPS of $1.40 beat the $1.33 expected. It now expects about $9 billion of hyperscaler AI revenue this fiscal year, up from $7.5 billion, and raised full-year revenue guidance to $74.8 billion to $75.8 billion."
+    source: { name: "Cisco Newsroom", url: "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m11/cisco-reports-first-quarter-earnings.html" }
+    companies: [cisco]
+    nodes: [infrastructure/networking/switches]
+    themes: [data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-12-nebius-q3-2026-results
+    date: 2026-11-12
+    title: "Nebius beats on revenue but points to the low end of its 2026 range"
+    summary: "Nebius' third-quarter revenue rose to $980.8 million from $146.1 million a year earlier, above the $907 million expected, and its loss of $0.13 per share was far narrower than the $1.24 expected. It now expects 2026 revenue at the low end of $3.0 billion to $3.4 billion as partner co-location sites run late, guided to $12 billion to $13 billion of revenue in 2027, and expects about $27 billion of 2026 capex."
+    source: { name: "Nebius (SEC 6-K)", url: "https://www.sec.gov/Archives/edgar/data/0001513845/000110465926126238/nbis-ex99d1.htm" }
+    companies: [nebius]
+    nodes: [infrastructure/cloud/neoclouds]
+    themes: [capex, data-centers]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-11-12-smic-q3-2026-results
+    date: 2026-11-12
+    title: "SMIC posts record $3.19 billion quarter with a 29.9% gross margin"
+    summary: "SMIC's third-quarter revenue rose 6.1% from the prior quarter to a record $3.19 billion, above the $3.09 billion expected, and EPS of $0.05 matched the consensus. Gross margin rose to 29.9%, and it guided fourth-quarter revenue up 4% to 6% with a gross margin of 26% to 28%."
+    source: { name: "SMIC (via TipRanks)", url: "https://www.tipranks.com/news/company-announcements/smic-reports-third-quarter-2026-unaudited-results" }
+    companies: [smic]
+    nodes: [chips/foundry-packaging/mature-foundry]
+    themes: [china-ai]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-12-accton-q3-2026-results
+    date: 2026-11-12
+    title: "Accton's revenue rises 66% but EPS misses as gross margin slips"
+    summary: "Accton's third-quarter revenue rose 65.5% from a year earlier to NT$120.74 billion, above the NT$118.30 billion expected, while EPS of NT$23.39, a record, missed the NT$24.78 expected. Gross margin fell to about 17.6% from 19.7% in the prior quarter."
+    source: { name: "Commercial Times", url: "https://www.ctee.com.tw/news/20261112701908-430502" }
+    companies: [accton]
+    nodes: [infrastructure/networking/switches]
+    themes: [data-centers]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-11-12-oklo-groves-cleared-for-operations
+    date: 2026-11-12
+    title: "DOE clears Oklo's Groves test reactor for unrestricted operations"
+    summary: "The US Department of Energy cleared the final operations hold point for Oklo's Groves-1 test reactor in Lockhart, Texas, letting it move into research, testing and training. Oklo will use the low-power reactor to test capabilities for its isotope reactors and its Aurora fast reactor."
+    source: { name: "Oklo", url: "https://oklo.com/newsroom/oklos-groves-1-to-begin-research-and-demonstration-phase-after-being-cleared-by-u-s-department-o" }
+    companies: [oklo]
+    nodes: [energy/generation-equipment/nuclear-smr]
+    themes: [nuclear]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-11-vertiv-powernexus-mv-ups
+    date: 2026-11-11
+    title: "Vertiv launches an outdoor medium-voltage UPS for AI data centers"
+    summary: "Vertiv introduced the PowerNexus MV UPS, an outdoor medium-voltage system that combines backup power, fault ride-through and AI load smoothing at the grid connection point, with up to 98.5% peak efficiency. Vertiv said it can cut reliance on diesel generators and free indoor space for compute, with shipments from mid-2027."
+    source: { name: "Vertiv", url: "https://investors.vertiv.com/news/news-details/2026/Vertiv-Introduces-Medium-Voltage-Power-System-to-Help-AI-Data-Centers-Connect-to-the-Grid-Faster-and-Free-Indoor-Space-for-Compute/default.aspx" }
+    companies: [vertiv]
+    nodes: [infrastructure/power-delivery/ups-switchgear]
+    themes: [power-bottleneck, data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-12-meta-low-carbon-materials-commitments
+    date: 2026-11-12
+    title: "Meta signs long-term purchase deals for low-carbon data center materials"
+    summary: "Meta signed multi-year purchase commitments for lower-carbon cement, steel, trucking and recycled plastics used to build and supply its data centers. It said the deals give suppliers revenue certainty to scale these products commercially."
+    source: { name: "Meta Newsroom", url: "https://about.fb.com/news/2026/11/meta-new-agreements-clean-manufacturing-data-center-supply-chains/" }
+    companies: [meta]
+    nodes: [infrastructure/data-centers/construction]
+    themes: [data-centers]
+    impact: neutral
+    importance: 1
+
   - id: 2026-11-11-siemens-energy-fq4-2026-results
     date: 2026-11-11
     title: "Siemens Energy posts record quarter and guides to 14% to 16% growth"
