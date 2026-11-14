@@ -1,5 +1,60 @@
 month: 2026-11
 items:
+  - id: 2026-11-13-centrus-oklo-haleu-agreements
+    date: 2026-11-13
+    title: "Centrus and Oklo sign definitive fuel deals for Meta's Ohio nuclear campus"
+    summary: "Oklo and Centrus finalized agreements for enough HALEU fuel to run up to five Aurora powerhouses for multiple years at Oklo's planned 1.2 GW Ohio campus for Meta, with deliveries from Centrus' Piketon plant starting in 2029. The deals formalize a June letter of intent and include prepayments and advances to Centrus."
+    source: { name: "Oklo", url: "https://oklo.com/newsroom/oklo-centrus-secure-fuel-supply-for-aurora-powerhouse-deployment-in-ohio" }
+    companies: [oklo, centrus, meta]
+    nodes: [energy/fuel/enrichment-fuel, energy/generation-equipment/nuclear-smr]
+    themes: [nuclear, power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-13-bwxt-cambridge-expansion-complete
+    date: 2026-11-13
+    title: "BWXT completes C$80 million expansion of its Ontario nuclear component plant"
+    summary: "BWX Technologies finished a C$80 million (about $56 million) expansion of its Cambridge, Ontario plant, which makes large components for conventional and advanced reactors. The company had said the project would raise its capacity for large nuclear components by 50%."
+    source: { name: "World Nuclear News", url: "https://www.world-nuclear-news.org/articles/bwxt-manufacturing-facility-expansion-complete" }
+    companies: [bwx-technologies]
+    nodes: [energy/generation-equipment/nuclear-smr]
+    themes: [nuclear]
+    impact: positive
+    importance: 1
+
+  - id: 2026-11-12-cerebras-q3-2026-microsoft
+    date: 2026-11-12
+    title: "Cerebras raises 2026 outlook and adds Microsoft as a cloud customer"
+    summary: "Cerebras' third-quarter GAAP revenue rose 55% to $210.8 million, with cloud revenue up 272% to $144.9 million. It raised 2026 core revenue guidance to $940 million to $960 million and signed a cloud infrastructure agreement with Microsoft, its third hyperscaler customer after AWS and Oracle, with revenue expected from 2027."
+    source: { name: "Cerebras (SEC 8-K)", url: "https://www.sec.gov/Archives/edgar/data/0002021728/000162828026073366/cbrsannouncesfinancialresu.htm" }
+    companies: [cerebras, microsoft]
+    nodes: [chips/compute/ai-chip-challengers]
+    themes: [inference]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-13-openai-chatgpt-wallet
+    date: 2026-11-13
+    title: "OpenAI launches ChatGPT Wallet so its agents can make purchases"
+    summary: "OpenAI introduced ChatGPT Wallet, which lets agents in ChatGPT Work, Codex and its dots agents complete purchases for users. Each purchase needs the user's approval and keeps existing card protections."
+    source: { name: "OpenAI", url: "https://openai.com/index/introducing-chatgpt-wallet" }
+    companies: [openai]
+    nodes: [applications/assistants/chat-assistants]
+    themes: [agents]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-12-hon-hai-q3-2026-results
+    date: 2026-11-12
+    title: "Hon Hai posts record quarterly profit as revenue passes NT$3 trillion"
+    summary: "Hon Hai's third-quarter revenue rose 46% from a year earlier to NT$3.016 trillion, above the NT$2.87 trillion expected, and EPS of NT$5.51, a record, beat the NT$5.40 expected. Gross margin slipped to 6.02%, and the company raised its full-year outlook and expects AI rack shipments to grow by a high double-digit rate in 2027."
+    source: { name: "Liberty Times", url: "https://ec.ltn.com.tw/article/breakingnews/5638438" }
+    companies: [hon-hai]
+    nodes: [infrastructure/servers/odm]
+    themes: [capex]
+    impact: positive
+    importance: 2
+
   - id: 2026-11-12-nvidia-ceo-transition
     date: 2026-11-12
     title: "Jensen Huang resigns as Nvidia CEO; CFO Colette Kress becomes interim CEO"
