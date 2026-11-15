@@ -1,5 +1,27 @@
 month: 2026-11
 items:
+  - id: 2026-11-14-doe-campbell-coal-order-winter
+    date: 2026-11-14
+    title: "DOE orders Michigan's Campbell coal plant kept available through the winter"
+    summary: "The Department of Energy issued another emergency order directing MISO and Consumers Energy to keep the coal-fired J.H. Campbell plant in West Olive, Michigan, available to run during winter. The plant was originally due to close on May 31, 2025."
+    source: { name: "U.S. Department of Energy", url: "https://www.energy.gov/articles/energy-secretary-keeps-critical-coal-fired-generation-operational-ahead-winter-midwest" }
+    companies: []
+    nodes: [energy/power-producers/utilities]
+    themes: [power-bottleneck]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-11-13-tesla-cybercab-personal-orders
+    date: 2026-11-13
+    title: "Tesla opens Cybercab orders to select buyers at $29,990 plus $299 a month"
+    summary: "Tesla invited selected US customers to order a Cybercab for personal use at an estimated $29,990, with a $1,000 non-refundable deposit and estimated delivery in December 2026 in Austin. The car runs only with a $299-a-month Autonomy Subscription and only inside Tesla's Robotaxi service areas."
+    source: { name: "Fox Business", url: "https://www.foxbusiness.com/technology/tesla-makes-major-cybercab-announcement-driverless-vehicle-goes-sale" }
+    companies: [tesla]
+    nodes: [applications/physical-ai/autonomous-driving]
+    themes: [robotics]
+    impact: mixed
+    importance: 2
+
   - id: 2026-11-13-centrus-oklo-haleu-agreements
     date: 2026-11-13
     title: "Centrus and Oklo sign definitive fuel deals for Meta's Ohio nuclear campus"
