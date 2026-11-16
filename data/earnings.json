@@ -1466,7 +1466,7 @@
   "updatedAt": "2026-11-11"
  },
  "0700.HK": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -1597,7 +1597,7 @@
   "updatedAt": "2026-11-12"
  },
  "0992.HK": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -1667,7 +1667,7 @@
   "updatedAt": "2026-11-16"
  },
  "1024.HK": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -1801,7 +1801,7 @@
   "updatedAt": "2026-11-11"
  },
  "1810.HK": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -4202,7 +4202,7 @@
   "updatedAt": "2026-11-10"
  },
  "3690.HK": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -4344,7 +4344,7 @@
   "updatedAt": "2026-11-11"
  },
  "4004.T": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -5701,7 +5701,7 @@
   "updatedAt": "2026-11-13"
  },
  "6324.T": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -7827,7 +7827,7 @@
   "updatedAt": "2026-11-10"
  },
  "ADSK": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -9100,7 +9100,7 @@
   "updatedAt": "2026-11-10"
  },
  "BABA": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -9350,13 +9350,14 @@
   "updatedAt": "2026-11-11"
  },
  "BIDU": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
     "date": "2026-11-16",
     "epsActual": 6.78,
     "epsEst": 6.16,
+    "revEst": 32997529680.0,
     "surprise": 10.02,
     "time": "bmo"
    },
@@ -9420,16 +9421,6 @@
     "time": "bmo"
    }
   ],
-  "next": {
-   "asOf": "2026-11-16",
-   "date": "2026-11-16",
-   "epsEst": 6.16,
-   "epsN": 12,
-   "estimated": false,
-   "revEst": 32997529680.0,
-   "revN": 16,
-   "time": "bmo"
-  },
   "updatedAt": "2026-11-16"
  },
  "BWXT": {
@@ -10377,7 +10368,7 @@
   "updatedAt": "2026-11-06"
  },
  "CRDO": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -10460,7 +10451,7 @@
   "updatedAt": "2026-11-16"
  },
  "CRM": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -10543,7 +10534,7 @@
   "updatedAt": "2026-11-16"
  },
  "CRWD": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -10917,7 +10908,7 @@
   "updatedAt": "2026-11-05"
  },
  "DELL": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -11704,7 +11695,7 @@
   "updatedAt": "2026-10-28"
  },
  "ESTC": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -12242,7 +12233,7 @@
   "updatedAt": "2026-11-10"
  },
  "FLNC": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -12546,7 +12537,7 @@
   "updatedAt": "2026-10-29"
  },
  "GDS": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -13077,7 +13068,7 @@
   "updatedAt": "2026-10-29"
  },
  "GTLB": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -13160,7 +13151,7 @@
   "updatedAt": "2026-11-16"
  },
  "HPE": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -13243,7 +13234,7 @@
   "updatedAt": "2026-11-16"
  },
  "HPQ": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -13774,7 +13765,7 @@
   "updatedAt": "2026-10-30"
  },
  "INTU": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -14715,7 +14706,7 @@
   "updatedAt": "2026-10-30"
  },
  "MDB": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -15124,7 +15115,7 @@
   "updatedAt": "2026-11-10"
  },
  "MRVL": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -15779,7 +15770,7 @@
   "updatedAt": "2026-11-10"
  },
  "NKT.CO": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -16092,7 +16083,7 @@
   "updatedAt": "2026-11-10"
  },
  "NTAP": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -16175,7 +16166,7 @@
   "updatedAt": "2026-11-16"
  },
  "NVDA": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -16798,7 +16789,7 @@
   "updatedAt": "2026-11-10"
  },
  "P": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -16881,7 +16872,7 @@
   "updatedAt": "2026-11-16"
  },
  "PANW": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -16964,7 +16955,7 @@
   "updatedAt": "2026-11-16"
  },
  "PATH": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -17047,7 +17038,7 @@
   "updatedAt": "2026-11-16"
  },
  "PDD": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -17288,7 +17279,7 @@
   "updatedAt": "2026-11-03"
  },
  "PONY": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -18516,7 +18507,7 @@
   "updatedAt": "2026-10-30"
  },
  "SNOW": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -20484,7 +20475,7 @@
   "updatedAt": "2026-10-28"
  },
  "VNET": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -20714,7 +20705,7 @@
   "updatedAt": "2026-11-07"
  },
  "WDAY": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -21015,7 +21006,7 @@
   "updatedAt": "2026-11-03"
  },
  "WRD": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -21218,9 +21209,19 @@
   "updatedAt": "2026-11-07"
  },
  "XPEV": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
+   {
+    "date": "2026-11-16",
+    "epsActual": -0.93,
+    "epsEst": -0.7,
+    "period": "2026-09-30",
+    "revActual": 24276048000.0,
+    "revEst": 29864916200.0,
+    "surprise": -31.91,
+    "time": "bmo"
+   },
    {
     "date": "2026-08-24",
     "epsActual": -1.29,
@@ -21279,29 +21280,12 @@
     "epsEst": -1.45,
     "surprise": -1.57,
     "time": "bmo"
-   },
-   {
-    "date": "2024-11-19",
-    "epsActual": -1.62,
-    "epsEst": -1.69,
-    "surprise": 4.33,
-    "time": "bmo"
    }
   ],
-  "next": {
-   "asOf": "2026-11-16",
-   "date": "2026-11-16",
-   "epsEst": -0.7,
-   "epsN": 2,
-   "estimated": false,
-   "revEst": 29864916200.0,
-   "revN": 7,
-   "time": "bmo"
-  },
   "updatedAt": "2026-11-16"
  },
  "ZS": {
-  "checkedAt": "2026-11-16T11:54+00:00",
+  "checkedAt": "2026-11-16T21:43+00:00",
   "dates": "local",
   "history": [
    {
