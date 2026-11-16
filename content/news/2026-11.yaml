@@ -1,5 +1,26 @@
 month: 2026-11
 items:
+  - id: 2026-11-16-skt-hyosung-ai-data-center-power
+    date: 2026-11-16
+    title: "SK Telecom and Hyosung Heavy Industries team up on AI data center power equipment"
+    summary: "SK Telecom and Hyosung Heavy Industries signed a memorandum to secure power equipment for gigawatt-scale AI data centers. It covers equipment for 345-kilovolt substations, joint testing of next-generation power technology and possible cooperation on new AI data centers, the Korea Times reported."
+    source: { name: "The Korea Times", url: "https://www.koreatimes.co.kr/business/companies/20261116/sk-telecom-hyosung-team-up-to-build-ai-data-center-power-infrastructure" }
+    companies: [hyosung-heavy]
+    nodes: [energy/grid/transformers]
+    themes: [power-bottleneck, data-centers]
+    impact: positive
+    importance: 1
+
+  - id: 2026-11-15-apple-health-ai-usage-study
+    date: 2026-11-15
+    title: "Apple launches a US study of how people use AI for health questions"
+    summary: "Apple launched the Apple Health AI Usage Study in the US, a virtual study with an app built on OpenEvidence technology that answers health questions using Apple Health data users choose to share. Apple said the study will look at trust, answer quality and everyday health actions, and that the data will not be used to train AI models."
+    source: { name: "Apple Newsroom", url: "https://www.apple.com/newsroom/2026/11/apple-launches-research-study-to-explore-the-use-of-ai-for-health/" }
+    companies: [apple]
+    nodes: [applications/devices/phones-pcs]
+    impact: neutral
+    importance: 1
+
   - id: 2026-11-14-doe-campbell-coal-order-winter
     date: 2026-11-14
     title: "DOE orders Michigan's Campbell coal plant kept available through the winter"
