@@ -1466,7 +1466,7 @@
   "updatedAt": "2026-11-11"
  },
  "0700.HK": {
-  "checkedAt": "2026-11-17T11:54+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -1597,7 +1597,7 @@
   "updatedAt": "2026-11-12"
  },
  "0992.HK": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -1667,7 +1667,7 @@
   "updatedAt": "2026-11-17"
  },
  "1024.HK": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -1801,7 +1801,7 @@
   "updatedAt": "2026-11-11"
  },
  "1810.HK": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -4202,7 +4202,7 @@
   "updatedAt": "2026-11-10"
  },
  "3690.HK": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -4344,7 +4344,7 @@
   "updatedAt": "2026-11-11"
  },
  "4004.T": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -5701,7 +5701,7 @@
   "updatedAt": "2026-11-13"
  },
  "6324.T": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -7827,7 +7827,7 @@
   "updatedAt": "2026-11-10"
  },
  "ADSK": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -9100,7 +9100,7 @@
   "updatedAt": "2026-11-10"
  },
  "BABA": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -10368,7 +10368,7 @@
   "updatedAt": "2026-11-06"
  },
  "CRDO": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -10451,7 +10451,7 @@
   "updatedAt": "2026-11-17"
  },
  "CRM": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -10527,14 +10527,14 @@
    "epsEst": 3.45,
    "epsN": 42,
    "estimated": false,
-   "revEst": 11462302380.0,
+   "revEst": 11462294880.0,
    "revN": 40,
    "time": "amc"
   },
   "updatedAt": "2026-11-17"
  },
  "CRWD": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -10608,7 +10608,7 @@
    "asOf": "2026-11-17",
    "date": "2026-12-01",
    "epsEst": 0.31,
-   "epsN": 44,
+   "epsN": 45,
    "estimated": false,
    "revEst": 1528559430.0,
    "revN": 43,
@@ -10908,7 +10908,7 @@
   "updatedAt": "2026-11-05"
  },
  "DELL": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -11695,7 +11695,7 @@
   "updatedAt": "2026-10-28"
  },
  "ESTC": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -12233,7 +12233,7 @@
   "updatedAt": "2026-11-10"
  },
  "FLNC": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -12537,7 +12537,7 @@
   "updatedAt": "2026-10-29"
  },
  "GDS": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -13068,7 +13068,7 @@
   "updatedAt": "2026-10-29"
  },
  "GTLB": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -13151,7 +13151,7 @@
   "updatedAt": "2026-11-17"
  },
  "HPE": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -13234,7 +13234,7 @@
   "updatedAt": "2026-11-17"
  },
  "HPQ": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -13765,7 +13765,7 @@
   "updatedAt": "2026-10-30"
  },
  "INTU": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -14706,7 +14706,7 @@
   "updatedAt": "2026-10-30"
  },
  "MDB": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -15115,7 +15115,7 @@
   "updatedAt": "2026-11-10"
  },
  "MRVL": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -15770,7 +15770,7 @@
   "updatedAt": "2026-11-10"
  },
  "NKT.CO": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -15842,11 +15842,11 @@
   "next": {
    "asOf": "2026-11-17",
    "date": "2026-11-19",
-   "epsEst": 1.13,
+   "epsEst": 1.15,
    "epsN": 3,
    "estimated": false,
-   "revEst": 935180680.0,
-   "revN": 7
+   "revEst": 942377460.0,
+   "revN": 6
   },
   "updatedAt": "2026-11-17"
  },
@@ -16083,7 +16083,7 @@
   "updatedAt": "2026-11-10"
  },
  "NTAP": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -16166,7 +16166,7 @@
   "updatedAt": "2026-11-17"
  },
  "NVDA": {
-  "checkedAt": "2026-11-17T11:54+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -16240,7 +16240,7 @@
    "asOf": "2026-11-17",
    "date": "2026-11-17",
    "epsEst": 2.47,
-   "epsN": 40,
+   "epsN": 41,
    "estimated": false,
    "revEst": 108710527430.0,
    "revN": 42,
@@ -16802,7 +16802,7 @@
   "updatedAt": "2026-11-10"
  },
  "P": {
-  "checkedAt": "2026-11-17T11:54+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -16875,17 +16875,17 @@
   "next": {
    "asOf": "2026-11-17",
    "date": "2026-11-18",
-   "epsEst": 0.77,
+   "epsEst": 0.78,
    "epsN": 19,
    "estimated": false,
-   "revEst": 1331753020.0,
+   "revEst": 1334694200.0,
    "revN": 17,
    "time": "amc"
   },
   "updatedAt": "2026-11-17"
  },
  "PANW": {
-  "checkedAt": "2026-11-17T11:54+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -16959,16 +16959,16 @@
    "asOf": "2026-11-17",
    "date": "2026-11-18",
    "epsEst": 0.97,
-   "epsN": 43,
+   "epsN": 44,
    "estimated": false,
-   "revEst": 3307457560.0,
-   "revN": 44,
+   "revEst": 3307494060.0,
+   "revN": 45,
    "time": "amc"
   },
   "updatedAt": "2026-11-17"
  },
  "PATH": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -17051,7 +17051,7 @@
   "updatedAt": "2026-11-17"
  },
  "PDD": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -17292,7 +17292,7 @@
   "updatedAt": "2026-11-03"
  },
  "PONY": {
-  "checkedAt": "2026-11-17T11:54+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -18520,7 +18520,7 @@
   "updatedAt": "2026-10-30"
  },
  "SNOW": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -18603,7 +18603,7 @@
   "updatedAt": "2026-11-17"
  },
  "SNPS": {
-  "checkedAt": "2026-11-17T04:13+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -20489,7 +20489,7 @@
   "updatedAt": "2026-10-28"
  },
  "VNET": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -20719,7 +20719,7 @@
   "updatedAt": "2026-11-07"
  },
  "WDAY": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -21020,7 +21020,7 @@
   "updatedAt": "2026-11-03"
  },
  "WRD": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
@@ -21299,7 +21299,7 @@
   "updatedAt": "2026-11-16"
  },
  "ZS": {
-  "checkedAt": "2026-11-17T10:40+00:00",
+  "checkedAt": "2026-11-17T21:43+00:00",
   "dates": "local",
   "history": [
    {
