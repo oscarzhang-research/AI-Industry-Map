@@ -1,5 +1,57 @@
 month: 2026-11
 items:
+  - id: 2026-11-16-us-rule-remote-access-ai-chips
+    date: 2026-11-16
+    title: "US requires licenses for AI chips that give Chinese firms remote access abroad"
+    summary: "The Commerce Department issued a rule requiring a license to ship advanced AI chips to any data center that would give China-headquartered companies more than 12 million aggregate TPP of compute, and added Malaysia, Singapore, Brazil, Indonesia and Thailand to the destinations needing licenses. US-headquartered recipients can file reports instead, and the rule formally rescinds the 2025 AI Diffusion Rule."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/us-dept-of-commerce-issues-rule-to-restrict-remote-access-to-advanced-ai-chips/" }
+    companies: [nvidia, amd]
+    nodes: [chips/compute/gpus]
+    themes: [export-controls, china-ai]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-16-nvidia-rubin-hpc
+    date: 2026-11-16
+    title: "Nvidia announces Rubin HPC GPU for scientific simulation"
+    summary: "Nvidia announced Rubin HPC at SC26, a GPU in its Vera Rubin platform for simulation and data processing in science and engineering. It has more than 50,000 CUDA cores, sparse data acceleration and seventh-generation NVLink."
+    source: { name: "NVIDIA", url: "https://blogs.nvidia.com/blog/rubin-hpc/" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-16-amd-completes-world-labs
+    date: 2026-11-16
+    title: "AMD completes its $8.2 billion acquisition of World Labs"
+    summary: "AMD closed its all-stock acquisition of world-model developer World Labs, announced in September at about $8.2 billion. Under the announced plan, co-founder Fei-Fei Li becomes AMD's chief scientist and the team continues as an AMD frontier research organization."
+    source: { name: "AMD", url: "https://ir.amd.com/news-events/press-releases/detail/1306/amd-completes-acquisition-of-world-labs" }
+    companies: [amd, world-labs]
+    nodes: [chips/compute/gpus, models/multimodal/world-models]
+    impact: neutral
+    importance: 2
+
+  - id: 2026-11-16-baidu-q3-2026-results
+    date: 2026-11-16
+    title: "Baidu's AI cloud revenue nearly doubles as total revenue slips"
+    summary: "Baidu's third-quarter revenue fell about 1% to RMB 30.8 billion, below the RMB 33.0 billion expected, as online marketing revenue dropped 22%. AI Cloud Infra revenue rose 94% to RMB 8.2 billion, and non-GAAP EPS of RMB 6.78 per ADS beat the RMB 6.16 expected."
+    source: { name: "Baidu", url: "https://ir.baidu.com/news-releases/news-release-details/baidu-announces-third-quarter-2026-results" }
+    companies: [baidu]
+    nodes: [infrastructure/cloud/hyperscalers, models/china-models/china-bigtech]
+    themes: [china-ai]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-11-17-instagram-direct-app
+    date: 2026-11-17
+    title: "Meta tests Direct, a standalone Instagram messaging app"
+    summary: "Meta introduced Direct, a messaging app from Instagram for one-on-one and group chats, now testing in Türkiye and Thailand. It works with or without an Instagram account, and existing Instagram chats sync across both apps."
+    source: { name: "Meta Newsroom", url: "https://about.fb.com/news/2026/11/introducing-direct-an-app-just-for-messaging/" }
+    companies: [meta]
+    nodes: [applications/ads-commerce-content/ads-recsys]
+    impact: neutral
+    importance: 1
+
   - id: 2026-11-16-skt-hyosung-ai-data-center-power
     date: 2026-11-16
     title: "SK Telecom and Hyosung Heavy Industries team up on AI data center power equipment"
