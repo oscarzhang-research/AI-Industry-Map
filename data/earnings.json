@@ -1466,9 +1466,15 @@
   "updatedAt": "2026-11-11"
  },
  "0700.HK": {
-  "checkedAt": "2026-11-18T10:06+00:00",
+  "checkedAt": "2026-11-18T11:53+00:00",
   "dates": "local",
   "history": [
+   {
+    "date": "2026-11-18",
+    "epsActual": 7.23,
+    "epsEst": 7.21,
+    "surprise": 0.2
+   },
    {
     "date": "2026-08-12",
     "epsActual": 7.43,
@@ -1514,12 +1520,6 @@
     "epsActual": 5.91,
     "epsEst": 5.6,
     "surprise": 5.57
-   },
-   {
-    "date": "2024-11-13",
-    "epsActual": 6.34,
-    "epsEst": 5.7,
-    "surprise": 11.17
    }
   ],
   "next": {
@@ -1597,7 +1597,7 @@
   "updatedAt": "2026-11-12"
  },
  "0992.HK": {
-  "checkedAt": "2026-11-18T10:06+00:00",
+  "checkedAt": "2026-11-18T11:53+00:00",
   "dates": "local",
   "history": [
    {
@@ -1667,7 +1667,7 @@
   "updatedAt": "2026-11-18"
  },
  "1024.HK": {
-  "checkedAt": "2026-11-18T10:06+00:00",
+  "checkedAt": "2026-11-18T11:53+00:00",
   "dates": "local",
   "history": [
    {
@@ -7748,7 +7748,7 @@
   "updatedAt": "2026-11-06"
  },
  "ADBE": {
-  "checkedAt": "2026-11-18T03:10+00:00",
+  "checkedAt": "2026-11-18T11:53+00:00",
   "dates": "local",
   "history": [
    {
@@ -9023,7 +9023,7 @@
   "updatedAt": "2026-11-18"
  },
  "AVGO": {
-  "checkedAt": "2026-11-18T03:10+00:00",
+  "checkedAt": "2026-11-18T11:53+00:00",
   "dates": "local",
   "history": [
    {
@@ -9106,7 +9106,7 @@
   "updatedAt": "2026-11-18"
  },
  "BABA": {
-  "checkedAt": "2026-11-18T10:06+00:00",
+  "checkedAt": "2026-11-18T11:53+00:00",
   "dates": "local",
   "history": [
    {
@@ -11703,7 +11703,7 @@
   "updatedAt": "2026-10-28"
  },
  "ESTC": {
-  "checkedAt": "2026-11-18T10:06+00:00",
+  "checkedAt": "2026-11-18T11:53+00:00",
   "dates": "local",
   "history": [
    {
@@ -13773,7 +13773,7 @@
   "updatedAt": "2026-10-30"
  },
  "INTU": {
-  "checkedAt": "2026-11-18T10:06+00:00",
+  "checkedAt": "2026-11-18T11:53+00:00",
   "dates": "local",
   "history": [
    {
@@ -15778,7 +15778,7 @@
   "updatedAt": "2026-11-10"
  },
  "NKT.CO": {
-  "checkedAt": "2026-11-18T10:06+00:00",
+  "checkedAt": "2026-11-18T11:53+00:00",
   "dates": "local",
   "history": [
    {
@@ -16803,7 +16803,7 @@
   "updatedAt": "2026-11-10"
  },
  "P": {
-  "checkedAt": "2026-11-18T10:06+00:00",
+  "checkedAt": "2026-11-18T11:53+00:00",
   "dates": "local",
   "history": [
    {
@@ -16886,7 +16886,7 @@
   "updatedAt": "2026-11-18"
  },
  "PANW": {
-  "checkedAt": "2026-11-18T10:06+00:00",
+  "checkedAt": "2026-11-18T11:53+00:00",
   "dates": "local",
   "history": [
    {
@@ -17052,7 +17052,7 @@
   "updatedAt": "2026-11-18"
  },
  "PDD": {
-  "checkedAt": "2026-11-18T10:06+00:00",
+  "checkedAt": "2026-11-18T11:53+00:00",
   "dates": "local",
   "history": [
    {
@@ -17293,9 +17293,16 @@
   "updatedAt": "2026-11-03"
  },
  "PONY": {
-  "checkedAt": "2026-11-18T10:06+00:00",
+  "checkedAt": "2026-11-18T11:53+00:00",
   "dates": "local",
   "history": [
+   {
+    "date": "2026-11-18",
+    "epsActual": -0.11,
+    "epsEst": -0.18,
+    "surprise": 38.75,
+    "time": "bmo"
+   },
    {
     "date": "2026-08-18",
     "epsActual": -0.1,
