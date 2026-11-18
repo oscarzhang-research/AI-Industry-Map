@@ -1,5 +1,71 @@
 month: 2026-11
 items:
+  - id: 2026-11-17-nvidia-fq3-2027-results
+    date: 2026-11-17
+    title: "Nvidia's revenue doubles to $115.8 billion and it guides to $130 billion"
+    summary: "Nvidia's fiscal third-quarter revenue rose 103% from a year earlier to $115.8 billion, above the $108.7 billion expected, with data center revenue of $107.6 billion, and non-GAAP EPS of $2.68 beat the $2.47 expected. It guided fourth-quarter revenue, which includes an extra week, to $130 billion plus or minus 3%, with gross margin of 71% to 72% and no data center compute revenue assumed from China."
+    source: { name: "NVIDIA Newsroom", url: "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    themes: [capex, export-controls]
+    impact: positive
+    importance: 3
+
+  - id: 2026-11-17-openai-gpt-6-2-astra-sol
+    date: 2026-11-17
+    title: "OpenAI releases GPT-6.2 Astra and Sol and cuts Astra's API price by 20%"
+    summary: "OpenAI released GPT-6.2 Astra and GPT-6.2 Sol across ChatGPT Work, Codex and the API, with gains in professional work, coding and computer use. Astra is priced at $8 per million input tokens and $40 per million output tokens, 20% below GPT-6 Astra, and Artificial Analysis ranked it second on its Intelligence Index."
+    source: { name: "OpenAI", url: "https://openai.com/index/introducing-gpt-6-2-astra-sol" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [coding, agents]
+    impact: positive
+    importance: 3
+
+  - id: 2026-11-17-nvidia-supply-chain-commitments
+    date: 2026-11-17
+    title: "Nvidia expands capacity commitments with substrate, packaging and assembly partners"
+    summary: "Nvidia said it is expanding capacity with Amkor, Foxconn, Kinsus, Samsung Electro-Mechanics, SPIL and TSMC across substrates, advanced packaging, wafers and system assembly. Under a new agreement, Kinsus plans to expand ABF substrate capacity dedicated to Nvidia by more than 3.5 times, with production from the second half of 2027."
+    source: { name: "NVIDIA Newsroom", url: "https://nvidianews.nvidia.com/news/nvidia-expands-commitments-with-supply-chain-partners-to-support-ai-infrastructure-buildout" }
+    companies: [nvidia, tsmc, amkor, hon-hai]
+    nodes: [chips/foundry-packaging/advanced-packaging]
+    themes: [cowos]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-17-doe-wyoming-intertie-loan
+    date: 2026-11-17
+    title: "DOE offers a $2.8 billion conditional loan for Grid United's Wyoming Intertie"
+    summary: "The Department of Energy announced a conditional loan commitment of up to $2.8 billion for Grid United's Wyoming Intertie transmission project, which would add about 1.8 GW of transfer capacity. DOE estimates the line could save up to $39 billion in electricity costs across 17 states."
+    source: { name: "U.S. Department of Energy", url: "https://www.energy.gov/articles/energy-department-announces-28-billion-loan-strengthen-grid-reliability-and-help-lower" }
+    companies: []
+    nodes: [energy/grid/grid-epc]
+    themes: [power-bottleneck]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-17-arista-etherlink-r4-inference
+    date: 2026-11-17
+    title: "Arista launches Etherlink R4 routers for distributed AI inference"
+    summary: "Arista expanded its R4 portfolio with Etherlink platforms that link data centers for distributed inference across regions, aimed at low-latency agentic workloads and data sovereignty. Arista said the 5nm-based routers use up to 60% less power than platforms on 7nm or 16nm chips."
+    source: { name: "Arista Networks", url: "https://investors.arista.com/Communications/Press-Releases-and-Events/Press-Release-Detail/2026/Arista-Announces-New-Etherlink-Offerings-for-Distributed-Inferencing/default.aspx" }
+    companies: [arista]
+    nodes: [infrastructure/networking/switches]
+    themes: [inference]
+    impact: positive
+    importance: 1
+
+  - id: 2026-11-16-vertiv-800-vdc-portfolio
+    date: 2026-11-16
+    title: "Vertiv extends its 800 VDC power systems to compute pods and data halls"
+    summary: "Vertiv added 800 VDC systems for AI compute pods and data halls, extending a portfolio that began with its PowerDirect 5000 power rack in May 2026. The range covers power conversion, energy storage, distribution and protection from the medium-voltage grid to the compute tray."
+    source: { name: "Vertiv", url: "https://investors.vertiv.com/news/news-details/2026/Vertiv-Advances-800-VDC-Power-Architectures-to-Support-Growing-AI-Data-Center-Demands/default.aspx" }
+    companies: [vertiv]
+    nodes: [infrastructure/power-delivery/ups-switchgear]
+    themes: [power-bottleneck, data-centers]
+    impact: positive
+    importance: 1
+
   - id: 2026-11-16-us-rule-remote-access-ai-chips
     date: 2026-11-16
     title: "US requires licenses for AI chips that give Chinese firms remote access abroad"
