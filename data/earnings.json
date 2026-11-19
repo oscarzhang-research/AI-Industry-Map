@@ -1589,7 +1589,7 @@
   "updatedAt": "2026-11-12"
  },
  "0992.HK": {
-  "checkedAt": "2026-11-19T10:15+00:00",
+  "checkedAt": "2026-11-19T11:54+00:00",
   "dates": "local",
   "history": [
    {
@@ -1652,15 +1652,22 @@
    "epsEst": 0.07,
    "epsN": 5,
    "estimated": false,
-   "revEst": 27436164780.0,
-   "revN": 9
+   "revEst": 27874287900.0,
+   "revN": 8
   },
   "updatedAt": "2026-11-19"
  },
  "1024.HK": {
-  "checkedAt": "2026-11-19T10:15+00:00",
+  "checkedAt": "2026-11-19T11:54+00:00",
   "dates": "local",
   "history": [
+   {
+    "date": "2026-11-19",
+    "epsActual": 0.18,
+    "epsEst": 0.17,
+    "surprise": 9.91,
+    "time": "bmo"
+   },
    {
     "date": "2026-08-19",
     "epsActual": 0.89,
@@ -1707,12 +1714,6 @@
     "epsActual": 1.06,
     "epsEst": 1.08,
     "surprise": -2.05
-   },
-   {
-    "date": "2024-11-20",
-    "epsActual": 0.9,
-    "epsEst": 0.89,
-    "surprise": 0.78
    }
   ],
   "next": {
@@ -9102,7 +9103,7 @@
   "updatedAt": "2026-11-19"
  },
  "BABA": {
-  "checkedAt": "2026-11-19T10:15+00:00",
+  "checkedAt": "2026-11-19T11:54+00:00",
   "dates": "local",
   "history": [
    {
@@ -9176,10 +9177,10 @@
    "asOf": "2026-11-19",
    "date": "2026-11-19",
    "epsEst": 11.03,
-   "epsN": 17,
+   "epsN": 16,
    "estimated": false,
-   "revEst": 269849229899.0,
-   "revN": 22,
+   "revEst": 308859067510.0,
+   "revN": 18,
    "time": "bmo"
   },
   "updatedAt": "2026-11-19"
@@ -9921,7 +9922,7 @@
   "updatedAt": "2026-11-10"
  },
  "CIEN": {
-  "checkedAt": "2026-11-19T02:49+00:00",
+  "checkedAt": "2026-11-19T11:54+00:00",
   "dates": "local",
   "history": [
    {
@@ -11700,7 +11701,7 @@
   "updatedAt": "2026-10-28"
  },
  "ESTC": {
-  "checkedAt": "2026-11-19T10:15+00:00",
+  "checkedAt": "2026-11-19T11:54+00:00",
   "dates": "local",
   "history": [
    {
@@ -13770,7 +13771,7 @@
   "updatedAt": "2026-10-30"
  },
  "INTU": {
-  "checkedAt": "2026-11-19T10:15+00:00",
+  "checkedAt": "2026-11-19T11:54+00:00",
   "dates": "local",
   "history": [
    {
@@ -15775,9 +15776,16 @@
   "updatedAt": "2026-11-10"
  },
  "NKT.CO": {
-  "checkedAt": "2026-11-19T10:15+00:00",
+  "checkedAt": "2026-11-19T11:54+00:00",
   "dates": "local",
   "history": [
+   {
+    "date": "2026-11-19",
+    "epsActual": 1.36,
+    "epsEst": 1.15,
+    "surprise": 18.48,
+    "time": "bmo"
+   },
    {
     "date": "2026-08-13",
     "epsActual": 0.93,
@@ -15834,13 +15842,6 @@
     "epsActual": 1.0,
     "epsEst": 0.92,
     "surprise": 9.2,
-    "time": "bmo"
-   },
-   {
-    "date": "2024-11-14",
-    "epsActual": 1.0,
-    "epsEst": 1.06,
-    "surprise": -5.66,
     "time": "bmo"
    }
   ],
@@ -17035,7 +17036,7 @@
   "updatedAt": "2026-11-19"
  },
  "PDD": {
-  "checkedAt": "2026-11-19T10:15+00:00",
+  "checkedAt": "2026-11-19T11:54+00:00",
   "dates": "local",
   "history": [
    {
@@ -21015,7 +21016,7 @@
   "updatedAt": "2026-11-03"
  },
  "WRD": {
-  "checkedAt": "2026-11-19T10:15+00:00",
+  "checkedAt": "2026-11-19T11:54+00:00",
   "dates": "local",
   "history": [
    {
