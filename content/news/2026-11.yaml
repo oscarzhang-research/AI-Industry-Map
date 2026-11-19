@@ -1,5 +1,92 @@
 month: 2026-11
 items:
+  - id: 2026-11-18-anthropic-ipo-priced-83
+    date: 2026-11-18
+    title: "Anthropic prices its IPO at $83 a share, raising $81.3 billion"
+    summary: "Anthropic priced 980 million Class A shares at $83, above its $70 to $78 range, with 956.4 million sold by the company, for $81.3 billion in total, the largest IPO on record according to CNBC. Trading on Nasdaq under ANT starts Nov. 19, and underwriters have a 30-day option on 147 million more shares."
+    source: { name: "Anthropic", url: "https://www.anthropic.com/news/anthropic-prices-initial-public-offering" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: positive
+    importance: 3
+
+  - id: 2026-11-18-google-gemini-4-neon
+    date: 2026-11-18
+    title: "Google releases Gemini 4 Neon, a fast frontier-level model"
+    summary: "Google released Gemini 4 Neon for software engineering, knowledge work and science tasks. Google said it scores 61 on the Artificial Analysis Intelligence Index, third overall, and costs $3 per million input tokens."
+    source: { name: "Google", url: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/" }
+    companies: [alphabet]
+    nodes: [models/frontier-labs/closed-frontier]
+    themes: [agents, coding]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-19-trendforce-nand-prices-2027
+    date: 2026-11-19
+    title: "TrendForce expects NAND flash prices to fall in 2027"
+    summary: "TrendForce expects the NAND flash market to swing into oversupply in 2027 as supply grows quickly. It cites large cuts to enterprise SSD orders from Chinese cloud providers and possible further weakness in consumer electronics, which outweigh demand growth in North America."
+    source: { name: "TrendForce", url: "https://www.trendforce.com/presscenter/news/20261119-13314.html" }
+    companies: [samsung-electronics, sk-hynix, micron, sandisk, kioxia]
+    nodes: [chips/memory/nand-ssd]
+    themes: [memory-cycle]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-18-loudoun-data-center-pause
+    date: 2026-11-18
+    title: "Loudoun County adopts a 12-month pause on data center approvals"
+    summary: "Loudoun County, Virginia, home of the world's largest data center cluster, formally adopted a pause of up to 12 months on data center and substation applications that need legislative approval. Applications can still be filed and reviewed by the planning commission during the pause."
+    source: { name: "DCD", url: "https://www.datacenterdynamics.com/en/news/virginias-loudoun-county-officially-adopts-12-month-moratorium-on-data-center-development/" }
+    companies: []
+    nodes: [infrastructure/data-centers/colocation]
+    themes: [data-centers, power-bottleneck]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-18-doe-wagner-unit-4-order
+    date: 2026-11-18
+    title: "DOE orders Talen's Wagner Unit 4 in Maryland kept available for PJM"
+    summary: "The Department of Energy issued an emergency order letting PJM, with Talen Energy, run Unit 4 at the Wagner Generating Station in Maryland to meet expected demand. The order follows a PJM application from Oct. 23 and covers reliability across 13 states and Washington, D.C."
+    source: { name: "U.S. Department of Energy", url: "https://www.energy.gov/articles/energy-secretary-acts-protect-mid-atlantic-grid-0" }
+    companies: [talen]
+    nodes: [energy/power-producers/ipps]
+    themes: [power-bottleneck]
+    impact: neutral
+    importance: 1
+
+  - id: 2026-11-18-tencent-q3-2026-results
+    date: 2026-11-18
+    title: "Tencent's revenue rises 8% but AI spending cuts adjusted profit"
+    summary: "Tencent's third-quarter revenue rose 8% to RMB 207.3 billion, below the RMB 212.3 billion expected, with marketing up 19% and cloud services up 35%. Non-IFRS operating profit fell 6% to RMB 68.1 billion as it spent on new AI products, and non-IFRS EPS of RMB 7.23 was in line with the RMB 7.21 expected."
+    source: { name: "Tencent", url: "https://www.tencent.com/wp-content/uploads/2026/11/Tencent-Announces-2026-Third-Quarter-Results.pdf" }
+    companies: [tencent]
+    nodes: [models/china-models/china-bigtech, infrastructure/cloud/hyperscalers]
+    themes: [china-ai, capex]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-11-18-palo-alto-fq1-2027-results
+    date: 2026-11-18
+    title: "Palo Alto Networks beats, raises guidance and agrees to buy Applied Compute"
+    summary: "Palo Alto Networks' fiscal first-quarter revenue rose 39% to $3.44 billion, above the $3.31 billion expected, and non-GAAP EPS of $1.05 beat the $0.97 expected. It raised full-year revenue guidance to $14.52 billion to $14.57 billion and agreed to buy AI startup Applied Compute for $4.5 billion in stock."
+    source: { name: "Palo Alto Networks (SEC 8-K)", url: "https://www.sec.gov/Archives/edgar/data/0001327567/000132756726000030/ex991q127earningsrelease.htm" }
+    companies: [palo-alto]
+    nodes: [applications/security/security-platforms]
+    themes: [agents]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-18-pony-ai-q3-2026-results
+    date: 2026-11-18
+    title: "Pony AI's revenue rises 75% as robotaxi revenue nearly triples"
+    summary: "Pony AI's third-quarter revenue rose 75% to $44.6 million, above the $39.1 million expected, and its loss of $0.11 per share was narrower than the $0.18 expected. Robotaxi revenue rose 165% to $17.8 million, the fleet reached 2,768 vehicles, and it kept its target of 3,500 vehicles in 20 cities by year-end."
+    source: { name: "Pony AI (SEC 6-K)", url: "https://www.sec.gov/Archives/edgar/data/0001969302/000110465926129308/tm2629888d1_ex99-1.htm" }
+    companies: [pony-ai]
+    nodes: [applications/physical-ai/autonomous-driving]
+    themes: [robotics]
+    impact: positive
+    importance: 2
+
   - id: 2026-11-17-nvidia-fq3-2027-results
     date: 2026-11-17
     title: "Nvidia's revenue doubles to $115.8 billion and it guides to $130 billion"
