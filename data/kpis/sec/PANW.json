@@ -1,11 +1,10 @@
 {
  "symbol": "PANW",
  "cik": "0001327567",
- "name": "Palo Alto Networks, Inc.",
+ "name": "PALO ALTO NETWORKS, INC",
  "company": "palo-alto",
- "updatedAt": "2026-10-28T00:51:03+00:00",
+ "updatedAt": "2026-11-20T10:02:05+00:00",
  "revenue": [
-  {"start": "2016-08-01", "end": "2016-10-31", "value": 398100000, "fy": 2017, "fp": "Q1", "form": "10-K", "filed": "2018-09-13", "derived": false, "concept": "SalesRevenueNet"},
   {"start": "2016-11-01", "end": "2017-01-31", "value": 422600000, "fy": 2017, "fp": "Q2", "form": "10-K", "filed": "2018-09-13", "derived": false, "concept": "SalesRevenueNet"},
   {"start": "2017-02-01", "end": "2017-04-30", "value": 431800000, "fy": 2017, "fp": "Q3", "form": "10-K", "filed": "2018-09-13", "derived": false, "concept": "SalesRevenueNet"},
   {"start": "2017-05-01", "end": "2017-07-31", "value": 509100000, "fy": 2017, "fp": "Q4", "form": "10-K", "filed": "2018-09-13", "derived": false, "concept": "SalesRevenueNet"},
@@ -41,13 +40,13 @@
   {"start": "2024-11-01", "end": "2025-01-31", "value": 2257000000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-02-18", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2025-02-01", "end": "2025-04-30", "value": 2289000000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2026-06-03", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2025-05-01", "end": "2025-07-31", "value": 2536000000, "fy": 2025, "fp": "Q4", "form": "10-K", "filed": "2026-09-10", "derived": true, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
-  {"start": "2025-08-01", "end": "2025-10-31", "value": 2474000000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2025-11-20", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2025-08-01", "end": "2025-10-31", "value": 2474000000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-11-19", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2025-11-01", "end": "2026-01-31", "value": 2594000000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-02-18", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2026-02-01", "end": "2026-04-30", "value": 3002000000, "fy": 2026, "fp": "Q3", "form": "10-Q", "filed": "2026-06-03", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
-  {"start": "2026-05-01", "end": "2026-07-31", "value": 3410000000, "fy": 2026, "fp": "Q4", "form": "10-K", "filed": "2026-09-10", "derived": true, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
+  {"start": "2026-05-01", "end": "2026-07-31", "value": 3410000000, "fy": 2026, "fp": "Q4", "form": "10-K", "filed": "2026-09-10", "derived": true, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
+  {"start": "2026-08-01", "end": "2026-10-31", "value": 3445000000, "fy": 2027, "fp": "Q1", "form": "10-Q", "filed": "2026-11-19", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"}
  ],
  "capex": [
-  {"start": "2016-08-01", "end": "2016-10-31", "value": 20900000, "fy": 2017, "fp": "Q1", "form": "10-Q", "filed": "2017-11-21", "derived": false, "concept": "PaymentsToAcquireProductiveAssets"},
   {"start": "2016-11-01", "end": "2017-01-31", "value": 44700000, "fy": 2017, "fp": "Q2", "form": "10-Q", "filed": "2018-02-27", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
   {"start": "2017-02-01", "end": "2017-04-30", "value": 48600000, "fy": 2017, "fp": "Q3", "form": "10-Q", "filed": "2018-06-05", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
   {"start": "2017-05-01", "end": "2017-07-31", "value": 49200000, "fy": 2017, "fp": "Q4", "form": "10-K", "filed": "2019-09-09", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
@@ -83,9 +82,10 @@
   {"start": "2024-11-01", "end": "2025-01-31", "value": 48000000, "fy": 2025, "fp": "Q2", "form": "10-Q", "filed": "2026-02-18", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
   {"start": "2025-02-01", "end": "2025-04-30", "value": 68000000, "fy": 2025, "fp": "Q3", "form": "10-Q", "filed": "2026-06-03", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
   {"start": "2025-05-01", "end": "2025-07-31", "value": 87000000, "fy": 2025, "fp": "Q4", "form": "10-K", "filed": "2026-09-10", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
-  {"start": "2025-08-01", "end": "2025-10-31", "value": 84000000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2025-11-20", "derived": false, "concept": "PaymentsToAcquireProductiveAssets"},
-  {"start": "2025-11-01", "end": "2026-01-31", "value": 170000000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-02-18", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2025-08-01", "end": "2025-10-31", "value": 84000000, "fy": 2026, "fp": "Q1", "form": "10-Q", "filed": "2026-11-19", "derived": false, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2025-11-01", "end": "2026-01-31", "value": 170000000, "fy": 2026, "fp": "Q2", "form": "10-Q", "filed": "2026-11-19", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
   {"start": "2026-02-01", "end": "2026-04-30", "value": 83000000, "fy": 2026, "fp": "Q3", "form": "10-Q", "filed": "2026-06-03", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
-  {"start": "2026-05-01", "end": "2026-07-31", "value": 103000000, "fy": 2026, "fp": "Q4", "form": "10-K", "filed": "2026-09-10", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"}
+  {"start": "2026-05-01", "end": "2026-07-31", "value": 103000000, "fy": 2026, "fp": "Q4", "form": "10-K", "filed": "2026-09-10", "derived": true, "concept": "PaymentsToAcquireProductiveAssets"},
+  {"start": "2026-08-01", "end": "2026-10-31", "value": 87000000, "fy": 2027, "fp": "Q1", "form": "10-Q", "filed": "2026-11-19", "derived": false, "concept": "PaymentsToAcquireProductiveAssets"}
  ]
 }
