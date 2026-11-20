@@ -1,5 +1,81 @@
 month: 2026-11
 items:
+  - id: 2026-11-19-alibaba-sep-quarter-2026-results
+    date: 2026-11-19
+    title: "Alibaba's AI cloud revenue rises 53% as earnings miss forecasts"
+    summary: "Alibaba's September-quarter revenue rose 10% to RMB 271.5 billion, below the RMB 308.9 billion expected, and adjusted EPS of RMB 8.10 per ADS missed the RMB 11.03 expected. AI Cloud and Compute Services revenue rose 53% to RMB 61.0 billion, with external customer revenue up 64% and the segment's adjusted EBITA margin up to 14.5%."
+    source: { name: "Alibaba Group", url: "https://www.sec.gov/Archives/edgar/data/0001577552/000110465926130115/tm2630263d1_ex99-1.htm" }
+    companies: [alibaba]
+    nodes: [infrastructure/cloud/hyperscalers, models/china-models/china-bigtech]
+    themes: [china-ai, capex]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-11-19-intuit-fq1-2027-results
+    date: 2026-11-19
+    title: "Intuit beats estimates and agrees to sell Mailchimp for $3.68 billion"
+    summary: "Intuit's fiscal first-quarter revenue rose 12% to $4.35 billion, above the $4.31 billion expected, and non-GAAP EPS of $2.91 beat the $2.64 expected. It lowered full-year revenue guidance to $23.08 billion to $23.37 billion on weaker Credit Karma, kept its EPS outlook, and agreed to sell Mailchimp to Bending Spoons for about $3.68 billion."
+    source: { name: "Intuit", url: "https://investors.intuit.com/_assets/_b07eccfe80d472d8e4f2d664e11776ed/intuit/news/2026-11-19_Intuit_Reports_First_Quarter_Results_and_Enters_1331.pdf" }
+    companies: [intuit]
+    nodes: [applications/vertical/finance-legal]
+    impact: mixed
+    importance: 2
+
+  - id: 2026-11-19-kuaishou-q3-2026-results
+    date: 2026-11-19
+    title: "Kuaishou's revenue falls 11% as Kling AI spending lifts costs"
+    summary: "Kuaishou's third-quarter revenue fell 11.1% to RMB 31.6 billion, below the RMB 35.7 billion expected, and adjusted net profit dropped 84% to RMB 790 million, though adjusted EPS of RMB 0.18 was in line with the RMB 0.17 expected. R&D spending rose 42% to RMB 5.2 billion, mainly on its Kling AI video models."
+    source: { name: "The Paper", url: "https://www.thepaper.cn/newsDetail_forward_34515426" }
+    companies: [kuaishou]
+    nodes: [models/multimodal/video-gen, applications/ads-commerce-content/content-video]
+    themes: [china-ai]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-17-google-quaise-geothermal-ppa
+    date: 2026-11-17
+    title: "Google signs a 50 MW superhot geothermal deal with Quaise in Oregon"
+    summary: "Quaise Energy agreed to sell Google 50 MW from Project Obsidian, a superhot geothermal project in central Oregon, to supply Google's data centers in The Dalles from as early as 2030. The first phase uses conventional drilling, and a later phase is to use Quaise's millimeter-wave drilling."
+    source: { name: "Quaise Energy", url: "https://www.quaise.com/news/quaise-energy-signs-50-mw-geothermal-power-purchase-agreement-with-google" }
+    companies: [alphabet]
+    nodes: [energy/power-producers/to-data-centers]
+    themes: [power-bottleneck, data-centers]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-19-nvidia-microsoft-ignite-azure-rubin
+    date: 2026-11-19
+    title: "Microsoft widens access to Nvidia Vera Rubin NVL72 systems on Azure"
+    summary: "Nvidia and Microsoft said Vera Rubin NVL72 systems are running in Azure data centers and expanded access to Azure virtual machines built on them. They also added Nvidia open models to Microsoft Foundry and are extending confidential computing to rack-scale AI systems."
+    source: { name: "NVIDIA", url: "https://blogs.nvidia.com/blog/microsoft-ignite-accelerated-computing-azure-windows-pcs/" }
+    companies: [microsoft, nvidia]
+    nodes: [infrastructure/cloud/hyperscalers]
+    themes: [capex]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-19-gemini-computer-use-mac
+    date: 2026-11-19
+    title: "Google lets Gemini operate Mac apps and websites for users"
+    summary: "Google added computer use to the Gemini app for Mac, letting it complete multi-step tasks across local files, desktop apps and the web in an isolated background window. It is rolling out in English in the US to Google AI Plus, Pro and Ultra subscribers."
+    source: { name: "Google", url: "https://blog.google/innovation-and-ai/products/gemini-app/computer-use-mac/" }
+    companies: [alphabet]
+    nodes: [applications/assistants/chat-assistants]
+    themes: [agents]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-20-samsung-semiconductor-leadership
+    date: 2026-11-20
+    title: "Samsung names new heads for memory, System LSI and chip technology"
+    summary: "Samsung Electronics promoted Sang Joon Hwang to president and head of its memory business, Sangyeun Cho to president and head of System LSI, and Jong Myeong Lee to president and CTO of its Device Solutions division. Hwang previously led memory development, including DRAM and HBM."
+    source: { name: "Samsung Newsroom", url: "https://news.samsung.com/global/samsung-electronics-announces-new-leadership-5" }
+    companies: [samsung-electronics]
+    nodes: [chips/memory/dram-hbm]
+    themes: [hbm]
+    impact: neutral
+    importance: 1
+
   - id: 2026-11-18-anthropic-ipo-priced-83
     date: 2026-11-18
     title: "Anthropic prices its IPO at $83 a share, raising $81.3 billion"
