@@ -1,5 +1,26 @@
 month: 2026-11
 items:
+  - id: 2026-11-19-anthropic-trading-debut
+    date: 2026-11-19
+    title: "Anthropic closes its first trading day 17% above the IPO price"
+    summary: "Anthropic shares opened at $111.50 on Nasdaq, 34% above the $83 IPO price, and closed the first day at $97.17, up 17.1%. The S&P 500 fell for a sixth straight session as AI chip stocks sold off."
+    source: { name: "The Motley Fool", url: "https://www.fool.com/investing/2026/11/19/why-anthropic-stock-is-up-today/" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: positive
+    importance: 2
+
+  - id: 2026-11-19-deutsche-telekom-invests-mistral
+    date: 2026-11-19
+    title: "Deutsche Telekom invests €100 million in Mistral AI"
+    summary: "Deutsche Telekom's T.Capital Tech Fund invested €100 million in Mistral AI's Series D round as a first step toward a partnership on sovereign AI for German businesses and public bodies. Telekom did not disclose the stake size or partnership terms."
+    source: { name: "Deutsche Telekom", url: "https://www.telekom.com/en/newsroom/latest-updates/media-information/2026/11/deutsche-telekom-advances-sovereign-ai-in-germany" }
+    companies: [mistral]
+    nodes: [models/frontier-labs/open-labs]
+    themes: [sovereign-ai]
+    impact: positive
+    importance: 1
+
   - id: 2026-11-19-alibaba-sep-quarter-2026-results
     date: 2026-11-19
     title: "Alibaba's AI cloud revenue rises 53% as earnings miss forecasts"
