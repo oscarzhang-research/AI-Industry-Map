@@ -1,5 +1,16 @@
 month: 2026-11
 items:
+  - id: 2026-11-20-doe-eddystone-order
+    date: 2026-11-20
+    title: "DOE again orders Constellation's Eddystone units kept available for PJM"
+    summary: "The Department of Energy issued another emergency order directing PJM and Constellation Energy to keep Units 3 and 4 of the Eddystone Generating Station in Pennsylvania available to run. The units were originally due to retire on May 31, 2025."
+    source: { name: "U.S. Department of Energy", url: "https://www.energy.gov/articles/energy-secretary-keeps-critical-generation-available-mid-atlantic-0" }
+    companies: [constellation]
+    nodes: [energy/power-producers/ipps]
+    themes: [power-bottleneck]
+    impact: neutral
+    importance: 1
+
   - id: 2026-11-19-anthropic-trading-debut
     date: 2026-11-19
     title: "Anthropic closes its first trading day 17% above the IPO price"
