@@ -1,5 +1,26 @@
 month: 2026-11
 items:
+  - id: 2026-11-22-tsmc-samsung-pause-china-shipments
+    date: 2026-11-22
+    title: "TSMC and Samsung hold some chip shipments to Chinese designers under the new US rule"
+    summary: "TSMC and Samsung told some Chinese customers they will hold shipments of certain processors while they apply for US licenses, the Financial Times reported. The Commerce rule issued Nov. 16 stops foundries from clearing Chinese designs based on customer-supplied specifications, and shipments already in transit can proceed until Dec. 21."
+    source: { name: "Tom's Hardware", url: "https://www.tomshardware.com/tech-industry/policy/tsmc-reportedly-pauses-shipments-to-chinese-designers-after-u-s-export-rules-flag-decade-old-16nm-and-14nm-nodes-new-bis-controls-threaten-smartphone-tv-and-automotive-chips" }
+    companies: [tsmc, samsung-electronics]
+    nodes: [chips/foundry-packaging/leading-edge]
+    themes: [export-controls, china-ai]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-22-openai-perplexity-metric
+    date: 2026-11-22
+    title: "OpenAI publishes its pretraining perplexity data and proposes it as a shared metric"
+    summary: "OpenAI chief scientist Jakub Pachocki published the company's internal pretraining perplexity measurements and proposed perplexity, or cross-entropy loss, as a common metric for comparing model developers. He said it could help set shared safety standards across the industry."
+    source: { name: "OpenAI", url: "https://openai.com/index/perplexity-and-intelligence" }
+    companies: [openai]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: neutral
+    importance: 1
+
   - id: 2026-11-20-doe-eddystone-order
     date: 2026-11-20
     title: "DOE again orders Constellation's Eddystone units kept available for PJM"
