@@ -1,9 +1,9 @@
 {
  "symbol": "ZS",
  "cik": "0001713683",
- "name": "Zscaler Inc",
+ "name": "Zscaler, Inc.",
  "company": "zscaler",
- "updatedAt": "2026-10-14T06:41:33+00:00",
+ "updatedAt": "2026-11-24T11:54:37+00:00",
  "revenue": [
   {"start": "2017-02-01", "end": "2017-04-30", "value": 32964000, "fy": 2017, "fp": "Q3", "form": "10-Q", "filed": "2018-06-07", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
   {"start": "2017-05-01", "end": "2017-07-31", "value": 36544000, "fy": 2017, "fp": "Q4", "form": "10-K", "filed": "2019-09-18", "derived": true, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},

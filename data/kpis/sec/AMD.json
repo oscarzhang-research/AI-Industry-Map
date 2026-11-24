@@ -1,9 +1,9 @@
 {
  "symbol": "AMD",
  "cik": "0000002488",
- "name": "ADVANCED MICRO DEVICES, INC",
+ "name": "ADVANCED MICRO DEVICES INC",
  "company": "amd",
- "updatedAt": "2026-11-04T11:57:48+00:00",
+ "updatedAt": "2026-11-24T11:54:37+00:00",
  "revenue": [
   {"start": "2016-09-25", "end": "2016-12-31", "value": 1106000000, "fy": 2016, "fp": "Q4", "form": "10-K", "filed": "2018-02-27", "derived": false, "concept": "SalesRevenueNet"},
   {"start": "2017-01-01", "end": "2017-04-01", "value": 1178000000, "fy": 2017, "fp": "Q1", "form": "10-K", "filed": "2019-02-08", "derived": false, "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"},
