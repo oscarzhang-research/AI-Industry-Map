@@ -1793,9 +1793,17 @@
   "updatedAt": "2026-11-11"
  },
  "1810.HK": {
-  "checkedAt": "2026-11-24T12:26+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
+   {
+    "date": "2026-11-24",
+    "epsActual": 0.19,
+    "epsEst": 0.19,
+    "revEst": 105593090800.0,
+    "surprise": 1.93,
+    "time": "amc"
+   },
    {
     "date": "2026-08-18",
     "epsActual": 0.23,
@@ -1848,24 +1856,8 @@
     "epsEst": 0.25,
     "surprise": 28.13,
     "time": "amc"
-   },
-   {
-    "date": "2024-11-18",
-    "epsActual": 0.25,
-    "epsEst": 0.21,
-    "surprise": 17.05,
-    "time": "amc"
    }
   ],
-  "next": {
-   "asOf": "2026-11-24",
-   "date": "2026-11-24",
-   "epsEst": 0.19,
-   "epsN": 12,
-   "estimated": false,
-   "revEst": 105593090800.0,
-   "revN": 16
-  },
   "updatedAt": "2026-11-24"
  },
  "2059.TW": {
@@ -4206,7 +4198,7 @@
   "updatedAt": "2026-11-10"
  },
  "3690.HK": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -4350,7 +4342,7 @@
   "updatedAt": "2026-11-22"
  },
  "4004.T": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -5709,7 +5701,7 @@
   "updatedAt": "2026-11-13"
  },
  "6324.T": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -7755,7 +7747,7 @@
   "updatedAt": "2026-11-06"
  },
  "ADBE": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -7838,7 +7830,7 @@
   "updatedAt": "2026-11-24"
  },
  "ADSK": {
-  "checkedAt": "2026-11-24T12:26+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -9030,7 +9022,7 @@
   "updatedAt": "2026-11-18"
  },
  "AVGO": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -9923,7 +9915,7 @@
   "updatedAt": "2026-11-10"
  },
  "CIEN": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -10374,7 +10366,7 @@
   "updatedAt": "2026-11-06"
  },
  "CRDO": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -10457,7 +10449,7 @@
   "updatedAt": "2026-11-24"
  },
  "CRM": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -10533,7 +10525,7 @@
    "epsEst": 3.45,
    "epsN": 42,
    "estimated": false,
-   "revEst": 11461322200.0,
+   "revEst": 11462347840.0,
    "revN": 39,
    "time": "amc"
   },
@@ -10906,7 +10898,7 @@
   "updatedAt": "2026-11-05"
  },
  "DELL": {
-  "checkedAt": "2026-11-24T12:26+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -10979,8 +10971,8 @@
   "next": {
    "asOf": "2026-11-24",
    "date": "2026-11-24",
-   "epsEst": 6.55,
-   "epsN": 24,
+   "epsEst": 6.59,
+   "epsN": 25,
    "estimated": false,
    "revEst": 49273922220.0,
    "revN": 22,
@@ -12520,7 +12512,7 @@
   "updatedAt": "2026-10-29"
  },
  "GDS": {
-  "checkedAt": "2026-11-24T12:26+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -13051,7 +13043,7 @@
   "updatedAt": "2026-10-29"
  },
  "GTLB": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -13210,7 +13202,7 @@
   "updatedAt": "2026-11-24"
  },
  "HPQ": {
-  "checkedAt": "2026-11-24T12:26+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -14675,7 +14667,7 @@
   "updatedAt": "2026-10-30"
  },
  "MDB": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -15084,7 +15076,7 @@
   "updatedAt": "2026-11-10"
  },
  "MRVL": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -16044,7 +16036,7 @@
   "updatedAt": "2026-11-10"
  },
  "NTAP": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -16674,7 +16666,7 @@
   "updatedAt": "2026-11-17"
  },
  "ORCL": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -16909,7 +16901,7 @@
   "updatedAt": "2026-11-19"
  },
  "PATH": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -18470,7 +18462,7 @@
   "updatedAt": "2026-10-30"
  },
  "SNOW": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -18546,14 +18538,14 @@
    "epsEst": 0.6,
    "epsN": 41,
    "estimated": false,
-   "revEst": 1654413500.0,
+   "revEst": 1654416060.0,
    "revN": 39,
    "time": "amc"
   },
   "updatedAt": "2026-11-24"
  },
  "SNPS": {
-  "checkedAt": "2026-11-24T05:33+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
@@ -20675,7 +20667,7 @@
   "updatedAt": "2026-11-19"
  },
  "WDAY": {
-  "checkedAt": "2026-11-24T12:26+00:00",
+  "checkedAt": "2026-11-24T21:42+00:00",
   "dates": "local",
   "history": [
    {
