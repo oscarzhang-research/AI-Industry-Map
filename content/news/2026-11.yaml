@@ -1,5 +1,48 @@
 month: 2026-11
 items:
+  - id: 2026-11-24-dell-fq3-2027-results
+    date: 2026-11-24
+    title: "Dell's revenue doubles to $54.9 billion as AI backlog hits $132.3 billion"
+    summary: "Dell's fiscal third-quarter revenue rose 103% to $54.9 billion, above the $49.3 billion expected, and adjusted EPS of $9.45 beat the $6.59 expected. AI server revenue rose 291% to about $22 billion, AI orders were $60.2 billion and backlog reached $132.3 billion; Dell raised full-year revenue guidance to $202 billion and AI server revenue guidance to $78 billion."
+    source: { name: "Dell Technologies", url: "https://investors.delltechnologies.com/news-events/press-releases/detail/1665/dell-technologies-delivers-third-quarter-fiscal-2027-financial-results" }
+    companies: [dell]
+    nodes: [infrastructure/servers/oem]
+    themes: [capex, data-centers]
+    impact: positive
+    importance: 3
+
+  - id: 2026-11-24-xiaomi-q3-2026-results
+    date: 2026-11-24
+    title: "Xiaomi's adjusted profit falls 57% as memory costs rise"
+    summary: "Xiaomi's third-quarter revenue fell 5.2% to RMB 107.2 billion, above the RMB 105.6 billion expected, and EPS of RMB 0.19 matched the consensus. Adjusted net profit fell 56.8% to RMB 4.88 billion, which the company tied to higher memory and component costs, while EV deliveries reached 100,975."
+    source: { name: "Sina Tech", url: "https://finance.sina.com.cn/tech/roll/2026-11-24/doc-inizvuzi4768407.shtml" }
+    companies: [xiaomi]
+    nodes: [applications/devices/phones-pcs]
+    themes: [memory-cycle]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-24-megaspeed-entity-list
+    date: 2026-11-24
+    title: "US adds Megaspeed and six other companies to its export blacklist"
+    summary: "The Commerce Department added Singapore-based Megaspeed, its subsidiaries and six other companies to the Entity List over concerns about diversion of advanced computing products, CNBC reported. Megaspeed has been a major buyer of Nvidia chips."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/24/us-adds-megaspeed-to-trade-blacklist-over-export-control-concerns-.html" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    themes: [export-controls, china-ai]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-24-anthropic-below-ipo-price
+    date: 2026-11-24
+    title: "Anthropic shares close below the $83 IPO price"
+    summary: "Anthropic closed below its $83 IPO price on Nov. 24, after opening at $111.50 on its Nov. 19 debut and falling steadily since, CNBC reported. Most analysts covering the stock remain positive."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/24/anthropic-stock-ipo-price.html" }
+    companies: [anthropic]
+    nodes: [models/frontier-labs/closed-frontier]
+    impact: negative
+    importance: 1
+
   - id: 2026-11-23-nvidia-reinstates-huang
     date: 2026-11-23
     title: "Nvidia's board reinstates Jensen Huang as CEO"
