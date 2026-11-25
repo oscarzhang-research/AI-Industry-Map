@@ -1,9 +1,9 @@
 {
  "symbol": "MU",
  "cik": "0000723125",
- "name": "Micron Technology, Inc.",
+ "name": "Micron Technology, Inc.",
  "company": "micron",
- "updatedAt": "2026-10-14T06:41:33+00:00",
+ "updatedAt": "2026-11-25T11:15:31+00:00",
  "revenue": [
   {"start": "2016-09-02", "end": "2016-12-01", "value": 3970000000, "fy": 2017, "fp": "Q1", "form": "10-K", "filed": "2018-10-15", "derived": false, "concept": "Revenues"},
   {"start": "2016-12-02", "end": "2017-03-02", "value": 4648000000, "fy": 2017, "fp": "Q2", "form": "10-K", "filed": "2018-10-15", "derived": false, "concept": "Revenues"},
