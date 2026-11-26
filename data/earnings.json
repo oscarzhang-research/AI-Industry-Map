@@ -3260,10 +3260,10 @@
   "updatedAt": "2026-11-11"
  },
  "300364.SZ": {
-  "checkedAt": "2026-11-18T21:43+00:00",
+  "checkedAt": "2026-11-26T03:48+00:00",
   "dates": "local",
   "history": [],
-  "updatedAt": "2026-11-18"
+  "updatedAt": "2026-11-26"
  },
  "300394.SZ": {
   "checkedAt": "2026-11-11T09:20+00:00",
@@ -3338,7 +3338,7 @@
   "updatedAt": "2026-11-11"
  },
  "300418.SZ": {
-  "checkedAt": "2026-11-18T21:43+00:00",
+  "checkedAt": "2026-11-26T03:48+00:00",
   "dates": "local",
   "history": [
    {
@@ -3383,7 +3383,7 @@
     "time": "amc"
    }
   ],
-  "updatedAt": "2026-11-18"
+  "updatedAt": "2026-11-26"
  },
  "300476.SZ": {
   "checkedAt": "2026-11-11T09:20+00:00",
@@ -4198,7 +4198,7 @@
   "updatedAt": "2026-11-10"
  },
  "3690.HK": {
-  "checkedAt": "2026-11-25T21:42+00:00",
+  "checkedAt": "2026-11-26T03:48+00:00",
   "dates": "local",
   "history": [
    {
@@ -4250,7 +4250,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-25",
+   "asOf": "2026-11-26",
    "date": "2026-11-27",
    "epsEst": 0.3,
    "epsN": 10,
@@ -4258,7 +4258,7 @@
    "revEst": 113081742500.0,
    "revN": 18
   },
-  "updatedAt": "2026-11-25"
+  "updatedAt": "2026-11-26"
  },
  "373220.KS": {
   "checkedAt": "2026-11-22T11:54+00:00",
@@ -5057,7 +5057,7 @@
   "updatedAt": "2026-11-11"
  },
  "600089.SS": {
-  "checkedAt": "2026-11-18T21:43+00:00",
+  "checkedAt": "2026-11-26T03:48+00:00",
   "dates": "local",
   "history": [
    {
@@ -5120,7 +5120,7 @@
     "surprise": -23.4
    }
   ],
-  "updatedAt": "2026-11-18"
+  "updatedAt": "2026-11-26"
  },
  "600183.SS": {
   "checkedAt": "2026-11-11T11:57+00:00",
@@ -5545,10 +5545,10 @@
   "updatedAt": "2026-11-11"
  },
  "6082.HK": {
-  "checkedAt": "2026-11-18T21:43+00:00",
+  "checkedAt": "2026-11-26T03:48+00:00",
   "dates": "local",
   "history": [],
-  "updatedAt": "2026-11-18"
+  "updatedAt": "2026-11-26"
  },
  "6146.T": {
   "checkedAt": "2026-11-10T23:00+00:00",
@@ -6749,10 +6749,10 @@
   "updatedAt": "2026-11-11"
  },
  "688795.SS": {
-  "checkedAt": "2026-11-18T21:43+00:00",
+  "checkedAt": "2026-11-26T03:48+00:00",
   "dates": "local",
   "history": [],
-  "updatedAt": "2026-11-18"
+  "updatedAt": "2026-11-26"
  },
  "688802.SS": {
   "checkedAt": "2026-11-11T21:43+00:00",
@@ -8690,17 +8690,17 @@
   "updatedAt": "2026-11-05"
  },
  "APX.AX": {
-  "checkedAt": "2026-11-18T21:43+00:00",
+  "checkedAt": "2026-11-26T03:48+00:00",
   "dates": "local",
   "history": [],
   "next": {
-   "asOf": "2026-11-18",
+   "asOf": "2026-11-26",
    "date": "2027-02-25",
    "estimated": false,
    "revEst": 0.0,
    "revN": 0
   },
-  "updatedAt": "2026-11-18"
+  "updatedAt": "2026-11-26"
  },
  "ARM": {
   "checkedAt": "2026-11-05T01:49+00:00",
@@ -15291,7 +15291,8 @@
   "updatedAt": "2026-11-11"
  },
  "MU": {
-  "checkedAt": "2026-11-10T22:01+00:00",
+  "checkedAt": "2026-11-26T03:48+00:00",
+  "dates": "local",
   "history": [
    {
     "date": "2026-09-30",
@@ -15361,16 +15362,16 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-10",
-   "date": "2026-12-23",
-   "epsEst": 38.29,
-   "epsN": 30,
-   "estimated": true,
-   "revEst": 61832643300.0,
-   "revN": 35,
+   "asOf": "2026-11-26",
+   "date": "2026-12-17",
+   "epsEst": 38.25,
+   "epsN": 29,
+   "estimated": false,
+   "revEst": 61756168190.0,
+   "revN": 34,
    "time": "amc"
   },
-  "updatedAt": "2026-11-10"
+  "updatedAt": "2026-11-26"
  },
  "NBIS": {
   "checkedAt": "2026-11-12T21:42+00:00",
@@ -15606,17 +15607,17 @@
   "updatedAt": "2026-11-15"
  },
  "NEX.PA": {
-  "checkedAt": "2026-11-18T21:43+00:00",
+  "checkedAt": "2026-11-26T03:48+00:00",
   "dates": "local",
   "history": [],
   "next": {
-   "asOf": "2026-11-18",
+   "asOf": "2026-11-26",
    "date": "2027-02-24",
    "estimated": false,
    "revEst": 1800111740.0,
    "revN": 1
   },
-  "updatedAt": "2026-11-18"
+  "updatedAt": "2026-11-26"
  },
  "NFLX": {
   "checkedAt": "2026-11-10T22:19+00:00",
@@ -17604,7 +17605,7 @@
   "updatedAt": "2026-10-30"
  },
  "RELX": {
-  "checkedAt": "2026-11-19T02:49+00:00",
+  "checkedAt": "2026-11-26T03:48+00:00",
   "dates": "local",
   "history": [
    {
@@ -17616,14 +17617,14 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-19",
+   "asOf": "2026-11-26",
    "date": "2027-02-11",
-   "estimated": false,
+   "estimated": true,
    "revEst": 0.0,
    "revN": 0,
    "time": "bmo"
   },
-  "updatedAt": "2026-11-19"
+  "updatedAt": "2026-11-26"
  },
  "RMBS": {
   "checkedAt": "2026-10-27T00:49+00:00",
@@ -17774,7 +17775,7 @@
   "updatedAt": "2026-11-06"
  },
  "RR.L": {
-  "checkedAt": "2026-11-19T02:49+00:00",
+  "checkedAt": "2026-11-26T03:48+00:00",
   "dates": "local",
   "history": [
    {
@@ -17791,13 +17792,13 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-19",
+   "asOf": "2026-11-26",
    "date": "2027-02-25",
    "estimated": false,
    "revEst": 0.0,
    "revN": 0
   },
-  "updatedAt": "2026-11-19"
+  "updatedAt": "2026-11-26"
  },
  "RXRX": {
   "checkedAt": "2026-11-14T01:46+00:00",
@@ -20222,7 +20223,7 @@
   "updatedAt": "2026-10-28"
  },
  "UMC": {
-  "checkedAt": "2026-11-19T02:49+00:00",
+  "checkedAt": "2026-11-26T03:48+00:00",
   "dates": "local",
   "history": [
    {
@@ -20293,7 +20294,7 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-19",
+   "asOf": "2026-11-26",
    "date": "2027-01-27",
    "epsEst": 0.21,
    "epsN": 1,
@@ -20302,20 +20303,20 @@
    "revN": 16,
    "time": "bmo"
   },
-  "updatedAt": "2026-11-19"
+  "updatedAt": "2026-11-26"
  },
  "VACN.SW": {
-  "checkedAt": "2026-11-19T02:49+00:00",
+  "checkedAt": "2026-11-26T03:48+00:00",
   "dates": "local",
   "history": [],
   "next": {
-   "asOf": "2026-11-19",
+   "asOf": "2026-11-26",
    "date": "2027-03-02",
    "estimated": false,
    "revEst": 379000000.0,
    "revN": 1
   },
-  "updatedAt": "2026-11-19"
+  "updatedAt": "2026-11-26"
  },
  "VICR": {
   "checkedAt": "2026-10-28T02:25+00:00",
@@ -20790,7 +20791,7 @@
   "updatedAt": "2026-10-23"
  },
  "WKL.AS": {
-  "checkedAt": "2026-11-19T02:49+00:00",
+  "checkedAt": "2026-11-26T03:48+00:00",
   "dates": "local",
   "history": [
    {
@@ -20851,13 +20852,13 @@
    }
   ],
   "next": {
-   "asOf": "2026-11-19",
+   "asOf": "2026-11-26",
    "date": "2027-02-24",
    "estimated": false,
    "revEst": 0.0,
    "revN": 0
   },
-  "updatedAt": "2026-11-19"
+  "updatedAt": "2026-11-26"
  },
  "WMB": {
   "checkedAt": "2026-11-03T03:06+00:00",
