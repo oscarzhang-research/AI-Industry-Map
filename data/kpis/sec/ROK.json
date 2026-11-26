@@ -1,9 +1,9 @@
 {
  "symbol": "ROK",
  "cik": "0001024478",
- "name": "Rockwell Automation, Inc",
+ "name": "ROCKWELL AUTOMATION, INC",
  "company": "rockwell",
- "updatedAt": "2026-11-12T21:43:36+00:00",
+ "updatedAt": "2026-11-26T10:50:25+00:00",
  "revenue": [
   {"start": "2016-10-01", "end": "2016-12-31", "value": 1490300000, "fy": 2017, "fp": "Q1", "form": "10-K", "filed": "2018-11-09", "derived": false, "concept": "Revenues"},
   {"start": "2017-01-01", "end": "2017-03-31", "value": 1554300000, "fy": 2017, "fp": "Q2", "form": "10-K", "filed": "2018-11-09", "derived": false, "concept": "Revenues"},
