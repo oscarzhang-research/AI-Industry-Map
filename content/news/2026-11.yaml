@@ -1,5 +1,26 @@
 month: 2026-11
 items:
+  - id: 2026-11-25-huawei-convicted-us-trial
+    date: 2026-11-25
+    title: "US jury convicts Huawei in its fraud and trade secrets trial"
+    summary: "A federal jury in Brooklyn convicted Huawei in a criminal case over bank fraud, conspiracy to steal trade secrets and related charges, CNBC reported. Prosecutors had alleged Huawei misled banks about its Iran business and evaded US sanctions; the trial ran about two months."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/25/huawei-fraud-trade-trial.html" }
+    companies: [huawei]
+    nodes: [chips/compute/china-accelerators]
+    themes: [export-controls, china-ai]
+    impact: negative
+    importance: 2
+
+  - id: 2026-11-25-sp-warns-nvidia-rating
+    date: 2026-11-25
+    title: "S&P warns it could cut Nvidia's credit rating over governance risk"
+    summary: "S&P Global Ratings said it could lower Nvidia's credit rating, citing rising management and governance risk and reliance on a key executive after Jensen Huang's resignation and reinstatement, CNBC reported. Moody's had already cut Nvidia's outlook to stable from positive on Nov. 18."
+    source: { name: "CNBC", url: "https://www.cnbc.com/2026/11/26/nvidia-market-governance-risk.html" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    impact: negative
+    importance: 1
+
   - id: 2026-11-24-dell-fq3-2027-results
     date: 2026-11-24
     title: "Dell's revenue doubles to $54.9 billion as AI backlog hits $132.3 billion"
