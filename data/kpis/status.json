@@ -7,7 +7,7 @@
   "skipped": 1,
   "targets": 120
  },
- "seconds": 33.4,
+ "seconds": 5.9,
  "tw": {
   "backfilled": 0,
   "failed": [],
@@ -15,5 +15,5 @@
   "ok": 25,
   "targets": 25
  },
- "updatedAt": "2026-11-27T10:50:21+00:00"
+ "updatedAt": "2026-11-27T11:54:29+00:00"
 }
