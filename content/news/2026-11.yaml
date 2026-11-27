@@ -1,5 +1,16 @@
 month: 2026-11
 items:
+  - id: 2026-11-26-nvidia-pauses-southeast-asia-shipments
+    date: 2026-11-26
+    title: "Nvidia tells partners to pause server shipments to four Southeast Asian countries"
+    summary: "Nvidia told manufacturing partners to pause AI server shipments to Malaysia, Singapore, Thailand and Indonesia, according to reports cited by TechCrunch and DCD. The pause follows the Commerce Department's Nov. 16 rule requiring licenses for advanced chip exports to data centers in those countries, and it is unclear how long it will last."
+    source: { name: "TechCrunch", url: "https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/" }
+    companies: [nvidia]
+    nodes: [chips/compute/gpus]
+    themes: [export-controls]
+    impact: negative
+    importance: 2
+
   - id: 2026-11-25-huawei-convicted-us-trial
     date: 2026-11-25
     title: "US jury convicts Huawei in its fraud and trade secrets trial"
